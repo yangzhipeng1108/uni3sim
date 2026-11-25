@@ -12,6 +12,7 @@ import sys
 import time
 from typing import Callable, Mapping, Optional, Tuple
 
+from src import _platform_compat
 from src.serving.deployment.deployment_config import (
     worker_role_operator_group,
     worker_role_phase,
@@ -3254,7 +3255,7 @@ class Simulation:
             workers = min(
                 _apply_tail_worker_limit(
                     self.config.execution_workers,
-                    len(os.sched_getaffinity(0)),
+                    len(_platform_compat.sched_getaffinity(0)),
                     memory_worker_limit,
                 ),
                 len(remaining),
@@ -3682,7 +3683,7 @@ class Simulation:
             and self._kv_lifecycle._manager.fixed_prefix_hbm_percent is not None
             and self.streaming_step_projector is not None
             and self.streaming_prehashed_step_consumer is not None
-            and len(os.sched_getaffinity(0)) >= 2)
+            and len(_platform_compat.sched_getaffinity(0)) >= 2)
         causal_execution = (fast_parallel_execution
             and self._async_output_release() == "self"
             and _independent_runtime_prepare_builder(self.config.runtime_prepare_event_builder)
@@ -3702,7 +3703,7 @@ class Simulation:
                 or (type(self.backend._control_plane) is _NativeVLLMControlPlane
                     and self.backend._in_process_baseline_libraries is not None))
             and self.backend._control_plane.scheduler_config.scheduler_host_profile is not None
-            and len(os.sched_getaffinity(0)) >= 2
+            and len(_platform_compat.sched_getaffinity(0)) >= 2
             and os.sysconf("SC_AVPHYS_PAGES") * os.sysconf("SC_PAGE_SIZE") >= 72 * 1024 ** 3)
         cpu_pending = {}
         cpu_execution_intervals = []

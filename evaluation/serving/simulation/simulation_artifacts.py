@@ -7,6 +7,7 @@ from src.serving.kv_cache.kv_capacity import validate_ffn_source_capacity, valid
 import hashlib
 import json
 import os
+import stat
 from pathlib import Path
 from evaluation.serving.experiments.experiment_plan import git_code_identity, load_workload_artifact
 from evaluation.serving.simulation.execution_artifact import performance_timing_status
@@ -840,10 +841,16 @@ def file_provenance(path: str | Path) -> dict[str, object]:
             after = os.fstat(stream.fileno())
         named = resolved.stat()
         fields = ("st_dev", "st_ino", "st_mode", "st_size", "st_mtime_ns", "st_ctime_ns")
-        if (tuple(getattr(before, field) for field in fields)
-                != tuple(getattr(after, field) for field in fields)
-                or tuple(getattr(after, field) for field in fields)
-                != tuple(getattr(named, field) for field in fields)
+
+        def identity(stat_result):
+            # Windows derives the mode permission bits from the read-only
+            # attribute, so os.fstat and os.stat can disagree on st_mode for
+            # the same unchanged file.  Compare the file-type bits only.
+            values = tuple(getattr(stat_result, field) for field in fields)
+            return values[:2] + (values[2] & stat.S_IFMT(values[2]),) + values[3:]
+
+        if (identity(before) != identity(after)
+                or identity(after) != identity(named)
                 or size != after.st_size or verified_size != size
                 or digest.digest() != verification.digest() or Path(path).resolve() != resolved):
             raise RuntimeError(f"provenance input changed while hashing: {resolved}")

@@ -526,6 +526,51 @@ _VALIDATED_TARGET_SCOPES = (
         scheduler_roles=("prefill", "decode"),
         scheduler_requires_named_identity=True,
     ),
+    # DeepSeek-V3 H20 PD: the same TP8/PP1/EP1 MLA layout as the H200 row.
+    # H20 shares the Hopper instruction set and the same MLA kv_c||k_pe
+    # payload, so the topology fact carries over; it is NOT calibrated by any
+    # observed H20 GEMM launch LUT (see launch_data/nvidia_h20).
+    ValidatedScope(
+        name="dsv3_h20_pd_tp8_pp1_ep1",
+        scope_kind="h20_pd_ep1",
+        model_types=("deepseek_v3",),
+        deployment_modes=("pd_disagg",),
+        tensor_parallel_size=8,
+        pipeline_parallel_size=1,
+        expert_parallel=False,
+        expert_parallel_size=1,
+        hardware_ids=("nvidia_h20",),
+        config_sha256=None,
+        construction_checks_hardware=True,
+        emission_gate=True,
+        emission_requires_allow_flag=False,
+        emission_excludes_config_sha256=(),
+        scheduler_model_types=("deepseek_v3",),
+        scheduler_roles=("prefill", "decode"),
+        scheduler_requires_named_identity=True,
+    ),
+    # DeepSeek-V3 H20 colocated: one TP8/PP1/EP1 pool, the aggregate
+    # counterpart of the H200 aggregate row (over-approximated exactly the
+    # same way, with the per-model checks failing closed afterwards).
+    ValidatedScope(
+        name="dsv3_h20_colocated_tp8_pp1_ep1",
+        scope_kind="h20_aggregate",
+        model_types=("deepseek_v3",),
+        deployment_modes=("colocated",),
+        tensor_parallel_size=8,
+        pipeline_parallel_size=1,
+        expert_parallel=False,
+        expert_parallel_size=1,
+        hardware_ids=("nvidia_h20",),
+        config_sha256=None,
+        construction_checks_hardware=True,
+        emission_gate=True,
+        emission_requires_allow_flag=False,
+        emission_excludes_config_sha256=(),
+        scheduler_model_types=("deepseek_v3",),
+        scheduler_roles=("colocated",),
+        scheduler_requires_named_identity=True,
+    ),
     # DeepSeek-V4 Flash H200 colocated: one TP4/PP1/EP1 pool (FP8
     # block-scaled weights TP4-sharded fit one H200 per rank; MXFP4 routed
     # experts replicated at EP1).  The config identity pins the Flash

@@ -11,6 +11,7 @@ original semantics (``ru_maxrss`` in KiB on Linux).
 
 from __future__ import annotations
 
+import os
 import sys
 
 if sys.platform == "win32":
@@ -78,9 +79,16 @@ if sys.platform == "win32":
         )
         return usage
 
+    def sched_getaffinity(pid: int = 0) -> set[int]:
+        """Return the logical CPU set Windows reports for this process."""
+        if pid not in (0, os.getpid()):
+            raise OSError("sched_getaffinity only addresses the current process")
+        return set(range(os.cpu_count() or 1))
+
 else:
     from resource import (  # noqa: F401
         RUSAGE_CHILDREN,
         RUSAGE_SELF,
         getrusage,
+        sched_getaffinity,
     )

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "workload": {
-    "name": "tf-synthetic",
+    "name": "tf03-synthetic-77k",
     "prompt_len": 77000,
     "output_len": 512
   },
@@ -217,5 +217,5 @@
   "num_requests": 64,
   "requested_num_requests": 64,
   "seed": 0,
-  "hash": "83a291e91e03746500433edc0cf1679cb2b3c3554ceef8c7d7b9cca7d04e442d"
+  "hash": "580cde68102ceaa7be9735440c5b94596f0826534793f96049b12768ebd11e03"
 }

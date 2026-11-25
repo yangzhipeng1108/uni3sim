@@ -147,8 +147,17 @@ def tensor_collective_configs(
                 "TP=4 tensor collectives exist only for the analytical "
                 "DeepSeek-V3-L32 H200 path")
         if backend == "analytical_roofline_v1":
+            # Intra-node tensor collectives run on the vendor scale-up fabric;
+            # every NVIDIA part shares NVLink, MetaX uses MetaXLink and the
+            # Ascend parts share HCCS.
             link = {"nvidia_a800": "nvlink", "nvidia_h200": "nvlink",
-                "metax_c500": "metaxlink", "ascend_910b": "hccs"}[hardware_id]
+                "nvidia_h20": "nvlink", "nvidia_b200": "nvlink",
+                "nvidia_b300": "nvlink",
+                "metax_c500": "metaxlink", "ascend_910b": "hccs",
+                "ascend_950pr": "hccs",
+                "ascend_950dt": "hccs"}.get(
+                    hardware_id,
+                    "nvlink" if hardware_id.startswith("nvidia_") else "hccs")
             if (all_reduce_profile_sha256 is not None
                     or all_gather_profile_sha256 is not None):
                 raise ValueError(
@@ -1003,7 +1012,10 @@ TARGET_SCOPES = {
         "deployment": "pd_disagg",
         "hardware_roles": 2,
         "model_type": "deepseek_v3",
-        "hardware_id": "nvidia_h200",
+        # H20 shares the Hopper MLA layout and the same TP8/PP1/EP1 geometry,
+        # so the DeepSeek-V3 PD topology applies to both parts; H20 is not
+        # calibrated by an observed launch LUT.
+        "hardware_ids": ("nvidia_h200", "nvidia_h20"),
         "prefill_tp_size": (8,),
         "prefill_pp_size": (1,),
         "expert_parallel": False,
@@ -1011,6 +1023,20 @@ TARGET_SCOPES = {
         "require_decode_hardware_config": True,
         "reject_additional_colocated_config": True,
         "tp8_bypasses_config_sha256": None,
+        "config_sha256": None,
+    },
+    "dsv3_h20_colocated": {
+        "deployment": "colocated",
+        "hardware_roles": 1,
+        "model_type": "deepseek_v3",
+        "hardware_ids": ("nvidia_h20",),
+        "prefill_tp_size": (8,),
+        "prefill_pp_size": (1,),
+        "expert_parallel": False,
+        "decode_tp_size": None,
+        "require_decode_hardware_config": False,
+        "reject_additional_colocated_config": True,
+        "tp8_bypasses_config_sha256": 8,
         "config_sha256": None,
     },
     # The MTP sweep accepts whatever the PD scope accepts and only pins the
@@ -1108,12 +1134,18 @@ def matches_target_scope(args, scope: Mapping) -> bool:
     if scope["reject_additional_colocated_config"] and (
             args.additional_colocated_hardware_config):
         return False
+    # A row pins one hardware identity (``hardware_id``) or, when the same
+    # validated topology carries over to a second part (``hardware_ids``),
+    # the accepted set.
+    accepted_hardware = scope.get("hardware_ids")
+    if accepted_hardware is None:
+        accepted_hardware = (scope["hardware_id"],)
     if scope["hardware_roles"] == 2:
         loaded = load_pd_scope_configs(args)
         if loaded is None:
             return False
         model, prefill_hardware, decode_hardware = loaded
-        if decode_hardware.hardware_id != scope["hardware_id"]:
+        if decode_hardware.hardware_id not in accepted_hardware:
             return False
     else:
         loaded = load_target_scope_config(args)
@@ -1122,7 +1154,7 @@ def matches_target_scope(args, scope: Mapping) -> bool:
         model, prefill_hardware = loaded
     if model.model_type != scope["model_type"]:
         return False
-    if prefill_hardware.hardware_id != scope["hardware_id"]:
+    if prefill_hardware.hardware_id not in accepted_hardware:
         return False
     tp8_bypasses = scope["tp8_bypasses_config_sha256"]
     if tp8_bypasses is not None and args.prefill_tp_size == tp8_bypasses:

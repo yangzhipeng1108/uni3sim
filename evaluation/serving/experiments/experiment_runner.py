@@ -9,6 +9,8 @@ import hashlib
 from importlib import metadata
 import json
 import os
+import platform
+from collections import namedtuple
 from pathlib import Path
 import shutil
 import signal
@@ -22,6 +24,7 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[3]
 
+from src import _platform_compat
 from evaluation.serving.experiments.experiment_plan import (
     git_code_identity,
     materialize_cpu_simulation_plan,
@@ -252,7 +255,12 @@ def simulation_python_environment() -> dict[str, Any]:
                     "status": "observed",
                     "sha256": hashlib.sha256(record.encode("utf-8")).hexdigest(),
                 }
-    system = os.uname()
+    if sys.platform == "win32":
+        _uname = namedtuple("uname_result", "sysname release machine")(
+            "Windows", platform.release(), platform.machine())
+    else:
+        _uname = os.uname()
+    system = _uname
     if any(not isinstance(path, str) for path in sys.path):
         raise ManifestValidationError("launcher Python search path must contain only strings")
     site_roots = list(site.getsitepackages())
@@ -380,11 +388,83 @@ def _raise_cpu_termination(signum: int, frame: Any) -> None:
 
 def _cpu_process_identity() -> dict[str, Any]:
     pid = os.getpid()
+    if sys.platform == "win32":
+        # Windows has no /proc.  The identity only gates resuming an attempt
+        # that this same runner left running, so the process start time is
+        # the equivalent liveness discriminator.
+        import ctypes
+        from ctypes import wintypes
+        kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+        kernel32.GetCurrentProcess.restype = wintypes.HANDLE
+        kernel32.GetProcessTimes.argtypes = [
+            wintypes.HANDLE,
+            ctypes.POINTER(wintypes.FILETIME),
+            ctypes.POINTER(wintypes.FILETIME),
+            ctypes.POINTER(wintypes.FILETIME),
+            ctypes.POINTER(wintypes.FILETIME),
+        ]
+        kernel32.GetProcessTimes.restype = wintypes.BOOL
+        creation, exit_time = wintypes.FILETIME(), wintypes.FILETIME()
+        kernel_time, user_time = wintypes.FILETIME(), wintypes.FILETIME()
+        ok = kernel32.GetProcessTimes(
+            kernel32.GetCurrentProcess(), ctypes.byref(creation),
+            ctypes.byref(exit_time), ctypes.byref(kernel_time),
+            ctypes.byref(user_time))
+        start_ticks = 0
+        if ok:
+            start_ticks = (creation.dwHighDateTime << 32) | creation.dwLowDateTime
+        return {"pid": pid, "start_ticks": int(start_ticks),
+                "boot_id": "windows", "pid_namespace": "windows"}
     stat = Path(f"/proc/{pid}/stat").read_text()
     fields = stat.rsplit(")", 1)[1].split()
     return {"pid": pid, "start_ticks": int(fields[19]),
             "boot_id": Path("/proc/sys/kernel/random/boot_id").read_text().strip(),
             "pid_namespace": os.readlink("/proc/self/ns/pid")}
+
+
+def _windows_pid_alive(pid: int, start_ticks: int) -> bool:
+    """Return whether ``pid`` is live and still the process it was recorded as."""
+    import ctypes
+    from ctypes import wintypes
+    kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+    process_query_limited_information = 0x1000
+    still_active = 259
+    kernel32.OpenProcess.argtypes = [
+        wintypes.DWORD, wintypes.BOOL, wintypes.DWORD]
+    kernel32.OpenProcess.restype = wintypes.HANDLE
+    handle = kernel32.OpenProcess(
+        process_query_limited_information, False, pid)
+    if not handle:
+        return False
+    try:
+        kernel32.GetExitCodeProcess.argtypes = [
+            wintypes.HANDLE, ctypes.POINTER(wintypes.DWORD)]
+        kernel32.GetExitCodeProcess.restype = wintypes.BOOL
+        exit_code = wintypes.DWORD()
+        if not kernel32.GetExitCodeProcess(handle, ctypes.byref(exit_code)):
+            return False
+        if exit_code.value != still_active:
+            return False
+        if start_ticks <= 0:
+            return True
+        kernel32.GetProcessTimes.argtypes = [
+            wintypes.HANDLE,
+            ctypes.POINTER(wintypes.FILETIME),
+            ctypes.POINTER(wintypes.FILETIME),
+            ctypes.POINTER(wintypes.FILETIME),
+            ctypes.POINTER(wintypes.FILETIME),
+        ]
+        kernel32.GetProcessTimes.restype = wintypes.BOOL
+        creation, exit_time = wintypes.FILETIME(), wintypes.FILETIME()
+        kernel_time, user_time = wintypes.FILETIME(), wintypes.FILETIME()
+        if not kernel32.GetProcessTimes(
+                handle, ctypes.byref(creation), ctypes.byref(exit_time),
+                ctypes.byref(kernel_time), ctypes.byref(user_time)):
+            return True
+        actual = (creation.dwHighDateTime << 32) | creation.dwLowDateTime
+        return int(actual) == int(start_ticks)
+    finally:
+        kernel32.CloseHandle(handle)
 
 
 def _require_stopped_cpu_attempt(record: dict[str, Any]) -> None:
@@ -401,6 +481,12 @@ def _require_stopped_cpu_attempt(record: dict[str, Any]) -> None:
     current = _cpu_process_identity()
     if identity["boot_id"] != current["boot_id"] or identity["pid_namespace"] != current["pid_namespace"]:
         raise ManifestValidationError("running attempt belongs to another boot or PID namespace")
+    if sys.platform == "win32":
+        # No /proc and no process groups: an attempt whose recorded owner is
+        # no longer running is retryable, mirroring the POSIX contract.
+        if _windows_pid_alive(identity["pid"], identity["start_ticks"]):
+            raise ManifestValidationError("running attempt owner is still alive")
+        return
     try:
         text = Path(f"/proc/{identity['pid']}/stat").read_text()
     except FileNotFoundError:
@@ -419,25 +505,31 @@ def _require_stopped_cpu_attempt(record: dict[str, Any]) -> None:
 def _execute_cpu_process(command: list[str], *, cwd: Path, env: dict[str, str],
                          stdout: Any, stderr: Any, on_started: Any) -> subprocess.CompletedProcess:
     """Own the simulation process group so cancellation reaps its workers."""
+    # ``start_new_session``/``killpg`` are POSIX process-group facilities; on
+    # Windows the child is terminated through the Popen handle instead.
+    posix_session = sys.platform != "win32"
     process = subprocess.Popen(command, cwd=cwd, env=env, stdout=stdout,
-                               stderr=stderr, start_new_session=True)
+                               stderr=stderr, start_new_session=posix_session)
     try:
         on_started(process.pid)
         returncode = process.wait()
     except BaseException:
-        signal.signal(signal.SIGTERM, signal.SIG_IGN)
-        try:
-            os.killpg(process.pid, signal.SIGTERM)
-        except ProcessLookupError:
-            pass
-        try:
-            process.wait(timeout=5)
-        except subprocess.TimeoutExpired:
-            pass
-        try:
-            os.killpg(process.pid, signal.SIGKILL)
-        except ProcessLookupError:
-            pass
+        if posix_session:
+            signal.signal(signal.SIGTERM, signal.SIG_IGN)
+            try:
+                os.killpg(process.pid, signal.SIGTERM)
+            except ProcessLookupError:
+                pass
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                pass
+            try:
+                os.killpg(process.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+        else:
+            process.kill()
         process.wait()
         raise
     return subprocess.CompletedProcess(command, returncode)
@@ -1293,7 +1385,7 @@ def run_cpu_simulation_experiments(args: argparse.Namespace, manifest: Experimen
                   "recovery_of": recovery_of,
                   "runner_process": _cpu_process_identity(), "child_process_group": None,
                   "started_at": datetime.now(timezone.utc).isoformat(),
-                  "cpu_affinity": sorted(os.sched_getaffinity(0)),
+                  "cpu_affinity": sorted(_platform_compat.sched_getaffinity(0)),
                   "wall_time_budget_s": None,
                   "wall_time_budget_source": "no_subprocess_timeout",
                   "simulation_python_environment": simulation_python_environment(),

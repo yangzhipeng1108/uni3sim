@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "workload": {
+    "name": "smoke",
+    "prompt_len": 512,
+    "output_len": 64
+  },
+  "request_ids": [
+    "req-00000",
+    "req-00001",
+    "req-00002",
+    "req-00003",
+    "req-00004",
+    "req-00005",
+    "req-00006",
+    "req-00007",
+    "req-00008",
+    "req-00009",
+    "req-00010",
+    "req-00011",
+    "req-00012",
+    "req-00013",
+    "req-00014",
+    "req-00015"
+  ],
+  "prompts": [
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx",
+    "tokenfactory-xxxxxxxxxxxxxxxx"
+  ],
+  "prompt_lengths": [
+    512,
+    512,
+    512,
+    512,
+    512,
+    512,
+    512,
+    512,
+    512,
+    512,
+    512,
+    512,
+    512,
+    512,
+    512,
+    512
+  ],
+  "sampling": {
+    "ignore_eos": true,
+    "max_tokens": 64,
+    "min_tokens": 64,
+    "temperature": 0.0
+  },
+  "token_controls": {
+    "ignore_eos": true,
+    "max_tokens": 64,
+    "min_tokens": 64
+  },
+  "num_requests": 16,
+  "requested_num_requests": 16,
+  "seed": 0,
+  "hash": "178ad3c44db9f9eb64a40e6087619d4a2b6870307a49452a7a456faf871e8761"
+}
