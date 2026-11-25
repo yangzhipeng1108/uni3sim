@@ -1,0 +1,105 @@
+{
+  "block_dims": [
+    1,
+    24,
+    48
+  ],
+  "composition": "one shared phase before every AIV operator body",
+  "duration_unit": "ns_per_complete_tiling_materialization_phase",
+  "fits_by_training_run": {
+    "rope_tiling48_d6_r1": {
+      "serialized_ns_per_aiv": 37.68351236979166,
+      "single_worker_completion_ns": 233.71419270833348
+    },
+    "rope_tiling48_d7_r2": {
+      "serialized_ns_per_aiv": 37.68983629014756,
+      "single_worker_completion_ns": 227.05810546875
+    }
+  },
+  "formula": "max(single_worker_completion_ns, serialized_ns_per_aiv * active_aiv_workers)",
+  "hardware_id": "ascend_910b",
+  "host_tiler_sha256": "a3c0446a86165f90232b1e5810bbc37128d7a6199b817e6a5ae59bdf69ea97f6",
+  "independent_runs": 3,
+  "maximum_active_aiv_workers": 48,
+  "maximum_relative_median_spread": 0.1,
+  "maximum_validation_ape": 0.15,
+  "maximum_validation_mape": 0.1,
+  "measurement_gate_passed": true,
+  "mechanism": "one AIV Rope 48-byte InitTilingData source sequence: 64-byte rounded GM-to-UB DataCopy, PIPE_ALL barrier, twelve uint32 scalar reads, and PIPE_ALL barrier",
+  "mechanism_publishable": true,
+  "medians_ns_by_run_and_block_dim": {
+    "rope_tiling48_d6_r1": {
+      "1": 233.71419270833348,
+      "24": 904.339192708333,
+      "48": 1808.938802083333
+    },
+    "rope_tiling48_d6_r3": {
+      "1": 231.680501302083,
+      "24": 904.36767578125,
+      "48": 1809.3644205729165
+    },
+    "rope_tiling48_d7_r2": {
+      "1": 227.05810546875,
+      "24": 904.392903645833,
+      "48": 1809.4384765625
+    }
+  },
+  "minimum_active_aiv_workers": 1,
+  "model": "rope_aiv_tiling_materialization_complete_max_v1",
+  "parameter_stability": {
+    "serialized_ns_per_aiv_relative_span": 0.0001678025580218043,
+    "single_worker_completion_relative_span": 0.02889100436773838
+  },
+  "parameters": {
+    "serialized_ns_per_aiv": 37.686674329969605,
+    "single_worker_completion_ns": 230.38614908854174
+  },
+  "payload_bytes": 48,
+  "production_or_evaluation_duration_consumed": false,
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/rope_tiling48_f053c72f_20260903/rope_tiling48_d6_r1.csv",
+      "sha256": "b11b9ef9e49db143d80f2faf44b10650e67f4ead60e6c9105612dad73f781bad"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rope_tiling48_f053c72f_20260903/rope_tiling48_d7_r2.csv",
+      "sha256": "eafc5f86b086b02a9190d1c3d71e0b80d66dbaf8348dae2b95c9b9025b34f33c"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rope_tiling48_f053c72f_20260903/rope_tiling48_d6_r3.csv",
+      "sha256": "f74dc41cc9504b42789a0a5e01296d2755afc09b92cb6aaad8aab5adc50bc481"
+    }
+  ],
+  "request_size_unit": "active_aiv_workers",
+  "run_relative_median_spread_by_block_dim": {
+    "1": 0.028729596155805802,
+    "24": 5.9390598468262474e-05,
+    "48": 0.0002761602215040534
+  },
+  "samples_per_cell": 24,
+  "schema_version": 1,
+  "scope": "CANN AIV Rope 48-byte InitTilingData source sequence",
+  "service": "tiling_struct_materialization",
+  "software_revision": "cann_8.5.1",
+  "source_commit": "951f294f15f6dbdcb52c962d0db862076862fec3",
+  "source_sha256": "ca4b838433240815b8d9588d56e677449e98209dd4b911b63ad71d5ab641cca0",
+  "template_path": "src/kernels/mixkernels/rope/op_kernel/rotary_pos_emb.cpp",
+  "template_sha256": "83d7e446975d7bed81830c0a6d97c946ea26ef4a2bdf6ffc9324249fc6c258c2",
+  "training_metrics": {
+    "mape": 0.004904266476304706,
+    "maximum_ape": 0.014657233279213549,
+    "wmae": 0.0012541069289425876
+  },
+  "training_run_ids": [
+    "rope_tiling48_d6_r1",
+    "rope_tiling48_d7_r2"
+  ],
+  "validation_metrics": {
+    "mape": 0.001978171834238715,
+    "maximum_ape": 0.005586798225430212,
+    "wmae": 0.0006148249272031499
+  },
+  "validation_run_ids": [
+    "rope_tiling48_d6_r3"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "nvidia_a800_bm64_operand_residency_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "source_baseline_commit": "788b4e3992313800a4067f83b27f58a3c9d33e5a",
+  "source": "microbench/nvidia_a800/compute/tensor_core/sm80_bf16_bm64_operand_residency.cu",
+  "runner": "microbench/nvidia_a800/compute/tensor_core/sm80_bf16_bm64_operand_residency_runner.py",
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_a800/bm64_operand_residency_788b4e39_20260902_d6",
+      "device_index": 6,
+      "device_uuid": "capture-device-0b790647dba7",
+      "manifest_sha256": "5fa41a088b74bf9a58a632724b372996a0317736253ace4f0038c583588b1671",
+      "report_sha256": "a87d0368471ec0cd1609686f1739957a469ae3b9a5290a82a51a4beaf7769445",
+      "raw_sha256": "618ca2c0359ce5e353daf7dff59983e63f657b55bf174a4049179d879e4ac0ee",
+      "source_sha256": "e83ed08b5992573576c966cbc5748106ee556c1f4d3f690be9cac458c5b4b221",
+      "sass_sha256": "419a7e08cff4982afcf2113c96855d1a615db12445c47640b92e0a0f82d8dbc8",
+      "grouped_operand_l2_hit_bytes_per_s": 3412674941835.2227,
+      "grouped_weight_dram_miss_bytes_per_s": 1344481435153.8774,
+      "all_cells_stable_within_10_percent": true
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_a800/bm64_operand_residency_788b4e39_20260902_d7_retry1",
+      "device_index": 7,
+      "device_uuid": "capture-device-ceb3fcab78ae",
+      "manifest_sha256": "a28795b2999582cf237a90ac09dcc349840299e9c8a348ba677780e6c4a80846",
+      "report_sha256": "22cf529e6ab351b20c5324d32f51f4e1da61e051e75ac95916e361fbac27d8fd",
+      "raw_sha256": "5cec679c3126ece9d19e38e1ff222063432c989066e58ffc24c1c4b71434645e",
+      "source_sha256": "e83ed08b5992573576c966cbc5748106ee556c1f4d3f690be9cac458c5b4b221",
+      "sass_sha256": "419a7e08cff4982afcf2113c96855d1a615db12445c47640b92e0a0f82d8dbc8",
+      "grouped_operand_l2_hit_bytes_per_s": 3326075187969.925,
+      "grouped_weight_dram_miss_bytes_per_s": 1316767342414.141,
+      "all_cells_stable_within_10_percent": true
+    }
+  ],
+  "probe_contract": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_n": 64,
+    "tile_k": 32,
+    "group_size_m": 8,
+    "threads_per_cta": 128,
+    "resident_ctas_per_sm": 5,
+    "physical_sm_count": 108,
+    "grid_ctas": 540,
+    "pipeline_slots": 2,
+    "dynamic_shared_bytes": 16384,
+    "rounds": 256,
+    "weight_source_row_strides_elements": [4096, 7168]
+  },
+  "selected_services": {
+    "selection_rule": "minimum complete-capture capacity across idle devices 6 and 7",
+    "grouped_operand_l2_hit_bytes_per_s": 3326075187969.925,
+    "grouped_weight_dram_miss_bytes_per_s": 1316767342414.141,
+    "weight_miss_stride_rule": "minimum of independently measured N=4096 and N=7168 source-stride services within each capture"
+  },
+  "mechanism": "bm64_double_slot_operand_l2_hit_and_grouped_strided_weight_dram_miss_service",
+  "allowed_conclusion": "For the source-shaped BM64/BN64/BK32 five-CTA-per-SM pipeline, L2-resident operand bytes and strided DRAM-miss weight bytes have distinct full-chip logical-byte service ceilings.",
+  "excluded_conclusions": [
+    "production operator duration",
+    "per-shape residual correction",
+    "kernel-name or workload-duration lookup",
+    "application outside the exact BM64/BN64/BK32/GSM8 BF16 launch"
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "production_predictor_consumption_allowed": true
+}

@@ -1,0 +1,171 @@
+{
+  "cells": [
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 2104682,
+        "median_ns": 1822643,
+        "min_ns": 1801638,
+        "p95_ns": 2014351
+      },
+      "scheduled_request_count": 121,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 1884119,
+        "median_ns": 1705521,
+        "min_ns": 1677416,
+        "p95_ns": 1737797
+      }
+    },
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 1862259,
+        "median_ns": 1829403,
+        "min_ns": 1806748,
+        "p95_ns": 1852708
+      },
+      "scheduled_request_count": 122,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 4052103,
+        "median_ns": 1723506,
+        "min_ns": 1706196,
+        "p95_ns": 1749007
+      }
+    },
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 1894489,
+        "median_ns": 1852834,
+        "min_ns": 1835659,
+        "p95_ns": 1868629
+      },
+      "scheduled_request_count": 123,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 1756017,
+        "median_ns": 1734881,
+        "min_ns": 1719586,
+        "p95_ns": 1751247
+      }
+    },
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 2055232,
+        "median_ns": 1880819,
+        "min_ns": 1855928,
+        "p95_ns": 1903159
+      },
+      "scheduled_request_count": 124,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 1842009,
+        "median_ns": 1756127,
+        "min_ns": 1737977,
+        "p95_ns": 1777287
+      }
+    },
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 1908559,
+        "median_ns": 1892014,
+        "min_ns": 1867319,
+        "p95_ns": 1905140
+      },
+      "scheduled_request_count": 125,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 1818408,
+        "median_ns": 1757817,
+        "min_ns": 1744487,
+        "p95_ns": 1791178
+      }
+    },
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 1923710,
+        "median_ns": 1896469,
+        "min_ns": 1878149,
+        "p95_ns": 1916040
+      },
+      "scheduled_request_count": 126,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 1851358,
+        "median_ns": 1789283,
+        "min_ns": 1771007,
+        "p95_ns": 1805008
+      }
+    },
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 1940780,
+        "median_ns": 1918244,
+        "min_ns": 1906739,
+        "p95_ns": 1935140
+      },
+      "scheduled_request_count": 127,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 3735927,
+        "median_ns": 1789818,
+        "min_ns": 1769627,
+        "p95_ns": 1823268
+      }
+    },
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 4224846,
+        "median_ns": 1936519,
+        "min_ns": 1914190,
+        "p95_ns": 1959420
+      },
+      "scheduled_request_count": 128,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 1877319,
+        "median_ns": 1815528,
+        "min_ns": 1784827,
+        "p95_ns": 1850859
+      }
+    }
+  ],
+  "execution": {
+    "baseline_commit": "a8bf950d3e5953cfc4c5bcd76dfa1fff4f1c9855",
+    "container_name": "capture-container-2",
+    "device_id": 0
+  },
+  "hardware_id": "ascend_910b",
+  "host": {
+    "machine": "aarch64",
+    "platform": "Linux-5.15.0-25-generic-aarch64-with-glibc2.35"
+  },
+  "kind": "ascend_scheduler_fallback_dispatch_microbenchmark",
+  "measurement": {
+    "boundary": "direct_vllm_scheduler_schedule_and_update_only",
+    "occurrence_contract": {
+      "admission": "one synthetic batch per sample",
+      "plan": "one schedule occurrence per sample",
+      "serving_duration_consumed": false,
+      "update": "one update_from_output occurrence per sample"
+    },
+    "sample_count": 32,
+    "synthetic_request": {
+      "input_tokens": 1,
+      "output_tokens": 1
+    }
+  },
+  "runner": {
+    "path": "/capture-workspace/midlayer_capture/agent_exec/wt910b_scheduler_bench/vllm018_scheduler_runner.py",
+    "sha256": "0c0669d63a2d5d23ca255a18b59e4cf4b8ffe4252a407fd5daa4b8d7b22dbc6f"
+  },
+  "schema_version": 1,
+  "started_at_utc": "2026-09-19T13:38:59.779207+00:00"
+}

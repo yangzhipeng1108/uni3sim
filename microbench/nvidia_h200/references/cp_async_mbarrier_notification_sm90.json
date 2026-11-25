@@ -1,0 +1,711 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_h200",
+  "mechanism": "isolated_cp_async_mbarrier_notification",
+  "timer_domain": "paired_same_CTA_clock64",
+  "producer_threads": 128,
+  "arrival_kind": "cp.async.mbarrier.arrive.noinc",
+  "residency_ctas_per_sm": 1,
+  "selection": "median_all_grid_hold_endpoint_first_events",
+  "one_way_validation_fraction": 0.1,
+  "roundtrip_midpoint_validation_fraction": 0.05,
+  "services": [
+    {
+      "consumer_threads": 128,
+      "forward_cycles": 128.0,
+      "reverse_cycles": 72.0
+    },
+    {
+      "consumer_threads": 256,
+      "forward_cycles": 138.0,
+      "reverse_cycles": 72.0
+    }
+  ],
+  "measurements": [
+    {
+      "consumer_threads": 128,
+      "signal": 2,
+      "grid_ctas": 1,
+      "producer_hold_cycles": 0,
+      "consumer_hold_cycles": 0,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 56473,
+          "forward_cycles": 128,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 112793,
+          "forward_cycles": 128,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 225433,
+          "forward_cycles": 128,
+          "reverse_cycles": 72
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 128,
+      "signal": 2,
+      "grid_ctas": 1,
+      "producer_hold_cycles": 0,
+      "consumer_hold_cycles": 512,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 123033,
+          "forward_cycles": 128,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 245913,
+          "forward_cycles": 128,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 491673,
+          "forward_cycles": 128,
+          "reverse_cycles": 72
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 128,
+      "signal": 2,
+      "grid_ctas": 1,
+      "producer_hold_cycles": 512,
+      "consumer_hold_cycles": 0,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 123033,
+          "forward_cycles": 128,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 245913,
+          "forward_cycles": 128,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 491673,
+          "forward_cycles": 128,
+          "reverse_cycles": 72
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 128,
+      "signal": 2,
+      "grid_ctas": 1,
+      "producer_hold_cycles": 512,
+      "consumer_hold_cycles": 512,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 189593,
+          "forward_cycles": 128,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 379033,
+          "forward_cycles": 128,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 757913,
+          "forward_cycles": 128,
+          "reverse_cycles": 72
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 128,
+      "signal": 2,
+      "grid_ctas": 32,
+      "producer_hold_cycles": 0,
+      "consumer_hold_cycles": 0,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 56481.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 112801.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 225441.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 128,
+      "signal": 2,
+      "grid_ctas": 32,
+      "producer_hold_cycles": 0,
+      "consumer_hold_cycles": 512,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 123041.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 245921.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 491681.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 128,
+      "signal": 2,
+      "grid_ctas": 32,
+      "producer_hold_cycles": 512,
+      "consumer_hold_cycles": 0,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 123041.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 245921.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 491681.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 128,
+      "signal": 2,
+      "grid_ctas": 32,
+      "producer_hold_cycles": 512,
+      "consumer_hold_cycles": 512,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 189601.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 379041.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 757921.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 128,
+      "signal": 2,
+      "grid_ctas": 132,
+      "producer_hold_cycles": 0,
+      "consumer_hold_cycles": 0,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 56489.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 112808.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 225448.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 5.909746353665e-06
+    },
+    {
+      "consumer_threads": 128,
+      "signal": 2,
+      "grid_ctas": 132,
+      "producer_hold_cycles": 0,
+      "consumer_hold_cycles": 512,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 123048.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 245928.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 491689.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 1.355410255556434e-06
+    },
+    {
+      "consumer_threads": 128,
+      "signal": 2,
+      "grid_ctas": 132,
+      "producer_hold_cycles": 512,
+      "consumer_hold_cycles": 0,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 123049.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 245929.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 491688.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 1.3554047441679618e-06
+    },
+    {
+      "consumer_threads": 128,
+      "signal": 2,
+      "grid_ctas": 132,
+      "producer_hold_cycles": 512,
+      "consumer_hold_cycles": 512,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 189609.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 379049.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 757928.0,
+          "forward_cycles": 128.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 8.793937811286525e-07
+    },
+    {
+      "consumer_threads": 256,
+      "signal": 2,
+      "grid_ctas": 1,
+      "producer_hold_cycles": 0,
+      "consumer_hold_cycles": 0,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 59309,
+          "forward_cycles": 138,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 118445,
+          "forward_cycles": 138,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 236717,
+          "forward_cycles": 138,
+          "reverse_cycles": 72
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 256,
+      "signal": 2,
+      "grid_ctas": 1,
+      "producer_hold_cycles": 0,
+      "consumer_hold_cycles": 512,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 127914,
+          "forward_cycles": 138,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 255658,
+          "forward_cycles": 138,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 511146,
+          "forward_cycles": 138,
+          "reverse_cycles": 72
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 256,
+      "signal": 2,
+      "grid_ctas": 1,
+      "producer_hold_cycles": 512,
+      "consumer_hold_cycles": 0,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 125367,
+          "forward_cycles": 138,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 250551,
+          "forward_cycles": 138,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 500919,
+          "forward_cycles": 138,
+          "reverse_cycles": 72
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 256,
+      "signal": 2,
+      "grid_ctas": 1,
+      "producer_hold_cycles": 512,
+      "consumer_hold_cycles": 512,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 193585,
+          "forward_cycles": 138,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 386993,
+          "forward_cycles": 138,
+          "reverse_cycles": 72
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 773809,
+          "forward_cycles": 138,
+          "reverse_cycles": 72
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 256,
+      "signal": 2,
+      "grid_ctas": 32,
+      "producer_hold_cycles": 0,
+      "consumer_hold_cycles": 0,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 59317.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 118453.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 236725.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 256,
+      "signal": 2,
+      "grid_ctas": 32,
+      "producer_hold_cycles": 0,
+      "consumer_hold_cycles": 512,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 127921.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 255665.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 511153.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 256,
+      "signal": 2,
+      "grid_ctas": 32,
+      "producer_hold_cycles": 512,
+      "consumer_hold_cycles": 0,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 125374.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 250558.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 500926.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 256,
+      "signal": 2,
+      "grid_ctas": 32,
+      "producer_hold_cycles": 512,
+      "consumer_hold_cycles": 512,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 193592.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 387000.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 773816.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 256,
+      "signal": 2,
+      "grid_ctas": 132,
+      "producer_hold_cycles": 0,
+      "consumer_hold_cycles": 0,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 59312.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 118448.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 236720.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 256,
+      "signal": 2,
+      "grid_ctas": 132,
+      "producer_hold_cycles": 0,
+      "consumer_hold_cycles": 512,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 127917.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 255661.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 511149.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 0.0
+    },
+    {
+      "consumer_threads": 256,
+      "signal": 2,
+      "grid_ctas": 132,
+      "producer_hold_cycles": 512,
+      "consumer_hold_cycles": 0,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 125375.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 250556.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 500927.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 1.1973371222401379e-05
+    },
+    {
+      "consumer_threads": 256,
+      "signal": 2,
+      "grid_ctas": 132,
+      "producer_hold_cycles": 512,
+      "consumer_hold_cycles": 512,
+      "points": [
+        {
+          "rounds": 128,
+          "total_cycles": 193592.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 256,
+          "total_cycles": 387002.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        },
+        {
+          "rounds": 512,
+          "total_cycles": 773815.0,
+          "forward_cycles": 138.0,
+          "reverse_cycles": 72.0
+        }
+      ],
+      "roundtrip_midpoint_error": 6.029253940142518e-06
+    }
+  ],
+  "raw": {
+    "path": "profiler_output/microbench/nvidia_h200/mbarrier_handoff_20261107/raw.json",
+    "sha256": "bf44524557550c021abba5abe0a8eb78488def718dd0ea12556d643d1c882c2b"
+  },
+  "source_sha256": "8dd62e50916bffa42b93598cad25d540f27d371a21c3b11fcfc5a95e4690d4f8",
+  "runner_sha256": "37798c2701c9d015e9d7b9083e8b5e05c6e0e1d7b139ef0dc679a4b925748767",
+  "production_or_evaluation_duration_consumed": false,
+  "scope_limitations": [
+    "No copy payload,matrix,reduction,KV stream or complete operator; notified event latency is separate from byte service.",
+    "Forward is last producer warp arrival to last consumer warp observation; reverse is last consumer release to last producer observation.",
+    "Only128-thread cp.async arrival and128/256-consumer programs are priced; elected sender and normal-arrival controls are not borrowed.",
+    "Transfer from isolated notification to concurrent source pipelines is an explicit approximation; native polling phase,arbitration and compiler control remain partial."
+  ]
+}

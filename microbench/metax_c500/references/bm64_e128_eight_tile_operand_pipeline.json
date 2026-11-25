@@ -1,0 +1,80 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_e128_eight_tile_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "populated_experts": 128,
+    "minimum_m_tiles_per_populated_expert_exclusive": 5,
+    "maximum_m_tiles_per_populated_expert": 11,
+    "production_k_n_tile_classes": [[90, 90], [90, 45]]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090612,
+    "tokens": 16384,
+    "experts": 128,
+    "topk": 4,
+    "event_trials_per_capture": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "01f83fecf7fb57f932afd57ee42210e97981ec712237ce3b0af81a6b9fda94e1",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "per projection, conservative minimum capacity across two non-production K/N neighbors bracketing the production loop class"
+  },
+  "captures": {
+    "w1": [
+      {
+        "k": 2816,
+        "n": 5696,
+        "k_tiles": 88,
+        "n_tiles": 89,
+        "active_m_tiles": 1088,
+        "raw_sha256": "2b90e60dbef96866b3da871bd17ed47bb8aa5880f1c1f9c7cbed0d35d9dc48f4",
+        "operand_pipeline_capacity_bytes_per_s": 1253060684101.6309
+      },
+      {
+        "k": 2944,
+        "n": 5824,
+        "k_tiles": 92,
+        "n_tiles": 91,
+        "active_m_tiles": 1088,
+        "raw_sha256": "df64c1e8c4a2eb7dcde54376a5667c4c2d0890ba6a05a47bfbc13a7c8c150152",
+        "operand_pipeline_capacity_bytes_per_s": 1174968747077.5234
+      }
+    ],
+    "w2": [
+      {
+        "k": 2816,
+        "n": 2816,
+        "k_tiles": 88,
+        "n_tiles": 44,
+        "active_m_tiles": 1088,
+        "raw_sha256": "2ba294282e5c8d0a4b322c008cb660445701e0269bc936287e179d78f98594f4",
+        "operand_pipeline_capacity_bytes_per_s": 721810678018.7806
+      },
+      {
+        "k": 2944,
+        "n": 2944,
+        "k_tiles": 92,
+        "n_tiles": 46,
+        "active_m_tiles": 1088,
+        "raw_sha256": "87553c41296fe6195096f28d646bbcd848609407aef55caf434f14a1c976349d",
+        "operand_pipeline_capacity_bytes_per_s": 697195713781.3363
+      }
+    ]
+  },
+  "selected_services": {
+    "w1": {
+      "predicate": "exactly 128 populated experts, more than five and at most eleven M tiles per expert, and K/N tile class (90,90)",
+      "logical_byte_capacity_per_s": 1174968747077.5234
+    },
+    "w2": {
+      "predicate": "exactly 128 populated experts, more than five and at most eleven M tiles per expert, and K/N tile class (90,45)",
+      "logical_byte_capacity_per_s": 697195713781.3363
+    }
+  }
+}

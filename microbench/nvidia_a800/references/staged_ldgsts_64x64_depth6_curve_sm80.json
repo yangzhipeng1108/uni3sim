@@ -1,0 +1,91 @@
+{
+  "schema": "nvidia_a800_staged_ldgsts_64x64_depth6_curve_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "source_baseline_commit": "0c530a00a9f7c1135210e99b843cce3f8250e3ac",
+  "source": "microbench/nvidia_a800/memory/dram/staged_ldgsts_64x64_depth6_curve.cu",
+  "source_sha256": "4b0d25cc55c774877ea41dddd98caae63883f51f33161bf6bff8e674e753ff5b",
+  "runner": "microbench/nvidia_a800/memory/dram/staged_ldgsts_64x64_depth6_curve_runner.py",
+  "runner_sha256": "6befa1f8d64ca9db36354c999eee5d327ec2c2195136574338b01947da959591",
+  "source_program": {
+    "library": "/usr/local/cuda-12.2/targets/x86_64-linux/lib/libcublasLt.so.12.2.5.6",
+    "library_sha256": "fbfbc8a1faf681fa5f3ed3ab86d456e196058e9a6b601c930d200dcd2822b1ae",
+    "function": "ampere_fp16_s16816gemm_fp16_64x64_sliced1x2_ldg8_f2f_stages_64x6_tn",
+    "function_reference": "microbench/nvidia_a800/references/cublaslt_fp16_64x64x64_depth6_sass.json",
+    "threads_per_cta": 128,
+    "operand_panel_bytes": 16384,
+    "complete_operand_pair_slots": 3,
+    "static_shared_memory_bytes": 49152
+  },
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_a800/staged_ldgsts_64x64_depth6_0c530a00_d0_r3",
+      "device_index": 0,
+      "device_uuid": "capture-device-6f63e60145b9",
+      "candidate_sha256": "2047cdb1c092505ff1cdbbab999924e79def29aa00770f2ea5034c9878269676",
+      "raw_sha256": "2e8ef2009b9b8eef4748bbd5bddd51de4ab38278c4d4901f2b0b70e6522064fa",
+      "sass_sha256": "29e6a9fed2e36c86a0ac12e220f48d454598f1bf11a0dcafec0cc5da79b967ba",
+      "l2_resident_capacity_per_s": 2115130646643.7239,
+      "dram_unique_capacity_per_s": 1638400041250.0007
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_a800/staged_ldgsts_64x64_depth6_0c530a00_d4_r3",
+      "device_index": 4,
+      "device_uuid": "capture-device-d611b051419d",
+      "candidate_sha256": "98313fc3427ef1ac0b409165037be7de55b6cff2f666a29973e36e1bc57fb844",
+      "raw_sha256": "27d9875a89b15735dd42a2da0acc91263ce0f917987043ee280a29d682de4b5e",
+      "sass_sha256": "29e6a9fed2e36c86a0ac12e220f48d454598f1bf11a0dcafec0cc5da79b967ba",
+      "l2_resident_capacity_per_s": 2098201009323.0745,
+      "dram_unique_capacity_per_s": 1635844015566.551
+    }
+  ],
+  "probe_contract": {
+    "dtype": "fp16",
+    "grid_ctas": 64,
+    "threads_per_cta": 128,
+    "resident_ctas_per_sm": 1,
+    "complete_operand_pair_slots": 3,
+    "a_panel_bytes": 8192,
+    "b_panel_bytes": 8192,
+    "panel_bytes": 16384,
+    "rounds_per_cta": 4096,
+    "l2_backing_bytes": 33554432,
+    "dram_unique_backing_bytes": 4294967296,
+    "load_instruction": "LDGSTS.E.BYPASS.128",
+    "commit_instruction": "LDGDEPBAR",
+    "wait_instruction": "DEPBAR.LE SB0, 0x1",
+    "cache_operator": "cg"
+  },
+  "selected_services": {
+    "selection_rule": "minimum complete-capture median capacity across idle devices 0 and 4",
+    "l2_resident": {
+      "logical_byte_capacity_per_s": 2098201009323.0745
+    },
+    "dram_unique": {
+      "logical_byte_capacity_per_s": 1635844015566.551
+    }
+  },
+  "applicability": {
+    "dtype": "fp16",
+    "tile_shape": [64, 64, 64],
+    "threads_per_cta": 128,
+    "complete_operand_pair_slots": 3,
+    "resident_ctas_per_sm": 1,
+    "grid_ctas": 64,
+    "required_launch_algorithm": "observed_gemm:gemm",
+    "required_split_k_semantics": "non_split"
+  },
+  "decision": {
+    "status": "accepted_mechanism_service",
+    "forward_eligible": true,
+    "reason": "The copy-only probe reproduces the source program's FP16 panel size, CTA width, three complete operand-pair ring, one-CTA occupancy, and 64-CTA decode cohort. It distinguishes L2-resident and DRAM-unique steady ingress without matrix instructions, output storage, production shapes, or production durations."
+  },
+  "excluded_conclusions": [
+    "a complete production GEMM duration",
+    "a generic DRAM capacity replacement",
+    "a source service for another tile, grid, occupancy, or pipeline program",
+    "a per-shape timing correction"
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

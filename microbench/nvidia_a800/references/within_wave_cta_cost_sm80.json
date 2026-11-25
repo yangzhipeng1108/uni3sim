@@ -1,0 +1,51 @@
+{
+ "contains_contention_do_not_use_as_dispatch_cost": "This table conflates two effects and must not be quoted as a CTA dispatch cost. The probe grows elements with grid (elements = grid * 1024), so the working set grows with CTA count and the measured rise contains memory contention as well as dispatch. A later probe that holds per-CTA work constant and varies only geometry (microbench/nvidia_a800/runtime/cta_dispatch/cta_dispatch_cost.cu) measures the pure dispatch cost at 226 ns for 108 CTAs against this table's 616 ns, a factor of 2.7; the remainder is contention, which belongs to the memory model rather than the launch model. This table remains valid only for what it was derived for: the bf16 binary task-class floor curve, whose probe has exactly this working-set growth and whose consumption is bounded by probe_block_threads.",
+ "cost_ns_by_grid": {
+  "1": 0.0,
+  "104": 584.9772,
+  "108": 616.0386,
+  "128": 606.4812,
+  "16": 372.6677,
+  "2": 208.8277,
+  "216": 783.6332,
+  "24": 390.417,
+  "32": 431.3772,
+  "4": 332.3902,
+  "48": 427.964,
+  "64": 494.1825,
+  "8": 333.0731,
+  "80": 584.7038,
+  "96": 606.4812
+ },
+ "derivation_rule": "minimum_per_grid_minus_single_cta_minimum",
+ "device_name": "NVIDIA A800-SXM4-80GB",
+ "duration_unit": "ns_per_launch",
+ "hardware_id": "nvidia_a800",
+ "lookup_rule": "step_down_largest_sampled_grid_not_exceeding_request",
+ "model": "within_wave_cta_cost_v1",
+ "probe": {
+  "block_threads": 128,
+  "dtype": "bf16",
+  "elements_per_cta": 1024,
+  "note": "work per CTA is held constant so only CTA count varies; total traffic at grid 108 is about 650 KB, far from bandwidth-bound, so the rise is dispatch and contention",
+  "op": "torch.maximum"
+ },
+ "production_or_evaluation_duration_consumed": false,
+ "raw_sha256": {
+  "graph_trial_1.json": "da37442a2d31b00d13574dea07afc2a9e554654183de53c95f3380e0ce7bf931"
+ },
+ "runner": "microbench/nvidia_a800/runtime/task_floor/bf16_binary_task_floor_runner.py",
+ "runner_sha256": "6c2f79b401fef24517ebb096b668c8087aeb9b25f46f340fbd8778a403c459b3",
+ "schema_version": 1,
+ "shape_facts": {
+  "continuous_not_wave_quantised": "grid 128 spanning two waves measures below grid 108, so cost grows with CTA count rather than stepping per 108-CTA round",
+  "single_wave_rise_fraction": 0.3233
+ },
+ "single_cta_reference_ns": 1905.732218424479,
+ "software_revision": "torch_2.8.0+cu128_cuda_sm80",
+ "source_capture": "profiler_output/microbench/nvidia_a800/within_wave_cta_cost",
+ "superseded_for_dispatch_by": "microbench/nvidia_a800/references/cta_dispatch_cost_sm80.json",
+ "target_operator_used": false,
+ "timer_domain": "paired_differential_events_around_cuda_graph_replay",
+ "torch_version": "2.8.0+cu128"
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_matmul_v2_base_k_lifecycle.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_base_k_control_lifecycle_v1",
+  "duration_unit": "ns_per_worker",
+  "source_program": {
+    "dtype": "bf16",
+    "active_aic_workers": 24,
+    "base_tile_m": 96,
+    "base_tile_n": 128,
+    "base_k_values": [32, 64, 128],
+    "projection_k_values": [1024, 2048, 4096],
+    "output_tiles_per_worker": 2,
+    "a1_descriptor_k": 512,
+    "b1_descriptor_k": 256,
+    "operand_buffer_depth": 2,
+    "dynamic_m_tail": false
+  },
+  "capture": {
+    "measurement_baseline_commit": "1084985bcc13b6ee87139b450c4f1f9066784039",
+    "source_snapshot": "/capture-workspace/midlayer_ordercheck_exec_1084985b_20260915",
+    "source_snapshot_sha256": "99bd84719d2c51b23827f002d83be4bbcabbdb684dda18d146c381618f6854ce",
+    "kernel_source_sha256": "04426258c9999fee9d40ff5597ddcdc232558add0e09e642ad5620e883823bc1",
+    "host_source_sha256": "ee05243aeed9f1d69668180e88a75668a1e6e6622e1eee4ce347f6ddb258144f",
+    "binary_sha256": "1a01a347a1b7657bc72cbd9b8793517a3cd26871eb3e15ba6d094e5373359fea",
+    "physical_device_id": 2,
+    "raw_directory": "profiler_output/microbench/ascend_910b/order_check_base_k_lifecycle_1084985b_20260915_r1",
+    "raw_sha256_manifest_sha256": "27d735c13c237054894db1963305d81a9c71c21e103774a703d7909fda75a2b1",
+    "independent_runs": 3
+  },
+  "measurements": {
+    "worker_program_median_ns": {
+      "1024": {"32": 18040.0, "64": 11040.0, "128": 8560.0},
+      "2048": {"32": 35240.0, "64": 20600.0, "128": 15480.0},
+      "4096": {"32": 67860.0, "64": 40010.0, "128": 30370.0}
+    },
+    "affine_model": "startup_ns + common_ns_per_k * projection_k + base_k_control_ns * output_tiles_per_worker * projection_k / base_k",
+    "startup_ns": 1393.3333333333064,
+    "common_ns_per_k": 3.5996403769841407,
+    "base_k_control_ns": 200.57823129251713,
+    "r_squared": 0.997336124040642,
+    "maximum_relative_residual_pct": 4.8660370296986475
+  },
+  "interpretation": {
+    "forward_bound": "startup plus one base-K control request per output tile and base-K iteration; independent memory, MTE1, Cube, and FixPipe work remains in the analytical recurrence",
+    "composition": "the control lifecycle is a parallel lower bound on the complete worker program and is never added to already overlapping payload stages",
+    "excluded_conclusions": [
+      "a complete production GEMM duration",
+      "a shape-specific correction or residual lookup",
+      "replacement of analytical memory, MTE1, Cube, or FixPipe service"
+    ]
+  },
+  "production_or_evaluation_duration_consumed": false
+}

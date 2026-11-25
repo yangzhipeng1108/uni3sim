@@ -1,0 +1,171 @@
+{
+  "cells": [
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 761388,
+        "median_ns": 722401,
+        "min_ns": 708817,
+        "p95_ns": 739939
+      },
+      "scheduled_request_count": 121,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 632659,
+        "median_ns": 587983,
+        "min_ns": 580040,
+        "p95_ns": 596706
+      }
+    },
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 789013,
+        "median_ns": 737544,
+        "min_ns": 709984,
+        "p95_ns": 755759
+      },
+      "scheduled_request_count": 122,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 612855,
+        "median_ns": 595344,
+        "min_ns": 586123,
+        "p95_ns": 604158
+      }
+    },
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 773075,
+        "median_ns": 750702,
+        "min_ns": 731873,
+        "p95_ns": 760680
+      },
+      "scheduled_request_count": 123,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 2302415,
+        "median_ns": 607845,
+        "min_ns": 598357,
+        "p95_ns": 621874
+      }
+    },
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 790217,
+        "median_ns": 753446,
+        "min_ns": 728534,
+        "p95_ns": 776051
+      },
+      "scheduled_request_count": 124,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 657960,
+        "median_ns": 603598,
+        "min_ns": 569338,
+        "p95_ns": 623279
+      }
+    },
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 784628,
+        "median_ns": 753994,
+        "min_ns": 728357,
+        "p95_ns": 768818
+      },
+      "scheduled_request_count": 125,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 663377,
+        "median_ns": 621194,
+        "min_ns": 587973,
+        "p95_ns": 631868
+      }
+    },
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 775752,
+        "median_ns": 761117,
+        "min_ns": 742159,
+        "p95_ns": 773847
+      },
+      "scheduled_request_count": 126,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 629921,
+        "median_ns": 615419,
+        "min_ns": 596801,
+        "p95_ns": 624275
+      }
+    },
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 818862,
+        "median_ns": 778300,
+        "min_ns": 749231,
+        "p95_ns": 796300
+      },
+      "scheduled_request_count": 127,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 665660,
+        "median_ns": 630033,
+        "min_ns": 609684,
+        "p95_ns": 645576
+      }
+    },
+    {
+      "plan_ns": {
+        "count": 32,
+        "max_ns": 792360,
+        "median_ns": 779552,
+        "min_ns": 766223,
+        "p95_ns": 786631
+      },
+      "scheduled_request_count": 128,
+      "update_ns": {
+        "count": 32,
+        "max_ns": 653536,
+        "median_ns": 627894,
+        "min_ns": 603432,
+        "p95_ns": 637941
+      }
+    }
+  ],
+  "execution": {
+    "baseline_commit": "6e26ef05c0b55dbe6014c6d1c1a18cb29335f26a",
+    "container_name": "capture-container-3",
+    "device_id": 1
+  },
+  "hardware_id": "metax_c500",
+  "host": {
+    "machine": "x86_64",
+    "platform": "Linux-5.15.0-119-generic-x86_64-with-glibc2.35"
+  },
+  "kind": "metax_c500_scheduler_fallback_dispatch_microbenchmark",
+  "measurement": {
+    "boundary": "direct_vllm_scheduler_schedule_and_update_only",
+    "occurrence_contract": {
+      "admission": "one synthetic batch per sample",
+      "plan": "one schedule occurrence per sample",
+      "production_or_evaluation_duration_consumed": false,
+      "update": "one update_from_output occurrence per sample"
+    },
+    "sample_count": 32,
+    "synthetic_request": {
+      "input_tokens": 1,
+      "output_tokens": 1
+    }
+  },
+  "runner": {
+    "path": "/capture-workspace/c500_selprobe_20260926/vllm024_scheduler_runner.py",
+    "sha256": "ac475160535b023843f08d23b8f0e37af26cd695e27e8eb2bc1f6700270ee38d"
+  },
+  "schema_version": 1,
+  "started_at_utc": "2026-09-26T04:00:27.030114+00:00"
+}

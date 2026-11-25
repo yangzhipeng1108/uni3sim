@@ -1,0 +1,58 @@
+{
+ "schema_version": "midlayer.gm_write_back_residency.v1",
+ "hardware_id": "ascend_910b",
+ "software_revision": "cann_8.5.1",
+ "mechanism": "aiv_gm_write_unique_footprint_drain",
+ "law": "dram_write_bytes = unique_written_footprint_bytes",
+ "selection_rule": "ratio of counted DRAM write traffic to the distinct GM extent the launch stores into, swept over footprint, rewrite count and read-back",
+ "description": "Each AIV stores into its own disjoint contiguous GM extent through ordinary UB-to-GM DataCopy, the path CANN FIA uses for its Vec1/Vec2 workspace and final output. The stored value is a constant and no arithmetic is performed, so this is not a production operator. Two independent sweeps agree: the counted DRAM write traffic equals the distinct extent written and is unchanged by how many times those lines are rewritten, by the total footprint relative to L2, or by reading the extent back inside the same launch.",
+ "source_program": {
+  "binary": "microbench/ascend_910b/memory/dram/gm_write_residency/aiv_gm_write_residency",
+  "dtype": "fp16",
+  "task_type": "KERNEL_TYPE_AIV_ONLY",
+  "workers": 48,
+  "tile_bytes": 16384,
+  "worker_addressing": "disjoint_contiguous_partitions",
+  "profiler_metric": "Memory,L2Cache"
+ },
+ "measurements": [
+  {
+   "sweep": "footprint_single_pass",
+   "unique_mib": [12, 48, 192, 384],
+   "dram_write_over_unique": [0.997, 0.999, 1.000, 1.000],
+   "write_hit_rate_pct": [0.39, 0.10, 0.02, 0.01],
+   "note": "no write retention at any footprint, including well below the 160 MiB measured L2 replacement capacity",
+   "raw_path": "profiler_output/microbench/ascend_910b/gm_write_residency_20260921"
+  },
+  {
+   "sweep": "rewrite_count_fixed_extent",
+   "unique_mib": 12,
+   "passes": [1, 2, 4, 8],
+   "dram_write_over_unique": [0.997, 0.999, 0.999, 1.000],
+   "dram_write_over_written": [0.997, 0.499, 0.250, 0.125],
+   "write_hit_rate_pct": [0.39, 50.10, 75.02, 87.51],
+   "raw_path": "profiler_output/microbench/ascend_910b/gm_write_rewrite_20260921"
+  },
+  {
+   "sweep": "rewrite_count_workspace_sized_extent",
+   "unique_mib": 1.5,
+   "passes": [1, 4, 16],
+   "dram_write_over_unique": [0.977, 0.994, 0.999],
+   "write_hit_rate_pct": [3.03, 75.19, 93.76],
+   "raw_path": "profiler_output/microbench/ascend_910b/gm_write_rewrite_20260921"
+  },
+  {
+   "sweep": "readback_inside_launch",
+   "unique_mib": [12, 48],
+   "dram_write_over_unique": [1.060, 1.015],
+   "note": "control: consuming the extent again inside the same launch does not keep the store out of DRAM; the small excess is the probe's own sink store",
+   "raw_path": "profiler_output/microbench/ascend_910b/gm_write_residency_20260921"
+  }
+ ],
+ "capture": {
+  "physical_device_id": 3,
+  "container": "capture-container-2"
+ },
+ "production_or_evaluation_duration_consumed": false,
+ "parameter_fit_from_production_duration": false
+}

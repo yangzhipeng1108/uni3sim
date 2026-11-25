@@ -1,0 +1,744 @@
+{
+  "hardware_id": "nvidia_h200",
+  "production_or_evaluation_duration_consumed": false,
+  "kind": "discrete_operand_ring_observation",
+  "excluded": "No duration, per-case price, register throughput, barrier service or launch selection inferred from error.",
+  "classes": [
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 61440
+      },
+      "operand_ring_slots": 3,
+      "physical_derivation": "Ring index increments and resets after2, yielding three buffers; A stride4096 plus B stride16384 gives20480 bytes/panel and61440 bytes total. The fixed HMMA body advances K by128, including masked tail loads. This is a coarse transferable instruction class, not native provider certification.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/bm16/input.json",
+        "input_manifest_sha256": "2e8d814d005c2577cdf36474d0ebcef951fed9e97f5bc94e5ad0d9cb421c363b",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/bm16/static_summary.json",
+        "static_summary_sha256": "09fb1687506146f815778d356a2ac4a37dd1438db380ae40b64ed1f8921b8853"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 64
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 54,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 40960
+      },
+      "operand_ring_slots": 4,
+      "physical_derivation": "Compiled ring index resets above3; paired A/B ULEA strides and total shared allocation conserve all panel slots. The fixed HMMA loop advances K by64.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E128_TOPK8_H2048_INT768/input.json",
+        "input_manifest_sha256": "22617dacc11bf92992e8e7cf6e9c18478c5dcf425565b97a02e85239b920aaab",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E128_TOPK8_H2048_INT768/static_summary.json",
+        "static_summary_sha256": "a691ecd3d374db81e497801e93dfc4006bfc5a67c20a60d5d57f8dafa6fd4585"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 64
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 54,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 30720
+      },
+      "operand_ring_slots": 3,
+      "physical_derivation": "Compiled ring index resets above2; paired A/B ULEA strides and total shared allocation conserve all panel slots. The fixed HMMA loop advances K by64.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E128_TOPK8_H2048_INT768/input.json",
+        "input_manifest_sha256": "9f7eb31d9b59725121fa367956d0708ec0a66bea829d664bbe43c146b6efbe9b",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E128_TOPK8_H2048_INT768/static_summary.json",
+        "static_summary_sha256": "39a7fbeeed2a13daccb0e8d90e5f2e58a48b10c2e3e1bbe50c4e50187d621d16"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 64
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 78,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 55296
+      },
+      "operand_ring_slots": 3,
+      "physical_derivation": "Compiled ring index resets above2; paired A/B ULEA strides and total shared allocation conserve all panel slots. The fixed HMMA loop advances K by64.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E512_TOPK10_H2048_INT512/input.json",
+        "input_manifest_sha256": "d0561619219a87f49bfbd994daeda34563a27088a5ef88a92bab699234d8ba76",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E512_TOPK10_H2048_INT512/static_summary.json",
+        "static_summary_sha256": "6fc5a39a442d59a57194d49131545f0c31fd194dbb6b8976d1dc50acccd7812d"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 64
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 77,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 55296
+      },
+      "operand_ring_slots": 3,
+      "physical_derivation": "Compiled ring index resets above2; paired A/B ULEA strides and total shared allocation conserve all panel slots. The fixed HMMA loop advances K by64.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E512_TOPK10_H2048_INT512/input.json",
+        "input_manifest_sha256": "d0561619219a87f49bfbd994daeda34563a27088a5ef88a92bab699234d8ba76",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E512_TOPK10_H2048_INT512/static_summary.json",
+        "static_summary_sha256": "6fc5a39a442d59a57194d49131545f0c31fd194dbb6b8976d1dc50acccd7812d"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "registers_per_thread": 63,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 20480
+      },
+      "operand_ring_slots": 1,
+      "physical_derivation": "One physical A/B shared panel, fixed shared addresses and a wait-all at the loop backedge. No rotating shared index. Register HMMA may overlap the last prefetched loads; the coarse common model retains matrix completion as its conservative buffer release.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E128_TOPK16_H2048_INT768/input.json",
+        "input_manifest_sha256": "3a37dae2a8c8f76af871b350c8ecdccef39d5ccd18075aa27459e84e30ee6395",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E128_TOPK16_H2048_INT768/operand_ring_summary.json",
+        "static_summary_sha256": "9bc0cc12e0e4c9f79b3b03f8e2d2fdc48fdfc9ca449195f572839fb78646ca8d"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 20480
+      },
+      "operand_ring_slots": 1,
+      "physical_derivation": "One physical A/B shared panel, fixed shared addresses and a wait-all at the loop backedge. No rotating shared index. Register HMMA may overlap the last prefetched loads; the coarse common model retains matrix completion as its conservative buffer release.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E128_TOPK16_H2048_INT768/input.json",
+        "input_manifest_sha256": "3a37dae2a8c8f76af871b350c8ecdccef39d5ccd18075aa27459e84e30ee6395",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E128_TOPK16_H2048_INT768/operand_ring_summary.json",
+        "static_summary_sha256": "9bc0cc12e0e4c9f79b3b03f8e2d2fdc48fdfc9ca449195f572839fb78646ca8d"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 72,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 61440
+      },
+      "operand_ring_slots": 3,
+      "physical_derivation": "Three physical A/B panels: uniform index increments, resets above2, and shared strides4096/16384. Existing analytical worker/capacity schedule is unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E8_TOPK2_H6144_INT16384/input.json",
+        "input_manifest_sha256": "bbddc9e482d4cb967f9b83b115201c150a315d04867cc488a992501394555efa",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E8_TOPK2_H6144_INT16384/operand_ring_summary.json",
+        "static_summary_sha256": "f783c1c85db3bb5658ceeaf72f6f684049796a407d75718bd02fbe8f77183f87"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 97,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 36864
+      },
+      "operand_ring_slots": 1,
+      "physical_derivation": "One physical A/B shared panel, fixed shared addresses and a wait-all at the loop backedge. No rotating shared index. Register HMMA may overlap the last prefetched loads; the coarse common model retains matrix completion as its conservative buffer release.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E128_TOPK16_H2048_INT768/input.json",
+        "input_manifest_sha256": "90f7db5d01103c79fa5989a4080d2295b6bd5f726132f6e971b7c2c3b21b64a8",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E128_TOPK16_H2048_INT768/operand_ring_summary.json",
+        "static_summary_sha256": "9edce775550869f8c7932447e69d0fb5d2c1b690bf3720a365a79d6fc33aec6b"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 99,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 36864
+      },
+      "operand_ring_slots": 1,
+      "physical_derivation": "One physical A/B shared panel, fixed shared addresses and a wait-all at the loop backedge. No rotating shared index. Register HMMA may overlap the last prefetched loads; the coarse common model retains matrix completion as its conservative buffer release.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E128_TOPK16_H2048_INT768/input.json",
+        "input_manifest_sha256": "90f7db5d01103c79fa5989a4080d2295b6bd5f726132f6e971b7c2c3b21b64a8",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E128_TOPK16_H2048_INT768/operand_ring_summary.json",
+        "static_summary_sha256": "9edce775550869f8c7932447e69d0fb5d2c1b690bf3720a365a79d6fc33aec6b"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 256,
+          "k": 128
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "registers_per_thread": 98,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 69632
+      },
+      "operand_ring_slots": 1,
+      "physical_derivation": "One physical A/B shared panel, fixed shared addresses and a wait-all at the loop backedge. No rotating shared index. Register HMMA may overlap the last prefetched loads; the coarse common model retains matrix completion as its conservative buffer release.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK512_E512_TOPK10_H2048_INT512/input.json",
+        "input_manifest_sha256": "27cc532056ebfbe3221e4b49264083c261b95165f9e3a05f1b9521142211ed4b",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK512_E512_TOPK10_H2048_INT512/operand_ring_summary.json",
+        "static_summary_sha256": "3809322f382fd9ffef868a24bb793f0abd7290072311957895f13a5155eea8fa"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 256,
+          "k": 128
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "registers_per_thread": 100,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 69632
+      },
+      "operand_ring_slots": 1,
+      "physical_derivation": "One physical A/B shared panel, fixed shared addresses and a wait-all at the loop backedge. No rotating shared index. Register HMMA may overlap the last prefetched loads; the coarse common model retains matrix completion as its conservative buffer release.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK512_E512_TOPK10_H2048_INT512/input.json",
+        "input_manifest_sha256": "27cc532056ebfbe3221e4b49264083c261b95165f9e3a05f1b9521142211ed4b",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK512_E512_TOPK10_H2048_INT512/operand_ring_summary.json",
+        "static_summary_sha256": "3809322f382fd9ffef868a24bb793f0abd7290072311957895f13a5155eea8fa"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 256
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 96,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 40960
+      },
+      "operand_ring_slots": 1,
+      "physical_derivation": "One physical A/B shared panel, fixed shared addresses and a wait-all at the loop backedge. No rotating shared index. Register HMMA may overlap the last prefetched loads; the coarse common model retains matrix completion as its conservative buffer release.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E128_TOPK16_H2048_INT768/input.json",
+        "input_manifest_sha256": "2b8a87901f3fd6819efbceae70fe7461e7718bb7695696c7d9d1b4d6ead98008",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E128_TOPK16_H2048_INT768/operand_ring_summary.json",
+        "static_summary_sha256": "2a62fbbb0dd5a5c1aae1fc3eed8ee68dcdaff7d14ebdc78b5f442c9ef2955746"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 256
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 94,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 40960
+      },
+      "operand_ring_slots": 1,
+      "physical_derivation": "One physical A/B shared panel, fixed shared addresses and a wait-all at the loop backedge. No rotating shared index. Register HMMA may overlap the last prefetched loads; the coarse common model retains matrix completion as its conservative buffer release.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E128_TOPK16_H2048_INT768/input.json",
+        "input_manifest_sha256": "2b8a87901f3fd6819efbceae70fe7461e7718bb7695696c7d9d1b4d6ead98008",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E128_TOPK16_H2048_INT768/operand_ring_summary.json",
+        "static_summary_sha256": "2a62fbbb0dd5a5c1aae1fc3eed8ee68dcdaff7d14ebdc78b5f442c9ef2955746"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 40960
+      },
+      "operand_ring_slots": 2,
+      "physical_derivation": "Two physical A/B panels: uniform indices increment and reset above1. Shared strides equal the complete A/B panel bytes and conserve the full observed allocation. Existing analytical worker/capacity schedule is unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E128_TOPK16_H2048_INT768/input.json",
+        "input_manifest_sha256": "3542da11e574d8be6129332c41365ea4ac9b2ad78c44541f675d56f354121be6",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E128_TOPK16_H2048_INT768/operand_ring_summary.json",
+        "static_summary_sha256": "e3225fa08855e3cca468c14af0d46f04048f4882cfd8c2a8f9ee23e3050e8265"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 72,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 40960
+      },
+      "operand_ring_slots": 2,
+      "physical_derivation": "Two physical A/B panels: uniform indices increment and reset above1. Shared strides equal the complete A/B panel bytes and conserve the full observed allocation. Existing analytical worker/capacity schedule is unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E128_TOPK16_H2048_INT768/input.json",
+        "input_manifest_sha256": "3542da11e574d8be6129332c41365ea4ac9b2ad78c44541f675d56f354121be6",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E128_TOPK16_H2048_INT768/operand_ring_summary.json",
+        "static_summary_sha256": "e3225fa08855e3cca468c14af0d46f04048f4882cfd8c2a8f9ee23e3050e8265"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "group_size_m": 64,
+        "threads_per_cta": 256,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 73728
+      },
+      "operand_ring_slots": 2,
+      "physical_derivation": "Two physical A/B panels: uniform indices increment and reset above1. Shared strides equal the complete A/B panel bytes and conserve the full observed allocation. Existing analytical worker/capacity schedule is unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK32_E512_TOPK10_H2048_INT512/input.json",
+        "input_manifest_sha256": "ef93319f6a9322948b59dcdf0b40d6b2d36a613321b793c6f23d1ca5696fb7ad",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK32_E512_TOPK10_H2048_INT512/operand_ring_summary.json",
+        "static_summary_sha256": "07bc4ac48d85fbec005aec140d5467a2e0083891c54ee1c37206010bac6ff95a"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 32,
+          "k": 64
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 39,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 18432
+      },
+      "operand_ring_slots": 3,
+      "physical_derivation": "Three A/B shared panels: uniform index increments and resets above2. Paired ULEA shift11 addresses give2048-B A and4096-B B strides, conserving18432-B allocation; source HMMA loop advances K by64. No duration or service rate is inferred.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E512_TOPK10_H2048_INT512/input.json",
+        "input_manifest_sha256": "f57c3c908bb850e0eac4441589085c27e6078b1b1452ad29a4b7d378860b4dde",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E512_TOPK10_H2048_INT512/operand_ring_summary.json",
+        "static_summary_sha256": "175293793c03617404658b2617ca8e734b4819cef0b6ae927b3094030d0b9e6f"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 64
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 78,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 36864
+      },
+      "operand_ring_slots": 2,
+      "physical_derivation": "Two physical A/B panels: uniform index increments, resets above1, DEPBAR remaining two copy groups, and shared strides2048/16384. Existing analytical worker/capacity schedule is unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E512_TOPK10_H2048_INT512/input.json",
+        "input_manifest_sha256": "ccca47b23b634efd75a01d6829b31a5a1c7293f39e4b013820ec1da250afc18e",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E512_TOPK10_H2048_INT512/operand_ring_summary.json",
+        "static_summary_sha256": "a6f790978417b47371b00c33e3fcd8d9e3b4eea567ad6c732711a8ea2a28b5eb"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 64
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 77,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 36864
+      },
+      "operand_ring_slots": 2,
+      "physical_derivation": "Two physical A/B panels: uniform index increments, resets above1, DEPBAR remaining two copy groups, and shared strides2048/16384. Existing analytical worker/capacity schedule is unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E512_TOPK10_H2048_INT512/input.json",
+        "input_manifest_sha256": "ccca47b23b634efd75a01d6829b31a5a1c7293f39e4b013820ec1da250afc18e",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E512_TOPK10_H2048_INT512/operand_ring_summary.json",
+        "static_summary_sha256": "a6f790978417b47371b00c33e3fcd8d9e3b4eea567ad6c732711a8ea2a28b5eb"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 64
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 56,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 40960
+      },
+      "operand_ring_slots": 4,
+      "physical_derivation": "Compiled uniform index resets above3. Paired A/B ring address strides are2048/8192 bytes; their complete shared allocation conserves4panels. Main loop advances K by64; existing recurrent schedule/rates unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E8_TOPK2_H4096_INT14336/input.json",
+        "input_manifest_sha256": "8e1ba21ee020a9ed8579a35a69f2cbc1a872e7778652724b9ae5bab1202fbc53",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E8_TOPK2_H4096_INT14336/ring_static_summary.json",
+        "static_summary_sha256": "f3f5cab700a770d20722d7a842088dcfea28382d356f62a0af42b2ae29b3c00d"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 256
+        },
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "registers_per_thread": 106,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 81920
+      },
+      "operand_ring_slots": 2,
+      "physical_derivation": "Compiled uniform index resets above1. Paired A/B ring address strides are8192/32768 bytes; their complete shared allocation conserves2panels. Main loop advances K by256; existing recurrent schedule/rates unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E8_TOPK2_H4096_INT14336/input.json",
+        "input_manifest_sha256": "7762e16c952fd5ba6a92d5c54d557d9a39021b325e0bbec3ebe0c62543cfbd83",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E8_TOPK2_H4096_INT14336/ring_static_summary.json",
+        "static_summary_sha256": "4aa7beec69d8bdf1dc561a096cbeb864ef5f0923a7265e8a96aadeeda8d0ba49"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 256
+        },
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "registers_per_thread": 108,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 81920
+      },
+      "operand_ring_slots": 2,
+      "physical_derivation": "Compiled uniform index resets above1. Paired A/B ring address strides are8192/32768 bytes; their complete shared allocation conserves2panels. Main loop advances K by256; existing recurrent schedule/rates unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E8_TOPK2_H4096_INT14336/input.json",
+        "input_manifest_sha256": "7762e16c952fd5ba6a92d5c54d557d9a39021b325e0bbec3ebe0c62543cfbd83",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E8_TOPK2_H4096_INT14336/ring_static_summary.json",
+        "static_summary_sha256": "4aa7beec69d8bdf1dc561a096cbeb864ef5f0923a7265e8a96aadeeda8d0ba49"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 64
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 75,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 55296
+      },
+      "operand_ring_slots": 3,
+      "physical_derivation": "Compiled uniform index resets above2. Paired A/B ring address strides are2048/16384 bytes; their complete shared allocation conserves3panels. Main loop advances K by64; existing recurrent schedule/rates unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E512_TOPK10_H2048_INT512/input.json",
+        "input_manifest_sha256": "5893f1e81a7ec6b97390678d696e0328bae0283e2588ebffd7917ccba171cb17",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E512_TOPK10_H2048_INT512/ring_static_summary.json",
+        "static_summary_sha256": "1f52e1c0d0d414b9d2b7a294da63eafc3a155257bac30ccf2ebd77e4b83bf66e"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 98,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 147456
+      },
+      "operand_ring_slots": 4,
+      "physical_derivation": "Compiled uniform index resets above3. Paired A/B ring address strides are4096/32768 bytes; their complete shared allocation conserves4panels. Main loop advances K by128; existing recurrent schedule/rates unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E8_TOPK2_H4096_INT14336/input.json",
+        "input_manifest_sha256": "a518740c0ffc90c0c6a4f8783f2d8f1daf1c0d3f06012895e60cbd2256fcaa0f",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E8_TOPK2_H4096_INT14336/ring_static_summary.json",
+        "static_summary_sha256": "865acdb660e4bab25b838c351e149dc02944e3eca65230df9231833c34a05017"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "registers_per_thread": 100,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 147456
+      },
+      "operand_ring_slots": 4,
+      "physical_derivation": "Compiled uniform index resets above3. Paired A/B ring address strides are4096/32768 bytes; their complete shared allocation conserves4panels. Main loop advances K by128; existing recurrent schedule/rates unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E8_TOPK2_H4096_INT14336/input.json",
+        "input_manifest_sha256": "a518740c0ffc90c0c6a4f8783f2d8f1daf1c0d3f06012895e60cbd2256fcaa0f",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E8_TOPK2_H4096_INT14336/ring_static_summary.json",
+        "static_summary_sha256": "865acdb660e4bab25b838c351e149dc02944e3eca65230df9231833c34a05017"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 73728
+      },
+      "operand_ring_slots": 2,
+      "physical_derivation": "Compiled uniform index resets above1. Paired A/B ring address strides are4096/32768 bytes; their complete shared allocation conserves2panels. Main loop advances K by128; existing recurrent schedule/rates unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E512_TOPK10_H2048_INT512/input.json",
+        "input_manifest_sha256": "3008241fb03ffb171097dc6139fb0cba05b0198c9e157eb11f89a372943926d6",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E512_TOPK10_H2048_INT512/ring_static_summary.json",
+        "static_summary_sha256": "6be7fb820d398553a000b7fd482e7befc823505c797f89a937572e8688ff259e"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "registers_per_thread": 95,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 147456
+      },
+      "operand_ring_slots": 4,
+      "physical_derivation": "Compiled uniform index resets above3. Paired A/B ring address strides are4096/32768 bytes; their complete shared allocation conserves4panels. Main loop advances K by128; existing recurrent schedule/rates unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E8_TOPK2_H4096_INT14336/input.json",
+        "input_manifest_sha256": "238b37f4fa40110dd2121cdfb6a9425f174610971fabd91bf4c223cc5db411c2",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E8_TOPK2_H4096_INT14336/ring_static_summary.json",
+        "static_summary_sha256": "9d9daa59a4b88d605275abb62e3ac83b8d013ae46607306b7871e101f9fa05e7"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "registers_per_thread": 96,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 147456
+      },
+      "operand_ring_slots": 4,
+      "physical_derivation": "Compiled uniform index resets above3. Paired A/B ring address strides are4096/32768 bytes; their complete shared allocation conserves4panels. Main loop advances K by128; existing recurrent schedule/rates unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E8_TOPK2_H4096_INT14336/input.json",
+        "input_manifest_sha256": "238b37f4fa40110dd2121cdfb6a9425f174610971fabd91bf4c223cc5db411c2",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E8_TOPK2_H4096_INT14336/ring_static_summary.json",
+        "static_summary_sha256": "9d9daa59a4b88d605275abb62e3ac83b8d013ae46607306b7871e101f9fa05e7"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "group_size_m": 16,
+        "threads_per_cta": 256,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 73728
+      },
+      "operand_ring_slots": 2,
+      "physical_derivation": "Compiled uniform index resets above1. Paired A/B ring address strides are4096/32768 bytes; their complete shared allocation conserves2panels. Main loop advances K by128; existing recurrent schedule/rates unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK32_E8_TOPK2_H4096_INT14336/input.json",
+        "input_manifest_sha256": "c7f7bb782603e743e95eb2dde08f8bbbf62f1573daeff18dc955d981a2e78df1",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK32_E8_TOPK2_H4096_INT14336/ring_static_summary.json",
+        "static_summary_sha256": "5f0256632f11b5058b919c29c401a0e8bca94314dc995e191f594baaf606feb8"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "group_size_m": 64,
+        "threads_per_cta": 128,
+        "registers_per_thread": 98,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 73728
+      },
+      "operand_ring_slots": 2,
+      "physical_derivation": "Compiled uniform index resets above1. Paired A/B ring address strides are4096/32768 bytes; their complete shared allocation conserves2panels. Main loop advances K by128; existing recurrent schedule/rates unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E512_TOPK10_H2048_INT512/input.json",
+        "input_manifest_sha256": "8038541bc78938865a505b4dce0d58019e7b0c567004b1cd5bddc57df3fc5f07",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E512_TOPK10_H2048_INT512/ring_static_summary.json",
+        "static_summary_sha256": "664cda1ca8ba6564881789cc4fe8993c59ad084f8165f69c28a4e83771107fe6"
+      }
+    },
+    {
+      "signature": {
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "group_size_m": 64,
+        "threads_per_cta": 128,
+        "registers_per_thread": 100,
+        "static_shared_bytes": 0,
+        "dynamic_shared_bytes": 73728
+      },
+      "operand_ring_slots": 2,
+      "physical_derivation": "Compiled uniform index resets above1. Paired A/B ring address strides are4096/32768 bytes; their complete shared allocation conserves2panels. Main loop advances K by128; existing recurrent schedule/rates unchanged.",
+      "evidence": {
+        "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E512_TOPK10_H2048_INT512/input.json",
+        "input_manifest_sha256": "8038541bc78938865a505b4dce0d58019e7b0c567004b1cd5bddc57df3fc5f07",
+        "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E512_TOPK10_H2048_INT512/ring_static_summary.json",
+        "static_summary_sha256": "664cda1ca8ba6564881789cc4fe8993c59ad084f8165f69c28a4e83771107fe6"
+      }
+    }
+  ]
+}

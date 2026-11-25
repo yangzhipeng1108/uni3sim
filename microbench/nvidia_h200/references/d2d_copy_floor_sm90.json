@@ -1,0 +1,141 @@
+{
+  "schema": "nvidia_h200_d2d_copy_floor_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "production_or_evaluation_duration_consumed": false,
+  "cells": {
+    "1": {
+      "median_ns": 5248.0,
+      "q1_ns": 5064.0,
+      "q3_ns": 5472.0,
+      "observations": 96
+    },
+    "4": {
+      "median_ns": 5232.0,
+      "q1_ns": 5032.0,
+      "q3_ns": 5432.0,
+      "observations": 96
+    },
+    "16": {
+      "median_ns": 5200.0,
+      "q1_ns": 4968.0,
+      "q3_ns": 5472.0,
+      "observations": 96
+    },
+    "64": {
+      "median_ns": 5248.0,
+      "q1_ns": 5024.0,
+      "q3_ns": 5520.0,
+      "observations": 96
+    },
+    "256": {
+      "median_ns": 5344.0,
+      "q1_ns": 5120.0,
+      "q3_ns": 5720.0,
+      "observations": 96
+    },
+    "1024": {
+      "median_ns": 5376.0,
+      "q1_ns": 5216.0,
+      "q3_ns": 5504.0,
+      "observations": 96
+    },
+    "4096": {
+      "median_ns": 5568.0,
+      "q1_ns": 5248.0,
+      "q3_ns": 5792.0,
+      "observations": 96
+    },
+    "16384": {
+      "median_ns": 5504.0,
+      "q1_ns": 5320.0,
+      "q3_ns": 5656.0,
+      "observations": 96
+    },
+    "65536": {
+      "median_ns": 5648.0,
+      "q1_ns": 5408.0,
+      "q3_ns": 5840.0,
+      "observations": 96
+    },
+    "262144": {
+      "median_ns": 5776.0,
+      "q1_ns": 5568.0,
+      "q3_ns": 5984.0,
+      "observations": 96
+    },
+    "1048576": {
+      "median_ns": 6112.0,
+      "q1_ns": 5792.0,
+      "q3_ns": 6296.0,
+      "observations": 96
+    },
+    "4194304": {
+      "median_ns": 7472.0,
+      "q1_ns": 7136.0,
+      "q3_ns": 7736.0,
+      "observations": 96
+    },
+    "16777216": {
+      "median_ns": 12640.0,
+      "q1_ns": 12288.0,
+      "q3_ns": 13760.0,
+      "observations": 96
+    },
+    "67108864": {
+      "median_ns": 34463.9995,
+      "q1_ns": 33183.999,
+      "q3_ns": 36551.99875,
+      "observations": 96
+    },
+    "134217728": {
+      "median_ns": 68544.0,
+      "q1_ns": 67135.997,
+      "q3_ns": 68991.996,
+      "observations": 96
+    },
+    "268435456": {
+      "median_ns": 130336.002,
+      "q1_ns": 128040.00450000001,
+      "q3_ns": 130712.00224999999,
+      "observations": 96
+    }
+  },
+  "small_payload_max_bytes": 65536,
+  "small_payload_iqr_intersection_ns": [
+    5408.0,
+    5432.0
+  ],
+  "service_check": {
+    "read_capacity_bytes_per_s": 4512600000000.0,
+    "write_capacity_bytes_per_s": 4800000000000.0,
+    "write_capacity_source": "configs/hardware/nvidia_h200.yaml dram_write_capacity_per_clk 1536 x 3.125 GHz (public-spec proxy, not measured in WP4)",
+    "residual_ns_by_payload_bytes": {
+      "67108864": 5611.545312170365,
+      "134217728": 10839.091624340734,
+      "268435456": 14926.18524868146
+    },
+    "residual_grows_with_payload": true
+  },
+  "memcpy_dtod_floor_ns": null,
+  "decision": "unsupported: the large-payload residual over the frozen service term grows with payload, so no fixed floor composes with it (same outcome as A800)",
+  "provenance": {
+    "source": "microbench/nvidia_h200/runtime/d2d_copy/d2d_copy.cu",
+    "source_sha256": "4a012891a816c5305307b4aaf3e1b5094babdd717015b5ed4f45abb4538cff08",
+    "runner": "microbench/nvidia_h200/runtime/d2d_copy/d2d_copy_runner.py",
+    "runner_sha256": "f01dd9a87ab433a03f6ea425e83fa24a8676bc498ced85b109b45f8ff395e0dc",
+    "binary_sha256": "337c28033a7e54d69d7a9ae2fa10ca70b468e45c02f8cad44127edbaa486168d",
+    "raw": "profiler_output/microbench/nvidia_h200/d2d_copy_20260925",
+    "raw_sha256": "44cc11bc47326f52a1094d2303d86832d4386a8b88937797446e74f6b10cc6ea",
+    "clock": {
+      "boost_mhz": 1980,
+      "accepted_captures": 2,
+      "rejected_captures": 0,
+      "busy_sm_clock_mhz_min": 1980
+    },
+    "device_index": 1,
+    "device_uuid": "capture-device-31adbc24ad46",
+    "git_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919"
+  }
+}

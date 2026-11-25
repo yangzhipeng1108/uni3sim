@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "software_revision": "maca_3.7.2",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "timer_domain": "torch_cuda_event_gpu_timeline",
+  "signature": {
+    "tile_m": 32,
+    "tile_n": 64,
+    "tile_k": 128,
+    "group_size_m": 1,
+    "num_warps": 4,
+    "num_stages": 3,
+    "threads_per_cta": 256,
+    "dynamic_shared_memory_bytes_per_cta": 49152,
+    "resident_ctas_per_ap": 1,
+    "pipeline_depth": 3
+  },
+  "scope": {
+    "signature_name": "bm32_bk128_bn64_gsm1",
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 20260824,
+    "k_tiles_swept": [
+      5,
+      7,
+      9,
+      10,
+      12,
+      14,
+      17,
+      20
+    ],
+    "n_tiles_swept": [
+      23,
+      25
+    ],
+    "density_groups": {
+      "sparse_n1600": "50/126 active m-tiles (40%), N=1600",
+      "sparse_n1472": "50/126 active m-tiles (40%), N=1472",
+      "dense_n1600": "123/140 active m-tiles (88%), N=1600",
+      "e8_n1600": "8 experts, 16/24 active m-tiles, N=1600"
+    },
+    "nonproduction_geometry_only": true
+  },
+  "method": {
+    "kernel": "frozen production Triton grouped-MoE source",
+    "runner": "microbench/metax_c500/operators/fused_moe/fused_moe_triton_operand_stream_runner.py",
+    "runner_source_sha256": "d5f00a50565c138c78bf9d19d333c70291161bcbca1356d059ffe32b115d64f7",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "compiled_resource_fact": {
+      "shared": 49152,
+      "num_warps": 4,
+      "num_stages": 3,
+      "note": "runtime introspection of the compiled kernel matched the deployed AOT resource record in every cell"
+    },
+    "event_trials_per_cell": 9,
+    "event_repetitions_per_trial": 100,
+    "independent_captures_per_cell": 3,
+    "physical_device": 1,
+    "production_or_evaluation_duration_consumed": false,
+    "selection_rule": "Per routing/N group, decompose each cell's per-launch event median as waves*(fixed_span + k_tiles*round) + empty_waves*slot over the non-production K sweep by least squares, with waves=ceil(active_ctas/104) and the empty-wave slot fixed at 405 ns from the independent bm32_round_cadence early-exit grid scan. fixed_span_ns is the sparse_n1600 group fill (the 7-point K sweep at production-like 40% active density); the other three groups are stability evidence only. The per-round service is analytic in the Forward model (DRAM bytes per round-wave at the hardware DRAM capacity plus the pipeline-depth-amortized DRAM latency); the measured group slopes 1098-1143 ns versus the analytic 1075-1141 ns validate that expression and select no measured round coefficient. local_k_round_interval_ns is the register-only BF16 MMA round service derived from the canonical BM32 MMA occupancy reference (2*32*64*128 flops at 1352.660353 flops/AP-cycle, 1.8 GHz). empty_wave_slot_ns is the bm32_round_cadence_r1 early-exit grid-scan slope; the all-empty source-exact prefix launches (3035 ns/wave) measure only the pure front-end launch-rate ceiling and are rejected for mixed launches because the four routing groups' fills become mutually inconsistent under it."
+  },
+  "cells": {
+    "dense_n1600_k1536": {
+      "active_m_tiles": 123,
+      "captures_ms": [
+        0.5889843368530273,
+        0.589117431640625,
+        0.5894220733642578
+      ],
+      "experts": 128,
+      "grid": 3500,
+      "k": 1536,
+      "median_ms": 0.589117431640625,
+      "n": 1600,
+      "tokens": 64,
+      "topk": 8
+    },
+    "dense_n1600_k2560": {
+      "active_m_tiles": 123,
+      "captures_ms": [
+        0.8789119720458984,
+        0.8789453125,
+        0.8794188690185547
+      ],
+      "experts": 128,
+      "grid": 3500,
+      "k": 2560,
+      "median_ms": 0.8789453125,
+      "n": 1600,
+      "tokens": 64,
+      "topk": 8
+    },
+    "dense_n1600_k640": {
+      "active_m_tiles": 123,
+      "captures_ms": [
+        0.37266944885253905,
+        0.373939208984375,
+        0.3751987075805664
+      ],
+      "experts": 128,
+      "grid": 3500,
+      "k": 640,
+      "median_ms": 0.373939208984375,
+      "n": 1600,
+      "tokens": 64,
+      "topk": 8
+    },
+    "e8_n1600_k1280": {
+      "active_m_tiles": 16,
+      "captures_ms": [
+        0.07350527763366699,
+        0.07376639842987061,
+        0.07402751922607421
+      ],
+      "experts": 8,
+      "grid": 600,
+      "k": 1280,
+      "median_ms": 0.07376639842987061,
+      "n": 1600,
+      "tokens": 64,
+      "topk": 8
+    },
+    "e8_n1600_k2560": {
+      "active_m_tiles": 16,
+      "captures_ms": [
+        0.12013312339782715,
+        0.12048383712768555,
+        0.12049663543701172
+      ],
+      "experts": 8,
+      "grid": 600,
+      "k": 2560,
+      "median_ms": 0.12048383712768555,
+      "n": 1600,
+      "tokens": 64,
+      "topk": 8
+    },
+    "e8_n1600_k640": {
+      "active_m_tiles": 16,
+      "captures_ms": [
+        0.051627521514892576,
+        0.05212160110473633,
+        0.061224961280822755
+      ],
+      "experts": 8,
+      "grid": 600,
+      "k": 640,
+      "median_ms": 0.05212160110473633,
+      "n": 1600,
+      "tokens": 64,
+      "topk": 8
+    },
+    "prefix_active_n1472": {
+      "active_m_tiles": 50,
+      "captures_ms": [
+        0.01593600034713745,
+        0.01595136046409607,
+        0.024092159271240234
+      ],
+      "experts": 128,
+      "grid": 2898,
+      "k": 640,
+      "median_ms": 0.01595136046409607,
+      "n": 1472,
+      "tokens": 32,
+      "topk": 2
+    },
+    "prefix_active_n1600": {
+      "active_m_tiles": 50,
+      "captures_ms": [
+        0.01635840058326721,
+        0.016417280435562134,
+        0.016750080585479735
+      ],
+      "experts": 128,
+      "grid": 3150,
+      "k": 640,
+      "median_ms": 0.016417280435562134,
+      "n": 1600,
+      "tokens": 32,
+      "topk": 2
+    },
+    "prefix_empty_n1472": {
+      "active_m_tiles": 50,
+      "captures_ms": [
+        0.016174080371856688,
+        0.01674496054649353,
+        0.024639999866485594
+      ],
+      "experts": 128,
+      "grid": 2898,
+      "k": 640,
+      "median_ms": 0.01674496054649353,
+      "n": 1472,
+      "tokens": 32,
+      "topk": 2
+    },
+    "prefix_empty_n1600": {
+      "active_m_tiles": 50,
+      "captures_ms": [
+        0.016279040575027465,
+        0.024099841117858886,
+        0.0247705602645874
+      ],
+      "experts": 128,
+      "grid": 3150,
+      "k": 640,
+      "median_ms": 0.024099841117858886,
+      "n": 1600,
+      "tokens": 32,
+      "topk": 2
+    },
+    "sparse_n1472_k1536": {
+      "active_m_tiles": 50,
+      "captures_ms": [
+        0.2352895927429199,
+        0.23582975387573243,
+        0.23583232879638671
+      ],
+      "experts": 128,
+      "grid": 2898,
+      "k": 1536,
+      "median_ms": 0.23582975387573243,
+      "n": 1472,
+      "tokens": 32,
+      "topk": 2
+    },
+    "sparse_n1472_k2560": {
+      "active_m_tiles": 50,
+      "captures_ms": [
+        0.3506227111816406,
+        0.3506380844116211,
+        0.3511859130859375
+      ],
+      "experts": 128,
+      "grid": 2898,
+      "k": 2560,
+      "median_ms": 0.3506380844116211,
+      "n": 1472,
+      "tokens": 32,
+      "topk": 2
+    },
+    "sparse_n1472_k640": {
+      "active_m_tiles": 50,
+      "captures_ms": [
+        0.15333375930786133,
+        0.15338751792907715,
+        0.15369728088378906
+      ],
+      "experts": 128,
+      "grid": 2898,
+      "k": 640,
+      "median_ms": 0.15338751792907715,
+      "n": 1472,
+      "tokens": 32,
+      "topk": 2
+    },
+    "sparse_n1600_k1152": {
+      "active_m_tiles": 50,
+      "captures_ms": [
+        0.21283071517944335,
+        0.21298688888549805,
+        0.2133350372314453
+      ],
+      "experts": 128,
+      "grid": 3150,
+      "k": 1152,
+      "median_ms": 0.21298688888549805,
+      "n": 1600,
+      "tokens": 32,
+      "topk": 2
+    },
+    "sparse_n1600_k1536": {
+      "active_m_tiles": 50,
+      "captures_ms": [
+        0.25389055252075193,
+        0.25429248809814453,
+        0.25433855056762694
+      ],
+      "experts": 128,
+      "grid": 3150,
+      "k": 1536,
+      "median_ms": 0.25429248809814453,
+      "n": 1600,
+      "tokens": 32,
+      "topk": 2
+    },
+    "sparse_n1600_k1792": {
+      "active_m_tiles": 50,
+      "captures_ms": [
+        0.2929664039611816,
+        0.2931046485900879,
+        0.29328895568847657
+      ],
+      "experts": 128,
+      "grid": 3150,
+      "k": 1792,
+      "median_ms": 0.2931046485900879,
+      "n": 1600,
+      "tokens": 32,
+      "topk": 2
+    },
+    "sparse_n1600_k2176": {
+      "active_m_tiles": 50,
+      "captures_ms": [
+        0.33670143127441404,
+        0.33675006866455076,
+        0.33684993743896485
+      ],
+      "experts": 128,
+      "grid": 3150,
+      "k": 2176,
+      "median_ms": 0.33675006866455076,
+      "n": 1600,
+      "tokens": 32,
+      "topk": 2
+    },
+    "sparse_n1600_k2560": {
+      "active_m_tiles": 50,
+      "captures_ms": [
+        0.37921791076660155,
+        0.37938175201416013,
+        0.37996543884277345
+      ],
+      "experts": 128,
+      "grid": 3150,
+      "k": 2560,
+      "median_ms": 0.37938175201416013,
+      "n": 1600,
+      "tokens": 32,
+      "topk": 2
+    },
+    "sparse_n1600_k640": {
+      "active_m_tiles": 50,
+      "captures_ms": [
+        0.16652288436889648,
+        0.1673676872253418,
+        0.16869375228881836
+      ],
+      "experts": 128,
+      "grid": 3150,
+      "k": 640,
+      "median_ms": 0.1673676872253418,
+      "n": 1600,
+      "tokens": 32,
+      "topk": 2
+    },
+    "sparse_n1600_k896": {
+      "active_m_tiles": 50,
+      "captures_ms": [
+        0.1897292709350586,
+        0.18996736526489258,
+        0.1900467109680176
+      ],
+      "experts": 128,
+      "grid": 3150,
+      "k": 896,
+      "median_ms": 0.18996736526489258,
+      "n": 1600,
+      "tokens": 32,
+      "topk": 2
+    }
+  },
+  "extraction": {
+    "empty_wave_slot_ns": 405.0,
+    "all_empty_prefix_frontend_ceiling_ns": 3035.3475373888778,
+    "dram_round_service_analytic_ns": "dram_read_bytes/k_tiles/waves/1653.07GB/s + 373.333ns/3",
+    "group_decomposition": {
+      "dense_n1600": {
+        "fill_us": 6.533356683193109,
+        "points": 3,
+        "relative_residual_by_cell": {
+          "dense_n1600_k1536": -0.02315438728758095,
+          "dense_n1600_k2560": 0.007242359741276496,
+          "dense_n1600_k640": 0.019455074111638392
+        },
+        "round_us": 1.124256623096955
+      },
+      "e8_n1600": {
+        "fill_us": 6.988220438957215,
+        "points": 3,
+        "relative_residual_by_cell": {
+          "e8_n1600_k1280": -0.009957623332890441,
+          "e8_n1600_k2560": 0.002032189621721473,
+          "e8_n1600_k640": 0.00939518350190919
+        },
+        "round_us": 1.1434513671057578
+      },
+      "sparse_n1472": {
+        "fill_us": 6.433255346362174,
+        "points": 3,
+        "relative_residual_by_cell": {
+          "sparse_n1472_k1536": -0.027120737719804243,
+          "sparse_n1472_k2560": 0.008512317077564549,
+          "sparse_n1472_k640": 0.022238669700522438
+        },
+        "round_us": 1.0982053237553895
+      },
+      "sparse_n1600": {
+        "fill_us": 6.2142582743413275,
+        "points": 7,
+        "relative_residual_by_cell": {
+          "sparse_n1600_k1152": -0.026373573513334247,
+          "sparse_n1600_k1536": -0.030225870137663386,
+          "sparse_n1600_k1792": 0.007538462472965204,
+          "sparse_n1600_k2176": 0.0073656789881621524,
+          "sparse_n1600_k2560": 0.004579795105914558,
+          "sparse_n1600_k640": 0.03941234911658617,
+          "sparse_n1600_k896": 0.001472049597909035
+        },
+        "round_us": 1.1121688606022122
+      }
+    }
+  },
+  "selected_parameters": {
+    "fixed_span_ns": 6214.258274341328,
+    "local_k_round_interval_ns": 215.33203842717427,
+    "empty_wave_slot_ns": 405.0
+  },
+  "stability": {
+    "fill_group_spread_ns": [
+      6533.356683193108,
+      6988.220438957214,
+      6433.255346362174,
+      6214.258274341328
+    ],
+    "round_group_spread_ns": [
+      1124.256623096955,
+      1143.4513671057578,
+      1098.2053237553894,
+      1112.1688606022121
+    ],
+    "max_abs_relative_residual": 0.03941234911658617,
+    "capture_spread_note": "three fresh-process captures per cell; medians reported in cells"
+  },
+  "provenance": {
+    "capture_baseline_commit": "9db13e822c4b47ab39f0ff0a1d90dcbbbc34d2be",
+    "capture_command": "MACA_VISIBLE_DEVICES=1 driver.sh (bm32 round sweep, 20 cells x 3 captures)",
+    "physical_device_id": 1,
+    "owner": "capture-owner-2",
+    "remote_snapshot": "/capture-workspace/midlayer_hw_model/profiler_output/microbench/metax_c500/bm32_round_sweep_d5f00a50565c_20260917_r1",
+    "recorded_pids": [
+      462,
+      5031
+    ],
+    "container": "capture-container-1",
+    "worktree": "/capture-workspace/wt-c500-moe-mechanism",
+    "branch": "wt-c500-moe-mechanism"
+  },
+  "allowed_conclusion": "The BF16 BM32/BN64/BK128/GSM1 grouped-MoE source program on C500 pays a per-useful-CTA fixed span of fixed_span_ns plus a per-complete-K-round service of max(local_k_round_interval_ns, analytic DRAM round service), serialized at one resident CTA per AP, with empty grid CTAs adding empty_wave_slot_ns per 104-CTA slot wave. Established for complete K tiles (K %% 128 == 0), 5..20 K tiles, 23..25 N tiles, 8..128 populated experts, 40-88% active density; no production or evaluation duration was consumed or fitted.",
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_matmul_v2_narrow_pipeline_diagnostic.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_narrow_asymmetric_descriptor_completion_diagnostic",
+  "duration_unit": "ns_per_source_program_per_aic",
+  "source_program": {
+    "dtype": "bf16",
+    "active_aic_groups": 23,
+    "operand_buffer_depth_a": 1,
+    "operand_buffer_depth_b": 2,
+    "base_tile_m": 16,
+    "base_tile_n": 224,
+    "base_tile_k": 64,
+    "a_rows": 16,
+    "a_columns": 1536,
+    "b_rows": 224,
+    "b_columns": 256,
+    "source_row_stride_elements": 1536,
+    "output_tiles_per_worker": 1,
+    "a_descriptors_per_worker": 1,
+    "b_descriptors_per_worker": 6,
+    "completion_pairs_per_worker": 24
+  },
+  "measurements": {
+    "mte2_only_run_medians_ns": [120.0, 120.0, 120.0],
+    "mte2_mte1_completion_run_medians_ns": [14020.0, 13940.0, 14350.0],
+    "mte2_mte1_cube_completion_run_medians_ns": [14070.0, 14630.0, 14080.0],
+    "mte2_only_median_of_run_medians_ns": 120.0,
+    "mte2_mte1_completion_median_of_run_medians_ns": 14020.0,
+    "mte2_mte1_cube_completion_median_of_run_medians_ns": 14080.0
+  },
+  "capture": {
+    "measurement_baseline_commit": "473f693a4d5adeb30eae344ab0459e511ced99d0",
+    "physical_device_id": 4,
+    "container": "capture-container-2",
+    "source_snapshot_sha256": "51a4ab7e98c0f40f56b84ad072e32394cd476feaa61bbb8d6f071aca6a218a6e",
+    "binary_sha256": "c175310d6a8630dc87e5d5ecd491dd57136bd005acc656480748533a3e548c21",
+    "raw_path": "profiler_output/microbench/ascend_910b/gemm_k1536_m16_n224_pipeline_473f693a_20260915_d4_r1/raw.csv",
+    "raw_sha256": "00c387f246e729345692ec0122342fe7e1eacd6482f752d26435d6e99d43621f",
+    "runner_stderr_path": "profiler_output/microbench/ascend_910b/gemm_k1536_m16_n224_pipeline_473f693a_20260915_d4_r1/run.log",
+    "runner_stderr_sha256": "0478bf9c66a214907991acaf3b6c069e1ac365c9e155fb1389a13a958bb5e766"
+  },
+  "interpretation": {
+    "forward_use": "validation_only",
+    "mte2_candidate": "rejected because the isolated MTE2-only span is already below the unified analytical pipeline",
+    "completion_candidate": "rejected because the probe drains the asymmetric A1/B1 producer queues before returning and therefore removes the production MatmulImpl overlap",
+    "boundary": "do not install either drained MTE1 or Cube completion as a production floor and do not infer a residual from the production case duration"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "forward_eligible": false
+}

@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "mechanism": "flashinfer_trtllm_allreduce_residual_rmsnorm_graph_node_service",
+  "timer_domain": "cuda_event_around_graph_replay_divided_by_chain",
+  "chain_length": 64,
+  "trials": 30,
+  "warmup_replays": 5,
+  "dtype": "bfloat16",
+  "pattern": "kARResidualRMSNorm",
+  "backend": "trtllm",
+  "max_token_num": 128,
+  "production_or_evaluation_duration_consumed": false,
+  "runner": {
+    "path": "/capture-public/h200_microbench/bin/flashinfer_allreduce_fusion_runner.py",
+    "sha256": "3257a4bb3c2cf27b7be9767bc228f170a3c384dc04d4a30957372a702b8b4314",
+    "git_commit": "78f1ec796af2e9ad9d4e3445ee40d1301fad4c69"
+  },
+  "command": "/capture-public/envs/vllm024/bin/python bin/flashinfer_allreduce_fusion_runner.py --world-sizes 2 4 --output-dir fi_arfusion_20260925_014754 --source-commit 78f1ec796af2e9ad9d4e3445ee40d1301fad4c69",
+  "environment": {
+    "hardware_id": "nvidia_h200",
+    "cuda_visible_devices": "0,1,2,3",
+    "torch_version": "2.11.0+cu129",
+    "cuda_runtime": "12.9",
+    "flashinfer_version": "0.6.12",
+    "vllm_version": "0.24.0",
+    "python": "3.12.3"
+  },
+  "world_sizes": {
+    "2": {
+      "per_rank_raw": [
+        "fi_arfusion_20260925_014754/ws2_rank0.json",
+        "fi_arfusion_20260925_014754/ws2_rank1.json"
+      ],
+      "summary": [
+        {
+          "tokens": 1,
+          "payload_bytes": 14336,
+          "fused_ns": 4457.75012485683
+        },
+        {
+          "tokens": 2,
+          "payload_bytes": 28672,
+          "fused_ns": 4583.250032737851
+        },
+        {
+          "tokens": 3,
+          "payload_bytes": 43008,
+          "fused_ns": 4810.750018805265
+        },
+        {
+          "tokens": 4,
+          "payload_bytes": 57344,
+          "fused_ns": 4863.749956712127
+        },
+        {
+          "tokens": 6,
+          "payload_bytes": 86016,
+          "fused_ns": 4913.500044494867
+        },
+        {
+          "tokens": 8,
+          "payload_bytes": 114688,
+          "fused_ns": 5021.749995648861
+        },
+        {
+          "tokens": 12,
+          "payload_bytes": 172032,
+          "fused_ns": 5207.499954849482
+        },
+        {
+          "tokens": 16,
+          "payload_bytes": 229376,
+          "fused_ns": 5371.249979361892
+        },
+        {
+          "tokens": 24,
+          "payload_bytes": 344064,
+          "fused_ns": 5785.49993224442
+        },
+        {
+          "tokens": 32,
+          "payload_bytes": 458752,
+          "fused_ns": 6290.750112384558
+        },
+        {
+          "tokens": 48,
+          "payload_bytes": 688128,
+          "fused_ns": 6974.00001809001
+        },
+        {
+          "tokens": 64,
+          "payload_bytes": 917504,
+          "fused_ns": 7658.250164240599
+        },
+        {
+          "tokens": 96,
+          "payload_bytes": 1376256,
+          "fused_ns": 8560.999762266874
+        },
+        {
+          "tokens": 128,
+          "payload_bytes": 1835008,
+          "fused_ns": 9848.499670624733
+        }
+      ]
+    },
+    "4": {
+      "per_rank_raw": [
+        "fi_arfusion_20260925_014754/ws4_rank0.json",
+        "fi_arfusion_20260925_014754/ws4_rank1.json",
+        "fi_arfusion_20260925_014754/ws4_rank2.json",
+        "fi_arfusion_20260925_014754/ws4_rank3.json"
+      ],
+      "summary": [
+        {
+          "tokens": 1,
+          "payload_bytes": 14336,
+          "fused_ns": 5285.250023007393
+        },
+        {
+          "tokens": 2,
+          "payload_bytes": 28672,
+          "fused_ns": 5410.49987077713
+        },
+        {
+          "tokens": 3,
+          "payload_bytes": 43008,
+          "fused_ns": 5621.7501405626535
+        },
+        {
+          "tokens": 4,
+          "payload_bytes": 57344,
+          "fused_ns": 5792.249925434589
+        },
+        {
+          "tokens": 6,
+          "payload_bytes": 86016,
+          "fused_ns": 6029.999814927578
+        },
+        {
+          "tokens": 8,
+          "payload_bytes": 114688,
+          "fused_ns": 6358.99999178946
+        },
+        {
+          "tokens": 12,
+          "payload_bytes": 172032,
+          "fused_ns": 6895.249942317605
+        },
+        {
+          "tokens": 16,
+          "payload_bytes": 229376,
+          "fused_ns": 7479.999912902713
+        },
+        {
+          "tokens": 24,
+          "payload_bytes": 344064,
+          "fused_ns": 8466.749917715788
+        },
+        {
+          "tokens": 32,
+          "payload_bytes": 458752,
+          "fused_ns": 9663.499891757965
+        },
+        {
+          "tokens": 48,
+          "payload_bytes": 688128,
+          "fused_ns": 11828.5003118217
+        },
+        {
+          "tokens": 64,
+          "payload_bytes": 917504,
+          "fused_ns": 13863.500207662582
+        },
+        {
+          "tokens": 96,
+          "payload_bytes": 1376256,
+          "fused_ns": 17806.499265134335
+        },
+        {
+          "tokens": 128,
+          "payload_bytes": 1835008,
+          "fused_ns": 22156.749852001667
+        }
+      ]
+    }
+  }
+}

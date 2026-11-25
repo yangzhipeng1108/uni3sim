@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_elementwise_mul_suffix_46_workers",
+  "request_size_unit": "source_vector_operations",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"3840": 140.0, "5376": 180.0},
+  "campaign_evidence_ref": "microbench/ascend_910b/references/aiv_elementwise_mul_compute_segments_cann_8_5_1.json",
+  "campaign_evidence_sha256": "fbb1e249a5ebf2f21e316c7f2b044443b4fddda4f8fe8c54e7184f5742d3e591",
+  "active_workers": 46,
+  "segment": "cast_x2_bf16_to_fp32_then_mul_then_cast_output_fp32_to_bf16",
+  "production_or_evaluation_duration_consumed": false,
+  "measurement_gate_passed": true,
+  "mechanism_publishable": true
+}

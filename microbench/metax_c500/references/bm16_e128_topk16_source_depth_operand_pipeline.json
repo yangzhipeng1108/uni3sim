@@ -1,0 +1,80 @@
+{
+  "schema_version": "midlayer.metax_c500.bm16_e128_topk16_source_depth_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 16,
+    "tile_k": 64,
+    "tile_n": 32,
+    "group_size_m": 1,
+    "experts": 128,
+    "topk": 16,
+    "source_rows": [32, 64, 128],
+    "production_w1_k_n_tile_class": [32, 48],
+    "production_w2_k_n_tile_class": [12, 64]
+  },
+  "method": {
+    "kernel": "frozen production Triton grouped-MoE source",
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090813,
+    "event_trials_per_cell": 7,
+    "event_repetitions_per_trial": 25,
+    "independent_captures_per_cell": 3,
+    "physical_devices": [0, 2],
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "6830b3e020abdb010b161876e983cb01071c1d6fc02903fbf9df1cbac1da0f88",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "take the median capacity of three captures at each adjacent non-production N on each device, linearly interpolate to production N, then select the lower interpolated capacity across devices"
+  },
+  "source_depths": {
+    "max152": {
+      "tokens": 32,
+      "measured_active_m_tiles": 125,
+      "production_active_m_tiles": 127,
+      "maximum_m_tiles": 152,
+      "route_sha256": "a3c4bee76105c455d06e69a78ad55d84b31cb81cefbe57dc94bc9d29f1495579",
+      "interpolated_capacity_per_s_by_device": {
+        "w1": {"0": 1761832966670.8213, "2": 1761978775699.295},
+        "w2": {"0": 1661172049826.454, "2": 1661734741871.1987}
+      }
+    },
+    "max184": {
+      "tokens": 64,
+      "measured_active_m_tiles": 128,
+      "production_active_m_tiles": 129,
+      "maximum_m_tiles": 184,
+      "route_sha256": "ea97de53a4a32701af8b3f7567ad735d10517036c24896dcd465e157b853f711",
+      "interpolated_capacity_per_s_by_device": {
+        "w1": {"0": 1887405248292.8606, "2": 1889360635754.6592},
+        "w2": {"0": 1732107112545.6567, "2": 1733132988165.3062}
+      }
+    },
+    "max248": {
+      "tokens": 128,
+      "measured_active_m_tiles": 183,
+      "production_active_m_tiles": 177,
+      "maximum_m_tiles": 248,
+      "route_sha256": "b6040b720932eec07ef580f55618f0c50a16b0dc73177f0a26b9144d0b0ca896",
+      "interpolated_capacity_per_s_by_device": {
+        "w1": {"0": 2330675172794.005, "2": 2330982074242.597},
+        "w2": {"0": 2057914182595.3792, "2": 2058441302596.2642}
+      }
+    }
+  },
+  "selected_services": {
+    "max152_w1": {"logical_byte_capacity_per_s": 1761832966670.8213},
+    "max152_w2": {"logical_byte_capacity_per_s": 1661172049826.454},
+    "max184_w1": {"logical_byte_capacity_per_s": 1887405248292.8606},
+    "max184_w2": {"logical_byte_capacity_per_s": 1732107112545.6567},
+    "max248_w1": {"logical_byte_capacity_per_s": 2330675172794.005},
+    "max248_w2": {"logical_byte_capacity_per_s": 2057914182595.3792}
+  },
+  "raw": {
+    "root": "profiler_output/microbench/metax_c500/bm16_e128_topk16_source_depth_0524e3f9_20260908_r1",
+    "csv_file_count": 72,
+    "sha256_manifest": "sha256sums.txt",
+    "sha256_manifest_sha256": "5804bcdb5f4a44293fb1b32c9b587a577f3cda44d32615446cc624446caa34dc"
+  },
+  "allowed_conclusion": "BM16 E128 TOPK16 source-ordered grouped projections use separate W1/W2 combined operand services at the 152-, 184-, and 248-maximum-M-tile depths."
+}

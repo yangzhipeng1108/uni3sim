@@ -1,0 +1,59 @@
+{
+    "allowed_use": "A lower bound on the profiler-reported duration of a launch that performs at least one global memory access, given its CTA grid. It composes with an execution time by maximum and never adds to one. It does not describe a launch that touches no memory: a truly empty CTA measures 1760, 1888 and 1984 ns at these grids, well below these values, and every production kernel touches memory.",
+    "derived_model": {
+        "empty_cta_reference_ns": {
+            "108": 1888.0,
+            "216": 1984.0,
+            "48": 1760.0
+        },
+        "floor_by_grid_ctas": [
+            {
+                "back_to_back_median_ns": 2112.0,
+                "grid_ctas": 48,
+                "isolated_median_ns": 2240.0,
+                "minimum_span_ns": 2080.0
+            },
+            {
+                "back_to_back_median_ns": 2208.0,
+                "grid_ctas": 108,
+                "isolated_median_ns": 2336.0,
+                "minimum_span_ns": 2176.0
+            },
+            {
+                "back_to_back_median_ns": null,
+                "grid_ctas": 216,
+                "isolated_median_ns": 2464.0,
+                "minimum_span_ns": 2304.0
+            }
+        ],
+        "selection_rule": "At each measured grid retain the smallest duration seen across trials and across both launch patterns, isolated and back-to-back. The published value is therefore a floor rather than a typical duration, which is what composing by maximum requires. A grid below the first measured point takes the first point and one above the last takes the last: the surface is shallow, 2080 to 2304 ns over a 4.5-fold grid range, and is not extrapolated."
+    },
+    "forbidden_use": "An additive launch cost, a typical or median duration, a host launch latency, a CUDA-event interval, a per-shape correction, or a floor for a launch with no global memory access.",
+    "hardware_id": "nvidia_a800",
+    "mechanism": "small_kernel_span_floor",
+    "production_or_evaluation_duration_consumed": false,
+    "provenance": {
+        "captures": [
+            {
+                "device_index": 5,
+                "launches_per_point": 30,
+                "path": "profiler_output/microbench/nvidia_a800/small_kernel_span_20260918",
+                "profiler": "nsys 2025.6.1",
+                "report": "cuda_gpu_kern_sum"
+            }
+        ],
+        "source": "microbench/nvidia_a800/compute/small_kernel_span_floor.cu",
+        "source_sha256": "499e228eecaf7bec65fe8f33a143978e1db86bc970f43bc012313f9eb9492c12"
+    },
+    "schema": "small_kernel_span_floor_reference_v1",
+    "scope": {
+        "block_size_dependence": "none observed: 2240 ns at block 128 and 512",
+        "maximum_grid_ctas": 216,
+        "minimum_grid_ctas": 48,
+        "threads_per_cta_measured": [
+            128,
+            512
+        ],
+        "timer_domain": "nsys_gpu_kernel"
+    }
+}

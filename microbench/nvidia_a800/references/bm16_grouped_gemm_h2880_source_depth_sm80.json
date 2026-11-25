@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "software_revision": "vllm_0.11.0_triton_sm80",
+  "mechanism": "bm16_grouped_gemm_h2880_source_depth_operand_pipeline_v1",
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "use only for BF16 BM16/BN32/BK64/GSM1 E128 H2880 W1/W2 source launches with the exact retained active/maximum M-tile classes",
+  "source_geometry": {
+    "dtype": "bf16",
+    "tile_m": 16,
+    "tile_n": 32,
+    "tile_k": 64,
+    "group_size_m": 1,
+    "threads_per_cta": 128,
+    "experts": 128,
+    "production_projection_k_tiles": 45,
+    "production_w1_n_tiles": 180,
+    "production_w2_n_tiles": 90,
+    "adjacent_projection_k_tiles": [44, 46],
+    "adjacent_w1_n_tiles": [178, 182],
+    "adjacent_w2_n_tiles": [88, 92],
+    "source_depth_classes": {
+      "31_active": {
+        "active_m_tiles": 31,
+        "w1_maximum_m_tiles": 32,
+        "w2_maximum_m_tiles": 122
+      },
+      "53_active": {
+        "active_m_tiles": 53,
+        "w1_maximum_m_tiles": 124,
+        "w2_maximum_m_tiles": 124
+      }
+    }
+  },
+  "selected_services": {
+    "31_active": {
+      "logical_byte_capacity_per_s": 1703147743460.753,
+      "selection": "minimum across both adjacent K/N endpoints, W1/W2 source roles, and devices 2/6"
+    },
+    "53_active": {
+      "logical_byte_capacity_per_s": 1727870083298.538,
+      "selection": "minimum across both adjacent K/N endpoints, W1/W2 source roles, and devices 2/6"
+    }
+  },
+  "allowed_conclusion": "The two retained E128/H2880 BM16 source-depth classes use their conservative full-chip logical-operand completion capacities instead of the generic multi-wave DRAM-latency envelope.",
+  "capture": {
+    "baseline_commit": "b428a9506f35dc4c2a45f6b7978972c4cdeb8bf2",
+    "runner_path": "microbench/nvidia_a800/operators/fused_moe/sm80_bf16_bm16_sparse_w1_source_runner.py",
+    "runner_sha256": "869584a4cab7389c3187400eb48823c0156ee1ff3d16d83171ad5a8709eb80ca",
+    "vllm_source_sha256": "8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e",
+    "physical_devices": [2, 6],
+    "trials_per_cell": 9,
+    "raw_paths": [
+      "profiler_output/microbench/nvidia_a800/bm16_sparse_source_b428a950_20260908/d2_r4/raw.csv",
+      "profiler_output/microbench/nvidia_a800/bm16_sparse_source_b428a950_20260908/d6_r4/raw.csv"
+    ],
+    "raw_sha256": [
+      "cd994d8f6934b7f00891ed77129f242d218627d1c04a8a0afa4409fb4c765471",
+      "58c2ccbf260d9fc6f372311cceeadaba508376f85ca8c1941d5263362c3db2bb"
+    ]
+  }
+}

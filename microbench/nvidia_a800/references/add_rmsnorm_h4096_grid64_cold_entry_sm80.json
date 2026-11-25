@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "software_revision": "vllm_0.11.0_cuda_12.2_sm80",
+  "service": "add_rmsnorm_h4096_grid64_cold_source_chain_entry",
+  "model": "cold_minus_warm_source_chain_entry_v1",
+  "duration_unit": "clock64_cycles_per_cta_source_chain",
+  "timer_domain": "clock64_same_cta",
+  "validity_domain": {
+    "dtype": "bf16",
+    "hidden_size": 4096,
+    "grid_blocks": 64,
+    "threads_per_cta": 1024,
+    "active_threads": 512,
+    "resident_ctas_per_sm": 2,
+    "source_rounds": 1
+  },
+  "derivation": {
+    "trials": [0, 1],
+    "cold_phase_chain_median_cycles": [2874.0, 2879.5],
+    "warm_phase_chain_median_cycles": [1439.5, 1440.0],
+    "cold_minus_warm_entry_cycles": 1437.0
+  },
+  "validation": {
+    "trial": 2,
+    "cold_phase_chain_measured_cycles": 2901.0,
+    "warm_phase_chain_measured_cycles": 1439.0,
+    "predicted_cold_phase_chain_cycles": 2876.0,
+    "absolute_percentage_error": 0.8617718028266115,
+    "maximum_allowed_absolute_percentage_error": 10.0,
+    "passed": true
+  },
+  "cache_contract": {
+    "cold_state": "64_MiB_device_memset_after_input_and_residual_seed",
+    "warm_state": "input_and_residual_seed_without_intervening_flush",
+    "composition": "warm_source_pipeline_plus_cold_minus_warm_entry_once",
+    "production_basis": "input_and_residual_are_compulsory_reads_while_gamma_is_shared_across_grid64",
+    "external_memory_capacity_composition": "maximum_not_sum"
+  },
+  "source_identity": {
+    "production_sass_sha256": "b1f9aaf1a8a221567499e1214b053592c62ff594815742bdc881b912e971cf4b",
+    "probe_source_sha256": "073a763fc69b18600fc10680c862fa2cfb5afa5bc70f82974048eea4c81a36af",
+    "probe_sass_sha256": "b5347c37f2b7e0000c84e5db3fccfe71bd261f392f1d99f1f2adfac3afd896b9"
+  },
+  "artifacts": {
+    "cold_raw": "profiler_output/microbench/nvidia_a800/add_rmsnorm_h4096_cold_cf8507ef_20260908_d7/raw.csv",
+    "cold_raw_sha256": "0bd879d3453ccf8086328eebc124cf62e01530957e7a064d6557a842fd575639",
+    "cold_manifest_sha256": "00e3fb833abe50bf36215263c02a33d330a610afe4c3108248b3eb0b6de05583",
+    "warm_report": "profiler_output/microbench/nvidia_a800/add_rmsnorm_h4096_outer_envelope_9a5dba2a_20260908_d7_v2/report.json"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

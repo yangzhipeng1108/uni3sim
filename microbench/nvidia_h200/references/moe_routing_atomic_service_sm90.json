@@ -1,0 +1,268 @@
+{
+  "schema": "nvidia_h200_moe_routing_atomic_service_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "source": "microbench/nvidia_h200/operators/fused_moe/moe_routing_atomic_service.cu",
+  "source_sha256": "08b1231bb2fca34ad1f4f6b9a5acda7ecfb2846a5fd8297e66baff066792175a",
+  "runner": "microbench/nvidia_h200/operators/fused_moe/moe_routing_atomic_service_runner.py",
+  "runner_sha256": "0f39c6b02ed8411f8239c3dd98ed0889479d1de633e5e1e42c0f412759b2828e",
+  "cases": [
+    {
+      "block": 1024,
+      "case_id": 0,
+      "case_name": "shared_cta_e128_r262144",
+      "cross_run_relative_range": 0.0024389709808162203,
+      "experts": 128,
+      "grid": 1,
+      "items": 262144,
+      "median_atomic_ops_per_s": 19980487348.00715,
+      "median_milliseconds": 0.0131200003,
+      "mode": 0,
+      "run_median_milliseconds": [
+        0.0131200003,
+        0.0131519996,
+        0.0131200003
+      ]
+    },
+    {
+      "block": 256,
+      "case_id": 1,
+      "case_name": "global_grid1024_e128_r262144",
+      "cross_run_relative_range": 0.0030030255480706803,
+      "experts": 128,
+      "grid": 1024,
+      "items": 262144,
+      "median_atomic_ops_per_s": 4920120157.057959,
+      "median_milliseconds": 0.0532799996,
+      "mode": 1,
+      "run_median_milliseconds": [
+        0.0533760004,
+        0.0532159992,
+        0.0532799996
+      ]
+    },
+    {
+      "block": 256,
+      "case_id": 2,
+      "case_name": "global_grid128_e32_r32768",
+      "cross_run_relative_range": 0.0043289746022374545,
+      "experts": 32,
+      "grid": 128,
+      "items": 32768,
+      "median_atomic_ops_per_s": 4432900468.881767,
+      "median_milliseconds": 0.00739199994,
+      "mode": 1,
+      "run_median_milliseconds": [
+        0.00736000016,
+        0.00739199994,
+        0.00739199994
+      ]
+    },
+    {
+      "block": 256,
+      "case_id": 3,
+      "case_name": "global_grid256_e8_r65536",
+      "cross_run_relative_range": 0.009615364920410395,
+      "experts": 8,
+      "grid": 256,
+      "items": 65536,
+      "median_atomic_ops_per_s": 6564102794.21434,
+      "median_milliseconds": 0.00998399965,
+      "mode": 1,
+      "run_median_milliseconds": [
+        0.0099200001,
+        0.0100159999,
+        0.00998399965
+      ]
+    }
+  ],
+  "per_subcore_rate_derivation": "yaml moe_routing_global_atomic_eN = median_atomic_ops_per_s of the exact global case / (132 SMs x 4 compute_alu subcores); median over three run medians of seven samples, as on A800",
+  "yaml_values_ops_per_s_per_subcore": {
+    "moe_routing_global_atomic_e128": 9318409.388367346,
+    "moe_routing_global_atomic_e32": 8395644.82742759,
+    "moe_routing_global_atomic_e8": 12432012.867830189
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "production_kernel_reproduced": false,
+  "h200_capture_provenance": {
+    "git_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+    "capture_baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+    "raw_dir": "profiler_output/microbench/nvidia_h200/wp2_routing_atomic_r2",
+    "remote_raw_dir": "/capture-public/h200_microbench/wp2_moe_cuda/runs/routing_atomic_r2",
+    "raw_sha256": "9530083915d9ad4ae4a095d1128eb3de161f1540707dd7b75e3a135b23b38dfd",
+    "binary_sha256": "dbcace91ad612e4d4752a770b38a723c8303c487cd967be78495229ee5d6d6fe",
+    "compile_command": [
+      "/capture-public/tools/cuda-12.9/bin/nvcc",
+      "-O3",
+      "-std=c++17",
+      "-arch=sm_90",
+      "/capture-public/h200_microbench/wp2_moe_cuda/src/microbench/nvidia_h200/operators/fused_moe/moe_routing_atomic_service.cu",
+      "-o",
+      "/capture-public/h200_microbench/wp2_moe_cuda/runs/routing_atomic_r2/moe_routing_atomic_service"
+    ],
+    "vllm_moe_binary": "/capture-public/envs/vllm024/lib/python3.12/site-packages/vllm/_moe_C_stable_libtorch.abi3.so",
+    "vllm_moe_binary_sha256": "a48a39b4f1c8f0962ab4e551e2ec18d648548a3bcdfca87125795de8bae70170",
+    "clock_gate": "per execution: no 50-ms sample below 1980 MHz between the first and last boosted sample, and every busy sample >= 1980 MHz",
+    "accepted_executions": 12,
+    "rejected_executions": 0,
+    "execution_clocks": [
+      {
+        "attempt": 0,
+        "case_id": 0,
+        "clock": {
+          "accepted": true,
+          "busy_min_mhz": 1980,
+          "busy_samples": 4,
+          "samples": 16,
+          "window_min_mhz": 1980,
+          "window_samples": 7
+        },
+        "run": 0
+      },
+      {
+        "attempt": 0,
+        "case_id": 1,
+        "clock": {
+          "accepted": true,
+          "busy_min_mhz": 1980,
+          "busy_samples": 3,
+          "samples": 16,
+          "window_min_mhz": 1980,
+          "window_samples": 16
+        },
+        "run": 0
+      },
+      {
+        "attempt": 0,
+        "case_id": 2,
+        "clock": {
+          "accepted": true,
+          "busy_min_mhz": 1980,
+          "busy_samples": 3,
+          "samples": 16,
+          "window_min_mhz": 1980,
+          "window_samples": 16
+        },
+        "run": 0
+      },
+      {
+        "attempt": 0,
+        "case_id": 3,
+        "clock": {
+          "accepted": true,
+          "busy_min_mhz": 1980,
+          "busy_samples": 3,
+          "samples": 14,
+          "window_min_mhz": 1980,
+          "window_samples": 14
+        },
+        "run": 0
+      },
+      {
+        "attempt": 0,
+        "case_id": 0,
+        "clock": {
+          "accepted": true,
+          "busy_min_mhz": 1980,
+          "busy_samples": 2,
+          "samples": 17,
+          "window_min_mhz": 1980,
+          "window_samples": 17
+        },
+        "run": 1
+      },
+      {
+        "attempt": 0,
+        "case_id": 1,
+        "clock": {
+          "accepted": true,
+          "busy_min_mhz": 1980,
+          "busy_samples": 3,
+          "samples": 16,
+          "window_min_mhz": 1980,
+          "window_samples": 16
+        },
+        "run": 1
+      },
+      {
+        "attempt": 0,
+        "case_id": 2,
+        "clock": {
+          "accepted": true,
+          "busy_min_mhz": 1980,
+          "busy_samples": 4,
+          "samples": 16,
+          "window_min_mhz": 1980,
+          "window_samples": 16
+        },
+        "run": 1
+      },
+      {
+        "attempt": 0,
+        "case_id": 3,
+        "clock": {
+          "accepted": true,
+          "busy_min_mhz": 1980,
+          "busy_samples": 2,
+          "samples": 15,
+          "window_min_mhz": 1980,
+          "window_samples": 15
+        },
+        "run": 1
+      },
+      {
+        "attempt": 0,
+        "case_id": 0,
+        "clock": {
+          "accepted": true,
+          "busy_min_mhz": 1980,
+          "busy_samples": 4,
+          "samples": 17,
+          "window_min_mhz": 1980,
+          "window_samples": 17
+        },
+        "run": 2
+      },
+      {
+        "attempt": 0,
+        "case_id": 1,
+        "clock": {
+          "accepted": true,
+          "busy_min_mhz": 1980,
+          "busy_samples": 2,
+          "samples": 16,
+          "window_min_mhz": 1980,
+          "window_samples": 16
+        },
+        "run": 2
+      },
+      {
+        "attempt": 0,
+        "case_id": 2,
+        "clock": {
+          "accepted": true,
+          "busy_min_mhz": 1980,
+          "busy_samples": 4,
+          "samples": 15,
+          "window_min_mhz": 1980,
+          "window_samples": 15
+        },
+        "run": 2
+      },
+      {
+        "attempt": 0,
+        "case_id": 3,
+        "clock": {
+          "accepted": true,
+          "busy_min_mhz": 1980,
+          "busy_samples": 4,
+          "samples": 15,
+          "window_min_mhz": 1980,
+          "window_samples": 15
+        },
+        "run": 2
+      }
+    ]
+  }
+}

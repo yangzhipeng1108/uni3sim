@@ -1,0 +1,216 @@
+{
+  "schema_version": 4,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism_id": "cann_fia_1_2_three_handoff_v5",
+  "scope": "empty source-bound MM1_to_Vec1_to_MM2_to_Vec2 three-handoff ring program span",
+  "production_or_evaluation_duration_consumed": false,
+  "formula": "max(single_task_duration_lut_ns[B], max(startup_local_ns, count(N_i>=2) * startup_shared_ns_per_active_group) + sum(d=3..max(N_i), max(steady_local_ns, count(N_i>=d) * steady_shared_ns_per_active_group)))",
+  "bounds": {
+    "minimum_task_count": 1,
+    "maximum_task_count": 128,
+    "minimum_active_aic_groups": 1,
+    "maximum_active_aic_groups": 24,
+    "aic_per_group": 1,
+    "aiv_per_group": 2
+  },
+  "parameters_ns": {
+    "startup_local_ns": 870.0,
+    "startup_shared_ns_per_active_group": 169.58333333333331,
+    "steady_local_ns": 285.4032258064516,
+    "steady_shared_ns_per_active_group": 76.74731182795699
+  },
+  "single_task_duration_lut_ns": {
+    "active_aic_groups": [1, 4, 6, 8, 11, 12, 16, 18, 19, 21, 22, 23, 24],
+    "duration_ns": [845.0, 960.0, 1320.0, 1475.0, 1845.0, 1940.0, 2350.0, 2480.0, 2630.0, 2790.0, 2860.0, 2880.0, 2975.0]
+  },
+  "provenance": {
+    "source_commit": "d42f3a6cfa33fafc431ca08f267f6367666e8762",
+    "source_snapshot_sha256": "63086063366a15c4444b0b97d8b7d32910a53c795c1d322b99231e37bdebf486",
+    "binary_sha256": "26437def36fc2b377d36731f83e8d1bb413b94f96f333d6b4cf7eb9de6d4ea55",
+    "report_path": "profiler_output/microbench/ascend_910b/cross_domain_d42f3a6c_n128_report.json",
+    "report_sha256": "d791ceeca1e742424ad470f7d3d4d6dfe2405c906da97b2448d8e7b695c784ee"
+  },
+  "supplemental_single_task_evidence": [
+    {
+      "active_aic_groups": 4,
+      "duration_ns": 960.0,
+      "source_commit": "4d505bc8b9d849e842957295734d8ec39cea9e9f",
+      "source_snapshot_sha256": "80ab27b5202bef51520d9c9f9dc88d927064855b7853d768961015fb2a9bfe5b",
+      "binary_sha256": "ffb56a6d3f6569db6ec7bacb46c3c2f163b41b84fdfd2799992e757f1ac2d352",
+      "report_path": "profiler_output/microbench/ascend_910b/cross_domain_018c913e_b4_20260827_r1/report.json",
+      "report_sha256": "592954cd1692a520190ea7f5a55fa6ee38a14cf91132484776bbab73deb9123b",
+      "production_or_evaluation_duration_consumed": false
+    },
+    {
+      "active_aic_groups": 6,
+      "duration_ns": 1320.0,
+      "source_commit": "8496d80eb0a48c9e7bee527c0904749f1bda0560",
+      "source_snapshot_sha256": "80ab27b5202bef51520d9c9f9dc88d927064855b7853d768961015fb2a9bfe5b",
+      "binary_sha256": "5fdcecf7620959a35e098ef5a716bf5feb56fa5ea7e484c6de33cdbfccddfba9",
+      "report_path": "profiler_output/microbench/ascend_910b/cross_domain_b4_b6_b8_20260912_r3/report.json",
+      "report_sha256": "5a5317d5a8d782af95605eddd438118736f2baccdeef35339e930984740b5d2c",
+      "production_or_evaluation_duration_consumed": false
+    }
+  ],
+  "extended_single_task_points": [
+    {
+      "active_aic_groups": 3,
+      "duration_ns": 820.0,
+      "source_commit": "018c913e35e8e4d61dcabfbf489fcebc2be7feb0",
+      "source_snapshot_sha256": "80ab27b5202bef51520d9c9f9dc88d927064855b7853d768961015fb2a9bfe5b",
+      "binary_sha256": "ffb56a6d3f6569db6ec7bacb46c3c2f163b41b84fdfd2799992e757f1ac2d352",
+      "report_path": "profiler_output/microbench/ascend_910b/cross_domain_018c913e_gapfill_v2_aggregate6.json",
+      "report_sha256": "a7e8fcbe7e54a996abc6596c8848142e972fa9be73e9c33d2ef8adbb0044124a",
+      "production_or_evaluation_duration_consumed": false
+    },
+    {
+      "active_aic_groups": 5,
+      "duration_ns": 1180.0,
+      "source_commit": "018c913e35e8e4d61dcabfbf489fcebc2be7feb0",
+      "source_snapshot_sha256": "80ab27b5202bef51520d9c9f9dc88d927064855b7853d768961015fb2a9bfe5b",
+      "binary_sha256": "ffb56a6d3f6569db6ec7bacb46c3c2f163b41b84fdfd2799992e757f1ac2d352",
+      "report_path": "profiler_output/microbench/ascend_910b/cross_domain_018c913e_gapfill_v2_aggregate6.json",
+      "report_sha256": "a7e8fcbe7e54a996abc6596c8848142e972fa9be73e9c33d2ef8adbb0044124a",
+      "production_or_evaluation_duration_consumed": false
+    },
+    {
+      "active_aic_groups": 7,
+      "duration_ns": 1405.0,
+      "source_commit": "018c913e35e8e4d61dcabfbf489fcebc2be7feb0",
+      "source_snapshot_sha256": "80ab27b5202bef51520d9c9f9dc88d927064855b7853d768961015fb2a9bfe5b",
+      "binary_sha256": "ffb56a6d3f6569db6ec7bacb46c3c2f163b41b84fdfd2799992e757f1ac2d352",
+      "report_path": "profiler_output/microbench/ascend_910b/cross_domain_018c913e_gapfill_v2_aggregate6.json",
+      "report_sha256": "a7e8fcbe7e54a996abc6596c8848142e972fa9be73e9c33d2ef8adbb0044124a",
+      "production_or_evaluation_duration_consumed": false
+    },
+    {
+      "active_aic_groups": 9,
+      "duration_ns": 1540.0,
+      "source_commit": "018c913e35e8e4d61dcabfbf489fcebc2be7feb0",
+      "source_snapshot_sha256": "80ab27b5202bef51520d9c9f9dc88d927064855b7853d768961015fb2a9bfe5b",
+      "binary_sha256": "ffb56a6d3f6569db6ec7bacb46c3c2f163b41b84fdfd2799992e757f1ac2d352",
+      "report_path": "profiler_output/microbench/ascend_910b/cross_domain_018c913e_gapfill_v2_aggregate6.json",
+      "report_sha256": "a7e8fcbe7e54a996abc6596c8848142e972fa9be73e9c33d2ef8adbb0044124a",
+      "production_or_evaluation_duration_consumed": false
+    },
+    {
+      "active_aic_groups": 10,
+      "duration_ns": 1595.0,
+      "source_commit": "018c913e35e8e4d61dcabfbf489fcebc2be7feb0",
+      "source_snapshot_sha256": "80ab27b5202bef51520d9c9f9dc88d927064855b7853d768961015fb2a9bfe5b",
+      "binary_sha256": "ffb56a6d3f6569db6ec7bacb46c3c2f163b41b84fdfd2799992e757f1ac2d352",
+      "report_path": "profiler_output/microbench/ascend_910b/cross_domain_018c913e_gapfill_v2_aggregate6.json",
+      "report_sha256": "a7e8fcbe7e54a996abc6596c8848142e972fa9be73e9c33d2ef8adbb0044124a",
+      "production_or_evaluation_duration_consumed": false
+    },
+    {
+      "active_aic_groups": 13,
+      "duration_ns": 1880.0,
+      "source_commit": "018c913e35e8e4d61dcabfbf489fcebc2be7feb0",
+      "source_snapshot_sha256": "80ab27b5202bef51520d9c9f9dc88d927064855b7853d768961015fb2a9bfe5b",
+      "binary_sha256": "ffb56a6d3f6569db6ec7bacb46c3c2f163b41b84fdfd2799992e757f1ac2d352",
+      "report_path": "profiler_output/microbench/ascend_910b/cross_domain_018c913e_gapfill_v2_aggregate6.json",
+      "report_sha256": "a7e8fcbe7e54a996abc6596c8848142e972fa9be73e9c33d2ef8adbb0044124a",
+      "production_or_evaluation_duration_consumed": false
+    },
+    {
+      "active_aic_groups": 14,
+      "duration_ns": 2020.0,
+      "source_commit": "018c913e35e8e4d61dcabfbf489fcebc2be7feb0",
+      "source_snapshot_sha256": "80ab27b5202bef51520d9c9f9dc88d927064855b7853d768961015fb2a9bfe5b",
+      "binary_sha256": "ffb56a6d3f6569db6ec7bacb46c3c2f163b41b84fdfd2799992e757f1ac2d352",
+      "report_path": "profiler_output/microbench/ascend_910b/cross_domain_018c913e_gapfill_v2_aggregate6.json",
+      "report_sha256": "a7e8fcbe7e54a996abc6596c8848142e972fa9be73e9c33d2ef8adbb0044124a",
+      "production_or_evaluation_duration_consumed": false
+    },
+    {
+      "active_aic_groups": 15,
+      "duration_ns": 2190.0,
+      "source_commit": "018c913e35e8e4d61dcabfbf489fcebc2be7feb0",
+      "source_snapshot_sha256": "80ab27b5202bef51520d9c9f9dc88d927064855b7853d768961015fb2a9bfe5b",
+      "binary_sha256": "ffb56a6d3f6569db6ec7bacb46c3c2f163b41b84fdfd2799992e757f1ac2d352",
+      "report_path": "profiler_output/microbench/ascend_910b/cross_domain_018c913e_gapfill_v2_aggregate6.json",
+      "report_sha256": "a7e8fcbe7e54a996abc6596c8848142e972fa9be73e9c33d2ef8adbb0044124a",
+      "production_or_evaluation_duration_consumed": false
+    },
+    {
+      "active_aic_groups": 17,
+      "duration_ns": 2360.0,
+      "source_commit": "018c913e35e8e4d61dcabfbf489fcebc2be7feb0",
+      "source_snapshot_sha256": "80ab27b5202bef51520d9c9f9dc88d927064855b7853d768961015fb2a9bfe5b",
+      "binary_sha256": "ffb56a6d3f6569db6ec7bacb46c3c2f163b41b84fdfd2799992e757f1ac2d352",
+      "report_path": "profiler_output/microbench/ascend_910b/cross_domain_018c913e_gapfill_v2_aggregate6.json",
+      "report_sha256": "a7e8fcbe7e54a996abc6596c8848142e972fa9be73e9c33d2ef8adbb0044124a",
+      "production_or_evaluation_duration_consumed": false
+    },
+    {
+      "active_aic_groups": 20,
+      "duration_ns": 2620.0,
+      "source_commit": "018c913e35e8e4d61dcabfbf489fcebc2be7feb0",
+      "source_snapshot_sha256": "80ab27b5202bef51520d9c9f9dc88d927064855b7853d768961015fb2a9bfe5b",
+      "binary_sha256": "ffb56a6d3f6569db6ec7bacb46c3c2f163b41b84fdfd2799992e757f1ac2d352",
+      "report_path": "profiler_output/microbench/ascend_910b/cross_domain_018c913e_gapfill_v2_aggregate6.json",
+      "report_sha256": "a7e8fcbe7e54a996abc6596c8848142e972fa9be73e9c33d2ef8adbb0044124a",
+      "production_or_evaluation_duration_consumed": false
+    }
+  ],
+  "extension_campaign": {
+    "campaign_id": "cross_domain_018c913e_gapfill_v2",
+    "runner": "microbench/ascend_910b/runtime/cross_domain/cross_domain_single_task_runner.py",
+    "scope": "the ten active_aic_groups counts the published d42f3a6c campaign never sampled, measured on the same empty three-handoff ring",
+    "estimator": "median over the first 2 independent runs of each run's median over 6 balanced forward/reverse trials; runs 3..6 are held out as validation",
+    "cross_run_relative_span_limit": 0.15,
+    "source_commit": "018c913e35e8e4d61dcabfbf489fcebc2be7feb0",
+    "source_snapshot_sha256": "80ab27b5202bef51520d9c9f9dc88d927064855b7853d768961015fb2a9bfe5b",
+    "binary_sha256": "ffb56a6d3f6569db6ec7bacb46c3c2f163b41b84fdfd2799992e757f1ac2d352",
+    "aggregate_report_path": "profiler_output/microbench/ascend_910b/cross_domain_018c913e_gapfill_v2_aggregate6.json",
+    "aggregate_report_sha256": "a7e8fcbe7e54a996abc6596c8848142e972fa9be73e9c33d2ef8adbb0044124a",
+    "run_report_sha256": [
+      "a9fe19969f1c64f10a364be0651be5db6ecb4bf1d9e3fdd0c7ec8818bb8e7161",
+      "b23c67e7b887105227cc5a8972f6cb62ed6d5bb9bd25ec765db114a81cd5babd",
+      "e70e557283b293f4e003fc398463bd3d45011cf486634d7a6f35f5b7fda35789",
+      "fa311732a241fb9625b81fab8b0e2f8a8d2828ab94da223383f2b17888780477",
+      "04cc46bf3a38ff03592a509d38a76ed3185a21c245d3fb2576ac97f59de5fa46",
+      "b437f22ed9a176d5721b8405054fef68d159227d52ef5cd38cd3a717c5393f2c"
+    ],
+    "run_raw_sha256": [
+      "beda0e44093f9e5adf31b77210af8f3217d894b0f0834d5fa8886092c1d9d745",
+      "cad81538119e46018545bd9c40cce3cd7d1df47ba1fc81e517827b633f69f843",
+      "4c54e6643b432d1e04d237fee2a80124170f85ea37895224cc10baf471b9ed48",
+      "78d0d0524ec0e17951a781e8174a0cfcb2fb6d317bda937813873ee8ff87a47c",
+      "172e30729b9fa8439fda0b87bbe8a62a81cdf80d0faa6844a07ed1957c8aeaec",
+      "778ca68d5df1e1ed3e1630bd57240b7bcf920a2e832f02812d7740442ba6eddf"
+    ],
+    "published_control_agreement": {
+      "4": {
+        "measured_ns": 995.0,
+        "published_ns": 960.0,
+        "relative_error": 0.036458333333333336
+      },
+      "12": {
+        "measured_ns": 1815.0,
+        "published_ns": 1940.0,
+        "relative_error": 0.06443298969072164
+      },
+      "24": {
+        "measured_ns": 3070.0,
+        "published_ns": 2975.0,
+        "relative_error": 0.031932773109243695
+      }
+    },
+    "withheld_points": [
+      {
+        "active_aic_groups": 2,
+        "measured_ns": 785.0,
+        "all_run_cross_run_relative_span": 0.16149068322981366,
+        "reason": "the six-run relative span exceeds the 0.15 limit this mechanism gates on, so the point stays measured but unpublished and the consumed domain still rejects two active AIC groups"
+      }
+    ],
+    "notes": [
+      "The published thirteen cells and their d42f3a6c report digest are unchanged; this campaign only adds domain the published one never sampled.",
+      "Neither campaign is rescaled onto the other.  The three shared control groups disagree by 3.19% to 6.44%, inside the 0.15 cross-run span this mechanism already gates on.",
+      "Because the two campaigns carry independent measurement offsets, the merged LUT is not monotone in active_aic_groups at three seams: group 3 sits 25 ns below group 1, group 13 sits 60 ns below group 12 and group 20 sits 10 ns below group 19.  These are reported as measured and are not adjusted."
+    ]
+  }
+}

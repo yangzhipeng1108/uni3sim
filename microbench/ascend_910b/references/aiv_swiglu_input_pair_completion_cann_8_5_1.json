@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "campaign": "swiglu_input_pair_completion",
+  "service_time_unit": "ns_per_two_request_completion_per_aiv",
+  "service_time_selection": "median_of_independent_run_medians",
+  "block_dim_unit": "active_aiv_workers",
+  "payload_unit": "bytes_per_equal_input_request_per_aiv",
+  "requests_per_worker": 2,
+  "lookup_policy": "exact_block_dim_queue_depth_and_payload_bytes_only",
+  "pairing_formula": "maximum_worker(request_interval(pair_order=1)-control_interval(pair_order=0)), matched by run and trial",
+  "mechanism": "source-ordered A then B GM-to-UB DataCopy/EnQue completion on separate SwiGLU VECIN queues",
+  "source_scope": "CANN 8.5.1 BF16 SwiGLU CopyIn issues both input requests before Compute dequeues either input; each worker's first source tile has no preceding Vector or MTE3 loop state, so the paired completion is its first-source-entry edge",
+  "scope_boundary": "the published cells apply only to the first source tile of each physical worker at the exact worker-count, queue-depth, and payload cells. Later tile = worker + k * blockDim iterations have the preceding CopyIn, Compute, and CopyOut state and remain outside this evidence; other payloads, worker counts, and operators remain outside this evidence",
+  "production_source_sha256": {
+    "swi_glu.cpp": "584fcf498038a6b31adf480c4fb4a600dd4cf59657a1c0a0bf725c3df3717cf3",
+    "swi_glu_single.hpp": "ace487f5c4f3929e0cc1e02dfc54b062294a3018d0cb102baa920ea83e8dd096",
+    "swi_glu_bf16.hpp": "d18f872867f22c9f7032a44c22a09ceb84d78bdb9b4a94288062b6d1e498e933"
+  },
+  "measurement_worktree_head": "e1cbbb1d5c11fb2d8a66a274220a62f090f263b2",
+  "capture_baseline": "f6596cb7a112af836bcd84b1d0dc46053e0799a9",
+  "measurement_device_id": 7,
+  "measurement_container": "capture-container-2",
+  "source_snapshot_path": "/capture-workspace/source_snapshots/vector_swiglu_input_pair_e1cbbb1d_20260908",
+  "source_snapshot_files_sha256": {
+    "CMakeLists.txt": "997595d357a5c96096d4d9074ee5b249af3ca5ef99f08ebac6d0c011777580a6",
+    "swiglu_input_pair_completion_kernel.cpp": "669b7c22fb7c306e8c59e7b4ddfa2b5c136725d6336f85c884a123072fe98eaa",
+    "swiglu_input_pair_completion_main.cpp": "f4a79bf1f898e22fe2132a41e5080f1b53414fbb86763506d34112c7b84cff45",
+    "swiglu_input_pair_completion_report.py": "15208dee8ecec33278585a024c8055088d3d8e4988be82dba940d2afdb116d8f",
+    "swiglu_input_pair_completion_runner.py": "8c4dd347998f5df4492f3070378bc0d5218abc85a33023736fadb6ccf3c695b5"
+  },
+  "benchmark_binary_sha256": "0b5e2b27393e3e19d3fa9f04c0a9c59442a13606cb7a505873352725707f00f3",
+  "capture_command": "python3 swiglu_input_pair_completion_runner.py --binary <snapshot>/build/swiglu_input_pair_completion_bench --device-id 7 --run-id <run_id>",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_input_pair_e1cbbb1d_20260908_d7/run1/raw.csv",
+      "sha256": "305c2107be70b40b436002310c109dda9f5048e09490f47aac95cc7d39675b3c",
+      "runner_log_path": "profiler_output/microbench/ascend_910b/swiglu_input_pair_e1cbbb1d_20260908_d7/run1/runner.log",
+      "runner_log_sha256": "df0ff8ba446d75d2be54f62f3d25e2d4b405e654e4b1b49ae435f2e6f4c72717",
+      "device_id": 7,
+      "run_id": "swiglu_input_pair_e1cbbb1d_r1"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_input_pair_e1cbbb1d_20260908_d7/run2/raw.csv",
+      "sha256": "a9dd9d04ef413f44fd13908d83a798c44025a4bda40a7da692bbde3e2765f2a3",
+      "runner_log_path": "profiler_output/microbench/ascend_910b/swiglu_input_pair_e1cbbb1d_20260908_d7/run2/runner.log",
+      "runner_log_sha256": "3332d048e966fdd071dd4c7ddb87aa69a01a0391a7b1e82b2d8f432d9ad9c3c7",
+      "device_id": 7,
+      "run_id": "swiglu_input_pair_e1cbbb1d_r2"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_input_pair_e1cbbb1d_20260908_d7/run3/raw.csv",
+      "sha256": "e783f677402bf0718c61c5ba798bcf51a6f55c38df5054021747c1bfc3b35e57",
+      "runner_log_path": "profiler_output/microbench/ascend_910b/swiglu_input_pair_e1cbbb1d_20260908_d7/run3/runner.log",
+      "runner_log_sha256": "0506575746c85e3e685886289fa2ddebffd1937f31b399a0de21dcdff67b656c",
+      "device_id": 7,
+      "run_id": "swiglu_input_pair_e1cbbb1d_r3"
+    }
+  ],
+  "audit_report": {
+    "path": "profiler_output/microbench/ascend_910b/swiglu_input_pair_e1cbbb1d_20260908_d7/report.txt",
+    "sha256": "efee1dc814956af1611f6ae5c5004fb5f65b5f68c6145f310989c0c03fe86da5"
+  },
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 80,
+  "replication_basis": "five_complete_position_balanced_schedule_cycles_with_pair_order_exchange",
+  "median_ns_by_run": {
+    "swiglu_input_pair_e1cbbb1d_r1": {"24:19456:2": 4770.0, "40:17920:2": 1360.0, "48:18432:2": 1540.0, "48:19456:2": 1520.0, "48:26624:1": 1860.0},
+    "swiglu_input_pair_e1cbbb1d_r2": {"24:19456:2": 4700.0, "40:17920:2": 1370.0, "48:18432:2": 1560.0, "48:19456:2": 1510.0, "48:26624:1": 1840.0},
+    "swiglu_input_pair_e1cbbb1d_r3": {"24:19456:2": 4650.0, "40:17920:2": 1420.0, "48:18432:2": 1560.0, "48:19456:2": 1460.0, "48:26624:1": 1840.0}
+  },
+  "published_cells": {
+    "24:19456:2": {"service_time_ns": 4700.0, "maximum_run_relative_median_spread": 0.025157232704402517},
+    "40:17920:2": {"service_time_ns": 1370.0, "maximum_run_relative_median_spread": 0.04225352112676056},
+    "48:18432:2": {"service_time_ns": 1560.0, "maximum_run_relative_median_spread": 0.01282051282051282},
+    "48:19456:2": {"service_time_ns": 1510.0, "maximum_run_relative_median_spread": 0.039473684210526314},
+    "48:26624:1": {"service_time_ns": 1840.0, "maximum_run_relative_median_spread": 0.010752688172043012}
+  },
+  "gates": {
+    "source_identity": "pass",
+    "binary_identity": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "balanced_cell_order": "pass",
+    "within_run_replication": "pass",
+    "cross_run_relative_median_spread_limit": 0.2,
+    "cross_run_stability": "pass"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true,
+  "production_consumption_status": "first_source_entry_per_physical_worker"
+}

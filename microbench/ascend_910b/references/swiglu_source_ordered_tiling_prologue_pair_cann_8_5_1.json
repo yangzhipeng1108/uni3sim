@@ -1,0 +1,101 @@
+{
+  "block_dims": [
+    24,
+    40,
+    48
+  ],
+  "duration_unit": "ns_per_complete_source_prologue_pair",
+  "fits_by_training_run": {
+    "swiglu_pair_warm_r1": {
+      "serialized_ns_per_aiv": 75.40740966796875
+    },
+    "swiglu_pair_warm_r2": {
+      "serialized_ns_per_aiv": 70.43012830946181
+    }
+  },
+  "formula": "serialized_ns_per_aiv * active_aiv_workers",
+  "hardware_id": "ascend_910b",
+  "independent_runs": 3,
+  "maximum_relative_median_spread": 0.1,
+  "maximum_validation_ape": 0.15,
+  "maximum_validation_mape": 0.1,
+  "measurement_gate_passed": true,
+  "mechanism_publishable": true,
+  "medians_ns_by_run_and_block_dim": {
+    "swiglu_pair_warm_r1": {
+      "24": 1808.49853515625,
+      "40": 3017.48779296875,
+      "48": 3619.5556640625
+    },
+    "swiglu_pair_warm_r2": {
+      "24": 1689.6321614583335,
+      "40": 2817.59033203125,
+      "48": 3380.646158854167
+    },
+    "swiglu_pair_warm_r3": {
+      "24": 1689.7477213541665,
+      "40": 2817.203776041667,
+      "48": 3380.1871744791665
+    }
+  },
+  "model": "source_ordered_aiv_tiling_materialization_pair_v1",
+  "operator_source_evidence": {
+    "entry_source_sha256": "584fcf498038a6b31adf480c4fb4a600dd4cf59657a1c0a0bf725c3df3717cf3",
+    "single_source_sha256": "ace487f5c4f3929e0cc1e02dfc54b062294a3018d0cb102baa920ea83e8dd096",
+    "tiling_source_sha256": "2b6abc813b6e372b0d36e81f79fd618c180b0c0e4de2643056fd7aad775c2053"
+  },
+  "parameter_stability": {
+    "serialized_ns_per_aiv_relative_span": 0.06825789063001345
+  },
+  "parameters": {
+    "serialized_ns_per_aiv": 72.91876898871527
+  },
+  "payload_bytes_per_phase": 80,
+  "phase_repetitions": 2,
+  "production_or_evaluation_duration_consumed": false,
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_source_prologue_pair_f00f21fc_20260908_d7/raw/run1.csv",
+      "sha256": "2bacb27743da577c4fb918ddff888c3ed7bad35148ba35dbbef90ad43bfcc073"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_source_prologue_pair_f00f21fc_20260908_d7/raw/run2.csv",
+      "sha256": "0d41450a844b9867381307ca0ce3c7d1ffbccbb32866798572b042989a6a8730"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_source_prologue_pair_f00f21fc_20260908_d7/raw/run3.csv",
+      "sha256": "1731103c090bab38913b0df05f0c5c193c14cb0d091ea2bd495250c8400da6cc"
+    }
+  ],
+  "request_size_unit": "active_aiv_workers",
+  "run_relative_median_spread_by_block_dim": {
+    "24": 0.07034563337221536,
+    "40": 0.07108344128320983,
+    "48": 0.07080554377346159
+  },
+  "samples_per_cell": 6,
+  "schema_version": 1,
+  "service": "swiglu_source_ordered_tiling_prologue_pair",
+  "single_phase_reference": "microbench/ascend_910b/references/swiglu_tiling_materialization_cann_8_5_1.json",
+  "single_phase_reference_sha256": "d2d236453c93d9a37e021ac17c9fc7fbbc6e8078c1c9020a63c217071c016048",
+  "software_revision": "cann_8.5.1",
+  "source_commit": "f00f21fcc5874dd8863c989b91fde68006d6e15f",
+  "source_order": "entry GET_TILING_DATA; isDoubleBuffer branch; SwigluSingle::Init GetTilingAndOffset GET_TILING_DATA",
+  "training_metrics": {
+    "mape": 0.034165342900121125,
+    "maximum_ape": 0.035758252978971214,
+    "wmae": 0.03414310409384519
+  },
+  "training_run_ids": [
+    "swiglu_pair_warm_r1",
+    "swiglu_pair_warm_r2"
+  ],
+  "validation_metrics": {
+    "mape": 0.03549942578117119,
+    "maximum_ape": 0.035687418667843085,
+    "wmae": 0.03547084265916711
+  },
+  "validation_run_ids": [
+    "swiglu_pair_warm_r3"
+  ]
+}

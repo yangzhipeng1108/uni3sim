@@ -1,0 +1,64 @@
+{
+  "device_before": {
+    "driver_version": "580.95.05",
+    "index": 4,
+    "memory_used_mib": 4,
+    "name": "NVIDIA H200",
+    "utilization_gpu_pct": 0,
+    "uuid": "capture-device-a59aedb9aba8"
+  },
+  "device_launch_gap": "not measured on H200: the profile omits the optional device_launch_gap section, so every device launch gap is zero",
+  "environment": {
+    "cuda_runtime": "12.8",
+    "hostname": "capture-host-4d1c951312e8",
+    "platform": "Linux-5.15.0-168-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3 (main, Jan 17 2025, 18:03:48) [GCC 13.3.0]",
+    "torch": "2.8.0+cu128"
+  },
+  "hardware_id": "nvidia_h200",
+  "measurement_boundary": "host_submit_only_no_device_sync",
+  "raw": {
+    "path": "/capture-workspace/wt-h200-serving-eval/profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848/profiler_output/microbench/nvidia_h200/host_launch_r1/manifest.json",
+    "retention": "local_raw_not_committed",
+    "sha256": "681f238aaebff2498f3069b4d2ac5b130a03d2f7479053f706b6a83b4d46d71c"
+  },
+  "repeats_evidence_only": [
+    {
+      "eager_512_median_ns": 3861.822265625,
+      "graph_replay_512_median_ns": 4187.0,
+      "label": "host_launch_r2",
+      "path": "/capture-workspace/wt-h200-serving-eval/profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848/profiler_output/microbench/nvidia_h200/host_launch_r2/manifest.json",
+      "sha256": "3a20732ac4fc0c215c9b57301fe134d84ff2923381ea8e95e7b43293f3edb140"
+    }
+  ],
+  "run": {
+    "hostname": "capture-host-4d1c951312e8",
+    "run_dir": "/capture-workspace/wt-h200-serving-eval/profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848",
+    "source_commit": "a132507d8513a2daacdfd35fb3fcc98ee4c52ef3",
+    "versions": {
+      "nccl": "2.27.3",
+      "nvidia-nccl-cu12": "2.27.3",
+      "pyzmq": "27.2.0",
+      "torch": "2.8.0+cu128",
+      "torch_cuda": "12.8",
+      "transformers": "4.57.1",
+      "uvicorn": "0.38.0",
+      "vllm": "0.11.0",
+      "zstandard": "0.25.0"
+    }
+  },
+  "sample_contract": {
+    "chain_length": 512,
+    "operation": "torch.add_out",
+    "production_or_evaluation_duration_consumed": false,
+    "trials": 30
+  },
+  "schema_version": 1,
+  "selection": {
+    "eager_enqueue_s": 3.8381572265625e-06,
+    "eager_source": "host_launch_r1 eager:512 host_submit_ns_per_dispatch median",
+    "graph_replay_enqueue_s": 4.172e-06,
+    "graph_source": "host_launch_r1 graph_replay:512 host_submit_ns median"
+  },
+  "substitution": null
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": 2,
+  "scheduler_pools": [
+    {
+      "pool_name": "main",
+      "binding": {
+        "hardware_id": "nvidia_a800",
+        "hardware_config_sha256": "4fd8c3cbed54268219dc8dac76ed51d747f53b5d0c7d0fdb2033454979f2bf0c",
+        "model_config_sha256": "29e4c210b0d6ac178b16b2a255a568bdb23b581e50ca1ef6a6d071dd85704e6e",
+        "deployment": "colocated",
+        "worker_role": "colocated",
+        "tensor_parallel_size": 1,
+        "pipeline_parallel_size": 1,
+        "expert_parallel_size": 1,
+        "max_model_len": 8192,
+        "max_batched_tokens": 8192,
+        "max_requests": 256,
+        "kv_block_size_tokens": 16
+      },
+      "gpu_memory_utilization": {
+        "numerator": 4,
+        "denominator": 5,
+        "provenance": {
+          "source_kind": "runtime_configuration",
+          "source_reference": "configs/evaluation/experiments/sharegpt_phase1.json prediction_contract gpu_memory_utilization=0.8 runtime binding",
+          "source_sha256": "bc9d93b69a7cd57eb31880ef49d82fd75c5efacbcf8d4d0854bfbd7722a86c4a"
+        }
+      },
+      "non_kv_reserves": [
+        {
+          "kind": "activation",
+          "bytes": 922749952,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "profiler_output/runtime_memory_policy/ascend_910b/llama-3.1-8b/init-exact.log: approximate-equivalent fallback authorized 2026-08-28: exact vLLM 0.18.0 same-model TP1 profile on Ascend 910B because A800 detailed profile was unavailable; torch peak activation bytes",
+            "source_sha256": "aa64c0f1f9934f83b5a691fe987b6bb374df36489beb5403a78d2b12e1c203ab"
+          }
+        },
+        {
+          "kind": "cuda_graph",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "approximate-equivalent fallback authorized 2026-08-28: exact vLLM 0.18.0 same-model TP1 profile on Ascend 910B because A800 detailed profile was unavailable; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "aa64c0f1f9934f83b5a691fe987b6bb374df36489beb5403a78d2b12e1c203ab"
+          }
+        },
+        {
+          "kind": "communication",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "approximate-equivalent fallback authorized 2026-08-28: exact vLLM 0.18.0 same-model TP1 profile on Ascend 910B because A800 detailed profile was unavailable; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "aa64c0f1f9934f83b5a691fe987b6bb374df36489beb5403a78d2b12e1c203ab"
+          }
+        },
+        {
+          "kind": "allocator",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "approximate-equivalent fallback authorized 2026-08-28: exact vLLM 0.18.0 same-model TP1 profile on Ascend 910B because A800 detailed profile was unavailable; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "aa64c0f1f9934f83b5a691fe987b6bb374df36489beb5403a78d2b12e1c203ab"
+          }
+        },
+        {
+          "kind": "fragmentation",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "approximate-equivalent fallback authorized 2026-08-28: exact vLLM 0.18.0 same-model TP1 profile on Ascend 910B because A800 detailed profile was unavailable; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "aa64c0f1f9934f83b5a691fe987b6bb374df36489beb5403a78d2b12e1c203ab"
+          }
+        },
+        {
+          "kind": "framework",
+          "bytes": 33554432,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "profiler_output/runtime_memory_policy/ascend_910b/llama-3.1-8b/init-exact.log: approximate-equivalent fallback authorized 2026-08-28: exact vLLM 0.18.0 same-model TP1 profile on Ascend 910B because A800 detailed profile was unavailable; non-Torch/framework bytes",
+            "source_sha256": "aa64c0f1f9934f83b5a691fe987b6bb374df36489beb5403a78d2b12e1c203ab"
+          }
+        }
+      ],
+      "reserve_scope": "verified_uniform_across_pool_ranks",
+      "completeness_assertion": "all_non_kv_reserves_for_bound_runtime"
+    }
+  ]
+}

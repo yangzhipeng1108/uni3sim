@@ -1,0 +1,7 @@
+# MoeFinalizeRoutingV2 BF16 row-chain primitive
+
+This standalone 910B AIV probe isolates one source-visible portion of the CANN 8.5.1 `MoeFinalizeRoutingV2` BF16 key-20036 branch: a two-entry `expandedSrcToDstRow` GM-to-UB materialization with its `MTE2_S` handoff, two indexed H-wide BF16 `DataCopyPad` inputs, BF16-to-FP32 casts, scale-like multiplies, one FP32 accumulation, a BF16 output cast, and an H-wide MTE3 write. It intentionally omits the production operator, its host tiler, route construction, skips, bias, optional-input dispatch, expert routing, and any production shape.
+
+Mode `0` holds the two row addresses directly; mode `1` obtains them through the source-shaped two-int32 GM-to-UB plus `MTE2_S` dependency. Both modes use only the non-production H values 6080 and 6208, two AIVs, disjoint source rows, and a 1x/4x device-system-counter differential. The comparison therefore tests whether the indexed source dependency produces a separately composable completion service. It must not be treated as a production FusedMoE duration or an additive residual.
+
+Build in the agreed 910B container with `ASCEND_HOME_PATH=/usr/local/Ascend/cann-8.5.1 cmake -S . -B build -DSOC_VERSION=Ascend910B2`, then `cmake --build build -j 8`. Run on an idle remapped device with `ASCEND_DEVICE_ID=0 ./build/finalize_bf16_row_chain --batch ROW_ELEMENTS MODE BLOCK_DIM ITERATIONS [...]`. The only accepted cells are `(6080|6208)`, `(0|1)`, `block_dim=2`; host validation requires each AIV to complete the requested iteration count and the final BF16 result to be nonzero.

@@ -1,0 +1,105 @@
+{
+  "block_dims": [
+    1,
+    24,
+    48
+  ],
+  "composition": "one shared phase before every AIV operator body",
+  "duration_unit": "ns_per_complete_tiling_materialization_phase",
+  "fits_by_training_run": {
+    "broadcast56-run1": {
+      "serialized_ns_per_aiv": 37.69865247938368,
+      "single_worker_completion_ns": 123.3154296875
+    },
+    "broadcast56-run2": {
+      "serialized_ns_per_aiv": 37.700441148546005,
+      "single_worker_completion_ns": 117.747395833333
+    }
+  },
+  "formula": "max(single_worker_completion_ns, serialized_ns_per_aiv * active_aiv_workers)",
+  "hardware_id": "ascend_910b",
+  "host_tiler_sha256": "5448e67323b2b4e2d25c9aa3bdb2f6fc32371b0963070c4840ccfdb06d47fa88",
+  "independent_runs": 3,
+  "maximum_active_aiv_workers": 48,
+  "maximum_relative_median_spread": 0.1,
+  "maximum_validation_ape": 0.15,
+  "maximum_validation_mape": 0.1,
+  "measurement_gate_passed": true,
+  "mechanism": "one AIV 56-byte BroadcastOneDim InitTilingData GM-to-UB copy, MTE2-to-Scalar handoff, UB-to-local copy, and PIPE_ALL barrier",
+  "mechanism_publishable": true,
+  "medians_ns_by_run_and_block_dim": {
+    "broadcast56-run1": {
+      "1": 123.3154296875,
+      "24": 904.7835286458335,
+      "48": 1809.5035807291665
+    },
+    "broadcast56-run2": {
+      "1": 117.747395833333,
+      "24": 904.8583984375,
+      "48": 1809.525553385417
+    },
+    "broadcast56-run3": {
+      "1": 127.79296875,
+      "24": 904.64599609375,
+      "48": 1809.424641927083
+    }
+  },
+  "minimum_active_aiv_workers": 1,
+  "model": "broadcast_one_dim_tiling_materialization_complete_max_v1",
+  "parameter_stability": {
+    "serialized_ns_per_aiv_relative_span": 4.744537570039605e-05,
+    "single_worker_completion_relative_span": 0.04619570721563455
+  },
+  "parameters": {
+    "serialized_ns_per_aiv": 37.699546813964844,
+    "single_worker_completion_ns": 120.5314127604165
+  },
+  "payload_bytes": 56,
+  "production_or_evaluation_duration_consumed": false,
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/broadcast_tiling_56b_efd12643_20260908_d7/run1.csv",
+      "sha256": "608ed3cee663ecd64bbdc8c6a6fb46e1c0aa3d5c3527c656124005e7b17ef7f8"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/broadcast_tiling_56b_efd12643_20260908_d7/run2.csv",
+      "sha256": "0c15a3b61c0ef52ffeac042ad008a43fef00f44eed81309e5660c0295ce1d780"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/broadcast_tiling_56b_efd12643_20260908_d7/run3.csv",
+      "sha256": "382828675c928a49f2bf71a364208716bbfbc1146c8f581a2c9973ef6f61f283"
+    }
+  ],
+  "request_size_unit": "active_aiv_workers",
+  "run_relative_median_spread_by_block_dim": {
+    "1": 0.08146241668316774,
+    "24": 0.00023475487453656146,
+    "48": 5.5767481981591814e-05
+  },
+  "samples_per_cell": 6,
+  "schema_version": 1,
+  "scope": "CANN AIV BroadcastOneDim typed tiling-struct materialization",
+  "service": "tiling_struct_materialization",
+  "software_revision": "cann_8.5.1",
+  "source_commit": "efd1264381f0dc9ace576fe1e8d9829b1d2a10ca",
+  "source_sha256": "a11839cc120f782cd83deabe68e9ae19b61e1f71a330ca92b6bd4bd01b92aba0",
+  "template_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/ascendc/common/op_kernel/atvoss/broadcast/broadcast_sch.h",
+  "template_sha256": "44f9ac230e410d2ddf88ebe3c76414564e722d7530b35f5e1c878de2c5336646",
+  "training_metrics": {
+    "mape": 0.007728915399525507,
+    "maximum_ape": 0.023643978768109402,
+    "wmae": 0.0010177309530155847
+  },
+  "training_run_ids": [
+    "broadcast56-run1",
+    "broadcast56-run2"
+  ],
+  "validation_metrics": {
+    "mape": 0.01902197288210434,
+    "maximum_ape": 0.05682281318457514,
+    "wmae": 0.002659623972174931
+  },
+  "validation_run_ids": [
+    "broadcast56-run3"
+  ]
+}

@@ -1,0 +1,1156 @@
+{
+  "allowed_use": "An upper envelope on the fraction of the published DRAM read capacity that a finite read stream achieves, given the CTA grid and the bytes each CTA streams, for grids and per-CTA lengths inside the measured domain. Dividing compulsory DRAM read bytes by capacity times this fraction gives a completion lower bound.",
+  "derived_model": {
+    "dram_read_capacity_bytes_per_s": 4621128079772.083,
+    "excluded_grids_reason": "The probe allocates no shared memory, so above one CTA per SM several CTAs co-schedule on a multiprocessor and the residency stops matching the single-resident-CTA streams this ramp describes. Only grids up to 132 are published even where larger grids measured cleanly.",
+    "grids": [
+      56,
+      64,
+      80,
+      86,
+      96,
+      100,
+      112,
+      128,
+      132
+    ],
+    "lengths_bytes_per_cta": [
+      262144,
+      393216,
+      524288,
+      786432,
+      1048576,
+      1310720,
+      1572864,
+      1835008,
+      2097152,
+      2621440,
+      3145728,
+      3670016,
+      4194304,
+      5242880,
+      6291456,
+      7340032,
+      8388608,
+      10485760,
+      12582912,
+      14680064,
+      16777216
+    ],
+    "ramp": [
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.5395257063351758,
+        "bytes_per_cta": 524288,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.637726316695968,
+        "bytes_per_cta": 786432,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.5137010606244365,
+        "bytes_per_cta": 1048576,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.5424739527657626,
+        "bytes_per_cta": 1310720,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.5566695138262,
+        "bytes_per_cta": 1572864,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.5834669267503833,
+        "bytes_per_cta": 1835008,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.5931156660157639,
+        "bytes_per_cta": 2097152,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6127946294177306,
+        "bytes_per_cta": 2621440,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6223995507513491,
+        "bytes_per_cta": 3145728,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6340411766181508,
+        "bytes_per_cta": 3670016,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6415039093096759,
+        "bytes_per_cta": 4194304,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6570002051107555,
+        "bytes_per_cta": 5242880,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6647727337131252,
+        "bytes_per_cta": 6291456,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6723842682900039,
+        "bytes_per_cta": 7340032,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6780634613708748,
+        "bytes_per_cta": 8388608,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6828734869588431,
+        "bytes_per_cta": 10485760,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6902927580649545,
+        "bytes_per_cta": 12582912,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6924854404732838,
+        "bytes_per_cta": 14680064,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6940631965160892,
+        "bytes_per_cta": 16777216,
+        "grid_ctas": 56
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.5188470207265106,
+        "bytes_per_cta": 393216,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6116148168851588,
+        "bytes_per_cta": 524288,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.5828144304514382,
+        "bytes_per_cta": 786432,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.5609619210491815,
+        "bytes_per_cta": 1048576,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6022003637590072,
+        "bytes_per_cta": 1310720,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6121648474130695,
+        "bytes_per_cta": 1572864,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6472549466166763,
+        "bytes_per_cta": 1835008,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6605796129967799,
+        "bytes_per_cta": 2097152,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6753246936440296,
+        "bytes_per_cta": 2621440,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6896933369022867,
+        "bytes_per_cta": 3145728,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7053124980345489,
+        "bytes_per_cta": 3670016,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7149558001241242,
+        "bytes_per_cta": 4194304,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7284401262946046,
+        "bytes_per_cta": 5242880,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7379157753096105,
+        "bytes_per_cta": 6291456,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7436159656782568,
+        "bytes_per_cta": 7340032,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7494932871109222,
+        "bytes_per_cta": 8388608,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7571207776589721,
+        "bytes_per_cta": 10485760,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7610142998246862,
+        "bytes_per_cta": 12582912,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7657532416552566,
+        "bytes_per_cta": 14680064,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7681256153724282,
+        "bytes_per_cta": 16777216,
+        "grid_ctas": 64
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6043388593689469,
+        "bytes_per_cta": 393216,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6972379271421844,
+        "bytes_per_cta": 1310720,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7049785534312156,
+        "bytes_per_cta": 1572864,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7386363836731573,
+        "bytes_per_cta": 1835008,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7604192579411349,
+        "bytes_per_cta": 2097152,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7796491790282913,
+        "bytes_per_cta": 2621440,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7956139448260656,
+        "bytes_per_cta": 3145728,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8087391237341146,
+        "bytes_per_cta": 3670016,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8218366241503623,
+        "bytes_per_cta": 4194304,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8369323515665565,
+        "bytes_per_cta": 5242880,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8468863838194353,
+        "bytes_per_cta": 6291456,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8534084157835744,
+        "bytes_per_cta": 7340032,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8573931446239077,
+        "bytes_per_cta": 8388608,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.868584798351975,
+        "bytes_per_cta": 10485760,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8703839341177381,
+        "bytes_per_cta": 12582912,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.875131509856695,
+        "bytes_per_cta": 14680064,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8741562345244114,
+        "bytes_per_cta": 16777216,
+        "grid_ctas": 80
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6441741531977732,
+        "bytes_per_cta": 393216,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7528619732846404,
+        "bytes_per_cta": 524288,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6231112381068378,
+        "bytes_per_cta": 786432,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6985317277898725,
+        "bytes_per_cta": 1048576,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7329545653372099,
+        "bytes_per_cta": 1310720,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.748549343323108,
+        "bytes_per_cta": 1572864,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7806743221205797,
+        "bytes_per_cta": 1835008,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7955879790339158,
+        "bytes_per_cta": 2097152,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8157011612684513,
+        "bytes_per_cta": 2621440,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8308149841424505,
+        "bytes_per_cta": 3145728,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.844289456894797,
+        "bytes_per_cta": 3670016,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8558851719120741,
+        "bytes_per_cta": 4194304,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8689344674013102,
+        "bytes_per_cta": 5242880,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8776467563673922,
+        "bytes_per_cta": 6291456,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8874693403723483,
+        "bytes_per_cta": 7340032,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8907331676189626,
+        "bytes_per_cta": 8388608,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.899039040990088,
+        "bytes_per_cta": 10485760,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8997686714950046,
+        "bytes_per_cta": 12582912,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9086265345913918,
+        "bytes_per_cta": 14680064,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.909582434588107,
+        "bytes_per_cta": 16777216,
+        "grid_ctas": 86
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6807272911931819,
+        "bytes_per_cta": 393216,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7288300762239635,
+        "bytes_per_cta": 524288,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6604727922314183,
+        "bytes_per_cta": 786432,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7351266643554879,
+        "bytes_per_cta": 1048576,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7756692235470743,
+        "bytes_per_cta": 1310720,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7872713657609891,
+        "bytes_per_cta": 1572864,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8204357848402674,
+        "bytes_per_cta": 1835008,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8326939341812623,
+        "bytes_per_cta": 2097152,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.856476209352267,
+        "bytes_per_cta": 2621440,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8768492254950654,
+        "bytes_per_cta": 3145728,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8873540211940221,
+        "bytes_per_cta": 3670016,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8992434493965413,
+        "bytes_per_cta": 4194304,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9139732849326636,
+        "bytes_per_cta": 5242880,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9157766313401594,
+        "bytes_per_cta": 6291456,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9257997246956441,
+        "bytes_per_cta": 7340032,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9357076016877778,
+        "bytes_per_cta": 8388608,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9398416321002165,
+        "bytes_per_cta": 10485760,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9397983704073612,
+        "bytes_per_cta": 12582912,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9453608146146018,
+        "bytes_per_cta": 14680064,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.949079540552857,
+        "bytes_per_cta": 16777216,
+        "grid_ctas": 96
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.5505364350358938,
+        "bytes_per_cta": 262144,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.697924142053377,
+        "bytes_per_cta": 393216,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6871036543315983,
+        "bytes_per_cta": 524288,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6697962169328379,
+        "bytes_per_cta": 786432,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7511556195472647,
+        "bytes_per_cta": 1048576,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7913961032827326,
+        "bytes_per_cta": 1310720,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.807620628133031,
+        "bytes_per_cta": 1572864,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8322663826878292,
+        "bytes_per_cta": 1835008,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8522727663978282,
+        "bytes_per_cta": 2097152,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8736950413537051,
+        "bytes_per_cta": 2621440,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.883052237513266,
+        "bytes_per_cta": 3145728,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8995354088150944,
+        "bytes_per_cta": 3670016,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9105501578682557,
+        "bytes_per_cta": 4194304,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9211365732441343,
+        "bytes_per_cta": 5242880,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9275225142474247,
+        "bytes_per_cta": 6291456,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9402607665150718,
+        "bytes_per_cta": 7340032,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9459275693732706,
+        "bytes_per_cta": 8388608,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9501419658456203,
+        "bytes_per_cta": 10485760,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9510552396419137,
+        "bytes_per_cta": 12582912,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9584159892705383,
+        "bytes_per_cta": 14680064,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9594465042862665,
+        "bytes_per_cta": 16777216,
+        "grid_ctas": 100
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7202374604522782,
+        "bytes_per_cta": 786432,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7878788092513678,
+        "bytes_per_cta": 1048576,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8177324946857023,
+        "bytes_per_cta": 1310720,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8348092035741278,
+        "bytes_per_cta": 1572864,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.86217007793659,
+        "bytes_per_cta": 1835008,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.887354010866345,
+        "bytes_per_cta": 2097152,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9000247376190723,
+        "bytes_per_cta": 2621440,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9195467296981115,
+        "bytes_per_cta": 3145728,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9299553352830493,
+        "bytes_per_cta": 3670016,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9370877251284679,
+        "bytes_per_cta": 4194304,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9481635604623009,
+        "bytes_per_cta": 5242880,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9568455540047653,
+        "bytes_per_cta": 6291456,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9644817414152385,
+        "bytes_per_cta": 7340032,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9643981236115354,
+        "bytes_per_cta": 8388608,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9757732058996896,
+        "bytes_per_cta": 10485760,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9765531820828529,
+        "bytes_per_cta": 12582912,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9866488079683002,
+        "bytes_per_cta": 14680064,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9886337140479284,
+        "bytes_per_cta": 16777216,
+        "grid_ctas": 112
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8103896323728356,
+        "bytes_per_cta": 393216,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7480519683441558,
+        "bytes_per_cta": 786432,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8132942547110894,
+        "bytes_per_cta": 1048576,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8454139431752277,
+        "bytes_per_cta": 1310720,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8655146741172052,
+        "bytes_per_cta": 1572864,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.887354010866345,
+        "bytes_per_cta": 1835008,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.893342860612332,
+        "bytes_per_cta": 2097152,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9153251077208673,
+        "bytes_per_cta": 2621440,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9369955831977727,
+        "bytes_per_cta": 3145728,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9409737176200323,
+        "bytes_per_cta": 3670016,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9489141462040606,
+        "bytes_per_cta": 4194304,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9631116110336675,
+        "bytes_per_cta": 5242880,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9712534757429002,
+        "bytes_per_cta": 6291456,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9762530016526724,
+        "bytes_per_cta": 7340032,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9750357169573172,
+        "bytes_per_cta": 8388608,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9870977644664891,
+        "bytes_per_cta": 10485760,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9898788455416099,
+        "bytes_per_cta": 12582912,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9969331332177548,
+        "bytes_per_cta": 14680064,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9994619360648686,
+        "bytes_per_cta": 16777216,
+        "grid_ctas": 128
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7358490765649567,
+        "bytes_per_cta": 393216,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.6953937781505386,
+        "bytes_per_cta": 524288,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.7589189395059122,
+        "bytes_per_cta": 786432,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8275862293462644,
+        "bytes_per_cta": 1048576,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.852148622263602,
+        "bytes_per_cta": 1310720,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8634686415144787,
+        "bytes_per_cta": 1572864,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.8854054294235641,
+        "bytes_per_cta": 1835008,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9082969265543005,
+        "bytes_per_cta": 2097152,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9285714192154729,
+        "bytes_per_cta": 2621440,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.940073697665377,
+        "bytes_per_cta": 3145728,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.949840576466287,
+        "bytes_per_cta": 3670016,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.951945128605989,
+        "bytes_per_cta": 4194304,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9647495809932793,
+        "bytes_per_cta": 5242880,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9701157525844732,
+        "bytes_per_cta": 6291456,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9799581251295121,
+        "bytes_per_cta": 7340032,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9803613857551174,
+        "bytes_per_cta": 8388608,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9888020649277883,
+        "bytes_per_cta": 10485760,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.992576947591014,
+        "bytes_per_cta": 12582912,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 0.9987044274370807,
+        "bytes_per_cta": 14680064,
+        "grid_ctas": 132
+      },
+      {
+        "achieved_fraction_of_dram_read_capacity": 1.0,
+        "bytes_per_cta": 16777216,
+        "grid_ctas": 132
+      }
+    ],
+    "selection_rule": "Per (grid, bytes per CTA) retain the larger achieved fraction across the two independent clock-gated captures on the owned device, and publish only cells whose trial spread stayed inside ten percent on both; the rest are recorded as excluded in the captures. The larger fraction is the conservative choice because a completion floor divides by it. A lookup must not interpolate below the published points: it takes the measured grid and length at or above the requested ones, which keeps the fraction an upper envelope and the floor a lower bound.",
+    "capacity_note": "The denominator is the envelope of the H200 saturated read capacity from dram_read_capacity_protocol_sm90.json (dram_read_bw.cu, 4.5126e+12 B/s) and this probe's own long-stream asymptote: single-CTA-per-SM streams at 112-132 CTAs exceed dram_read_bw by up to about 2.4 percent, so the larger measured rate is the capacity and every fraction is <= 1.",
+    "saturated_probe_capacity_bytes_per_s": 4512600000000.0
+  },
+  "forbidden_use": "A production operator duration, a per-shape correction, a steady-state bandwidth ceiling, or extrapolation outside the measured grid and per-CTA length domain or away from the probe's request depth.",
+  "hardware_id": "nvidia_h200",
+  "mechanism": "dram_finite_read_stream_ramp",
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "captures": [
+      {
+        "device_index": 1,
+        "device_uuid": "capture-device-31adbc24ad46",
+        "excluded_unstable_cells": [
+          {
+            "grid_ctas": 56,
+            "kib_per_cta": 256,
+            "relative_spread": 0.16370106761565836
+          },
+          {
+            "grid_ctas": 64,
+            "kib_per_cta": 256,
+            "relative_spread": 0.5894736842105263
+          },
+          {
+            "grid_ctas": 80,
+            "kib_per_cta": 256,
+            "relative_spread": 0.15460526315789475
+          },
+          {
+            "grid_ctas": 80,
+            "kib_per_cta": 512,
+            "relative_spread": 0.12345679012345678
+          },
+          {
+            "grid_ctas": 80,
+            "kib_per_cta": 768,
+            "relative_spread": 0.1163434852690666
+          },
+          {
+            "grid_ctas": 80,
+            "kib_per_cta": 1024,
+            "relative_spread": 0.10680747114115789
+          },
+          {
+            "grid_ctas": 86,
+            "kib_per_cta": 256,
+            "relative_spread": 0.14423076923076922
+          },
+          {
+            "grid_ctas": 112,
+            "kib_per_cta": 256,
+            "relative_spread": 0.12727272727272726
+          },
+          {
+            "grid_ctas": 112,
+            "kib_per_cta": 512,
+            "relative_spread": 0.10194179813915859
+          },
+          {
+            "grid_ctas": 128,
+            "kib_per_cta": 256,
+            "relative_spread": 0.15160349854227406
+          },
+          {
+            "grid_ctas": 132,
+            "kib_per_cta": 256,
+            "relative_spread": 0.10985915492957747
+          },
+          {
+            "grid_ctas": 172,
+            "kib_per_cta": 256,
+            "relative_spread": 0.13730569948186527
+          },
+          {
+            "grid_ctas": 224,
+            "kib_per_cta": 256,
+            "relative_spread": 0.12244897959183673
+          },
+          {
+            "grid_ctas": 320,
+            "kib_per_cta": 256,
+            "relative_spread": 0.10143043325058652
+          }
+        ],
+        "measurements_sha256": "dc7599da5434d4b1ddea248eaafe0aa8ccc825abc810d0b7f54b485a0930e615",
+        "memory_clock_mhz": 3201,
+        "path": "profiler_output/microbench/nvidia_h200/dram_finite_stream_ramp_20260925_a",
+        "sm_clock_mhz": 1980,
+        "trials": 9,
+        "clock_gate": {
+          "gate": "every busy nvidia-smi sample (utilization.gpu > 0, 50 ms period) must report at least boost_mhz; otherwise the process is rejected and re-run",
+          "boost_mhz": 1980,
+          "accepted_captures": 13,
+          "rejected_captures": 0,
+          "busy_sm_clock_mhz_min": 1980,
+          "busy_sm_clock_mhz_max": 1980,
+          "busy_samples": 55,
+          "rejected": []
+        },
+        "binary_sha256": {
+          "ramp_grid100": "d18286b00906d68577791c65fc7f632c397b96695819b346831a90b72c298c6b",
+          "ramp_grid112": "f895502a0405e28152eaab60f3278b092feb2c8d850cb40f311a5f3e380e3f98",
+          "ramp_grid128": "d8d03032ab2ab96068d1e06a6ae3629680c7d79a5952ad9df62caf21f5b53c4f",
+          "ramp_grid132": "4aa5e49ffa48e185ca087b6c678510fdf5ba44ae7b112eba973ae314bc2a25e1",
+          "ramp_grid172": "c850c2aeb9311c4e434375d4b5992bbc9f4b1c590ad7dfe68aa711ba52df0b83",
+          "ramp_grid224": "088e170b9595ce523f2b6b240a8e6f2830391681d9d1fa36c4dabf76acb6111d",
+          "ramp_grid320": "ba01973f8eec5290ed971bea82bb1922015d3d91a67f4f4dd60a53eccb14091d",
+          "ramp_grid448": "4fcb27bd1e9982e32c3844350c6b80874dcc2ae2fd47808079e9c78c02dd0463",
+          "ramp_grid56": "08e37e894aa0a4e7ce6edc6a27d8d809b7b50ca2577fefdbc535ca65bc34e984",
+          "ramp_grid64": "4a7557f0b0324be02771a0b8486252021d8064531b6270cc4f7acb148995b117",
+          "ramp_grid80": "2959899b6161012999ad5e6c76ef5194bbf1895488fbd14d2a0c717c787c5eef",
+          "ramp_grid86": "b906ed4a6c7131fe5ae7bfacdfe551db90a7dfd4ec04353f3d8d2495a24d3c41",
+          "ramp_grid96": "78c417aeffe6f095c4a9fdb14b1f2e010f53d7bedcd939f2cb2de984806e5839"
+        }
+      },
+      {
+        "device_index": 1,
+        "device_uuid": "capture-device-31adbc24ad46",
+        "excluded_unstable_cells": [
+          {
+            "grid_ctas": 56,
+            "kib_per_cta": 256,
+            "relative_spread": 0.16428571428571428
+          },
+          {
+            "grid_ctas": 56,
+            "kib_per_cta": 384,
+            "relative_spread": 0.11550151975683891
+          },
+          {
+            "grid_ctas": 64,
+            "kib_per_cta": 256,
+            "relative_spread": 0.11418685121107267
+          },
+          {
+            "grid_ctas": 80,
+            "kib_per_cta": 256,
+            "relative_spread": 0.14426229508196722
+          },
+          {
+            "grid_ctas": 86,
+            "kib_per_cta": 256,
+            "relative_spread": 0.1180327868852459
+          },
+          {
+            "grid_ctas": 96,
+            "kib_per_cta": 256,
+            "relative_spread": 0.11598746081504702
+          },
+          {
+            "grid_ctas": 112,
+            "kib_per_cta": 256,
+            "relative_spread": 0.1393188854489164
+          },
+          {
+            "grid_ctas": 112,
+            "kib_per_cta": 384,
+            "relative_spread": 0.1056701030927835
+          },
+          {
+            "grid_ctas": 128,
+            "kib_per_cta": 256,
+            "relative_spread": 0.1897590361445783
+          },
+          {
+            "grid_ctas": 128,
+            "kib_per_cta": 512,
+            "relative_spread": 0.10059180378181382
+          },
+          {
+            "grid_ctas": 132,
+            "kib_per_cta": 256,
+            "relative_spread": 0.10557184750733138
+          },
+          {
+            "grid_ctas": 172,
+            "kib_per_cta": 256,
+            "relative_spread": 0.14473684210526316
+          },
+          {
+            "grid_ctas": 172,
+            "kib_per_cta": 512,
+            "relative_spread": 0.11428570984915723
+          },
+          {
+            "grid_ctas": 224,
+            "kib_per_cta": 256,
+            "relative_spread": 0.14700860828037438
+          },
+          {
+            "grid_ctas": 320,
+            "kib_per_cta": 256,
+            "relative_spread": 0.11734036353730594
+          }
+        ],
+        "measurements_sha256": "7429f95c08ce8327b0a27b73766b81f0b50327e981d591259c6566837ba328c0",
+        "memory_clock_mhz": 3201,
+        "path": "profiler_output/microbench/nvidia_h200/dram_finite_stream_ramp_20260925_b",
+        "sm_clock_mhz": 1980,
+        "trials": 9,
+        "clock_gate": {
+          "gate": "every busy nvidia-smi sample (utilization.gpu > 0, 50 ms period) must report at least boost_mhz; otherwise the process is rejected and re-run",
+          "boost_mhz": 1980,
+          "accepted_captures": 13,
+          "rejected_captures": 0,
+          "busy_sm_clock_mhz_min": 1980,
+          "busy_sm_clock_mhz_max": 1980,
+          "busy_samples": 51,
+          "rejected": []
+        },
+        "binary_sha256": {
+          "ramp_grid100": "fa6614f8c71054154f1d68856986bca14c8eacb9d3ec87c8f6dec57c7f4b2d25",
+          "ramp_grid112": "981697f423af3a0b72183f12a582bb454e15440e497f28dac2f8779af633b6db",
+          "ramp_grid128": "2ae8f3142d4653b2866c4d60930db296deeff3126deefdb89731d3baddb3f1ac",
+          "ramp_grid132": "71b6dd5211a08a964fda4647cf5cb8fe63b8c2460e61317d7f4c9dccefa8d888",
+          "ramp_grid172": "cb380a6b4f6de7642736a0529ebc9ad4671f75f4afd67568ba826e725b26a607",
+          "ramp_grid224": "044e7595861e8b6ba56f0bd7ed91614506a21022a8792afbc34a0d0c2931d02e",
+          "ramp_grid320": "1aaf672cfeedeefda8c857c15a4074dd874bbb646c0e63e1ee115de7f3639a0b",
+          "ramp_grid448": "2a57b0105babd14c16a93db849da4c6d54eadbd4c6aadd795d6cc260b156386d",
+          "ramp_grid56": "9566e0840616bbe41e67eca7813f97566f3332437662f4faa30f1a838f280873",
+          "ramp_grid64": "e88a88a3bb8b58d4c123d13cdfc5837d518151447f5ee546524d253a595af81f",
+          "ramp_grid80": "ad725ee7d0b391d10ec26f58e0f3056d1ef68858a71d2194dc8f7188ddf058e1",
+          "ramp_grid86": "02f158f050402e8424ba6056a10726a62fdae0aaba967876dbab5196c37590ac",
+          "ramp_grid96": "f5b7f3709498efa87ede923eac767f2c3f1075afa70df5967b29570564387cae"
+        }
+      }
+    ],
+    "runner": "microbench/nvidia_h200/memory/dram/dram_finite_stream_ramp_runner.py",
+    "runner_sha256": "dddd319c0620fafbd5f9b2d3ec3e3c05357e2d6301cbce4681e9d6427636e736",
+    "source": "microbench/nvidia_h200/memory/dram/dram_finite_stream_ramp.cu",
+    "source_sha256": "ef941ed43f3da0945df47a3ca26c6be24ed59c43d7c48a8511910d87b1ef79be",
+    "git_commit": "eb6e819d712f06b3d068705afe44d5f4edb79b15"
+  },
+  "schema": "dram_finite_read_stream_ramp_reference_v1",
+  "scope": {
+    "in_flight_bytes_per_cta": 65536,
+    "load_instruction": "ld.global.cg.v4.u32",
+    "maximum_bytes_per_cta": 16777216,
+    "maximum_grid_ctas": 132,
+    "minimum_bytes_per_cta": 262144,
+    "minimum_grid_ctas": 56,
+    "threads_per_cta": 128
+  }
+}

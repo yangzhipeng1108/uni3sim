@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism_id": "fia_mixed_tiling_data_materialization_v1",
+  "scope": "one source-mandatory actor-local FIA tiling prelude",
+  "composition": "AIC and AIV preludes begin concurrently; each domain gates only its own first source stage",
+  "bounds": {
+    "task_kind": "mixed",
+    "payload_bytes": 1560,
+    "aiv_transfer_bytes": 1568,
+    "aiv_per_group": 2,
+    "minimum_active_aic_groups": 1,
+    "maximum_active_aic_groups": 24
+  },
+  "parameters_ns": {
+    "aic_completion_ns": 12.2216796875,
+    "aiv_startup_ns": 42.4203642898982,
+    "aiv_per_active_worker_ns": 37.24599348163042
+  },
+  "validation": {
+    "training_run_ids": ["r1", "r2"],
+    "validation_run_ids": ["r3"],
+    "aiv_model_mape": 0.047492902226599014,
+    "aiv_maximum_model_ape": 0.1384128845342077,
+    "aic_maximum_relative_error": 0.00006658232906343387,
+    "maximum_cross_run_relative_median_spread": 0.001649329934875392
+  },
+  "source_semantics": {
+    "aic": "copy_data_align64(local, GM, 1560)",
+    "aiv": "1568-byte GM-to-UB copy; MTE2-to-Scalar event; 1560-byte UB-to-local copy; PIPE_ALL",
+    "topology": "KERNEL_TYPE_MIX_AIC_1_2",
+    "macro_generator_sha256": "2c14bf5e9ea8912943a640fb5f4ffbf8207cc8fdb9e6cb0ad5116d6e1fc78ded",
+    "fia_entry_sha256": "9315d547e7468e28c5e38656ec01b8c9ef876bf53715cd166a545c7232305961",
+    "fia_kernel_sha256": "7cde05730d68bb02a2c45cd6b25605417ee61d42dfd87f21ccf0948c014b7e21"
+  },
+  "provenance": {
+    "source_commit": "8ef12f923666c22a5d5bd3b2d392b10835bdd954",
+    "source_snapshot_sha256": "d6b6692dd6b1d55cd89a08cd54d5a63a931bb85dc90ee7bbed6109072f622278",
+    "binary_sha256": "e583e0822def6856eb339e4592e34a5e91362ca9d3ae80c9c515d24d90f13685",
+    "raw_path": "profiler_output/microbench/ascend_910b/fia_tiling_data_8ef12f92_20260828_r1",
+    "raw_sha256": [
+      "27ba882012f943f143204b8b99c73906d3c2cb0773fc1995f144c5b09457ae01",
+      "f61626ed0cbfca345d5ad643978c6be8306ea50ba7558df133bce173c960baa1",
+      "04e3657e8d00afd09137620766bd6e3199a233a9fe0c11876a268dc8f2bce599"
+    ],
+    "report_path": "profiler_output/microbench/ascend_910b/fia_tiling_data_8ef12f92_20260828_r1/report.json",
+    "report_sha256": "eedf3e637ff79518d3d861dd27581d4d5a7660f8c4eb2f8874dba5f3f48212ac"
+  },
+  "production_or_evaluation_duration_consumed": false
+}

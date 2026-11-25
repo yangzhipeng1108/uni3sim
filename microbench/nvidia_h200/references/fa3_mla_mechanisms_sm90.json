@@ -1,0 +1,1963 @@
+{
+ "schema": "nvidia_h200_fa3_mla_mechanisms_reference_v1",
+ "hardware_id": "nvidia_h200",
+ "mechanism": "fa3_mla_mechanisms",
+ "production_or_evaluation_duration_consumed": false,
+ "production_predictor_consumption_allowed": true,
+ "timer_domain": "clock64_sm_cycles",
+ "measured_sm_clock_mhz": 1980,
+ "source_revision": "vllm-flash-attention 803020a8fa15407871341d41eba4919ade2ee1ee (hopper/)",
+ "wgmma_gemm_cycles": {
+  "rs_n128_mnmajor": {
+   "1": {
+    "1": 114.631,
+    "2": 130.6735
+   },
+   "2": {
+    "1": 178.8825,
+    "2": 256.163
+   },
+   "4": {
+    "1": 319.096,
+    "2": 512.136
+   },
+   "8": {
+    "1": 587.8525,
+    "2": 1024.1444999999999
+   },
+   "12": {
+    "1": 847.8625,
+    "2": 1551.55925
+   },
+   "32": {
+    "1": 2209.09275,
+    "2": 4095.782
+   }
+  },
+  "rs_n256_mnmajor": {
+   "1": {
+    "1": 198.388,
+    "2": 256.2235
+   },
+   "2": {
+    "1": 316.4175,
+    "2": 512.20075
+   },
+   "4": {
+    "1": 582.8865,
+    "2": 1024.13075
+   },
+   "8": {
+    "1": 1095.892,
+    "2": 2048.0295
+   },
+   "12": {
+    "1": 1616.394,
+    "2": 3071.93025
+   },
+   "32": {
+    "1": 4212.122,
+    "2": 8191.27
+   }
+  },
+  "ss_n128_kmajor": {
+   "1": {
+    "1": 125.1295,
+    "2": 136.92149999999998
+   },
+   "2": {
+    "1": 198.855,
+    "2": 257.159
+   },
+   "4": {
+    "1": 327.347,
+    "2": 512.131
+   },
+   "8": {
+    "1": 593.8485,
+    "2": 1037.616
+   },
+   "12": {
+    "1": 851.1015,
+    "2": 1535.7842500000002
+   },
+   "32": {
+    "1": 2132.10775,
+    "2": 4095.77825
+   }
+  },
+  "ss_n256_mnmajor": {
+   "1": {
+    "1": 208.8835,
+    "2": 257.224
+   },
+   "2": {
+    "1": 336.387,
+    "2": 512.194
+   },
+   "4": {
+    "1": 592.386,
+    "2": 1024.1347500000002
+   },
+   "8": {
+    "1": 1105.885,
+    "2": 2048.01325
+   },
+   "12": {
+    "1": 1617.896,
+    "2": 3071.3779999999997
+   },
+   "32": {
+    "1": 4179.1395,
+    "2": 8191.78025
+   }
+  },
+  "ss_n64_kmajor": {
+   "1": {
+    "1": 93.11275,
+    "2": 95.6255
+   },
+   "2": {
+    "1": 133.8385,
+    "2": 146.36325
+   },
+   "4": {
+    "1": 201.5885,
+    "2": 262.1295
+   },
+   "8": {
+    "1": 339.0885,
+    "2": 524.354
+   },
+   "12": {
+    "1": 475.3385,
+    "2": 768.5562500000001
+   },
+   "32": {
+    "1": 1223.0925,
+    "2": 2048.13175
+   },
+   "36": {
+    "1": 1328.093,
+    "2": 2304.0535
+   }
+  }
+ },
+ "softmax_step_cycles": {
+  "16x64": {
+   "1": 720.566,
+   "2": 1125.5963749999999
+  },
+  "32x32": {
+   "1": 1083.720875,
+   "2": 1782.6341249999998
+  }
+ },
+ "paged_kv_stream": {
+  "0": {
+   "1": {
+    "first_full_cycles": 3368,
+    "steady_ii_cycles": 1614.07,
+    "samples": 3
+   },
+   "2": {
+    "first_full_cycles": 3278.0,
+    "steady_ii_cycles": 1607.0,
+    "samples": 6
+   },
+   "3": {
+    "first_full_cycles": 3090,
+    "steady_ii_cycles": 1566.57,
+    "samples": 9
+   },
+   "4": {
+    "first_full_cycles": 3075.5,
+    "steady_ii_cycles": 1626.835,
+    "samples": 12
+   },
+   "5": {
+    "first_full_cycles": 3400,
+    "steady_ii_cycles": 1643.87,
+    "samples": 15
+   },
+   "6": {
+    "first_full_cycles": 3416.0,
+    "steady_ii_cycles": 1645.13,
+    "samples": 18
+   },
+   "7": {
+    "first_full_cycles": 3285,
+    "steady_ii_cycles": 1635.93,
+    "samples": 21
+   },
+   "8": {
+    "first_full_cycles": 3638.0,
+    "steady_ii_cycles": 1706.765,
+    "samples": 24
+   },
+   "9": {
+    "first_full_cycles": 3561,
+    "steady_ii_cycles": 1681.93,
+    "samples": 27
+   },
+   "10": {
+    "first_full_cycles": 3776.5,
+    "steady_ii_cycles": 1741.55,
+    "samples": 30
+   },
+   "11": {
+    "first_full_cycles": 3743,
+    "steady_ii_cycles": 1763.5,
+    "samples": 33
+   },
+   "12": {
+    "first_full_cycles": 3672.5,
+    "steady_ii_cycles": 1744.67,
+    "samples": 36
+   },
+   "13": {
+    "first_full_cycles": 3725,
+    "steady_ii_cycles": 1765.57,
+    "samples": 39
+   },
+   "14": {
+    "first_full_cycles": 3797.5,
+    "steady_ii_cycles": 1801.185,
+    "samples": 42
+   },
+   "15": {
+    "first_full_cycles": 3941,
+    "steady_ii_cycles": 1815.77,
+    "samples": 45
+   },
+   "16": {
+    "first_full_cycles": 4170.5,
+    "steady_ii_cycles": 1902.7649999999999,
+    "samples": 48
+   },
+   "17": {
+    "first_full_cycles": 3978,
+    "steady_ii_cycles": 1905.33,
+    "samples": 51
+   },
+   "18": {
+    "first_full_cycles": 4170.0,
+    "steady_ii_cycles": 1894.35,
+    "samples": 54
+   },
+   "19": {
+    "first_full_cycles": 4246,
+    "steady_ii_cycles": 1938.5,
+    "samples": 57
+   },
+   "20": {
+    "first_full_cycles": 4206.0,
+    "steady_ii_cycles": 1963.1999999999998,
+    "samples": 60
+   },
+   "21": {
+    "first_full_cycles": 4296,
+    "steady_ii_cycles": 1951.53,
+    "samples": 63
+   },
+   "22": {
+    "first_full_cycles": 4475.0,
+    "steady_ii_cycles": 1948.28,
+    "samples": 66
+   },
+   "23": {
+    "first_full_cycles": 4692,
+    "steady_ii_cycles": 2008.0,
+    "samples": 69
+   },
+   "24": {
+    "first_full_cycles": 4603.5,
+    "steady_ii_cycles": 2003.635,
+    "samples": 72
+   },
+   "25": {
+    "first_full_cycles": 4509,
+    "steady_ii_cycles": 2050.33,
+    "samples": 75
+   },
+   "26": {
+    "first_full_cycles": 4614.5,
+    "steady_ii_cycles": 2077.985,
+    "samples": 78
+   },
+   "27": {
+    "first_full_cycles": 4905,
+    "steady_ii_cycles": 2078.47,
+    "samples": 81
+   },
+   "28": {
+    "first_full_cycles": 4705.5,
+    "steady_ii_cycles": 2085.315,
+    "samples": 84
+   },
+   "29": {
+    "first_full_cycles": 4967,
+    "steady_ii_cycles": 2122.9,
+    "samples": 87
+   },
+   "30": {
+    "first_full_cycles": 4876.5,
+    "steady_ii_cycles": 2149.565,
+    "samples": 90
+   },
+   "31": {
+    "first_full_cycles": 5148,
+    "steady_ii_cycles": 2139.83,
+    "samples": 93
+   },
+   "32": {
+    "first_full_cycles": 5202.0,
+    "steady_ii_cycles": 2159.365,
+    "samples": 96
+   },
+   "33": {
+    "first_full_cycles": 4990,
+    "steady_ii_cycles": 2188.77,
+    "samples": 99
+   },
+   "34": {
+    "first_full_cycles": 5245.0,
+    "steady_ii_cycles": 2176.3,
+    "samples": 102
+   },
+   "35": {
+    "first_full_cycles": 5262,
+    "steady_ii_cycles": 2207.8,
+    "samples": 105
+   },
+   "36": {
+    "first_full_cycles": 5708.5,
+    "steady_ii_cycles": 2202.83,
+    "samples": 108
+   },
+   "37": {
+    "first_full_cycles": 5420,
+    "steady_ii_cycles": 2237.4,
+    "samples": 111
+   },
+   "38": {
+    "first_full_cycles": 5413.5,
+    "steady_ii_cycles": 2223.515,
+    "samples": 114
+   },
+   "39": {
+    "first_full_cycles": 5490,
+    "steady_ii_cycles": 2237.83,
+    "samples": 117
+   },
+   "40": {
+    "first_full_cycles": 5522.5,
+    "steady_ii_cycles": 2263.3199999999997,
+    "samples": 120
+   },
+   "41": {
+    "first_full_cycles": 5593,
+    "steady_ii_cycles": 2307.83,
+    "samples": 123
+   },
+   "42": {
+    "first_full_cycles": 5517.5,
+    "steady_ii_cycles": 2291.75,
+    "samples": 126
+   },
+   "43": {
+    "first_full_cycles": 5776,
+    "steady_ii_cycles": 2353.03,
+    "samples": 129
+   },
+   "44": {
+    "first_full_cycles": 5518.5,
+    "steady_ii_cycles": 2354.3,
+    "samples": 132
+   },
+   "45": {
+    "first_full_cycles": 5823,
+    "steady_ii_cycles": 2402.07,
+    "samples": 135
+   },
+   "46": {
+    "first_full_cycles": 6097.0,
+    "steady_ii_cycles": 2325.115,
+    "samples": 138
+   },
+   "47": {
+    "first_full_cycles": 5821,
+    "steady_ii_cycles": 2374.07,
+    "samples": 141
+   },
+   "48": {
+    "first_full_cycles": 5948.5,
+    "steady_ii_cycles": 2357.27,
+    "samples": 144
+   },
+   "49": {
+    "first_full_cycles": 6026,
+    "steady_ii_cycles": 2386.93,
+    "samples": 147
+   },
+   "50": {
+    "first_full_cycles": 6103.5,
+    "steady_ii_cycles": 2429.535,
+    "samples": 150
+   },
+   "51": {
+    "first_full_cycles": 6027,
+    "steady_ii_cycles": 2435.17,
+    "samples": 153
+   },
+   "52": {
+    "first_full_cycles": 6203.5,
+    "steady_ii_cycles": 2414.75,
+    "samples": 156
+   },
+   "53": {
+    "first_full_cycles": 6180,
+    "steady_ii_cycles": 2494.83,
+    "samples": 159
+   },
+   "54": {
+    "first_full_cycles": 6315.0,
+    "steady_ii_cycles": 2409.165,
+    "samples": 162
+   },
+   "55": {
+    "first_full_cycles": 6180,
+    "steady_ii_cycles": 2460.93,
+    "samples": 165
+   },
+   "56": {
+    "first_full_cycles": 6240.5,
+    "steady_ii_cycles": 2492.88,
+    "samples": 168
+   },
+   "57": {
+    "first_full_cycles": 6298,
+    "steady_ii_cycles": 2490.73,
+    "samples": 171
+   },
+   "58": {
+    "first_full_cycles": 6383.0,
+    "steady_ii_cycles": 2554.37,
+    "samples": 174
+   },
+   "59": {
+    "first_full_cycles": 6491,
+    "steady_ii_cycles": 2535.9,
+    "samples": 177
+   },
+   "60": {
+    "first_full_cycles": 6455.5,
+    "steady_ii_cycles": 2522.3,
+    "samples": 180
+   },
+   "61": {
+    "first_full_cycles": 6625,
+    "steady_ii_cycles": 2562.73,
+    "samples": 183
+   },
+   "62": {
+    "first_full_cycles": 6577.5,
+    "steady_ii_cycles": 2605.885,
+    "samples": 186
+   },
+   "63": {
+    "first_full_cycles": 6664,
+    "steady_ii_cycles": 2596.5,
+    "samples": 189
+   },
+   "64": {
+    "first_full_cycles": 6747.0,
+    "steady_ii_cycles": 2655.535,
+    "samples": 192
+   },
+   "65": {
+    "first_full_cycles": 7266,
+    "steady_ii_cycles": 2634.2,
+    "samples": 195
+   },
+   "66": {
+    "first_full_cycles": 7268.5,
+    "steady_ii_cycles": 2668.25,
+    "samples": 198
+   },
+   "67": {
+    "first_full_cycles": 6774,
+    "steady_ii_cycles": 2689.63,
+    "samples": 201
+   },
+   "68": {
+    "first_full_cycles": 6860.5,
+    "steady_ii_cycles": 2705.75,
+    "samples": 204
+   },
+   "69": {
+    "first_full_cycles": 7471,
+    "steady_ii_cycles": 2741.63,
+    "samples": 207
+   },
+   "70": {
+    "first_full_cycles": 6874.0,
+    "steady_ii_cycles": 2760.085,
+    "samples": 210
+   },
+   "71": {
+    "first_full_cycles": 7464,
+    "steady_ii_cycles": 2784.8,
+    "samples": 213
+   },
+   "72": {
+    "first_full_cycles": 7159.5,
+    "steady_ii_cycles": 2787.335,
+    "samples": 216
+   },
+   "73": {
+    "first_full_cycles": 7130,
+    "steady_ii_cycles": 2833.53,
+    "samples": 219
+   },
+   "74": {
+    "first_full_cycles": 7252.0,
+    "steady_ii_cycles": 2904.37,
+    "samples": 222
+   },
+   "75": {
+    "first_full_cycles": 7367,
+    "steady_ii_cycles": 2913.73,
+    "samples": 225
+   },
+   "76": {
+    "first_full_cycles": 7152.5,
+    "steady_ii_cycles": 2967.715,
+    "samples": 228
+   },
+   "77": {
+    "first_full_cycles": 7440,
+    "steady_ii_cycles": 2945.73,
+    "samples": 231
+   },
+   "78": {
+    "first_full_cycles": 7304.0,
+    "steady_ii_cycles": 2991.5150000000003,
+    "samples": 234
+   },
+   "79": {
+    "first_full_cycles": 7397,
+    "steady_ii_cycles": 3053.1,
+    "samples": 237
+   },
+   "80": {
+    "first_full_cycles": 7416.0,
+    "steady_ii_cycles": 3066.0150000000003,
+    "samples": 240
+   },
+   "81": {
+    "first_full_cycles": 7583,
+    "steady_ii_cycles": 3095.93,
+    "samples": 243
+   },
+   "82": {
+    "first_full_cycles": 7723.5,
+    "steady_ii_cycles": 3145.065,
+    "samples": 246
+   },
+   "83": {
+    "first_full_cycles": 8008,
+    "steady_ii_cycles": 3105.07,
+    "samples": 249
+   },
+   "84": {
+    "first_full_cycles": 7528.0,
+    "steady_ii_cycles": 3199.665,
+    "samples": 252
+   },
+   "85": {
+    "first_full_cycles": 7690,
+    "steady_ii_cycles": 3241.87,
+    "samples": 255
+   },
+   "86": {
+    "first_full_cycles": 7756.0,
+    "steady_ii_cycles": 3238.0,
+    "samples": 258
+   },
+   "87": {
+    "first_full_cycles": 7804,
+    "steady_ii_cycles": 3235.8,
+    "samples": 261
+   },
+   "88": {
+    "first_full_cycles": 7994.5,
+    "steady_ii_cycles": 3242.02,
+    "samples": 264
+   },
+   "89": {
+    "first_full_cycles": 7772,
+    "steady_ii_cycles": 3288.4,
+    "samples": 267
+   },
+   "90": {
+    "first_full_cycles": 8242.0,
+    "steady_ii_cycles": 3342.465,
+    "samples": 270
+   },
+   "91": {
+    "first_full_cycles": 8034,
+    "steady_ii_cycles": 3364.03,
+    "samples": 273
+   },
+   "92": {
+    "first_full_cycles": 8912.0,
+    "steady_ii_cycles": 3358.935,
+    "samples": 276
+   },
+   "93": {
+    "first_full_cycles": 8310,
+    "steady_ii_cycles": 3389.6,
+    "samples": 279
+   },
+   "94": {
+    "first_full_cycles": 8354.5,
+    "steady_ii_cycles": 3443.615,
+    "samples": 282
+   },
+   "95": {
+    "first_full_cycles": 8226,
+    "steady_ii_cycles": 3477.77,
+    "samples": 285
+   },
+   "96": {
+    "first_full_cycles": 8237.5,
+    "steady_ii_cycles": 3468.315,
+    "samples": 288
+   },
+   "97": {
+    "first_full_cycles": 8831,
+    "steady_ii_cycles": 3475.17,
+    "samples": 291
+   },
+   "98": {
+    "first_full_cycles": 8451.0,
+    "steady_ii_cycles": 3576.315,
+    "samples": 294
+   },
+   "99": {
+    "first_full_cycles": 8553,
+    "steady_ii_cycles": 3624.63,
+    "samples": 297
+   },
+   "100": {
+    "first_full_cycles": 8659.5,
+    "steady_ii_cycles": 3557.1000000000004,
+    "samples": 300
+   },
+   "101": {
+    "first_full_cycles": 8532,
+    "steady_ii_cycles": 3635.37,
+    "samples": 303
+   },
+   "102": {
+    "first_full_cycles": 8654.5,
+    "steady_ii_cycles": 3630.865,
+    "samples": 306
+   },
+   "103": {
+    "first_full_cycles": 8750,
+    "steady_ii_cycles": 3747.5,
+    "samples": 309
+   },
+   "104": {
+    "first_full_cycles": 9061.0,
+    "steady_ii_cycles": 3766.7,
+    "samples": 312
+   },
+   "105": {
+    "first_full_cycles": 9245,
+    "steady_ii_cycles": 3718.63,
+    "samples": 315
+   },
+   "106": {
+    "first_full_cycles": 8698.0,
+    "steady_ii_cycles": 3772.5,
+    "samples": 318
+   },
+   "107": {
+    "first_full_cycles": 9085,
+    "steady_ii_cycles": 3803.6,
+    "samples": 321
+   },
+   "108": {
+    "first_full_cycles": 8860.0,
+    "steady_ii_cycles": 3786.865,
+    "samples": 324
+   },
+   "109": {
+    "first_full_cycles": 8999,
+    "steady_ii_cycles": 3811.97,
+    "samples": 327
+   },
+   "110": {
+    "first_full_cycles": 8949.5,
+    "steady_ii_cycles": 3930.615,
+    "samples": 330
+   },
+   "111": {
+    "first_full_cycles": 9754,
+    "steady_ii_cycles": 3910.6,
+    "samples": 333
+   },
+   "112": {
+    "first_full_cycles": 9042.5,
+    "steady_ii_cycles": 3958.17,
+    "samples": 336
+   },
+   "113": {
+    "first_full_cycles": 9203,
+    "steady_ii_cycles": 3967.0,
+    "samples": 339
+   },
+   "114": {
+    "first_full_cycles": 9338.0,
+    "steady_ii_cycles": 4051.935,
+    "samples": 342
+   },
+   "115": {
+    "first_full_cycles": 9466,
+    "steady_ii_cycles": 4018.07,
+    "samples": 345
+   },
+   "116": {
+    "first_full_cycles": 10220.0,
+    "steady_ii_cycles": 4072.715,
+    "samples": 348
+   },
+   "117": {
+    "first_full_cycles": 9266,
+    "steady_ii_cycles": 4113.4,
+    "samples": 351
+   },
+   "118": {
+    "first_full_cycles": 10466.0,
+    "steady_ii_cycles": 4133.7,
+    "samples": 354
+   },
+   "119": {
+    "first_full_cycles": 9582,
+    "steady_ii_cycles": 4103.7,
+    "samples": 357
+   },
+   "120": {
+    "first_full_cycles": 9439.5,
+    "steady_ii_cycles": 4168.585,
+    "samples": 360
+   },
+   "121": {
+    "first_full_cycles": 9660,
+    "steady_ii_cycles": 4232.37,
+    "samples": 363
+   },
+   "122": {
+    "first_full_cycles": 9593.5,
+    "steady_ii_cycles": 4271.65,
+    "samples": 366
+   },
+   "123": {
+    "first_full_cycles": 9754,
+    "steady_ii_cycles": 4304.7,
+    "samples": 369
+   },
+   "124": {
+    "first_full_cycles": 10416.5,
+    "steady_ii_cycles": 4312.985,
+    "samples": 372
+   },
+   "125": {
+    "first_full_cycles": 9669,
+    "steady_ii_cycles": 4293.03,
+    "samples": 375
+   },
+   "126": {
+    "first_full_cycles": 9794.5,
+    "steady_ii_cycles": 4390.15,
+    "samples": 378
+   },
+   "127": {
+    "first_full_cycles": 9825,
+    "steady_ii_cycles": 4423.47,
+    "samples": 381
+   },
+   "128": {
+    "first_full_cycles": 9768.5,
+    "steady_ii_cycles": 4407.285,
+    "samples": 384
+   },
+   "129": {
+    "first_full_cycles": 10144,
+    "steady_ii_cycles": 4436.77,
+    "samples": 387
+   },
+   "130": {
+    "first_full_cycles": 9992.0,
+    "steady_ii_cycles": 4522.07,
+    "samples": 390
+   },
+   "131": {
+    "first_full_cycles": 9798,
+    "steady_ii_cycles": 4519.67,
+    "samples": 393
+   },
+   "132": {
+    "first_full_cycles": 9980.5,
+    "steady_ii_cycles": 4560.285,
+    "samples": 396
+   }
+  },
+  "1000": {
+   "1": {
+    "first_full_cycles": 3240,
+    "steady_ii_cycles": 2038.57,
+    "samples": 3
+   },
+   "32": {
+    "first_full_cycles": 5266.5,
+    "steady_ii_cycles": 2386.585,
+    "samples": 96
+   },
+   "64": {
+    "first_full_cycles": 6643.0,
+    "steady_ii_cycles": 2778.08,
+    "samples": 192
+   },
+   "108": {
+    "first_full_cycles": 9160.5,
+    "steady_ii_cycles": 3864.8999999999996,
+    "samples": 324
+   },
+   "128": {
+    "first_full_cycles": 9966.0,
+    "steady_ii_cycles": 4402.85,
+    "samples": 384
+   },
+   "132": {
+    "first_full_cycles": 10038.0,
+    "steady_ii_cycles": 4519.764999999999,
+    "samples": 396
+   }
+  },
+  "2000": {
+   "1": {
+    "first_full_cycles": 3272,
+    "steady_ii_cycles": 2578.07,
+    "samples": 3
+   },
+   "32": {
+    "first_full_cycles": 5255.5,
+    "steady_ii_cycles": 2823.165,
+    "samples": 96
+   },
+   "64": {
+    "first_full_cycles": 7116.5,
+    "steady_ii_cycles": 3035.62,
+    "samples": 192
+   },
+   "108": {
+    "first_full_cycles": 8856.0,
+    "steady_ii_cycles": 3917.165,
+    "samples": 324
+   },
+   "128": {
+    "first_full_cycles": 9833.0,
+    "steady_ii_cycles": 4416.514999999999,
+    "samples": 384
+   },
+   "132": {
+    "first_full_cycles": 10242.5,
+    "steady_ii_cycles": 4536.7,
+    "samples": 396
+   }
+  },
+  "3000": {
+   "1": {
+    "first_full_cycles": 3229,
+    "steady_ii_cycles": 3203.6,
+    "samples": 3
+   },
+   "32": {
+    "first_full_cycles": 5112.5,
+    "steady_ii_cycles": 3391.9849999999997,
+    "samples": 96
+   },
+   "64": {
+    "first_full_cycles": 7037.5,
+    "steady_ii_cycles": 3513.25,
+    "samples": 192
+   },
+   "108": {
+    "first_full_cycles": 9001.0,
+    "steady_ii_cycles": 4057.58,
+    "samples": 324
+   },
+   "128": {
+    "first_full_cycles": 10072.5,
+    "steady_ii_cycles": 4475.335,
+    "samples": 384
+   },
+   "132": {
+    "first_full_cycles": 9970.5,
+    "steady_ii_cycles": 4582.5,
+    "samples": 396
+   }
+  },
+  "3073": {
+   "1": {
+    "first_full_cycles": 2988,
+    "steady_ii_cycles": 3278.77,
+    "samples": 3
+   },
+   "2": {
+    "first_full_cycles": 3354.5,
+    "steady_ii_cycles": 3276.335,
+    "samples": 6
+   },
+   "3": {
+    "first_full_cycles": 3170,
+    "steady_ii_cycles": 3273.6,
+    "samples": 9
+   },
+   "4": {
+    "first_full_cycles": 3191.0,
+    "steady_ii_cycles": 3298.0150000000003,
+    "samples": 12
+   },
+   "5": {
+    "first_full_cycles": 3410,
+    "steady_ii_cycles": 3278.23,
+    "samples": 15
+   },
+   "6": {
+    "first_full_cycles": 3501.0,
+    "steady_ii_cycles": 3281.2349999999997,
+    "samples": 18
+   },
+   "7": {
+    "first_full_cycles": 3413,
+    "steady_ii_cycles": 3278.23,
+    "samples": 21
+   },
+   "8": {
+    "first_full_cycles": 3581.0,
+    "steady_ii_cycles": 3295.335,
+    "samples": 24
+   },
+   "9": {
+    "first_full_cycles": 3501,
+    "steady_ii_cycles": 3293.23,
+    "samples": 27
+   },
+   "10": {
+    "first_full_cycles": 3706.0,
+    "steady_ii_cycles": 3304.035,
+    "samples": 30
+   },
+   "11": {
+    "first_full_cycles": 3879,
+    "steady_ii_cycles": 3348.0,
+    "samples": 33
+   },
+   "12": {
+    "first_full_cycles": 3611.0,
+    "steady_ii_cycles": 3296.48,
+    "samples": 36
+   },
+   "13": {
+    "first_full_cycles": 3838,
+    "steady_ii_cycles": 3298.07,
+    "samples": 39
+   },
+   "14": {
+    "first_full_cycles": 3974.0,
+    "steady_ii_cycles": 3306.13,
+    "samples": 42
+   },
+   "15": {
+    "first_full_cycles": 3881,
+    "steady_ii_cycles": 3361.93,
+    "samples": 45
+   },
+   "16": {
+    "first_full_cycles": 4012.0,
+    "steady_ii_cycles": 3340.45,
+    "samples": 48
+   },
+   "17": {
+    "first_full_cycles": 4061,
+    "steady_ii_cycles": 3329.27,
+    "samples": 51
+   },
+   "18": {
+    "first_full_cycles": 4279.0,
+    "steady_ii_cycles": 3356.6,
+    "samples": 54
+   },
+   "19": {
+    "first_full_cycles": 4248,
+    "steady_ii_cycles": 3376.17,
+    "samples": 57
+   },
+   "20": {
+    "first_full_cycles": 4298.5,
+    "steady_ii_cycles": 3355.9700000000003,
+    "samples": 60
+   },
+   "21": {
+    "first_full_cycles": 4239,
+    "steady_ii_cycles": 3339.1,
+    "samples": 63
+   },
+   "22": {
+    "first_full_cycles": 4419.0,
+    "steady_ii_cycles": 3337.72,
+    "samples": 66
+   },
+   "23": {
+    "first_full_cycles": 4570,
+    "steady_ii_cycles": 3390.4,
+    "samples": 69
+   },
+   "24": {
+    "first_full_cycles": 4594.0,
+    "steady_ii_cycles": 3357.95,
+    "samples": 72
+   },
+   "25": {
+    "first_full_cycles": 4516,
+    "steady_ii_cycles": 3428.77,
+    "samples": 75
+   },
+   "26": {
+    "first_full_cycles": 4672.0,
+    "steady_ii_cycles": 3384.7,
+    "samples": 78
+   },
+   "27": {
+    "first_full_cycles": 4861,
+    "steady_ii_cycles": 3411.7,
+    "samples": 81
+   },
+   "28": {
+    "first_full_cycles": 4714.0,
+    "steady_ii_cycles": 3423.63,
+    "samples": 84
+   },
+   "29": {
+    "first_full_cycles": 4801,
+    "steady_ii_cycles": 3367.3,
+    "samples": 87
+   },
+   "30": {
+    "first_full_cycles": 4913.0,
+    "steady_ii_cycles": 3438.5699999999997,
+    "samples": 90
+   },
+   "31": {
+    "first_full_cycles": 4859,
+    "steady_ii_cycles": 3420.67,
+    "samples": 93
+   },
+   "32": {
+    "first_full_cycles": 5158.0,
+    "steady_ii_cycles": 3402.55,
+    "samples": 96
+   },
+   "33": {
+    "first_full_cycles": 4948,
+    "steady_ii_cycles": 3425.2,
+    "samples": 99
+   },
+   "34": {
+    "first_full_cycles": 5037.5,
+    "steady_ii_cycles": 3357.8500000000004,
+    "samples": 102
+   },
+   "35": {
+    "first_full_cycles": 5304,
+    "steady_ii_cycles": 3423.3,
+    "samples": 105
+   },
+   "36": {
+    "first_full_cycles": 5228.0,
+    "steady_ii_cycles": 3417.58,
+    "samples": 108
+   },
+   "37": {
+    "first_full_cycles": 5396,
+    "steady_ii_cycles": 3455.27,
+    "samples": 111
+   },
+   "38": {
+    "first_full_cycles": 5405.0,
+    "steady_ii_cycles": 3380.83,
+    "samples": 114
+   },
+   "39": {
+    "first_full_cycles": 5798,
+    "steady_ii_cycles": 3375.63,
+    "samples": 117
+   },
+   "40": {
+    "first_full_cycles": 5553.0,
+    "steady_ii_cycles": 3430.77,
+    "samples": 120
+   },
+   "41": {
+    "first_full_cycles": 6019,
+    "steady_ii_cycles": 3437.8,
+    "samples": 123
+   },
+   "42": {
+    "first_full_cycles": 5600.0,
+    "steady_ii_cycles": 3428.8199999999997,
+    "samples": 126
+   },
+   "43": {
+    "first_full_cycles": 5777,
+    "steady_ii_cycles": 3437.33,
+    "samples": 129
+   },
+   "44": {
+    "first_full_cycles": 5571.0,
+    "steady_ii_cycles": 3407.25,
+    "samples": 132
+   },
+   "45": {
+    "first_full_cycles": 5651,
+    "steady_ii_cycles": 3453.33,
+    "samples": 135
+   },
+   "46": {
+    "first_full_cycles": 5959.5,
+    "steady_ii_cycles": 3459.415,
+    "samples": 138
+   },
+   "47": {
+    "first_full_cycles": 5866,
+    "steady_ii_cycles": 3471.17,
+    "samples": 141
+   },
+   "48": {
+    "first_full_cycles": 6306.0,
+    "steady_ii_cycles": 3448.7349999999997,
+    "samples": 144
+   },
+   "49": {
+    "first_full_cycles": 6015,
+    "steady_ii_cycles": 3465.67,
+    "samples": 147
+   },
+   "50": {
+    "first_full_cycles": 6279.0,
+    "steady_ii_cycles": 3411.585,
+    "samples": 150
+   },
+   "51": {
+    "first_full_cycles": 6228,
+    "steady_ii_cycles": 3506.3,
+    "samples": 153
+   },
+   "52": {
+    "first_full_cycles": 6101.5,
+    "steady_ii_cycles": 3466.0150000000003,
+    "samples": 156
+   },
+   "53": {
+    "first_full_cycles": 6148,
+    "steady_ii_cycles": 3529.03,
+    "samples": 159
+   },
+   "54": {
+    "first_full_cycles": 6186.0,
+    "steady_ii_cycles": 3462.615,
+    "samples": 162
+   },
+   "55": {
+    "first_full_cycles": 6308,
+    "steady_ii_cycles": 3506.03,
+    "samples": 165
+   },
+   "56": {
+    "first_full_cycles": 6399.5,
+    "steady_ii_cycles": 3478.15,
+    "samples": 168
+   },
+   "57": {
+    "first_full_cycles": 6230,
+    "steady_ii_cycles": 3495.1,
+    "samples": 171
+   },
+   "58": {
+    "first_full_cycles": 6440.0,
+    "steady_ii_cycles": 3441.9300000000003,
+    "samples": 174
+   },
+   "59": {
+    "first_full_cycles": 6334,
+    "steady_ii_cycles": 3486.1,
+    "samples": 177
+   },
+   "60": {
+    "first_full_cycles": 6671.0,
+    "steady_ii_cycles": 3505.8,
+    "samples": 180
+   },
+   "61": {
+    "first_full_cycles": 6614,
+    "steady_ii_cycles": 3548.8,
+    "samples": 183
+   },
+   "62": {
+    "first_full_cycles": 6539.5,
+    "steady_ii_cycles": 3516.265,
+    "samples": 186
+   },
+   "63": {
+    "first_full_cycles": 6703,
+    "steady_ii_cycles": 3505.47,
+    "samples": 189
+   },
+   "64": {
+    "first_full_cycles": 6755.0,
+    "steady_ii_cycles": 3554.7650000000003,
+    "samples": 192
+   },
+   "65": {
+    "first_full_cycles": 6675,
+    "steady_ii_cycles": 3586.33,
+    "samples": 195
+   },
+   "66": {
+    "first_full_cycles": 6646.0,
+    "steady_ii_cycles": 3542.565,
+    "samples": 198
+   },
+   "67": {
+    "first_full_cycles": 7305,
+    "steady_ii_cycles": 3554.5,
+    "samples": 201
+   },
+   "68": {
+    "first_full_cycles": 7151.0,
+    "steady_ii_cycles": 3515.13,
+    "samples": 204
+   },
+   "69": {
+    "first_full_cycles": 6995,
+    "steady_ii_cycles": 3527.0,
+    "samples": 207
+   },
+   "70": {
+    "first_full_cycles": 6969.5,
+    "steady_ii_cycles": 3608.015,
+    "samples": 210
+   },
+   "71": {
+    "first_full_cycles": 6781,
+    "steady_ii_cycles": 3598.5,
+    "samples": 213
+   },
+   "72": {
+    "first_full_cycles": 7224.0,
+    "steady_ii_cycles": 3620.5699999999997,
+    "samples": 216
+   },
+   "73": {
+    "first_full_cycles": 7578,
+    "steady_ii_cycles": 3566.2,
+    "samples": 219
+   },
+   "74": {
+    "first_full_cycles": 7651.5,
+    "steady_ii_cycles": 3589.73,
+    "samples": 222
+   },
+   "75": {
+    "first_full_cycles": 7225,
+    "steady_ii_cycles": 3599.6,
+    "samples": 225
+   },
+   "76": {
+    "first_full_cycles": 7347.5,
+    "steady_ii_cycles": 3627.885,
+    "samples": 228
+   },
+   "77": {
+    "first_full_cycles": 7189,
+    "steady_ii_cycles": 3650.33,
+    "samples": 231
+   },
+   "78": {
+    "first_full_cycles": 7678.5,
+    "steady_ii_cycles": 3611.435,
+    "samples": 234
+   },
+   "79": {
+    "first_full_cycles": 7368,
+    "steady_ii_cycles": 3651.3,
+    "samples": 237
+   },
+   "80": {
+    "first_full_cycles": 7631.5,
+    "steady_ii_cycles": 3644.565,
+    "samples": 240
+   },
+   "81": {
+    "first_full_cycles": 7519,
+    "steady_ii_cycles": 3629.73,
+    "samples": 243
+   },
+   "82": {
+    "first_full_cycles": 7503.0,
+    "steady_ii_cycles": 3675.535,
+    "samples": 246
+   },
+   "83": {
+    "first_full_cycles": 7681,
+    "steady_ii_cycles": 3657.27,
+    "samples": 249
+   },
+   "84": {
+    "first_full_cycles": 7572.0,
+    "steady_ii_cycles": 3645.48,
+    "samples": 252
+   },
+   "85": {
+    "first_full_cycles": 7580,
+    "steady_ii_cycles": 3732.43,
+    "samples": 255
+   },
+   "86": {
+    "first_full_cycles": 7998.0,
+    "steady_ii_cycles": 3668.7650000000003,
+    "samples": 258
+   },
+   "87": {
+    "first_full_cycles": 7986,
+    "steady_ii_cycles": 3716.6,
+    "samples": 261
+   },
+   "88": {
+    "first_full_cycles": 7930.5,
+    "steady_ii_cycles": 3691.67,
+    "samples": 264
+   },
+   "89": {
+    "first_full_cycles": 8013,
+    "steady_ii_cycles": 3737.4,
+    "samples": 267
+   },
+   "90": {
+    "first_full_cycles": 8093.0,
+    "steady_ii_cycles": 3744.9849999999997,
+    "samples": 270
+   },
+   "91": {
+    "first_full_cycles": 8042,
+    "steady_ii_cycles": 3759.53,
+    "samples": 273
+   },
+   "92": {
+    "first_full_cycles": 8113.0,
+    "steady_ii_cycles": 3710.885,
+    "samples": 276
+   },
+   "93": {
+    "first_full_cycles": 8167,
+    "steady_ii_cycles": 3816.6,
+    "samples": 279
+   },
+   "94": {
+    "first_full_cycles": 8089.5,
+    "steady_ii_cycles": 3805.415,
+    "samples": 282
+   },
+   "95": {
+    "first_full_cycles": 8009,
+    "steady_ii_cycles": 3839.5,
+    "samples": 285
+   },
+   "96": {
+    "first_full_cycles": 8380.5,
+    "steady_ii_cycles": 3854.8,
+    "samples": 288
+   },
+   "97": {
+    "first_full_cycles": 8390,
+    "steady_ii_cycles": 3850.8,
+    "samples": 291
+   },
+   "98": {
+    "first_full_cycles": 8438.0,
+    "steady_ii_cycles": 3889.35,
+    "samples": 294
+   },
+   "99": {
+    "first_full_cycles": 8682,
+    "steady_ii_cycles": 3840.2,
+    "samples": 297
+   },
+   "100": {
+    "first_full_cycles": 8705.0,
+    "steady_ii_cycles": 3854.715,
+    "samples": 300
+   },
+   "101": {
+    "first_full_cycles": 8511,
+    "steady_ii_cycles": 3931.1,
+    "samples": 303
+   },
+   "102": {
+    "first_full_cycles": 8794.0,
+    "steady_ii_cycles": 3896.33,
+    "samples": 306
+   },
+   "103": {
+    "first_full_cycles": 9005,
+    "steady_ii_cycles": 3983.43,
+    "samples": 309
+   },
+   "104": {
+    "first_full_cycles": 8596.5,
+    "steady_ii_cycles": 3929.4,
+    "samples": 312
+   },
+   "105": {
+    "first_full_cycles": 8945,
+    "steady_ii_cycles": 3975.5,
+    "samples": 315
+   },
+   "106": {
+    "first_full_cycles": 9044.0,
+    "steady_ii_cycles": 3981.88,
+    "samples": 318
+   },
+   "107": {
+    "first_full_cycles": 8827,
+    "steady_ii_cycles": 4014.9,
+    "samples": 321
+   },
+   "108": {
+    "first_full_cycles": 9106.0,
+    "steady_ii_cycles": 4000.8999999999996,
+    "samples": 324
+   },
+   "109": {
+    "first_full_cycles": 9102,
+    "steady_ii_cycles": 4093.9,
+    "samples": 327
+   },
+   "110": {
+    "first_full_cycles": 9158.5,
+    "steady_ii_cycles": 4073.8,
+    "samples": 330
+   },
+   "111": {
+    "first_full_cycles": 9164,
+    "steady_ii_cycles": 4086.7,
+    "samples": 333
+   },
+   "112": {
+    "first_full_cycles": 9924.5,
+    "steady_ii_cycles": 4072.45,
+    "samples": 336
+   },
+   "113": {
+    "first_full_cycles": 9328,
+    "steady_ii_cycles": 4152.43,
+    "samples": 339
+   },
+   "114": {
+    "first_full_cycles": 9525.5,
+    "steady_ii_cycles": 4089.9,
+    "samples": 342
+   },
+   "115": {
+    "first_full_cycles": 9551,
+    "steady_ii_cycles": 4150.7,
+    "samples": 345
+   },
+   "116": {
+    "first_full_cycles": 9223.5,
+    "steady_ii_cycles": 4183.115,
+    "samples": 348
+   },
+   "117": {
+    "first_full_cycles": 9290,
+    "steady_ii_cycles": 4220.83,
+    "samples": 351
+   },
+   "118": {
+    "first_full_cycles": 9054.5,
+    "steady_ii_cycles": 4243.530000000001,
+    "samples": 354
+   },
+   "119": {
+    "first_full_cycles": 9476,
+    "steady_ii_cycles": 4274.07,
+    "samples": 357
+   },
+   "120": {
+    "first_full_cycles": 9605.0,
+    "steady_ii_cycles": 4294.2,
+    "samples": 360
+   },
+   "121": {
+    "first_full_cycles": 10352,
+    "steady_ii_cycles": 4307.63,
+    "samples": 363
+   },
+   "122": {
+    "first_full_cycles": 9895.5,
+    "steady_ii_cycles": 4339.5,
+    "samples": 366
+   },
+   "123": {
+    "first_full_cycles": 10329,
+    "steady_ii_cycles": 4365.5,
+    "samples": 369
+   },
+   "124": {
+    "first_full_cycles": 9941.5,
+    "steady_ii_cycles": 4355.08,
+    "samples": 372
+   },
+   "125": {
+    "first_full_cycles": 9629,
+    "steady_ii_cycles": 4391.67,
+    "samples": 375
+   },
+   "126": {
+    "first_full_cycles": 9607.0,
+    "steady_ii_cycles": 4442.52,
+    "samples": 378
+   },
+   "127": {
+    "first_full_cycles": 9931,
+    "steady_ii_cycles": 4483.6,
+    "samples": 381
+   },
+   "128": {
+    "first_full_cycles": 9946.5,
+    "steady_ii_cycles": 4485.385,
+    "samples": 384
+   },
+   "129": {
+    "first_full_cycles": 10124,
+    "steady_ii_cycles": 4499.93,
+    "samples": 387
+   },
+   "130": {
+    "first_full_cycles": 10896.5,
+    "steady_ii_cycles": 4530.88,
+    "samples": 390
+   },
+   "131": {
+    "first_full_cycles": 10958,
+    "steady_ii_cycles": 4569.63,
+    "samples": 393
+   },
+   "132": {
+    "first_full_cycles": 10513.0,
+    "steady_ii_cycles": 4592.165,
+    "samples": 396
+   }
+  },
+  "4000": {
+   "1": {
+    "first_full_cycles": 3229,
+    "steady_ii_cycles": 4195.67,
+    "samples": 3
+   },
+   "32": {
+    "first_full_cycles": 5118.5,
+    "steady_ii_cycles": 4210.015,
+    "samples": 96
+   },
+   "64": {
+    "first_full_cycles": 7086.5,
+    "steady_ii_cycles": 4229.25,
+    "samples": 192
+   },
+   "108": {
+    "first_full_cycles": 8913.0,
+    "steady_ii_cycles": 4440.4,
+    "samples": 324
+   },
+   "128": {
+    "first_full_cycles": 9831.0,
+    "steady_ii_cycles": 4608.92,
+    "samples": 384
+   },
+   "132": {
+    "first_full_cycles": 10044.5,
+    "steady_ii_cycles": 4692.0,
+    "samples": 396
+   }
+  },
+  "5000": {
+   "1": {
+    "first_full_cycles": 3218,
+    "steady_ii_cycles": 5194.83,
+    "samples": 3
+   },
+   "32": {
+    "first_full_cycles": 5396.5,
+    "steady_ii_cycles": 5198.1849999999995,
+    "samples": 96
+   },
+   "64": {
+    "first_full_cycles": 6708.0,
+    "steady_ii_cycles": 5203.799999999999,
+    "samples": 192
+   },
+   "108": {
+    "first_full_cycles": 8891.5,
+    "steady_ii_cycles": 5226.9,
+    "samples": 324
+   },
+   "128": {
+    "first_full_cycles": 10931.5,
+    "steady_ii_cycles": 5310.88,
+    "samples": 384
+   },
+   "132": {
+    "first_full_cycles": 9946.0,
+    "steady_ii_cycles": 5386.535,
+    "samples": 396
+   }
+  },
+  "6000": {
+   "1": {
+    "first_full_cycles": 3151,
+    "steady_ii_cycles": 6191.2,
+    "samples": 3
+   },
+   "32": {
+    "first_full_cycles": 5253.5,
+    "steady_ii_cycles": 6195.715,
+    "samples": 96
+   },
+   "64": {
+    "first_full_cycles": 6612.0,
+    "steady_ii_cycles": 6196.45,
+    "samples": 192
+   },
+   "108": {
+    "first_full_cycles": 8953.5,
+    "steady_ii_cycles": 6197.485000000001,
+    "samples": 324
+   },
+   "128": {
+    "first_full_cycles": 9851.0,
+    "steady_ii_cycles": 6207.185,
+    "samples": 384
+   },
+   "132": {
+    "first_full_cycles": 10171.0,
+    "steady_ii_cycles": 6202.085,
+    "samples": 396
+   }
+  }
+ },
+ "provenance": [
+  {
+   "capture_dir": "mech_r1",
+   "accepted_stdout_sha256": "f28d7e6e3c1e99570d3153e1cb1cb4b1e849c8b477cb7d07d533ec9b11477364",
+   "builds": {
+    "fa3_wgmma_service": {
+     "source": "fa3_wgmma_service.cu",
+     "source_sha256": "a6cfce6ed71fff6c082c2281cb621238da224441a62fffb5d1fdda7199b94823",
+     "binary_sha256": "0ac7eba2f28f12bf88fe665fd84f7b578a04aa10afcc3f7014af2e89a538c13e",
+     "compile_command": "/capture-public/tools/cuda-12.9/bin/nvcc -O3 -std=c++17 -gencode=arch=compute_90a,code=sm_90a -lineinfo -Xptxas=-v /capture-public/h200_microbench/wp10_fa3_mla/src/microbench/nvidia_h200/operators/flash_attn/fa3_wgmma_service.cu -o /capture-public/h200_microbench/wp10_fa3_mla/mech_r1/bin/fa3_wgmma_service",
+     "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86"
+    },
+    "fa3_softmax_step": {
+     "source": "fa3_softmax_step.cu",
+     "source_sha256": "ad95854cb5c2d9f6f54b152e90c5a10c3e8d209e6dda706c0ebd8053af4154a6",
+     "binary_sha256": "1a7ecb1a6dbbe487925a5816f61235e0090e13fdc2446d78b03b9f74f3948aa2",
+     "compile_command": "/capture-public/tools/cuda-12.9/bin/nvcc -O3 -std=c++17 -gencode=arch=compute_90,code=sm_90 -lineinfo -Xptxas=-v /capture-public/h200_microbench/wp10_fa3_mla/src/microbench/nvidia_h200/operators/flash_attn/fa3_softmax_step.cu -o /capture-public/h200_microbench/wp10_fa3_mla/mech_r1/bin/fa3_softmax_step",
+     "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86"
+    },
+    "fa3_paged_kv_stream": {
+     "source": "fa3_paged_kv_stream.cu",
+     "source_sha256": "eb5f8e40a50a663df6f89fb6d1a3ccf8e40c66c7ba79ac52976c3c0ab2dedaf0",
+     "binary_sha256": "8989551e867d022a19c829414a33f7ba46387c7fd707092b3f0ceedc34be9916",
+     "compile_command": "/capture-public/tools/cuda-12.9/bin/nvcc -O3 -std=c++17 -gencode=arch=compute_90,code=sm_90 -lineinfo -Xptxas=-v /capture-public/h200_microbench/wp10_fa3_mla/src/microbench/nvidia_h200/operators/flash_attn/fa3_paged_kv_stream.cu -o /capture-public/h200_microbench/wp10_fa3_mla/mech_r1/bin/fa3_paged_kv_stream",
+     "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86"
+    }
+   },
+   "clock": {
+    "gate": "every busy nvidia-smi sample (50 ms) >= 1980 MHz; a window without busy samples requires every sample >= boost",
+    "accepted_captures": 7,
+    "rejected_captures": 0,
+    "captures_without_busy_sample": 0,
+    "busy_samples_total": 917,
+    "busy_clock_mhz_min": 1980,
+    "busy_clock_mhz_max": 1980,
+    "measured_sm_clock_mhz": 1980
+   },
+   "device": {
+    "index": 2,
+    "name": "NVIDIA H200",
+    "uuid": "capture-device-077372b98985",
+    "pci_bus_id": "00000000:5C:00.0",
+    "driver_version": "575.57.08",
+    "memory_used_mib": 4
+   },
+   "constants": {
+    "wgmma_shapes": [
+     "ss_n64_kmajor",
+     "ss_n128_kmajor",
+     "rs_n128_mnmajor",
+     "ss_n256_mnmajor",
+     "rs_n256_mnmajor"
+    ],
+    "wgmma_ksteps": [
+     1,
+     2,
+     4,
+     8,
+     12,
+     32
+    ],
+    "wgmma_reps": 2000,
+    "softmax_geometries": [
+     [
+      16,
+      64
+     ],
+     [
+      32,
+      32
+     ]
+    ],
+    "softmax_reps": 4000,
+    "full_grid": 132,
+    "stream_blocks": 32,
+    "stream_page_size": 16,
+    "stream_trials": 3,
+    "stream_hold_grids": [
+     1,
+     32,
+     64,
+     108,
+     128,
+     132
+    ],
+    "stream_holds": [
+     1000,
+     2000,
+     3000,
+     4000,
+     5000,
+     6000
+    ]
+   }
+  },
+  {
+   "capture_dir": "mech_k36",
+   "accepted_stdout_sha256": "5959f9bffdf37b6f94683971ecda75eb287885eb11c8a8bed7890f2cac937cf7",
+   "builds": {
+    "fa3_wgmma_service": {
+     "source": "fa3_wgmma_service.cu",
+     "source_sha256": "72b5d49adf6c7c73d2edf6563978d453e3e5802d5cb77f0406d75e6b245495f9",
+     "binary_sha256": "b57eb49955e172a3a9a5bbce25fda4d43df300c88754b1d0d061a09795a8ffd0",
+     "compile_command": "/capture-public/tools/cuda-12.9/bin/nvcc -O3 -std=c++17 -gencode=arch=compute_90a,code=sm_90a -lineinfo -Xptxas=-v /capture-public/h200_microbench/wp10_fa3_mla/src/microbench/nvidia_h200/operators/flash_attn/fa3_wgmma_service.cu -o /capture-public/h200_microbench/wp10_fa3_mla/mech_k36/bin/fa3_wgmma_service",
+     "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86"
+    },
+    "fa3_softmax_step": {
+     "source": "fa3_softmax_step.cu",
+     "source_sha256": "ad95854cb5c2d9f6f54b152e90c5a10c3e8d209e6dda706c0ebd8053af4154a6",
+     "binary_sha256": "36549135fc395962087825d38971692564b4701735d12a25ac67cd966288b7aa",
+     "compile_command": "/capture-public/tools/cuda-12.9/bin/nvcc -O3 -std=c++17 -gencode=arch=compute_90,code=sm_90 -lineinfo -Xptxas=-v /capture-public/h200_microbench/wp10_fa3_mla/src/microbench/nvidia_h200/operators/flash_attn/fa3_softmax_step.cu -o /capture-public/h200_microbench/wp10_fa3_mla/mech_k36/bin/fa3_softmax_step",
+     "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86"
+    },
+    "fa3_paged_kv_stream": {
+     "source": "fa3_paged_kv_stream.cu",
+     "source_sha256": "eb5f8e40a50a663df6f89fb6d1a3ccf8e40c66c7ba79ac52976c3c0ab2dedaf0",
+     "binary_sha256": "35ff6dda5d63cac048bbe623133b3c4ed576ac670f90a9680421ab9eb53b7e05",
+     "compile_command": "/capture-public/tools/cuda-12.9/bin/nvcc -O3 -std=c++17 -gencode=arch=compute_90,code=sm_90 -lineinfo -Xptxas=-v /capture-public/h200_microbench/wp10_fa3_mla/src/microbench/nvidia_h200/operators/flash_attn/fa3_paged_kv_stream.cu -o /capture-public/h200_microbench/wp10_fa3_mla/mech_k36/bin/fa3_paged_kv_stream",
+     "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86"
+    }
+   },
+   "clock": {
+    "gate": "every busy nvidia-smi sample (50 ms) >= 1980 MHz; a window without busy samples requires every sample >= boost",
+    "accepted_captures": 1,
+    "rejected_captures": 0,
+    "captures_without_busy_sample": 0,
+    "busy_samples_total": 10,
+    "busy_clock_mhz_min": 1980,
+    "busy_clock_mhz_max": 1980,
+    "measured_sm_clock_mhz": 1980
+   },
+   "device": {
+    "index": 2,
+    "name": "NVIDIA H200",
+    "uuid": "capture-device-077372b98985",
+    "pci_bus_id": "00000000:5C:00.0",
+    "driver_version": "575.57.08",
+    "memory_used_mib": 4
+   },
+   "constants": {
+    "wgmma_shapes": [
+     "ss_n64_kmajor",
+     "ss_n128_kmajor",
+     "rs_n128_mnmajor",
+     "ss_n256_mnmajor",
+     "rs_n256_mnmajor"
+    ],
+    "wgmma_ksteps": [
+     1,
+     2,
+     4,
+     8,
+     12,
+     32
+    ],
+    "wgmma_reps": 2000,
+    "softmax_geometries": [
+     [
+      16,
+      64
+     ],
+     [
+      32,
+      32
+     ]
+    ],
+    "softmax_reps": 4000,
+    "full_grid": 132,
+    "stream_blocks": 32,
+    "stream_page_size": 16,
+    "stream_trials": 3,
+    "stream_hold_grids": [
+     1,
+     32,
+     64,
+     108,
+     128,
+     132
+    ],
+    "stream_holds": [
+     1000,
+     2000,
+     3000,
+     4000,
+     5000,
+     6000
+    ]
+   }
+  },
+  {
+   "capture_dir": "mech_ring3073",
+   "accepted_stdout_sha256": "d003d3e35eddef671677fe659709902bc812c48dcdb75ff6aba1e5bc3d3901fd",
+   "builds": {
+    "fa3_wgmma_service": {
+     "source": "fa3_wgmma_service.cu",
+     "source_sha256": "72b5d49adf6c7c73d2edf6563978d453e3e5802d5cb77f0406d75e6b245495f9",
+     "binary_sha256": "4c8768820560557e62ed28a76b4c05d15fd12fbb64672e7b702bd259ff23f79a",
+     "compile_command": "/capture-public/tools/cuda-12.9/bin/nvcc -O3 -std=c++17 -gencode=arch=compute_90a,code=sm_90a -lineinfo -Xptxas=-v /capture-public/h200_microbench/wp10_fa3_mla/src/microbench/nvidia_h200/operators/flash_attn/fa3_wgmma_service.cu -o /capture-public/h200_microbench/wp10_fa3_mla/mech_ring3073/bin/fa3_wgmma_service",
+     "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86"
+    },
+    "fa3_softmax_step": {
+     "source": "fa3_softmax_step.cu",
+     "source_sha256": "ad95854cb5c2d9f6f54b152e90c5a10c3e8d209e6dda706c0ebd8053af4154a6",
+     "binary_sha256": "30c002274b5d997eb1885bd150da84fa89a0823f3601dc0b00acd39fa589dfef",
+     "compile_command": "/capture-public/tools/cuda-12.9/bin/nvcc -O3 -std=c++17 -gencode=arch=compute_90,code=sm_90 -lineinfo -Xptxas=-v /capture-public/h200_microbench/wp10_fa3_mla/src/microbench/nvidia_h200/operators/flash_attn/fa3_softmax_step.cu -o /capture-public/h200_microbench/wp10_fa3_mla/mech_ring3073/bin/fa3_softmax_step",
+     "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86"
+    },
+    "fa3_paged_kv_stream": {
+     "source": "fa3_paged_kv_stream.cu",
+     "source_sha256": "eb5f8e40a50a663df6f89fb6d1a3ccf8e40c66c7ba79ac52976c3c0ab2dedaf0",
+     "binary_sha256": "27946997038fcf168037ffb43a77736224bebfcabccbccf6ba59aed2873edf85",
+     "compile_command": "/capture-public/tools/cuda-12.9/bin/nvcc -O3 -std=c++17 -gencode=arch=compute_90,code=sm_90 -lineinfo -Xptxas=-v /capture-public/h200_microbench/wp10_fa3_mla/src/microbench/nvidia_h200/operators/flash_attn/fa3_paged_kv_stream.cu -o /capture-public/h200_microbench/wp10_fa3_mla/mech_ring3073/bin/fa3_paged_kv_stream",
+     "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86"
+    }
+   },
+   "clock": {
+    "gate": "every busy nvidia-smi sample (50 ms) >= 1980 MHz; a window without busy samples requires every sample >= boost",
+    "accepted_captures": 4,
+    "rejected_captures": 0,
+    "captures_without_busy_sample": 0,
+    "busy_samples_total": 519,
+    "busy_clock_mhz_min": 1980,
+    "busy_clock_mhz_max": 1980,
+    "measured_sm_clock_mhz": 1980
+   },
+   "device": {
+    "index": 2,
+    "name": "NVIDIA H200",
+    "uuid": "capture-device-077372b98985",
+    "pci_bus_id": "00000000:5C:00.0",
+    "driver_version": "575.57.08",
+    "memory_used_mib": 4
+   },
+   "constants": {
+    "wgmma_shapes": [
+     "ss_n64_kmajor",
+     "ss_n128_kmajor",
+     "rs_n128_mnmajor",
+     "ss_n256_mnmajor",
+     "rs_n256_mnmajor"
+    ],
+    "wgmma_ksteps": [
+     1,
+     2,
+     4,
+     8,
+     12,
+     32
+    ],
+    "wgmma_reps": 2000,
+    "softmax_geometries": [
+     [
+      16,
+      64
+     ],
+     [
+      32,
+      32
+     ]
+    ],
+    "softmax_reps": 4000,
+    "full_grid": 132,
+    "stream_blocks": 32,
+    "stream_page_size": 16,
+    "stream_trials": 3,
+    "stream_hold_grids": [
+     1,
+     32,
+     64,
+     108,
+     128,
+     132
+    ],
+    "stream_holds": [
+     1000,
+     2000,
+     3000,
+     4000,
+     5000,
+     6000
+    ]
+   }
+  }
+ ],
+ "decode_ring": {
+  "hold_cycles": 3073,
+  "derivation": "wgmma ss_n64_kmajor k36 1wg + softmax 16x64 1wg + wgmma rs_n256_mnmajor k4 2wg",
+  "derived_chain_cycles": 3072.78975
+ }
+}

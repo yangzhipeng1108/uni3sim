@@ -1,0 +1,96 @@
+{
+  "hardware_id": "nvidia_a800",
+  "max_scheduled_request_count": 126,
+  "measurement": {
+    "artifacts": [
+      {
+        "path": "serving_dataset/sharegpt/nvidia_a800/llama-3.1-8b/tp1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "a0ed85e1843c62329b9b4ea697bf61c28c31ee6b71dbd6f2065a82ab8526b78a"
+      },
+      {
+        "path": "serving_dataset/sharegpt/nvidia_a800/llama-3.1-8b/tp1_qps64/scheduler_steps.jsonl.zst",
+        "sha256": "d8c76ceeeab2164cee8f7a2e24c815c31031eca88fb3584275a578671c9daa7d"
+      },
+      {
+        "path": "serving_dataset/sharegpt/nvidia_a800/qwen3-30b-a3b/tp2_ep2_qps1/scheduler_steps.jsonl.zst",
+        "sha256": "e8cf7ca887661caa418a9f5c6441ef9d39708eef2189f3ae0fdcd6ff1c554ddb"
+      },
+      {
+        "path": "serving_dataset/sharegpt/nvidia_a800/qwen3-30b-a3b/tp2_ep2_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "944604d8b0cd58665c2143397c9adef93a80775326f01cb1e300c06005e7c7ac"
+      },
+      {
+        "path": "serving_dataset/sharegpt/nvidia_a800/qwen3-32b/tp2_ep1_qps1/scheduler_steps.jsonl.zst",
+        "sha256": "86345ea80377984f5d07b937662724d3ecadef62867d7c3dbac36e0d4e60fc59"
+      },
+      {
+        "path": "serving_dataset/sharegpt/nvidia_a800/qwen3-32b/tp2_ep1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "3a26a8499a735e14e4b46e48ba079df6c0b1eba9c64053fb65f121e79794ab45"
+      },
+      {
+        "path": "serving_dataset/sharegpt/nvidia_a800/qwen3-4b/tp1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "a335bb35a4a6bf7cc5e9135b97db93250ef05c9511fe45fd054eec52131291d3"
+      },
+      {
+        "path": "serving_dataset/sharegpt/nvidia_a800/qwen3-4b/tp1_qps64/scheduler_steps.jsonl.zst",
+        "sha256": "25bf61829f609d0e7240a1566bee64663c8db51f20584f0be23f117f96891ff3"
+      },
+      {
+        "path": "serving_dataset/sharegpt/nvidia_a800/qwen3-8b/tp1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "749acf6c5a089e2209bc9a5f096ec50f145785fe0a8d5b9c86af50615efb2a9d"
+      },
+      {
+        "path": "serving_dataset/sharegpt/nvidia_a800/qwen3-8b/tp1_qps64/scheduler_steps.jsonl.zst",
+        "sha256": "1a8a04865718cebbd8478bd80d85b4541e8c3581691a66a78b59722ecc2ef889"
+      },
+      {
+        "path": "microbench/nvidia_a800/runtime/scheduler_host_prefill/rep1.scheduler_steps.jsonl.zst",
+        "sha256": "603edf43603cc161a7a8bf8c2caff280f665701f9357a635195e5dfd4495f5a4"
+      }
+    ],
+    "boundary": "vllm_scheduler_trace_host_monotonic_plan_and_update",
+    "time_unit": "seconds",
+    "training_selection": {
+      "eligible_step_rule": "nonzero_scheduled_request_count_with_positive_plan_and_update",
+      "excluded_target_qps": 16,
+      "minimum_samples_per_phase": 32
+    }
+  },
+  "model": {
+    "kind": "scheduled_request_count_affine",
+    "state_dimensions": [
+      "scheduled_request_count"
+    ],
+    "statistic": "median_of_count_medians_theil_sen"
+  },
+  "scheduler": {
+    "source_identity": "vllm=0.11.0;source_identities=vllm=0.11.0;core=4573563d...cfbedd;executor=ad938d34...0cd16;vllm=0.11.0;source_commit=not_recorded",
+    "vllm_version": "0.11.0"
+  },
+  "schema_version": 1,
+  "service_time_s": {
+    "plan": {
+      "intercept": 3.975496428571432e-05,
+      "per_request": 8.370404761904762e-06
+    },
+    "prefill": {
+      "plan": {
+        "intercept": 2.679507142857148e-05,
+        "per_request": 0.00010014482142857143
+      },
+      "update": {
+        "intercept": 1.1639044642857141e-05,
+        "per_request": 4.516303571428571e-06
+      }
+    },
+    "update": {
+      "intercept": 3.851543183269474e-05,
+      "per_request": 4.939307551085568e-06
+    }
+  },
+  "supported_phases": [
+    "prefill",
+    "mixed",
+    "decode"
+  ]
+}

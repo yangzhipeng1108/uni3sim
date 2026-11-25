@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_elementwise_tbuf_lifecycle_110080b",
+  "request_size_unit": "source_tbuf_lifecycles",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"1": 40.0},
+  "source_allocation": {
+    "static_accounting_reference": "microbench/ascend_910b/references/elementwise_add_mul_dag_accounting_cann_8_5_1.json",
+    "static_accounting_sha256": "ac2f90c76a4cc6b2966d6dc97dc34f45a6ec51333d53f9fb7b739b63c5f46c5b",
+    "dag": "MulDag::MulXfp16Op<bfloat16_t>::OpDag",
+    "allocation_formula": "ubFormer * MaxDtypeBytes * BufferNum",
+    "ub_former_elements": 5504,
+    "max_dtype_bytes": 4,
+    "buffer_num": 5,
+    "allocation_bytes": 110080,
+    "source_init_calls_per_worker": 1
+  },
+  "measurement": {
+    "source_snapshot": "/capture-workspace/execution_snapshots/090ea17b-elementwise-tbuf-20260906",
+    "binary_sha256": "7053b3c49e9b96f9cff845bd13b9f75e5dd741681c6090197e4dc36785f5ca13",
+    "physical_device_id": 3,
+    "independent_runs": 3,
+    "block_dims": [1, 2, 4, 8, 16, 48],
+    "amplification_iterations": 64,
+    "maximum_run_relative_median_spread": 0.0026041666750000305,
+    "maximum_concurrency_relative_median_spread": 0.0,
+    "report": "profiler_output/microbench/ascend_910b/single_tbuf_lifecycle_elementwise_090ea17b_20260906/report.txt",
+    "report_sha256": "26080efa06bff22fefc6ba3e87d1460771c30a2af9069f305d51c51809faede5"
+  },
+  "composition": "one exact lifecycle request is serialized before the first tile on every active source worker; allocation bytes select this service but are not scalar operations",
+  "production_or_evaluation_duration_consumed": false,
+  "measurement_gate_passed": true,
+  "mechanism_publishable": true
+}

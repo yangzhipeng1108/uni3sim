@@ -1,0 +1,358 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_h200",
+  "software_revision": "vllm_0.11.0_source_triton_3.6_sm90",
+  "mechanism": "bm16_grouped_gemm_h2880_source_depth_operand_pipeline_v1",
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "use only for BF16 BM16/BN32/BK64/GSM1 E128 H2880 W1/W2 source launches with the exact retained active/maximum M-tile classes",
+  "source_geometry": {
+    "dtype": "bf16",
+    "tile_m": 16,
+    "tile_n": 32,
+    "tile_k": 64,
+    "group_size_m": 1,
+    "threads_per_cta": 128,
+    "experts": 128,
+    "production_projection_k_tiles": 45,
+    "production_w1_n_tiles": 180,
+    "production_w2_n_tiles": 90,
+    "adjacent_projection_k_tiles": [
+      44,
+      46
+    ],
+    "adjacent_w1_n_tiles": [
+      178,
+      182
+    ],
+    "adjacent_w2_n_tiles": [
+      88,
+      92
+    ],
+    "source_depth_classes": {
+      "31_active": {
+        "active_m_tiles": 31,
+        "w1_maximum_m_tiles": 32,
+        "w2_maximum_m_tiles": 122
+      },
+      "53_active": {
+        "active_m_tiles": 53,
+        "w1_maximum_m_tiles": 124,
+        "w2_maximum_m_tiles": 124
+      }
+    }
+  },
+  "selected_services": {
+    "31_active": {
+      "logical_byte_capacity_per_s": 4151757102026.8086,
+      "selection": "minimum across both adjacent K/N endpoints, W1/W2 source roles, and H200 GPUs 0/3"
+    },
+    "53_active": {
+      "logical_byte_capacity_per_s": 4244661557118.864,
+      "selection": "minimum across both adjacent K/N endpoints, W1/W2 source roles, and H200 GPUs 0/3"
+    }
+  },
+  "allowed_conclusion": "The two retained E128/H2880 BM16 source-depth classes use their conservative full-chip logical-operand completion capacities instead of the generic multi-wave DRAM-latency envelope.",
+  "capture": {
+    "baseline_commit": "48abf63b1baff96101be2f06194dc27a1d246932",
+    "runner_path": "microbench/nvidia_h200/operators/fused_moe/sm80_bf16_bm16_sparse_w1_source_vllm011_runner.py",
+    "runner_sha256": "e6180679348de538e3f80a28f2995a56e1c87e0c7840dcbcc52a8eaff1c5c232",
+    "vllm_source_sha256": "8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e",
+    "physical_devices": [
+      0,
+      3
+    ],
+    "trials_per_cell": 9,
+    "raw_paths": [
+      "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm16_grouped_gemm_h2880_source_depth/d2_r1/raw.csv",
+      "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm16_grouped_gemm_h2880_source_depth/d6_r1/raw.csv"
+    ],
+    "raw_sha256": [
+      "97e81ef513971d26bb7371ba95e203441692d202507e6ff602312993b9024c8d",
+      "042c765a0b20e652f69d5a3699160ab878cbadca0326d97fd878d571e7bad2ff"
+    ]
+  },
+  "h200_capture_provenance": {
+    "a800_reference": "microbench/nvidia_a800/references/bm16_grouped_gemm_h2880_source_depth_sm80.json",
+    "runner": "microbench/nvidia_h200/operators/fused_moe/sm80_bf16_bm16_sparse_w1_source_vllm011_runner.py",
+    "runner_sha256": "e6180679348de538e3f80a28f2995a56e1c87e0c7840dcbcc52a8eaff1c5c232",
+    "kernel_module": "microbench/nvidia_h200/operators/fused_moe/vllm_0_11_fused_moe_kernel.py",
+    "kernel_module_sha256": "3524c4403644320c6b3505eff0e0503f763550f04e029eef3091a051f5382adb",
+    "kernel_source": "byte-identical vLLM 0.11 fused_moe_kernel / invoke_fused_moe_kernel / moe_align_block_size segments (vLLM 0.11 fused_moe.py sha256 8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e) compiled by Triton 3.6.0; sort op = vLLM 0.24.0 _moe_C",
+    "software": {
+      "torch": "2.11.0+cu129",
+      "triton": "3.6.0",
+      "vllm_package_for_moe_align_op": "0.24.0"
+    },
+    "campaign": "microbench/nvidia_h200/operators/fused_moe/fused_moe_triton_wp1_campaign.py",
+    "campaign_sha256": "35b90e71354f86bbc199ede0cae7135f3dc16be15158c06520dfec9b093d7762",
+    "derivation": "microbench/nvidia_h200/operators/fused_moe/derive_fused_moe_triton_wp1_references.py",
+    "derivation_sha256": "183dae60d6334ccbb176f5918d156019c1a4bf300c8f2129f4e06e56a07ee1ff",
+    "baseline_commit": "48abf63b1baff96101be2f06194dc27a1d246932",
+    "raw_dir": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm16_grouped_gemm_h2880_source_depth",
+    "remote_raw_dir": "/capture-public/h200_microbench/wp1_moe_triton/repo/profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm16_grouped_gemm_h2880_source_depth",
+    "raw_tree_sha256": "a9ec02e41275376695a7fbd0e86a6249a8fb5d1112722067289a9be71cdff223",
+    "device_mapping": "A800 device 2 -> H200 GPU 0, A800 device 6 -> H200 GPU 3",
+    "clock": {
+      "gate": "per case: every nvidia-smi 50-ms sample inside [first timed launch - 0.1 s, last timed launch + 0.1 s] reads >= 1980 MHz",
+      "accepted_captures": 2,
+      "rejected_captures": 0,
+      "accepted_case_windows": 32,
+      "window_clock_mhz_min": 1980,
+      "measured_sm_clock_mhz": 1980
+    },
+    "deep_gate_m_tiles": {
+      "a800": 1728,
+      "h200": 2112
+    },
+    "logical_bytes": "routed_rows*K*2*ceil(N/32) + active_m_tiles*ceil(N/32)*K*32*2 over the per-case median of 9 CUDA-event trials (the BM16 W2R formula)",
+    "source_depth_case_rows": {
+      "31_active": [
+        {
+          "tokens": 8,
+          "experts": 128,
+          "topk": 4,
+          "active_experts": 31,
+          "k": 2816,
+          "n": 5696,
+          "active_m_tiles": 31,
+          "maximum_m_tiles": 32,
+          "grid": 5696,
+          "median_duration_ns": 238463.998,
+          "logical_operand_bytes": 1026555904,
+          "logical_operand_capacity_bytes_per_s": 4304867454247.7476,
+          "gpu": 0
+        },
+        {
+          "tokens": 8,
+          "experts": 128,
+          "topk": 4,
+          "active_experts": 31,
+          "k": 2944,
+          "n": 5824,
+          "active_m_tiles": 31,
+          "maximum_m_tiles": 32,
+          "grid": 5824,
+          "median_duration_ns": 252671.987,
+          "logical_operand_bytes": 1097334784,
+          "logical_operand_capacity_bytes_per_s": 4342922209259.3906,
+          "gpu": 0
+        },
+        {
+          "tokens": 32,
+          "experts": 128,
+          "topk": 1,
+          "active_experts": 31,
+          "k": 2816,
+          "n": 2816,
+          "active_m_tiles": 31,
+          "maximum_m_tiles": 122,
+          "grid": 10736,
+          "median_duration_ns": 122239.999,
+          "logical_operand_bytes": 507510784,
+          "logical_operand_capacity_bytes_per_s": 4151757102026.8086,
+          "gpu": 0
+        },
+        {
+          "tokens": 32,
+          "experts": 128,
+          "topk": 1,
+          "active_experts": 31,
+          "k": 2944,
+          "n": 2944,
+          "active_m_tiles": 31,
+          "maximum_m_tiles": 122,
+          "grid": 11224,
+          "median_duration_ns": 130239.993,
+          "logical_operand_bytes": 554696704,
+          "logical_operand_capacity_bytes_per_s": 4259035118344.9463,
+          "gpu": 0
+        },
+        {
+          "tokens": 8,
+          "experts": 128,
+          "topk": 4,
+          "active_experts": 31,
+          "k": 2816,
+          "n": 5696,
+          "active_m_tiles": 31,
+          "maximum_m_tiles": 32,
+          "grid": 5696,
+          "median_duration_ns": 239583.999,
+          "logical_operand_bytes": 1026555904,
+          "logical_operand_capacity_bytes_per_s": 4284743172685.7515,
+          "gpu": 3
+        },
+        {
+          "tokens": 8,
+          "experts": 128,
+          "topk": 4,
+          "active_experts": 31,
+          "k": 2944,
+          "n": 5824,
+          "active_m_tiles": 31,
+          "maximum_m_tiles": 32,
+          "grid": 5824,
+          "median_duration_ns": 252640.009,
+          "logical_operand_bytes": 1097334784,
+          "logical_operand_capacity_bytes_per_s": 4343471916199.9395,
+          "gpu": 3
+        },
+        {
+          "tokens": 32,
+          "experts": 128,
+          "topk": 1,
+          "active_experts": 31,
+          "k": 2816,
+          "n": 2816,
+          "active_m_tiles": 31,
+          "maximum_m_tiles": 122,
+          "grid": 10736,
+          "median_duration_ns": 121376.0,
+          "logical_operand_bytes": 507510784,
+          "logical_operand_capacity_bytes_per_s": 4181310835750.0654,
+          "gpu": 3
+        },
+        {
+          "tokens": 32,
+          "experts": 128,
+          "topk": 1,
+          "active_experts": 31,
+          "k": 2944,
+          "n": 2944,
+          "active_m_tiles": 31,
+          "maximum_m_tiles": 122,
+          "grid": 11224,
+          "median_duration_ns": 130751.997,
+          "logical_operand_bytes": 554696704,
+          "logical_operand_capacity_bytes_per_s": 4242357415007.588,
+          "gpu": 3
+        }
+      ],
+      "53_active": [
+        {
+          "tokens": 16,
+          "experts": 128,
+          "topk": 4,
+          "active_experts": 53,
+          "k": 2816,
+          "n": 5696,
+          "active_m_tiles": 53,
+          "maximum_m_tiles": 124,
+          "grid": 22072,
+          "median_duration_ns": 386431.992,
+          "logical_operand_bytes": 1764392960,
+          "logical_operand_capacity_bytes_per_s": 4565856338312.692,
+          "gpu": 0
+        },
+        {
+          "tokens": 16,
+          "experts": 128,
+          "topk": 4,
+          "active_experts": 53,
+          "k": 2944,
+          "n": 5824,
+          "active_m_tiles": 53,
+          "maximum_m_tiles": 124,
+          "grid": 22568,
+          "median_duration_ns": 411136.001,
+          "logical_operand_bytes": 1886044160,
+          "logical_operand_capacity_bytes_per_s": 4587397249116.114,
+          "gpu": 0
+        },
+        {
+          "tokens": 64,
+          "experts": 128,
+          "topk": 1,
+          "active_experts": 53,
+          "k": 2816,
+          "n": 2816,
+          "active_m_tiles": 53,
+          "maximum_m_tiles": 124,
+          "grid": 10912,
+          "median_duration_ns": 196735.993,
+          "logical_operand_bytes": 872284160,
+          "logical_operand_capacity_bytes_per_s": 4433780248843.434,
+          "gpu": 0
+        },
+        {
+          "tokens": 64,
+          "experts": 128,
+          "topk": 1,
+          "active_experts": 53,
+          "k": 2944,
+          "n": 2944,
+          "active_m_tiles": 53,
+          "maximum_m_tiles": 124,
+          "grid": 11408,
+          "median_duration_ns": 224032.0,
+          "logical_operand_bytes": 953384960,
+          "logical_operand_capacity_bytes_per_s": 4255574917868.8755,
+          "gpu": 0
+        },
+        {
+          "tokens": 16,
+          "experts": 128,
+          "topk": 4,
+          "active_experts": 53,
+          "k": 2816,
+          "n": 5696,
+          "active_m_tiles": 53,
+          "maximum_m_tiles": 124,
+          "grid": 22072,
+          "median_duration_ns": 386496.007,
+          "logical_operand_bytes": 1764392960,
+          "logical_operand_capacity_bytes_per_s": 4565100099468.815,
+          "gpu": 3
+        },
+        {
+          "tokens": 16,
+          "experts": 128,
+          "topk": 4,
+          "active_experts": 53,
+          "k": 2944,
+          "n": 5824,
+          "active_m_tiles": 53,
+          "maximum_m_tiles": 124,
+          "grid": 22568,
+          "median_duration_ns": 412512.004,
+          "logical_operand_bytes": 1886044160,
+          "logical_operand_capacity_bytes_per_s": 4572095215924.916,
+          "gpu": 3
+        },
+        {
+          "tokens": 64,
+          "experts": 128,
+          "topk": 1,
+          "active_experts": 53,
+          "k": 2816,
+          "n": 2816,
+          "active_m_tiles": 53,
+          "maximum_m_tiles": 124,
+          "grid": 10912,
+          "median_duration_ns": 196927.994,
+          "logical_operand_bytes": 872284160,
+          "logical_operand_capacity_bytes_per_s": 4429457398525.066,
+          "gpu": 3
+        },
+        {
+          "tokens": 64,
+          "experts": 128,
+          "topk": 1,
+          "active_experts": 53,
+          "k": 2944,
+          "n": 2944,
+          "active_m_tiles": 53,
+          "maximum_m_tiles": 124,
+          "grid": 11408,
+          "median_duration_ns": 224608.004,
+          "logical_operand_bytes": 953384960,
+          "logical_operand_capacity_bytes_per_s": 4244661557118.864,
+          "gpu": 3
+        }
+      ]
+    },
+    "derived_at_utc": "2026-09-24T20:59:40.625007+00:00"
+  }
+}

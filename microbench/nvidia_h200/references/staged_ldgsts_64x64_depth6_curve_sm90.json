@@ -1,0 +1,108 @@
+{
+  "schema": "nvidia_h200_staged_ldgsts_64x64_depth6_curve_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "source_baseline_commit": "aeb34ee300b317a6e3820ec9a9745a2c3ac41928",
+  "source": "microbench/nvidia_h200/memory/dram/staged_ldgsts_64x64_depth6_curve.cu",
+  "source_sha256": "9c2eafa584de7ca4ba7361cb4c28371dffd39ac090f686eb2b243ab8723956dc",
+  "runner": "microbench/nvidia_h200/memory/dram/staged_ldgsts_64x64_depth6_curve_runner.py",
+  "runner_sha256": "42b93b961205f3ed80b4e1d2492dcefdab061325ae5db9db6f8f049975755f28",
+  "source_program": {
+    "library": "/usr/local/cuda-12.2/targets/x86_64-linux/lib/libcublasLt.so.12.2.5.6",
+    "library_sha256": "fbfbc8a1faf681fa5f3ed3ab86d456e196058e9a6b601c930d200dcd2822b1ae",
+    "function": "ampere_fp16_s16816gemm_fp16_64x64_sliced1x2_ldg8_f2f_stages_64x6_tn",
+    "function_reference": "microbench/nvidia_a800/references/cublaslt_fp16_64x64x64_depth6_sass.json",
+    "threads_per_cta": 128,
+    "operand_panel_bytes": 16384,
+    "complete_operand_pair_slots": 3,
+    "static_shared_memory_bytes": 49152,
+    "h200_note": "The source-program identity is the A800 SM80 cuBLASLt symbol the probe topology was derived from; H200 does not re-derive it.  The H200 probe keeps that topology and only pads its dynamic reservation to preserve one resident CTA per SM."
+  },
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp3_d6_r1_t1",
+      "device_index": 2,
+      "device_uuid": "capture-device-077372b98985",
+      "candidate_sha256": "38b1e308efd8c6bbd4af4e1dc121fa36d26f2ffaf39f764f3e99582a5eb4797f",
+      "raw_sha256": "406eb2fcbd9d7abbdf7522d2a182fa7441144ab96b1a7523f65ff7cf3f38f8ba",
+      "sass_sha256": "9b7fc0d87a6216a1e343c74a7466a760d1a708db14d8a9c76db8513ccc31b6d2",
+      "l2_resident_capacity_per_s": 3299759807387.029,
+      "dram_unique_capacity_per_s": 2680548124701.2764
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp3_d6_r2_t1",
+      "device_index": 2,
+      "device_uuid": "capture-device-077372b98985",
+      "candidate_sha256": "f29e369271e5a474bd05012f83de10318e19bd6e85e703ad639ee53cfbc8a814",
+      "raw_sha256": "58c83d2d9e54796c038a894d9954f98187d2bf40681f489ab97fb628609e1bc1",
+      "sass_sha256": "9b7fc0d87a6216a1e343c74a7466a760d1a708db14d8a9c76db8513ccc31b6d2",
+      "l2_resident_capacity_per_s": 3308952408322.592,
+      "dram_unique_capacity_per_s": 2683764049718.7876
+    }
+  ],
+  "probe_contract": {
+    "dtype": "fp16",
+    "grid_ctas": 64,
+    "threads_per_cta": 128,
+    "resident_ctas_per_sm": 1,
+    "complete_operand_pair_slots": 3,
+    "a_panel_bytes": 8192,
+    "b_panel_bytes": 8192,
+    "panel_bytes": 16384,
+    "rounds_per_cta": 4096,
+    "l2_backing_bytes": 33554432,
+    "dram_unique_backing_bytes": 4294967296,
+    "load_instruction": "LDGSTS.E.BYPASS.128",
+    "commit_instruction": "LDGDEPBAR",
+    "wait_instruction": "DEPBAR.LE SB0, 0x1",
+    "cache_operator": "cg"
+  },
+  "selected_services": {
+    "selection_rule": "minimum complete-capture median capacity across two independent clock-accepted capture processes on H200 GPU 2",
+    "l2_resident": {
+      "logical_byte_capacity_per_s": 3299759807387.029
+    },
+    "dram_unique": {
+      "logical_byte_capacity_per_s": 2680548124701.2764
+    }
+  },
+  "applicability": {
+    "dtype": "fp16",
+    "tile_shape": [
+      64,
+      64,
+      64
+    ],
+    "threads_per_cta": 128,
+    "complete_operand_pair_slots": 3,
+    "resident_ctas_per_sm": 1,
+    "grid_ctas": 64,
+    "required_launch_algorithm": "observed_gemm:gemm",
+    "required_split_k_semantics": "non_split"
+  },
+  "decision": {
+    "status": "accepted_mechanism_service",
+    "forward_eligible": true,
+    "reason": "The copy-only probe keeps the source program's FP16 panel size, CTA width, three complete operand-pair ring, one-CTA occupancy, and 64-CTA decode cohort on H200. It distinguishes L2-resident and DRAM-unique steady ingress without matrix instructions, output storage, production shapes, or production durations."
+  },
+  "excluded_conclusions": [
+    "a complete production GEMM duration",
+    "a generic DRAM capacity replacement",
+    "a source service for another tile, grid, occupancy, or pipeline program",
+    "a per-shape timing correction"
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "clock_gate": {
+      "rule": "every probe process runs under nvidia-smi -lms 50; a process is accepted only if it shows a busy sample and every busy sample is >= 1980 MHz, otherwise it is rejected and re-run",
+      "accepted_captures": 2,
+      "rejected_captures": 0,
+      "accepted_busy_sm_clock_min_mhz": 1980,
+      "accepted_busy_sm_clock_max_mhz": 1980,
+      "accepted_busy_samples": 8,
+      "rejected_busy_sm_clock_min_mhz": []
+    },
+    "remote_raw_root": "/capture-public/h200_microbench/wp3_ldgsts/repo/profiler_output/microbench/nvidia_h200"
+  }
+}

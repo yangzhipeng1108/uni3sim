@@ -1,0 +1,48 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_matmul_v2_finite_transition.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_source_pair_finite_to_steady_validation_v1",
+  "duration_unit": "ns_per_completed_source_program_per_aic",
+  "validated_domain": {
+    "maximum_completion_pairs_per_worker": 864,
+    "maximum_source_descriptors_per_worker": 432
+  },
+  "source_programs": [
+    {
+      "active_aic_groups": 24,
+      "m_groups": 2,
+      "n_groups": 12,
+      "base_tile_m": 128,
+      "base_tile_n": 112,
+      "base_tile_k": 128,
+      "a_rows": 128,
+      "a_columns": 256,
+      "b_rows": 112,
+      "b_columns": 256,
+      "source_row_stride_elements": 13824,
+      "output_tiles_per_worker": 4,
+      "k_slabs": 54,
+      "source_descriptors_per_worker": 432,
+      "completion_pairs_per_worker": 864,
+      "mte2_only_run_medians_ns": [224540.0, 224940.0, 224800.0],
+      "mte2_mte1_completion_run_medians_ns": [346220.0, 346650.0, 346210.0],
+      "mte2_only_median_of_run_medians_ns": 224800.0,
+      "mte2_mte1_completion_median_of_run_medians_ns": 346220.0
+    }
+  ],
+  "captures": [
+    {
+      "measurement_baseline_commit": "76899da22b2190a50b83db9ac008d14f6e50ecde",
+      "source_snapshot_sha256": "7da8d9912adfdc1430033291dc2e82a382bd3e39e43375adf1ef23dd8d488bf9",
+      "binary_sha256": "2966f15d61192058ca3dac6f84bf1fcd034a3b6ce2e4915cff6829d4dae799dd",
+      "raw_paths": [
+        "profiler_output/microbench/ascend_910b/gemm_source_transition_76899da2_20260910_d4/k13824_m128_n112.csv"
+      ],
+      "raw_sha256": [
+        "7c096b4b76810670f8d0c214d034a70c31f0c71127a5755d3ef07bf79539905b"
+      ]
+    }
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

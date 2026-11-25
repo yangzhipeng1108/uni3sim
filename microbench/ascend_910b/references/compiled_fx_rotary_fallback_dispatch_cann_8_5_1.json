@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "kind": "ascend_compiled_fx_rotary_fallback_dispatch_completion",
+  "hardware_id": "ascend_910b",
+  "runtime": {
+    "name": "CANN",
+    "version": "8.5.1"
+  },
+  "framework": {
+    "name": "torch_npu",
+    "version": "2.9.0.post1+gitee7ba04"
+  },
+  "baseline_commit": "c20bffc6359f60ad888afe7deb44cecbeb14d908",
+  "runner": {
+    "path": "microbench/ascend_910b/runtime/launch/compiled_fx_executor_runner.py",
+    "sha256": "81a875edddcf0a0f71db3f36f3a51f829e5168b6d95b4e3e6648296547d6ec7e"
+  },
+  "source_contract": {
+    "path": "src/serving/compiled_fx.py",
+    "mechanism": "compiled_fx_rotary_composite_entry",
+    "occurrence": {
+      "source_helper": "vllm.RotaryEmbedding.forward_native",
+      "anchor_suffix": "rotary-cos-sin-gather",
+      "children_per_helper": "source-dependent rotary-* group; one fallback entry per group",
+      "graph_domain": "dense Ascend plans only; explicit layer-0 plus repeated layer-1 template",
+      "fused_paths": "registered/fused RoPE paths emit no native-composite group and consume zero events"
+    }
+  },
+  "lanes": [
+    {
+      "device_id": 0,
+      "summary_path": "profiler_output/microbench/ascend_910b/fallback_dispatch_executor_20260919_r1/summary.json",
+      "summary_sha256": "195490765363a2b18411b838b5f092353075a1f11f9d9d21f585336929e51086",
+      "wall_slope_ns_per_node": 96687.23140900195,
+      "holdout_wall_signed_error_percent": 4.018657375986702
+    },
+    {
+      "device_id": 1,
+      "summary_path": "profiler_output/microbench/ascend_910b/fallback_dispatch_executor_20260919_r2/summary.json",
+      "summary_sha256": "7e854597d1d45f46c982612e4e06f1a76fbcdfc61d6dd0dfcbcf97be1c3ec17c",
+      "wall_slope_ns_per_node": 108012.08561643836,
+      "holdout_wall_signed_error_percent": 2.2218615240564397
+    }
+  ],
+  "service_time_s": {
+    "compiled_fx_rotary_composite_entry": 0.00010234965851272015
+  },
+  "measurement": {
+    "boundary": "independent_compiled_fx_fallback_dispatch_microbenchmark",
+    "synthetic_shape": [256],
+    "fit_chain_lengths": [1, 8, 64],
+    "holdout_chain_length": 512,
+    "production_or_evaluation_duration_consumed": false,
+    "lane_aggregation": "arithmetic_mean_of_two independent 910B devices"
+  }
+}

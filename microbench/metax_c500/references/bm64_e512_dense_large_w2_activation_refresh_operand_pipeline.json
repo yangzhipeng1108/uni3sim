@@ -1,0 +1,56 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_e512_dense_large_w2_activation_refresh_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline_with_source_order_activation_refresh",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "routed_rows": 327680,
+    "populated_experts": 512,
+    "active_m_tiles": 5373,
+    "maximum_m_tiles": 5624,
+    "source_rows": 327680,
+    "production_k_n_tile_class": [32, 64],
+    "source_order_precondition": "the full 327680x1024 BF16 activation input is written on the same stream immediately before W2"
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090603,
+    "route_sha256": "e348c0d3792fc640cee76cd6dd357ab776704b9927ecb93e2593cbd1ef03d3c5",
+    "tokens": 32768,
+    "experts": 512,
+    "topk": 10,
+    "source_topk": 1,
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 1,
+    "independent_captures_per_adjacent_geometry": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "cffe88825767f47104baac2a7d4f9f75a1b5c260f821ad63f308e28d530742ac",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "refresh the full activation buffer before each timed production-source W2 launch, take the median event duration at each adjacent non-production N geometry, linearly interpolate duration to production N=4096, then divide production-topology logical operand bytes by that duration"
+  },
+  "captures": {
+    "n4032": [
+      {"event_median_ms": 285.4773864746094, "raw_sha256": "dd8ce9c467c417de236304362f48d91e22d293c5238bb2ef0f2b997a7f04f26b", "operand_pipeline_capacity_bytes_per_s": 607027592048.566},
+      {"event_median_ms": 285.6383972167969, "raw_sha256": "c883d8e5e29dee5f28462c960c67521a53ae4909fbc7aebcb244b1e8c6d0b921", "operand_pipeline_capacity_bytes_per_s": 606685418292.9492},
+      {"event_median_ms": 284.9177551269531, "raw_sha256": "a3a455e49387414bbdaa68dd0c8811488307263686e1ca9b93d75e80082d5e8e", "operand_pipeline_capacity_bytes_per_s": 608219906894.8322}
+    ],
+    "n4160": [
+      {"event_median_ms": 292.96075439453125, "raw_sha256": "be55e0fbcc4d4d3d879941b5291338e684b76c369c8bd7756b7744097fc6402c", "operand_pipeline_capacity_bytes_per_s": 610300191401.1237},
+      {"event_median_ms": 292.9134216308594, "raw_sha256": "7aebc8f14109ac19bca72e04f110a140e3f684554164e56a15cf050a109b3629", "operand_pipeline_capacity_bytes_per_s": 610398811650.642},
+      {"event_median_ms": 293.63507080078125, "raw_sha256": "5c0eb21dc82ffd67afd6c6a0c34e2eceea164eede7c58bf3086991eb5c503e3b", "operand_pipeline_capacity_bytes_per_s": 608898671376.0225}
+    ]
+  },
+  "selected_service": {
+    "predicate": "512 populated experts, 10-11 active M tiles per expert, 5624 maximum M tiles, 327680 source rows, K/N tile class (32,64), and a full source-order activation write immediately before W2",
+    "production_n": 4096,
+    "interpolated_event_ms": 289.2190704345703,
+    "reference_operand_bytes": 176043327488,
+    "logical_byte_capacity_per_s": 608685060855.3701
+  },
+  "raw_path": "profiler_output/microbench/metax_c500/bm64_e512_h4096_w2_activation_refresh_873d7907_20260908_r2",
+  "allowed_conclusion": "The exact dense E512 large-W2 source consumes an activation-refreshed full-source operand service; the warm repeated-W2 service is not applicable after the preceding activation write."
+}

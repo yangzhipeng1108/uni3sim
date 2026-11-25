@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "campaign": "rmsnorm_key0_steady_mte2_completion",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "service_time_selection": "median_of_independent_run_medians",
+  "lookup_policy": "exact_cann_rmsnorm_key0_worker_count_and_payload_only",
+  "pairing_formula": "maximum_worker((eight warmed source-form MTE2-to-Vector request edges-control edges)/8), matched by run, trial, and pair order",
+  "source_scope": "CANN BF16 RMSNorm key-0 repeated-row source form after the one-time gamma request: one depth-one TQue GM-to-UB DataCopyPad per row followed by its MTE2-to-Vector hard completion edge",
+  "source_tile_evidence": {
+    "dtype_bytes": 2,
+    "payload_bytes": [4096, 5120, 10240],
+    "production_worker_counts": [32, 43, 47],
+    "steady_requests_per_trial": 8,
+    "scope_boundary": "exactly warmed repeated-row CANN RMSNorm key-0 MTE2-to-Vector edges for the retained worker-count and payload cells; first gamma requests, MTE3 requests, terminal rstd stores, other payloads, variants, and tiling keys remain outside this evidence"
+  },
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "source_baseline_commit": "1d002578b1657fe81f32a27c3fcd820bba63489a",
+  "source_snapshot_path": "/capture-workspace/midlayer_capture/source_snapshots/rmsnorm_key0_steady_mte2_1d002578_20260906",
+  "source_snapshot_files_sha256": {
+    "rmsnorm_key0_steady_edges_kernel.cpp": "c755c8ad57b89937df0bfcdfd5362b7cda96d7e3aa8ffecbc5fd462de61cdd40",
+    "rmsnorm_key0_steady_edges_main.cpp": "e19662843587bf29bf2e061d7f68a350e4aabd92fe6374779564a5b62cbf7ed0",
+    "rmsnorm_key0_steady_edges_runner.py": "f63fdfc769b0476fd0ce7758943c175806e31d132c594c266669023338848473",
+    "rmsnorm_key0_steady_edges_report.py": "0f41c724b5e7dcfc1c5a6ff8f7817a6f5a2a5be354792f611c46abda8210a7d8"
+  },
+  "benchmark_binary_sha256": "15ba0a7d86cf47470ef2b9eda142d8a3215a504bc8f856f32d5bd015d5dd80b3",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_steady_mte2_1d002578_20260906_d3/run1.csv",
+      "sha256": "ebc7bccb597c1f556b8289d142f1fa0371173383370f842666955f56fe067ce1",
+      "metadata_sha256": "695631d9ee53a77453e2433704ac20f9e66599a943801db4e95e26b0199f3ed4",
+      "runner_log_sha256": "6d807d8e040f1652916e6279481860e2af301bddf1e9ebdeb8fa143257794341",
+      "device_id": 3,
+      "run_id": "rmsnorm-key0-steady-mte2-1d002578-d3-r1"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_steady_mte2_1d002578_20260906_d3/run2.csv",
+      "sha256": "5be4bf84e01e67de48be12321e83688cc6c6502a6ec646291dedba7e5e4fed00",
+      "metadata_sha256": "695631d9ee53a77453e2433704ac20f9e66599a943801db4e95e26b0199f3ed4",
+      "runner_log_sha256": "4aa3253dc26a71cbd6c95a3e365d0263a442d3d6c0f5390f920156d493cbfba0",
+      "device_id": 3,
+      "run_id": "rmsnorm-key0-steady-mte2-1d002578-d3-r2"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_steady_mte2_1d002578_20260906_d3/run3.csv",
+      "sha256": "be35e9e3dea526ec1f347a5d66ef3568b7b2276b9f617ecf866c7a2ea6bd145c",
+      "metadata_sha256": "695631d9ee53a77453e2433704ac20f9e66599a943801db4e95e26b0199f3ed4",
+      "runner_log_sha256": "17e15600d6fdd363a7a39023ca58daac70d2f172a90626565cfa3bde6960ab40",
+      "device_id": 3,
+      "run_id": "rmsnorm-key0-steady-mte2-1d002578-d3-r3"
+    }
+  ],
+  "audit_report": {
+    "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_steady_mte2_1d002578_20260906_d3/report.txt",
+    "sha256": "b238634c1a8b1d328636ce241c97c291174f030c9a3856bd08712c06f9093666"
+  },
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 126,
+  "replication_basis": "seven_complete_position_balanced_schedule_cycles_with_pair_order_exchange",
+  "median_ns_by_run": {
+    "rmsnorm-key0-steady-mte2-1d002578-d3-r1": {"32:4096": 410.0, "32:5120": 425.0, "32:10240": 462.5, "43:4096": 425.0, "43:5120": 437.5, "43:10240": 490.0, "47:4096": 430.0, "47:5120": 455.0, "47:10240": 515.0},
+    "rmsnorm-key0-steady-mte2-1d002578-d3-r2": {"32:4096": 412.5, "32:5120": 422.5, "32:10240": 460.0, "43:4096": 422.5, "43:5120": 440.0, "43:10240": 490.0, "47:4096": 430.0, "47:5120": 457.5, "47:10240": 512.5},
+    "rmsnorm-key0-steady-mte2-1d002578-d3-r3": {"32:4096": 412.5, "32:5120": 427.5, "32:10240": 460.0, "43:4096": 422.5, "43:5120": 440.0, "43:10240": 492.5, "47:4096": 427.5, "47:5120": 455.0, "47:10240": 517.5}
+  },
+  "published_cells": {
+    "32:4096": {"service_time_ns": 412.5, "maximum_run_relative_median_spread": 0.006060606},
+    "32:5120": {"service_time_ns": 425.0, "maximum_run_relative_median_spread": 0.011695906},
+    "32:10240": {"service_time_ns": 460.0, "maximum_run_relative_median_spread": 0.005405405},
+    "43:4096": {"service_time_ns": 422.5, "maximum_run_relative_median_spread": 0.005882353},
+    "43:5120": {"service_time_ns": 440.0, "maximum_run_relative_median_spread": 0.005681818},
+    "43:10240": {"service_time_ns": 490.0, "maximum_run_relative_median_spread": 0.005076142},
+    "47:4096": {"service_time_ns": 430.0, "maximum_run_relative_median_spread": 0.005813953},
+    "47:5120": {"service_time_ns": 455.0, "maximum_run_relative_median_spread": 0.005464481},
+    "47:10240": {"service_time_ns": 515.0, "maximum_run_relative_median_spread": 0.009661836}
+  },
+  "gates": {
+    "source_identity": "pass",
+    "binary_identity": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "balanced_cell_order": "pass",
+    "within_run_replication": "pass",
+    "cross_run_relative_median_spread_limit": 0.2,
+    "cross_run_stability": "pass"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true,
+  "production_consumption_status": "exact_repeated_row_cells_only"
+}

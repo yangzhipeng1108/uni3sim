@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_h200",
+  "scheduler": {
+    "vllm_version": "0.30.0",
+    "source_identity": "vllm=0.30.0;source_commit=ced6857afa0ea7b2e3f0846a62e1394e90f15607;host_cpu=8358;independent_cpu_mechanism=true;decode_as_mixed_proxy=true"
+  },
+  "model": {
+    "kind": "scheduled_request_count_affine",
+    "state_dimensions": [
+      "scheduled_request_count"
+    ],
+    "statistic": "median_of_count_medians_theil_sen"
+  },
+  "max_scheduled_request_count": 32,
+  "supported_phases": [
+    "prefill",
+    "mixed",
+    "decode"
+  ],
+  "service_time_s": {
+    "plan": {
+      "intercept": 2.7381419354838728e-05,
+      "per_request": 9.68758064516129e-06
+    },
+    "update": {
+      "intercept": 1.184380645161291e-05,
+      "per_request": 6.449193548387097e-06
+    },
+    "prefill": {
+      "plan": {
+        "intercept": 2.386212903225807e-05,
+        "per_request": 4.5684370967741936e-05
+      },
+      "update": {
+        "intercept": 1.8585032258064545e-05,
+        "per_request": 1.0576217741935483e-05
+      }
+    }
+  },
+  "measurement": {
+    "boundary": "vllm_scheduler_trace_host_monotonic_plan_and_update",
+    "time_unit": "seconds",
+    "training_selection": {
+      "excluded_target_qps": 16,
+      "minimum_samples_per_phase": 32,
+      "eligible_step_rule": "nonzero_scheduled_request_count_with_positive_plan_and_update"
+    },
+    "artifacts": [
+      {
+        "path": "microbench/nvidia_h200/runtime/scheduler_host/references/independent_state_vllm030_cpu.json",
+        "sha256": "485c3b271be93379349f15a2d62bd5f5836f4005aa13ce2cdf6fbd9dad42ac52"
+      }
+    ]
+  }
+}

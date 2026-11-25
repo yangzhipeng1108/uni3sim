@@ -1,0 +1,45 @@
+{
+ "derivation_rule": "minimum_all_binary_graph_replay_differentials",
+ "derivation_trials": [
+  1,
+  2
+ ],
+ "device_name": "NVIDIA A800-SXM4-80GB",
+ "duration_ns": 1884.979248046875,
+ "duration_unit": "ns_per_task",
+ "hardware_id": "nvidia_a800",
+ "maximum_cross_trial_median_spread_fraction": 0.007585108384770856,
+ "maximum_floor_regime_elements": 1024,
+ "model": "warm_bf16_binary_tensor_iterator_task_floor_v1",
+ "probe_elements": [
+  1,
+  1024,
+  16384,
+  1048576
+ ],
+ "production_or_evaluation_duration_consumed": false,
+ "profiler_attached": false,
+ "rationale": "A800's launch model is isolated_empty_task_scheduler_v1, a floor calibrated on a task that issues no load. The C500 span-floor runner states why that is not a production bound: the empty body is never published because every production kernel touches memory. This is the A800 counterpart of the non-empty task floor C500 already publishes, measured on the same task class, timer domain and derivation rule.",
+ "raw_sha256": {
+  "trial_1.json": "62e5f1829ea3fe3a8a75929c43aefa5bdb219f7e963155d24103e51eaf7ac955",
+  "trial_2.json": "3ef154cc6711fb3552fd303a1b58ce55097ef101ced66f9e22ef3364a9b269e9",
+  "trial_3.json": "566bb6eae8506bea5ecd607d1383309b9fcbef1c4784477d31e99918ff0b08fc"
+ },
+ "repetition_counts": [
+  100,
+  500
+ ],
+ "runner": "microbench/nvidia_a800/runtime/task_floor/bf16_binary_task_floor_runner.py",
+ "runner_sha256": "6c2f79b401fef24517ebb096b668c8087aeb9b25f46f340fbd8778a403c459b3",
+ "schema_version": 2,
+ "software_revision": "torch_2.8.0+cu128_cuda_sm80",
+ "source_capture": "profiler_output/microbench/nvidia_a800/bf16_binary_task_floor",
+ "target_operator_used": false,
+ "task_class": "pytorch_bf16_binary_tensor_iterator",
+ "timer_domain": "paired_differential_events_around_cuda_graph_replay",
+ "torch_version": "2.8.0+cu128",
+ "validation_below_floor_count": 0,
+ "validation_minimum_per_task_ns": 1899.3153381347656,
+ "validation_sample_count": 8,
+ "validation_trial": 3
+}

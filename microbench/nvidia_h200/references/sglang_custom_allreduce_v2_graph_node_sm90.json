@@ -1,0 +1,197 @@
+{
+ "schema_version": 1,
+ "mechanism": "sglang_custom_all_reduce_v2_cuda_graph_node_service",
+ "timer_domain": "cuda_event_around_graph_replay_divided_by_chain",
+ "chain_length": 64,
+ "trials": 30,
+ "warmup_replays": 5,
+ "dtype": "bfloat16",
+ "custom_all_reduce_max_bytes": 16777216,
+ "production_or_evaluation_duration_consumed": false,
+ "runner": {
+  "path": "/capture-public/h200_microbench/sglang_dsr1/src/sglang_custom_allreduce_v2_latency_runner.py",
+  "sha256": "fb4839a9f401a62dc684da34e79a8feb39f105ce33aade627bff722101f24a29",
+  "git_commit": "41681fdcb"
+ },
+ "command": "/capture-public/envs/sglang0512/bin/python /capture-public/h200_microbench/sglang_dsr1/src/sglang_custom_allreduce_v2_latency_runner.py --world-sizes 8 --output-dir /capture-public/h200_microbench/sglang_dsr1/runs/ar_ws8_20260927_1313 --source-commit 41681fdcb",
+ "environment": {
+  "hardware_id": "nvidia_h200",
+  "cuda_visible_devices": "0,1,2,3,4,5,6,7",
+  "driver_version": "580.95.05",
+  "torch_version": "2.11.0+cu130",
+  "cuda_runtime": "13.0",
+  "nccl_version": "2.28.9",
+  "sglang_version": "0.5.12",
+  "python": "3.12.3",
+  "host_cpu": "x86_64"
+ },
+ "world_sizes": {
+  "8": {
+   "per_rank_raw": [
+    "/capture-public/h200_microbench/sglang_dsr1/runs/ar_ws8_20260927_1313/ws8_rank0.json",
+    "/capture-public/h200_microbench/sglang_dsr1/runs/ar_ws8_20260927_1313/ws8_rank1.json",
+    "/capture-public/h200_microbench/sglang_dsr1/runs/ar_ws8_20260927_1313/ws8_rank2.json",
+    "/capture-public/h200_microbench/sglang_dsr1/runs/ar_ws8_20260927_1313/ws8_rank3.json",
+    "/capture-public/h200_microbench/sglang_dsr1/runs/ar_ws8_20260927_1313/ws8_rank4.json",
+    "/capture-public/h200_microbench/sglang_dsr1/runs/ar_ws8_20260927_1313/ws8_rank5.json",
+    "/capture-public/h200_microbench/sglang_dsr1/runs/ar_ws8_20260927_1313/ws8_rank6.json",
+    "/capture-public/h200_microbench/sglang_dsr1/runs/ar_ws8_20260927_1313/ws8_rank7.json"
+   ],
+   "summary": [
+    {
+     "algorithm": "ONE_SHOT_PUSH",
+     "tokens": 1,
+     "payload_bytes": 14336,
+     "custom_all_reduce_ns": 4198.250127956271,
+     "nccl_all_reduce_plus_clone_ns": 20987.75003105402
+    },
+    {
+     "algorithm": "ONE_SHOT_PUSH",
+     "tokens": 2,
+     "payload_bytes": 28672,
+     "custom_all_reduce_ns": 4415.249917656183,
+     "nccl_all_reduce_plus_clone_ns": 22565.250284969807
+    },
+    {
+     "algorithm": "ONE_SHOT_PUSH",
+     "tokens": 3,
+     "payload_bytes": 43008,
+     "custom_all_reduce_ns": 4641.749896109104,
+     "nccl_all_reduce_plus_clone_ns": 25417.00005531311
+    },
+    {
+     "algorithm": "ONE_SHOT_PUSH",
+     "tokens": 4,
+     "payload_bytes": 57344,
+     "custom_all_reduce_ns": 4993.499955162406,
+     "nccl_all_reduce_plus_clone_ns": 26012.75034248829
+    },
+    {
+     "algorithm": "ONE_SHOT_PUSH",
+     "tokens": 6,
+     "payload_bytes": 86016,
+     "custom_all_reduce_ns": 5544.499959796667,
+     "nccl_all_reduce_plus_clone_ns": 26096.750050783157
+    },
+    {
+     "algorithm": "ONE_SHOT_PUSH",
+     "tokens": 8,
+     "payload_bytes": 114688,
+     "custom_all_reduce_ns": 6206.999998539686,
+     "nccl_all_reduce_plus_clone_ns": 25825.50048828125
+    },
+    {
+     "algorithm": "TWO_SHOT_PULL",
+     "tokens": 12,
+     "payload_bytes": 172032,
+     "custom_all_reduce_ns": 7789.999945089221,
+     "nccl_all_reduce_plus_clone_ns": 25500.250048935413
+    },
+    {
+     "algorithm": "TWO_SHOT_PULL",
+     "tokens": 16,
+     "payload_bytes": 229376,
+     "custom_all_reduce_ns": 7953.749969601631,
+     "nccl_all_reduce_plus_clone_ns": 20401.74975991249
+    },
+    {
+     "algorithm": "TWO_SHOT_PULL",
+     "tokens": 24,
+     "payload_bytes": 344064,
+     "custom_all_reduce_ns": 8688.50015103817,
+     "nccl_all_reduce_plus_clone_ns": 25751.749984920025
+    },
+    {
+     "algorithm": "TWO_SHOT_PULL",
+     "tokens": 32,
+     "payload_bytes": 458752,
+     "custom_all_reduce_ns": 9334.000293165445,
+     "nccl_all_reduce_plus_clone_ns": 20951.250568032265
+    },
+    {
+     "algorithm": "TWO_SHOT_PULL",
+     "tokens": 48,
+     "payload_bytes": 688128,
+     "custom_all_reduce_ns": 10815.500281751156,
+     "nccl_all_reduce_plus_clone_ns": 21309.25003439188
+    },
+    {
+     "algorithm": "TWO_SHOT_PULL",
+     "tokens": 64,
+     "payload_bytes": 917504,
+     "custom_all_reduce_ns": 12438.24977427721,
+     "nccl_all_reduce_plus_clone_ns": 26939.500123262405
+    },
+    {
+     "algorithm": "TWO_SHOT_PULL",
+     "tokens": 96,
+     "payload_bytes": 1376256,
+     "custom_all_reduce_ns": 15626.500360667706,
+     "nccl_all_reduce_plus_clone_ns": 33142.250031232834
+    },
+    {
+     "algorithm": "TWO_SHOT_PULL",
+     "tokens": 128,
+     "payload_bytes": 1835008,
+     "custom_all_reduce_ns": 18459.749408066273,
+     "nccl_all_reduce_plus_clone_ns": 37112.50051856041
+    },
+    {
+     "algorithm": "TWO_SHOT_PULL",
+     "tokens": 192,
+     "payload_bytes": 2752512,
+     "custom_all_reduce_ns": 25303.500704467297,
+     "nccl_all_reduce_plus_clone_ns": 46524.250879883766
+    },
+    {
+     "algorithm": "TWO_SHOT_PULL",
+     "tokens": 256,
+     "payload_bytes": 3670016,
+     "custom_all_reduce_ns": 29981.00034892559,
+     "nccl_all_reduce_plus_clone_ns": 48938.25016915798
+    },
+    {
+     "algorithm": "TWO_SHOT_PULL",
+     "tokens": 384,
+     "payload_bytes": 5505024,
+     "custom_all_reduce_ns": 43637.24961876869,
+     "nccl_all_reduce_plus_clone_ns": 62540.25176167488
+    },
+    {
+     "algorithm": "TWO_SHOT_PULL",
+     "tokens": 512,
+     "payload_bytes": 7340032,
+     "custom_all_reduce_ns": 55859.50054228306,
+     "nccl_all_reduce_plus_clone_ns": 73968.74949336052
+    }
+   ]
+  }
+ },
+ "schema": "nvidia_h200_sglang_custom_allreduce_v2_graph_node_reference_v1",
+ "derivation": {
+  "source_report_sha256": "a8b8d518fdbee982a53fad97e7c82fc81b282e4d42b41d40cf57c207c9c3b1c8",
+  "rule": "slowest-rank median of 30 replays / 64 chained nodes per payload",
+  "service_ns_by_participants": {
+   "8": {
+    "14336": 4198.3,
+    "28672": 4415.2,
+    "43008": 4641.7,
+    "57344": 4993.5,
+    "86016": 5544.5,
+    "114688": 6207.0,
+    "172032": 7790.0,
+    "229376": 7953.7,
+    "344064": 8688.5,
+    "458752": 9334.0,
+    "688128": 10815.5,
+    "917504": 12438.2,
+    "1376256": 15626.5,
+    "1835008": 18459.7,
+    "2752512": 25303.5,
+    "3670016": 29981.0,
+    "5505024": 43637.2,
+    "7340032": 55859.5
+   }
+  }
+ }
+}

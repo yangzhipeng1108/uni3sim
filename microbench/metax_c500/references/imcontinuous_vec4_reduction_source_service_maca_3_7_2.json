@@ -1,0 +1,566 @@
+{
+  "baseline_commit": "a3ae739c4192996840cdebd6a07c1e03625df402",
+  "campaign": {
+    "derivation": "adjacent_runtime_repetition_count",
+    "derivation_grids": [
+      1,
+      8
+    ],
+    "derivation_trials": [
+      1,
+      2
+    ],
+    "dynamic_shared_bytes": 4104,
+    "grids": [
+      1,
+      8,
+      104
+    ],
+    "programs": [
+      [
+        256,
+        2,
+        2
+      ],
+      [
+        128,
+        4,
+        4
+      ],
+      [
+        64,
+        8,
+        8
+      ],
+      [
+        64,
+        8,
+        10
+      ],
+      [
+        32,
+        16,
+        16
+      ]
+    ],
+    "repetition_counts": [
+      4,
+      8,
+      16,
+      32
+    ],
+    "samples_per_cell": 17,
+    "threads_per_cta": 512,
+    "timer_domain": "clock64_same_cta_cycles",
+    "validation_trial": 3
+  },
+  "disposition": "publishable",
+  "hardware_id": "metax_c500",
+  "mechanism": "imcontinuous_vec4_reduction_source_service",
+  "production_or_evaluation_duration_consumed": false,
+  "program_services": {
+    "topk10": {
+      "block_x": 64,
+      "block_y": 8,
+      "reduction_depth": 10,
+      "service_cycles_per_cta": 2040.25
+    },
+    "topk16": {
+      "block_x": 32,
+      "block_y": 16,
+      "reduction_depth": 16,
+      "service_cycles_per_cta": 2018.125
+    },
+    "topk2": {
+      "block_x": 256,
+      "block_y": 2,
+      "reduction_depth": 2,
+      "service_cycles_per_cta": 1191.75
+    },
+    "topk4": {
+      "block_x": 128,
+      "block_y": 4,
+      "reduction_depth": 4,
+      "service_cycles_per_cta": 1504.125
+    },
+    "topk8": {
+      "block_x": 64,
+      "block_y": 8,
+      "reduction_depth": 8,
+      "service_cycles_per_cta": 1864.25
+    }
+  },
+  "publishable": true,
+  "schema_version": 1,
+  "software_revision": "maca_3.7.2",
+  "source": {
+    "path": "microbench/metax_c500/operators/fused_moe/imcontinuous_reduce_source_service.cpp",
+    "sha256": "8ca75d72e6970f417b090d89d07b846e44997c86e4f382de2eac11ae256cb55f"
+  },
+  "thresholds": {
+    "maximum_mape_percent": 2.0,
+    "maximum_max_ape_percent": 6.0
+  },
+  "trial_stdout_sha256": {
+    "1": "0193b88c2884f296b9557cdae9006980ef30bbb05740b43d96884db8d9501f30",
+    "2": "d2d2c44e8ce4f900480a984f65485950380693407a43200f47a62eeb4bd2954a",
+    "3": "8b94a682c5e96262a9d2f3e42b111aa7e9097c655af437874861edfbbbedd653"
+  },
+  "validation": {
+    "count": 45,
+    "mape_percent": 0.6949653649194905,
+    "max_ape_percent": 5.697492163009405
+  },
+  "validation_rows": [
+    {
+      "block_x": 256,
+      "block_y": 2,
+      "grid": 1,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 4740,
+      "predicted_increment_cycles": 4767.0,
+      "reduction_depth": 2,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 256,
+      "block_y": 2,
+      "grid": 1,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 9524,
+      "predicted_increment_cycles": 9534.0,
+      "reduction_depth": 2,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 256,
+      "block_y": 2,
+      "grid": 1,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 18996,
+      "predicted_increment_cycles": 19068.0,
+      "reduction_depth": 2,
+      "upper_repetitions": 32
+    },
+    {
+      "block_x": 256,
+      "block_y": 2,
+      "grid": 8,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 4760,
+      "predicted_increment_cycles": 4767.0,
+      "reduction_depth": 2,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 256,
+      "block_y": 2,
+      "grid": 8,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 9572,
+      "predicted_increment_cycles": 9534.0,
+      "reduction_depth": 2,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 256,
+      "block_y": 2,
+      "grid": 8,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 19136,
+      "predicted_increment_cycles": 19068.0,
+      "reduction_depth": 2,
+      "upper_repetitions": 32
+    },
+    {
+      "block_x": 256,
+      "block_y": 2,
+      "grid": 104,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 4936,
+      "predicted_increment_cycles": 4767.0,
+      "reduction_depth": 2,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 256,
+      "block_y": 2,
+      "grid": 104,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 9576,
+      "predicted_increment_cycles": 9534.0,
+      "reduction_depth": 2,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 256,
+      "block_y": 2,
+      "grid": 104,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 19196,
+      "predicted_increment_cycles": 19068.0,
+      "reduction_depth": 2,
+      "upper_repetitions": 32
+    },
+    {
+      "block_x": 128,
+      "block_y": 4,
+      "grid": 1,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 6060,
+      "predicted_increment_cycles": 6016.5,
+      "reduction_depth": 4,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 128,
+      "block_y": 4,
+      "grid": 1,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 12080,
+      "predicted_increment_cycles": 12033.0,
+      "reduction_depth": 4,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 128,
+      "block_y": 4,
+      "grid": 1,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 23912,
+      "predicted_increment_cycles": 24066.0,
+      "reduction_depth": 4,
+      "upper_repetitions": 32
+    },
+    {
+      "block_x": 128,
+      "block_y": 4,
+      "grid": 8,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 6032,
+      "predicted_increment_cycles": 6016.5,
+      "reduction_depth": 4,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 128,
+      "block_y": 4,
+      "grid": 8,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 12084,
+      "predicted_increment_cycles": 12033.0,
+      "reduction_depth": 4,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 128,
+      "block_y": 4,
+      "grid": 8,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 24116,
+      "predicted_increment_cycles": 24066.0,
+      "reduction_depth": 4,
+      "upper_repetitions": 32
+    },
+    {
+      "block_x": 128,
+      "block_y": 4,
+      "grid": 104,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 6380,
+      "predicted_increment_cycles": 6016.5,
+      "reduction_depth": 4,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 128,
+      "block_y": 4,
+      "grid": 104,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 11804,
+      "predicted_increment_cycles": 12033.0,
+      "reduction_depth": 4,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 128,
+      "block_y": 4,
+      "grid": 104,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 24352,
+      "predicted_increment_cycles": 24066.0,
+      "reduction_depth": 4,
+      "upper_repetitions": 32
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 1,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 7424,
+      "predicted_increment_cycles": 7457.0,
+      "reduction_depth": 8,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 1,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 14884,
+      "predicted_increment_cycles": 14914.0,
+      "reduction_depth": 8,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 1,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 29772,
+      "predicted_increment_cycles": 29828.0,
+      "reduction_depth": 8,
+      "upper_repetitions": 32
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 8,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 7460,
+      "predicted_increment_cycles": 7457.0,
+      "reduction_depth": 8,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 8,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 14816,
+      "predicted_increment_cycles": 14914.0,
+      "reduction_depth": 8,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 8,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 29792,
+      "predicted_increment_cycles": 29828.0,
+      "reduction_depth": 8,
+      "upper_repetitions": 32
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 104,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 7480,
+      "predicted_increment_cycles": 7457.0,
+      "reduction_depth": 8,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 104,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 14972,
+      "predicted_increment_cycles": 14914.0,
+      "reduction_depth": 8,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 104,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 29968,
+      "predicted_increment_cycles": 29828.0,
+      "reduction_depth": 8,
+      "upper_repetitions": 32
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 1,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 8128,
+      "predicted_increment_cycles": 8161.0,
+      "reduction_depth": 10,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 1,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 16444,
+      "predicted_increment_cycles": 16322.0,
+      "reduction_depth": 10,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 1,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 32020,
+      "predicted_increment_cycles": 32644.0,
+      "reduction_depth": 10,
+      "upper_repetitions": 32
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 8,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 8236,
+      "predicted_increment_cycles": 8161.0,
+      "reduction_depth": 10,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 8,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 16408,
+      "predicted_increment_cycles": 16322.0,
+      "reduction_depth": 10,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 8,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 32644,
+      "predicted_increment_cycles": 32644.0,
+      "reduction_depth": 10,
+      "upper_repetitions": 32
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 104,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 8216,
+      "predicted_increment_cycles": 8161.0,
+      "reduction_depth": 10,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 104,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 16480,
+      "predicted_increment_cycles": 16322.0,
+      "reduction_depth": 10,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 64,
+      "block_y": 8,
+      "grid": 104,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 32884,
+      "predicted_increment_cycles": 32644.0,
+      "reduction_depth": 10,
+      "upper_repetitions": 32
+    },
+    {
+      "block_x": 32,
+      "block_y": 16,
+      "grid": 1,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 8140,
+      "predicted_increment_cycles": 8072.5,
+      "reduction_depth": 16,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 32,
+      "block_y": 16,
+      "grid": 1,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 16204,
+      "predicted_increment_cycles": 16145.0,
+      "reduction_depth": 16,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 32,
+      "block_y": 16,
+      "grid": 1,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 32128,
+      "predicted_increment_cycles": 32290.0,
+      "reduction_depth": 16,
+      "upper_repetitions": 32
+    },
+    {
+      "block_x": 32,
+      "block_y": 16,
+      "grid": 8,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 8072,
+      "predicted_increment_cycles": 8072.5,
+      "reduction_depth": 16,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 32,
+      "block_y": 16,
+      "grid": 8,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 16172,
+      "predicted_increment_cycles": 16145.0,
+      "reduction_depth": 16,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 32,
+      "block_y": 16,
+      "grid": 8,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 32436,
+      "predicted_increment_cycles": 32290.0,
+      "reduction_depth": 16,
+      "upper_repetitions": 32
+    },
+    {
+      "block_x": 32,
+      "block_y": 16,
+      "grid": 104,
+      "lower_repetitions": 4,
+      "measured_increment_cycles": 8116,
+      "predicted_increment_cycles": 8072.5,
+      "reduction_depth": 16,
+      "upper_repetitions": 8
+    },
+    {
+      "block_x": 32,
+      "block_y": 16,
+      "grid": 104,
+      "lower_repetitions": 8,
+      "measured_increment_cycles": 16232,
+      "predicted_increment_cycles": 16145.0,
+      "reduction_depth": 16,
+      "upper_repetitions": 16
+    },
+    {
+      "block_x": 32,
+      "block_y": 16,
+      "grid": 104,
+      "lower_repetitions": 16,
+      "measured_increment_cycles": 32368,
+      "predicted_increment_cycles": 32290.0,
+      "reduction_depth": 16,
+      "upper_repetitions": 32
+    }
+  ]
+}

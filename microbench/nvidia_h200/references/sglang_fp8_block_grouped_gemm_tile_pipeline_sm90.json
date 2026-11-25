@@ -1,0 +1,1452 @@
+{
+ "schema": "nvidia_h200_sglang_fp8_block_grouped_gemm_tile_pipeline_reference_v1",
+ "hardware_id": "nvidia_h200",
+ "software_revision": "sglang_0.5.12_triton_3.6_sm90",
+ "environment": {
+  "python": "/capture-public/envs/sglang0512/bin/python",
+  "triton": "3.6.0",
+  "torch": "2.11.0+cu130"
+ },
+ "production_configs": "sglang/srt/layers/moe/moe_runner/triton_utils/configs/triton_3_5_1/E=257,N=256,device_name=NVIDIA_H200,dtype=fp8_w8a8,block_shape=[128, 128].json and _down.json (SGLang logs the triton_3_6_0 -> triton_3_5_1 fallback)",
+ "source_baseline_commit": "008d1d4c7",
+ "sources": {
+  "sm90_fp8_block_tile_pipeline_sglang_runner.py": "4eaaa895cfcc6707d8d52bccf5e9cafaf30088eb54ce5ecdb90751db8d277a45",
+  "sm90_fp8_block_tile_pipeline_sglang_capture.sh": "eb811d608af4a6b574874f6db4a1a3b64971364f8bbc48fcdcf610fca54cd10f",
+  "sm90_fp8_block_tile_wave_refill_sglang_runner.py": "a7a90620937fed772639f477637d207e72e1c72aa98d6055e7dd41506e73e84d",
+  "sm90_fp8_block_tile_wave_refill_sglang_capture.sh": "f9c9d45947f91360b3ac70bc4ebab95cc99d4675eddb3a81a638b39c9f3c4c2a",
+  "sglang_fused_moe_compile_facts.py": "64fec6b2b49f8bd175dcc7de007d90104f3bd907434c9966c508800590449317"
+ },
+ "derivation_sha256": "2fa0227812f2b0c8b9a38b8e37908b8b71d845d8ae88d51012980f403db6a17b",
+ "raw_dirs": {
+  "tile": [
+   "sgl_tile_20260927_1839",
+   "sgl_tile_prefill_20260927_1901"
+  ],
+  "wave": [
+   "sgl_wave_20260927_1848",
+   "sgl_wave_prefill_20260927_1901"
+  ],
+  "compile": [
+   "sgl_moe_compile_20260927_1845",
+   "sgl_moe_compile_prefill_20260927_1901"
+  ]
+ },
+ "compile_facts_sha256": [
+  "b4cb68ae9e91572b84bde272e540961e5f825fa82349e92fba72d07557b8fbf2",
+  "281fca7bda4e17b203f313391981e3fcbc7e46f0f2ad69b18f7eee868dbb04ee"
+ ],
+ "clock_gate": "nvidia-smi clocks.sm every 50 ms over the timed section of each process; accepted only if every sample reads >= 1980 MHz",
+ "programs": {
+  "sgl_bm16_bn64_bk128_w4_s5": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 16,
+    "tile_n": 64,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 5,
+    "threads_per_cta": 128,
+    "use_tma": false,
+    "swap_ab": true,
+    "projection": "w1"
+   },
+   "probe_compile": {
+    "registers_per_thread": 48,
+    "shared_memory_bytes": 51200
+   },
+   "production_compile": {
+    "registers_per_thread": 64,
+    "shared_memory_bytes": 51200,
+    "num_stages": 5,
+    "resident_ctas_per_sm": 4
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "gpu4_sgl_bm16_bn64_bk128_w4_s5_p1_a1.csv",
+     "raw_sha256": "6662843b51e3ab62bb925517f856adb34f919bdd36d599f9e2b9001e94919bac",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 330.6666666666667,
+       "fixed_span_ns": 6165.333333333333
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 530.6666666666666,
+       "fixed_span_ns": 6485.333333333334
+      }
+     }
+    },
+    {
+     "path": "gpu4_sgl_bm16_bn64_bk128_w4_s5_p2_a1.csv",
+     "raw_sha256": "e117fba43c3698b641fc8af372f591beb1e71b9c81bd9ed09b55418d0f58f024",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 333.3333333333333,
+       "fixed_span_ns": 6122.666666666667
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 522.6666666666666,
+       "fixed_span_ns": 6677.333333333334
+      }
+     }
+    }
+   ],
+   "wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K512": 3101.7740608695653,
+      "K2048": 8174.469582608695,
+      "K1024": 4609.669495652173
+     },
+     "wave_refill_ns": 1410.8755536231888,
+     "wave_k_round_interval_ns": 422.72462681159413,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 4609.669495652173,
+      "predicted_slope_ns": 4792.672568115942,
+      "relative_error": 0.039699825038731484
+     },
+     "path": "gpu4_sgl_bm16_bn64_bk128_w4_s5_l2_p1_a1.csv",
+     "raw_sha256": "edb5d27eeb7a454e9f5a379c97409010e8f3b8148324e8316a444907032beb7c"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K512": 3121.808695652174,
+      "K2048": 8136.904069565218,
+      "K1024": 4616.904286956522
+     },
+     "wave_refill_ns": 1450.1102376811589,
+     "wave_k_round_interval_ns": 417.92461449275373,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 4616.904286956522,
+      "predicted_slope_ns": 4793.507153623189,
+      "relative_error": 0.03825135971858851
+     },
+     "path": "gpu4_sgl_bm16_bn64_bk128_w4_s5_l2_p2_a2.csv",
+     "raw_sha256": "8ecbedbf2552234bb53e99b5843233b4173afe58b0ec780792073aa677fed9cb"
+    }
+   ],
+   "dram_wave_captures": [],
+   "service_parameters": {
+    "fixed_span_ns": 6677.333333333334,
+    "local_k_round_interval_ns": 530.6666666666666,
+    "wave_refill_ns": 1450.1102376811589,
+    "wave_k_round_interval_ns": 422.72462681159413
+   }
+  },
+  "sgl_bm16_bn64_bk128_w4_s3": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 16,
+    "tile_n": 64,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 3,
+    "threads_per_cta": 128,
+    "use_tma": false,
+    "swap_ab": true,
+    "projection": "w1"
+   },
+   "probe_compile": {
+    "registers_per_thread": 48,
+    "shared_memory_bytes": 30720
+   },
+   "production_compile": {
+    "registers_per_thread": 56,
+    "shared_memory_bytes": 30720,
+    "num_stages": 3,
+    "resident_ctas_per_sm": 7
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "gpu4_sgl_bm16_bn64_bk128_w4_s3_p1_a1.csv",
+     "raw_sha256": "d3955af178791b504be6077bd1da9b9a39a97bb726edf4b3c318eab2413f5926",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 477.3333333333333,
+       "fixed_span_ns": 5930.666666666667
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 634.6667499999999,
+       "fixed_span_ns": 6101.3330000000005
+      }
+     }
+    },
+    {
+     "path": "gpu4_sgl_bm16_bn64_bk128_w4_s3_p2_a2.csv",
+     "raw_sha256": "41a5a4f381a75b382361f13f58664213ca1b484d82e81cde89cad608c1739f52",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 480.0,
+       "fixed_span_ns": 5856.0
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 615.9999166666666,
+       "fixed_span_ns": 6208.000333333333
+      }
+     }
+    }
+   ],
+   "wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K512": 3937.391,
+      "K2048": 13422.19104347826,
+      "K1024": 6800.6953478260875
+     },
+     "wave_refill_ns": 775.7909855072467,
+     "wave_k_round_interval_ns": 790.4000036231884,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 6800.6953478260875,
+      "predicted_slope_ns": 7098.9910144927535,
+      "relative_error": 0.043862524552289894
+     },
+     "path": "gpu4_sgl_bm16_bn64_bk128_w4_s3_l2_p1_a1.csv",
+     "raw_sha256": "374ed84287a76a8d7161ae62247e2343876095a0b43910b079261839e1ab9f61"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K512": 3940.7301391304345,
+      "K2048": 13454.747939130435,
+      "K1024": 6777.321782608696
+     },
+     "wave_refill_ns": 769.3908724637672,
+     "wave_k_round_interval_ns": 792.8348166666668,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 6777.321782608696,
+      "predicted_slope_ns": 7112.069405797101,
+      "relative_error": 0.049392316600253894
+     },
+     "path": "gpu4_sgl_bm16_bn64_bk128_w4_s3_l2_p2_a1.csv",
+     "raw_sha256": "d7dcb6bd87be3b41b04dd6877e87e35e823701811198491db8f8b08068430f05"
+    }
+   ],
+   "dram_wave_captures": [],
+   "service_parameters": {
+    "fixed_span_ns": 6208.000333333333,
+    "local_k_round_interval_ns": 634.6667499999999,
+    "wave_refill_ns": 775.7909855072467,
+    "wave_k_round_interval_ns": 792.8348166666668
+   }
+  },
+  "sgl_bm16_bn64_bk128_w4_s4": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 16,
+    "tile_n": 64,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 4,
+    "threads_per_cta": 128,
+    "use_tma": false,
+    "swap_ab": true,
+    "projection": "w1"
+   },
+   "probe_compile": {
+    "registers_per_thread": 48,
+    "shared_memory_bytes": 40960
+   },
+   "production_compile": {
+    "registers_per_thread": 56,
+    "shared_memory_bytes": 40960,
+    "num_stages": 4,
+    "resident_ctas_per_sm": 5
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "gpu4_sgl_bm16_bn64_bk128_w4_s4_p1_a1.csv",
+     "raw_sha256": "8055813eaebd1a38e673e72ccf73b0950e04fc38a53c95e4d0289195a0f3b648",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 368.0,
+       "fixed_span_ns": 6112.0
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 552.0,
+       "fixed_span_ns": 6272.0
+      }
+     }
+    },
+    {
+     "path": "gpu4_sgl_bm16_bn64_bk128_w4_s4_p2_a1.csv",
+     "raw_sha256": "17098d58a37a26ad329ce8ee556285fef6fabcc5d9e71f490e8720c4e74df8e0",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 370.6666666666667,
+       "fixed_span_ns": 6133.333333333333
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 538.6666666666666,
+       "fixed_span_ns": 6421.333333333334
+      }
+     }
+    }
+   ],
+   "wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K512": 3309.3565130434786,
+      "K2048": 9856.278408695653,
+      "K1024": 5244.38252173913
+     },
+     "wave_refill_ns": 1127.049214492754,
+     "wave_k_round_interval_ns": 545.5768246376812,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 5244.38252173913,
+      "predicted_slope_ns": 5491.663811594203,
+      "relative_error": 0.047151650138035794
+     },
+     "path": "gpu4_sgl_bm16_bn64_bk128_w4_s4_l2_p1_a1.csv",
+     "raw_sha256": "7b7ce30128b845a1549ae3269c290895d4e4acf5a203ea5c330d97f9d1c818f9"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K512": 3305.7391217391305,
+      "K2048": 9864.34812173913,
+      "K1024": 5222.121443478261
+     },
+     "wave_refill_ns": 1119.5361217391305,
+     "wave_k_round_interval_ns": 546.55075,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 5222.121443478261,
+      "predicted_slope_ns": 5491.94212173913,
+      "relative_error": 0.05166878656141538
+     },
+     "path": "gpu4_sgl_bm16_bn64_bk128_w4_s4_l2_p2_a1.csv",
+     "raw_sha256": "8d19bc3e165b5eaec804a28445d57f0b7197359caeb726220ea91f43a0151c3f"
+    }
+   ],
+   "dram_wave_captures": [],
+   "service_parameters": {
+    "fixed_span_ns": 6421.333333333334,
+    "local_k_round_interval_ns": 552.0,
+    "wave_refill_ns": 1127.049214492754,
+    "wave_k_round_interval_ns": 546.55075
+   }
+  },
+  "sgl_bm16_bn128_bk128_w4_s3": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 16,
+    "tile_n": 128,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 3,
+    "threads_per_cta": 128,
+    "use_tma": false,
+    "swap_ab": true,
+    "projection": "w1"
+   },
+   "probe_compile": {
+    "registers_per_thread": 64,
+    "shared_memory_bytes": 55296
+   },
+   "production_compile": {
+    "registers_per_thread": 94,
+    "shared_memory_bytes": 55296,
+    "num_stages": 3,
+    "resident_ctas_per_sm": 4
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "gpu4_sgl_bm16_bn128_bk128_w4_s3_p1_a1.csv",
+     "raw_sha256": "e5357469c1ef55add00f4ee307bf1ca0816d4c4e37869c95bb7c7d9268b33bbd",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 506.6666666666667,
+       "fixed_span_ns": 6037.333333333333
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 645.3334166666667,
+       "fixed_span_ns": 6410.666333333333
+      }
+     }
+    },
+    {
+     "path": "gpu4_sgl_bm16_bn128_bk128_w4_s3_p2_a1.csv",
+     "raw_sha256": "8f1fb9b6bb322286442e738adc9ff27a613cf2cb1487594bc316ca11b20ab4a0",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 504.0,
+       "fixed_span_ns": 5920.0
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 637.3334166666667,
+       "fixed_span_ns": 6282.666333333333
+      }
+     }
+    }
+   ],
+   "wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K512": 4164.7302956521735,
+      "K2048": 15154.92253043478,
+      "K1024": 7879.513339130433
+     },
+     "wave_refill_ns": 501.3328840579711,
+     "wave_k_round_interval_ns": 915.8493528985506,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 7879.513339130433,
+      "predicted_slope_ns": 7828.127707246376,
+      "relative_error": -0.0065214220310880755
+     },
+     "path": "gpu4_sgl_bm16_bn128_bk128_w4_s3_l2_p1_a2.csv",
+     "raw_sha256": "b37fa3a2ceec56f7a9ec97f3526f835be77472bfd64f32604d3e84380bb1f02f"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K512": 4171.408704347827,
+      "K2048": 14993.808382608697,
+      "K1024": 7750.122095652176
+     },
+     "wave_refill_ns": 563.9421449275364,
+     "wave_k_round_interval_ns": 901.8666398550725,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 7750.122095652176,
+      "predicted_slope_ns": 7778.875263768117,
+      "relative_error": 0.0037100277597010844
+     },
+     "path": "gpu4_sgl_bm16_bn128_bk128_w4_s3_l2_p2_a1.csv",
+     "raw_sha256": "18a5691f4721360bdb47ffdd790f3c56c3b1f6c889c601d423e336330c7630d8"
+    }
+   ],
+   "dram_wave_captures": [],
+   "service_parameters": {
+    "fixed_span_ns": 6410.666333333333,
+    "local_k_round_interval_ns": 645.3334166666667,
+    "wave_refill_ns": 563.9421449275364,
+    "wave_k_round_interval_ns": 915.8493528985506
+   }
+  },
+  "sgl_bm16_bn128_bk128_w4_s4": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 16,
+    "tile_n": 128,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 4,
+    "threads_per_cta": 128,
+    "use_tma": false,
+    "swap_ab": true,
+    "projection": "w1"
+   },
+   "probe_compile": {
+    "registers_per_thread": 64,
+    "shared_memory_bytes": 73728
+   },
+   "production_compile": {
+    "registers_per_thread": 95,
+    "shared_memory_bytes": 73728,
+    "num_stages": 4,
+    "resident_ctas_per_sm": 3
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "gpu4_sgl_bm16_bn128_bk128_w4_s4_p1_a2.csv",
+     "raw_sha256": "a6afec98320d294d003f94f968d2ff6a50720f8d9c3758fa92ebd2a93338dfe5",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 402.6666666666667,
+       "fixed_span_ns": 6229.333333333333
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 570.6666666666666,
+       "fixed_span_ns": 6293.333333333334
+      }
+     }
+    },
+    {
+     "path": "gpu4_sgl_bm16_bn128_bk128_w4_s4_p2_a1.csv",
+     "raw_sha256": "dda4fa0b2ca8756f46a61b14583515a6d8d013cf58a66151d0ca07214f5e61df",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 394.6666666666667,
+       "fixed_span_ns": 6197.333333333333
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 573.3333333333334,
+       "fixed_span_ns": 6378.666666666666
+      }
+     }
+    }
+   ],
+   "wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K512": 3526.3998521739136,
+      "K2048": 11796.312521739132,
+      "K1024": 6290.086608695652
+     },
+     "wave_refill_ns": 769.7622956521745,
+     "wave_k_round_interval_ns": 689.1593891304348,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 6290.086608695652,
+      "predicted_slope_ns": 6283.037408695653,
+      "relative_error": -0.0011206840920527927
+     },
+     "path": "gpu4_sgl_bm16_bn128_bk128_w4_s4_l2_p1_a1.csv",
+     "raw_sha256": "9b10a3f6a44ef8633c48dc531d86c550f80df86d5ebe374e9918d599235970ad"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K512": 3541.9826173913043,
+      "K2048": 11771.269565217392,
+      "K1024": 6309.843121739131
+     },
+     "wave_refill_ns": 798.8869681159417,
+     "wave_k_round_interval_ns": 685.7739123188406,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 6309.843121739131,
+      "predicted_slope_ns": 6285.078266666667,
+      "relative_error": -0.003924797272239933
+     },
+     "path": "gpu4_sgl_bm16_bn128_bk128_w4_s4_l2_p2_a2.csv",
+     "raw_sha256": "3a0a85c5229a391507eeb30d2c29ac75b4516500aa404544e4d71be4f0ed53be"
+    }
+   ],
+   "dram_wave_captures": [],
+   "service_parameters": {
+    "fixed_span_ns": 6378.666666666666,
+    "local_k_round_interval_ns": 573.3333333333334,
+    "wave_refill_ns": 798.8869681159417,
+    "wave_k_round_interval_ns": 689.1593891304348
+   }
+  },
+  "sgl_tma_bm16_bn128_bk128_w4_s2": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 16,
+    "tile_n": 128,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 2,
+    "threads_per_cta": 128,
+    "use_tma": true,
+    "swap_ab": true,
+    "projection": "w2"
+   },
+   "probe_compile": {
+    "registers_per_thread": 48,
+    "shared_memory_bytes": 36880
+   },
+   "production_compile": {
+    "registers_per_thread": 63,
+    "shared_memory_bytes": 36880,
+    "num_stages": 2,
+    "resident_ctas_per_sm": 6
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "gpu4_sgl_tma_bm16_bn128_bk128_w4_s2_p1_a1.csv",
+     "raw_sha256": "9a963fe80a8a7d685aadeded5859f5f0d8d18053738d08b552a9dbe91f029ea0",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 944.0000833333334,
+       "fixed_span_ns": 5535.999666666667
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 1002.6666666666666,
+       "fixed_span_ns": 5909.333333333334
+      }
+     }
+    },
+    {
+     "path": "gpu4_sgl_tma_bm16_bn128_bk128_w4_s2_p2_a1.csv",
+     "raw_sha256": "023a0e612066d00a8b3d9dce43519ba74218a85f508966182a8d326771454701",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 933.3333333333334,
+       "fixed_span_ns": 5642.666666666666
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 1005.3333333333334,
+       "fixed_span_ns": 5898.666666666666
+      }
+     }
+    }
+   ],
+   "wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K512": 5861.008695652174,
+      "K2048": 23256.76596521739,
+      "K1024": 11695.026539130435
+     },
+     "wave_refill_ns": 62.422939130435225,
+     "wave_k_round_interval_ns": 1449.6464391304346,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 11695.026539130435,
+      "predicted_slope_ns": 11659.594452173911,
+      "relative_error": -0.0030296713596990044
+     },
+     "path": "gpu4_sgl_tma_bm16_bn128_bk128_w4_s2_l2_p1_a2.csv",
+     "raw_sha256": "28e0c36f5cfa2b93e996660f94274e654ca1c1518b7e422d2be0168c1c24bef4"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K512": 5914.434634782609,
+      "K2048": 23031.37470434782,
+      "K1024": 11752.347965217392
+     },
+     "wave_refill_ns": 208.78794492753696,
+     "wave_k_round_interval_ns": 1426.411672463768,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 11752.347965217392,
+      "predicted_slope_ns": 11620.08132463768,
+      "relative_error": -0.011254486420175125
+     },
+     "path": "gpu4_sgl_tma_bm16_bn128_bk128_w4_s2_l2_p2_a1.csv",
+     "raw_sha256": "1824f88341438ad3a0061e3420df8871061d3e196546d4e810e5f3eb150b9b31"
+    }
+   ],
+   "dram_wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K256": 6188.5216782608695,
+      "K1024": 23635.75691304348,
+      "K512": 11622.399791304348
+     },
+     "wave_refill_ns": 372.77660000000014,
+     "wave_k_round_interval_ns": 2907.8725391304347,
+     "holdout": {
+      "k": 512,
+      "measured_slope_ns": 11622.399791304348,
+      "predicted_slope_ns": 12004.266756521738,
+      "relative_error": 0.03285612025694529
+     },
+     "path": "gpu4_sgl_tma_bm16_bn128_bk128_w4_s2_dram_p1_a1.csv",
+     "raw_sha256": "0fa6e1c8476c008c2008fbcaa74ec207be5d9dae82cd792ac8afa884637bd43b"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K256": 6275.895652173913,
+      "K1024": 23657.181991304347,
+      "K512": 11739.826
+     },
+     "wave_refill_ns": 482.13353913043466,
+     "wave_k_round_interval_ns": 2896.881056521739,
+     "holdout": {
+      "k": 512,
+      "measured_slope_ns": 11739.826,
+      "predicted_slope_ns": 12069.657765217391,
+      "relative_error": 0.02809511531238984
+     },
+     "path": "gpu4_sgl_tma_bm16_bn128_bk128_w4_s2_dram_p2_a1.csv",
+     "raw_sha256": "e581bc44783c7b0c87883aad49f78b7a45be0d09677f9482efb91e0a0ba9cef6"
+    }
+   ],
+   "service_parameters": {
+    "fixed_span_ns": 5909.333333333334,
+    "local_k_round_interval_ns": 1005.3333333333334,
+    "wave_refill_ns": 208.78794492753696,
+    "wave_k_round_interval_ns": 1449.6464391304346,
+    "dram_wave_refill_ns": 482.13353913043466,
+    "dram_wave_k_round_interval_ns": 2907.8725391304347
+   }
+  },
+  "sgl_tma_bm16_bn128_bk64_w4_s3": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 16,
+    "tile_n": 128,
+    "tile_k": 64,
+    "num_warps": 4,
+    "num_stages": 3,
+    "threads_per_cta": 128,
+    "use_tma": true,
+    "swap_ab": true,
+    "projection": "w2"
+   },
+   "probe_compile": {
+    "registers_per_thread": 45,
+    "shared_memory_bytes": 27672
+   },
+   "production_compile": {
+    "registers_per_thread": 64,
+    "shared_memory_bytes": 27672,
+    "num_stages": 3,
+    "resident_ctas_per_sm": 8
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "gpu4_sgl_tma_bm16_bn128_bk64_w4_s3_p1_a1.csv",
+     "raw_sha256": "e73c20b628725b284c0c59afaa35420259aca8889f711f2f4e22e96513724cce",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 429.3333333333333,
+       "fixed_span_ns": 5781.333333333334
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 496.0000416666667,
+       "fixed_span_ns": 5983.999666666667
+      }
+     }
+    },
+    {
+     "path": "gpu4_sgl_tma_bm16_bn128_bk64_w4_s3_p2_a1.csv",
+     "raw_sha256": "5ed185ca6173d8ed7a39453a2b0fe87efae258e7d9966dbd432eecf7f861dde5",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 425.3333333333333,
+       "fixed_span_ns": 5717.333333333334
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 454.6666666666667,
+       "fixed_span_ns": 6282.666666666666
+      }
+     }
+    }
+   ],
+   "wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K512": 8168.625939130434,
+      "K2048": 31553.111921739135,
+      "K1024": 16185.321704347822
+     },
+     "wave_refill_ns": 373.79727826086673,
+     "wave_k_round_interval_ns": 974.3535826086959,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 16185.321704347822,
+      "predicted_slope_ns": 15963.454600000001,
+      "relative_error": -0.013707920571527588
+     },
+     "path": "gpu4_sgl_tma_bm16_bn128_bk64_w4_s3_l2_p1_a1.csv",
+     "raw_sha256": "18bc7f59e33c43233ac31ccbd6eb5f72ae46030678d0f66319336bf259bf01fe"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K512": 8176.6955913043475,
+      "K2048": 31597.35570434783,
+      "K1024": 16165.286017391307
+     },
+     "wave_refill_ns": 369.80888695652084,
+     "wave_k_round_interval_ns": 975.8608380434783,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 16165.286017391307,
+      "predicted_slope_ns": 15983.582295652173,
+      "relative_error": -0.011240365406689934
+     },
+     "path": "gpu4_sgl_tma_bm16_bn128_bk64_w4_s3_l2_p2_a1.csv",
+     "raw_sha256": "f1828dc78ca3d10a0046e32b10b5ee23a7aba80763498a7a4c19790e0d0a77f8"
+    }
+   ],
+   "dram_wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K256": 8172.244000000001,
+      "K1024": 31754.295008695648,
+      "K512": 15757.634026086957
+     },
+     "wave_refill_ns": 311.5603304347842,
+     "wave_k_round_interval_ns": 1965.170917391304,
+     "holdout": {
+      "k": 512,
+      "measured_slope_ns": 15757.634026086957,
+      "predicted_slope_ns": 16032.927669565217,
+      "relative_error": 0.01747049354125796
+     },
+     "path": "gpu4_sgl_tma_bm16_bn128_bk64_w4_s3_dram_p1_a1.csv",
+     "raw_sha256": "62c232b3f1f6fa32d043d74d29645ffe7b90b6d00c1e3e5a292e574e26e518c1"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K256": 8058.434834782608,
+      "K1024": 31693.913165217393,
+      "K512": 15792.417869565215
+     },
+     "wave_refill_ns": 179.94205797101313,
+     "wave_k_round_interval_ns": 1969.6231942028987,
+     "holdout": {
+      "k": 512,
+      "measured_slope_ns": 15792.417869565215,
+      "predicted_slope_ns": 15936.927611594203,
+      "relative_error": 0.00915057739875813
+     },
+     "path": "gpu4_sgl_tma_bm16_bn128_bk64_w4_s3_dram_p2_a1.csv",
+     "raw_sha256": "1828a1db09c72c053f8ee2a60abb0d27f019fc7db0167f2e2768d65a1728ca7d"
+    }
+   ],
+   "service_parameters": {
+    "fixed_span_ns": 6282.666666666666,
+    "local_k_round_interval_ns": 496.0000416666667,
+    "wave_refill_ns": 373.79727826086673,
+    "wave_k_round_interval_ns": 975.8608380434783,
+    "dram_wave_refill_ns": 311.5603304347842,
+    "dram_wave_k_round_interval_ns": 1969.6231942028987
+   }
+  },
+  "sgl_tma_bm16_bn256_bk64_w4_s3": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 16,
+    "tile_n": 256,
+    "tile_k": 64,
+    "num_warps": 4,
+    "num_stages": 3,
+    "threads_per_cta": 128,
+    "use_tma": true,
+    "swap_ab": true,
+    "projection": "w2"
+   },
+   "probe_compile": {
+    "registers_per_thread": 94,
+    "shared_memory_bytes": 53272
+   },
+   "production_compile": {
+    "registers_per_thread": 112,
+    "shared_memory_bytes": 53272,
+    "num_stages": 3,
+    "resident_ctas_per_sm": 4
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "gpu4_sgl_tma_bm16_bn256_bk64_w4_s3_p1_a1.csv",
+     "raw_sha256": "90eb5980e0581ba5a1bf5bc804802903dd21509258ee9fc4c251016a10fc98bb",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 524.0,
+       "fixed_span_ns": 5760.0
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 588.0,
+       "fixed_span_ns": 5952.0
+      }
+     }
+    },
+    {
+     "path": "gpu4_sgl_tma_bm16_bn256_bk64_w4_s3_p2_a1.csv",
+     "raw_sha256": "af380e825ed6f11b31b230bec1132437504ddcb4e671ccf79f5f5627d087127c",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 541.3333333333334,
+       "fixed_span_ns": 5621.333333333333
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 557.3333333333334,
+       "fixed_span_ns": 6197.333333333333
+      }
+     }
+    }
+   ],
+   "wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K512": 7844.730773913045,
+      "K2048": 29960.90513043478,
+      "K1024": 15293.216817391301
+     },
+     "wave_refill_ns": 472.6726550724661,
+     "wave_k_round_interval_ns": 921.5072648550723,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 15293.216817391301,
+      "predicted_slope_ns": 15216.788892753622,
+      "relative_error": -0.0049975048121181365
+     },
+     "path": "gpu4_sgl_tma_bm16_bn256_bk64_w4_s3_l2_p1_a1.csv",
+     "raw_sha256": "d092e2d121d1678abfe81e3c892350870405ea1aa9548ee7ab498f6602f53120"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K512": 7900.661469565218,
+      "K2048": 29981.217765217392,
+      "K1024": 15328.279304347827
+     },
+     "wave_refill_ns": 540.4760376811591,
+     "wave_k_round_interval_ns": 920.0231789855073,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 15328.279304347827,
+      "predicted_slope_ns": 15260.846901449277,
+      "relative_error": -0.004399215434404469
+     },
+     "path": "gpu4_sgl_tma_bm16_bn256_bk64_w4_s3_l2_p2_a1.csv",
+     "raw_sha256": "a5f413b56cccf315d384dd423082f23c1d1d457de03f8b0d66f7fb7845e06134"
+    }
+   ],
+   "dram_wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K256": 8031.999704347827,
+      "K1024": 31866.432417391305,
+      "K512": 15738.991747826087
+     },
+     "wave_refill_ns": 87.18880000000172,
+     "wave_k_round_interval_ns": 1986.2027260869563,
+     "holdout": {
+      "k": 512,
+      "measured_slope_ns": 15738.991747826087,
+      "predicted_slope_ns": 15976.810608695652,
+      "relative_error": 0.01511017126636549
+     },
+     "path": "gpu4_sgl_tma_bm16_bn256_bk64_w4_s3_dram_p1_a1.csv",
+     "raw_sha256": "5aecf9b8461b0cbf59ce9b18408e22507572b35058a1dab5916ee891c7fb9384"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K256": 8129.948182608698,
+      "K1024": 31967.442973913046,
+      "K512": 15700.312156521737
+     },
+     "wave_refill_ns": 184.1165855072477,
+     "wave_k_round_interval_ns": 1986.4578992753625,
+     "holdout": {
+      "k": 512,
+      "measured_slope_ns": 15700.312156521737,
+      "predicted_slope_ns": 16075.779779710148,
+      "relative_error": 0.023914659749771028
+     },
+     "path": "gpu4_sgl_tma_bm16_bn256_bk64_w4_s3_dram_p2_a2.csv",
+     "raw_sha256": "22b377712c16671ed0b1f3391ea637308db39e603f9ec5df109d2ea4d8f7b0ab"
+    }
+   ],
+   "service_parameters": {
+    "fixed_span_ns": 6197.333333333333,
+    "local_k_round_interval_ns": 588.0,
+    "wave_refill_ns": 540.4760376811591,
+    "wave_k_round_interval_ns": 921.5072648550723,
+    "dram_wave_refill_ns": 184.1165855072477,
+    "dram_wave_k_round_interval_ns": 1986.4578992753625
+   }
+  },
+  "sgl_bm32_bn128_bk128_w4_s5": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 32,
+    "tile_n": 128,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 5,
+    "threads_per_cta": 128,
+    "use_tma": false,
+    "swap_ab": true,
+    "projection": "w1"
+   },
+   "probe_compile": {
+    "registers_per_thread": 128,
+    "shared_memory_bytes": 102400
+   },
+   "production_compile": {
+    "registers_per_thread": 146,
+    "shared_memory_bytes": 102400,
+    "num_stages": 5,
+    "resident_ctas_per_sm": 2
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "gpu4_sgl_bm32_bn128_bk128_w4_s5_p1_a1.csv",
+     "raw_sha256": "8a8a7feea841f29ea4b6e52d06eeaef8cefb3265c624ef9120bb5ff6b1346c00",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 439.99999999999994,
+       "fixed_span_ns": 6400.000000000001
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 568.0,
+       "fixed_span_ns": 7328.0
+      }
+     }
+    },
+    {
+     "path": "gpu4_sgl_bm32_bn128_bk128_w4_s5_p2_a1.csv",
+     "raw_sha256": "f3c83cec8608d74b3c90771395ee2c200859dcc9f7cbaf9cf266c146e63bb907",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 434.6666666666666,
+       "fixed_span_ns": 6421.333333333335
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 560.0,
+       "fixed_span_ns": 7200.0
+      }
+     }
+    }
+   ],
+   "wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K512": 3984.1391304347826,
+      "K2048": 11728.974,
+      "K1024": 6342.400104347826
+     },
+     "wave_refill_ns": 1402.527507246377,
+     "wave_k_round_interval_ns": 645.4029057971014,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 6342.400104347826,
+      "predicted_slope_ns": 6565.750753623188,
+      "relative_error": 0.03521547767417754
+     },
+     "path": "gpu4_sgl_bm32_bn128_bk128_w4_s5_l2_p1_a1.csv",
+     "raw_sha256": "a2b2d24ced5e98d3c09c61fc3552b59c3e42c593f4bb92a47e110a3116bd9573"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K512": 4031.722034782609,
+      "K2048": 11703.930182608694,
+      "K1024": 6426.156626086958
+     },
+     "wave_refill_ns": 1474.3193188405812,
+     "wave_k_round_interval_ns": 639.350678985507,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 6426.156626086958,
+      "predicted_slope_ns": 6589.124750724637,
+      "relative_error": 0.02536012333968185
+     },
+     "path": "gpu4_sgl_bm32_bn128_bk128_w4_s5_l2_p2_a1.csv",
+     "raw_sha256": "5df0d9330e26fe6535c747a54f4cf9c73346bc30742ca14d5e26f5e724f06e44"
+    }
+   ],
+   "dram_wave_captures": [],
+   "service_parameters": {
+    "fixed_span_ns": 7328.0,
+    "local_k_round_interval_ns": 568.0,
+    "wave_refill_ns": 1474.3193188405812,
+    "wave_k_round_interval_ns": 645.4029057971014
+   }
+  },
+  "sgl_bm64_bn128_bk128_w4_s4": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 64,
+    "tile_n": 128,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 4,
+    "threads_per_cta": 128,
+    "use_tma": false,
+    "swap_ab": false,
+    "projection": "w1"
+   },
+   "probe_compile": {
+    "registers_per_thread": 166,
+    "shared_memory_bytes": 98304
+   },
+   "production_compile": {
+    "registers_per_thread": 196,
+    "shared_memory_bytes": 98304,
+    "num_stages": 4,
+    "resident_ctas_per_sm": 2
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "gpu4_sgl_bm64_bn128_bk128_w4_s4_p1_a1.csv",
+     "raw_sha256": "4d98cecaab0672baf6191ec16949653160f1a172491cedf5122b8a749584fb26",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 405.3333333333333,
+       "fixed_span_ns": 7178.666666666667
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 578.6666666666666,
+       "fixed_span_ns": 6837.333333333334
+      }
+     }
+    },
+    {
+     "path": "gpu4_sgl_bm64_bn128_bk128_w4_s4_p2_a1.csv",
+     "raw_sha256": "caebb6cef9cd4ce2d3404d2553b1249ba5fc7cead7daf16c912644d5d13e5af9",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 432.0,
+       "fixed_span_ns": 6912.0
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 610.6666666666666,
+       "fixed_span_ns": 6805.333333333334
+      }
+     }
+    }
+   ],
+   "wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K512": 4561.53027826087,
+      "K2048": 12141.078382608695,
+      "K1024": 6649.8782
+     },
+     "wave_refill_ns": 2035.014243478261,
+     "wave_k_round_interval_ns": 631.6290086956521,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 6649.8782,
+      "predicted_slope_ns": 7088.046313043478,
+      "relative_error": 0.06589114865945644
+     },
+     "path": "gpu4_sgl_bm64_bn128_bk128_w4_s4_l2_p1_a2.csv",
+     "raw_sha256": "f78e0388da05360545cbae5b5d22116dd33a964a3bd73d229d1482e069b260ec"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K512": 4537.0436260869565,
+      "K2048": 12175.303713043479,
+      "K1024": 6680.48695652174
+     },
+     "wave_refill_ns": 1990.9569304347824,
+     "wave_k_round_interval_ns": 636.5216739130435,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 6680.48695652174,
+      "predicted_slope_ns": 7083.1303217391305,
+      "relative_error": 0.060271559219843285
+     },
+     "path": "gpu4_sgl_bm64_bn128_bk128_w4_s4_l2_p2_a1.csv",
+     "raw_sha256": "8c5ef776eaf44c56b7519b7db129756ff3b0ef960e038698bd65fbe8c30bd025"
+    }
+   ],
+   "dram_wave_captures": [],
+   "service_parameters": {
+    "fixed_span_ns": 7178.666666666667,
+    "local_k_round_interval_ns": 610.6666666666666,
+    "wave_refill_ns": 2035.014243478261,
+    "wave_k_round_interval_ns": 636.5216739130435
+   }
+  },
+  "sgl_tma_bm32_bn128_bk128_w4_s2": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 32,
+    "tile_n": 128,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 2,
+    "threads_per_cta": 128,
+    "use_tma": true,
+    "swap_ab": true,
+    "projection": "w2"
+   },
+   "probe_compile": {
+    "registers_per_thread": 111,
+    "shared_memory_bytes": 40976
+   },
+   "production_compile": {
+    "registers_per_thread": 123,
+    "shared_memory_bytes": 40976,
+    "num_stages": 2,
+    "resident_ctas_per_sm": 4
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "gpu4_sgl_tma_bm32_bn128_bk128_w4_s2_p1_a1.csv",
+     "raw_sha256": "a97d9d7c3ba4a8592a1db70713e6aa4b46cc4f3adf1c662f5127df11bccd4efe",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 946.66675,
+       "fixed_span_ns": 6229.3330000000005
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 1082.6666666666667,
+       "fixed_span_ns": 6101.333333333333
+      }
+     }
+    },
+    {
+     "path": "gpu4_sgl_tma_bm32_bn128_bk128_w4_s2_p2_a1.csv",
+     "raw_sha256": "108426db4a8671ae0d64bbdf3be97101c163a33ee99a538ff18ec0d7155bb7ca",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 984.0,
+       "fixed_span_ns": 5728.0
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 1069.3334166666666,
+       "fixed_span_ns": 5962.666333333334
+      }
+     }
+    }
+   ],
+   "wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K512": 6275.895791304348,
+      "K2048": 22443.13036521739,
+      "K1024": 11593.738878260869
+     },
+     "wave_refill_ns": 886.8176000000012,
+     "wave_k_round_interval_ns": 1347.2695478260866,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 11593.738878260869,
+      "predicted_slope_ns": 11664.973982608695,
+      "relative_error": 0.0061442736545842536
+     },
+     "path": "gpu4_sgl_tma_bm32_bn128_bk128_w4_s2_l2_p1_a1.csv",
+     "raw_sha256": "af3ae70bb1ff13ba963b9bf842cc89aa76fc0f1810354e4238231e10ba4d3eac"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K512": 6250.574130434782,
+      "K2048": 22628.451217391306,
+      "K1024": 11548.382973913043
+     },
+     "wave_refill_ns": 791.2817681159413,
+     "wave_k_round_interval_ns": 1364.8230905797102,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 11548.382973913043,
+      "predicted_slope_ns": 11709.866492753623,
+      "relative_error": 0.013983214724118342
+     },
+     "path": "gpu4_sgl_tma_bm32_bn128_bk128_w4_s2_l2_p2_a1.csv",
+     "raw_sha256": "8c79a600bc8c8411d51484471307725e9695caf77378d2316867c52f7e1fed18"
+    }
+   ],
+   "dram_wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K256": 6010.712982608696,
+      "K1024": 22023.512226086958,
+      "K512": 11092.313191304347
+     },
+     "wave_refill_ns": 673.1132347826087,
+     "wave_k_round_interval_ns": 2668.7998739130435,
+     "holdout": {
+      "k": 512,
+      "measured_slope_ns": 11092.313191304347,
+      "predicted_slope_ns": 11348.312730434784,
+      "relative_error": 0.023079003875505766
+     },
+     "path": "gpu4_sgl_tma_bm32_bn128_bk128_w4_s2_dram_p1_a2.csv",
+     "raw_sha256": "f846387b210ed8e978816b6f1c258d9dddbde8bf4d01425081dc7f3cba51f71a"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K256": 6038.817391304347,
+      "K1024": 21896.90391304348,
+      "K512": 11137.66972173913
+     },
+     "wave_refill_ns": 752.7885507246365,
+     "wave_k_round_interval_ns": 2643.0144202898555,
+     "holdout": {
+      "k": 512,
+      "measured_slope_ns": 11137.66972173913,
+      "predicted_slope_ns": 11324.846231884057,
+      "relative_error": 0.01680571563184219
+     },
+     "path": "gpu4_sgl_tma_bm32_bn128_bk128_w4_s2_dram_p2_a1.csv",
+     "raw_sha256": "e1ef120a6f31d6abaf3570d185a52495f9168777ebd732a19b7f978c7f86486e"
+    }
+   ],
+   "service_parameters": {
+    "fixed_span_ns": 6229.3330000000005,
+    "local_k_round_interval_ns": 1082.6666666666667,
+    "wave_refill_ns": 886.8176000000012,
+    "wave_k_round_interval_ns": 1364.8230905797102,
+    "dram_wave_refill_ns": 752.7885507246365,
+    "dram_wave_k_round_interval_ns": 2668.7998739130435
+   }
+  },
+  "sgl_tma_bm64_bn128_bk128_w4_s3": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 64,
+    "tile_n": 128,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 3,
+    "threads_per_cta": 128,
+    "use_tma": true,
+    "swap_ab": false,
+    "projection": "w2"
+   },
+   "probe_compile": {
+    "registers_per_thread": 152,
+    "shared_memory_bytes": 73752
+   },
+   "production_compile": {
+    "registers_per_thread": 162,
+    "shared_memory_bytes": 73752,
+    "num_stages": 3,
+    "resident_ctas_per_sm": 3
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "gpu4_sgl_tma_bm64_bn128_bk128_w4_s3_p1_a1.csv",
+     "raw_sha256": "33e29e730c6ed2d7de9a5e8323c7d2f6be0b1090164e876960699cff7561c929",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 517.3333333333334,
+       "fixed_span_ns": 6506.666666666666
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 672.0,
+       "fixed_span_ns": 6656.0
+      }
+     }
+    },
+    {
+     "path": "gpu4_sgl_tma_bm64_bn128_bk128_w4_s3_p2_a1.csv",
+     "raw_sha256": "2010df8483bba89d820394c3c40ccbb3489b39ac256aa90fbe8b2d6684a92900",
+     "per_grid": {
+      "n1024": {
+       "local_k_round_interval_ns": 549.3333333333334,
+       "fixed_span_ns": 6314.666666666666
+      },
+      "n2048": {
+       "local_k_round_interval_ns": 666.6665833333333,
+       "fixed_span_ns": 6613.333666666667
+      }
+     }
+    }
+   ],
+   "wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K512": 5058.504408695652,
+      "K2048": 16435.478600000002,
+      "K1024": 8805.009060869565
+     },
+     "wave_refill_ns": 1266.1796782608685,
+     "wave_k_round_interval_ns": 948.0811826086959,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 8805.009060869565,
+      "predicted_slope_ns": 8850.829139130436,
+      "relative_error": 0.005203864975505956
+     },
+     "path": "gpu4_sgl_tma_bm64_bn128_bk128_w4_s3_l2_p1_a1.csv",
+     "raw_sha256": "3b7788ed2277db5c38695f87f1ecea0e6c5a0c3b836eaf505c29697c94591344"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K512": 5103.582313043478,
+      "K2048": 16137.73899130435,
+      "K1024": 8762.713339130434
+     },
+     "wave_refill_ns": 1425.5300869565212,
+     "wave_k_round_interval_ns": 919.5130565217393,
+     "holdout": {
+      "k": 1024,
+      "measured_slope_ns": 8762.713339130434,
+      "predicted_slope_ns": 8781.634539130435,
+      "relative_error": 0.0021592855166796543
+     },
+     "path": "gpu4_sgl_tma_bm64_bn128_bk128_w4_s3_l2_p2_a1.csv",
+     "raw_sha256": "b9fb5affe6a8bedcc31349e1894b6ae58fcf15df6248dbef9cf32e654cdb11a6"
+    }
+   ],
+   "dram_wave_captures": [
+    {
+     "per_wave_slope_ns": {
+      "K256": 5119.721730434782,
+      "K1024": 14149.564895652175,
+      "K512": 7853.912652173913
+     },
+     "wave_refill_ns": 2109.7740086956514,
+     "wave_k_round_interval_ns": 1504.9738608695654,
+     "holdout": {
+      "k": 512,
+      "measured_slope_ns": 7853.912652173913,
+      "predicted_slope_ns": 8129.669452173914,
+      "relative_error": 0.03511075462797164
+     },
+     "path": "gpu4_sgl_tma_bm64_bn128_bk128_w4_s3_dram_p1_a1.csv",
+     "raw_sha256": "a92e6e6eaf330311c3d8b929c0432586667d325be46811aebcb9b87afdfbcf5f"
+    },
+    {
+     "per_wave_slope_ns": {
+      "K256": 5106.6434086956515,
+      "K1024": 14025.739200000002,
+      "K512": 7801.321826086956
+     },
+     "wave_refill_ns": 2133.6114782608684,
+     "wave_k_round_interval_ns": 1486.5159652173916,
+     "holdout": {
+      "k": 512,
+      "measured_slope_ns": 7801.321826086956,
+      "predicted_slope_ns": 8079.675339130435,
+      "relative_error": 0.03568030126800914
+     },
+     "path": "gpu4_sgl_tma_bm64_bn128_bk128_w4_s3_dram_p2_a1.csv",
+     "raw_sha256": "7dbed65b17dbe646af5ea6b53199a6ccbf726f872c6ffe5d6be00accac69cc9e"
+    }
+   ],
+   "service_parameters": {
+    "fixed_span_ns": 6656.0,
+    "local_k_round_interval_ns": 672.0,
+    "wave_refill_ns": 1425.5300869565212,
+    "wave_k_round_interval_ns": 948.0811826086959,
+    "dram_wave_refill_ns": 2133.6114782608684,
+    "dram_wave_k_round_interval_ns": 1504.9738608695654
+   }
+  }
+ },
+ "production_or_evaluation_duration_consumed": false,
+ "production_predictor_consumption_allowed": true
+}

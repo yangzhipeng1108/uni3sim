@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_mte2_cold_legacy_k14336_nd2nz_stride",
+  "duration_unit": "ns_per_descriptor_per_aic",
+  "publication_scope": {
+    "source_residency": "dram_cold",
+    "dtype": "bf16",
+    "active_aic_groups": 22,
+    "iterations_per_worker": 224,
+    "footprint_bytes": 8589934592,
+    "descriptors": [
+      {
+        "operand": "a",
+        "rows": 16,
+        "columns": 4096,
+        "source_row_stride_elements": 14336,
+        "source_tile_span_bytes": 438272,
+        "copied_bytes_per_descriptor": 131072,
+        "source_tiles_per_worker": 890,
+        "aggregate_copied_ring_bytes": 2566389760
+      },
+      {
+        "operand": "b",
+        "rows": 96,
+        "columns": 640,
+        "source_row_stride_elements": 14336,
+        "source_tile_span_bytes": 2725120,
+        "copied_bytes_per_descriptor": 122880,
+        "source_tiles_per_worker": 143,
+        "aggregate_copied_ring_bytes": 386580480
+      }
+    ],
+    "source_ring_constraint": "each aggregate copied ring is larger than the 192 MiB shared L2; workers consume disjoint source rings"
+  },
+  "parameters_ns": {
+    "a": {
+      "serial_completion": 2319.880952381,
+      "two_buffer_stream": 2232.113095238
+    },
+    "b": {
+      "serial_completion": 2779.4047619045,
+      "two_buffer_stream": 2706.7708333335
+    }
+  },
+  "measurement": {
+    "a_serial_trial_ns": [2310.476190476, 2319.494047619, 2332.648809524, 2320.267857143],
+    "a_two_buffer_stream_trial_ns": [2248.303571429, 2233.839285714, 2188.422619048, 2230.386904762],
+    "b_serial_trial_ns": [2785.982142857, 2746.93452381, 2797.083333333, 2772.827380952],
+    "b_two_buffer_stream_trial_ns": [2708.928571429, 2669.910714286, 2724.732142857, 2704.613095238],
+    "a_serial_relative_span": 0.009557653820659806,
+    "a_two_buffer_stream_relative_span": 0.02682702436034697,
+    "b_serial_relative_span": 0.01804300338344308,
+    "b_two_buffer_stream_relative_span": 0.020253442920207398,
+    "a_serial_order_balance_error": 0.0007248422024725858,
+    "a_two_buffer_stream_order_balance_error": 0.006160082134205409,
+    "b_serial_order_balance_error": 0.01138797275871072,
+    "b_two_buffer_stream_order_balance_error": 0.010923884658748153,
+    "maximum_allowed_relative_span": 0.1,
+    "maximum_allowed_order_balance_error": 0.1,
+    "stability_gate": true,
+    "mechanism_gate_passed": true
+  },
+  "provenance": {
+    "capture_commit": "0e86643dc6fdecd32d587c6b3eb9f303c3a670ec",
+    "snapshot_path": "/capture-workspace/execution_snapshots/nd2nz_legacy_k14336_cold_0e86643d_20260905",
+    "raw_path": "profiler_output/microbench/ascend_910b/nd2nz_legacy_k14336_cold_0e86643d_20260905/legacy_k14336_cold_d0.csv",
+    "raw_sha256": "4254018ac9eeccd3690462762d08084f8b23cba2120bf8a3852d7dbdbb44d251",
+    "stderr_path": "profiler_output/microbench/ascend_910b/nd2nz_legacy_k14336_cold_0e86643d_20260905/legacy_k14336_cold_d0.stderr",
+    "stderr_sha256": "870c83848ea239dce93fd1d37de27d9347e7ddadcf44680fadeb8710c1e1d3b8",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "container_id": "capture-container-b736e851025a",
+    "container_image": "quay.io/ascend/vllm-ascend:v0.18.0",
+    "container_image_id": "sha256:35f9e569dbe3dc8db90cb361886d7889489efd8fa065860c8de319e13ab025d0",
+    "physical_device_id": 0,
+    "logical_device_id": 0,
+    "owner": "kernel_accuracy_gemm",
+    "runner_pid": 2538550,
+    "child_pids": [2538551, 2538560, 2538569, 2538578],
+    "source_snapshot_sha256": "829182161b944ebd2e7fb596b39bd97a697328ee9c568952d1ecec1210a81f0c",
+    "source_sha256": {
+      "CMakeLists.txt": "7b0c54d53ca00a1a91e852a2f7cb15ab93c8cfeb8d917989290c7b7cb77a2ce1",
+      "aic_mte2_nd2nz_stride_kernel.cpp": "3cdee9b19b126143b4351af4f60a0f4aa088dc4c496d0626e754eda65bcbfc72",
+      "aic_mte2_nd2nz_stride_main.cpp": "fe3d48698872b094ec1fd92039e463f3a46e3eb299ee38eb72ffe85101e7aba7",
+      "aic_mte2_nd2nz_stride_runner.py": "75443bd9c712243c90065e1bf4ac3d3feea3669726a070432f60043542fa414b"
+    },
+    "binary_sha256": "b3d8d519f4c8835af6e588a01690a313b6757a1187ffbbfbd76692c01c56dd1e",
+    "command": "python aic_mte2_nd2nz_stride_runner.py --binary build/aic_mte2_nd2nz_stride --device-id 0 --run-id legacy_k14336_cold_d0 --profile gemm_legacy_k14336_cold"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "a consumer may add only the measured serial stride penalty over the existing contiguous descriptor service when operand, rows, columns, 14336-element physical row stride, DRAM-cold residency, and 22 active AICs match exactly"
+}

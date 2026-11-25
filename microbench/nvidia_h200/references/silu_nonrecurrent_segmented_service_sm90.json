@@ -1,0 +1,154 @@
+{
+  "schema": "nvidia_h200_silu_nonrecurrent_segmented_service_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "device_uuid": "capture-device-462006ac8ee4",
+  "compute_capability": "sm_90",
+  "physical_sm_count": 132,
+  "source_baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/h200_silu_nonrecurrent_envelope_b5f13ef0_20260925_gpu3",
+      "run_id": "h200_silu_nonrecurrent_envelope_b5f13ef0_20260925_gpu3_r0",
+      "rotation": 0,
+      "manifest_sha256": "35f06bfb5db656244495ca246b17ab757f8884efb82dbd97e0a663ded257abe9",
+      "probe_binary_sha256": "0f59fb929141e7c53789d198e98377cc66280f428c2c81876626cde72af4d77c",
+      "raw_sha256": "07f52badaf80f08c4733f9afad3c957820b7e97cc5ec1589ed81024d0741ef5a"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/h200_silu_nonrecurrent_envelope_b5f13ef0_20260925_gpu3",
+      "run_id": "h200_silu_nonrecurrent_envelope_b5f13ef0_20260925_gpu3_r1",
+      "rotation": 1,
+      "manifest_sha256": "35f06bfb5db656244495ca246b17ab757f8884efb82dbd97e0a663ded257abe9",
+      "probe_binary_sha256": "0f59fb929141e7c53789d198e98377cc66280f428c2c81876626cde72af4d77c",
+      "raw_sha256": "7ed89aeed301f710965844ad2b57735e5841fff83687768341fd84a26ffe26e3"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/h200_silu_nonrecurrent_envelope_b5f13ef0_20260925_gpu3",
+      "run_id": "h200_silu_nonrecurrent_envelope_b5f13ef0_20260925_gpu3_r2",
+      "rotation": 2,
+      "manifest_sha256": "35f06bfb5db656244495ca246b17ab757f8884efb82dbd97e0a663ded257abe9",
+      "probe_binary_sha256": "0f59fb929141e7c53789d198e98377cc66280f428c2c81876626cde72af4d77c",
+      "raw_sha256": "b8f5c237688d54f54f1a8b8061c3c122810922100987d4329ebf42f4af109fa5"
+    }
+  ],
+  "audit": {
+    "path": "profiler_output/microbench/nvidia_h200/h200_silu_nonrecurrent_envelope_b5f13ef0_20260925_gpu3/audit.json",
+    "sha256": "608a5c127c39b148fedf240d2c2574c3f4b7f10f4245eebd4bf554ce194af366",
+    "calibration_rotations": [
+      0,
+      1
+    ],
+    "held_out_rotation": 2,
+    "within_run_maximum_interquartile_relative_spread": 0.012521482936410509,
+    "cross_run_maximum_relative_median_spread": 0.008653846153846154,
+    "held_out_duration_ape_limit": 0.1,
+    "held_out_mean_duration_ape": 0.0053883603660510445,
+    "held_out_maximum_duration_ape": 0.035030211799132016,
+    "segmented_service_gate": "pass"
+  },
+  "tool_identity": {
+    "source_sha256": "f0e0910dac6b90a61326ceb6a2a78aa4ab84b68c0fd2e889d82a1f0529d1c7f5",
+    "runner_sha256": "ea15de12d6b8957053e631495109d8e9843cd4d980c981fb9fc1a54ca4c64b52",
+    "report_sha256": "c602cbef0a5dcd0c5721e761208288c2744dac5ee6939dce02b3909159802572",
+    "gates_sha256": "bcf53588ca805deec55cef155485e95b3e7677e024ed460188227340de55dd12"
+  },
+  "production_binary_identity": {
+    "path": "not_applicable_on_h200",
+    "binary_sha256": "not_applicable_on_h200",
+    "sm80_cubin_sha256": "not_applicable_on_h200",
+    "silu_function_sass_sha256": "not_applicable_on_h200",
+    "status": "not_applicable_on_h200",
+    "reason": "The A800 reference bound the probe math spine to the vLLM 0.11 sm_80 act_and_mul SASS. No vLLM 0.11 sm_90 build exists on the H200 host; the probe keeps the vLLM 0.11 source expression and its own SASS gates (MUFU.EX2 = 1 and MUFU.RCP = 1 per source loop, none in the control, no local memory) are checked instead.",
+    "probe_static_sass_gates": {
+      "source_silu_mufu_ex2_per_loop": 1,
+      "source_silu_fast_path_mufu_rcp_per_loop": 1,
+      "arithmetic_control_mufu_ex2_per_loop": 0,
+      "arithmetic_control_fast_path_mufu_rcp_per_loop": 0,
+      "local_memory_instructions": 0
+    },
+    "probe_registers_per_thread": {
+      "source_silu": 22,
+      "arithmetic_control": 16
+    }
+  },
+  "mechanism_contract": {
+    "threads_per_cta": 1024,
+    "resident_ctas_per_sm": 2,
+    "calibration_grid_ctas": [
+      132,
+      264,
+      1056
+    ],
+    "validation_grid_ctas": [
+      313
+    ],
+    "calibration_endpoint_widths": [
+      6144,
+      53248
+    ],
+    "source_round_elements": 1024,
+    "formula": "service(segment, rounds) = entry + rounds * round; total = first + (min(ceil(grid/132), 2) - 1) * resident + max(0, ceil(grid/132) - 2) * queued"
+  },
+  "selected_services": {
+    "silu_nonrecurrent_first_entry_block1024": {
+      "cycles_per_cta": 323.304347826087,
+      "operations_per_second_at_1_98ghz": 6124260.355029585
+    },
+    "silu_nonrecurrent_first_round_block1024": {
+      "cycles_per_cta": 284.9076086956522,
+      "operations_per_second_at_1_98ghz": 6949621.349407703
+    },
+    "silu_nonrecurrent_resident_entry_block1024": {
+      "cycles_per_cta": 472.913043478261,
+      "operations_per_second_at_1_98ghz": 4186816.2177070873
+    },
+    "silu_nonrecurrent_resident_round_block1024": {
+      "cycles_per_cta": 275.2228260869565,
+      "operations_per_second_at_1_98ghz": 7194170.731225687
+    },
+    "silu_nonrecurrent_queued_entry_block1024": {
+      "cycles_per_cta": 756.1829710144928,
+      "operations_per_second_at_1_98ghz": 2618413.897027644
+    },
+    "silu_nonrecurrent_queued_round_block1024": {
+      "cycles_per_cta": 275.6222826086956,
+      "operations_per_second_at_1_98ghz": 7183744.294038195
+    }
+  },
+  "measured_sm_clock_mhz": 1980,
+  "clock_gate": {
+    "gate": "every busy nvidia-smi sample (50 ms) >= 1980 MHz; a window without busy samples requires every sample >= boost",
+    "accepted_captures": 3,
+    "rejected_captures": 0,
+    "captures_without_busy_sample": 0,
+    "busy_samples_total": 15,
+    "busy_clock_mhz_min": 1980,
+    "busy_clock_mhz_max": 1980,
+    "measured_sm_clock_mhz": 1980
+  },
+  "forward_domain": {
+    "dtype": "bf16",
+    "threads_per_cta": 1024,
+    "grid_ctas": 313,
+    "resident_ctas_per_sm": 2,
+    "maximum_ctas_per_sm": 3,
+    "cohort_refills": 2
+  },
+  "decision": {
+    "status": "positive_mechanism_candidate",
+    "mechanism_publishable": true,
+    "forward_eligible": true,
+    "reason": "The predeclared first/resident/queued affine services pass the frozen held-out 10 percent duration gate without production or evaluation durations."
+  },
+  "hardware_coupling_changes": [
+    "hardware_id nvidia_a800 -> nvidia_h200",
+    "grid_ctas [108,216,256,1024] -> [132,264,313,1056] (x132/108; held-out 256 -> 313 = round(256*132/108))",
+    "calibration grids [108,216,1024] -> [132,264,1056]; validation [256] -> [313]",
+    "static_success_gates.probe_and_production_source_math_spine_identical: no vLLM 0.11 sm_90 production binary exists; checked against the probe SASS only (MUFU.EX2/MUFU.RCP counts, no local memory, 2 resident CTAs)",
+    "rates converted with the measured H200 SM clock (1980 MHz); the A800 key operations_per_second_at_1_14ghz is renamed operations_per_second_at_1_98ghz",
+    "forward_domain grid_ctas 256 -> 313 (same 2.37 CTAs/SM, 2 cohort refills)"
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "production_predictor_consumption_allowed": true
+}

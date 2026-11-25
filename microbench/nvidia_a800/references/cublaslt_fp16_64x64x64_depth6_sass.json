@@ -1,0 +1,37 @@
+{
+  "schema": "nvidia_a800_cublaslt_fp16_64x64x64_depth6_sass_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "software": {
+    "cuda_version": "12.2",
+    "library": "/usr/local/cuda-12.2/targets/x86_64-linux/lib/libcublasLt.so.12.2.5.6",
+    "library_sha256": "fbfbc8a1faf681fa5f3ed3ab86d456e196058e9a6b601c930d200dcd2822b1ae",
+    "elf_index": 1907,
+    "elf_name": "libcublasLt.so.12.2.5.1907.sm_80.cubin",
+    "elf_sha256": "d2e5e607399c521a4cdb592cb6c442e25822cc85dd725df71e94c6d7b0a2dd5e"
+  },
+  "function": "ampere_fp16_s16816gemm_fp16_64x64_sliced1x2_ldg8_f2f_stages_64x6_tn",
+  "resource_usage": {
+    "registers_per_thread": 146,
+    "static_shared_memory_bytes": 49152,
+    "local_memory_bytes": 0
+  },
+  "instruction_counts": {
+    "ldgsts": 28,
+    "ldmatrix": 18,
+    "hmma": 32,
+    "ldgdepbar": 4,
+    "depbar": 2,
+    "bar_sync": 6,
+    "global_store": 3
+  },
+  "staging_contract": {
+    "dtype": "fp16",
+    "tile_shape": [64, 64, 64],
+    "threads_per_cta": 128,
+    "operand_stage_count": 6,
+    "bytes_per_a_b_panel_pair": 16384,
+    "complete_panel_pair_slots": 3,
+    "derivation": "49152 static shared bytes / (64*64*2 bytes for A + 64*64*2 bytes for B)"
+  },
+  "production_or_evaluation_duration_consumed": false
+}

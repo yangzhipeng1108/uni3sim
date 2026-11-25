@@ -1,0 +1,51 @@
+{
+  "device_name": "NVIDIA H200",
+  "duration_measured": false,
+  "facts": {
+    "bm16_isolated_probe": {
+      "dynamic_shared_memory_bytes_per_cta": 6144,
+      "num_stages": 2,
+      "num_warps": 4,
+      "registers_per_thread": 37,
+      "resident_ctas_per_sm": 12,
+      "spilled_registers": 0,
+      "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+      "threads_per_cta": 128
+    },
+    "bm16_w1": {
+      "dynamic_shared_memory_bytes_per_cta": 12288,
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 39,
+      "resident_ctas_per_sm": 12,
+      "spilled_registers": 0,
+      "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+      "threads_per_cta": 128
+    },
+    "bm16_w2": {
+      "dynamic_shared_memory_bytes_per_cta": 12288,
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 45,
+      "resident_ctas_per_sm": 10,
+      "spilled_registers": 0,
+      "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+      "threads_per_cta": 128
+    },
+    "bm64_w1": {
+      "dynamic_shared_memory_bytes_per_cta": 24576,
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 64,
+      "resident_ctas_per_sm": 8,
+      "spilled_registers": 0,
+      "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+      "threads_per_cta": 128
+    }
+  },
+  "sm_count": 132,
+  "torch": "2.11.0+cu129",
+  "triton": "3.6.0",
+  "vllm_fused_moe_source": "/capture-public/envs/vllm024/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/fused_moe.py",
+  "vllm_fused_moe_source_sha256": "57a3f7efc9624f5c437908892ed5109a81ba0dbf45e1c6ac8a1438a23131f207"
+}

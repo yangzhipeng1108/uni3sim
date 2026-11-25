@@ -1,0 +1,161 @@
+{
+  "schema": "metax_c500_bf16_vec4_elementwise_2r1w_dram_service_v1",
+  "hardware_id": "metax_c500",
+  "device_name": "MetaX C500",
+  "software_revision": "MACA 3.7.2",
+  "evidence_kind": "independent_full_chip_mixed_dram_stream_capacity",
+  "production_or_evaluation_duration_consumed": false,
+  "capture": {
+    "owner": "capture-owner-4c0f2645f650",
+    "source_baseline_commit": "431ec054d9a35c163640f4ce5c6917e72ac73893",
+    "output": "profiler_output/microbench/metax_c500/directional_2r1w_431ec054_20260905",
+    "physical_device_index": 3,
+    "preflight_selected_device_idle": true,
+    "event_capture_host_pids": [1870934, 1871185, 1871252],
+    "profiler_exec_id": "3934114b-b825-40b8-b039-7853cd32d4de",
+    "postflight_device_processes": 0,
+    "cleanup": "complete"
+  },
+  "source_identity": {
+    "probe_source": "microbench/metax_c500/memory/dram/directional_bandwidth.cpp",
+    "probe_source_sha256": "616f3946e32d57cb940cc63d55165710148ae63bfc8a195c8d24777bbfc35304",
+    "binary_sha256": "1e4c10c1f8ebf70ae9940ca45b2d61ff26c2bd7ce5f96091d819cc860a68fea7",
+    "disassembly_sha256": "00da0f7f255d80b2d26694f55d8dfd39ff50363c2de9debd1496b51290ff0de5",
+    "event_raw_sha256": [
+      "501b6f8141664ab5a45cfb7b67e3badbd4444922ceca131a02634411e06adb45",
+      "f9050ab9f75d6a8a9421d84342a657162b68d51586f69d440adb9868adfbac1f",
+      "09b6b7aebeddb25306134cc4626fd06e7b9568a61d315ef7dcb2a4f4b8504927"
+    ],
+    "event_stderr_sha256": "365be611db4b77b9ce718b33791fc92b4c9378580cb895af64a2e2c0be5e52d5",
+    "counter_json_sha256": "b36ba26340c817971fe96b0c27604f80100d8c326b40119be6cf7561a20bfae1"
+  },
+  "production_source_identity": {
+    "torch_libtorch_cuda_sha256": "a898a957c7b53108c20ab35d339f6e91db376305d46fc0d1c31c920385dee6c5",
+    "kernel_template": "at::native::vectorized_elementwise_kernel<4>",
+    "source_facts": "BF16 Add/Mul uses two vec4 inputs, one vec4 output, 256 threads, and 1024 elements per tail-free CTA."
+  },
+  "production_non_duration_validation": {
+    "source": "kernel_dataset/metax_c500/vector.json.zst",
+    "cases": [
+      "VECTOR_ELEMENTWISE_T256_H4096_B1_ADD",
+      "VECTOR_ELEMENTWISE_T256_H4096_B1_MUL",
+      "VECTOR_ELEMENTWISE_T64_H16384_B1_ADD",
+      "VECTOR_ELEMENTWISE_T64_H16384_B1_MUL"
+    ],
+    "grid_ctas": 1024,
+    "waves": 4096,
+    "logical_2r1w_footprint_bytes": 6291456,
+    "l2_hit_rate_percent": [4.08, 4.69],
+    "global_read_bytes": [4196992, 4197376],
+    "global_write_bytes": 2097376,
+    "interpretation": "The canonical non-duration counters show that the saturated tail-free source remains a compulsory-DRAM stream even though its nominal 6 MiB 2R1W footprint is smaller than the physical 8 MiB L2."
+  },
+  "tool_identity": {
+    "mxcc_sha256": "5d0e23f021bc2dad273dbf73d5f67e74313428ef27bcca2d165ad106cbf14c25",
+    "mxobjdump_sha256": "f553fd0c6e19569d67de379c20849e19fcebc3669641ca9a83c2bdec9a8ef9bc",
+    "mcprofiler_sha256": "a5b827dc7c9f2debf5f322019cf83c441deaea752b2e60918ed61903b36ac078"
+  },
+  "probe_contract": {
+    "timer_domain": "maca_device_event",
+    "block_threads": 256,
+    "vector_elements_per_lane_operation": 4,
+    "logical_bytes_per_lane_operation": 8,
+    "read_operations_per_group": 2,
+    "write_operations_per_group": 1,
+    "read_fraction": 0.6666666666666666,
+    "write_fraction": 0.3333333333333333,
+    "allocated_source_buffer_bytes": 268435456,
+    "allocated_destination_buffer_bytes": 268435456,
+    "touched_source_bytes_per_iteration": 134217728,
+    "touched_destination_bytes_per_iteration": 67108864,
+    "combined_working_set_bytes": 201326592,
+    "hardware_l2_bytes": 8388608,
+    "iterations": 32,
+    "campaign_rounds": 3,
+    "trials_per_grid": 7,
+    "grids": [104, 208, 416, 832, 1664],
+    "load_instruction": "ldg_b64",
+    "store_instruction": "stg_b64 devc",
+    "static_loop_loads": 2,
+    "static_loop_stores": 1,
+    "validation": "pass"
+  },
+  "campaign_median_total_capacity_gb_per_s": {
+    "104": 568.552134,
+    "208": 928.25143,
+    "416": 1320.34748,
+    "832": 1439.198409,
+    "1664": 1447.39304
+  },
+  "maximum_relative_trial_spread_percent": {
+    "104": 0.787885460516074,
+    "208": 0.5389271525280636,
+    "416": 0.7464385814558472,
+    "832": 0.6172533724676967,
+    "1664": 0.46547114416255625
+  },
+  "counter_validation": {
+    "profiled_grid_ctas": 832,
+    "profiled_iterations": 32,
+    "workgroups": 832,
+    "waves": 3328,
+    "l2_hit_rate_percent": 0.0,
+    "logical_read_bytes": 4294967296,
+    "global_read_bytes": 4294920512,
+    "dnoc_read_requests": 33554253,
+    "logical_stream_write_bytes": 2147483648,
+    "checksum_sink_write_bytes": 851968,
+    "global_write_bytes": 2148336800,
+    "dnoc_write_requests": 16783819,
+    "instrumented_duration_consumed": false,
+    "interpretation": "The numbered per-invocation report preserves the exact 2:1 global-byte ratio within initialization/sink traffic and has zero L2 hits; DNoC request counts agree with 128-byte physical lines within 179 requests."
+  },
+  "selected_service": {
+    "selection_rule": "minimum campaign median across the saturated 832- and 1664-CTA full-chip points",
+    "saturation_rule": "832 CTAs provide eight four-wave CTAs per each of 104 APs, equal to the documented 32-wave-per-AP residency ceiling; doubling to 1664 changes the campaign median by less than one percent",
+    "coupled_logical_byte_capacity_per_s": 1439198409000.0,
+    "read_logical_byte_capacity_per_s": 959465606000.0,
+    "write_logical_byte_capacity_per_s": 479732803000.0,
+    "composition": "For an exact 2:1 stream, read_bytes/read_capacity equals write_bytes/write_capacity; their maximum is the one coupled service time.",
+    "scope": "full_chip",
+    "minimum_grid_ctas": 832,
+    "maximum_grid_ctas": 1664
+  },
+  "selected_partial_resident_service": {
+    "selection_rule": "campaign median at the independently measured 416-CTA point",
+    "residency_rule": "416 CTAs provide exactly four four-wave CTAs on each of 104 APs; the selected capacity is a conservative service for launches with at least four resident CTAs per AP and below the separately characterized eight-CTA saturation cohort",
+    "coupled_logical_byte_capacity_per_s": 1320347480000.0,
+    "read_logical_byte_capacity_per_s": 880231653333.3334,
+    "write_logical_byte_capacity_per_s": 440115826666.6667,
+    "composition": "For an exact 2:1 stream, read_bytes/read_capacity equals write_bytes/write_capacity; their maximum is the one coupled service time.",
+    "scope": "full_chip",
+    "minimum_grid_ctas": 416,
+    "maximum_grid_ctas": 831
+  },
+  "applicability": {
+    "dtype": "bf16",
+    "vector_width_elements": 4,
+    "logical_bytes_per_lane_operation": 8,
+    "threads_per_cta": 256,
+    "elements_per_cta": 1024,
+    "required_read_write_ratio": "2:1",
+    "required_source_evidence": "tail-free vectorized_elementwise_kernel<4> Add/Mul",
+    "minimum_grid_ctas": 416,
+    "cache_scope": "compulsory-DRAM stream; the probe working set exceeds L2 and canonical non-duration counters validate the same saturated source at a nominal 6 MiB footprint with only 4.08-4.69% L2 hits"
+  },
+  "decision": {
+    "status": "accepted_mechanism_capacity",
+    "forward_eligible": true,
+    "reason": "The workload-independent tail-free vec4 2R1W stream is stable at the measured four-CTA and eight-CTA resident cohorts, has zero measured L2 hits at the counter-validation point, preserves physical read/write traffic, and supplies only typed byte-service capacities. Canonical non-duration counters independently validate compulsory DRAM traffic for the same saturated source below nominal L2 capacity."
+  },
+  "excluded_conclusions": [
+    "a complete production elementwise duration",
+    "a replacement for generic DRAM read or write capacity",
+    "read/write ratios other than exactly 2:1",
+    "blocks other than 256 threads",
+    "scalar, vec8, non-BF16, or tail-bearing paths",
+    "grids below 416 CTAs",
+    "an inference of physical L2 capacity from the nominal stream footprint",
+    "any per-shape timing correction"
+  ]
+}

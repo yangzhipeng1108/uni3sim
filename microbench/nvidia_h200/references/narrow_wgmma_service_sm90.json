@@ -1,0 +1,3928 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_h200",
+  "mechanism": "shared_operand_fp16_wgmma_instruction_window",
+  "selection": "random_seed_median_secant_then_maximum_measured_window_capacity",
+  "capture": {
+    "path": "profiler_output/microbench/nvidia_h200/narrow_wgmma_service_paired_20261107/raw.json",
+    "sha256": "6b72459a52da2d01d8de430c4ce41930cdcd122dddaa3badea5c83810f70cbf3",
+    "source_sha256": "03f50a231df3cf977cf65a77c682575d7447f2c33b041d69007961aa3760b015",
+    "runner_sha256": "deb0bcd6329e181374c99cb885b1cdf4cdf0929fca7a9c88ebb9c53de7eb066d"
+  },
+  "measurements": [
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 15908.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 63044.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 15908.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 63044.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 15908.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 63044.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 9798.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 38598.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 9798.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 38598.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 9798.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 38598.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 9419.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 37067.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 9419.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 37067.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 9419.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 37067.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 19188.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 75924.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 19188.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 75924.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 19188.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 75924.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 18645.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 73941.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 18645.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 73941.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 18645.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 73941.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 18640.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 73936.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 18640.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 73936.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 18640.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 73936.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 26455.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 105559.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 26455.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 105559.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 26455.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 105559.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 18565.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 73861.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 18565.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 73861.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 18565.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 73861.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 18565.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 73861.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 18565.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 73861.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 18565.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 73861.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 37018.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 147610.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 37018.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 147610.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 37018.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 147610.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 37003.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 147595.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 37003.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 147595.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 37003.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 147595.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 37002.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 147595.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 37003.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 147595.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 37003.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 147595.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 44633.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 178265.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 44633.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 178265.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 44633.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 178265.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 36997.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 147589.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 36997.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 147589.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 36997.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 147589.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 36997.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 147589.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 36997.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 147589.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 36997.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 147589.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 73882.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 295066.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 73882.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 295066.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 73882.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 295066.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 73874.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 295058.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 73874.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 295056.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 73874.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 295058.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 73874.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 295058.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 73874.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 295058.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 73874.0
+    },
+    {
+      "instruction_n": 8,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 295056.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 16964.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 67268.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 16964.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 67268.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 16964.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 67268.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 10717.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 42301.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 10717.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 42301.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 10717.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 42301.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 10438.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 41158.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 10438.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 41158.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 10438.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 41158.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 21072.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 83472.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 21072.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 83472.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 21072.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 83472.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 20683.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 82125.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 20685.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 82125.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 20685.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 82123.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 20685.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 82125.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 20685.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 82123.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 20685.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 82123.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 28505.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 113753.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 28505.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 113753.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 28505.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 113753.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 20615.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 82055.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 20615.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 82055.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 20615.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 82055.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 20615.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 82055.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 20615.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 82055.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 20615.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 82055.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 41116.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 163996.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 41116.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 163996.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 41116.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 163996.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 41100.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 163980.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 41100.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 163979.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 41100.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 163979.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 41098.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 163980.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 41100.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 163980.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 41098.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 163980.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 48985.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 195673.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 48985.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 195673.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 48985.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 195673.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 41095.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 163975.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 41095.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 163975.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 41095.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 163975.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 41095.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 163975.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 41095.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 163975.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 41095.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 163975.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 82099.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 327858.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 82099.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 327858.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 82099.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 327858.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 82083.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 327843.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 82083.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 327843.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 82083.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 327843.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 82083.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 327843.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 82083.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 327843.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 82083.0
+    },
+    {
+      "instruction_n": 16,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 327843.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 19460.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 77252.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 19460.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 77252.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 19460.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 77252.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 12643.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 49987.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 12643.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 49987.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 12643.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 49987.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 12488.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 49352.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 12488.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 49352.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 12488.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 49352.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 25016.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 99224.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 25016.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 99224.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 25016.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 99224.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 24776.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 98514.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 24786.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 98504.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 24776.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 98514.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 24778.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 98506.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 24778.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 98504.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 24778.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 98506.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 33113.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 132185.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 33113.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 132185.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 33113.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 132185.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 24715.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 98443.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 24715.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 98443.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 24715.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 98443.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 24715.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 98443.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 24715.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 98443.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 24715.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 98443.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 49335.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 196792.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 49335.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 196791.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 49336.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 196790.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 49315.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 196771.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 49315.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 196771.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 49315.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 196771.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 49315.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 196771.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 49315.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 196771.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 49315.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 196771.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 57702.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 230502.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 57702.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 230502.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 57702.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 230502.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 49304.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 196760.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 49304.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 196760.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 49304.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 196760.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 49304.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 196760.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 49304.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 196760.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 49304.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 196760.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 98556.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 393468.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 98555.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 393467.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 98555.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 393468.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 98529.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 393441.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 98529.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 393441.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 98529.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 393441.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 98529.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 393441.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 98529.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 393441.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 98529.0
+    },
+    {
+      "instruction_n": 32,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 393441.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 24356.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 96836.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 24356.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 96836.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 24356.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 96836.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 16585.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 65737.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 16585.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 65737.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 16585.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 65737.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 16585.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 65737.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 16585.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 65737.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 16585.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 65737.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 33082.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 131386.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 33082.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 131384.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 33080.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 131386.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 33021.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 131325.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 33021.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 131322.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 33021.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 131325.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 33017.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 131321.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 33017.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 131321.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 33016.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 1,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 131321.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 42342.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 169062.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 42342.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 169062.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 42342.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 169062.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 32928.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 131232.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 32928.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 131232.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 32928.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 131232.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 32928.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 131232.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 32928.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 131232.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 32928.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 131232.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 65812.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 262420.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 65812.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 262420.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 65812.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 262420.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 65769.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 262377.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 65769.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 262377.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 65769.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 262377.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 65769.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 262377.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 65769.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 262377.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 65769.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 2,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 262377.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 75174.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 300198.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 75174.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 300198.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 75174.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 300198.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 65760.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 262368.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 65760.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 262368.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 65760.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 262368.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 65760.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 262368.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 65760.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 262368.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 65760.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 1,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 262368.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 131432.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 524648.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 131432.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 524648.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 131432.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 0,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 524648.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 131423.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 524639.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 131423.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 524639.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 131423.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 1,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 524639.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 128,
+      "cycles": 131423.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 1,
+      "rounds": 512,
+      "cycles": 524639.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 128,
+      "cycles": 131423.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 2,
+      "rounds": 512,
+      "cycles": 524639.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 128,
+      "cycles": 131423.0
+    },
+    {
+      "instruction_n": 64,
+      "chains": 4,
+      "math_warpgroups": 2,
+      "pending_groups": 3,
+      "seed": 3,
+      "rounds": 512,
+      "cycles": 524639.0
+    }
+  ],
+  "instruction_rates": [
+    {
+      "instruction_n": 8,
+      "flops_per_sm_cycle": 910.2222222222222
+    },
+    {
+      "instruction_n": 16,
+      "flops_per_sm_cycle": 1638.453335069501
+    },
+    {
+      "instruction_n": 32,
+      "flops_per_sm_cycle": 2730.6666666666665
+    },
+    {
+      "instruction_n": 64,
+      "flops_per_sm_cycle": 4096.0
+    }
+  ],
+  "scope_limitations": [
+    "Instruction-window cycle capacity only; nominal clock is an optimistic upper bound, never the measured ns price.",
+    "All three seeds and two round lengths; maximum capacity over all measured chain/warpgroup/pending windows, independent of production error.",
+    "One CTA per SM with 196608B shared. Native 384-thread CTA has at most two math warpgroups; producer and progress remain aggregate.",
+    "CUDA12.9 paired SASS supports batched instructions; local12.2 lowers differently and is not used to certify remote lowering.",
+    "Only retained 64/128/256 by8 TNT cores have instruction geometry bound in this iteration; other widths remain unbound."
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

@@ -1,0 +1,121 @@
+{
+  "hardware_id": "metax_c500",
+  "max_scheduled_request_count": 126,
+  "fallback_dispatch": {
+    "min_scheduled_request_count": 127,
+    "max_scheduled_request_count": 128,
+    "supported_phases": [
+      "mixed",
+      "decode"
+    ],
+    "service_time_s": {
+      "plan": 0.000778926,
+      "update": 0.0006289635
+    },
+    "occurrence_contract": "one synthetic decode scheduler plan and one output update per sample; no Serving duration consumed"
+  },
+  "measurement": {
+    "artifacts": [
+      {
+        "path": "serving_dataset/sharegpt/metax_c500/llama-3.1-8b/tp1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "fc2bdb0f1a66046955d07486131a389db8d130ce2696927cb44152d73aa5292b"
+      },
+      {
+        "path": "serving_dataset/sharegpt/metax_c500/llama-3.1-8b/tp1_qps64/scheduler_steps.jsonl.zst",
+        "sha256": "fc46fdce3d38d25a51fe8734cea69ffd5e0c3d3df2b192312f5a4f2e1cdbc9c9"
+      },
+      {
+        "path": "serving_dataset/sharegpt/metax_c500/qwen3-30b-a3b/tp2_ep2_qps1/scheduler_steps.jsonl.zst",
+        "sha256": "a69e5706c7600613344b39d5dc31394a7b6f6bdc730a0ad72e92101b878b1ab3"
+      },
+      {
+        "path": "serving_dataset/sharegpt/metax_c500/qwen3-30b-a3b/tp2_ep2_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "831a7baf04adfaf7cdb4cc87dcf4e4101498ded63ba2e47e002f5bd150e35d4f"
+      },
+      {
+        "path": "serving_dataset/sharegpt/metax_c500/qwen3-32b/tp2_ep1_qps1/scheduler_steps.jsonl.zst",
+        "sha256": "c1e8d76428d340dc8c64a2c3ba8888ee129e8dc4c9d3ce91e5954af4f3f22b3d"
+      },
+      {
+        "path": "serving_dataset/sharegpt/metax_c500/qwen3-32b/tp2_ep1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "98ac7819fd2957eb8860b73afb1f4c39613ea8cddd71315d623b86d56df8ecd6"
+      },
+      {
+        "path": "serving_dataset/sharegpt/metax_c500/qwen3-4b/tp1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "dadc1c7dcbe0beb11a75662d294be18cacb043ba2da4ca6d8e7fdf17675f72a7"
+      },
+      {
+        "path": "serving_dataset/sharegpt/metax_c500/qwen3-4b/tp1_qps64/scheduler_steps.jsonl.zst",
+        "sha256": "b0acdc2a641cdd12176e3829f2ca814963ab9bef3c3fda062e7370311def69e6"
+      },
+      {
+        "path": "serving_dataset/sharegpt/metax_c500/qwen3-8b/tp1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "0e7f54fb90712856d29dabf14572eb21d7f342bcd63de2865e8ca190555c2328"
+      },
+      {
+        "path": "serving_dataset/sharegpt/metax_c500/qwen3-8b/tp1_qps64/scheduler_steps.jsonl.zst",
+        "sha256": "06497e14a172a81c4235739adff952244797a844194d0c3f3818ed98b1ce565a"
+      },
+      {
+        "path": "microbench/metax_c500/runtime/scheduler_host_prefill/rep1.scheduler_steps.jsonl.zst",
+        "sha256": "f40e7d14a0fed1cd6567a54f70188c2ad493c3ae6647c3f07a74df4329c85ed5"
+      },
+      {
+        "path": "microbench/metax_c500/runtime/scheduler_host_prefill/rep2.scheduler_steps.jsonl.zst",
+        "sha256": "af4f9e4264a5d6c4c5e84ed3fb48ad692dbc467d4422e5a00dae48a51fcc2a0a"
+      },
+      {
+        "path": "microbench/metax_c500/runtime/scheduler_host_prefill/rep3.scheduler_steps.jsonl.zst",
+        "sha256": "6958965b15774a278ca121fd60029181042554785011446127ab5895479fc886"
+      },
+      {
+        "path": "microbench/metax_c500/runtime/scheduler_fallback_dispatch/references/scheduler_fallback_dispatch_decode_20260926.json",
+        "sha256": "fccd2bdea32edebcab8e14370c8191f044b1c3559f17842d2346d3bc79ac7863"
+      }
+    ],
+    "boundary": "vllm_scheduler_trace_host_monotonic_plan_and_update",
+    "time_unit": "seconds",
+    "training_selection": {
+      "eligible_step_rule": "nonzero_scheduled_request_count_with_positive_plan_and_update",
+      "excluded_target_qps": 16,
+      "minimum_samples_per_phase": 32
+    }
+  },
+  "model": {
+    "kind": "scheduled_request_count_affine",
+    "state_dimensions": [
+      "scheduled_request_count"
+    ],
+    "statistic": "median_of_count_medians_theil_sen"
+  },
+  "scheduler": {
+    "source_identity": "vllm=0.24.0;source_identities=vllm=0.24.0;core=d1219de0...bb116b;executor=5063ced0...c784e;vllm=0.24.0;source_commit=not_recorded",
+    "vllm_version": "0.24.0"
+  },
+  "schema_version": 1,
+  "service_time_s": {
+    "plan": {
+      "intercept": 6.897288871082617e-05,
+      "per_request": 7.712029736467237e-06
+    },
+    "prefill": {
+      "plan": {
+        "intercept": 5.487367857142859e-05,
+        "per_request": 0.00010626173809523809
+      },
+      "update": {
+        "intercept": 2.017891071428572e-05,
+        "per_request": 5.122723214285713e-06
+      }
+    },
+    "update": {
+      "intercept": 4.864616991341996e-05,
+      "per_request": 5.022885281385281e-06
+    }
+  },
+  "supported_phases": [
+    "prefill",
+    "mixed",
+    "decode"
+  ]
+}

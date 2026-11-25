@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_mte2_fia_gqa_finite_drain_group22_count16_supplement",
+  "duration_unit": "ns_per_finite_descriptor_program_per_aic",
+  "publication_scope": {
+    "source_residency": "dram_cold_disjoint",
+    "dtype": "bf16",
+    "completion_edge": "MTE2_MTE1_after_every_descriptor",
+    "estimator": "exact_measured_geometry_and_descriptor_count_only",
+    "programs": [
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 1024,
+        "active_aic_groups": 22,
+        "descriptor_count": 16,
+        "duration_ns": 35040.0
+      }
+    ]
+  },
+  "measurement": {
+    "mode": "independent_finite_drained_descriptor_microbenchmark",
+    "measurement_baseline_commit": "dc009d58d5ec53e446c61b1d44f3775bcb5e0c4c",
+    "source_commit": "dc009d58d5ec53e446c61b1d44f3775bcb5e0c4c",
+    "physical_device_id": 0,
+    "binary_sha256": "06afb92998c1d5fe26579763268caa272a228ce3d35e9b26bb01ea01e82aa1e0",
+    "source_kernel_sha256": "348381a35f12f69e1a3bf23fe1caf3010865fcf013b3b919bfce749b743b0cc8",
+    "source_main_sha256": "8441f3e9ed7698e55f066f7b2caf38ffa1d0ba30edd210ea2e59af92419712f9",
+    "cmake_sha256": "8629632d589545cd9ff45a8b1d7b212f4f9614ce65f609ae88d29d16b02836a4",
+    "raw_paths": [
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_group22_count16_dc009d58_20260913/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_group22_count16_dc009d58_20260913/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_group22_count16_dc009d58_20260913/run3.csv"
+    ],
+    "raw_sha256": [
+      "f5b83ef7ea2eac5e125cd689d4fe4f03d60a1608a9c88382611e1ac11e260744",
+      "32523c6137c4b996469884a480e3f9feb68ffb007b38cdf24de26cbd4e949d67",
+      "dfccbf9fb98e21fb9a10c848817ce4be317b334e301e3ea7492dbb8058e077b2"
+    ],
+    "program_run_duration_ns": [
+      [35480.0, 34880.0, 35040.0]
+    ],
+    "maximum_program_deviation_pct": [
+      1.2557077625570776
+    ],
+    "mechanism_gate_passed": true
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "only the exact listed BF16 FIA GQA K/V source geometry, descriptor count and AIC concurrency, with disjoint DRAM-cold residency and an MTE2-to-MTE1 completion edge after every descriptor"
+}

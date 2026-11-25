@@ -1,0 +1,257 @@
+{
+  "schema": "nvidia_h200_bm64_triton_h2880_source_depth_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "source_baseline_commit": "48abf63b1baff96101be2f06194dc27a1d246932",
+  "runner": "microbench/nvidia_h200/operators/fused_moe/fused_moe_triton_operand_stream_runner.py",
+  "runner_sha256": "1f1d6a1b27216c92a58c610016108961e6e45c2b240b05005fff5a7b176f7672",
+  "vllm_source": "/capture-workspace/vllm_src_3ver/a800/vllm/model_executor/layers/fused_moe/fused_moe.py",
+  "vllm_source_sha256": "8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e",
+  "probe_contract": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_n": 64,
+    "tile_k": 32,
+    "group_size_m": 8,
+    "threads_per_cta": 128,
+    "experts": [
+      32,
+      128
+    ],
+    "topk": 4,
+    "tokens": 32768,
+    "production_w1_projection": [
+      2880,
+      5760
+    ],
+    "production_w2_projection": [
+      2880,
+      2880
+    ],
+    "adjacent_projection_k_tiles": [
+      89,
+      91
+    ],
+    "adjacent_w1_projection_n_tiles": [
+      89,
+      91
+    ],
+    "adjacent_w2_projection_n_tiles": [
+      44,
+      45,
+      46
+    ],
+    "synthetic_routing_rule": "seeded random assignment independent of production routing"
+  },
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth/e128_w2_k89_n44_d2/result.json",
+      "sha256": "93cf3b1dccb4ad909f855fdbb41da157ea94945fd862d044f7f793cc66858fa6",
+      "device_id": 0,
+      "role": "w2",
+      "k_tiles": 89,
+      "n_tiles": 44,
+      "active_m_tiles": 2115,
+      "maximum_m_tiles": 2174,
+      "logical_operand_capacity_bytes_per_s": 8947748297064.166
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth/e128_w2_k89_n44_d6/result.json",
+      "sha256": "f73b3c5c7f4435f3c92219e264a2cec199a96570a8b06e99f1e7cf8e5193b0b1",
+      "device_id": 3,
+      "role": "w2",
+      "k_tiles": 89,
+      "n_tiles": 44,
+      "active_m_tiles": 2108,
+      "maximum_m_tiles": 2174,
+      "logical_operand_capacity_bytes_per_s": 8933354130811.537
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth/e128_w2_k89_n45_d2/result.json",
+      "sha256": "d397f114207d017354ff9c97b7e96509a7b4a3d722f003fbe9ee70ebb8cf133f",
+      "device_id": 0,
+      "role": "w2",
+      "k_tiles": 89,
+      "n_tiles": 45,
+      "active_m_tiles": 2109,
+      "maximum_m_tiles": 2174,
+      "logical_operand_capacity_bytes_per_s": 8954269253261.49
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth/e128_w2_k91_n45_d6/result.json",
+      "sha256": "e25876a3c0eb61c0af27c79d8f7560093cc5c1f5ee2c040624e6ce92c32480d5",
+      "device_id": 3,
+      "role": "w2",
+      "k_tiles": 91,
+      "n_tiles": 45,
+      "active_m_tiles": 2109,
+      "maximum_m_tiles": 2174,
+      "logical_operand_capacity_bytes_per_s": 8899852607071.781
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth/e128_w2_k91_n46_d6/result.json",
+      "sha256": "09b6890433f5ad781cd337c01332a4b9f9fe75849633bd97b48abbbf65108ee4",
+      "device_id": 3,
+      "role": "w2",
+      "k_tiles": 91,
+      "n_tiles": 46,
+      "active_m_tiles": 2110,
+      "maximum_m_tiles": 2174,
+      "logical_operand_capacity_bytes_per_s": 8861896334588.746
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth/e128_w2_k91_n46_d2/result.json",
+      "sha256": "17b1016647f2421531ce10cc04fe6a1398471b9e35fe24ced09b8e0c58780da2",
+      "device_id": 0,
+      "role": "w2",
+      "k_tiles": 91,
+      "n_tiles": 46,
+      "active_m_tiles": 2109,
+      "maximum_m_tiles": 2174,
+      "logical_operand_capacity_bytes_per_s": 8884254725168.225
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth/e128_w1_k89_n89_d2/result.json",
+      "sha256": "58be019c6f852de8ebcb702fc739f0d06b9d8de1253a69b68e51bdc17692f681",
+      "device_id": 0,
+      "role": "w1",
+      "k_tiles": 89,
+      "n_tiles": 89,
+      "active_m_tiles": 2113,
+      "maximum_m_tiles": 2174,
+      "logical_operand_capacity_bytes_per_s": 8578189555448.118
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth/e128_w1_k89_n89_d6/result.json",
+      "sha256": "db9f82da42bab6a1d47d96ef47342fbd5fe0a1e6efa531ba14f00203e445ebe1",
+      "device_id": 3,
+      "role": "w1",
+      "k_tiles": 89,
+      "n_tiles": 89,
+      "active_m_tiles": 2110,
+      "maximum_m_tiles": 2174,
+      "logical_operand_capacity_bytes_per_s": 8570750049793.29
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth/e128_w1_k91_n91_d6/result.json",
+      "sha256": "9dbfea3315a751e2562456ddf9529f0074aab11a85f757d65da3f2160767c7fd",
+      "device_id": 3,
+      "role": "w1",
+      "k_tiles": 91,
+      "n_tiles": 91,
+      "active_m_tiles": 2109,
+      "maximum_m_tiles": 2174,
+      "logical_operand_capacity_bytes_per_s": 8558123906935.459
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth/e128_w1_k91_n91_d2/result.json",
+      "sha256": "e422da1eb12ca636ca353114bc6ee91191c0b5efdaabc91d1c946cfba4269369",
+      "device_id": 0,
+      "role": "w1",
+      "k_tiles": 91,
+      "n_tiles": 91,
+      "active_m_tiles": 2114,
+      "maximum_m_tiles": 2174,
+      "logical_operand_capacity_bytes_per_s": 8547930452405.6455
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth/e32_w2_k89_n44_d2/result.json",
+      "sha256": "e3f8515f8d3d5772b1839542f345b1578e84d51d6d3f19af08e99e1cf67752b5",
+      "device_id": 0,
+      "role": "w2",
+      "k_tiles": 89,
+      "n_tiles": 44,
+      "active_m_tiles": 2128,
+      "maximum_m_tiles": 2144,
+      "logical_operand_capacity_bytes_per_s": 9351888822170.605
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth/e32_w2_k91_n46_d6/result.json",
+      "sha256": "5177ed18144f13261baa86199ebeeb4554b4a42872d69f1bf371a2ecb1c2570b",
+      "device_id": 3,
+      "role": "w2",
+      "k_tiles": 91,
+      "n_tiles": 46,
+      "active_m_tiles": 2128,
+      "maximum_m_tiles": 2144,
+      "logical_operand_capacity_bytes_per_s": 9307519633041.078
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth/e32_w1_k89_n89_d2/result.json",
+      "sha256": "465d2ff73765f9c164b91434250fd293ad991d19641e8cd8f63922c838a359cb",
+      "device_id": 0,
+      "role": "w1",
+      "k_tiles": 89,
+      "n_tiles": 89,
+      "active_m_tiles": 2128,
+      "maximum_m_tiles": 2144,
+      "logical_operand_capacity_bytes_per_s": 8857471313091.03
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth/e32_w1_k91_n91_d6/result.json",
+      "sha256": "ae32e5da9c0450fe055f85f5832e422706b2c5738184769dd99610352a3f4b99",
+      "device_id": 3,
+      "role": "w1",
+      "k_tiles": 91,
+      "n_tiles": 91,
+      "active_m_tiles": 2127,
+      "maximum_m_tiles": 2144,
+      "logical_operand_capacity_bytes_per_s": 8829422053783.451
+    }
+  ],
+  "selected_service": {
+    "selection_rule": "minimum median logical-byte capacity across all adjacent non-production projection shapes, source roles, random routes, and idle devices",
+    "logical_byte_capacity_per_s": 8547930452405.6455
+  },
+  "mechanism": "production_source_triton_grouped_matrix_operand_and_hmma_pipeline_beyond_two_complete_chip_group_waves",
+  "allowed_conclusion": "BF16 BM64/BN64/BK32/GSM8 E32/E128 W1/W2 launches in the adjacent H2880 projection family and beyond two complete SM-by-GSM waves use this conservative full-chip combined operand service.",
+  "excluded_conclusions": [
+    "complete production MoE operator duration",
+    "exact production K/N duration",
+    "per-case residual correction",
+    "shallower source programs",
+    "other projection tile classes"
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true,
+  "h200_capture_provenance": {
+    "a800_reference": "microbench/nvidia_a800/references/bm64_triton_h2880_source_depth_sm80.json",
+    "runner": "microbench/nvidia_h200/operators/fused_moe/fused_moe_triton_operand_stream_runner.py",
+    "runner_sha256": "1f1d6a1b27216c92a58c610016108961e6e45c2b240b05005fff5a7b176f7672",
+    "kernel_module": "microbench/nvidia_h200/operators/fused_moe/vllm_0_11_fused_moe_kernel.py",
+    "kernel_module_sha256": "3524c4403644320c6b3505eff0e0503f763550f04e029eef3091a051f5382adb",
+    "kernel_source": "byte-identical vLLM 0.11 fused_moe_kernel / invoke_fused_moe_kernel / moe_align_block_size segments (vLLM 0.11 fused_moe.py sha256 8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e) compiled by Triton 3.6.0; sort op = vLLM 0.24.0 _moe_C",
+    "software": {
+      "torch": "2.11.0+cu129",
+      "triton": "3.6.0",
+      "vllm_package_for_moe_align_op": "0.24.0"
+    },
+    "campaign": "microbench/nvidia_h200/operators/fused_moe/fused_moe_triton_wp1_campaign.py",
+    "campaign_sha256": "35b90e71354f86bbc199ede0cae7135f3dc16be15158c06520dfec9b093d7762",
+    "derivation": "microbench/nvidia_h200/operators/fused_moe/derive_fused_moe_triton_wp1_references.py",
+    "derivation_sha256": "183dae60d6334ccbb176f5918d156019c1a4bf300c8f2129f4e06e56a07ee1ff",
+    "baseline_commit": "48abf63b1baff96101be2f06194dc27a1d246932",
+    "raw_dir": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth",
+    "remote_raw_dir": "/capture-public/h200_microbench/wp1_moe_triton/repo/profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm64_triton_h2880_source_depth",
+    "raw_tree_sha256": "cbd46cb81309d707d78525e3bf0d3a066a08151da634d46c0e1fe983ac0f79a5",
+    "device_mapping": "A800 device 2 -> H200 GPU 0, A800 device 6 -> H200 GPU 3",
+    "clock": {
+      "gate": "every nvidia-smi 50-ms sample inside [first timed launch - 0.1 s, last timed launch + 0.1 s] reads >= 1980 MHz; a rejected process is repeated in a fresh process",
+      "accepted_captures": 14,
+      "rejected_captures": 0,
+      "window_samples_total": 77,
+      "window_clock_mhz_min": 1980,
+      "window_clock_mhz_max": 1980,
+      "measured_sm_clock_mhz": 1980
+    },
+    "deep_gate_m_tiles": {
+      "a800": 1728,
+      "h200": 2112
+    },
+    "deep_gate_rechosen": "A800 measured E32 at 32768 tokens (maximum 2080 M tiles), which passes the A800 gate 1728 but not the H200 gate 2112; H200 measures E32 at 33792 tokens (maximum ceil((33792*4+32*63)/64) = 2144 M tiles). The E128 depth 2174 already passes 2112 and is unchanged.",
+    "inferred_probe_arguments": "A800 route seeds are not recorded; H200 uses seeds 2026092501.. (one per capture). W1 runs without and W2 with MUL_ROUTED_WEIGHT (production source roles); source_topk = topk = 4.",
+    "derived_at_utc": "2026-09-24T20:59:40.760463+00:00"
+  }
+}

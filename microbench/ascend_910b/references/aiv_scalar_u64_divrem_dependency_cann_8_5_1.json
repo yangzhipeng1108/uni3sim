@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "628372f3f843b725fc5b8aedb99e6f142f24082a",
+  "capture_source_snapshot": "rmsnorm_queue_control_628372f3_e5c2f3e9_20260829_d3",
+  "service": "aiv_scalar_u64_divrem_dependency",
+  "request_size_unit": "source_u64_divrem_dependency_groups",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"1": 14.708658854},
+  "benchmark_binary_sha256": "cbb6b606d3ad0420db0a722695b63be513feb3a134bd98fc5a49e6480a138fe4",
+  "benchmark_source_sha256": {
+    "vector_opcode_kernel.cpp": "4010e8cc48849d6e397a31437798cb004a1ea02e15caa7cd2de66094bce67846",
+    "vector_opcode_main.cpp": "f6ad1fe4cef937ac645f06c7dca56aebf0faaaa0cc98ef6f6664f4c624867460",
+    "vector_opcode_report.py": "826250f08e18fbbf68d16b058206edf00677ffca5f88d48aa592b5e37c29346e",
+    "vector_opcode_runner.py": "73d3aabaeced15109a744386e796ee05639ae2f0915e4d812123dcec4fb5dd96"
+  },
+  "production_source_sha256": {
+    "glu_tiling_kernel.hpp": "2b6abc813b6e372b0d36e81f79fd618c180b0c0e4de2643056fd7aad775c2053",
+    "swi_glu_single.hpp": "ace487f5c4f3929e0cc1e02dfc54b062294a3018d0cb102baa920ea83e8dd096"
+  },
+  "device_id": 3,
+  "independent_runs": 3,
+  "block_dims": [1, 24, 48],
+  "operands": [3, 47],
+  "tick_ns": 20.0,
+  "maximum_run_relative_median_spread": 0.000056338022400629056,
+  "maximum_concurrency_relative_median_spread": 0.0000563411965522225,
+  "maximum_operand_relative_median_spread": 0.03775462259773547,
+  "mechanism": "one dependency-chained uint64 quotient-and-remainder group followed by its scalar add",
+  "composition": "source-counted groups on each AIV; two row/column tiling groups per worker and one tile-index group per executed tile",
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/scalar_u64_divrem_37351cbe_20260829_d3_r2r3/run1.csv", "sha256": "a7c7f83bc0019995072984df77cd3b1a8d93f02c423caa85fe0ed472c5b1b685"},
+    {"path": "profiler_output/microbench/ascend_910b/scalar_u64_divrem_37351cbe_20260829_d3_r2r3/run2.csv", "sha256": "a03748be09f2e9b07be588bc8f08055fafae7a010be44fe6c9d84db5b96688aa"},
+    {"path": "profiler_output/microbench/ascend_910b/scalar_u64_divrem_37351cbe_20260829_d3_r2r3/run3.csv", "sha256": "378774448da9411732a34bf5d3bd12870e19407d48443db42f6dfc29485a7690"},
+    {"path": "profiler_output/microbench/ascend_910b/scalar_u64_divrem_37351cbe_20260829_d3_r2r3/report.txt", "sha256": "6034fc1441ba4b5fd359b17ad2a56d68491c6bb2f0e7d70cf6b6cd746a3bd392"}
+  ],
+  "measurement_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

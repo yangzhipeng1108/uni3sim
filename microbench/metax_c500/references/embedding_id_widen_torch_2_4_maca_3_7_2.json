@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "evidence_kind": "installed_artifact_static_copy_dispatch_and_xcore1000_code",
+  "artifact_identity_reference": "bf16_vec4_elementwise_2r1w_dram_maca_3_7_2.json#/production_source_identity",
+  "hardware_execution_performed": false,
+  "duration_consumed": false,
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/copy_header_inventory.json",
+      "sha256": "3a3bceb89fd7a9852453427e88e9ecdbe389f095f53f6741d8a62a0c5140f56a",
+      "encoding": "json"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/id_widen_contiguous_dispatch.json",
+      "sha256": "2ff08955a0d4e91fe083b4a073c5a93a5e9577492138dba1f7ac9853349a0593",
+      "encoding": "json"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/id_widen_copy_impl_source.json",
+      "sha256": "c93206b86c93aba2f5110c6f266dec27d7d50b2f593d09648f7215948849aa3e",
+      "encoding": "json"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/id_widen_device_candidate.json.gz",
+      "sha256": "f283a30d12b507bb5b1b71db9336728eba3c6657c456ce0c76eb29cd11e4c72c",
+      "encoding": "gzip"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/id_widen_device_code.json.gz",
+      "sha256": "3f009038bbcb739471ca27397096a37014e03e4841335ac0204d663a3097c96c",
+      "encoding": "gzip"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/id_widen_fast_cast_source.json",
+      "sha256": "3eb3389da2f4a728ff611fae5d4aa6750c6918f4158d7f382edd5363b43fbe74",
+      "encoding": "json"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/id_widen_host_dispatch.json",
+      "sha256": "fbcb97364ed1c910a3387941ca47892100796f14b02c50e4914d6ee444666264",
+      "encoding": "json"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/id_widen_metadata.json",
+      "sha256": "9bfba7b06f95b2df58c632cfef3ffcd7b46a87599936fd3d2e5206d21c0b3349",
+      "encoding": "json"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/id_widen_metadata_cleanup.json.gz",
+      "sha256": "45091d08a66a1de9a535335804ff825e7600470414fde69a3b31ecdafe3fe270",
+      "encoding": "gzip"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/id_widen_selected_host_path.json",
+      "sha256": "855fcc59a4818c0ed0ec23d73aa50ad0abc1bbd1353f3f832913484a6c98137d",
+      "encoding": "json"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/id_widen_selected_kernel.json",
+      "sha256": "b43d43b5325c2e8207356d91f721f5c11221813797a26d59cfce7c11a5192731",
+      "encoding": "json"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/id_widen_selected_metadata.json",
+      "sha256": "18603aaa42c76d8eeccf9358c985780597c943ab2320bc9825ead391fc5fbc8a",
+      "encoding": "json"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/id_widen_optimized_program.json",
+      "sha256": "e1461ea915bc0e3d2a922a5199e35eb6fd6eaf3a536717219e168ec51c71b1b1",
+      "encoding": "json"
+    }
+  ],
+  "source_chain": [
+    "Declared vLLM0.24 ordinary TP1 input_.long() maps INT32 IDs to a distinct INT64 tensor; the declared compiler/library is the existing Torch2.4+MACA3.7.2 artifact, not proof of the captured0.24 runtime.",
+    "direct_copy_kernel_cuda0x16b00c0 selects the Long-output functor at0x16b0210 ->gpu_kernel_maca_arity1_copy0x16df380 ->gpu_kernel_impl_maca_arity1_copy0x16df580.",
+    "Loops_copy.cuh checks empty/split iterators; CUDALoops_copy.cuh chooses contiguous differing-dtype LoadWithCast/StoreWithCast unrolled launch below2048 elements.",
+    "CUDALoops_copy.cuh has an optimized-copy branch for aligned N>=2048 including Long/Int, controlled by get_maca_disable_unroll_float_opt. Presence of the generic device symbol alone does not bind that larger domain.",
+    "thread_constants.h: USE_MACA num_threads=256,thread_work_size=4; launch_unrolled_kernel grid=ceil(N/1024). Device block stride is1024 with four predicated slots.",
+    "Xcore1000 code: INT32 branch LDG_B32@0x546328, ASHR_I32(highword,31,lowword)@0x546338; repeats at0x547948/0x548fa0/0x54a690. INT64 destination stores8B per active slot; no floating conversion.",
+    "MetaX ELF note: max_block_size256,mtreg_count22,streg_count40,private_memory_size0,share_memory_size0.",
+    "The existing pinned host dispatch at0x16df749 branches to the same generic entry0x16e1869 when get_maca_disable_unroll_float_opt is true, independently of alignment and N. Thus explicitly disabled N>=2048 reuses the retained256x4/22-register entry within an unsplit32bit byte extent; this is not inference from symbol presence.",
+    "Reusing the retained bundle51 Xcore1000 code and MsgPack ELF descriptor: exact Long-output functor full int_to_long0x542700 and tail0x542800 have mtreg10/streg16 andmtreg10/streg20 respectively, with zero private/shared. Source emits256threads/vt2/ceil(N/512). Two packed ASHR_I32 or one per scalar residual give exactly one sign extension per element, never a floating conversion."
+  ],
+  "accepted_scope": {
+    "input": "contiguous same-device INT32 vector",
+    "output": "fresh contiguous same-device INT64 vector",
+    "elements": "1<=N<2048 without dispatch facts; or2048<=N with8*N<2^31 and explicit Copy flag; enabled branch additionally requires both actual pointers>=4B-aligned",
+    "launch_algorithm": "pytorch_2_4_metax_3_7_2_int32_to_int64",
+    "threads": 256,
+    "values_per_thread": 4,
+    "registers_per_thread": 22,
+    "logical_bytes": "4N read+8N write",
+    "integer_work": "one source-proven32-bit arithmetic sign extension per element using existing integer ALU service",
+    "large_copy_dispatch": "same exact flag/input/output-alignment mapping as the BF16-to-FP32 Copy contract; disabled selects genericvt4/22registers, enabled+proven4B selects optimizedvt2/10registers with separate full/tail entry",
+    "optimized_launch": {
+      "threads": 256,
+      "values_per_thread": 2,
+      "grid": "ceil(N/512)",
+      "registers_per_thread_full": 10,
+      "registers_per_thread_tail": 10,
+      "full_algorithm": "pytorch_2_4_metax_3_7_2_int32_to_int64_optimized",
+      "tail_algorithm": "pytorch_2_4_metax_3_7_2_int32_to_int64_optimized_tail"
+    }
+  },
+  "excluded": [
+    "N>=2048 with absent flag, enabled optimization without proven4B input/output alignment, split iterator or unproven32bit byte extent",
+    "strided tensors or split iterators",
+    "other architectures or Torch versions",
+    "actual GPU/provider/runtime or latency accuracy validation"
+  ],
+  "pricing_limitations": [
+    "iterator addressing,uniform and dtype-dispatch instructions excluded as in the existing shared integer materialization model",
+    "source-role bytes are not measured DRAM traffic or a cache-hit observation",
+    "no new throughput/latency values or production task-duration floors"
+  ],
+  "extraction_cleanup": {
+    "temporary_tool_file": "libtorch_cuda.so.51.out was created beside its input by mxobjdump despite cwd; removed immediately after metadata extraction",
+    "original_library_hash_reverified_matches": true,
+    "raw_receipt": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/id_widen_metadata_cleanup.json.gz"
+  }
+}

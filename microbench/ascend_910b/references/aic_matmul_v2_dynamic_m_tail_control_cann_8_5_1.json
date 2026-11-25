@@ -1,0 +1,51 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_matmul_v2_dynamic_m_tail_control.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_dynamic_m_tail_scalar_control_v1",
+  "duration_unit": "ns_per_tail_output_tile_k_tile_pair",
+  "source_program": {
+    "dtype": "bf16",
+    "active_aic_workers": 22,
+    "base_tile_m": 48,
+    "base_tile_n": 96,
+    "base_tile_k": 64,
+    "projection_k": 2048,
+    "output_tiles_per_worker": 2,
+    "k_tiles_per_output_tile": 32,
+    "maximum_partial_m_descriptor_k": 256,
+    "dynamic_control_logical_m": 48,
+    "static_control_logical_m": 48,
+    "dynamic_enable_set_tail": true,
+    "static_enable_set_tail": false
+  },
+  "capture": {
+    "measurement_baseline_commit": "0c530a00a9f7c1135210e99b843cce3f8250e3ac",
+    "source_snapshot_sha256": "b6f117acbd79d429dfa16024b831462dbb52deb0858763332229aadfcc38b62a",
+    "kernel_source_sha256": "db3db0a2a4692055175b36de79a7e328e05ddf8d5c8e54656e14474d29c36393",
+    "host_source_sha256": "6f97b4b118f684d429af9d03cfe4a774949159b5225709e45bfe1dff7f6ba26d",
+    "binary_sha256": "56a52a094204359ae3b6e3e7fba89d32a6ad92c6a0e511e42ee5d4a4bccbb675",
+    "physical_device_id": 2,
+    "profiled_launch_index": 2,
+    "dynamic_pipe_path": "profiler_output/microbench/ascend_910b/order_check_m_tail_admission_0c530a00_20260915_r1/pipe_m48_k2048_step4_dynamic_r1/OPPROF_20260914192457_BIYLKHATAIOCSRBU/matmul_v2_m_tail_admission_0/1/PipeUtilization_20260914192503491.csv",
+    "dynamic_pipe_sha256": "4c9b5f80703fd4c1e863b441c59ed45503145b371c9765958e093b9406e3488b",
+    "static_pipe_path": "profiler_output/microbench/ascend_910b/order_check_m_tail_admission_0c530a00_20260915_r1/pipe_m48_k2048_step4_static_r1/OPPROF_20260914192506_AGGOJMSEFSKDIIAX/matmul_v2_m_tail_admission_0/1/PipeUtilization_20260914192512451.csv",
+    "static_pipe_sha256": "4ee137ac4c6f36ca5023323a81d9f7b6ebbaa5ed786cb1e76262e54a46014edf"
+  },
+  "measurements": {
+    "dynamic_scalar_worker_median_us": 15.132222,
+    "static_scalar_worker_median_us": 12.7255555,
+    "dynamic_tail_scalar_delta_ns": 2406.6665,
+    "tail_output_tile_k_tile_pairs": 64,
+    "service_ns_per_tail_output_tile_k_tile_pair": 37.6041640625,
+    "partial_m_step4_program_median_ns": 59960.0,
+    "partial_m_step8_program_median_ns": 61320.0
+  },
+  "interpretation": {
+    "request": "one dynamic partial-M output tile at one base-K tile",
+    "dependency": "serialized Scalar control completes before the corresponding A-source MTE1 stage",
+    "full_or_aligned_tile_requests": 0,
+    "descriptor_k_interpretation": "the partial-M source program preserves at least one descriptor per 256 K elements when the A1 group widens from 256 to 512 K elements"
+  },
+  "production_or_evaluation_duration_consumed": false
+}

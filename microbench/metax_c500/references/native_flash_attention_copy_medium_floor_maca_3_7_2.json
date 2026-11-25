@@ -1,0 +1,44 @@
+{
+  "allowed_conclusion": "The source-selected native FlashAttention output copy on MetaX C500 is the contiguous BF16 D2D runtime task measured by the source reference; within the 256-KiB--4-MiB plateau its task floor is at least the selected derivation-trial median minus the independent directional payload service. It is not a kernel or Serving observation.",
+  "derivation_rule": "minimum_derivation_trial_median_in_medium_byte_range_minus_directional_payload_service",
+  "derivation_trials": [
+    1,
+    2
+  ],
+  "device_name": "MetaX C500",
+  "directional_payload_service": {
+    "read_capacity_bytes_per_s": 1653069600000.0,
+    "write_capacity_bytes_per_s": 1607860088572.5767
+  },
+  "hardware_id": "metax_c500",
+  "medium_byte_range": {
+    "max_bytes": 4194304,
+    "min_bytes": 262144
+  },
+  "model": "native_flash_attention_copy_medium_floor_v1",
+  "production_or_evaluation_duration_consumed": false,
+  "schema_version": "midlayer.metax_c500.native_flash_attention_copy_medium_floor.v1",
+  "selected_floor_ns": 35735.33924058255,
+  "selected_sample": {
+    "byte_count": 262144,
+    "directional_payload_ns": 321.61919638339464,
+    "trial": 2,
+    "trial_median_ns": 36056.95843696594
+  },
+  "software_revision": "torch_2.4.0_metax_3.7.2.0",
+  "source_reference": {
+    "derivation_rule": "minimum_trial_1_2_copy_differential_minus_directional_read_write_payload_service",
+    "path": "microbench/metax_c500/references/bf16_dtod_copy_task_floor_maca_3_7_2.json",
+    "raw_root": "profiler_output/microbench/metax_c500/bf16_dtod_copy_77a1fe86_20260909_r2",
+    "schema_version": "midlayer.metax_c500.bf16_dtod_copy_task_floor.v1",
+    "sha256": "cd800f8d3974890729a2a2e3c344362fadb0b7bb072bdf1ca38e979a4deb3342"
+  },
+  "source_requirement": {
+    "copy_bytes_formula": "batch * num_query_heads * head_dim * dtype_bytes",
+    "operation": "transpose12 output copy emitted after FlashAttention decode; split-forward prefill output slice assignment",
+    "selector": "src/kernel/launch_config/metax_c500/flash_attn_launch.py select_flash_attn_copy_launches",
+    "trace_duration_consumed": false
+  },
+  "target_operator_used": false,
+  "task_class": "pytorch_contiguous_bf16_dtod_copy"
+}

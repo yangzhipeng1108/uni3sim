@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "measurement_boundary": "host_submit_only_no_device_sync",
+  "selection": {
+    "eager_enqueue_s": 9.354474609375e-06,
+    "eager_source": "eager:512 host_submit_ns_per_logical_op median",
+    "graph_replay_enqueue_s": 9.3703e-05,
+    "graph_source": "acl_graph_replay:512 host_submit_ns median"
+  },
+  "raw": {
+    "manifest_path": "profiler_output/microbench/ascend_910b/host_launch_20260830_r1/manifest.json",
+    "manifest_sha256": "efd080f987214564744d87c89a972eb37942af52f60dfe9a0ed5db99a0eef261",
+    "summary_path": "profiler_output/microbench/ascend_910b/host_launch_20260830_r1/summary.json",
+    "summary_sha256": "0267567ba6ade1f74619f39786b443b5c7ec044bff0df9d832d4bad6e41c7138",
+    "trials_path": "profiler_output/microbench/ascend_910b/host_launch_20260830_r1/trials.jsonl",
+    "trials_sha256": "dfd6b36e01d08ada7244087281889420bf04039ea2b0e3daecf455871cda668f",
+    "retention": "local_raw_not_committed"
+  },
+  "sample_contract": {
+    "chain_length": 512,
+    "trials": 30,
+    "operation": "torch.add_out",
+    "production_or_evaluation_duration_consumed": false
+  }
+}

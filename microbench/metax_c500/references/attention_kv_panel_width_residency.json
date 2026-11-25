@@ -1,0 +1,134 @@
+{
+ "schema": "attention_kv_panel_width_residency_reference_v1",
+ "mechanism": "attention_kv_panel_width_residency",
+ "hardware_id": "metax_c500",
+ "allowed_use": "Evidence that the K/V panel width (the traits' BlockN) does not move realised K/V reuse, which falsifies it as the explanation of the difference between the non-split and split production prefill programs.",
+ "forbidden_use": "Any duration. Also not an L2 capacity, a DRAM bandwidth, a replacement policy, or a per-shape traffic correction. The panel-to-traffic relation here must not be fitted or interpolated.",
+ "production_or_evaluation_duration_consumed": false,
+ "instrument": "mcProfiler perf_exec --custom --per-kernel, one marker window, one numbered per-invocation file per ordinal",
+ "counters": [
+  "Global Memory Read bytes",
+  "Global Memory Write bytes",
+  "L2C Hit Rate",
+  "Dnoc Read Req"
+ ],
+ "geometry": {
+  "batch": 8,
+  "seq": 2048,
+  "query_heads": 32,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "element_bytes": 2,
+  "causal": true,
+  "addressing": "contiguous",
+  "kv_unique_mib": 64.0,
+  "cta_order": "grid (q_blocks, batch, heads), x before y before z"
+ },
+ "why_independent_axes": "Three earlier controls already landed at about 3x the unique footprint and each held block_kv at 64: addressing (attention_kv_paging_residency on this target) and Q tile width together with CTA concurrency (attention_q_tile_kv_residency on nvidia_a800). The two C500 production programs differ on exactly that held axis -- non-split flash_fwd_kernel carries Flash_fwd_kernel_traits<128, 128, ...> and the split one <128, 64, ...> -- and measure 8.55x against 3.05x the unique footprint. This probe moves only the panel width, holding geometry, footprint, addressing, Q tile and reference order fixed, and crosses it with both production Q tiles so the panel reads independently of the tile.",
+ "finding": "Panel width does not move realised K/V reuse. At Q tile 128 the panels 32, 64, 128 and 256 read 180.8, 186.7, 184.3 and 158.3 MiB, all between 2.47x and 2.92x the 64 MiB unique footprint, against 0.8 and 3.4 percent repeatability measured by repeating the tile-128 panel-128 and panel-64 points. The widest panel reads the least, so the axis does not even run toward the production difference. At Q tile 64 the two panels read 221.0 and 231.3 MiB (3.45x and 3.61x), again opposite to production, whose tile-64 split program reads 3.05x and whose tile-128 non-split program reads 8.55x. Every controlled axis tested on this geometry to date lands between 2.47x and 3.61x while the non-split production program sits at 8.55x, so the panel width is falsified as the mechanism.",
+ "build": {
+  "compiler": "/opt/maca/mxgpu_llvm/bin/mxcc",
+  "flags": "-x maca -offload-arch native --maca-path=/opt/maca -O3",
+  "source": "microbench/metax_c500/memory/l2/attention_kv_panel_width_residency.cpp",
+  "binary_sha256": "0f1e82f3d48035eca5019c0f4da5cb33821c0097ec24c31cfcee74574e1db947"
+ },
+ "status": "candidate_pending_main_agent_review",
+ "measurements": [
+  {
+   "ordinal": 0,
+   "axis": "panel_at_tile128",
+   "tile_q": 128,
+   "panel": 128,
+   "ctas": 4096,
+   "kv_logical_bytes": 2281701376,
+   "measured_downstream_read_mib": 184.259,
+   "measured_l2c_hit_rate_pct": 91.19,
+   "raw_path": "profiler_output/microbench/metax_c500/kv_panel_width_residency_20260921/out/_allk/1__Z18attention_kv_panelPK5uint4S1_Pjii.txt.json",
+   "raw_sha256": "cd29f61c7d785b348670375f53b9a7e4df71e92c709e12ef290ad69f6eee46d4"
+  },
+  {
+   "ordinal": 1,
+   "axis": "panel_at_tile128",
+   "tile_q": 128,
+   "panel": 64,
+   "ctas": 4096,
+   "kv_logical_bytes": 2281701376,
+   "measured_downstream_read_mib": 186.664,
+   "measured_l2c_hit_rate_pct": 91.55,
+   "raw_path": "profiler_output/microbench/metax_c500/kv_panel_width_residency_20260921/out/_allk/2__Z18attention_kv_panelPK5uint4S1_Pjii.txt.json",
+   "raw_sha256": "ee6f5c7a27b3b662c042c84604d6782922f5f63ae4938cbade5ddd8aaed17f40"
+  },
+  {
+   "ordinal": 2,
+   "axis": "panel_at_tile128",
+   "tile_q": 128,
+   "panel": 256,
+   "ctas": 4096,
+   "kv_logical_bytes": 2415919104,
+   "measured_downstream_read_mib": 158.33,
+   "measured_l2c_hit_rate_pct": 93.18,
+   "raw_path": "profiler_output/microbench/metax_c500/kv_panel_width_residency_20260921/out/_allk/3__Z18attention_kv_panelPK5uint4S1_Pjii.txt.json",
+   "raw_sha256": "2da1b389351e9796cba856675d520d317427ab58598a6fdc97bd1284db234f33"
+  },
+  {
+   "ordinal": 3,
+   "axis": "panel_at_tile128",
+   "tile_q": 128,
+   "panel": 32,
+   "ctas": 4096,
+   "kv_logical_bytes": 2281701376,
+   "measured_downstream_read_mib": 180.844,
+   "measured_l2c_hit_rate_pct": 91.56,
+   "raw_path": "profiler_output/microbench/metax_c500/kv_panel_width_residency_20260921/out/_allk/4__Z18attention_kv_panelPK5uint4S1_Pjii.txt.json",
+   "raw_sha256": "a5a9b473314ebd9c78fef13c1aa4fd351628faf00e855c8728907a64fbcafb95"
+  },
+  {
+   "ordinal": 4,
+   "axis": "panel_at_tile64",
+   "tile_q": 64,
+   "panel": 128,
+   "ctas": 8192,
+   "kv_logical_bytes": 4563402752,
+   "measured_downstream_read_mib": 221.025,
+   "measured_l2c_hit_rate_pct": 94.89,
+   "raw_path": "profiler_output/microbench/metax_c500/kv_panel_width_residency_20260921/out/_allk/5__Z18attention_kv_panelPK5uint4S1_Pjii.txt.json",
+   "raw_sha256": "64898e1e2740bafcb0562e38e9b2c19bada11fcaa4e7837efb6fb1e99f083400"
+  },
+  {
+   "ordinal": 5,
+   "axis": "panel_at_tile64",
+   "tile_q": 64,
+   "panel": 64,
+   "ctas": 8192,
+   "kv_logical_bytes": 4429185024,
+   "measured_downstream_read_mib": 231.252,
+   "measured_l2c_hit_rate_pct": 94.49,
+   "raw_path": "profiler_output/microbench/metax_c500/kv_panel_width_residency_20260921/out/_allk/6__Z18attention_kv_panelPK5uint4S1_Pjii.txt.json",
+   "raw_sha256": "5eec15798254ac2c54cf3c951499589bafd5e34216b3bcc075658be755e183e5"
+  },
+  {
+   "ordinal": 6,
+   "axis": "repeat",
+   "tile_q": 128,
+   "panel": 128,
+   "ctas": 4096,
+   "kv_logical_bytes": 2281701376,
+   "measured_downstream_read_mib": 185.747,
+   "measured_l2c_hit_rate_pct": 91.61,
+   "raw_path": "profiler_output/microbench/metax_c500/kv_panel_width_residency_20260921/out/_allk/7__Z18attention_kv_panelPK5uint4S1_Pjii.txt.json",
+   "raw_sha256": "d560a7844692343bc4b8be800d20bfa61bf766c2d9eef23f7991628243887734"
+  },
+  {
+   "ordinal": 7,
+   "axis": "repeat",
+   "tile_q": 128,
+   "panel": 64,
+   "ctas": 4096,
+   "kv_logical_bytes": 2281701376,
+   "measured_downstream_read_mib": 180.371,
+   "measured_l2c_hit_rate_pct": 91.63,
+   "raw_path": "profiler_output/microbench/metax_c500/kv_panel_width_residency_20260921/out/_allk/8__Z18attention_kv_panelPK5uint4S1_Pjii.txt.json",
+   "raw_sha256": "66ceebb1354e0e6b526493c0fad5e2d103c3423abb9e9748df67ff1897365a0b"
+  }
+ ]
+}

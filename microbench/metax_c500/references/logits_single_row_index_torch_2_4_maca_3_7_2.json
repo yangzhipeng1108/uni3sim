@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "evidence_kind": "installed_artifact_static_source_host_and_metadata",
+  "artifact_identity_reference": "bf16_vec4_elementwise_2r1w_dram_maca_3_7_2.json#/production_source_identity",
+  "hardware_execution_performed": false,
+  "duration_consumed": false,
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/row_select_singleton_source.json",
+      "sha256": "e79809bb92f0f9ef431e143b526b375b297e660403adc46b1e85689d2108d700"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/row_select_singleton_metadata.json",
+      "sha256": "3e0b1afc122216050d06a73326ab312662252bbf8c222238788fbc6be8c65b05"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/row_select_bundle95_elf.json.gz",
+      "sha256": "f8f97489dbd1e9b0c84a836598bc3aceaf69ff79d8643b6ec4cc0dde4f0a842f"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/multirow_index_dispatch_source.json",
+      "sha256": "85356da4d459b676cab04ffc1cc7d41be76e5f83945ddbc569f2770028ef25de"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/multirow_index_remaining_dispatch_source.json",
+      "sha256": "1b40ab3c86dad0acd09215af39d451a40c4cd0b43ed8f007a41bc27172f7362f"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/multirow_scalar_index_metadata.json",
+      "sha256": "6e144bd00974725d1e371e9f4d2354048426083aa350a06215f29cd8321f29e3"
+    }
+  ],
+  "software_version": "Torch 2.4.0+metax3.7.2.0",
+  "source_chain": [
+    "vLLM0.24 GPUModelRunner advanced row selection materializes Long indices before indexing contiguous BF16 hidden states.",
+    "IndexKernelMaca.cuh:1420-1492 dispatches num_indices=1 and iterator ndim=1 to launch_kernel_index_1_1<128,4>; selecting one row collapses the iterator to its hidden dimension.",
+    "IndexKernelMaca.cuh:988-1014 launches ceil(N/512) CTAs of128threads, zero shared memory.",
+    "IndexKernelMaca.cuh:272-334 checks idx<N before each of four scalar copies; every active scalar copy loads one Long index and one BF16 value and stores one BF16 value.",
+    "Pinned host index_kernel at0x1d06c50 dispatches BF16 OpaqueType<2> to gpu_index_kernel_maca at0x1da0780; the one-dimensional branch selects the same scalar entry.",
+    "Bundle95 metadata for the exact128x4 OpaqueType<2>/uint/uint entry:14thread registers,30scalar registers,maxblock128,private/shared0.",
+    "IndexKernelMaca.cuh:1492-1553 selects index_elementwise_kernel_1_2<128,4> for the 2D BF16/Long iterator when get_maca_disable_index_elementwise_1_2_broadcast_kernel() is true. This source branch is independent of all vector pointer alignments; a missing flag cannot select it.",
+    "IndexKernelMaca.cuh:337-410 loads one Long index and one BF16 value and stores one BF16 value for every active scalar after idx<n. Address div/mod, index addressing and uniform control services remain excluded as in the1D program.",
+    "Retained bundle95 ELF note decoded without executing the binary: exact index_kernel_impl_maca OpaqueType<2>,uint,uint 1_2<128,4> has22thread and36scalar registers,maxblock128,zero private/shared. It is not the corresponding index_put entry.",
+    "Rows1 or hidden1 remove the unit iterator dimension and use the original1D entry without a broadcast flag. Other multi-row/multi-column layouts still require explicit dispatch facts."
+  ],
+  "accepted_scope": {
+    "operation": "single-row advanced indexing, not index_select",
+    "source": "contiguous BF16[S,H], contiguous Long[1], in-bounds nonnegative selected row, fresh contiguous BF16[1,H]",
+    "addressing": "2*S*H<2^31 and2*H<2^31; natural dtype alignment; no stronger vector pointer alignment assumed",
+    "logical_payload_bytes": "4*H+8",
+    "source_access_bytes": "BF16 read2H, Long reads8H, BF16 write2H; no inferred broadcast cache credit",
+    "launch": "block128, gridceil(H/512), four scalar slots per thread; inactive tail slots do not access inputs",
+    "conditional_multirow": {
+      "source": "contiguous BF16[S,H],Long[R],fresh BF16[R,H];R>1,H>1,positive increasing in-bounds selected rows",
+      "flag": "explicit target runtime disable_index_broadcast=True; no simulator environment inference",
+      "addressing": "2*S*H<2^31,2*R*H<2^31,8*R<2^31",
+      "launch": "block128,gridceil(R*H/512),four scalar slots,22thread registers",
+      "logical_payload_bytes": "4*R*H+8*R",
+      "issued_source_bytes": "BF16read2RH,Longread8RH,BF16write2RH; no inferred broadcast cache credit"
+    }
+  },
+  "limitations": [
+    "Source binding, not actual device/provider or timing validation",
+    "Multi-row optimized broadcast/transpose remains unsupported when its flag is absent or false; no pointer alignment or vector selection inferred",
+    "No64-bit iterator split, non-contiguous or multiple-index expansion",
+    "Pure BF16 data copy has no FP arithmetic/conversion; index address and uniform control instruction services remain excluded",
+    "No physical rates changed and no production duration consumed"
+  ]
+}

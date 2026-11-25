@@ -1,0 +1,175 @@
+{
+  "all_gather": [
+    {
+      "back_to_back_us_median": 121.9564,
+      "isolated_us_median": 186.04,
+      "message_bytes": 4096
+    },
+    {
+      "back_to_back_us_median": 123.7212,
+      "isolated_us_median": 188.42,
+      "message_bytes": 8192
+    },
+    {
+      "back_to_back_us_median": 114.9672,
+      "isolated_us_median": 172.94,
+      "message_bytes": 16384
+    },
+    {
+      "back_to_back_us_median": 115.3036,
+      "isolated_us_median": 173.12,
+      "message_bytes": 32768
+    },
+    {
+      "back_to_back_us_median": 116.2204,
+      "isolated_us_median": 178.72,
+      "message_bytes": 65536
+    },
+    {
+      "back_to_back_us_median": 115.63,
+      "isolated_us_median": 171.9,
+      "message_bytes": 131072
+    },
+    {
+      "back_to_back_us_median": 118.1256,
+      "isolated_us_median": 187.2,
+      "message_bytes": 262144
+    },
+    {
+      "back_to_back_us_median": 115.396,
+      "isolated_us_median": 200.56,
+      "message_bytes": 524288
+    },
+    {
+      "back_to_back_us_median": 132.5004,
+      "isolated_us_median": 243.56,
+      "message_bytes": 1048576
+    },
+    {
+      "back_to_back_us_median": 134.7488,
+      "isolated_us_median": 301.02,
+      "message_bytes": 2097152
+    },
+    {
+      "back_to_back_us_median": 245.0648,
+      "isolated_us_median": 378.86,
+      "message_bytes": 4194304
+    },
+    {
+      "back_to_back_us_median": 466.0452,
+      "isolated_us_median": 600.16,
+      "message_bytes": 8388608
+    },
+    {
+      "back_to_back_us_median": 908.6748,
+      "isolated_us_median": 1092.14,
+      "message_bytes": 16777216
+    }
+  ],
+  "all_reduce": [
+    {
+      "back_to_back_us_median": 132.9148,
+      "isolated_us_median": 223.3,
+      "message_bytes": 4096
+    },
+    {
+      "back_to_back_us_median": 136.4552,
+      "isolated_us_median": 220.64,
+      "message_bytes": 8192
+    },
+    {
+      "back_to_back_us_median": 127.1028,
+      "isolated_us_median": 218.32,
+      "message_bytes": 16384
+    },
+    {
+      "back_to_back_us_median": 126.7324,
+      "isolated_us_median": 224.9,
+      "message_bytes": 32768
+    },
+    {
+      "back_to_back_us_median": 129.0688,
+      "isolated_us_median": 224.32,
+      "message_bytes": 65536
+    },
+    {
+      "back_to_back_us_median": 127.804,
+      "isolated_us_median": 221.02,
+      "message_bytes": 131072
+    },
+    {
+      "back_to_back_us_median": 147.0696,
+      "isolated_us_median": 257.22,
+      "message_bytes": 262144
+    },
+    {
+      "back_to_back_us_median": 176.5432,
+      "isolated_us_median": 301.74,
+      "message_bytes": 524288
+    },
+    {
+      "back_to_back_us_median": 182.8112,
+      "isolated_us_median": 328.56,
+      "message_bytes": 1048576
+    },
+    {
+      "back_to_back_us_median": 170.9048,
+      "isolated_us_median": 351.84,
+      "message_bytes": 2097152
+    },
+    {
+      "back_to_back_us_median": 261.0316,
+      "isolated_us_median": 441.78,
+      "message_bytes": 4194304
+    },
+    {
+      "back_to_back_us_median": 487.402,
+      "isolated_us_median": 694.3,
+      "message_bytes": 8388608
+    },
+    {
+      "back_to_back_us_median": 940.3892,
+      "isolated_us_median": 1155.9,
+      "message_bytes": 16777216
+    }
+  ],
+  "kind": "ascend_910b_hccl_fullmesh_collective_startup",
+  "mechanism": "steady-state per-collective device time of one HCCL FullMesh collective between two 910B dies over HCCS, as a function of message size",
+  "parameter": {
+    "applies_to": [
+      "small_startup_us",
+      "ll128_startup_us",
+      "simple_startup_us"
+    ],
+    "derivation": "L1-optimal constant offset between the measured back-to-back all_reduce medians and the ProtoBridge transfer term at the same message sizes, over the flat region up to 256 KiB; the startup enters the model additively, which the derivation verifies",
+    "fitted_against": "all_reduce",
+    "fitted_against_because": "a tensor-parallel layer emits two all-reduces and no all-gather, so all_reduce is the operation the shared constant has to serve; the all_gather sweep is recorded alongside as an independent check and sits 6-12 us below the all_reduce curve",
+    "name": "per-collective startup",
+    "one_value_for_three_bands_because": "the sweep shows no step at the 64 KiB or 4 MiB protocol boundaries; HCCL FullMesh does not reproduce the NCCL protocol bands as distinct startups",
+    "residual_percent": {
+      "mean_absolute_over_flat_region": 3.27,
+      "mean_absolute_over_full_sweep": 8.46,
+      "worst_over_full_sweep": 22.82
+    },
+    "value_us": 126.25
+  },
+  "schema_version": 1,
+  "source": {
+    "cann_version": "Version=8.5.1",
+    "driver_version": "Version=25.2.3",
+    "dtype": "bfloat16",
+    "host": "capture-host-71f8bb8f36fd",
+    "raw_all_gather_sha256": "36c87adcc11e460d5e02af238a3fcde40ddd62547f8bb0f7df560700f3449bfe",
+    "raw_all_reduce_sha256": "9625cc7492aac4c6732e32f94a3217dc52d19cf8f421d601c1566ae75e70e7dc",
+    "repeats": 50,
+    "run_id": "hccl_latency_20260921_r1",
+    "runner": "microbench/ascend_910b/communication/collectives/collective_protocol_latency_runner.py",
+    "source_commit": "de947be50340b6d22f2f4a59d7b7817c5dd1c0ba",
+    "torch_npu_version": "2.9.0.post1+gitee7ba04",
+    "torch_version": "2.9.0+cpu",
+    "trials": 9,
+    "warmup": 50,
+    "world_size": 2
+  },
+  "time_unit": "microseconds"
+}

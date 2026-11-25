@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann-8.5.1",
+  "mechanism_id": "aic_grouped_matmul_entry_metadata_pair_v1",
+  "duration_unit": "ns_per_aic_for_one_launch_wide_typed_metadata_pair",
+  "publication_scope": {
+    "dtype": "bf16",
+    "source_kind": "grouped_matmul",
+    "entry_path": "GMM_FLOAT/GMM_CUBE_IMP",
+    "active_aic_groups": 24,
+    "gmm_base_params_bytes": 1672,
+    "tcube_tiling_bytes": 200,
+    "unsupported_projection_dimensions": [7168]
+  },
+  "source_scope": {
+    "upstream_file": "ops_transformer/ascendc/grouped_matmul/grouped_matmul.cpp",
+    "source_sequence": [
+      "GET_TILING_DATA_MEMBER(GMMTilingData, gmmBaseParams, gmmBaseParams_, tiling)",
+      "GET_TILING_DATA_MEMBER(GMMTilingData, mmTilingData, mmTilingData_, tiling)",
+      "GET_TILING_DATA_MEMBER_ADDR(GMMTilingData, gmmArray, gmmArrayAddr_, tiling)"
+    ],
+    "included_source_work": [
+      "typed gmmBaseParams materialization",
+      "typed mmTilingData materialization"
+    ],
+    "excluded_source_work": [
+      "gmmArray address formation without a payload copy",
+      "GroupedMatmul tile processing",
+      "routing",
+      "matrix arithmetic",
+      "output work",
+      "complete production operator"
+    ]
+  },
+  "measurement": {
+    "model": "exact_two_typed_member_aic_materialization_v1",
+    "iterations_per_launch": 4096,
+    "fresh_process_trials": 3,
+    "block_dims": [1, 24, 48],
+    "system_counter_tick_ns": 20.0,
+    "service_time_ns_by_run_at_24_aic": {
+      "r2": 667.223307291667,
+      "r3": 667.2216796875,
+      "r4": 667.22412109375
+    },
+    "selection_policy": "median of the three independent 24-AIC fresh-process medians; no production or evaluation duration and no APE selects the value",
+    "selected_service_time_ns": 667.223307291667,
+    "maximum_fresh_process_relative_span": 0.0000036590542076684003,
+    "maximum_all_24_aic_sample_relative_span": 0.0001170898774581251,
+    "maximum_allowed_relative_span": 0.05,
+    "mechanism_gate_passed": true
+  },
+  "provenance": {
+    "measurement_baseline_commit": "871f7b1622f5e1fb0f6937f89748e9dc44721a02",
+    "worker_head": "bcad610c",
+    "raw_root": "profiler_output/microbench/ascend_910b/fusedmoe_grouped_metadata_bcad610c_20260911_r1",
+    "source_snapshot_path": "/capture-workspace/execution_snapshots/fusedmoe_grouped_metadata_bcad610c_20260911_r1",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_id": 2,
+    "logical_device_id": 0,
+    "owner": "kernel-accuracy-fusedmoe",
+    "source_sha256": {
+      "CMakeLists.txt": "1d07c61cbe15617890078c577c5070fd65939a0723ad1a964255436618e88a43",
+      "tiling_data_materialization_kernel.cpp": "45a366528cecfe72b5ba09659562d831dc481e4cd35e0184b841e6ea7973bdfd",
+      "tiling_data_materialization_main.cpp": "cb32f8069d22b894085556d084ecc603ba3ba831881ae9f9ebbb3fbe6ef8c7ea",
+      "tiling_data_materialization_runner.py": "f6a31b252b5b63e9cb5c5d95a0f7dbe3d46c0c2e5536443de8ba4825d910c777"
+    },
+    "binary_sha256": "d670605f0672e3ad0720034204f090815278f997f6d875a93628418469f4f850",
+    "raw_sha256": {
+      "raw_r2.csv": "ad77ba0bc574db47f8f31b5b9bb53bc61d9faedc1980c65110d19fec25cd9771",
+      "raw_r3.csv": "90d18a1d5ec705daa3f09240dd1ccb250903d5341baadff4044452a15e4063de",
+      "raw_r4.csv": "016d5c1bb1eeb9efa8da6c2f0088b0f85258eb4b1581df54a9e744e945f05a5b"
+    },
+    "cann_source_sha256": {
+      "grouped_matmul.h": "d06679b4a391c032665f11fb3700c7478726c62e4230a0029d4286e086b209ed",
+      "grouped_matmul.cpp": "8bafe5cb9007f1a6b6fa52521504e2251dde2bfd02c81f8a1aa24d01fb1c408c"
+    }
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "only the CANN 8.5.1 BF16 GroupedMatmul GMM_FLOAT/GMM_CUBE_IMP entry with 24 AICs and the exact 1672-byte gmmBaseParams then 200-byte TCubeTiling typed member sequence may consume this once per launch per AIC before GMMProcess; dimensions with a nonmatching captured descriptor delta, including H7168, are fail-closed, and gmmArray address formation must not be charged"
+}

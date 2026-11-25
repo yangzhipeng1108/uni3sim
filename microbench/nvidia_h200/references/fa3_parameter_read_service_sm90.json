@@ -1,0 +1,602 @@
+{
+  "schema_version": 2,
+  "hardware_id": "nvidia_h200",
+  "model": "eager_parameter_region_serial_queue_v1",
+  "timer_domain": "nsys_kernel_span_difference_with_globaltimer_body_validation",
+  "source_program": "vllm_0_30_fa3_sm90_gqa_bf16",
+  "region_bytes": 64,
+  "control_regions": 2,
+  "isolated_region_ns": 31.310344827586206,
+  "peer_region_ns": 0.3148196893919452,
+  "calibration": [
+    {
+      "resident_sms": 1,
+      "hold_cycles": 0,
+      "regions": 60,
+      "control_ns": 768.0,
+      "read_ns": 2624.0
+    },
+    {
+      "resident_sms": 1,
+      "hold_cycles": 4096,
+      "regions": 60,
+      "control_ns": 2848.0,
+      "read_ns": 4624.0
+    },
+    {
+      "resident_sms": 132,
+      "hold_cycles": 0,
+      "regions": 60,
+      "control_ns": 960.0,
+      "read_ns": 5248.0
+    },
+    {
+      "resident_sms": 132,
+      "hold_cycles": 4096,
+      "regions": 60,
+      "control_ns": 3040.0,
+      "read_ns": 7168.0
+    }
+  ],
+  "validation": [
+    {
+      "resident_sms": 1,
+      "regions": 16,
+      "hold_cycles": 0,
+      "increment_ns": 448.0
+    },
+    {
+      "resident_sms": 1,
+      "regions": 16,
+      "hold_cycles": 4096,
+      "increment_ns": 400.0
+    },
+    {
+      "resident_sms": 1,
+      "regions": 60,
+      "hold_cycles": 0,
+      "increment_ns": 1856.0
+    },
+    {
+      "resident_sms": 1,
+      "regions": 60,
+      "hold_cycles": 4096,
+      "increment_ns": 1792.0
+    },
+    {
+      "resident_sms": 8,
+      "regions": 16,
+      "hold_cycles": 0,
+      "increment_ns": 512.0
+    },
+    {
+      "resident_sms": 8,
+      "regions": 16,
+      "hold_cycles": 4096,
+      "increment_ns": 464.0
+    },
+    {
+      "resident_sms": 8,
+      "regions": 60,
+      "hold_cycles": 0,
+      "increment_ns": 2080.0
+    },
+    {
+      "resident_sms": 8,
+      "regions": 60,
+      "hold_cycles": 4096,
+      "increment_ns": 1984.0
+    },
+    {
+      "resident_sms": 32,
+      "regions": 16,
+      "hold_cycles": 0,
+      "increment_ns": 672.0
+    },
+    {
+      "resident_sms": 32,
+      "regions": 16,
+      "hold_cycles": 4096,
+      "increment_ns": 608.0
+    },
+    {
+      "resident_sms": 32,
+      "regions": 60,
+      "hold_cycles": 0,
+      "increment_ns": 2624.0
+    },
+    {
+      "resident_sms": 32,
+      "regions": 60,
+      "hold_cycles": 4096,
+      "increment_ns": 2592.0
+    },
+    {
+      "resident_sms": 132,
+      "regions": 16,
+      "hold_cycles": 0,
+      "increment_ns": 1024.0
+    },
+    {
+      "resident_sms": 132,
+      "regions": 16,
+      "hold_cycles": 4096,
+      "increment_ns": 976.0
+    },
+    {
+      "resident_sms": 132,
+      "regions": 60,
+      "hold_cycles": 0,
+      "increment_ns": 4288.0
+    },
+    {
+      "resident_sms": 132,
+      "regions": 60,
+      "hold_cycles": 4096,
+      "increment_ns": 4160.0
+    }
+  ],
+  "reuse_validation": [
+    {
+      "resident_sms": 1,
+      "regions": 16,
+      "increments_ns_fixed_one_all": [
+        384.0,
+        384.0,
+        400.0
+      ]
+    },
+    {
+      "resident_sms": 1,
+      "regions": 60,
+      "increments_ns_fixed_one_all": [
+        1728.0,
+        1744.0,
+        1728.0
+      ]
+    },
+    {
+      "resident_sms": 132,
+      "regions": 16,
+      "increments_ns_fixed_one_all": [
+        1024.0,
+        1040.0,
+        1024.0
+      ]
+    },
+    {
+      "resident_sms": 132,
+      "regions": 60,
+      "increments_ns_fixed_one_all": [
+        4288.0,
+        4288.0,
+        4288.0
+      ]
+    }
+  ],
+  "main_parameter_regions": 17,
+  "static_work": [
+    {
+      "tile": [
+        128,
+        128,
+        128
+      ],
+      "regions": [
+        384,
+        512,
+        576,
+        640,
+        960,
+        1024,
+        2048,
+        2112,
+        2176,
+        2240,
+        2304,
+        2432,
+        2496,
+        2560,
+        2624,
+        2688,
+        2752
+      ],
+      "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)1, (bool)0, (bool)0, (bool)1, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)4>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)256, (bool)1, (bool)1, (bool)0, (bool)0, (int)4>, flash::VarlenDynamicPersistentTileScheduler<(int)128, (int)128, (int)256, (int)32, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)1>>>>(T1::Params)",
+      "manifest_entry": 0
+    },
+    {
+      "tile": [
+        128,
+        128,
+        128
+      ],
+      "regions": [
+        384,
+        512,
+        576,
+        640,
+        960,
+        1024,
+        2048,
+        2112,
+        2176,
+        2240,
+        2304,
+        2432,
+        2496,
+        2560,
+        2624,
+        2688,
+        2752
+      ],
+      "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)1, (bool)0, (bool)0, (bool)1, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)8>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)256, (bool)1, (bool)1, (bool)0, (bool)0, (int)8>, flash::VarlenDynamicPersistentTileScheduler<(int)128, (int)128, (int)256, (int)32, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)1>>>>(T1::Params)",
+      "manifest_entry": 1
+    },
+    {
+      "tile": [
+        128,
+        128,
+        128
+      ],
+      "regions": [
+        384,
+        512,
+        576,
+        640,
+        704,
+        960,
+        1024,
+        2048,
+        2112,
+        2176,
+        2240,
+        2304,
+        2432,
+        2496,
+        2560,
+        2624,
+        2688,
+        2752
+      ],
+      "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)4>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)256, (bool)1, (bool)1, (bool)0, (bool)0, (int)4>, flash::VarlenDynamicPersistentTileScheduler<(int)128, (int)128, (int)256, (int)128, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)1>>>>(T1::Params)",
+      "manifest_entry": 2
+    },
+    {
+      "tile": [
+        128,
+        128,
+        128
+      ],
+      "regions": [
+        384,
+        512,
+        576,
+        640,
+        704,
+        960,
+        1024,
+        2048,
+        2112,
+        2176,
+        2240,
+        2304,
+        2432,
+        2496,
+        2560,
+        2624,
+        2688,
+        2752
+      ],
+      "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)8>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)256, (bool)1, (bool)1, (bool)0, (bool)0, (int)8>, flash::VarlenDynamicPersistentTileScheduler<(int)128, (int)128, (int)256, (int)128, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)1>>>>(T1::Params)",
+      "manifest_entry": 3
+    },
+    {
+      "tile": [
+        128,
+        128,
+        128
+      ],
+      "regions": [
+        512,
+        576,
+        640,
+        704,
+        960,
+        1024,
+        2048,
+        2112,
+        2176,
+        2240,
+        2304,
+        2368,
+        2432,
+        2496,
+        2560,
+        2624,
+        2688,
+        2752
+      ],
+      "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)1, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)256, (bool)1, (bool)1, (bool)1, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)128, (int)128, (int)256, (int)128, (bool)1, (bool)1, (bool)1, (bool)1, (bool)0, (bool)1>>>>(T1::Params)",
+      "manifest_entry": 4
+    },
+    {
+      "tile": [
+        192,
+        128,
+        64
+      ],
+      "regions": [
+        384,
+        512,
+        576,
+        640,
+        704,
+        960,
+        1024,
+        2048,
+        2112,
+        2176,
+        2240,
+        2304,
+        2432,
+        2496,
+        2560,
+        2624,
+        2688,
+        2752
+      ],
+      "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)192>, cute::C<(int)128>, cute::C<(int)64>>, (int)64, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)4>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)192>, cute::C<(int)64>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)384, (bool)1, (bool)1, (bool)0, (bool)0, (int)4>, flash::VarlenDynamicPersistentTileScheduler<(int)192, (int)128, (int)384, (int)128, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)1>>>>(T1::Params)",
+      "manifest_entry": 5
+    },
+    {
+      "tile": [
+        64,
+        128,
+        128
+      ],
+      "regions": [
+        512,
+        576,
+        640,
+        704,
+        960,
+        1024,
+        2048,
+        2112,
+        2176,
+        2240,
+        2304,
+        2432,
+        2496,
+        2560,
+        2624,
+        2688,
+        2752
+      ],
+      "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)64>, cute::C<(int)128>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)64>, cute::C<(int)128>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)128, (bool)1, (bool)1, (bool)0, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)64, (int)128, (int)128, (int)128, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1>>>>(T1::Params)",
+      "manifest_entry": 6
+    },
+    {
+      "tile": [
+        64,
+        128,
+        128
+      ],
+      "regions": [
+        512,
+        576,
+        640,
+        704,
+        960,
+        1024,
+        2048,
+        2112,
+        2176,
+        2240,
+        2304,
+        2368,
+        2432,
+        2496,
+        2560,
+        2624,
+        2688,
+        2752
+      ],
+      "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)64>, cute::C<(int)128>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)1, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)64>, cute::C<(int)128>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)128, (bool)1, (bool)1, (bool)1, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)64, (int)128, (int)128, (int)128, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1>>>>(T1::Params)",
+      "manifest_entry": 7
+    },
+    {
+      "tile": [
+        64,
+        176,
+        128
+      ],
+      "regions": [
+        384,
+        512,
+        576,
+        640,
+        960,
+        1024,
+        2048,
+        2112,
+        2176,
+        2240,
+        2304,
+        2432,
+        2496,
+        2560,
+        2624,
+        2688,
+        2752
+      ],
+      "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)64>, cute::C<(int)176>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)0, (bool)0, (bool)0, (bool)1, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)64>, cute::C<(int)128>, cute::C<(int)176>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)128, (bool)1, (bool)1, (bool)0, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)64, (int)176, (int)128, (int)128, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1>>>>(T1::Params)",
+      "manifest_entry": 8
+    },
+    {
+      "tile": [
+        64,
+        176,
+        128
+      ],
+      "regions": [
+        384,
+        512,
+        576,
+        640,
+        960,
+        1024,
+        2048,
+        2112,
+        2176,
+        2240,
+        2304,
+        2368,
+        2432,
+        2496,
+        2560,
+        2624,
+        2688,
+        2752
+      ],
+      "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)64>, cute::C<(int)176>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)0, (bool)0, (bool)0, (bool)1, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)1, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)64>, cute::C<(int)128>, cute::C<(int)176>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)128, (bool)1, (bool)1, (bool)1, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)64, (int)176, (int)128, (int)128, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1>>>>(T1::Params)",
+      "manifest_entry": 9
+    },
+    {
+      "tile": [
+        64,
+        192,
+        64
+      ],
+      "regions": [
+        384,
+        512,
+        576,
+        640,
+        960,
+        1024,
+        2048,
+        2112,
+        2176,
+        2240,
+        2304,
+        2432,
+        2496,
+        2560,
+        2624,
+        2688,
+        2752
+      ],
+      "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)64>, cute::C<(int)192>, cute::C<(int)64>>, (int)64, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)0, (bool)0, (bool)0, (bool)1, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)64>, cute::C<(int)64>, cute::C<(int)192>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)128, (bool)1, (bool)1, (bool)0, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)64, (int)192, (int)128, (int)128, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1>>>>(T1::Params)",
+      "manifest_entry": 10
+    },
+    {
+      "tile": [
+        64,
+        192,
+        64
+      ],
+      "regions": [
+        384,
+        512,
+        576,
+        640,
+        960,
+        1024,
+        2048,
+        2112,
+        2176,
+        2240,
+        2304,
+        2368,
+        2432,
+        2496,
+        2560,
+        2624,
+        2688,
+        2752
+      ],
+      "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)64>, cute::C<(int)192>, cute::C<(int)64>>, (int)64, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)0, (bool)0, (bool)0, (bool)1, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)1, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)64>, cute::C<(int)64>, cute::C<(int)192>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)128, (bool)1, (bool)1, (bool)1, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)64, (int)192, (int)128, (int)128, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1>>>>(T1::Params)",
+      "manifest_entry": 11
+    }
+  ],
+  "evidence": [
+    {
+      "role": "calibration",
+      "path": "profiler_output/microbench/nvidia_h200/parameter_read_parallelism_20261107/raw.json",
+      "sha256": "8c9d98fb76b0333360f7243a8999ecba39d5fdc3d592f4fcbf4cffe28ca24362",
+      "size": 3913686
+    },
+    {
+      "role": "cohort_validation",
+      "path": "profiler_output/microbench/nvidia_h200/parameter_read_parallelism_20261107/cohort_validation/raw.json",
+      "sha256": "315a9d30be9157f3ea1dba73385371431d3bf9b8b8c1c15471aa7ae0ef34de3b",
+      "size": 5044272
+    },
+    {
+      "role": "reuse_validation",
+      "path": "profiler_output/microbench/nvidia_h200/parameter_read_parallelism_20261107/reuse_validation/raw.json",
+      "sha256": "4dbb7143308077236640ecc9cd2fab3f3b140aa6f624594c9b42b08732c39924",
+      "size": 2994407
+    },
+    {
+      "role": "static_manifest",
+      "path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/static_manifest.json",
+      "sha256": "0df2a166016ff770b137178cda1e0e50d8420a790d82ad0f92a055fbbb31fd75",
+      "size": 49020
+    },
+    {
+      "role": "combine_static_manifest",
+      "path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/combine_static/source_manifest.json",
+      "sha256": "fe4662e8c7f2a0bcfc5b3cb7d94e944e3ac4c8463d3b32723ee1626e8624cbcd",
+      "size": 5043
+    }
+  ],
+  "scope_limitations": [
+    "Independent parameter-read primitives only; no Attention or production duration calibration.",
+    "64B address regions are measurement work units, not a claim about native cacheline size or cache topology.",
+    "Common17-region static superset approximation across twelve GQA variants of17-18 regions; conditional paths not resolved.",
+    "Increment above two-region control is aggregated as blocking control service once per initial resident nonempty cohort; exact stage overlap is unbound.",
+    "Only eager BF16 GQA tiles retained in static_work are bound; graph, FP16, other tiles and MLA parameter reads remain unbound.",
+    "Endpoint rates frozen before16-cell independent validation and before production scoring; queue law max primitive error14.438%, capacity-max rejected at34.770%.",
+    "Argument reuse validation covers unchanged/one-field/all-field mutation without changing rates; deployment/compiler transfer remains partial.",
+    "Eager BF16 Varlen combine5-region static footprints reuse the unchanged linear mechanism law below the16/60-region validation points; small-footprint and stage-overlap transfer remain explicit approximations."
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "combine_static_work": [
+    {
+      "physical_key": [
+        8,
+        128,
+        32,
+        256
+      ],
+      "regions": [
+        512,
+        576,
+        640,
+        704,
+        768
+      ],
+      "source_symbol": "void cutlass::device_kernel<flash::FlashAttnFwdCombine<cute::tuple<cute::C<(int)8>, cute::C<(int)128>>, (int)5, (int)256, (int)1, (bool)0, (bool)1, cutlass::bfloat16_t, float, cutlass::arch::Sm90>>(T1::Params)",
+      "manifest_entry": 0
+    },
+    {
+      "physical_key": [
+        16,
+        64,
+        16,
+        256
+      ],
+      "regions": [
+        512,
+        576,
+        640,
+        704,
+        768
+      ],
+      "source_symbol": "void cutlass::device_kernel<flash::FlashAttnFwdCombine<cute::tuple<cute::C<(int)16>, cute::C<(int)64>>, (int)4, (int)256, (int)1, (bool)0, (bool)1, cutlass::bfloat16_t, float, cutlass::arch::Sm90>>(T1::Params)",
+      "manifest_entry": 3
+    }
+  ]
+}

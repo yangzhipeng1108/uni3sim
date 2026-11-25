@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "campaign": "add_rmsnorm_single_n_input_pair_completion",
+  "service_time_unit": "ns_per_two_request_launch_completion",
+  "service_time_selection": "median_of_independent_run_medians",
+  "block_dim_unit": "active_aiv_workers",
+  "payload_unit": "bytes_per_equal_input_request_per_aiv",
+  "requests_per_worker": 2,
+  "lookup_policy": "exact_block_dim_and_payload_bytes_only",
+  "pairing_formula": "maximum_worker(request_interval(pair_order=1)-control_interval(pair_order=0)), matched by run and trial",
+  "mechanism": "two equal-sized GM-to-UB DataCopyPad requests and their distinct MTE2-to-Vector completion events are issued before waiting for the first and then the second event",
+  "source_scope": "CANN 8.5.1 AddRmsNorm SingleN BF16 initial input pair; production places the first input Cast between the two completion waits",
+  "source_semantics": {
+    "repository": "https://gitee.com/ascend/cann-ops.git",
+    "commit": "35fcd12e27bc446aef29bdf801d2869c15685f84",
+    "path": "src/norm/add_rms_norm/op_kernel/add_rms_norm_single_n.h",
+    "sha256": "0dc948c59668509a2ec2b2fae9845e4746cb7684c58eff8850f620a1fa7fe02d",
+    "symbol": "KernelAddRmsNormSingleN::ProcessBf16",
+    "observed_order": [
+      "x1_DataCopyCustom",
+      "x1_MTE2_V_SetFlag",
+      "x2_DataCopyCustom",
+      "x2_MTE2_V_SetFlag",
+      "x1_MTE2_V_WaitFlag",
+      "x1_Cast",
+      "x2_MTE2_V_WaitFlag"
+    ],
+    "benchmark_scope_limit": "the probe isolates pair completion and intentionally omits the production Cast between the two waits"
+  },
+  "capture_baseline": "b173c2011ed5bb0b0d3097dff5e89ad9a50e74ff",
+  "source_snapshot_path": "/capture-workspace/deployments/midlayer-add-rms-pair-b173c201-20260831",
+  "source_snapshot_files_sha256": {
+    "add_rmsnorm_input_pair_kernel.cpp": "3ca9d04d7d71f9a2333afd3edbd19ff455ee42e7783a8d15aa8dc18d6b41a06e",
+    "add_rmsnorm_input_pair_main.cpp": "0286a019dd8214d79a73eb66fbbd280deb22ff399e5bddb66d2c50600d7a417b",
+    "add_rmsnorm_input_pair_report.py": "7d4a1f5219ae7e55bb1d7917670dac9d89406a03b7995d6ecae8464820ad3a40",
+    "add_rmsnorm_input_pair_runner.py": "fdb18edee6d58dc1e5ebbc02416a396a377e6242294b9d3d754b2d0f6e735b85"
+  },
+  "benchmark_binary_sha256": "2f9ed355bcb5e27a08644d0440f2093afcaf06b949f3cf23f671c9d10af20f00",
+  "capture_command": "python3 add_rmsnorm_input_pair_runner.py --binary /capture-workspace/midlayer_capture/deployments/midlayer-add-rms-pair-b173c201-20260831/build2/add_rmsnorm_input_pair_bench --device-id 4 --run-id <run_id>",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/add_rmsnorm_input_pair_b173c201_d4_r1/raw.csv",
+      "sha256": "3e3a26f22461a187fc84947d1d7c6c4cf120884530d613cdd5a6e48d42aee4b3",
+      "device_id": 4,
+      "run_id": "add_rmsnorm_input_pair_b173c201_d4_r1"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/add_rmsnorm_input_pair_b173c201_d4_r2/raw.csv",
+      "sha256": "69436f3373cca35129bea712c7afbbe083f464aad60a96ab8cabe0de0817fe23",
+      "device_id": 4,
+      "run_id": "add_rmsnorm_input_pair_b173c201_d4_r2"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/add_rmsnorm_input_pair_b173c201_d4_r3/raw.csv",
+      "sha256": "f8bbbe5a598bb54c7dbc23a14f60002d02713e895c2b72e9cb12824c365391fe",
+      "device_id": 4,
+      "run_id": "add_rmsnorm_input_pair_b173c201_d4_r3"
+    }
+  ],
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 120,
+  "block_dims": [1, 2],
+  "payload_bytes_per_request": [4096, 5120, 8192, 10240, 16384],
+  "median_ns_by_run": {
+    "add_rmsnorm_input_pair_b173c201_d4_r1": {"1:4096": 300.0, "1:5120": 340.0, "1:8192": 300.0, "1:10240": 420.0, "1:16384": 340.0, "2:4096": 1200.0, "2:5120": 1560.0, "2:8192": 1720.0, "2:10240": 2000.0, "2:16384": 2280.0},
+    "add_rmsnorm_input_pair_b173c201_d4_r2": {"1:4096": 280.0, "1:5120": 340.0, "1:8192": 300.0, "1:10240": 420.0, "1:16384": 340.0, "2:4096": 1200.0, "2:5120": 1540.0, "2:8192": 1740.0, "2:10240": 1970.0, "2:16384": 2350.0},
+    "add_rmsnorm_input_pair_b173c201_d4_r3": {"1:4096": 280.0, "1:5120": 350.0, "1:8192": 300.0, "1:10240": 400.0, "1:16384": 320.0, "2:4096": 1200.0, "2:5120": 1570.0, "2:8192": 1700.0, "2:10240": 1960.0, "2:16384": 2370.0}
+  },
+  "published_cells": {
+    "1:4096": {"service_time_ns": 280.0, "maximum_run_relative_median_spread": 0.06666666666666667},
+    "1:5120": {"service_time_ns": 340.0, "maximum_run_relative_median_spread": 0.02857142857142857},
+    "1:8192": {"service_time_ns": 300.0, "maximum_run_relative_median_spread": 0.0},
+    "1:10240": {"service_time_ns": 420.0, "maximum_run_relative_median_spread": 0.047619047619047616},
+    "1:16384": {"service_time_ns": 340.0, "maximum_run_relative_median_spread": 0.058823529411764705},
+    "2:4096": {"service_time_ns": 1200.0, "maximum_run_relative_median_spread": 0.0},
+    "2:5120": {"service_time_ns": 1560.0, "maximum_run_relative_median_spread": 0.01910828025477707},
+    "2:8192": {"service_time_ns": 1720.0, "maximum_run_relative_median_spread": 0.022988505747126436},
+    "2:10240": {"service_time_ns": 1970.0, "maximum_run_relative_median_spread": 0.02},
+    "2:16384": {"service_time_ns": 2350.0, "maximum_run_relative_median_spread": 0.0379746835443038}
+  },
+  "gates": {
+    "source_identity": "pass",
+    "binary_identity": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "balanced_cell_order": "pass",
+    "within_run_replication": "pass",
+    "cross_run_relative_median_spread_limit": 0.2,
+    "cross_run_stability": "pass"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true,
+  "production_consumption_status": "candidate_only_unwired"
+}

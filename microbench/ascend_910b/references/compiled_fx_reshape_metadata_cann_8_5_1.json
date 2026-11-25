@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "kind": "ascend_fallback_dispatch_completion",
+  "hardware_id": "ascend_910b",
+  "runtime": {
+    "name": "CANN",
+    "version": "8.5.1"
+  },
+  "framework": {
+    "name": "torch_npu",
+    "version": "2.9.0.post1+gitee7ba04"
+  },
+  "baseline_commit": "229c4063d326ce5cdf2c9d201d49de2aa4121862",
+  "runner": {
+    "path": "microbench/ascend_910b/runtime/launch/fallback_dispatch_runner.py",
+    "sha256": "bb994d4499a05ac5c1bdc144e77d382cd8ca3bcaa2639021efaf0f3200deabde",
+    "operation_source_path": "microbench/ascend_910b/runtime/launch/compiled_fx_metadata_runner.py",
+    "operation_source_sha256": "c0c4e413238df8fd936f9f5aee2d86ecb76ed24af17e0935b77c3e94d9db8d15"
+  },
+  "source_contract": {
+    "path": "src/serving/compiled_fx.py",
+    "mechanism": "compiled_fx_aten_reshape_metadata",
+    "nodes_per_rank": 288,
+    "anchors_per_decoder_layer": {
+      "attention": 3,
+      "o-proj": 2,
+      "router": 1
+    },
+    "coverage": "Ascend Qwen3 MoE TP2 with explicit layer-0 and repeated layer-1 template"
+  },
+  "lanes": [
+    {
+      "pool_name": "main",
+      "rank": 0,
+      "summary_path": "profiler_output/microbench/ascend_910b/fallback_dispatch_20260919_r1/summary.json",
+      "summary_sha256": "5f7f5699a1fb5eb7d2f55c25467678c1b65b076551966b9628c3a6c296e00e85",
+      "wall_slope_ns_per_node": 11134.259295499021,
+      "holdout_wall_signed_error_percent": 0.5804286541500359
+    },
+    {
+      "pool_name": "main",
+      "rank": 1,
+      "summary_path": "profiler_output/microbench/ascend_910b/fallback_dispatch_20260919_r2/summary.json",
+      "summary_sha256": "0d911d0f100ee91adadbb3fa1a6f6e57bdfea2579d806d75ca3d2c960af43b17",
+      "wall_slope_ns_per_node": 10948.148727984344,
+      "holdout_wall_signed_error_percent": 0.12727744463367482
+    }
+  ],
+  "service_time_s": {
+    "compiled_fx_aten_reshape_metadata": 0.000011041204011741683
+  },
+  "measurement": {
+    "boundary": "independent_runtime_mechanism_microbenchmark",
+    "synthetic_shape": [256, 256],
+    "fit_chain_lengths": [1, 8, 64],
+    "holdout_chain_length": 512,
+    "production_or_evaluation_duration_consumed": false,
+    "lane_aggregation": "arithmetic_mean_of_two_concurrent_TP_lanes"
+  }
+}

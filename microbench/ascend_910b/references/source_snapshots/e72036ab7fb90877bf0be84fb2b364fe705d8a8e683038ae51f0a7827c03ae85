@@ -1,0 +1,407 @@
+#!/usr/bin/env python3
+"""Capture the CANN FIA P-copy strided ND2NZ mechanism."""
+
+import argparse
+import hashlib
+import os
+from pathlib import Path
+import re
+import signal
+import subprocess
+import sys
+
+
+CANONICAL_GEOMETRIES = (
+    # Compact controls plus the source-exact continuous-BSH K/V tiles used
+    # by the CANN FIA standard-GQA D64/D128 paths.
+    (4, 64, 64),
+    (256, 64, 64),
+    (256, 64, 512),
+    (256, 128, 128),
+    (256, 128, 1024),
+    (256, 128, 4096),
+    # The source P copy is short-row and can carry the score-row stride.
+    (4, 256, 256),
+    (4, 256, 512),
+    (4, 256, 1024),
+)
+DETERMINISTIC_SPLIT_K_GEOMETRIES = (
+    # Source-exact CopyIn geometry for the CANN small-M deterministic split-K
+    # program, plus contiguous and intermediate-stride mechanism controls.
+    (128, 384, 384),
+    (128, 384, 4096),
+    (128, 384, 28672),
+    (128, 256, 256),
+    (128, 256, 4096),
+    (128, 256, 28672),
+)
+PAGED_GQA_128_GEOMETRIES = (
+    # Independent controls around the source-exact paged-GQA K/V descriptor.
+    # The contiguous and wider-stride cells are frozen validation peers; only
+    # the 1024-element row stride maps to the D128/HKV8 source program.
+    (128, 128, 128),
+    (128, 128, 1024),
+    (128, 128, 4096),
+)
+GEMM_N_MAJOR_B_COLD_GEOMETRIES = (
+    # Source-exact MatMulV3 B CopyIn descriptor for the M16 small-M family.
+    # Each worker walks distinct N-major 64x256 tiles with the full N stride.
+    (64, 256, 28672),
+)
+GEMM_LEGACY_K14336_COLD_GEOMETRIES = (
+    # Exact A1/B1 descriptor shapes emitted by the 22-AIC MatMulV2 K14336,
+    # N4096 family. Both operands retain the physical K-major source stride.
+    (16, 4096, 14336),
+    (96, 640, 14336),
+)
+GEMM_V3_K1536_N5120_COLD_CELLS = (
+    # Exact BL1 descriptors emitted by the MatMulV3 K1536/N5120 family.
+    # M16 uses N224 on 23 AICs; wider M uses N256 on 20 or 24 AICs.
+    (224, 256, 5120, 23),
+    (256, 256, 5120, 20),
+    (256, 256, 5120, 24),
+)
+GEMM_SMALL_M_REMAINING_COLD_CELLS = (
+    # Exact A1/B1 descriptors for the remaining K8192/N8192 V3,
+    # K5120/N5120 V2, K5120/N1536 V3, and K4096/N4096 V2 families.
+    (16, 4096, 8192, 16),
+    (256, 256, 8192, 16),
+    (128, 512, 5120, 23),
+    (112, 512, 5120, 23),
+    (16, 4096, 5120, 24),
+    (64, 1024, 1536, 24),
+    (128, 512, 4096, 22),
+    (96, 640, 4096, 22),
+)
+GEMM_V2_K5120_N5120_COLD_CELLS = (
+    # CANN 8.5.1 MatMulV2 dry-launch payloads encode a full-load A1 and a
+    # 256-element B1 K slab for M16, while M32/M48/M64 encode 256-element
+    # K slabs for both ping-pong operands.  Measure the individual source
+    # descriptors rather than combining two slots into a synthetic copy.
+    (224, 256, 5120, 23),
+    (32, 256, 5120, 23),
+    (48, 256, 5120, 23),
+    (64, 256, 5120, 23),
+    (112, 256, 5120, 23),
+)
+GEMM_V2_K5120_N1536_COLD_CELLS = (
+    # Exact AL1/BL1 descriptors decoded from the CANN 8.5.1 key-98513
+    # launch payload for M1/K5120/N1536.  Both operands retain their source
+    # row stride while each of the 24 AICs owns one N64 output tile.
+    (16, 512, 5120, 24),
+    (64, 512, 1536, 24),
+)
+GEMM_V2_KEY98499_COLD_CELLS = (
+    # Exact AL1/BL1 descriptors decoded from CANN 8.5.1 key-98499 dry
+    # launches.  B4/M1/K4096/N4096 uses a full-K A1 plus one N176/K256 B1
+    # slab on 24 AICs.  B8/M1/K1536/N5120 uses a full-K A1 on 23 AICs; its
+    # N224/K256 B1 descriptor is retained here as the paired validation cell.
+    (16, 4096, 4096, 24),
+    (176, 256, 4096, 24),
+    (16, 1536, 1536, 23),
+    (224, 256, 5120, 23),
+)
+PROFILE_NAMES = (
+    "canonical", "deterministic_split_k", "paged_gqa_128",
+    "gemm_n_major_b_cold", "gemm_legacy_k14336_cold",
+    "gemm_v3_k1536_n5120_cold", "gemm_small_m_remaining_cold",
+    "gemm_v2_k5120_n5120_cold", "gemm_v2_k5120_n1536_cold",
+    "gemm_v2_key98499_cold")
+DEFAULT_FOOTPRINT_MB = 512
+GEMM_N_MAJOR_B_COLD_FOOTPRINT_MB = 51200
+GEMM_N_MAJOR_B_COLD_ITERATIONS = 640
+GEMM_LEGACY_K14336_COLD_FOOTPRINT_MB = 8192
+GEMM_LEGACY_K14336_COLD_ITERATIONS = 224
+GEMM_V3_K1536_N5120_COLD_FOOTPRINT_MB = 8192
+GEMM_V3_K1536_N5120_COLD_ITERATIONS = 224
+GEMM_SMALL_M_REMAINING_COLD_FOOTPRINT_MB = 8192
+GEMM_SMALL_M_REMAINING_COLD_ITERATIONS = 224
+GEMM_V2_K5120_N5120_COLD_FOOTPRINT_MB = 8192
+GEMM_V2_K5120_N5120_COLD_ITERATIONS = 224
+GEMM_V2_K5120_N1536_COLD_FOOTPRINT_MB = 8192
+GEMM_V2_K5120_N1536_COLD_ITERATIONS = 224
+GEMM_V2_KEY98499_COLD_FOOTPRINT_MB = 8192
+GEMM_V2_KEY98499_COLD_ITERATIONS = 224
+TRIALS = 4
+CHILD_FIELDS = 17
+RUN_ID_PATTERN = re.compile(r"[A-Za-z0-9._-]{1,96}")
+SOURCE_FILENAMES = (
+    "CMakeLists.txt",
+    "aic_mte2_nd2nz_stride_kernel.cpp",
+    "aic_mte2_nd2nz_stride_main.cpp",
+    "aic_mte2_nd2nz_stride_runner.py",
+)
+_ACTIVE_PROCESS = None
+
+
+def _sha256(path):
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _source_snapshot_sha256(root):
+    digest = hashlib.sha256()
+    for filename in SOURCE_FILENAMES:
+        path = root / filename
+        if not path.is_file():
+            raise FileNotFoundError(f"benchmark source is missing: {path}")
+        payload = path.read_bytes()
+        digest.update(filename.encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(str(len(payload)).encode("ascii"))
+        digest.update(b"\0")
+        digest.update(payload)
+    return digest.hexdigest()
+
+
+def _positive_integer(text):
+    value = int(text)
+    if value <= 0:
+        raise argparse.ArgumentTypeError("value must be positive")
+    return value
+
+
+def _cells(profile):
+    if profile in (
+            "gemm_v3_k1536_n5120_cold", "gemm_small_m_remaining_cold",
+            "gemm_v2_k5120_n5120_cold",
+            "gemm_v2_k5120_n1536_cold", "gemm_v2_key98499_cold"):
+        profile_cells = {
+            "gemm_v3_k1536_n5120_cold":
+                GEMM_V3_K1536_N5120_COLD_CELLS,
+            "gemm_small_m_remaining_cold":
+                GEMM_SMALL_M_REMAINING_COLD_CELLS,
+            "gemm_v2_k5120_n5120_cold":
+                GEMM_V2_K5120_N5120_COLD_CELLS,
+            "gemm_v2_k5120_n1536_cold":
+                GEMM_V2_K5120_N1536_COLD_CELLS,
+            "gemm_v2_key98499_cold": GEMM_V2_KEY98499_COLD_CELLS,
+        }[profile]
+        return tuple(
+            (rows, columns, source_row_stride, mode, active_groups)
+            for rows, columns, source_row_stride, active_groups in (
+                profile_cells)
+            for mode in (0, 1)
+        )
+    if profile == "canonical":
+        geometries = CANONICAL_GEOMETRIES
+        active_aic_groups = (8, 16, 24)
+    elif profile == "deterministic_split_k":
+        geometries = DETERMINISTIC_SPLIT_K_GEOMETRIES
+        active_aic_groups = (24,)
+    elif profile == "paged_gqa_128":
+        geometries = PAGED_GQA_128_GEOMETRIES
+        active_aic_groups = (8, 16, 24)
+    elif profile == "gemm_n_major_b_cold":
+        geometries = GEMM_N_MAJOR_B_COLD_GEOMETRIES
+        active_aic_groups = (23,)
+    elif profile == "gemm_legacy_k14336_cold":
+        geometries = GEMM_LEGACY_K14336_COLD_GEOMETRIES
+        active_aic_groups = (22,)
+    else:
+        raise ValueError(f"unknown benchmark profile: {profile!r}")
+    return tuple(
+        (rows, columns, source_row_stride, mode, active_groups)
+        for rows, columns, source_row_stride in geometries
+        for mode in (0, 1)
+        for active_groups in active_aic_groups
+    )
+
+
+def _execution_parameters(profile, footprint_mb, iterations):
+    if profile == "gemm_n_major_b_cold":
+        resolved_footprint_mb = (
+            GEMM_N_MAJOR_B_COLD_FOOTPRINT_MB
+            if footprint_mb is None else footprint_mb)
+        resolved_iterations = (
+            GEMM_N_MAJOR_B_COLD_ITERATIONS
+            if iterations is None else iterations)
+    elif profile == "gemm_legacy_k14336_cold":
+        resolved_footprint_mb = (
+            GEMM_LEGACY_K14336_COLD_FOOTPRINT_MB
+            if footprint_mb is None else footprint_mb)
+        resolved_iterations = (
+            GEMM_LEGACY_K14336_COLD_ITERATIONS
+            if iterations is None else iterations)
+    elif profile == "gemm_v3_k1536_n5120_cold":
+        resolved_footprint_mb = (
+            GEMM_V3_K1536_N5120_COLD_FOOTPRINT_MB
+            if footprint_mb is None else footprint_mb)
+        resolved_iterations = (
+            GEMM_V3_K1536_N5120_COLD_ITERATIONS
+            if iterations is None else iterations)
+    elif profile == "gemm_small_m_remaining_cold":
+        resolved_footprint_mb = (
+            GEMM_SMALL_M_REMAINING_COLD_FOOTPRINT_MB
+            if footprint_mb is None else footprint_mb)
+        resolved_iterations = (
+            GEMM_SMALL_M_REMAINING_COLD_ITERATIONS
+            if iterations is None else iterations)
+    elif profile == "gemm_v2_k5120_n5120_cold":
+        resolved_footprint_mb = (
+            GEMM_V2_K5120_N5120_COLD_FOOTPRINT_MB
+            if footprint_mb is None else footprint_mb)
+        resolved_iterations = (
+            GEMM_V2_K5120_N5120_COLD_ITERATIONS
+            if iterations is None else iterations)
+    elif profile == "gemm_v2_k5120_n1536_cold":
+        resolved_footprint_mb = (
+            GEMM_V2_K5120_N1536_COLD_FOOTPRINT_MB
+            if footprint_mb is None else footprint_mb)
+        resolved_iterations = (
+            GEMM_V2_K5120_N1536_COLD_ITERATIONS
+            if iterations is None else iterations)
+    elif profile == "gemm_v2_key98499_cold":
+        resolved_footprint_mb = (
+            GEMM_V2_KEY98499_COLD_FOOTPRINT_MB
+            if footprint_mb is None else footprint_mb)
+        resolved_iterations = (
+            GEMM_V2_KEY98499_COLD_ITERATIONS
+            if iterations is None else iterations)
+    elif profile in PROFILE_NAMES:
+        resolved_footprint_mb = (
+            DEFAULT_FOOTPRINT_MB if footprint_mb is None else footprint_mb)
+        resolved_iterations = iterations
+    else:
+        raise ValueError(f"unknown benchmark profile: {profile!r}")
+    return resolved_footprint_mb, resolved_iterations
+
+
+def _stop_child(signum, _frame):
+    if _ACTIVE_PROCESS is not None:
+        try:
+            os.killpg(_ACTIVE_PROCESS.pid, signal.SIGTERM)
+        except ProcessLookupError as error:
+            raise SystemExit(128 + signum) from error
+    raise SystemExit(128 + signum)
+
+
+def main():
+    global _ACTIVE_PROCESS
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--binary", required=True, type=Path)
+    parser.add_argument("--device-id", required=True, type=int)
+    parser.add_argument("--run-id", required=True)
+    parser.add_argument(
+        "--profile", choices=PROFILE_NAMES, default="canonical")
+    parser.add_argument("--trials", type=_positive_integer, default=TRIALS)
+    parser.add_argument(
+        "--footprint-mb", type=_positive_integer)
+    parser.add_argument("--iterations", type=_positive_integer)
+    parser.add_argument(
+        "--child-timeout-seconds", type=_positive_integer, default=900)
+    args = parser.parse_args()
+    if args.device_id < 0:
+        parser.error("--device-id must be non-negative")
+    if RUN_ID_PATTERN.fullmatch(args.run_id) is None:
+        parser.error("--run-id must match [A-Za-z0-9._-]{1,96}")
+    if not args.binary.is_file() or not os.access(args.binary, os.X_OK):
+        parser.error("--binary must name an executable file")
+    footprint_mb, requested_iterations = _execution_parameters(
+        args.profile, args.footprint_mb, args.iterations)
+
+    benchmark_root = Path(__file__).resolve().parent
+    print(
+        f"runner_pid={os.getpid()} device_id={args.device_id} "
+        f"run_id={args.run_id} trials={args.trials} "
+        f"profile={args.profile} "
+        f"footprint_mb={footprint_mb} iterations={requested_iterations} "
+        f"binary={args.binary.resolve()} "
+        f"binary_sha256={_sha256(args.binary)} "
+        f"source_snapshot_sha256={_source_snapshot_sha256(benchmark_root)}",
+        file=sys.stderr,
+        flush=True,
+    )
+    print(
+        "run_id,trial,order_direction,order_position,process_pid,"
+        "rows,columns,source_row_stride,mode,source_tile_span_bytes,copied_bytes,"
+        "active_aic_groups,iterations,short_cycles,short_wall_ns,"
+        "long_cycles,long_wall_ns,tick_ns,cycles_per_copy,ns_per_copy,"
+        "bandwidth_gbs,validation",
+        flush=True,
+    )
+    environment = os.environ.copy()
+    environment["ASCEND_RT_VISIBLE_DEVICES"] = str(args.device_id)
+    signal.signal(signal.SIGINT, _stop_child)
+    signal.signal(signal.SIGTERM, _stop_child)
+    profile_cells = _cells(args.profile)
+    for trial in range(args.trials):
+        if trial % 2 == 0:
+            order_direction = "forward"
+            cells = profile_cells
+        else:
+            order_direction = "reverse"
+            cells = tuple(reversed(profile_cells))
+        command = [str(args.binary), "--batch", str(footprint_mb)]
+        for rows, columns, source_row_stride, mode, active_groups in cells:
+            copied_bytes = rows * columns * 2
+            iterations = (
+                requested_iterations if requested_iterations is not None
+                else max(
+                    20000,
+                    footprint_mb * 1024 * 1024 // copied_bytes,
+                )
+            )
+            command.extend((
+                str(rows), str(columns), str(source_row_stride),
+                str(mode), str(active_groups), str(iterations),
+            ))
+        process = subprocess.Popen(
+            command,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            env=environment,
+            start_new_session=True,
+        )
+        _ACTIVE_PROCESS = process
+        try:
+            stdout, stderr = process.communicate(
+                timeout=args.child_timeout_seconds)
+        except subprocess.TimeoutExpired as error:
+            os.killpg(process.pid, signal.SIGTERM)
+            process.wait(timeout=30)
+            raise RuntimeError(
+                f"child PID {process.pid} timed out after "
+                f"{args.child_timeout_seconds} seconds") from error
+        finally:
+            _ACTIVE_PROCESS = None
+        if stderr:
+            print(
+                f"child_pid={process.pid} trial={trial + 1} "
+                f"stderr={stderr.rstrip()}",
+                file=sys.stderr,
+                flush=True,
+            )
+        if process.returncode != 0:
+            raise RuntimeError(
+                f"child PID {process.pid} failed with exit "
+                f"{process.returncode}")
+        output_lines = stdout.strip().splitlines()
+        if len(output_lines) != len(cells):
+            raise RuntimeError(
+                f"child PID {process.pid} emitted "
+                f"{len(output_lines)} data lines")
+        for order_position, output_line in enumerate(output_lines):
+            fields = output_line.split(",")
+            if len(fields) != CHILD_FIELDS:
+                raise RuntimeError(
+                    f"child PID {process.pid} emitted an invalid raw schema")
+            expected = cells[order_position]
+            observed = tuple(int(fields[index]) for index in (0, 1, 2, 3, 6))
+            if observed != expected or fields[-1] != "pass":
+                raise RuntimeError(
+                    f"child PID {process.pid} changed the requested order")
+            print(
+                f"{args.run_id},{trial + 1},{order_direction},"
+                f"{order_position},{process.pid},{output_line}",
+                flush=True,
+            )
+
+
+if __name__ == "__main__":
+    main()

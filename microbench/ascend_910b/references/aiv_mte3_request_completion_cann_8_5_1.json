@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "aiv_mte3_request_completion",
+  "request_size_unit": "payload_bytes",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "32": 260.0,
+    "1024": 260.0,
+    "2048": 260.0
+  },
+  "mechanism": "one dynamic-parameter UB-to-GM DataCopy followed by its MTE3-to-MTE2 hard completion edge and a terminal PIPE_ALL barrier",
+  "scope": "unloaded single-AIV request completion; concurrent descriptor admission and shared byte throughput remain separate mechanisms",
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "pairing_formula": "request_first_interval(pair_order=1)-control_first_interval(pair_order=0), matched by trial and worker",
+  "source_commit": "104a64df",
+  "source_snapshot_path": "/capture-workspace/microbench_execution_snapshots/first_mte_completion_104a64df_20260828_r1",
+  "source_archive_sha256": "a2bab59798c2cbf9dc107957ce9197a89ceaeb256b20fdbbf18aadbbba9dc2bb",
+  "benchmark_binary_sha256": "555d6e63a7ed78ae18f1dade3db264ced45307546f42624aae924d222196157e",
+  "raw_path": "profiler_output/microbench/ascend_910b/first_mte_completion_104a64df_20260828_r1/raw.csv",
+  "raw_sha256": "e8a5b2b4849b69a6ff853a3d559f27b4768b4ea55084d9d69973e37a3ebf6ee3",
+  "device_id": 3,
+  "samples_per_cell": 48,
+  "block_dim": 1,
+  "quartiles_ns_by_request_size": {
+    "32": {"q1": 220.0, "median": 260.0, "q3": 300.0},
+    "1024": {"q1": 215.0, "median": 260.0, "q3": 280.0},
+    "2048": {"q1": 240.0, "median": 260.0, "q3": 300.0}
+  },
+  "unloaded_mechanism_gate_passed": true,
+  "full_concurrency_sweep_gate_passed": false,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

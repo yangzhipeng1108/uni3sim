@@ -1,0 +1,103 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_matmul_v2_finite_transition.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_source_pair_finite_to_steady_validation_v1",
+  "duration_unit": "ns_per_completed_source_program_per_aic",
+  "validated_domain": {
+    "maximum_completion_pairs_per_worker": 720,
+    "maximum_source_descriptors_per_worker": 360
+  },
+  "source_programs": [
+    {
+      "active_aic_groups": 22,
+      "m_groups": 1,
+      "n_groups": 22,
+      "base_tile_m": 128,
+      "base_tile_n": 128,
+      "base_tile_k": 128,
+      "a_rows": 128,
+      "a_columns": 256,
+      "b_rows": 128,
+      "b_columns": 256,
+      "source_row_stride_elements": 5120,
+      "output_tiles_per_worker": 5,
+      "k_slabs": 20,
+      "source_descriptors_per_worker": 200,
+      "completion_pairs_per_worker": 400,
+      "mte2_only_run_medians_ns": [111270.0, 111770.0, 111050.0],
+      "mte2_mte1_completion_run_medians_ns": [171300.0, 172150.0, 171890.0],
+      "mte2_only_median_of_run_medians_ns": 111270.0,
+      "mte2_mte1_completion_median_of_run_medians_ns": 171890.0
+    },
+    {
+      "active_aic_groups": 24,
+      "m_groups": 2,
+      "n_groups": 12,
+      "base_tile_m": 128,
+      "base_tile_n": 128,
+      "base_tile_k": 128,
+      "a_rows": 128,
+      "a_columns": 256,
+      "b_rows": 128,
+      "b_columns": 256,
+      "source_row_stride_elements": 5120,
+      "output_tiles_per_worker": 9,
+      "k_slabs": 20,
+      "source_descriptors_per_worker": 360,
+      "completion_pairs_per_worker": 720,
+      "mte2_only_run_medians_ns": [183380.0, 183020.0, 182980.0],
+      "mte2_mte1_completion_run_medians_ns": [285390.0, 285710.0, 285040.0],
+      "mte2_only_median_of_run_medians_ns": 183020.0,
+      "mte2_mte1_completion_median_of_run_medians_ns": 285390.0
+    },
+    {
+      "active_aic_groups": 24,
+      "m_groups": 4,
+      "n_groups": 6,
+      "base_tile_m": 128,
+      "base_tile_n": 256,
+      "base_tile_k": 64,
+      "a_rows": 128,
+      "a_columns": 512,
+      "b_rows": 256,
+      "b_columns": 256,
+      "source_row_stride_elements": 5120,
+      "output_tiles_per_worker": 9,
+      "k_slabs": 10,
+      "source_descriptors_per_worker": 270,
+      "completion_pairs_per_worker": 720,
+      "mte2_only_run_medians_ns": [273120.0, 273570.0],
+      "mte2_mte1_completion_run_medians_ns": [410620.0, 410490.0],
+      "mte2_only_median_of_run_medians_ns": 273345.0,
+      "mte2_mte1_completion_median_of_run_medians_ns": 410555.0
+    }
+  ],
+  "captures": [
+    {
+      "measurement_baseline_commit": "c1589b778e05b688bcb87e8a12cf640c30c046fa",
+      "source_snapshot_sha256": "86d4dd5546526534435b98206e826544532f7f3fdb1355bcd713458b743e9c8e",
+      "binary_sha256": "8f14b4f3aa883fd81290e712847f6bf14dd5e807ba1f408cc61fd4ee4884ab31",
+      "raw_paths": [
+        "profiler_output/microbench/ascend_910b/gemm_k5120_m128_transition_1463398d_20260910_d4/results.csv"
+      ],
+      "raw_sha256": [
+        "21d774a58356ba19ae255db2766d4c3d03a071868dbd96bd97890f252f12e58c"
+      ]
+    },
+    {
+      "measurement_baseline_commit": "3eb466eb2fad88bc87122435942dee7ba69609aa",
+      "source_snapshot_sha256": "1769fbb43c1402d3b07ec66c85d5ea3271883d6faecd875d99787ea0342f2e0c",
+      "binary_sha256": "6b84e27ba5408fe4d5b08a34de04ecbda341c0bec4ef83f02cba46e346d5b71c",
+      "raw_paths": [
+        "profiler_output/microbench/ascend_910b/gemm_ingress_sweep_3eb466eb_20260907_r1/execution.csv",
+        "profiler_output/microbench/ascend_910b/gemm_ingress_sweep_3eb466eb_20260907_r1/execution_r1.csv"
+      ],
+      "raw_sha256": [
+        "0aa99bd2a87869d5e65655ed2602cd28955682576ee0160e0da4ed851ee1e105",
+        "43cb16d816f44de0c477134449eaba2089a24be428ceac758ab86122231de1b4"
+      ]
+    }
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

@@ -1,0 +1,9 @@
+{
+  "kind": "independent_vec16_mixed_stream_capacity_plan",
+  "grids": [131072, 262144, 524288],
+  "blocks": [96, 128],
+  "processes": 2,
+  "samples_per_cell": 7,
+  "selection": "Reuse unchanged vec16_two_read_one_write.cu: two16B reads, one16B write and XOR only, no activation, SiLU, routing, weights or model output. For each of six exact grid/block cells take seven-sample medians per process, require process spread <=3%, and use the slower process to derive (2*read+write) logical bytes/second. Bind only exact launch geometry, with no interpolation, global rate, SiLU subtraction, production duration or error selection. This is a competing memory-path floor, not a complete activation or memory/SFU overlap claim.",
+  "limits": "One H200, expected30s/max180s including build/warmup/repeats/cleanup, max0.05GPU-hours, shared US$0.35 reservation, no retries or Volume."
+}

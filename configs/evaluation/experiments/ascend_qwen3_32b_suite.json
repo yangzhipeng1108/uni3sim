@@ -1,0 +1,84 @@
+{
+  "schema_version": 4,
+  "suite_id": "sharegpt_serving_ground_truth_ascend_qwen3_32b",
+  "dataset_root": "serving_dataset/sharegpt",
+  "models": [
+    {
+      "dataset_model_id": "qwen3-32b",
+      "simulation_model_path": "configs/model/qwen3-32b.json",
+      "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb"
+    }
+  ],
+  "hardware": [
+    {
+      "hardware_id": "ascend_910b",
+      "hardware_config_path": "configs/hardware/ascend_910b.yaml",
+      "hardware_config_sha256": "e0fe91381d31955cecc29c97484c959f5a4bf8ce941de4f38c47c0c42b48eff0",
+      "graph_execution": {
+        "configured_mode": "FULL",
+        "piecewise_eager_workload_kinds": [],
+        "uniform_decode_query_len": 1,
+        "capture_sizes": [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512]
+      }
+    }
+  ],
+  "qps_values": [
+    1,
+    4,
+    16
+  ],
+  "cells": [
+    {
+      "hardware_id": "ascend_910b",
+      "model_id": "qwen3-32b",
+      "case_id": "tp2_ep1_qps1",
+      "manifest_sha256": "72a9ba6346c694134da5c3c11497cbd2b54dc65265853626e5fe8f9e7b251f31",
+      "requests_sha256": "39194b424727480c34242eaedf92dcd8ad8e545d3991409cd89b3419635b0b55"
+    },
+    {
+      "hardware_id": "ascend_910b",
+      "model_id": "qwen3-32b",
+      "case_id": "tp2_ep1_qps4",
+      "manifest_sha256": "30763e73a8b398c42173dc7021b01bfa63801403397d5837f23d6f71877d92af",
+      "requests_sha256": "5ba78e4289f254ac23ed5bb668cdff67da97eaab95f2013a94b0c3ac3ecce250"
+    },
+    {
+      "hardware_id": "ascend_910b",
+      "model_id": "qwen3-32b",
+      "case_id": "tp2_ep1_qps16",
+      "manifest_sha256": "aedba88221ae45aaac7e5d70114866c73c0fb17ce3885eb08e5daf4590d6f862",
+      "requests_sha256": "767f19f655fb0e2453ee964ff9edaa87c1c413fe6f7916cc64a6d7b36a87a6ef"
+    }
+  ],
+  "prediction_contract": {
+    "semantics": "current_pinned_vllm_not_capture_replay",
+    "backend": "vllm",
+    "scheduler_version": "0.11.0",
+    "scheduler_source_commit": "b8b302cde434df8c9289a2b465406b47ebab1c2d",
+    "deployment": "colocated",
+    "compute_dtype": "bf16",
+    "prediction_method": "midlayer",
+    "tensor_collective_backend": "protobridge",
+    "tensor_all_reduce_profile_sha256": "5da6b468a555eb7286ff519c8b2f5ba4dda6266226dce21936430cd53503781d",
+    "tensor_all_gather_profile_sha256": "61a3f49106d2242ac8def315fb67da3bdb3105c037681cce710fff785a07de45",
+    "launch_policy": "injected_launch",
+    "tensor_parallel_size": 2,
+    "pipeline_parallel_size": 1,
+    "expert_parallel_size": 1,
+    "max_model_len": 8192,
+    "max_batched_tokens": 8192,
+    "max_requests": 256,
+    "runtime_memory_policy_path": "configs/runtime_memory_policy/{hardware_id}/{model_id}.json",
+    "kv_block_size_tokens": 16,
+    "attention_kv_layout": "paged_varlen",
+    "attention_kv_distribution": "uniform",
+    "enable_chunked_prefill": true,
+    "enable_prefix_caching": true,
+    "router_resource_id": "router_cpu",
+    "router_dispatch_service_time_s": 0.0,
+    "mtp_num_speculative_tokens": 0,
+    "mtp_acceptance_policy": "disabled",
+    "mtp_fixed_accepted_tokens": 0,
+    "mtp_acceptance_source_id": "disabled"
+  }
+}

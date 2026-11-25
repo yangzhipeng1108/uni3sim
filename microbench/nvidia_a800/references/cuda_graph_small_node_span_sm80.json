@@ -1,0 +1,125 @@
+{
+  "allowed_use": "A lower bound on the span of a small memory-touching kernel that executes as a node of a replayed CUDA graph, given its CTA grid. It composes with an execution time by maximum and never adds. It replaces the standalone small_kernel_span_floor only for graph-replayed launches; a launch issued singly into a stream keeps that floor.",
+  "captures": [
+    {
+      "device_index": 6,
+      "path": "profiler_output/microbench/nvidia_a800/cuda_graph_small_node_span_20260919/raw/rotation_0.csv",
+      "raw_sha256": "0060b5b3a309157b13fa24607a49f2d68c53305502d9f305e9b5ce97484394c3",
+      "rotation": 0
+    },
+    {
+      "device_index": 7,
+      "path": "profiler_output/microbench/nvidia_a800/cuda_graph_small_node_span_20260919/raw/rotation_1.csv",
+      "raw_sha256": "040a107b35e9df0d4ee2513dda3987842d2fdead445f3546865ead691770ce1f",
+      "rotation": 1
+    },
+    {
+      "device_index": 6,
+      "path": "profiler_output/microbench/nvidia_a800/cuda_graph_small_node_span_20260919/raw/rotation_2.csv",
+      "raw_sha256": "3796b438a0d613ecdba62bedc3ad005d0d41662f69ca3536df01f812586156b7",
+      "rotation": 2
+    }
+  ],
+  "compute_capability": "sm_80",
+  "derived_model": {
+    "note": "A graph-replayed node spans 4-21 percent less than the standalone floor Forward enforces on it; the gap is largest below grid 48, where that floor is extrapolated outside its own measured 48-216 domain.",
+    "span_ns_by_grid_ctas": [
+      {
+        "grid_ctas": 1,
+        "median_graph_node_span_ns": 1712.0,
+        "median_standalone_span_ns": 3040.0,
+        "minimum_graph_node_span_ns": 1680.0
+      },
+      {
+        "grid_ctas": 2,
+        "median_graph_node_span_ns": 1776.0,
+        "median_standalone_span_ns": 3408.0,
+        "minimum_graph_node_span_ns": 1760.0
+      },
+      {
+        "grid_ctas": 4,
+        "median_graph_node_span_ns": 1808.0,
+        "median_standalone_span_ns": 3408.0,
+        "minimum_graph_node_span_ns": 1776.0
+      },
+      {
+        "grid_ctas": 8,
+        "median_graph_node_span_ns": 1808.0,
+        "median_standalone_span_ns": 3408.0,
+        "minimum_graph_node_span_ns": 1792.0
+      },
+      {
+        "grid_ctas": 16,
+        "median_graph_node_span_ns": 1872.0,
+        "median_standalone_span_ns": 3408.0,
+        "minimum_graph_node_span_ns": 1840.0
+      },
+      {
+        "grid_ctas": 32,
+        "median_graph_node_span_ns": 1872.0,
+        "median_standalone_span_ns": 3408.0,
+        "minimum_graph_node_span_ns": 1856.0
+      },
+      {
+        "grid_ctas": 48,
+        "median_graph_node_span_ns": 1888.0,
+        "median_standalone_span_ns": 3424.0,
+        "minimum_graph_node_span_ns": 1872.0
+      },
+      {
+        "grid_ctas": 80,
+        "median_graph_node_span_ns": 2000.0,
+        "median_standalone_span_ns": 3504.0,
+        "minimum_graph_node_span_ns": 1984.0
+      },
+      {
+        "grid_ctas": 108,
+        "median_graph_node_span_ns": 2048.0,
+        "median_standalone_span_ns": 3664.0,
+        "minimum_graph_node_span_ns": 2032.0
+      },
+      {
+        "grid_ctas": 216,
+        "median_graph_node_span_ns": 2112.0,
+        "median_standalone_span_ns": 3728.0,
+        "minimum_graph_node_span_ns": 2112.0
+      }
+    ]
+  },
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "forbidden_use": "An additive launch cost, a typical or median duration, a host launch latency, a floor for a standalone launch, or a floor for a launch with no global memory access.",
+  "hardware_id": "nvidia_a800",
+  "measurement": {
+    "devices": [
+      6,
+      7
+    ],
+    "grids_measured": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      48,
+      80,
+      108,
+      216
+    ],
+    "nodes_per_batch": 64,
+    "rotations": 3,
+    "threads_per_cta": 128,
+    "trials_per_cell": 9,
+    "warmup_rounds": 200
+  },
+  "mechanism": "cuda_graph_small_node_span",
+  "method": "One identical trivial memory-touching kernel (one aligned 16-byte load, one dependent integer op, one aligned 16-byte store per active thread) is timed two ways at the same grid and block: 64 separate launches into a stream, and the same 64 launches captured once into a CUDA graph and replayed. Both are warmed 200 rounds and the two modes alternate inside every trial so they see the same clock state. The published value is the minimum graph span across trials and rotations, so it is a floor rather than a typical duration, which is what composing by maximum requires.",
+  "production_or_evaluation_duration_consumed": false,
+  "production_predictor_consumption_allowed": true,
+  "provenance": {
+    "nvcc": "CUDA 12.2, -O3 -arch=sm_80",
+    "source": "microbench/nvidia_a800/runtime/cuda_graph_small_node_span.cu",
+    "source_sha256": "90ae36262f21e84d9cc11b49fc3f2b24c2753d84a6ce63a3d3d6193df7fff598"
+  },
+  "schema": "nvidia_a800_cuda_graph_small_node_span_reference_v1"
+}

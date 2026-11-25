@@ -1,0 +1,29 @@
+{
+  "schema_version": 2,
+  "hardware_id": "ascend_910b",
+  "host_cpu": "Kunpeng-920",
+  "operating_system": "Ubuntu 22.04; Linux 5.15.0-25-generic aarch64",
+  "driver_version": "25.2.3 (ascendhal 7.35.23)",
+  "runtime": {
+    "name": "CANN",
+    "version": "8.5.1"
+  },
+  "framework": {
+    "name": "torch_npu",
+    "version": "2.9.0.post1+gitee7ba04"
+  },
+  "service_time_s": {
+    "eager_enqueue": 9.354474609375e-06,
+    "graph_replay_enqueue": 9.3703e-05
+  },
+  "measurement": {
+    "artifact": "microbench/ascend_910b/runtime/launch/references/host_launch_20260830.json",
+    "sha256": "1cc866f3292c14d317bc5237ef7d4609addb88a20265154b8fa2628c879cfc47",
+    "boundary": "host_submit_only_no_device_sync"
+  },
+  "source": {
+    "commit": "55b90cae0b57f9c5fc7e878fed963cc644ce9630",
+    "path": "microbench/ascend_910b/runtime/launch/torch_eager_chain_runner.py",
+    "sha256": "a69e872deb2dd85216734ad096b2ffb86d17965878988b0f69495dc8b24d7e4e"
+  }
+}

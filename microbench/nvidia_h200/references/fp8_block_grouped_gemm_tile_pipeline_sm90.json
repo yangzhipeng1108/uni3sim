@@ -1,0 +1,1679 @@
+{
+ "schema": "nvidia_h200_fp8_block_grouped_gemm_tile_pipeline_reference_v1",
+ "hardware_id": "nvidia_h200",
+ "device_name": "NVIDIA H200",
+ "compute_capability": "sm_90",
+ "software_revision": "vllm_0.24.0_triton_3.6_sm90",
+ "environment": {
+  "python": "/capture-public/envs/vllm024/bin/python",
+  "torch": "2.11.0+cu129",
+  "triton": "3.6.0",
+  "driver": "575.57.08"
+ },
+ "source_baseline_commit": "14166864a",
+ "runner": "microbench/nvidia_h200/operators/fused_moe/sm90_fp8_block_tile_pipeline_runner.py",
+ "runner_sha256": "7a0c9325e0223829b53fdf897f5f8258f90f372f6a4aaa93afdfd0de77220d05",
+ "capture_driver": "microbench/nvidia_h200/operators/fused_moe/sm90_fp8_block_tile_pipeline_capture.sh",
+ "capture_driver_sha256": "91fc70d8fbb8cfb9ac1de4123493d40aac4c6e56ac856787f826959d806a12bb",
+ "derivation": "microbench/nvidia_h200/operators/fused_moe/sm90_fp8_block_tile_pipeline_reference.py",
+ "derivation_sha256": "b282069d4b54c6d97b9d629e14943cce72b727d12e06a66103ec9b6041ef3924",
+ "production_source": "/capture-public/envs/vllm024/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/fused_moe.py",
+ "production_source_sha256": "57a3f7efc9624f5c437908892ed5109a81ba0dbf45e1c6ac8a1438a23131f207",
+ "tuned_config_reference": "microbench/nvidia_h200/references/fused_moe_tuned_config_vllm_0_24_0_h200.json",
+ "tuned_config_reference_sha256": "c14a4ac2d5e5fa88794c7d9fb9ea6d70460f08c5d42b9ca8d9c4be1d196b80c8",
+ "clock_gate": "nvidia-smi clocks.sm every 50 ms over the timed section of each process; accepted only if every sample reads >= 1980 MHz",
+ "programs": {
+  "bm16_bn128_bk128_w4_s3": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 16,
+    "tile_n": 128,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 3,
+    "threads_per_cta": 128,
+    "pipeline_depth": 2,
+    "pipeline_depth_rule": "Triton software pipelining with num_stages S keeps S-1 operand stages in flight; the production shared-memory footprint equals (S-1) A+B stages plus scratch",
+    "physical_sm_count": 132
+   },
+   "probe_contract": {
+    "streams": 8,
+    "active_rows_per_tile": 1,
+    "cells": [
+     "K512_N1024_grid64",
+     "K2048_N1024_grid64",
+     "K512_N2048_grid128",
+     "K2048_N2048_grid128"
+    ],
+    "trial_count_per_cell": 9,
+    "cache_polluter_bytes": 134217728,
+    "timer_domain": "cuda_event_gpu_timeline"
+   },
+   "production_compile_metadata": {
+    "cb47dc9924056440": {
+     "w1": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 37376,
+      "resident_ctas_per_sm": 4
+     },
+     "w2": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 37376,
+      "resident_ctas_per_sm": 4
+     }
+    },
+    "0e0b351e3086258f": {
+     "w1": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 37376,
+      "resident_ctas_per_sm": 4
+     },
+     "w2": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 37376,
+      "resident_ctas_per_sm": 4
+     }
+    },
+    "96f97a9b394c141b": {
+     "w1": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 37376,
+      "resident_ctas_per_sm": 4
+     },
+     "w2": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 37376,
+      "resident_ctas_per_sm": 4
+     }
+    },
+    "63d65789df08a862": {
+     "w1": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 37376,
+      "resident_ctas_per_sm": 4
+     },
+     "w2": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 37376,
+      "resident_ctas_per_sm": 4
+     }
+    },
+    "50e8c1da81dc66d8": {
+     "w1": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 37376,
+      "resident_ctas_per_sm": 4
+     },
+     "w2": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 37376,
+      "resident_ctas_per_sm": 4
+     }
+    },
+    "65c0c8e5705f60f2": {
+     "w1": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 37376,
+      "resident_ctas_per_sm": 4
+     },
+     "w2": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 37376,
+      "resident_ctas_per_sm": 4
+     }
+    }
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu0_bm16_bn128_bk128_w4_s3_p1_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu0_bm16_bn128_bk128_w4_s3_p1_a1.csv",
+     "raw_sha256": "75a981e4015e0a3a444438f29dfda6d674d95f2601dbfa59f6bfa5fa0b9ac65a",
+     "gpu": "gpu0",
+     "process": "p1",
+     "attempt": 1,
+     "clock": {
+      "device": 0,
+      "samples": 9,
+      "busy_samples": 4,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 98,
+      "shared_memory_bytes": 37376,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 15968.000999999998,
+      "k2048_n2048": 17759.999,
+      "k512_n1024": 8736.0,
+      "k512_n2048": 9600.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 602.6667499999999,
+       "fixed_span_ns": 6325.3330000000005
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 679.9999166666666,
+       "fixed_span_ns": 6880.000333333333
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu0_bm16_bn128_bk128_w4_s3_p2_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu0_bm16_bn128_bk128_w4_s3_p2_a1.csv",
+     "raw_sha256": "b4df54ccff43cbdd5c7501a7beb48bc373708c2ec279e244990c230b530d0877",
+     "gpu": "gpu0",
+     "process": "p2",
+     "attempt": 1,
+     "clock": {
+      "device": 0,
+      "samples": 9,
+      "busy_samples": 4,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 98,
+      "shared_memory_bytes": 37376,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 15872.0,
+      "k2048_n2048": 17728.001,
+      "k512_n1024": 8896.0,
+      "k512_n2048": 9504.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 581.3333333333334,
+       "fixed_span_ns": 6570.666666666666
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 685.3334166666667,
+       "fixed_span_ns": 6762.666333333333
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu3_bm16_bn128_bk128_w4_s3_p1_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu3_bm16_bn128_bk128_w4_s3_p1_a1.csv",
+     "raw_sha256": "20e7b8127b2d66bb32d02938ba4c045dfc9f63cb600810e3ecb60e876bef0ddb",
+     "gpu": "gpu3",
+     "process": "p1",
+     "attempt": 1,
+     "clock": {
+      "device": 3,
+      "samples": 9,
+      "busy_samples": 5,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 98,
+      "shared_memory_bytes": 37376,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 15616.0,
+      "k2048_n2048": 17632.0,
+      "k512_n1024": 8704.0,
+      "k512_n2048": 9376.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 576.0,
+       "fixed_span_ns": 6400.0
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 688.0,
+       "fixed_span_ns": 6624.0
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu3_bm16_bn128_bk128_w4_s3_p2_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu3_bm16_bn128_bk128_w4_s3_p2_a1.csv",
+     "raw_sha256": "49fc1b3cf70a6248642c3ca993d6de643e99a860d04d9c4d0c248b707c9f0868",
+     "gpu": "gpu3",
+     "process": "p2",
+     "attempt": 1,
+     "clock": {
+      "device": 3,
+      "samples": 9,
+      "busy_samples": 4,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 98,
+      "shared_memory_bytes": 37376,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 15807.999,
+      "k2048_n2048": 17759.999,
+      "k512_n1024": 8704.0,
+      "k512_n2048": 9376.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 591.9999166666666,
+       "fixed_span_ns": 6336.000333333333
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 698.6665833333333,
+       "fixed_span_ns": 6581.333666666667
+      }
+     }
+    }
+   ],
+   "rejected_attempts": 0,
+   "service_parameters": {
+    "fixed_span_ns": 6880.000333333333,
+    "local_k_round_interval_ns": 698.6665833333333,
+    "derivation": "per accepted process and grid: interval = (median K2048 - median K512) / 12 BK128 rounds, fixed = median K512 - 4 * interval; component-wise maximum over processes and grids"
+   }
+  },
+  "bm16_bn128_bk128_w8_s4": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 16,
+    "tile_n": 128,
+    "tile_k": 128,
+    "num_warps": 8,
+    "num_stages": 4,
+    "threads_per_cta": 256,
+    "pipeline_depth": 3,
+    "pipeline_depth_rule": "Triton software pipelining with num_stages S keeps S-1 operand stages in flight; the production shared-memory footprint equals (S-1) A+B stages plus scratch",
+    "physical_sm_count": 132
+   },
+   "probe_contract": {
+    "streams": 8,
+    "active_rows_per_tile": 1,
+    "cells": [
+     "K512_N1024_grid64",
+     "K2048_N1024_grid64",
+     "K512_N2048_grid128",
+     "K2048_N2048_grid128"
+    ],
+    "trial_count_per_cell": 9,
+    "cache_polluter_bytes": 134217728,
+    "timer_domain": "cuda_event_gpu_timeline"
+   },
+   "production_compile_metadata": {
+    "32e1b6206e8cd459": {
+     "w1": {
+      "registers_per_thread": 80,
+      "shared_memory_bytes_per_cta": 55296,
+      "resident_ctas_per_sm": 3
+     },
+     "w2": {
+      "registers_per_thread": 76,
+      "shared_memory_bytes_per_cta": 55296,
+      "resident_ctas_per_sm": 3
+     }
+    }
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu0_bm16_bn128_bk128_w8_s4_p1_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu0_bm16_bn128_bk128_w8_s4_p1_a1.csv",
+     "raw_sha256": "10322ae1cf237033bf0306cedbf2698482278a6c9b01127e8880f3f9221cd4ab",
+     "gpu": "gpu0",
+     "process": "p1",
+     "attempt": 1,
+     "clock": {
+      "device": 0,
+      "samples": 8,
+      "busy_samples": 3,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 4,
+      "num_warps": 8,
+      "registers_per_thread": 80,
+      "shared_memory_bytes": 55296,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14208.0,
+      "k2048_n2048": 16319.999000000002,
+      "k512_n1024": 8576.0,
+      "k512_n2048": 9280.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 469.3333333333333,
+       "fixed_span_ns": 6698.666666666667
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 586.6665833333335,
+       "fixed_span_ns": 6933.3336666666655
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu0_bm16_bn128_bk128_w8_s4_p2_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu0_bm16_bn128_bk128_w8_s4_p2_a1.csv",
+     "raw_sha256": "ad2b4364a18c438b64c99e623768835262fe80777287335361702948f43c57d4",
+     "gpu": "gpu0",
+     "process": "p2",
+     "attempt": 1,
+     "clock": {
+      "device": 0,
+      "samples": 7,
+      "busy_samples": 3,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 4,
+      "num_warps": 8,
+      "registers_per_thread": 80,
+      "shared_memory_bytes": 55296,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14176.0,
+      "k2048_n2048": 16192.000000000002,
+      "k512_n1024": 8800.0,
+      "k512_n2048": 9248.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 448.0,
+       "fixed_span_ns": 7008.0
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 578.6666666666669,
+       "fixed_span_ns": 6933.333333333332
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu3_bm16_bn128_bk128_w8_s4_p1_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu3_bm16_bn128_bk128_w8_s4_p1_a1.csv",
+     "raw_sha256": "9997b503e166ebca629e35f2298113ae1dbb3e560dc749719faa30f0c9104358",
+     "gpu": "gpu3",
+     "process": "p1",
+     "attempt": 1,
+     "clock": {
+      "device": 3,
+      "samples": 7,
+      "busy_samples": 3,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 4,
+      "num_warps": 8,
+      "registers_per_thread": 80,
+      "shared_memory_bytes": 55296,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14176.0,
+      "k2048_n2048": 16319.999000000002,
+      "k512_n1024": 8576.0,
+      "k512_n2048": 9216.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 466.6666666666667,
+       "fixed_span_ns": 6709.333333333333
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 591.9999166666668,
+       "fixed_span_ns": 6848.000333333333
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu3_bm16_bn128_bk128_w8_s4_p2_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu3_bm16_bn128_bk128_w8_s4_p2_a1.csv",
+     "raw_sha256": "811fd46648d913f13d836f8dcecb89a42146000defba672ec88dcc5f0fa627bb",
+     "gpu": "gpu3",
+     "process": "p2",
+     "attempt": 1,
+     "clock": {
+      "device": 3,
+      "samples": 8,
+      "busy_samples": 3,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 4,
+      "num_warps": 8,
+      "registers_per_thread": 80,
+      "shared_memory_bytes": 55296,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14176.0,
+      "k2048_n2048": 16063.999,
+      "k512_n1024": 8480.0,
+      "k512_n2048": 9120.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 474.6666666666667,
+       "fixed_span_ns": 6581.333333333333
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 578.6665833333333,
+       "fixed_span_ns": 6805.333666666667
+      }
+     }
+    }
+   ],
+   "rejected_attempts": 0,
+   "service_parameters": {
+    "fixed_span_ns": 7008.0,
+    "local_k_round_interval_ns": 591.9999166666668,
+    "derivation": "per accepted process and grid: interval = (median K2048 - median K512) / 12 BK128 rounds, fixed = median K512 - 4 * interval; component-wise maximum over processes and grids"
+   }
+  },
+  "bm16_bn128_bk128_w4_s4": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 16,
+    "tile_n": 128,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 4,
+    "threads_per_cta": 128,
+    "pipeline_depth": 3,
+    "pipeline_depth_rule": "Triton software pipelining with num_stages S keeps S-1 operand stages in flight; the production shared-memory footprint equals (S-1) A+B stages plus scratch",
+    "physical_sm_count": 132
+   },
+   "probe_contract": {
+    "streams": 8,
+    "active_rows_per_tile": 1,
+    "cells": [
+     "K512_N1024_grid64",
+     "K2048_N1024_grid64",
+     "K512_N2048_grid128",
+     "K2048_N2048_grid128"
+    ],
+    "trial_count_per_cell": 9,
+    "cache_polluter_bytes": 134217728,
+    "timer_domain": "cuda_event_gpu_timeline"
+   },
+   "production_compile_metadata": {
+    "c707ac95391bd157": {
+     "w1": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 55808,
+      "resident_ctas_per_sm": 4
+     },
+     "w2": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 55808,
+      "resident_ctas_per_sm": 4
+     }
+    },
+    "12d9d4bdf00fb2ff": {
+     "w1": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 55808,
+      "resident_ctas_per_sm": 4
+     },
+     "w2": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 55808,
+      "resident_ctas_per_sm": 4
+     }
+    },
+    "35591cb2c794b91b": {
+     "w1": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 55808,
+      "resident_ctas_per_sm": 4
+     },
+     "w2": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 55808,
+      "resident_ctas_per_sm": 4
+     }
+    }
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu0_bm16_bn128_bk128_w4_s4_p1_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu0_bm16_bn128_bk128_w4_s4_p1_a1.csv",
+     "raw_sha256": "0b17173f2becda32750c54976c03aaffcfe8eae61bc6e0550f569bd1e793afb9",
+     "gpu": "gpu0",
+     "process": "p1",
+     "attempt": 1,
+     "clock": {
+      "device": 0,
+      "samples": 7,
+      "busy_samples": 2,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 4,
+      "num_warps": 4,
+      "registers_per_thread": 98,
+      "shared_memory_bytes": 55808,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14656.0,
+      "k2048_n2048": 16448.0,
+      "k512_n1024": 8736.0,
+      "k512_n2048": 9248.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 493.3333333333333,
+       "fixed_span_ns": 6762.666666666667
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 600.0,
+       "fixed_span_ns": 6848.0
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu0_bm16_bn128_bk128_w4_s4_p2_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu0_bm16_bn128_bk128_w4_s4_p2_a1.csv",
+     "raw_sha256": "cd12cc4722bda2e5f6170d00bb621548bf0caa60fac1cf4b02580f412fd578b7",
+     "gpu": "gpu0",
+     "process": "p2",
+     "attempt": 1,
+     "clock": {
+      "device": 0,
+      "samples": 7,
+      "busy_samples": 2,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 4,
+      "num_warps": 4,
+      "registers_per_thread": 98,
+      "shared_memory_bytes": 55808,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14688.0,
+      "k2048_n2048": 16384.0,
+      "k512_n1024": 8640.0,
+      "k512_n2048": 9376.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 504.0,
+       "fixed_span_ns": 6624.0
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 584.0,
+       "fixed_span_ns": 7040.0
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu3_bm16_bn128_bk128_w4_s4_p1_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu3_bm16_bn128_bk128_w4_s4_p1_a1.csv",
+     "raw_sha256": "db24dcbc75d535f2a1550ff6e16fe40fea370f62ce5f8c8963411d2dd4349922",
+     "gpu": "gpu3",
+     "process": "p1",
+     "attempt": 1,
+     "clock": {
+      "device": 3,
+      "samples": 7,
+      "busy_samples": 2,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 4,
+      "num_warps": 4,
+      "registers_per_thread": 98,
+      "shared_memory_bytes": 55808,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14688.0,
+      "k2048_n2048": 16192.000000000002,
+      "k512_n1024": 8608.0,
+      "k512_n2048": 9184.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 506.6666666666667,
+       "fixed_span_ns": 6581.333333333333
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 584.0000000000001,
+       "fixed_span_ns": 6848.0
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu3_bm16_bn128_bk128_w4_s4_p2_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu3_bm16_bn128_bk128_w4_s4_p2_a1.csv",
+     "raw_sha256": "c111e7d0cf539a1fddb3007fc71ac2c4ba1bff667900ae5096eeb0531dadc309",
+     "gpu": "gpu3",
+     "process": "p2",
+     "attempt": 1,
+     "clock": {
+      "device": 3,
+      "samples": 7,
+      "busy_samples": 2,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 4,
+      "num_warps": 4,
+      "registers_per_thread": 98,
+      "shared_memory_bytes": 55808,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14624.0,
+      "k2048_n2048": 16351.999999999998,
+      "k512_n1024": 8576.0,
+      "k512_n2048": 9216.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 504.0,
+       "fixed_span_ns": 6560.0
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 594.6666666666665,
+       "fixed_span_ns": 6837.333333333334
+      }
+     }
+    }
+   ],
+   "rejected_attempts": 0,
+   "service_parameters": {
+    "fixed_span_ns": 7040.0,
+    "local_k_round_interval_ns": 600.0,
+    "derivation": "per accepted process and grid: interval = (median K2048 - median K512) / 12 BK128 rounds, fixed = median K512 - 4 * interval; component-wise maximum over processes and grids"
+   }
+  },
+  "bm16_bn128_bk128_w4_s5": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 16,
+    "tile_n": 128,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 5,
+    "threads_per_cta": 128,
+    "pipeline_depth": 4,
+    "pipeline_depth_rule": "Triton software pipelining with num_stages S keeps S-1 operand stages in flight; the production shared-memory footprint equals (S-1) A+B stages plus scratch",
+    "physical_sm_count": 132
+   },
+   "probe_contract": {
+    "streams": 8,
+    "active_rows_per_tile": 1,
+    "cells": [
+     "K512_N1024_grid64",
+     "K2048_N1024_grid64",
+     "K512_N2048_grid128",
+     "K2048_N2048_grid128"
+    ],
+    "trial_count_per_cell": 9,
+    "cache_polluter_bytes": 134217728,
+    "timer_domain": "cuda_event_gpu_timeline"
+   },
+   "production_compile_metadata": {
+    "b336fde8d25c71c0": {
+     "w1": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 74240,
+      "resident_ctas_per_sm": 3
+     },
+     "w2": {
+      "registers_per_thread": 100,
+      "shared_memory_bytes_per_cta": 74240,
+      "resident_ctas_per_sm": 3
+     }
+    }
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu0_bm16_bn128_bk128_w4_s5_p1_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu0_bm16_bn128_bk128_w4_s5_p1_a1.csv",
+     "raw_sha256": "9150f0a2729cc5b874d65e2697cbf1b4a00c4269a9930626ed5221f457713c90",
+     "gpu": "gpu0",
+     "process": "p1",
+     "attempt": 1,
+     "clock": {
+      "device": 0,
+      "samples": 7,
+      "busy_samples": 2,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 5,
+      "num_warps": 4,
+      "registers_per_thread": 98,
+      "shared_memory_bytes": 74240,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14880.0,
+      "k2048_n2048": 16543.999,
+      "k512_n1024": 8768.0,
+      "k512_n2048": 9504.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 509.3333333333333,
+       "fixed_span_ns": 6730.666666666667
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 586.6665833333333,
+       "fixed_span_ns": 7157.333666666667
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu0_bm16_bn128_bk128_w4_s5_p2_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu0_bm16_bn128_bk128_w4_s5_p2_a1.csv",
+     "raw_sha256": "3e7d3335357383d81d3e3b91fd144e9ba1c14f7e8b98b0cd000cc963db1232ae",
+     "gpu": "gpu0",
+     "process": "p2",
+     "attempt": 1,
+     "clock": {
+      "device": 0,
+      "samples": 6,
+      "busy_samples": 2,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 5,
+      "num_warps": 4,
+      "registers_per_thread": 98,
+      "shared_memory_bytes": 74240,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14912.0,
+      "k2048_n2048": 16543.999,
+      "k512_n1024": 8896.0,
+      "k512_n2048": 9536.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 501.3333333333333,
+       "fixed_span_ns": 6890.666666666667
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 583.9999166666666,
+       "fixed_span_ns": 7200.000333333333
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu3_bm16_bn128_bk128_w4_s5_p1_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu3_bm16_bn128_bk128_w4_s5_p1_a1.csv",
+     "raw_sha256": "ad1b21e1a4af55638cabb16c1b062bf00866e8b2be21044e6ff220778df85e09",
+     "gpu": "gpu3",
+     "process": "p1",
+     "attempt": 1,
+     "clock": {
+      "device": 3,
+      "samples": 8,
+      "busy_samples": 4,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 5,
+      "num_warps": 4,
+      "registers_per_thread": 98,
+      "shared_memory_bytes": 74240,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14816.0,
+      "k2048_n2048": 16351.999999999998,
+      "k512_n1024": 8800.0,
+      "k512_n2048": 9408.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 501.3333333333333,
+       "fixed_span_ns": 6794.666666666667
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 578.6666666666665,
+       "fixed_span_ns": 7093.333333333334
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu3_bm16_bn128_bk128_w4_s5_p2_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu3_bm16_bn128_bk128_w4_s5_p2_a1.csv",
+     "raw_sha256": "c09f0d5dae78c7787401f9820c85ead3d2e1de5fa83faff9f4cbd187b8935641",
+     "gpu": "gpu3",
+     "process": "p2",
+     "attempt": 1,
+     "clock": {
+      "device": 3,
+      "samples": 6,
+      "busy_samples": 2,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 5,
+      "num_warps": 4,
+      "registers_per_thread": 98,
+      "shared_memory_bytes": 74240,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14976.0,
+      "k2048_n2048": 16480.001,
+      "k512_n1024": 8832.0,
+      "k512_n2048": 9504.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 512.0,
+       "fixed_span_ns": 6784.0
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 581.3334166666667,
+       "fixed_span_ns": 7178.666333333333
+      }
+     }
+    }
+   ],
+   "rejected_attempts": 0,
+   "service_parameters": {
+    "fixed_span_ns": 7200.000333333333,
+    "local_k_round_interval_ns": 586.6665833333333,
+    "derivation": "per accepted process and grid: interval = (median K2048 - median K512) / 12 BK128 rounds, fixed = median K512 - 4 * interval; component-wise maximum over processes and grids"
+   }
+  },
+  "bm32_bn128_bk128_w4_s3": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 32,
+    "tile_n": 128,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 3,
+    "threads_per_cta": 128,
+    "pipeline_depth": 2,
+    "pipeline_depth_rule": "Triton software pipelining with num_stages S keeps S-1 operand stages in flight; the production shared-memory footprint equals (S-1) A+B stages plus scratch",
+    "physical_sm_count": 132
+   },
+   "probe_contract": {
+    "streams": 8,
+    "active_rows_per_tile": 32,
+    "cells": [
+     "K512_N1024_grid64",
+     "K2048_N1024_grid64",
+     "K512_N2048_grid128",
+     "K2048_N2048_grid128"
+    ],
+    "trial_count_per_cell": 9,
+    "cache_polluter_bytes": 134217728,
+    "timer_domain": "cuda_event_gpu_timeline"
+   },
+   "production_compile_metadata": {
+    "a2b5ff407c7333d6": {
+     "w1": {
+      "registers_per_thread": 160,
+      "shared_memory_bytes_per_cta": 41472,
+      "resident_ctas_per_sm": 3
+     },
+     "w2": {
+      "registers_per_thread": 159,
+      "shared_memory_bytes_per_cta": 41472,
+      "resident_ctas_per_sm": 3
+     }
+    }
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu0_bm32_bn128_bk128_w4_s3_p1_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu0_bm32_bn128_bk128_w4_s3_p1_a1.csv",
+     "raw_sha256": "cb6db76956de40693b2e7a6bbfff4150f482e11a0d26dc21bd5509d4ae7dd22f",
+     "gpu": "gpu0",
+     "process": "p1",
+     "attempt": 1,
+     "clock": {
+      "device": 0,
+      "samples": 8,
+      "busy_samples": 4,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 162,
+      "shared_memory_bytes": 41472,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 17184.0,
+      "k2048_n2048": 18848.0,
+      "k512_n1024": 9312.0,
+      "k512_n2048": 10016.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 656.0,
+       "fixed_span_ns": 6688.0
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 736.0,
+       "fixed_span_ns": 7072.0
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu0_bm32_bn128_bk128_w4_s3_p2_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu0_bm32_bn128_bk128_w4_s3_p2_a1.csv",
+     "raw_sha256": "43f2e6f8828009375293beb6dea154db71a55a4f27d1039e0b1dcde3d43979d8",
+     "gpu": "gpu0",
+     "process": "p2",
+     "attempt": 1,
+     "clock": {
+      "device": 0,
+      "samples": 7,
+      "busy_samples": 3,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 162,
+      "shared_memory_bytes": 41472,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 17216.001,
+      "k2048_n2048": 18944.001,
+      "k512_n1024": 9248.0,
+      "k512_n2048": 9952.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 664.0000833333334,
+       "fixed_span_ns": 6591.999666666667
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 749.3334166666667,
+       "fixed_span_ns": 6954.666333333333
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu3_bm32_bn128_bk128_w4_s3_p1_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu3_bm32_bn128_bk128_w4_s3_p1_a1.csv",
+     "raw_sha256": "79882673015320ae7394e045690a29fd9b58f8448fd7c84b1849c3f87e035f5c",
+     "gpu": "gpu3",
+     "process": "p1",
+     "attempt": 1,
+     "clock": {
+      "device": 3,
+      "samples": 9,
+      "busy_samples": 4,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 162,
+      "shared_memory_bytes": 41472,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 17216.001,
+      "k2048_n2048": 18848.0,
+      "k512_n1024": 9408.0,
+      "k512_n2048": 10016.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 650.66675,
+       "fixed_span_ns": 6805.3330000000005
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 736.0,
+       "fixed_span_ns": 7072.0
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu3_bm32_bn128_bk128_w4_s3_p2_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu3_bm32_bn128_bk128_w4_s3_p2_a1.csv",
+     "raw_sha256": "9e12028f32db6b8b5825c7ae724194bf61365651ff4fdfa9fe24cd5a6d60f032",
+     "gpu": "gpu3",
+     "process": "p2",
+     "attempt": 1,
+     "clock": {
+      "device": 3,
+      "samples": 8,
+      "busy_samples": 3,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 162,
+      "shared_memory_bytes": 41472,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 17312.0,
+      "k2048_n2048": 18784.0,
+      "k512_n1024": 9152.0,
+      "k512_n2048": 9952.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 680.0,
+       "fixed_span_ns": 6432.0
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 736.0,
+       "fixed_span_ns": 7008.0
+      }
+     }
+    }
+   ],
+   "rejected_attempts": 0,
+   "service_parameters": {
+    "fixed_span_ns": 7072.0,
+    "local_k_round_interval_ns": 749.3334166666667,
+    "derivation": "per accepted process and grid: interval = (median K2048 - median K512) / 12 BK128 rounds, fixed = median K512 - 4 * interval; component-wise maximum over processes and grids"
+   }
+  },
+  "bm64_bn128_bk128_w4_s4": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 64,
+    "tile_n": 128,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 4,
+    "threads_per_cta": 128,
+    "pipeline_depth": 3,
+    "pipeline_depth_rule": "Triton software pipelining with num_stages S keeps S-1 operand stages in flight; the production shared-memory footprint equals (S-1) A+B stages plus scratch",
+    "physical_sm_count": 132
+   },
+   "probe_contract": {
+    "streams": 8,
+    "active_rows_per_tile": 64,
+    "cells": [
+     "K512_N1024_grid64",
+     "K2048_N1024_grid64",
+     "K512_N2048_grid128",
+     "K2048_N2048_grid128"
+    ],
+    "trial_count_per_cell": 9,
+    "cache_polluter_bytes": 134217728,
+    "timer_domain": "cuda_event_gpu_timeline"
+   },
+   "production_compile_metadata": {
+    "57bc196faf4fc400": {
+     "w1": {
+      "registers_per_thread": 236,
+      "shared_memory_bytes_per_cta": 98816,
+      "resident_ctas_per_sm": 2
+     },
+     "w2": {
+      "registers_per_thread": 237,
+      "shared_memory_bytes_per_cta": 98816,
+      "resident_ctas_per_sm": 2
+     }
+    },
+    "d26bcbdc1237b406": {
+     "w1": {
+      "registers_per_thread": 236,
+      "shared_memory_bytes_per_cta": 98816,
+      "resident_ctas_per_sm": 2
+     },
+     "w2": {
+      "registers_per_thread": 237,
+      "shared_memory_bytes_per_cta": 98816,
+      "resident_ctas_per_sm": 2
+     }
+    },
+    "bc3c0c641b7ec1b3": {
+     "w1": {
+      "registers_per_thread": 236,
+      "shared_memory_bytes_per_cta": 98816,
+      "resident_ctas_per_sm": 2
+     },
+     "w2": {
+      "registers_per_thread": 237,
+      "shared_memory_bytes_per_cta": 98816,
+      "resident_ctas_per_sm": 2
+     }
+    }
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu0_bm64_bn128_bk128_w4_s4_p1_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu0_bm64_bn128_bk128_w4_s4_p1_a1.csv",
+     "raw_sha256": "6f41dcbd41f51de7df815321834057f646d03bc31b4684953845683dfd093873",
+     "gpu": "gpu0",
+     "process": "p1",
+     "attempt": 1,
+     "clock": {
+      "device": 0,
+      "samples": 7,
+      "busy_samples": 3,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 4,
+      "num_warps": 4,
+      "registers_per_thread": 200,
+      "shared_memory_bytes": 98816,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14112.0,
+      "k2048_n2048": 16640.0,
+      "k512_n1024": 8800.0,
+      "k512_n2048": 9408.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 442.6666666666667,
+       "fixed_span_ns": 7029.333333333333
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 602.6666666666666,
+       "fixed_span_ns": 6997.333333333334
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu0_bm64_bn128_bk128_w4_s4_p2_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu0_bm64_bn128_bk128_w4_s4_p2_a1.csv",
+     "raw_sha256": "f0f49ac1fb5e15cbdfb19b5fe07f4349d0a46405cc989dbb7914f40e5bb64871",
+     "gpu": "gpu0",
+     "process": "p2",
+     "attempt": 1,
+     "clock": {
+      "device": 0,
+      "samples": 8,
+      "busy_samples": 4,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 4,
+      "num_warps": 4,
+      "registers_per_thread": 200,
+      "shared_memory_bytes": 98816,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14208.0,
+      "k2048_n2048": 16543.999,
+      "k512_n1024": 8896.0,
+      "k512_n2048": 9472.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 442.6666666666667,
+       "fixed_span_ns": 7125.333333333333
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 589.33325,
+       "fixed_span_ns": 7114.6669999999995
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu3_bm64_bn128_bk128_w4_s4_p1_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu3_bm64_bn128_bk128_w4_s4_p1_a1.csv",
+     "raw_sha256": "51d3c3fff7ff208e8f9fe9c966e6c98c49ccb6c2f730620b1cde5beab8df64cd",
+     "gpu": "gpu3",
+     "process": "p1",
+     "attempt": 1,
+     "clock": {
+      "device": 3,
+      "samples": 8,
+      "busy_samples": 4,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 4,
+      "num_warps": 4,
+      "registers_per_thread": 200,
+      "shared_memory_bytes": 98816,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14432.0,
+      "k2048_n2048": 16608.0,
+      "k512_n1024": 8800.0,
+      "k512_n2048": 9344.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 469.3333333333333,
+       "fixed_span_ns": 6922.666666666667
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 605.3333333333334,
+       "fixed_span_ns": 6922.666666666666
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu3_bm64_bn128_bk128_w4_s4_p2_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu3_bm64_bn128_bk128_w4_s4_p2_a1.csv",
+     "raw_sha256": "9f6ceabcf49f615b64413dcaf414a3057a1018e0edc3b3d8d33b28ebee202134",
+     "gpu": "gpu3",
+     "process": "p2",
+     "attempt": 1,
+     "clock": {
+      "device": 3,
+      "samples": 7,
+      "busy_samples": 3,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 4,
+      "num_warps": 4,
+      "registers_per_thread": 200,
+      "shared_memory_bytes": 98816,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 14176.0,
+      "k2048_n2048": 16480.001,
+      "k512_n1024": 8800.0,
+      "k512_n2048": 9664.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 448.0,
+       "fixed_span_ns": 7008.0
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 568.0000833333334,
+       "fixed_span_ns": 7391.999666666667
+      }
+     }
+    }
+   ],
+   "rejected_attempts": 0,
+   "service_parameters": {
+    "fixed_span_ns": 7391.999666666667,
+    "local_k_round_interval_ns": 605.3333333333334,
+    "derivation": "per accepted process and grid: interval = (median K2048 - median K512) / 12 BK128 rounds, fixed = median K512 - 4 * interval; component-wise maximum over processes and grids"
+   }
+  },
+  "bm64_bn128_bk128_w4_s3": {
+   "source_and_launch_contract": {
+    "dtype": "fp8_e4m3_w8a8",
+    "weight_block_shape": [
+     128,
+     128
+    ],
+    "tile_m": 64,
+    "tile_n": 128,
+    "tile_k": 128,
+    "num_warps": 4,
+    "num_stages": 3,
+    "threads_per_cta": 128,
+    "pipeline_depth": 2,
+    "pipeline_depth_rule": "Triton software pipelining with num_stages S keeps S-1 operand stages in flight; the production shared-memory footprint equals (S-1) A+B stages plus scratch",
+    "physical_sm_count": 132
+   },
+   "probe_contract": {
+    "streams": 8,
+    "active_rows_per_tile": 64,
+    "cells": [
+     "K512_N1024_grid64",
+     "K2048_N1024_grid64",
+     "K512_N2048_grid128",
+     "K2048_N2048_grid128"
+    ],
+    "trial_count_per_cell": 9,
+    "cache_polluter_bytes": 134217728,
+    "timer_domain": "cuda_event_gpu_timeline"
+   },
+   "production_compile_metadata": {
+    "12974297821ec13c": {
+     "w1": {
+      "registers_per_thread": 236,
+      "shared_memory_bytes_per_cta": 74240,
+      "resident_ctas_per_sm": 2
+     },
+     "w2": {
+      "registers_per_thread": 237,
+      "shared_memory_bytes_per_cta": 74240,
+      "resident_ctas_per_sm": 2
+     }
+    }
+   },
+   "probe_shared_memory_matches_production": true,
+   "captures": [
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu0_bm64_bn128_bk128_w4_s3_p1_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu0_bm64_bn128_bk128_w4_s3_p1_a1.csv",
+     "raw_sha256": "4ad5e73dbf55056c2f5df272b166818b0b5c69533c47687e01927c23c505a976",
+     "gpu": "gpu0",
+     "process": "p1",
+     "attempt": 1,
+     "clock": {
+      "device": 0,
+      "samples": 7,
+      "busy_samples": 2,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 200,
+      "shared_memory_bytes": 74240,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 15776.001000000002,
+      "k2048_n2048": 18176.001,
+      "k512_n1024": 8992.0,
+      "k512_n2048": 9728.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 565.3334166666668,
+       "fixed_span_ns": 6730.666333333333
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 704.0000833333334,
+       "fixed_span_ns": 6911.999666666667
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu0_bm64_bn128_bk128_w4_s3_p2_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu0_bm64_bn128_bk128_w4_s3_p2_a1.csv",
+     "raw_sha256": "a0853bb4fbc5c46fcab86c35e8f8da1fc60216adb49ac2dff256946355e1262c",
+     "gpu": "gpu0",
+     "process": "p2",
+     "attempt": 1,
+     "clock": {
+      "device": 0,
+      "samples": 7,
+      "busy_samples": 2,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 200,
+      "shared_memory_bytes": 74240,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 15712.0,
+      "k2048_n2048": 17952.001,
+      "k512_n1024": 9056.0,
+      "k512_n2048": 9728.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 554.6666666666666,
+       "fixed_span_ns": 6837.333333333334
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 685.3334166666667,
+       "fixed_span_ns": 6986.666333333333
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu3_bm64_bn128_bk128_w4_s3_p1_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu3_bm64_bn128_bk128_w4_s3_p1_a1.csv",
+     "raw_sha256": "dd1a8e636c4c0844c665a2719e0946a6e1d9c71147e116dcffcb18e391e89d62",
+     "gpu": "gpu3",
+     "process": "p1",
+     "attempt": 1,
+     "clock": {
+      "device": 3,
+      "samples": 9,
+      "busy_samples": 3,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 200,
+      "shared_memory_bytes": 74240,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 15712.0,
+      "k2048_n2048": 17696.001,
+      "k512_n1024": 8768.0,
+      "k512_n2048": 9600.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 578.6666666666666,
+       "fixed_span_ns": 6453.333333333334
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 674.66675,
+       "fixed_span_ns": 6901.3330000000005
+      }
+     }
+    },
+    {
+     "path": "profiler_output/microbench/nvidia_h200/wp11_fp8_tile_pipeline_r2/gpu3_bm64_bn128_bk128_w4_s3_p2_a1.csv",
+     "remote_path": "/capture-public/h200_microbench/wp11_moe_fp8/runs/tile_pipeline_r2/gpu3_bm64_bn128_bk128_w4_s3_p2_a1.csv",
+     "raw_sha256": "a165fd3e2c3503d3ab30ddccf051fd40047f1ddfdef5a39164cf85ac0a1d32ba",
+     "gpu": "gpu3",
+     "process": "p2",
+     "attempt": 1,
+     "clock": {
+      "device": 3,
+      "samples": 7,
+      "busy_samples": 4,
+      "busy_min_mhz": 1980.0,
+      "busy_median_mhz": 1980.0,
+      "busy_max_mhz": 1980.0,
+      "window_min_mhz": 1980.0,
+      "accepted": true
+     },
+     "probe_compile": {
+      "num_stages": 3,
+      "num_warps": 4,
+      "registers_per_thread": 200,
+      "shared_memory_bytes": 74240,
+      "spilled_registers": 0
+     },
+     "median_duration_ns": {
+      "k2048_n1024": 15680.0,
+      "k2048_n2048": 18015.999,
+      "k512_n1024": 8800.0,
+      "k512_n2048": 9568.0
+     },
+     "per_grid": {
+      "grid64": {
+       "local_k_round_interval_ns": 573.3333333333334,
+       "fixed_span_ns": 6506.666666666666
+      },
+      "grid128": {
+       "local_k_round_interval_ns": 703.9999166666666,
+       "fixed_span_ns": 6752.000333333333
+      }
+     }
+    }
+   ],
+   "rejected_attempts": 0,
+   "service_parameters": {
+    "fixed_span_ns": 6986.666333333333,
+    "local_k_round_interval_ns": 704.0000833333334,
+    "derivation": "per accepted process and grid: interval = (median K2048 - median K512) / 12 BK128 rounds, fixed = median K512 - 4 * interval; component-wise maximum over processes and grids"
+   }
+  }
+ },
+ "empty_tail": {
+  "reused_reference": "microbench/nvidia_h200/references/bm16_grouped_gemm_empty_tail_sm90.json",
+  "reused_reference_sha256": "c93c2d0644fa784a2db103499554d114981535e82e0b09fd24901a5c18b7c8f1",
+  "empty_tail_round_ns": 79.06276150627615,
+  "reuse_basis": "the vLLM 0.24 FP8 kernel keeps the source early-return `if pid_m * BLOCK_SIZE_M >= num_tokens_post_padded: return` before any operand load, launched with the same 128 threads per CTA as the zero-work probe; only its per-132-CTA retire cost is reused"
+ },
+ "decision": {
+  "status": "accepted_independent_pipeline_mechanism",
+  "forward_eligible": true,
+  "reason": "The synthetic sparse-row program reproduces the vLLM 0.24 FP8 block-scaled K loop (FP8 A/B tiles, per-K A and B scale loads, dot times scales) without routing, sorting, gather, reduction or production timing; the procedure is the H200 BF16 BM16 pipeline reference's."
+ },
+ "excluded_conclusions": [
+  "a complete FusedMoE operator duration",
+  "a production-shape latency lookup",
+  "a residual correction",
+  "tile programs other than the two recorded here"
+ ],
+ "production_or_evaluation_duration_consumed": false
+}

@@ -1,0 +1,56 @@
+{
+  "schema": "nvidia_a800_bm64_triton_e128_deep_w2_source_depth_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "source_baseline_commit": "78460e6561a613e96479ad47c2a5585c423aa4b2",
+  "runner": "microbench/nvidia_a800/operators/fused_moe/fused_moe_triton_operand_stream_runner.py",
+  "runner_sha256": "0c5fb46fc82f5b0595ec407eb775f23af7533894d2d28b90b34743291ef6ec87",
+  "vllm_source": "/capture-workspace/vllm_src_3ver/a800/vllm/model_executor/layers/fused_moe/fused_moe.py",
+  "vllm_source_sha256": "8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e",
+  "probe_contract": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_n": 64,
+    "tile_k": 32,
+    "group_size_m": 8,
+    "threads_per_cta": 128,
+    "experts": 128,
+    "topk": 1,
+    "mul_routed_weight": true,
+    "production_projection_k": 1536,
+    "production_projection_n": 4096,
+    "adjacent_projection_n": [4032, 4160],
+    "source_depths": [
+      {"active_m_tiles": 2108, "maximum_m_tiles": 2174, "route_seed": 2026090017},
+      {"active_m_tiles": 4156, "maximum_m_tiles": 4222, "route_seed": 2026090002}
+    ]
+  },
+  "static_selection": {
+    "projection_k_tiles": 48,
+    "projection_n_tiles": 64,
+    "minimum_exclusive_maximum_m_tiles": 1728,
+    "derivation": "2 complete source waves * 108 SM * group_size_m 8",
+    "covered_canonical_maximum_m_tiles": [2174, 4222]
+  },
+  "captures": [
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e128_deep_w2_source_78460e65_20260909_r2/depth2174_n4032_device2/result.json", "sha256": "1718b14b6cf2f2d5f2d7d6cb76887f027577abf0b29901b4d00faec87f828f81", "device_id": 2, "n": 4032, "active_m_tiles": 2108, "maximum_m_tiles": 2174, "logical_byte_capacity_per_s": 2511288620692.5854},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e128_deep_w2_source_78460e65_20260909_r2/depth2174_n4032_device6_swap/result.json", "sha256": "491abbc121274b775f7adf8052ce6a5bd03986610253cbd24fd3d41b30b5764d", "device_id": 6, "n": 4032, "active_m_tiles": 2108, "maximum_m_tiles": 2174, "logical_byte_capacity_per_s": 2497564322448.0483},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e128_deep_w2_source_78460e65_20260909_r2/depth2174_n4160_device2_swap/result.json", "sha256": "870cecabc1e188ac11af935b0e78680df5a6e51f38ab7dadc40acd50d7eb70c2", "device_id": 2, "n": 4160, "active_m_tiles": 2108, "maximum_m_tiles": 2174, "logical_byte_capacity_per_s": 2031525634020.1377},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e128_deep_w2_source_78460e65_20260909_r2/depth2174_n4160_device6/result.json", "sha256": "02461a15663a4eda7780dfc742b0c70520304544314f53cea0367589b491addd", "device_id": 6, "n": 4160, "active_m_tiles": 2108, "maximum_m_tiles": 2174, "logical_byte_capacity_per_s": 2034952890030.0225},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e128_deep_w2_source_78460e65_20260909_r2/depth4222_n4032_device2_swap/result.json", "sha256": "fe1dd234a61d8ee662b580026d2b98e2e4151a22fdd825543507505ba8710425", "device_id": 2, "n": 4032, "active_m_tiles": 4156, "maximum_m_tiles": 4222, "logical_byte_capacity_per_s": 2466607070097.8657},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e128_deep_w2_source_78460e65_20260909_r2/depth4222_n4032_device6/result.json", "sha256": "75353e85fb2aeb8c78978ae06c5d3bdc7698c8a6ef10195aab6e2ddf5fe37bd6", "device_id": 6, "n": 4032, "active_m_tiles": 4156, "maximum_m_tiles": 4222, "logical_byte_capacity_per_s": 2462044160587.8896},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e128_deep_w2_source_78460e65_20260909_r2/depth4222_n4160_device2/result.json", "sha256": "fcb62659b8b62e633a0185dc417bad8499908e5de52e2349c94b7664de458009", "device_id": 2, "n": 4160, "active_m_tiles": 4156, "maximum_m_tiles": 4222, "logical_byte_capacity_per_s": 2473697134826.7266},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e128_deep_w2_source_78460e65_20260909_r2/depth4222_n4160_device6_swap/result.json", "sha256": "0eb505b225208a01d2f96cbc177b59a4fbeded66a5f5f3e729585f521110100e", "device_id": 6, "n": 4160, "active_m_tiles": 4156, "maximum_m_tiles": 4222, "logical_byte_capacity_per_s": 2466410352653.2544}
+  ],
+  "selected_service": {
+    "selection_rule": "minimum across both adjacent N tile counts, both measured source depths, and idle devices 2 and 6",
+    "logical_byte_capacity_per_s": 2031525634020.1377
+  },
+  "mechanism": "production_source_triton_grouped_matrix_operand_and_hmma_pipeline_beyond_two_complete_chip_group_waves",
+  "allowed_conclusion": "Only BF16 BM64/BN64/BK32/GSM8 E128 W2 launches with projection tile class (48,64) and maximum M depth beyond two complete SM-by-GSM waves use this conservative full-chip combined operand service.",
+  "excluded_conclusions": ["complete production MoE operator duration", "production K/N duration", "per-shape residual correction", "shallower source programs", "other projection tile classes"],
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true
+}

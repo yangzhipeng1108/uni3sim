@@ -1,0 +1,653 @@
+{
+  "schema_version": 1,
+  "artifact_type": "ascend_910b_grouped_matmul_ep_input_rows_reference",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "source_program_owner": "microbench/ascend_910b/references/fused_moe_ep_vllm_ascend_0_18_0.json",
+  "raw_root": "profiler_output/microbench/ascend_910b/gmm_physical_rows_20261104",
+  "raw_fact_path": "profiler_output/microbench/ascend_910b/gmm_physical_rows_20261104/decoded_launch_facts.json",
+  "raw_fact_sha256": "3b6900d0a46cbfcc8c577ca82b2e1bbc561d765e3688278d331eae09df4c956e",
+  "scope": {
+    "dtype": "bf16",
+    "weight_format": "contiguous ND",
+    "local_weight_count": 64,
+    "input_widths": [
+      2048,
+      768
+    ],
+    "output_widths": [
+      1536,
+      2048
+    ],
+    "group_list_type": 1,
+    "split_item": 2,
+    "group_type": 0
+  },
+  "observation": [
+    {
+      "physical_rows": 40,
+      "local_group_sum": 40,
+      "projection": "w1",
+      "output_rows": 40,
+      "base_tile": [
+        48,
+        256,
+        64
+      ],
+      "k_program": [
+        40,
+        8,
+        20,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "physical_rows": 40,
+      "local_group_sum": 40,
+      "projection": "w2",
+      "output_rows": 40,
+      "base_tile": [
+        48,
+        256,
+        64
+      ],
+      "k_program": [
+        40,
+        8,
+        20,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "physical_rows": 80,
+      "local_group_sum": 40,
+      "projection": "w1",
+      "output_rows": 80,
+      "base_tile": [
+        80,
+        256,
+        64
+      ],
+      "k_program": [
+        24,
+        8,
+        12,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "physical_rows": 80,
+      "local_group_sum": 40,
+      "projection": "w2",
+      "output_rows": 80,
+      "base_tile": [
+        80,
+        256,
+        64
+      ],
+      "k_program": [
+        24,
+        8,
+        12,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "physical_rows": 80,
+      "local_group_sum": 80,
+      "projection": "w1",
+      "output_rows": 80,
+      "base_tile": [
+        80,
+        256,
+        64
+      ],
+      "k_program": [
+        24,
+        8,
+        12,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "physical_rows": 80,
+      "local_group_sum": 80,
+      "projection": "w2",
+      "output_rows": 80,
+      "base_tile": [
+        80,
+        256,
+        64
+      ],
+      "k_program": [
+        24,
+        8,
+        12,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    }
+  ],
+  "derivation": "0.18 init-routing expanded_x allocation is global T*K; native GroupedMatmul tiling reads physical x rows, while group-list retains local mathematical work. Select base-M/K program from global rows, keep local expert counts for arithmetic and traffic.",
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "limitations": [
+    "Three controlled input descriptors, not full native Serving/provider acceptance.",
+    "No new latency/bandwidth/admission parameter.",
+    "Zero-local device calls remain a separate inherited support gap."
+  ],
+  "additional_raw_fact_path": "profiler_output/microbench/ascend_910b/gmm_physical_rows_20261104/decoded_launch_facts_supplement.json",
+  "additional_raw_fact_sha256": "0c761918be82ec92336f17cd3eac94d48106bae6d8f24e67ad4b098420903d6e",
+  "additional_observation": [
+    {
+      "experts": 64,
+      "hidden": 2048,
+      "intermediate": 768,
+      "physical_rows": 48,
+      "local_group_sum": 24,
+      "projection": "w1",
+      "base_tile": [
+        48,
+        256,
+        64
+      ],
+      "k_program": [
+        40,
+        8,
+        20,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 64,
+      "hidden": 2048,
+      "intermediate": 768,
+      "physical_rows": 48,
+      "local_group_sum": 24,
+      "projection": "w2",
+      "base_tile": [
+        48,
+        256,
+        64
+      ],
+      "k_program": [
+        40,
+        8,
+        20,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 64,
+      "hidden": 2048,
+      "intermediate": 768,
+      "physical_rows": 88,
+      "local_group_sum": 44,
+      "projection": "w1",
+      "base_tile": [
+        96,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 64,
+      "hidden": 2048,
+      "intermediate": 768,
+      "physical_rows": 88,
+      "local_group_sum": 44,
+      "projection": "w2",
+      "base_tile": [
+        96,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 64,
+      "hidden": 2048,
+      "intermediate": 768,
+      "physical_rows": 96,
+      "local_group_sum": 48,
+      "projection": "w1",
+      "base_tile": [
+        96,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 64,
+      "hidden": 2048,
+      "intermediate": 768,
+      "physical_rows": 96,
+      "local_group_sum": 48,
+      "projection": "w2",
+      "base_tile": [
+        96,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 64,
+      "hidden": 2048,
+      "intermediate": 768,
+      "physical_rows": 104,
+      "local_group_sum": 52,
+      "projection": "w1",
+      "base_tile": [
+        112,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 64,
+      "hidden": 2048,
+      "intermediate": 768,
+      "physical_rows": 104,
+      "local_group_sum": 52,
+      "projection": "w2",
+      "base_tile": [
+        112,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 64,
+      "hidden": 2048,
+      "intermediate": 768,
+      "physical_rows": 112,
+      "local_group_sum": 56,
+      "projection": "w1",
+      "base_tile": [
+        112,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 64,
+      "hidden": 2048,
+      "intermediate": 768,
+      "physical_rows": 112,
+      "local_group_sum": 56,
+      "projection": "w2",
+      "base_tile": [
+        112,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 512,
+      "hidden": 4096,
+      "intermediate": 1024,
+      "physical_rows": 48,
+      "local_group_sum": 24,
+      "projection": "w1",
+      "base_tile": [
+        48,
+        256,
+        64
+      ],
+      "k_program": [
+        40,
+        8,
+        20,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 512,
+      "hidden": 4096,
+      "intermediate": 1024,
+      "physical_rows": 48,
+      "local_group_sum": 24,
+      "projection": "w2",
+      "base_tile": [
+        48,
+        256,
+        64
+      ],
+      "k_program": [
+        40,
+        8,
+        20,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 512,
+      "hidden": 4096,
+      "intermediate": 1024,
+      "physical_rows": 88,
+      "local_group_sum": 44,
+      "projection": "w1",
+      "base_tile": [
+        96,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 512,
+      "hidden": 4096,
+      "intermediate": 1024,
+      "physical_rows": 88,
+      "local_group_sum": 44,
+      "projection": "w2",
+      "base_tile": [
+        96,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 512,
+      "hidden": 4096,
+      "intermediate": 1024,
+      "physical_rows": 96,
+      "local_group_sum": 48,
+      "projection": "w1",
+      "base_tile": [
+        96,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 512,
+      "hidden": 4096,
+      "intermediate": 1024,
+      "physical_rows": 96,
+      "local_group_sum": 48,
+      "projection": "w2",
+      "base_tile": [
+        96,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 512,
+      "hidden": 4096,
+      "intermediate": 1024,
+      "physical_rows": 104,
+      "local_group_sum": 52,
+      "projection": "w1",
+      "base_tile": [
+        112,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 512,
+      "hidden": 4096,
+      "intermediate": 1024,
+      "physical_rows": 104,
+      "local_group_sum": 52,
+      "projection": "w2",
+      "base_tile": [
+        112,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 512,
+      "hidden": 4096,
+      "intermediate": 1024,
+      "physical_rows": 112,
+      "local_group_sum": 56,
+      "projection": "w1",
+      "base_tile": [
+        112,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "experts": 512,
+      "hidden": 4096,
+      "intermediate": 1024,
+      "physical_rows": 112,
+      "local_group_sum": 56,
+      "projection": "w2",
+      "base_tile": [
+        112,
+        256,
+        64
+      ],
+      "k_program": [
+        16,
+        8,
+        8,
+        4,
+        1,
+        1,
+        2,
+        2,
+        1
+      ]
+    }
+  ],
+  "program_scope": "Additional exact physical M=48/88/96/104/112; each repeated twice for E64/H2048/I768 and E512/H4096/I1024, both projections; no unobserved M48/M96/M112 dynamic-row program inferred."
+}

@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "status": "accepted_for_source_bound_sm80_fa2_global_read",
+  "source_commit": [
+    "aeb34ee300b317a6e3820ec9a9745a2c3ac41928"
+  ],
+  "rate_unit": "initial_32b_transactions_per_sm_domain_cycle",
+  "logical_to_counter_geometry": {
+    "payload_bytes_per_warp_ldgsts": 512,
+    "observed_xbar_bytes_per_warp_ldgsts": 1024,
+    "initial_32b_transactions_per_warp_ldgsts": 32,
+    "h200_status": "carried from the A800 NCU capture a800_cp_async_service_20260825_392a34bc (ncu_size256_grid108/432.csv); not re-verified because Nsight Compute is unavailable on the H200 host.  The H200 binary issues the same LDGSTS.E.BYPASS.128 instruction for the same 16-B cp.async.cg PTX."
+  },
+  "selection_rule": {
+    "single_sm_rate": "grid 1",
+    "per_active_sm_rate": "median of scaling-region grids 2,4,8,16,32",
+    "full_chip_rate": "median of saturated grids 132,264,528",
+    "across_captures": "minimum over two independent clock-accepted probe processes on H200 GPU 2",
+    "conversion": "event-timed payload GB/s x 2 counter bytes per payload byte / 32 B / measured 1.98-GHz SM clock",
+    "uses_production_duration": false
+  },
+  "parameters": {
+    "ldgsts_initial_32b_transactions_full_chip_per_cycle": 71.76136363636364,
+    "ldgsts_initial_32b_transactions_per_active_sm_cycle": 0.9943181818181818,
+    "ldgsts_initial_32b_transactions_single_sm_cycle": 0.9943181818181818
+  },
+  "scope": {
+    "hardware": "nvidia_h200",
+    "source": "SM80 FA2 cp.async/LDGSTS global-to-shared read ingress",
+    "block_threads": 128,
+    "pipeline_groups": 4,
+    "buffer_mib": 256,
+    "excluded": [
+      "generic LSU",
+      "ordinary global load",
+      "global write",
+      "FA2 combine",
+      "grouped MLA"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp3_cpasync_r1_t1",
+      "candidate_sha256": "f434ed42cd6e40b9daf588eb22da04e7d65499d192a087413eea0157ddd93f0c",
+      "results_sha256": "6d528f574af106efde7fbe0091058cdd26c93a6dbd8dde44b95660b66d1886b0",
+      "parameters": {
+        "ldgsts_initial_32b_transactions_full_chip_per_cycle": 71.76136363636364,
+        "ldgsts_initial_32b_transactions_per_active_sm_cycle": 0.9943181818181818,
+        "ldgsts_initial_32b_transactions_single_sm_cycle": 0.9943181818181818
+      },
+      "table": {
+        "1": {
+          "bandwidth_gb_s": 31.5,
+          "per_sm_gb_s": 31.5,
+          "time_ms": 8.516
+        },
+        "132": {
+          "bandwidth_gb_s": 2273.4,
+          "per_sm_gb_s": 17.2,
+          "time_ms": 0.118
+        },
+        "16": {
+          "bandwidth_gb_s": 501.9,
+          "per_sm_gb_s": 31.4,
+          "time_ms": 0.535
+        },
+        "2": {
+          "bandwidth_gb_s": 63.0,
+          "per_sm_gb_s": 31.5,
+          "time_ms": 4.26
+        },
+        "264": {
+          "bandwidth_gb_s": 2266.8,
+          "per_sm_gb_s": 8.6,
+          "time_ms": 0.118
+        },
+        "32": {
+          "bandwidth_gb_s": 996.2,
+          "per_sm_gb_s": 31.1,
+          "time_ms": 0.269
+        },
+        "4": {
+          "bandwidth_gb_s": 125.9,
+          "per_sm_gb_s": 31.5,
+          "time_ms": 2.132
+        },
+        "528": {
+          "bandwidth_gb_s": 2320.5,
+          "per_sm_gb_s": 4.4,
+          "time_ms": 0.112
+        },
+        "64": {
+          "bandwidth_gb_s": 1939.3,
+          "per_sm_gb_s": 30.3,
+          "time_ms": 0.138
+        },
+        "8": {
+          "bandwidth_gb_s": 251.7,
+          "per_sm_gb_s": 31.5,
+          "time_ms": 1.067
+        }
+      }
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp3_cpasync_r2_t1",
+      "candidate_sha256": "ce139475e29009d009fa23bb70d8541fc5684e09dfe9073f59ffc85a733d06e9",
+      "results_sha256": "a14d702462157674ed3a26a42f5b87dce452d2abdadce47b78e154404294a9ae",
+      "parameters": {
+        "ldgsts_initial_32b_transactions_full_chip_per_cycle": 71.8465909090909,
+        "ldgsts_initial_32b_transactions_per_active_sm_cycle": 0.9943181818181818,
+        "ldgsts_initial_32b_transactions_single_sm_cycle": 0.9943181818181818
+      },
+      "table": {
+        "1": {
+          "bandwidth_gb_s": 31.5,
+          "per_sm_gb_s": 31.5,
+          "time_ms": 8.514
+        },
+        "132": {
+          "bandwidth_gb_s": 2276.1,
+          "per_sm_gb_s": 17.2,
+          "time_ms": 0.118
+        },
+        "16": {
+          "bandwidth_gb_s": 501.9,
+          "per_sm_gb_s": 31.4,
+          "time_ms": 0.535
+        },
+        "2": {
+          "bandwidth_gb_s": 63.0,
+          "per_sm_gb_s": 31.5,
+          "time_ms": 4.259
+        },
+        "264": {
+          "bandwidth_gb_s": 2260.8,
+          "per_sm_gb_s": 8.6,
+          "time_ms": 0.119
+        },
+        "32": {
+          "bandwidth_gb_s": 996.3,
+          "per_sm_gb_s": 31.1,
+          "time_ms": 0.269
+        },
+        "4": {
+          "bandwidth_gb_s": 125.9,
+          "per_sm_gb_s": 31.5,
+          "time_ms": 2.131
+        },
+        "528": {
+          "bandwidth_gb_s": 2328.5,
+          "per_sm_gb_s": 4.4,
+          "time_ms": 0.111
+        },
+        "64": {
+          "bandwidth_gb_s": 1938.4,
+          "per_sm_gb_s": 30.3,
+          "time_ms": 0.138
+        },
+        "8": {
+          "bandwidth_gb_s": 251.7,
+          "per_sm_gb_s": 31.5,
+          "time_ms": 1.066
+        }
+      }
+    }
+  ],
+  "hardware_id": "nvidia_h200",
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "source": "microbench/nvidia_h200/memory/dram/cp_async_bw.cu",
+    "source_sha256": "8270bcb4c8228eab54f22bae0c0942368b03265b05a45976949b85b46960b275",
+    "runner": "microbench/nvidia_h200/memory/dram/cp_async_bw_runner.py",
+    "runner_sha256": "444438e417f34a2ef5ff324328cb46e0e1c20890e772bbaa0935a943625bbafd",
+    "sm_clock_hz": 1980000000.0,
+    "clock_gate": {
+      "rule": "every probe process runs under nvidia-smi -lms 50; a process is accepted only if it shows a busy sample and every busy sample is >= 1980 MHz, otherwise it is rejected and re-run",
+      "accepted_captures": 2,
+      "rejected_captures": 0,
+      "accepted_busy_sm_clock_min_mhz": 1980,
+      "accepted_busy_sm_clock_max_mhz": 1980,
+      "accepted_busy_samples": 16,
+      "rejected_busy_sm_clock_min_mhz": []
+    },
+    "remote_raw_root": "/capture-public/h200_microbench/wp3_ldgsts/repo/profiler_output/microbench/nvidia_h200"
+  }
+}

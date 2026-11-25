@@ -1,0 +1,101 @@
+{
+ "allowed_use": "Evidence that attention prefill K/V reuse is insensitive to Q tile width and to CTA concurrency, which falsifies both as explanations of the difference between the paged and contiguous production prefill variants.",
+ "counters": [
+  "dram__bytes_read.sum",
+  "l1tex__m_xbar2l1tex_read_bytes.sum"
+ ],
+ "finding": "Neither Q tile width nor CTA concurrency moves the realised K/V reuse. Across tile widths 32 to 256, an eight-fold change in CTA count and a 7.3-fold change in logical K/V volume, downstream read stays between 192.7 and 198.7 MiB, a 3 percent spread against 0.1 percent repeatability. Raising the CTA count four-fold at a fixed tile and fixed logical volume moves it 196.5 to 201.1 MiB. Downstream read holds at about 3.0 times the 64 MiB unique footprint throughout. The production pair differs by 1.78x on C500 and 1.21x on A800 at this exact geometry, so the Q tile and the CTA concurrency it implies are falsified as the mechanism.",
+ "forbidden_use": "Any duration. Also not an L2 capacity, a DRAM bandwidth, a replacement policy, or a per-shape traffic correction. The tile-to-traffic relation here must not be fitted or interpolated.",
+ "geometry": {
+  "batch": 8,
+  "block_kv": 64,
+  "causal": true,
+  "cta_order": "grid (q_blocks, batch, heads), x before y before z",
+  "element_bytes": 2,
+  "head_dim": 128,
+  "kv_heads": 8,
+  "kv_unique_mib": 64.0,
+  "query_heads": 32,
+  "seq": 2048
+ },
+ "hardware_id": "nvidia_a800",
+ "instrument": "ncu --metrics dram__bytes_read.sum,l1tex__m_xbar2l1tex_read_bytes.sum --csv",
+ "measurements": [
+  {
+   "axis": "q_tile",
+   "ctas": 16384,
+   "kv_logical_mib": 8448.0,
+   "measured_downstream_read_mib": 192.684,
+   "ordinal": 0,
+   "splits": 1,
+   "tile_q": 32
+  },
+  {
+   "axis": "q_tile",
+   "ctas": 8192,
+   "kv_logical_mib": 4224.0,
+   "measured_downstream_read_mib": 193.483,
+   "ordinal": 1,
+   "splits": 1,
+   "tile_q": 64
+  },
+  {
+   "axis": "q_tile",
+   "ctas": 4096,
+   "kv_logical_mib": 2176.0,
+   "measured_downstream_read_mib": 195.956,
+   "ordinal": 2,
+   "splits": 1,
+   "tile_q": 128
+  },
+  {
+   "axis": "q_tile",
+   "ctas": 2048,
+   "kv_logical_mib": 1152.0,
+   "measured_downstream_read_mib": 198.749,
+   "ordinal": 3,
+   "splits": 1,
+   "tile_q": 256
+  },
+  {
+   "axis": "cta_count_at_fixed_tile",
+   "ctas": 4096,
+   "kv_logical_mib": 2176.0,
+   "measured_downstream_read_mib": 196.5,
+   "ordinal": 4,
+   "splits": 1,
+   "tile_q": 128
+  },
+  {
+   "axis": "cta_count_at_fixed_tile",
+   "ctas": 8192,
+   "kv_logical_mib": 2176.0,
+   "measured_downstream_read_mib": 202.12,
+   "ordinal": 5,
+   "splits": 2,
+   "tile_q": 128
+  },
+  {
+   "axis": "cta_count_at_fixed_tile",
+   "ctas": 16384,
+   "kv_logical_mib": 2176.0,
+   "measured_downstream_read_mib": 201.096,
+   "ordinal": 6,
+   "splits": 4,
+   "tile_q": 128
+  },
+  {
+   "axis": "q_tile_repeat",
+   "ctas": 8192,
+   "kv_logical_mib": 4224.0,
+   "measured_downstream_read_mib": 193.734,
+   "ordinal": 7,
+   "splits": 1,
+   "tile_q": 64
+  }
+ ],
+ "mechanism": "attention_q_tile_kv_residency",
+ "production_or_evaluation_duration_consumed": false,
+ "schema": "attention_q_tile_kv_residency_reference_v1",
+ "why_independent_axes": "Two production prefill variants of one identical shape differ only in the Q tile the launch selects -- prefill_q64_full_tile on 8192 CTAs against prefill_q128_full_tile on 4096 -- and measure 450.9 against 803.4 MiB on C500 while the traffic model emits the same compulsory 322 MiB for both. Production couples tile width to CTA count. The first axis moves both together; the second pins the tile at 128 and raises the CTA count by splitting each tile's K/V range, holding the tile width and every operand byte fixed."
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_queue_control_cycle",
+  "request_size_unit": "source_queue_cycles",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"1": 42.857142857142854},
+  "derivation": "The independent three-queue and four-queue control chains take 130 ns and 170 ns respectively. Their seven source queue cycles therefore provide one workload-independent queue-control primitive of (130 ns + 170 ns) / (3 + 4) = 42.857142857142854 ns.",
+  "constituent_services": [
+    {
+      "service": "aiv_three_queue_control_chain",
+      "queue_cycles": 3,
+      "service_time_ns": 130.0,
+      "evidence_ref": "microbench/ascend_910b/references/aiv_three_queue_control_chain_cann_8_5_1.json",
+      "evidence_sha256": "4c2413675f3b2c02633d16a23cd140f0a247b69dfb38b44ee671cc886168e917"
+    },
+    {
+      "service": "aiv_four_queue_control_chain",
+      "queue_cycles": 4,
+      "service_time_ns": 170.0,
+      "evidence_ref": "microbench/ascend_910b/references/aiv_four_queue_control_chain_cann_8_5_1.json",
+      "evidence_sha256": "30456de09a394faca8aa57d64de02fc159b2f46f8c8ea59aebc791d39e8a12fc"
+    }
+  ],
+  "production_source_sha256": {
+    "add_rms_norm.h": "655b84f7fbe5c911cc83daa6a3e77d1b219ac8206965a1e3065af6fa835ac817",
+    "rms_norm.h": "d6f83f716070a583367c95c6f215cf1a4f94631953730aa50268e446b45f28f8",
+    "rms_norm_base.h": "a2ece498a72530c9163330d3631676ed5879af99ad16ea3e8f37a2d8838dae93"
+  },
+  "source_counting_rule": "Charge one cycle for every source AllocTensor/EnQue/DeQue/FreeTensor queue lifetime. RMSNorm has gamma once per worker, x and y once per row, and rstd once per row group. AddRMSNorm has gamma once per worker, x once per row, the shared y queue twice per row for residual and final output, and rstd once per row group.",
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

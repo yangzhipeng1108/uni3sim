@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism_id": "aic_grouped_matmul_step4_long_worker_sequence_completion_v1",
+  "duration_unit": "ns_per_completed_worker_sequence",
+  "base_reference_path": "microbench/ascend_910b/references/grouped_matmul_step4_worker_sequence_completion_cann_8_5_1.json",
+  "base_reference_sha256": "04b3189555f09f4002d1ef79b613a2ead63f460c98b1a0efc972c8101e7341a6",
+  "publication_scope": {
+    "dtype": "bf16",
+    "active_aic_groups": 24,
+    "base_m": 128,
+    "active_m": 16,
+    "tile_n": 256,
+    "tile_k": 64,
+    "depth_a1": 8,
+    "depth_b1": 8,
+    "step_ka": 4,
+    "step_kb": 4,
+    "db_l0a": 2,
+    "db_l0b": 2,
+    "db_l0c": 1,
+    "source_operand_layout": "disjoint_a_b_c_per_iterate_all_call",
+    "roles": {
+      "w1": {
+        "projection_k": 4096,
+        "projection_n": 1024,
+        "base_measured_output_tiles_per_worker": [47, 64, 80],
+        "extension_measured_output_tiles_per_worker": [96, 128, 192],
+        "minimum_output_tiles_per_worker": 47,
+        "maximum_output_tiles_per_worker": 192
+      },
+      "w2": {
+        "projection_k": 1024,
+        "projection_n": 4096,
+        "base_measured_output_tiles_per_worker": [95, 128, 160],
+        "extension_measured_output_tiles_per_worker": [176, 192, 224, 240],
+        "minimum_output_tiles_per_worker": 95,
+        "maximum_output_tiles_per_worker": 240
+      }
+    }
+  },
+  "measurement": {
+    "completion_span_ns": {
+      "w1": {
+        "96": [3643580.0, 3587520.0, 3651640.0],
+        "128": [4782140.0, 4763640.0, 4773960.0],
+        "192": [7167380.0, 7149000.0, 7188100.0]
+      },
+      "w2": {
+        "176": [1667260.0, 1680700.0, 1677800.0],
+        "192": [1835040.0, 1824860.0, 1828600.0],
+        "224": [2138300.0, 2138620.0, 2150940.0],
+        "240": [2300320.0, 2287460.0, 2305780.0]
+      }
+    },
+    "median_completion_span_ns": {
+      "w1": {"96": 3643580.0, "128": 4773960.0, "192": 7167380.0},
+      "w2": {"176": 1677800.0, "192": 1828600.0, "224": 2138620.0, "240": 2300320.0}
+    },
+    "within_count_relative_spans": {
+      "w1": {"96": 0.017598076616953656, "128": 0.0038751895700843745, "192": 0.005455270963727331},
+      "w2": {"176": 0.008010489927285732, "192": 0.005567100514054468, "224": 0.005910353405467077, "240": 0.007964109341309035}
+    },
+    "maximum_allowed_within_count_relative_span": 0.05,
+    "mechanism_gate_passed": true
+  },
+  "provenance": {
+    "measurement_baseline_commit": "68a1210325ec05a00b78da512911d9f4d150f28f",
+    "raw_root": "profiler_output/microbench/ascend_910b/grouped_matmul_step4_long_sequence_68a12103_20260909_r1",
+    "run_plan_sha256": "c848269b2c899ba0aab236c63676d178d1a16f2534e049ac735d19d1efffb079",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_id": 2,
+    "logical_device_id": 0,
+    "owner": "kernel-accuracy-fusedmoe",
+    "initial_source_snapshot_path": "/capture-workspace/execution_snapshots/grouped_matmul_step4_worker_sequence_4be298d2_20260909_r2/source",
+    "initial_binary_sha256": {
+      "w1": "2290c472ba143294a2f7de2c2e4049132da2c9de31592fa7020abab82db40a6b",
+      "w2": "ffe38f73a7a82ce2ad4fcf903abc4eca984e46b6cecae98bffcf83d0d9525710"
+    },
+    "extended_source_snapshot_path": "/capture-workspace/execution_snapshots/grouped_matmul_step4_long_sequence_68a12103_20260909_r1/source",
+    "extended_source_sha256": {
+      "CMakeLists.txt": "98dcbf19b3578e6f99cc420e3dbd3ef33c0cb4536d874d3558340c762c9f8ad2",
+      "README.md": "53fd1dbcbf455d183d47c6f1f3cbfff9c43bec8237aa85392d8ac2f57d8b3d19",
+      "grouped_matmul_tile_completion_kernel.cpp.in": "5889bb72bfe8b8b665dc2040c2f55498d698d0882387b9c68f9072732a0eb965",
+      "grouped_matmul_tile_completion_main.cpp": "2f5ba2e2b1b3141e2ee2d868725cc8ed040600d9dd81d56ec7c8b75ef295a863"
+    },
+    "extended_w2_binary_sha256": "fee8fdcc457241f4ad9b50ea10b57874417ee6153d7d30876a63897b9273e22f",
+    "raw_sha256": {
+      "w1": {
+        "96": ["33d5943fc5b51a14f9e134481ade988302cfcbd8aed2ac30fdbbe6d650519bd6", "4f05f39e65c71a72d78261231400a30ffcb29dd7cb3f1ec545d95c25f280a192", "320b3e6540c472ad86ebc7038cc3d5a3b82e3d27a7c3b6cf4363a76275c7127f"],
+        "128": ["ac0bf8678a55e0dfb203cfb3a2556073a71116c41bfda28c54ddf1ceb2fc7499", "a7cb95b89bac2968d68e6439dbe473f09c710c87eab50dde00116b0e822bb17f", "ecc79206d60083a34b9fd43ab72d235b64ac1cd8adf58593a05ef32f7a12f6bb"],
+        "192": ["7496085a7947c4670381fc8ab3b679952bad32b4a01c13aa030f53290705f15f", "2f0b8a2530deb966eec9e73ec381b10fad6263d2eab8dfaa454c7b61bb3ee34d", "465730335eddc19d1b0972820cb44418e9649e535145381ffbe7e729ea7af199"]
+      },
+      "w2": {
+        "176": ["0598bb4f93c942d7cf0a95797de4521d8ef1cdacd820c28325d04193f79d5ab6", "98f5461b4d62f5d3b15ce43ca6c4559772cfb65b8ff6103e7687b1e98afe9841", "a2ddb92e66c3eedff9d35404445acd7b01702b315e28dd1ec74bf3d9590725a1"],
+        "192": ["c4a3a040ec9b974163fea0f022dcc34f00862e5725622a63e75c9f05a0a5215b", "cfcc69c007906d15c561f9c8b57658d608e3b3475b735c0e7ae41e296575d84f", "6725c2cd396310dbf5e849a82aa5e2df686ee19e01f1bfbb33723faee2324508"],
+        "224": ["c7f6d818eeba5865e31efc40659db152878a07e9952adedce5c13a85843dc55d", "25671842246df4b09c686825034fb7fdf91c1ca528bab4d99049385efed653e6", "e0dd9dac15c43b8816a2c9eaf6a8423ae3fe2fb70bdf6a693c3d94ae6ec0df7b"],
+        "240": ["4cdff314d7f96ff491da76bba5039d9fbccf47aa7c6cace505f0a2bd3daf8419", "444891221d473d895bcf159c0e74f4d209ec078545531c00ae032910806002ea", "23e68baddcbb535cb7b3fb8f70f09ba4771facedfe893e63bccedfb60a70e7a8"]
+      }
+    },
+    "cann_source_path": "vllm_src_3ver/910b_ascend/vllm_ascend/_cann_ops_custom/vendors/vllm-ascend/op_impl/ai_core/tbe/vllm-ascend_impl/ascendc/moe_grouped_matmul/moe_grouped_matmul.h",
+    "cann_source_sha256": "622409b7f5ce03b0c23c018eb6e3a360018867eb764fa261ab83a25d39456c32"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "extend the source-complete worker span only for the v1 24-AIC BF16 base-M128/active-M16/N256/K64 GroupedMatmul program, DRAM-cold B, only padded-M16 classes, and a per-worker output-tile count inside the v2 role-specific measured interval"
+}

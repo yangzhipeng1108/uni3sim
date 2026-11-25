@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "8208fa4a",
+  "service": "add_rmsnorm_key31_residual_reload_completion_chain",
+  "scope": "exact BF16 key-31 maximum-worker residual reload completion chains for T1/T64/T256/T1024",
+  "request_size_unit": "source_split_d_residual_reload_chains",
+  "service_time_unit": "ns_per_maximum_worker_chain",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "2": 330.0,
+    "4": 840.0,
+    "12": 2760.0,
+    "44": 9200.0
+  },
+  "composition": "maximum_with_same_source_stage_mte2_service",
+  "source_chain": {
+    "production_source_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/add_rms_norm/add_rms_norm_split_d.h",
+    "production_source_sha256": "9ff6a5cde40fbaa7948de058a5172ebc80824ab985531af8103eb34ed4b9e64a",
+    "base_source_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/rms_norm/rms_norm_base.h",
+    "base_source_sha256": "a2ece498a72530c9163330d3631676ed5879af99ad16ea3e8f37a2d8838dae93",
+    "tque_interface_path": "/usr/local/Ascend/cann-8.5.1/compiler/ascendc/include/basic_api/interface/kernel_tpipe.h",
+    "tque_interface_sha256": "f4e856e057f1ce3e3268184d17bf27c3cd4f23b8a8a1e167c5902d5e94adec56",
+    "tque_impl_path": "/usr/local/Ascend/cann-8.5.1/compiler/ascendc/include/basic_api/impl/kernel_tquebind_impl.h",
+    "tque_impl_sha256": "6d084e33a64889a54586785eba80768cd21f038212924384c7e67c9d9f194b73",
+    "anchors": {
+      "launch_factors": "add_rms_norm_split_d.h:33-45,73-80",
+      "latter_tile_then_row_order": "add_rms_norm_split_d.h:97-100,204-215",
+      "residual_reload_and_vector_consumer": "add_rms_norm_split_d.h:224-235",
+      "depth_one_input_queue": "add_rms_norm_split_d.h:329-334",
+      "datacopypad": "rms_norm_base.h:220-232",
+      "queue_event_wait": "kernel_tquebind_impl.h:203-250,289-327"
+    },
+    "conclusion": "For BF16 key-31, each worker completes two 8192-element BF16 DataCopyPad requests per owned row in tile-then-row source order. EnQue/DeQue performs the MTE2-to-Vector event/wait on a depth-one queue, Cast consumes the tensor, and FreeTensor precedes the next request. The maximum-worker chain therefore contains 2*blockFactor requests and is published only for the exact observed launch cells."
+  },
+  "launch_reference": "microbench/ascend_910b/references/add_rmsnorm_splitd_launch_cann_8_5_1.json",
+  "launch_reference_sha256": "e2301f4c279ea782255c2e8a4b408eb3a937e6195e838a95bea42414e86d9fa6",
+  "upstream_44_request_reference": "microbench/ascend_910b/references/add_rmsnorm_key31_residual_reload_completion_chain_cann_8_5_1.json",
+  "upstream_44_request_reference_sha256": "48d16cac70d6bc2e449e164a366cebaef773556431b545cbfbc7ea2d0f9cc475",
+  "request_bytes": 16384,
+  "cells": {
+    "2": {
+      "rows": 1,
+      "block_dim": 1,
+      "block_factor": 1,
+      "last_block_factor": 1,
+      "trials_per_run": 120,
+      "run_medians_ns": [340.0, 320.0, 330.0],
+      "within_run_relative_iqr": [0.058823529411764705, 0.0625, 0.06060606060606061],
+      "pair_order_relative_median_spread": [0.029411764705882353, 0.0, 0.058823529411764705],
+      "cross_run_relative_median_spread": 0.058823529411764705,
+      "gate_passed": true
+    },
+    "4": {
+      "rows": 64,
+      "block_dim": 32,
+      "block_factor": 2,
+      "last_block_factor": 2,
+      "trials_per_run": 120,
+      "run_medians_ns": [840.0, 840.0, 840.0],
+      "within_run_relative_iqr": [0.14285714285714285, 0.14285714285714285, 0.19047619047619047],
+      "pair_order_relative_median_spread": [0.10869565217391304, 0.10869565217391304, 0.16666666666666666],
+      "cross_run_relative_median_spread": 0.0,
+      "gate_passed": true
+    },
+    "12": {
+      "rows": 256,
+      "block_dim": 43,
+      "block_factor": 6,
+      "last_block_factor": 4,
+      "trials_per_run": 240,
+      "run_medians_ns": [2760.0, 2680.0, 2800.0],
+      "within_run_relative_iqr": [0.16666666666666666, 0.11940298507462686, 0.17142857142857143],
+      "pair_order_relative_median_spread": [0.1476510067114094, 0.11267605633802817, 0.15100671140939598],
+      "cross_run_relative_median_spread": 0.04285714285714286,
+      "gate_passed": true
+    },
+    "44": {
+      "rows": 1024,
+      "block_dim": 47,
+      "block_factor": 22,
+      "last_block_factor": 12,
+      "trials_per_run": 120,
+      "run_medians_ns": [9280.0, 9200.0, 9180.0],
+      "cross_run_relative_median_spread": 0.010775862068965518,
+      "gate_passed": true,
+      "evidence_inherited_from_upstream_reference": true
+    }
+  },
+  "device": {
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_id": 6,
+    "logical_device_id": 0,
+    "model": "910B2"
+  },
+  "capture_owner": "capture-owner-4c0f2645f650",
+  "source_snapshot_path": "/capture-workspace/source_snapshots/add_rmsnorm_key31_residual_chain_depths_8208fa4a_20260904",
+  "build_command": "source /usr/local/Ascend/ascend-toolkit/set_env.sh; cmake -S <snapshot> -B <snapshot>/build -DASCEND_HOME_PATH=/usr/local/Ascend/cann-8.5.1 -DSOC_VERSION=Ascend910B2; cmake --build <snapshot>/build -j1",
+  "capture_command": "python3 <snapshot>/add_rmsnorm_key31_residual_chain_depths_runner.py --binary <snapshot>/build/add_rmsnorm_key31_residual_chain_depths --source-file <CANN add_rms_norm_split_d.h> --base-source-file <CANN rms_norm_base.h> --tque-interface <CANN kernel_tpipe.h> --tque-impl <CANN kernel_tquebind_impl.h> --device-id 6 --run-id <run-id> --block-dim <1|32|43> --block-factor <1|2|6> --last-block-factor <1|2|4> --trials <120|240>",
+  "benchmark_binary_sha256": "da5060dec195ed49f2406502a36509b91f1b3b4b34aeef4e79879afdb46b6a6c",
+  "capture_source_sha256": {
+    "CMakeLists.txt": "b77dfa67f8e558ea73ab89c8b338a47a5d0f33242511cffb268cc9b3a47cece5",
+    "add_rmsnorm_key31_residual_chain_depths_kernel.cpp": "26ce3c7368b6477d2ebfbf3b09bb679a9283261f25fae0be2803c41dccbe5f81",
+    "add_rmsnorm_key31_residual_chain_depths_main.cpp": "de37409d62044d132a25abaaf4241c11b94d4e39f79a6a8eb00aa316480ba281",
+    "add_rmsnorm_key31_residual_chain_depths_runner.py": "d9be49e6588177fa9e07c6a7b39e5f48cf161af2514af6719a290d439fb8a28b"
+  },
+  "benchmark_source_sha256": {
+    "CMakeLists.txt": "b77dfa67f8e558ea73ab89c8b338a47a5d0f33242511cffb268cc9b3a47cece5",
+    "add_rmsnorm_key31_residual_chain_depths_kernel.cpp": "26ce3c7368b6477d2ebfbf3b09bb679a9283261f25fae0be2803c41dccbe5f81",
+    "add_rmsnorm_key31_residual_chain_depths_main.cpp": "de37409d62044d132a25abaaf4241c11b94d4e39f79a6a8eb00aa316480ba281",
+    "add_rmsnorm_key31_residual_chain_depths_report.py": "2163b0777d4d05f8348475e69125b51ac98814ecbaf1c4352e68955f7876300b",
+    "add_rmsnorm_key31_residual_chain_depths_runner.py": "afc1c2f85a218f247781564ef117540398943d6b2e48c9cfbd2a5c02682fb650"
+  },
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_key31_residual_chain_depths_8208fa4a_20260904_d6/t1_b1_f1_r1.csv", "sha256": "eab727c6a3faa21ae4677a8ad52d2080c31abc1f13d3c61345151e14af04db69"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_key31_residual_chain_depths_8208fa4a_20260904_d6/t1_b1_f1_r2.csv", "sha256": "eb79dc5992de831a8efdd7e7e21146bf1b903275eb93b994fa566d7b4f610918"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_key31_residual_chain_depths_8208fa4a_20260904_d6/t1_b1_f1_r3.csv", "sha256": "f0fe89ba4aee0a46e90ff627776247b27cff39cc9e03f529bd638207008a0a6e"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_key31_residual_chain_depths_8208fa4a_20260904_d6/t64_b32_f2_r1.csv", "sha256": "ae9d2b826b8676b25f4e5761cf0fde05ae6cc942c1fee354fc700490c762a778"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_key31_residual_chain_depths_8208fa4a_20260904_d6/t64_b32_f2_r2.csv", "sha256": "9b7cc5052408413417eb122b1ce8edfb9c39e9de48e69d6f298a09105d0f6091"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_key31_residual_chain_depths_8208fa4a_20260904_d6/t64_b32_f2_r3.csv", "sha256": "cd9c83f60748fa12f5fc1a1c16e0a0b7adfed7d8f97c384e8699dc22a1c46f10"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_key31_residual_chain_depths_t256_recapture240_8208fa4a_20260904_d6/t256_b43_f6_tail4_240_r1.csv", "sha256": "3bdf18590a032769ed963c28c15729dd2f5f194bc492cf3a828e3179f7270cd8"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_key31_residual_chain_depths_t256_recapture240_8208fa4a_20260904_d6/t256_b43_f6_tail4_240_r2.csv", "sha256": "d427c47612d580096aa8c13c70575edb2f0583d236909cf32d46e0067bbd7efb"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_key31_residual_chain_depths_t256_recapture240_8208fa4a_20260904_d6/t256_b43_f6_tail4_240_r3.csv", "sha256": "f040b71b09814e4cf8c404ffd698333e0c6b005f20825fe24332045ae9231503"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_key31_residual_chain_depths_t256_recapture240_8208fa4a_20260904_d6/report.json", "sha256": "71b1f82bc5f90aed03a3e1f3c00c6a33e3d218e5cb74749bcfeeaa5207039f7d"}
+  ],
+  "rejected_precursor": {
+    "path": "profiler_output/microbench/ascend_910b/add_rmsnorm_key31_residual_chain_depths_8208fa4a_20260904_d6",
+    "reason": "The first 120-trial 12-request campaign had one run with relative IQR 0.2116788321167883, above the frozen 0.20 gate; none of its 12-request runs are published."
+  },
+  "cleanup_status": "all benchmark processes exited and device 6 was idle after capture",
+  "relative_gate_limit": 0.2,
+  "measurement_gate_passed": true,
+  "provenance_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true,
+  "production_consumption_status": "candidate_only_unwired"
+}

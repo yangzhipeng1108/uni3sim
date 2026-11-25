@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism_id": "aic_l1_to_l0_fia_load_pair_completion_v1",
+  "scope": "one completed source-shaped BF16 L0A/L0B load pair on one AIC",
+  "composition": "max(stage_byte_capacity_time, load_pair_count * completion_ns)",
+  "bounds": {
+    "a_rows": 16,
+    "stage_kinds": ["mm1", "mm2"],
+    "head_dims": [64, 128],
+    "active_aic_groups": [1, 8, 16, 24]
+  },
+  "source_geometry": {
+    "mm1_b_load_calls": [4, 8],
+    "mm1_b_repeat_times": [8, 8],
+    "mm2_b_load_calls": [8, 8],
+    "mm2_b_repeat_times": [4, 8]
+  },
+  "parameters_ns": {
+    "mm1": [81.0916666665, 161.6633333335],
+    "mm2": [88.3283333335, 161.666666667]
+  },
+  "validation": {
+    "trials_per_cell": 3,
+    "median_ns_by_stage_head_dim_and_active_aic_groups": {
+      "mm1_d64": [81.043333333, 80.853333333, 81.11, 81.1],
+      "mm1_d128": [161.646666667, 161.463333333, 161.666666667, 161.686666667],
+      "mm2_d64": [88.323333333, 88.306666667, 88.333333333, 88.336666667],
+      "mm2_d128": [161.66, 161.666666667, 161.663333333, 161.676666667]
+    },
+    "maximum_full_sample_span_over_median": 0.003452882540342122
+  },
+  "source_semantics": {
+    "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/common/arch32/fia_block_cube_nonquant_gqa.h",
+    "sha256": "acce194dcf01f370d864ba7987f0c5a9d5927f7a69fb47426afa7789a6f856ef"
+  },
+  "provenance": {
+    "measurement_baseline_commit": "98e6efece62ea4e820603dd55352a4f85ab96352",
+    "source_commit": "7641ef0c2e3086895b522003d241066994244bc6",
+    "source_snapshot_sha256": "33df19e919a8b0419a9a5d9bbbd1912f5a59b21360cee9abb667ae245ee2b92c",
+    "binary_sha256": "a91ffaafeb7c43b8b12cdec1e95850631a2a58ddfb6ccbaff2a5263edd66367c",
+    "raw_path": "profiler_output/microbench/ascend_910b/aic_mte1_load_pair_20260828_98e6efec_r1/raw.csv",
+    "raw_sha256": "c0e32eca2613fdc98f171383a0a914a4e4a7f4f6bb1272cf9ba883036f3b3c13"
+  },
+  "production_or_evaluation_duration_consumed": false
+}

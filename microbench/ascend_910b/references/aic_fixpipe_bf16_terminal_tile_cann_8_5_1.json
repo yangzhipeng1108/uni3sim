@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_fixpipe_bf16_terminal_tile_completion",
+  "duration_unit": "ns_per_terminal_tile_per_aic",
+  "publication_scope": {
+    "dtype": "bf16",
+    "rows": 128,
+    "columns": 256,
+    "active_aic_groups": 1,
+    "terminal_tiles_per_program": 1,
+    "completion_ns": 442.96875,
+    "samples_ns": [443.4375, 442.5, 435.0, 448.4375, 446.5625, 437.1875],
+    "estimator": "median of six independently launched one-AIC long-minus-short completion deltas"
+  },
+  "measurement": {
+    "mode": "independent_l0c_to_gm_fixpipe_completion_microbenchmark",
+    "capture_commit": "efcf67d7dd02326e56fd036ad4f8898cb71d4d70",
+    "aic_clock_hz": 3200000000,
+    "raw_paths": [
+      "profiler_output/microbench/ascend_910b/gemm_v3_store_efcf67d7_20260905_r1/raw.csv",
+      "profiler_output/microbench/ascend_910b/gemm_v3_store_efcf67d7_20260905_r2/raw.csv"
+    ],
+    "raw_sha256": [
+      "02704eb2b534bb7234afa0e320fb0fb14ab1691124d9a41d2e9be8a86d1e26f6",
+      "4842bd4b9cbda19373c266dca0cf4612ded177af4a54af85c167096e069ff981"
+    ],
+    "provenance_sha256": [
+      "3c2072294d0c2d23a2e399d772134bd88dfe4691ee9cfd9a051b4369f83659d1",
+      "fd4fc7cf0b9137e79f17641e37fcff3941425633fc27f25180f9ee628b370155"
+    ],
+    "binary_sha256": "1547df4501179b0439a0b3e939192a8ef554984da7483932617ea50cf96f0eb9",
+    "mechanism_gate_passed": true
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "one non-overlapped terminal BF16 128x256 FixPipe completion after a source-matched MatMulV3 ASW ingress program; multi-AIC measurements are excluded"
+}

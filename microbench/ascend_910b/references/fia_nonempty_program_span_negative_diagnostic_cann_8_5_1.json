@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "campaign": "fia_nonempty_controller_program_span_negative_diagnostic",
+  "mechanism_id": "cann_fia_nonempty_controller_span_v1",
+  "scope": "source-bound nonempty three-slot FIA controller and MM1-to-Vec1-to-MM2-to-Vec2 three-handoff program span; excludes production attention data bodies",
+  "duration_unit": "ns_per_complete_aic_group_program_span",
+  "source_commit": "aa2e425b56f3aa09188b7085bea97806d7d8d534",
+  "capture_root": "profiler_output/microbench/ascend_910b/fia_program_span_agent_778775ff",
+  "captures": [
+    {
+      "run_id": "fia_program_span_aa2e425b_d6_r1",
+      "capture_path": "profiler_output/microbench/ascend_910b/fia_program_span_agent_778775ff/fia_program_span_aa2e425b_d6_r1",
+      "raw_path": "profiler_output/microbench/ascend_910b/fia_program_span_agent_778775ff/fia_program_span_aa2e425b_d6_r1/raw.csv",
+      "raw_sha256": "86c22590e812fc4a7bbe255d1e69e914df211900b1c7d19edb46fa0786ba0845",
+      "manifest_path": "profiler_output/microbench/ascend_910b/fia_program_span_agent_778775ff/fia_program_span_aa2e425b_d6_r1/provenance.json",
+      "manifest_sha256": "9f64aa369595306c2cb92e57e8ea5fe0f1bc3f10d42901c66b2b3ea34ea9f592"
+    },
+    {
+      "run_id": "fia_program_span_aa2e425b_d6_r2",
+      "capture_path": "profiler_output/microbench/ascend_910b/fia_program_span_agent_778775ff/fia_program_span_aa2e425b_d6_r2",
+      "raw_path": "profiler_output/microbench/ascend_910b/fia_program_span_agent_778775ff/fia_program_span_aa2e425b_d6_r2/raw.csv",
+      "raw_sha256": "f6d27b3d2a91b412b83d3a7ee276f0aadb3aed577fb3415681e4b9c4a45f3904",
+      "manifest_path": "profiler_output/microbench/ascend_910b/fia_program_span_agent_778775ff/fia_program_span_aa2e425b_d6_r2/provenance.json",
+      "manifest_sha256": "f0cc0254b0babaf1db9aa515f8a895894542b5c1c120e7e742d27a4a6cfea278"
+    },
+    {
+      "run_id": "fia_program_span_aa2e425b_d6_r3",
+      "capture_path": "profiler_output/microbench/ascend_910b/fia_program_span_agent_778775ff/fia_program_span_aa2e425b_d6_r3",
+      "raw_path": "profiler_output/microbench/ascend_910b/fia_program_span_agent_778775ff/fia_program_span_aa2e425b_d6_r3/raw.csv",
+      "raw_sha256": "866033e194c2c506c8f5db723137d743737bbe9e33bbe98c55bc5152ed44e693",
+      "manifest_path": "profiler_output/microbench/ascend_910b/fia_program_span_agent_778775ff/fia_program_span_aa2e425b_d6_r3/provenance.json",
+      "manifest_sha256": "1e2d4933861590995447463146f1462d41c2acbf851a04b95d01bbc0d59a6245"
+    }
+  ],
+  "report": {
+    "path": "profiler_output/microbench/ascend_910b/fia_program_span_agent_778775ff/fia_program_span_aa2e425b_d6_report.json",
+    "sha256": "14fe52ec0a170531f18dd468d98673f7ce71d9aa9bacc7b8993a4d124beca7cf"
+  },
+  "source_snapshot": {
+    "sha256": "6b42701b802ff8ce49fdd7bd406b0e7f4a2e53c24633dd0d590aa93f481a2a41",
+    "files_sha256": {
+      "fia_program_span_contract.h": "234a21b4637864fc0d0ad9f6481a67b3a69a785acc65838bb7c3fa3663420b37",
+      "fia_program_span_report.py": "2d44d3f31674827be5714e412c7000959078e5310d4da377d4cb9777b16c9371",
+      "fia_program_span_rt_kernel.cpp": "899dd6c1e31132c37ec1156113137dca5ac9bf07f1a69bdb8c8e65e4c989a01b",
+      "fia_program_span_rt_main.cpp": "6c98021d1ebab4154197abd2dbdd394a819f4d51f5dd1a83ac1decec3d99e0f5",
+      "fia_program_span_runner.py": "e0954997a62e5d974963076bec942f1fdf06114d20c19d57f6360ca26bc6e7e9"
+    }
+  },
+  "binary": {
+    "path": "profiler_output/microbench/ascend_910b/fia_program_span_agent_778775ff/build_v2/fia_program_span_rt",
+    "sha256": "d1f1155717753dd2f740dbd36c6d67d2f170733fd703e6b43a7fc21407a3b803"
+  },
+  "cann_source_identities": {
+    "fia_kernel_nonquant.h": "7cde05730d68bb02a2c45cd6b25605417ee61d42dfd87f21ccf0948c014b7e21",
+    "fia_block_cube_nonquant_gqa.h": "acce194dcf01f370d864ba7987f0c5a9d5927f7a69fb47426afa7789a6f856ef",
+    "fia_block_vec_nonquant.h": "259f5700812eafe32bcffd075f59d90c82cb71458f62bd47cb3d6f17f171e762"
+  },
+  "device": {
+    "model": "910B2",
+    "physical_device_id": 6,
+    "logical_device_id": 0
+  },
+  "frozen_campaign": {
+    "independent_runs": 3,
+    "trials_per_run": 6,
+    "order": "balanced_forward_reverse",
+    "training_group_counts": [1, 8, 16, 24],
+    "measured_task_counts": [1, 2, 3, 10, 11],
+    "holdout_profiles": {
+      "holdout_b22_n1": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      "holdout_b22_tail3_2": [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2],
+      "holdout_b22_tail11_10": [11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+    },
+    "exact_active_group_domain": [1, 8, 16, 22, 24],
+    "exact_task_count_domain": [1, 11],
+    "untimed_preamble": "one 24-group 11-task scheduler launch before every measured cell",
+    "exact_cell_warmups": 2
+  },
+  "frozen_gates": {
+    "source_binary_and_raw_identity_complete": {
+      "threshold": true,
+      "observed": true,
+      "passed": true
+    },
+    "positive_mechanism_parameters": {
+      "threshold": true,
+      "observed": true,
+      "passed": true
+    },
+    "all_cells_cross_run_at_most_20pct": {
+      "threshold": 0.2,
+      "observed_maximum": 0.05263157894736842,
+      "maximum_cell": "uniform_b1_n3",
+      "passed": true
+    },
+    "all_cells_position_balance_at_most_20pct": {
+      "threshold": 0.2,
+      "observed_maximum": 0.2222222222222222,
+      "passed": false
+    },
+    "held_out_topology_and_intermediate_counts_mape": {
+      "threshold": 0.15,
+      "observed": 0.06659784382823604,
+      "passed": true,
+      "evidence_use": "gate_only"
+    },
+    "held_out_topology_and_intermediate_counts_max_ape": {
+      "threshold": 0.35,
+      "observed": 0.2024187452758882,
+      "passed": true,
+      "evidence_use": "gate_only"
+    }
+  },
+  "failed_position_balance_cells": [
+    {
+      "run_id": "fia_program_span_aa2e425b_d6_r1",
+      "profile_id": "uniform_b1_n1",
+      "relative_error": 0.20689655172413793,
+      "threshold": 0.2
+    },
+    {
+      "run_id": "fia_program_span_aa2e425b_d6_r3",
+      "profile_id": "uniform_b1_n2",
+      "relative_error": 0.2222222222222222,
+      "threshold": 0.2
+    }
+  ],
+  "failure_reason": "Two position-balanced cells exceed the frozen 20% relative-error gate, so the nonempty FIA controller span is not a stable mechanism service and no subset may be selected for publication.",
+  "existing_empty_service_boundary": "The published empty source-bound FIA three-handoff service does not include nonempty actor bodies and must not be extrapolated to this nonempty controller program span.",
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": false,
+  "forward_eligible": false,
+  "consumer_service_published": false,
+  "parameter_or_lut_published": false,
+  "use_restrictions": [
+    "diagnostic gate evidence only",
+    "must not enter Forward, HWSpec, launch selection, or a production predictor",
+    "must not be consumed as production or evaluation duration",
+    "validation metrics must not be converted into a service, parameter, lookup table, residual, or correction",
+    "must not select stable cells or relax the frozen gate"
+  ]
+}

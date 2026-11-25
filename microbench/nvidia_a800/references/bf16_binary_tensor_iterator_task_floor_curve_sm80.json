@@ -1,0 +1,70 @@
+{
+ "derivation_rule": "minimum_all_binary_graph_replay_differentials_per_element",
+ "derivation_samples_per_element": 10,
+ "derivation_trials": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "device_name": "NVIDIA A800-SXM4-80GB",
+ "duration_unit": "ns_per_task",
+ "floor_ns_by_elements": {
+  "1048576": 3986.1252,
+  "131072": 2514.9438,
+  "16384": 2267.1361,
+  "16777216": 60263.4239,
+  "2048": 2125.9264,
+  "2097152": 5586.9436,
+  "262144": 2733.5682,
+  "32768": 2326.5278,
+  "33554432": 115137.0239,
+  "4096": 2241.5359,
+  "4194304": 8870.8099,
+  "524288": 3247.1037,
+  "65536": 2379.2639,
+  "8192": 2242.5601,
+  "8388608": 32835.5827
+ },
+ "hardware_id": "nvidia_a800",
+ "l2_capacity_transition": {
+  "elements": 8388608,
+  "note": "three bf16 streams put the working set at 25 MB at 4194304 elements and 50 MB at 8388608, crossing A800's 40 MB L2; the step between those two samples is that capacity crossing, a hardware fact rather than a chosen breakpoint"
+ },
+ "lookup_rule": "step_down_largest_sampled_element_not_exceeding_request",
+ "lookup_rule_note": "step_down_largest_sampled_element_not_exceeding_request; the measured curve is monotone non-decreasing in elements, so the value at the largest sampled size at or below the request is a lower bound on the request's own task time, and no interpolation shape is chosen",
+ "maximum_cross_sample_spread_fraction": 0.05426584404017219,
+ "maximum_validation_shortfall_fraction": 0.0032,
+ "model": "warm_bf16_binary_tensor_iterator_task_floor_curve_v1",
+ "monotone_non_decreasing": true,
+ "probe_launch_geometry": {
+  "block_threads": 128,
+  "grid_rule": "ceil(elements / 1024)",
+  "kernel_template": "at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<c10::BFloat16, ...>, ...>",
+  "note": "read from the CUPTI trace as discrete launch facts; no duration was consumed. Production A800 elementwise launches the same template at the same geometry, so the floor transfers without crossing geometries"
+ },
+ "production_or_evaluation_duration_consumed": false,
+ "profiler_attached": false,
+ "raw_sha256": {
+  "curve2_trial_1.json": "0ced25bebec07bcd4f0e1a0aead8ef6e8509a84cd3c582aa2ae0e4196d1be33b",
+  "curve2_trial_2.json": "d6e4a8c700e4978aa1887bf90b3d183ca7e21f524064ce03de22623dddb1a3c0",
+  "curve2_trial_3.json": "0ef322629864b4d4814519d4b79c4dd934a7910708bcd0b0d98fc74e10f354a1",
+  "curve2_trial_4.json": "c7944a7f18c158a7a7a2cce0a27634e31baf86695342d33d69fc2b95caf96810",
+  "curve2_trial_5.json": "135d8f7a72f828622e77051657be293de4c2600d99957004693dfcda7a6561de",
+  "curve2_trial_6.json": "2420feaaf20509d52d4e3a064ca3823311a2dcdf9ea24f3f03f7fd18b5ec2e47"
+ },
+ "runner": "microbench/nvidia_a800/runtime/task_floor/bf16_binary_task_floor_runner.py",
+ "runner_sha256": "6c2f79b401fef24517ebb096b668c8087aeb9b25f46f340fbd8778a403c459b3",
+ "schema_version": 1,
+ "software_revision": "torch_2.8.0+cu128_cuda_sm80",
+ "source_capture": "profiler_output/microbench/nvidia_a800/bf16_binary_task_floor",
+ "target_operator_used": false,
+ "task_class": "pytorch_bf16_binary_tensor_iterator",
+ "timer_domain": "paired_differential_events_around_cuda_graph_replay",
+ "torch_version": "2.8.0+cu128",
+ "validation_below_floor_count": 3,
+ "validation_sample_count": 30,
+ "validation_trial": 6,
+ "warm_probe_caveat": "the probe replays the same tensors, so mid-size samples are L2-warm while production elementwise reads are colder. A warm measurement is faster than a cold one, so this curve is a conservative lower bound on production task time, which is the direction a floor requires; it must not be read as a prediction of production duration"
+}

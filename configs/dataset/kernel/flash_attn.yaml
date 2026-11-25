@@ -1,0 +1,264 @@
+# ==============================================================================
+# FlashAttention kernel configuration
+# ==============================================================================
+kernel_name: flash_attn
+
+# Workload parameter combinations
+# Test cases = workload_configs × layers (Cartesian product)
+workload_configs:
+  # Controlled-split GPU microbenchmarks. `split_policy: forced` means A800
+  # and C500 pass `num_splits` to FlashAttention exactly as written. Ascend
+  # 910B has no equivalent public launch input. All three hardware datasets
+  # share SP-free case IDs; Attr separates SP_REQUESTED from the observed SP.
+  # --- [Decode] ---
+  - {batch: 1,  seq_len_cache: 512,   num_splits: 1, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 2,  seq_len_cache: 512,   num_splits: 1, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 4,  seq_len_cache: 512,   num_splits: 1, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 8,  seq_len_cache: 512,   num_splits: 1, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 512,   num_splits: 1, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 512,   num_splits: 1, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+
+  # --- [Long-KV decode] ---
+  - {batch: 1,  seq_len_cache: 1024,  num_splits: 2, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 2,  seq_len_cache: 1024,  num_splits: 2, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 4,  seq_len_cache: 1024,  num_splits: 2, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 8,  seq_len_cache: 1024,  num_splits: 2, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 1024,  num_splits: 2, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+
+  - {batch: 1,  seq_len_cache: 2048,  num_splits: 2, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 2,  seq_len_cache: 2048,  num_splits: 2, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 4,  seq_len_cache: 2048,  num_splits: 2, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 8,  seq_len_cache: 2048,  num_splits: 2, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+
+  - {batch: 1,  seq_len_cache: 4096,  num_splits: 4, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 2,  seq_len_cache: 4096,  num_splits: 4, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+
+  - {batch: 1,  seq_len_cache: 8192,  num_splits: 4, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 1,  seq_len_cache: 16384, num_splits: 8, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+  - {batch: 1,  seq_len_cache: 32768, num_splits: 8, split_policy: forced, causal: false, kv_layout: contiguous, kv_dist: skew, seq_len_q: 1}
+
+  # `split_policy: serving` below means the backend's serving launch path is
+  # used. `num_splits` is the public API request where that API exists; it is
+  # not copied into Attr.SP. Attr.SP is populated only from the executed launch
+  # (A800/C500), while Ascend records SP_REQUESTED=None and SP=None.
+  # ── High-batch short-KV (serving decode regime, tasks=HKV·B > 512) ──
+  # Serving decode batches up to B~128 with SHORT KV (256-1500); the AIV-domain
+  # non-gather cost is non-linear beyond tasks=512 (single-kernel data maxed at B=32/512
+  # tasks) → serving B>64 FA under-predicted. These points bring tasks up to
+  # HKV·B=8·128=1024 into the zero-fit calibration (the high-batch short-KV
+  # serving decode regime).
+
+  - {batch: 1, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 1, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 1, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 2, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 2, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 2, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 4, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 4, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 4, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 8, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 8, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 8, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 64, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 64, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 64, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 128, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 128, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 128, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: GQA_32_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 1, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 1, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 1, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 1, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 1, seq_len_cache: 8192, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 2, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 2, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 2, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 2, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 4, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 4, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 4, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 4, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 8, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 8, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 8, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 8, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 8, seq_len_cache: 8192, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 8192, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 8192, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 64, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 64, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 64, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 64, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 64, seq_len_cache: 8192, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 96, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 96, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 96, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 128, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 128, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 128, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 128, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: skew, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 4, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: uniform, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 4, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: uniform, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 4, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: uniform, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: uniform, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: uniform, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: uniform, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: uniform, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: uniform, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: uniform, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 128, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: uniform, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 128, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: uniform, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 128, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, kv_dist: uniform, layer: GQA_32_8_D128, seq_len_q: 1}
+  - {batch: 1, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: DeepSeek_64_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 8, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: DeepSeek_64_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, layer: DeepSeek_64_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 64, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: DeepSeek_64_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 128, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged, layer: DeepSeek_64_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 1, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, layer: DeepSeek_64_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 64, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, layer: DeepSeek_64_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 128, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: paged_varlen, layer: DeepSeek_64_8_D128, kv_dist: skew, seq_len_q: 1}
+  - {batch: 1, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 1, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 1, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 1, seq_len_cache: 8192, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 8, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 8, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 8, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 8, seq_len_cache: 8192, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 16, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 32, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 64, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 128, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+  - {batch: 128, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: False, kv_layout: mla, layer: DeepSeek_MLA_64_1_D512, kv_dist: skew, seq_len_q: 1}
+
+
+  # ── Prefill FA (Q=S full prompt, causal=true sparse_mode=3) ──
+  # Serving prefill + chunked-prefill. Covers contiguous/
+  # paged/paged_varlen/mla prefill to contrast with decode (all Q=1 above).
+  - {batch: 1, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 512, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 1, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 1, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 1, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 4096, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 2, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 512, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 2, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 2, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 2, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 4096, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 4, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 512, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 4, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 4, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 4, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 4096, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 8, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 512, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 8, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 8, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 8, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 4096, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 16, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 512, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 16, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 16, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 16, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 4096, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 1, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 1024, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 1, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 2048, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 1, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 4096, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 2, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 1024, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 2, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 2048, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 2, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 4096, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 4, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 1024, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 4, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 2048, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 4, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 4096, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 1, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 512, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 1, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 1, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 4, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 512, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 4, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 4, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 8, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 512, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 8, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 8, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 16, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 512, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 16, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 16, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 32, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 512, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 32, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 32, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 64, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 512, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 64, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 64, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 128, seq_len_cache: 512, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 512, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 128, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 128, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 1, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 1024, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 1, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 2048, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 8, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 1024, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 8, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 2048, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 32, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 1024, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 32, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 2048, layer: DeepSeek_64_8_D128, kv_dist: skew}
+  - {batch: 8, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged_varlen, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 8, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged_varlen, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 16, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged_varlen, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 16, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged_varlen, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 32, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged_varlen, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 32, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged_varlen, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 64, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged_varlen, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 64, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged_varlen, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+
+
+  - {batch: 32, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 1024, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 32, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: contiguous, seq_len_q: 2048, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 128, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged, seq_len_q: 4096, layer: GQA_32_8_D128, kv_dist: skew}
+  - {batch: 128, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: true, kv_layout: paged_varlen, kv_dist: skew, seq_len_q: 2048, layer: GQA_32_8_D128}
+
+  # ── serving-regime shapes (paged/varlen/mla), scoped via per-workload `layer:` override ──
+  # Layer profiles (GQA_32_8_D128 etc.) defined in the `layers:` block below.
+
+# Model attention heads (layer profile)
+  - {batch: 1, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 2048, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 1, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 2048, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 1, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 4096, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 2, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 2048, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 2, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 2048, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 2, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 2048, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 2, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 4096, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 2, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 4096, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 2, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 8192, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 4, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 2048, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 4, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 2048, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 4, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 2048, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 4, seq_len_cache: 1024, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 4096, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 4, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 4096, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 4, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 4096, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 4, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 8192, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 4, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 8192, kv_dist: skew, layer: GQA_32_8_D128}
+  - {batch: 2, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 4096, kv_dist: uniform, layer: GQA_32_8_D128}
+  - {batch: 4, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 8192, kv_dist: uniform, layer: GQA_32_8_D128}
+  - {batch: 8, seq_len_cache: 4096, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 8192, kv_dist: uniform, layer: GQA_32_8_D128}
+  - {batch: 2, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 4096, kv_dist: skew, layer: DeepSeek_64_8_D128}
+  - {batch: 4, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 4096, kv_dist: skew, layer: DeepSeek_64_8_D128}
+  - {batch: 4, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 8192, kv_dist: skew, layer: DeepSeek_64_8_D128}
+  - {batch: 8, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 8192, kv_dist: skew, layer: DeepSeek_64_8_D128}
+  - {batch: 4, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 8192, kv_dist: skew, layer: GQA_32_8_D64}
+  - {batch: 4, seq_len_cache: 2048, num_splits: 1, split_policy: serving, causal: True, kv_layout: chunked_prefill, seq_len_q: 4096, kv_dist: skew, layer: GQA_32_8_D64}
+
+layers:
+  - {name: "GQA_32_8_D128",      num_heads_q: 32, num_heads_kv: 8,  head_dim: 128, dtype: "bf16", override_only: false}
+  - {name: "Qwen3_40_8_D128",    num_heads_q: 40, num_heads_kv: 8,  head_dim: 128, dtype: "bf16", override_only: false}
+  - {name: "DeepSeek_64_8_D128", num_heads_q: 64, num_heads_kv: 8,  head_dim: 128, dtype: "bf16", override_only: false}
+  - {name: "MHA_32_32_D128",     num_heads_q: 32, num_heads_kv: 32, head_dim: 128, dtype: "bf16", override_only: false}
+  - {name: "GQA_32_8_D64",       num_heads_q: 32, num_heads_kv: 8,  head_dim: 64,  dtype: "bf16", override_only: false}
+  - {name: "DeepSeek_MLA_64_1_D512", num_heads_q: 64, num_heads_kv: 1, head_dim: 512, dtype: "bf16", override_only: true}  # MLA, qk_rope=64; only via `layer:` override (kv_layout=mla)

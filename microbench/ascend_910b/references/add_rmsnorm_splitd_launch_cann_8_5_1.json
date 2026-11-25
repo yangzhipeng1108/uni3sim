@@ -1,0 +1,218 @@
+{
+  "artifact_type": "ascend_910b_add_rmsnorm_splitd_launch_facts",
+  "baseline_commit": "01bcd6df6a0d422ad6c4204cba1ff4366a800430",
+  "capture_command": "ASCEND_RT_VISIBLE_DEVICES=7 LD_PRELOAD=<built add_rmsnorm launch interposer> python add_rmsnorm_launch_application.py --output-root /capture-workspace/midlayer_capture/profiler_output/microbench/ascend_910b/add_rmsnorm_splitd_01bcd6df/raw --device-id 0",
+  "capture_owner": "capture-owner-8fc2d1b59f13",
+  "cases": {
+    "T1024_H16384": {
+      "capture_process_id": 2049850,
+      "dtype": "bf16",
+      "hidden": 16384,
+      "host_args_bytes": 192,
+      "kernel_symbol": "AddRmsNorm_3_high_performance_31",
+      "launch_api": "aclrtLaunchKernelWithHostArgs",
+      "launch_geometry": {
+        "block_dim": 47,
+        "core_type": "AIV"
+      },
+      "placeholder": {
+        "address_offset": 56,
+        "data_offset": 80
+      },
+      "repetitions": 3,
+      "rows": 1024,
+      "tiling": {
+        "block_factor": 22,
+        "dst_rep_stride_fp16": 0,
+        "dst_rep_stride_fp32": 0,
+        "is_performance": 0,
+        "last_block_factor": 12,
+        "last_block_row_loop": 1,
+        "last_block_row_tail": 12,
+        "mul_loop_fp16": 0,
+        "mul_loop_fp32": 0,
+        "mul_tail_fp16": 0,
+        "mul_tail_fp32": 0,
+        "num_col": 16384,
+        "num_col_align": 16384,
+        "num_row": 1024,
+        "row_factor": 64,
+        "row_loop": 1,
+        "row_tail": 22,
+        "ub_factor": 8192
+      },
+      "tiling_key": 31,
+      "tiling_payload_bytes": 80,
+      "tiling_payload_sha256": "c1e9f8ca522e00975be377eed68b3201bbefa88e48950e2e29ad643b7e259b94"
+    },
+    "T1_H16384": {
+      "capture_process_id": 2049850,
+      "dtype": "bf16",
+      "hidden": 16384,
+      "host_args_bytes": 192,
+      "kernel_symbol": "AddRmsNorm_3_high_performance_31",
+      "launch_api": "aclrtLaunchKernelWithHostArgs",
+      "launch_geometry": {
+        "block_dim": 1,
+        "core_type": "AIV"
+      },
+      "placeholder": {
+        "address_offset": 56,
+        "data_offset": 80
+      },
+      "repetitions": 3,
+      "rows": 1,
+      "tiling": {
+        "block_factor": 1,
+        "dst_rep_stride_fp16": 0,
+        "dst_rep_stride_fp32": 0,
+        "is_performance": 0,
+        "last_block_factor": 1,
+        "last_block_row_loop": 1,
+        "last_block_row_tail": 1,
+        "mul_loop_fp16": 0,
+        "mul_loop_fp32": 0,
+        "mul_tail_fp16": 0,
+        "mul_tail_fp32": 0,
+        "num_col": 16384,
+        "num_col_align": 16384,
+        "num_row": 1,
+        "row_factor": 64,
+        "row_loop": 1,
+        "row_tail": 1,
+        "ub_factor": 8192
+      },
+      "tiling_key": 31,
+      "tiling_payload_bytes": 80,
+      "tiling_payload_sha256": "a45b05ba48dc2ac5b9a1ceb54c4bf79ebb9fb3feb23f4847e30812a575d6091e"
+    },
+    "T256_H16384": {
+      "capture_process_id": 2049850,
+      "dtype": "bf16",
+      "hidden": 16384,
+      "host_args_bytes": 192,
+      "kernel_symbol": "AddRmsNorm_3_high_performance_31",
+      "launch_api": "aclrtLaunchKernelWithHostArgs",
+      "launch_geometry": {
+        "block_dim": 43,
+        "core_type": "AIV"
+      },
+      "placeholder": {
+        "address_offset": 56,
+        "data_offset": 80
+      },
+      "repetitions": 3,
+      "rows": 256,
+      "tiling": {
+        "block_factor": 6,
+        "dst_rep_stride_fp16": 0,
+        "dst_rep_stride_fp32": 0,
+        "is_performance": 0,
+        "last_block_factor": 4,
+        "last_block_row_loop": 1,
+        "last_block_row_tail": 4,
+        "mul_loop_fp16": 0,
+        "mul_loop_fp32": 0,
+        "mul_tail_fp16": 0,
+        "mul_tail_fp32": 0,
+        "num_col": 16384,
+        "num_col_align": 16384,
+        "num_row": 256,
+        "row_factor": 64,
+        "row_loop": 1,
+        "row_tail": 6,
+        "ub_factor": 8192
+      },
+      "tiling_key": 31,
+      "tiling_payload_bytes": 80,
+      "tiling_payload_sha256": "b2c32671b3c653d35b9050612c32ee000709d36e03e5d95a958a909ba7ce8cb6"
+    },
+    "T64_H16384": {
+      "capture_process_id": 2049850,
+      "dtype": "bf16",
+      "hidden": 16384,
+      "host_args_bytes": 192,
+      "kernel_symbol": "AddRmsNorm_3_high_performance_31",
+      "launch_api": "aclrtLaunchKernelWithHostArgs",
+      "launch_geometry": {
+        "block_dim": 32,
+        "core_type": "AIV"
+      },
+      "placeholder": {
+        "address_offset": 56,
+        "data_offset": 80
+      },
+      "repetitions": 3,
+      "rows": 64,
+      "tiling": {
+        "block_factor": 2,
+        "dst_rep_stride_fp16": 0,
+        "dst_rep_stride_fp32": 0,
+        "is_performance": 0,
+        "last_block_factor": 2,
+        "last_block_row_loop": 1,
+        "last_block_row_tail": 2,
+        "mul_loop_fp16": 0,
+        "mul_loop_fp32": 0,
+        "mul_tail_fp16": 0,
+        "mul_tail_fp32": 0,
+        "num_col": 16384,
+        "num_col_align": 16384,
+        "num_row": 64,
+        "row_factor": 64,
+        "row_loop": 1,
+        "row_tail": 2,
+        "ub_factor": 8192
+      },
+      "tiling_key": 31,
+      "tiling_payload_bytes": 80,
+      "tiling_payload_sha256": "9ed405771bfb9d0899c029905d92a2bffaf51728ae75f95002dc2cbd3d884aee"
+    }
+  },
+  "device_binding": {
+    "container_device_id": 0,
+    "environment": "ASCEND_RT_VISIBLE_DEVICES=7",
+    "host_device_id": 7
+  },
+  "hardware_id": "ascend_910b",
+  "limitations": [
+    "launch-only interposition suppresses target kernel submission",
+    "facts cover only BF16 H=16384 at T=1,64,256,1024",
+    "no duration, counter, utilization, or evaluation error is captured or consumed"
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "raw_output_path": "profiler_output/microbench/ascend_910b/add_rmsnorm_splitd_01bcd6df/raw",
+  "reflection": {
+    "class_name": "AddRMSNormTilingData",
+    "data_size_bytes": 80,
+    "registration_key": "AddRmsNorm",
+    "sha256": "14ea7f0a4d6144544f8d00009f25796995dc53d7260f0b861cc3ea8a6bef3666"
+  },
+  "schema_version": 1,
+  "software_revision": "CANN 8.5.1",
+  "source_and_binary_identity": {
+    "cann_root": "/usr/local/Ascend/cann-8.5.1",
+    "files_sha256": {
+      "opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/add_rms_norm/add_rms_norm.cpp": "cfe1427a7cc10d4731fb122d5763009eda140bc25eaf3db8885fb7044fad3ddf",
+      "opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/add_rms_norm/add_rms_norm_split_d.h": "9ff6a5cde40fbaa7948de058a5172ebc80824ab985531af8103eb34ed4b9e64a",
+      "opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/rms_norm/rms_norm_base.h": "a2ece498a72530c9163330d3631676ed5879af99ad16ea3e8f37a2d8838dae93",
+      "opp/built-in/op_impl/ai_core/tbe/kernel/ascend910b/ops_nn/add_rms_norm/AddRmsNorm_3_high_performance.json": "2c4d776bf7801ec87b82576a80e381c34e83247aaef59cafb9a2525ceba7bb7a",
+      "opp/built-in/op_impl/ai_core/tbe/kernel/ascend910b/ops_nn/add_rms_norm/AddRmsNorm_3_high_performance.o": "6ca32021b78b1ffab3234923795084d6cc56bdc2f8fcdd7616cb684f06440b02",
+      "opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_nn.so": "cb2f73db214b817780aa8f1cb075a91026ef8efe495996965e72bc3967e1451b",
+      "opp/version.info": "49437edb9a235b28a87d07d2a2ad189022b6d246dc7c4cbcd013d2b7ecaf838b"
+    }
+  },
+  "target_kernel_submitted": false,
+  "workload_contract": {
+    "dtype": "bf16",
+    "epsilon": "1e-6",
+    "hidden": 16384,
+    "repetitions_per_case": 3,
+    "rows": [
+      1,
+      64,
+      256,
+      1024
+    ]
+  }
+}

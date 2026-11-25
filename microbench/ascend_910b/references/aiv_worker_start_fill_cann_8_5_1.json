@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "aiv_worker_start_fill",
+  "model": "isolated_aiv_worker_start_fill_v1",
+  "mechanism": "relative entry-time fill across the active AIV worker set",
+  "composition": "add one launch-wide (active_aiv_workers - 1) * entry_interval_cycles * system_counter_tick_ns span to a balanced source worker body, then take max with the independently measured complete-task floor",
+  "duration_unit": "ns_per_consecutive_aiv_entry",
+  "timer_domain": "device_system_counter",
+  "minimum_aiv_block_dim": 1,
+  "maximum_aiv_block_dim": 48,
+  "system_counter_tick_ns": 20.0,
+  "entry_interval_cycles": 2.0,
+  "derivation": "median adjacent gap after sorting all per-trial AIV entry timestamps",
+  "block_dims": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48],
+  "trials_per_block_dim": 50,
+  "adjacent_gap_sample_count": 56400,
+  "adjacent_gap_cycles": {
+    "median": 2.0,
+    "mean": 2.123741134751773,
+    "p95": 3.0,
+    "p99": 4.0
+  },
+  "median_span_model_metrics": {
+    "mape": 0.09896181358565254,
+    "maximum_ape": 0.4261603375527426
+  },
+  "worker_identity_semantics": "block-index entry order is not stable; production consumes only the launch-wide fill interval and never assigns the interval to block_index order",
+  "source_commit": "628372f3f843b725fc5b8aedb99e6f142f24082a",
+  "kernel_source_sha256": "ef3e65585c696f2f4d3ca0a0dc041a3b1383b5612fc012e1b43bee3252166ca6",
+  "host_source_sha256": "8470e720cdede80545a081ff55d41006790992960e7f0428dcf7879ba3ae4c7b",
+  "binary_sha256": "0cb1eeecab911741cc900c082de747a538230004a84df744aa4326b7b5c1168d",
+  "device_id": 2,
+  "container": "capture-container-2",
+  "image": "quay.io/ascend/vllm-ascend:v0.18.0",
+  "raw_path": "profiler_output/microbench/ascend_910b/aiv_worker_start_628372f3_20260829_full_r2",
+  "raw_manifest_sha256": "092dc45b0a8c20d451850c0cede8659afea61c9d740a1067bc56bb3fd620e3d2",
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "aic_scalar_global_get_value_serialized",
+  "request_size_unit": "int32_values",
+  "duration_unit": "ns_per_serialized_request_per_aic",
+  "service_time_unit": "ns_per_request_per_aic",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "1": 93.31694666544601
+  },
+  "mechanism": "one dependency-chained GlobalTensor<int32_t>::GetValue on an AIC",
+  "scope": "hierarchy-insensitive serialized scalar global read on AIC",
+  "composition": "one address dependency before each paged QK or PV GM-to-L1 descriptor",
+  "source_commit": "b836e97c4fd5042298c42835956660bc0c7719e4",
+  "source_sha256": "1eb09e88a77860995dddde579500b0eacb703702da7c830be61f742f7ae1e017",
+  "cmake_sha256": "b411c6133652257173d035bd63fea8981c8e1a800cdcfa2f6d526fff8958395f",
+  "binary_sha256": "42a4f164fc5792d4217e0cbf84bd2b3ff7adb0223300f2fde23c17af96ff575c",
+  "raw_path": "profiler_output/microbench/ascend_910b/aic_scalar_get_value_b836e97c_20260906/raw.csv",
+  "raw_sha256": "260434a77733ade0215ccfd6b034f11b44ab4b8e817e183a81b5009bb0228b1b",
+  "samples_per_working_set": 24,
+  "working_sets": {
+    "l2": {
+      "buffer_bytes": 1048576,
+      "stride_bytes": 64,
+      "median_ns": 92.4284629821775
+    },
+    "dram": {
+      "buffer_bytes": 536870912,
+      "stride_bytes": 4096,
+      "median_ns": 94.62699762980151
+    }
+  },
+  "pooled_median_ns": 93.31694666544601,
+  "pooled_odd_to_even": {
+    "candidate_ns": 93.5760911305745,
+    "mape_percent": 2.3131478098612592,
+    "max_ape_percent": 3.8932061274541843
+  },
+  "pooled_even_to_odd": {
+    "candidate_ns": 93.152172088623,
+    "mape_percent": 2.201509667258413,
+    "max_ape_percent": 5.810111982622795
+  },
+  "production_source_semantics": {
+    "qk_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/fused_infer_attention_score/attn_infra/gemm/block/block_mmad_qk.hpp",
+    "qk_sha256": "9427c1725e274f76e397b1e2c4fa10f4d3c2d7a53e9326981985f62c8182cfbf",
+    "pv_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/fused_infer_attention_score/attn_infra/gemm/block/block_mmad_pv.hpp",
+    "pv_sha256": "a1bb17123073cba382625ebba5b7b03c92b88fd9b3849e2aa99a7e4e7cb0764b",
+    "paged_condition": "PAGED_CACHE_FLAG_",
+    "qk_count": "one GetValue per 128-token GM-to-L1 K page",
+    "pv_count": "one GetValue per 128-token GM-to-L1 V page"
+  },
+  "interpretation": "The AIC-only result independently reproduces the hierarchy-insensitive serialized GetValue service seen on AIV without reusing the AIV-scoped parameter. CANN SplitFuse source uses the returned block-table value as the address of each paged QK/PV descriptor, so the service composes as a descriptor address dependency rather than an empirical operator residual.",
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

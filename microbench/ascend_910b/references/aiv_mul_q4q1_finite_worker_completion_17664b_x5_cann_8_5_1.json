@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_mul_q4q1_finite_worker_completion_48_workers_17664b_x5",
+  "request_size_unit": "source_worker_programs",
+  "service_time_unit": "ns_per_maximum_worker_program",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"1": 12520.0},
+  "source_contract": {
+    "active_aiv_workers": 48,
+    "input_streams": 2,
+    "output_streams": 1,
+    "input_queue_depth": 4,
+    "output_queue_depth": 1,
+    "block_factor_elements": 43776,
+    "ub_factor_elements": 8832,
+    "full_tiles_per_worker": 4,
+    "full_worker_tail_elements": 8448,
+    "last_worker_tail_elements": 4352,
+    "full_worker_count": 47,
+    "last_worker_count": 1,
+    "production_mul_arithmetic_executed": false,
+    "replacement_operation": "Duplicate",
+    "completion_boundary": "PIPE_ALL barrier before the worker end counter"
+  },
+  "derivation": {
+    "statistic": "median of three independent maximum per-worker completion spans",
+    "run_values_ns": [12520.0, 12060.0, 12660.0],
+    "median_ns": 12520.0,
+    "cross_run_spread_percent": 4.792332268370607,
+    "maximum_allowed_cross_run_spread_percent": 20.0,
+    "position_balancing": "target and four published controls permuted across runs",
+    "published_control_maximum_median_relative_error_percent": 9.545454545454547
+  },
+  "composition": "max of the existing analytical bounds and this exact finite 2R1W queue-program completion; aggregate production Vector arithmetic remains independently conserved",
+  "source_path": "microbench/ascend_910b/memory/dram/aiv_mul_q4q1_five_tile_program",
+  "source_files_sha256": {
+    "CMakeLists.txt": "48d07fb66bce21f6519bc947d1a62d9e5003898602e67fdf9a350d66aecce13c",
+    "aiv_mul_q4q1_five_tile_program_contract.h": "0504c35d34de2712d388d74eaef89c45933cda921eaad9f7bfe2083700561234",
+    "aiv_mul_q4q1_five_tile_program_kernel.cpp": "278802c386f335e53dddb934d186b98a5fa1b8644d96f4596567962c1f1de0d7",
+    "aiv_mul_q4q1_five_tile_program_main.cpp": "7b9178e63873c9e1cf82c9f07f29bd0c73ff547110ff456a8b8d519f96bee6cd"
+  },
+  "binary_sha256": "a9bb7ec298108710b7a4458ad490d8e491dc77ebcebc48235e2d3d35d5a3aaa9",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/vector_mul_q4q1_five_tile_5f40fde2_20260909_d7/run1.csv",
+      "sha256": "4afceee8ce1e61837a35c637ae80723b3c7fa21edfcc24467d441aa41a317bc3"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/vector_mul_q4q1_five_tile_5f40fde2_20260909_d7/run2.csv",
+      "sha256": "21d27ba1fe3719de703766dd9ccd61603ce8f7f4ecf3483cffb8ab99cb5b49fb"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/vector_mul_q4q1_five_tile_5f40fde2_20260909_d7/run3.csv",
+      "sha256": "484f9d23d3dd1c9a77b1c0c8739972c74b88e492ee26d8ea8bbc6e56ebf7c0ab"
+    }
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

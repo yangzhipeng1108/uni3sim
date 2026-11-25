@@ -1,0 +1,68 @@
+{
+  "environment": {
+    "device": "NVIDIA H200",
+    "hostname": "capture-host-4d1c951312e8",
+    "python": "3.12.3 (main, Jan 17 2025, 18:03:48) [GCC 13.3.0]",
+    "torch": "2.8.0+cu128"
+  },
+  "hardware_id": "nvidia_h200",
+  "measurement_boundary": "independent_runtime_mechanism_microbenchmark",
+  "raw": {
+    "collective_prepare_ranks": [
+      {
+        "path": "/capture-workspace/wt-h200-serving-eval/profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848/profiler_output/microbench/nvidia_h200/collective_host_prepare_r1/summary-rank-0.json",
+        "sha256": "12676d5e413a21d9a10c374668009c0f49dc8b5e5f8d73bdcccd84c099d2bf5d"
+      },
+      {
+        "path": "/capture-workspace/wt-h200-serving-eval/profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848/profiler_output/microbench/nvidia_h200/collective_host_prepare_r1/summary-rank-1.json",
+        "sha256": "a56abcfbe6d2fe051118d5f1aecde318fec500186ad8b2cfc9fdaabd0e799392"
+      }
+    ],
+    "retention": "local_raw_not_committed",
+    "runtime_prepare": {
+      "path": "/capture-workspace/wt-h200-serving-eval/profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848/profiler_output/microbench/nvidia_h200/host_runtime_prepare_r1/summary.json",
+      "sha256": "ccec402d3ead5adedbfefe5d1f8e44b03deeb3df4a15ba576ac9a3dd4f58d0a5"
+    }
+  },
+  "run": {
+    "hostname": "capture-host-4d1c951312e8",
+    "run_dir": "/capture-workspace/wt-h200-serving-eval/profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848",
+    "source_commit": "a132507d8513a2daacdfd35fb3fcc98ee4c52ef3",
+    "versions": {
+      "nccl": "2.27.3",
+      "nvidia-nccl-cu12": "2.27.3",
+      "pyzmq": "27.2.0",
+      "torch": "2.8.0+cu128",
+      "torch_cuda": "12.8",
+      "transformers": "4.57.1",
+      "uvicorn": "0.38.0",
+      "vllm": "0.11.0",
+      "zstandard": "0.25.0"
+    }
+  },
+  "schema_version": 1,
+  "selection": {
+    "eager_enqueue_us_subtracted": 3.8381572265625,
+    "rules": {
+      "collective_*_prepare": "mean over both ranks and both message sizes of runtime_prepare_ns_per_call",
+      "mechanism set": "identical to the A800 runtime-prepare profile",
+      "runtime mechanisms": "host_runtime_prepare_r1 runtime_prepare_ns_per_call (chain slope minus the run's eager enqueue)"
+    },
+    "service_time_s": {
+      "collective_all_gather_prepare": 6.87842427153697e-05,
+      "collective_all_reduce_prepare": 3.3800334217510955e-05,
+      "compiled_fx_backend_entry": 3.1134825382133155e-05,
+      "compiled_fx_moe_wrapper_control": 1.3881477556046197e-05,
+      "fused_attention_source_wrapper_prepare": 2.2673373913043477e-05,
+      "moe_gating_prepare": 2.86015203294837e-05,
+      "moe_unquant_mlp_wrapper_prepare": 0.0002148171015285326,
+      "reshape_cache_prepare": 6.000486956521739e-06,
+      "unquantized_gemm_prepare": 1.2187052173913043e-05
+    }
+  },
+  "substitution": {
+    "measured_vllm_version": "0.11.0",
+    "reason": "The only vLLM 0.30 Host profile run (20260927_234639_vllm030) is clean for host_launch_r1 alone (23:46:39-23:46:50, before a kernel runner started on the same GPU at 23:46:57); every later step failed or ran contaminated, and the H200 host was reclaimed on 2026-09-28 so no re-measurement is possible. These Host mechanisms are therefore the clean vLLM 0.11.0 run 20260927_221848 on the same H200 host (torch 2.8.0+cu128; vLLM 0.30.0 runs torch 2.13.0+cu129).",
+    "target_vllm_version": "0.30.0"
+  }
+}

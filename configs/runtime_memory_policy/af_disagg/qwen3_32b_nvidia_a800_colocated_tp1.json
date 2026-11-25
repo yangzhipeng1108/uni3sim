@@ -1,0 +1,89 @@
+{
+ "schema_version": 2,
+ "scheduler_pools": [
+  {
+   "pool_name": "main",
+   "binding": {
+    "hardware_id": "nvidia_a800",
+    "hardware_config_sha256": "4fd8c3cbed54268219dc8dac76ed51d747f53b5d0c7d0fdb2033454979f2bf0c",
+    "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+    "deployment": "colocated",
+    "worker_role": "colocated",
+    "tensor_parallel_size": 1,
+    "pipeline_parallel_size": 1,
+    "expert_parallel_size": 1,
+    "max_model_len": 8192,
+    "max_batched_tokens": 8192,
+    "max_requests": 256,
+    "kv_block_size_tokens": 16
+   },
+   "gpu_memory_utilization": {
+    "numerator": 4,
+    "denominator": 5,
+    "provenance": {
+     "source_kind": "runtime_configuration",
+     "source_reference": "configs/runtime_memory_policy/nvidia_a800/qwen3-32b.json gpu_memory_utilization=0.8 runtime binding (itself from configs/evaluation/experiments/qwen3_32b_qps1_suite.json prediction_contract), inherited unchanged for a colocated TP1 comparison row; no TP1 colocated runtime profile for qwen3-32b exists UNVERIFIED ANALYTICAL ASSUMPTION: this value is inherited unchanged from the colocated TP2 qwen3-32b policy solely to give the TP1-bound runtime an analytical capacity input; it is NOT runtime truth for TP1 and no conservative or verified claim is made, as the policy-level reserve_scope/completeness_assertion fields honestly record (assumed_uniform_across_pool_ranks_unverified / reserves_inherited_unverified_not_complete_for_bound_runtime). All behavior runs consuming this policy are independent of these reserve values: peak possible concurrent KV, upper-bounded with per-request block rounding as sum over all 128 requests of ceil((input+output tokens)/16) = 3722 16-token blocks (58629 tokens total) is far below any allocated pool, so KV capacity never binds and no preemption occurs.",
+     "source_sha256": "1b343eb881d77f4774e69c81c9cc20de000177605c367c56df862d7c64d0398d"
+    }
+   },
+   "non_kv_reserves": [
+    {
+     "kind": "activation",
+     "bytes": 880806912,
+     "provenance": {
+      "source_kind": "runtime_configuration",
+      "source_reference": "configs/runtime_memory_policy/nvidia_a800/qwen3-32b.json non_kv_reserves activation bytes, inherited unchanged for the colocated TP1 comparison row (upstream provenance: profiler_output/runtime_memory_policy/ascend_910b/qwen3-32b/init-exact.log approximate-equivalent fallback authorized 2026-08-28, exact vLLM 0.18.0 same-model TP2 profile on Ascend 910B, torch peak activation bytes); no TP1-specific runtime profile exists UNVERIFIED ANALYTICAL ASSUMPTION: this value is inherited unchanged solely to give the TP1-bound runtime an analytical capacity input; it is NOT runtime truth for TP1 and no conservative or verified claim is made, as the policy-level reserve_scope/completeness_assertion fields honestly record (assumed_uniform_across_pool_ranks_unverified / reserves_inherited_unverified_not_complete_for_bound_runtime). All behavior runs consuming this policy are independent of these reserve values: peak possible concurrent KV, upper-bounded with per-request block rounding as sum over all 128 requests of ceil((input+output tokens)/16) = 3722 16-token blocks (58629 tokens total) is far below any allocated pool, so KV capacity never binds and no preemption occurs.",
+      "source_sha256": "1b343eb881d77f4774e69c81c9cc20de000177605c367c56df862d7c64d0398d"
+     }
+    },
+    {
+     "kind": "cuda_graph",
+     "bytes": 0,
+     "provenance": {
+      "source_kind": "framework_source",
+      "source_reference": "configs/runtime_memory_policy/nvidia_a800/qwen3-32b.json: vLLM pre-KV accounting applies no additional independent reserve for this category; inherited as-is UNVERIFIED ANALYTICAL ASSUMPTION: this value is inherited unchanged solely to give the TP1-bound runtime an analytical capacity input; it is NOT runtime truth for TP1 and no conservative or verified claim is made, as the policy-level reserve_scope/completeness_assertion fields honestly record (assumed_uniform_across_pool_ranks_unverified / reserves_inherited_unverified_not_complete_for_bound_runtime). All behavior runs consuming this policy are independent of these reserve values: peak possible concurrent KV, upper-bounded with per-request block rounding as sum over all 128 requests of ceil((input+output tokens)/16) = 3722 16-token blocks (58629 tokens total) is far below any allocated pool, so KV capacity never binds and no preemption occurs.",
+      "source_sha256": "1b343eb881d77f4774e69c81c9cc20de000177605c367c56df862d7c64d0398d"
+     }
+    },
+    {
+     "kind": "communication",
+     "bytes": 0,
+     "provenance": {
+      "source_kind": "framework_source",
+      "source_reference": "configs/runtime_memory_policy/nvidia_a800/qwen3-32b.json: vLLM pre-KV accounting applies no additional independent reserve for this category; inherited as-is UNVERIFIED ANALYTICAL ASSUMPTION: this value is inherited unchanged solely to give the TP1-bound runtime an analytical capacity input; it is NOT runtime truth for TP1 and no conservative or verified claim is made, as the policy-level reserve_scope/completeness_assertion fields honestly record (assumed_uniform_across_pool_ranks_unverified / reserves_inherited_unverified_not_complete_for_bound_runtime). All behavior runs consuming this policy are independent of these reserve values: peak possible concurrent KV, upper-bounded with per-request block rounding as sum over all 128 requests of ceil((input+output tokens)/16) = 3722 16-token blocks (58629 tokens total) is far below any allocated pool, so KV capacity never binds and no preemption occurs.",
+      "source_sha256": "1b343eb881d77f4774e69c81c9cc20de000177605c367c56df862d7c64d0398d"
+     }
+    },
+    {
+     "kind": "allocator",
+     "bytes": 0,
+     "provenance": {
+      "source_kind": "framework_source",
+      "source_reference": "configs/runtime_memory_policy/nvidia_a800/qwen3-32b.json: vLLM pre-KV accounting applies no additional independent reserve for this category; inherited as-is UNVERIFIED ANALYTICAL ASSUMPTION: this value is inherited unchanged solely to give the TP1-bound runtime an analytical capacity input; it is NOT runtime truth for TP1 and no conservative or verified claim is made, as the policy-level reserve_scope/completeness_assertion fields honestly record (assumed_uniform_across_pool_ranks_unverified / reserves_inherited_unverified_not_complete_for_bound_runtime). All behavior runs consuming this policy are independent of these reserve values: peak possible concurrent KV, upper-bounded with per-request block rounding as sum over all 128 requests of ceil((input+output tokens)/16) = 3722 16-token blocks (58629 tokens total) is far below any allocated pool, so KV capacity never binds and no preemption occurs.",
+      "source_sha256": "1b343eb881d77f4774e69c81c9cc20de000177605c367c56df862d7c64d0398d"
+     }
+    },
+    {
+     "kind": "fragmentation",
+     "bytes": 0,
+     "provenance": {
+      "source_kind": "framework_source",
+      "source_reference": "configs/runtime_memory_policy/nvidia_a800/qwen3-32b.json: vLLM pre-KV accounting applies no additional independent reserve for this category; inherited as-is UNVERIFIED ANALYTICAL ASSUMPTION: this value is inherited unchanged solely to give the TP1-bound runtime an analytical capacity input; it is NOT runtime truth for TP1 and no conservative or verified claim is made, as the policy-level reserve_scope/completeness_assertion fields honestly record (assumed_uniform_across_pool_ranks_unverified / reserves_inherited_unverified_not_complete_for_bound_runtime). All behavior runs consuming this policy are independent of these reserve values: peak possible concurrent KV, upper-bounded with per-request block rounding as sum over all 128 requests of ceil((input+output tokens)/16) = 3722 16-token blocks (58629 tokens total) is far below any allocated pool, so KV capacity never binds and no preemption occurs.",
+      "source_sha256": "1b343eb881d77f4774e69c81c9cc20de000177605c367c56df862d7c64d0398d"
+     }
+    },
+    {
+     "kind": "framework",
+     "bytes": 459149312,
+     "provenance": {
+      "source_kind": "runtime_configuration",
+      "source_reference": "configs/runtime_memory_policy/nvidia_a800/qwen3-32b.json non_kv_reserves framework bytes, inherited unchanged for the colocated TP1 comparison row (upstream provenance: Ascend 910B vLLM 0.18.0 same-model TP2 profile, non-Torch/framework bytes, larger observed rank); no TP1-specific runtime profile exists UNVERIFIED ANALYTICAL ASSUMPTION: this value is inherited unchanged solely to give the TP1-bound runtime an analytical capacity input; it is NOT runtime truth for TP1 and no conservative or verified claim is made, as the policy-level reserve_scope/completeness_assertion fields honestly record (assumed_uniform_across_pool_ranks_unverified / reserves_inherited_unverified_not_complete_for_bound_runtime). All behavior runs consuming this policy are independent of these reserve values: peak possible concurrent KV, upper-bounded with per-request block rounding as sum over all 128 requests of ceil((input+output tokens)/16) = 3722 16-token blocks (58629 tokens total) is far below any allocated pool, so KV capacity never binds and no preemption occurs.",
+      "source_sha256": "1b343eb881d77f4774e69c81c9cc20de000177605c367c56df862d7c64d0398d"
+     }
+    }
+   ],
+   "reserve_scope": "assumed_uniform_across_pool_ranks_unverified",
+   "completeness_assertion": "reserves_inherited_unverified_not_complete_for_bound_runtime"
+  }
+ ]
+}

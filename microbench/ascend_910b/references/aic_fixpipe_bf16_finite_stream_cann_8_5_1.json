@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_fixpipe_bf16_finite_stream_completion",
+  "duration_unit": "ns_per_finite_tile_stream_per_aic",
+  "publication_scope": {
+    "dtype": "bf16",
+    "layout": "row_major",
+    "minimum_tiles_per_worker": 1,
+    "maximum_tiles_per_worker": 96,
+    "short_tiles_per_worker": 32,
+    "long_tiles_per_worker": 96,
+    "estimator": "for each run and AIC, linearly interpolate the drained 32-to-96-tile endpoints; evaluate at the source tile count, take the slowest AIC, then take the median across three runs",
+    "cells": [
+      {
+        "rows": 16,
+        "columns": 176,
+        "active_aic_groups": 22,
+        "run_affine_envelopes": [
+          [[0, 1709, 3423], [11, 1676, 4063]],
+          [[16, 1697, 3672], [0, 1650, 3836], [18, 1571, 3844]],
+          [[1, 1735, 3237], [3, 1718, 3786], [13, 1710, 3842], [11, 1657, 3923], [12, 1577, 3929]]
+        ]
+      },
+      {
+        "rows": 32,
+        "columns": 256,
+        "active_aic_groups": 16,
+        "run_affine_envelopes": [
+          [[15, 1237, 1898], [8, 1134, 1915]],
+          [[0, 1169, 1836], [9, 1188, 1900], [8, 1148, 1908]],
+          [[11, 1317, 1850], [15, 1309, 1930]]
+        ]
+      },
+      {
+        "rows": 32,
+        "columns": 256,
+        "active_aic_groups": 20,
+        "run_affine_envelopes": [
+          [[11, 1429, 2091], [10, 1451, 2173], [8, 1385, 2189]],
+          [[18, 1425, 2083], [10, 1440, 2135], [8, 1399, 2177]],
+          [[0, 1424, 2083], [10, 1449, 2174], [8, 1403, 2211]]
+        ]
+      },
+      {
+        "rows": 32,
+        "columns": 256,
+        "active_aic_groups": 22,
+        "run_affine_envelopes": [
+          [[13, 1581, 2256], [10, 1547, 2302]],
+          [[7, 1575, 2246], [9, 1536, 2301]],
+          [[1, 1568, 2262], [9, 1567, 2270], [14, 1548, 2308]]
+        ]
+      },
+      {
+        "rows": 48,
+        "columns": 256,
+        "active_aic_groups": 22,
+        "run_affine_envelopes": [
+          [[7, 1608, 2403], [0, 1591, 2427], [6, 1569, 2453]],
+          [[8, 1602, 2390], [11, 1584, 2433], [5, 1561, 2478]],
+          [[8, 1689, 2395], [1, 1685, 2431], [18, 1670, 2458], [20, 1656, 2461]]
+        ]
+      },
+      {
+        "rows": 64,
+        "columns": 256,
+        "active_aic_groups": 20,
+        "run_affine_envelopes": [
+          [[16, 1267, 1982], [13, 1262, 2039], [7, 1213, 2129]],
+          [[13, 1106, 2031], [4, 1054, 2106]],
+          [[12, 1303, 2049], [7, 1246, 2083]]
+        ]
+      },
+      {
+        "rows": 64,
+        "columns": 256,
+        "active_aic_groups": 22,
+        "run_affine_envelopes": [
+          [[10, 1259, 1995], [14, 1159, 2081]],
+          [[8, 1189, 2151], [11, 1160, 2200]],
+          [[10, 1201, 2097], [6, 1147, 2179]]
+        ]
+      },
+      {
+        "rows": 128,
+        "columns": 256,
+        "active_aic_groups": 24,
+        "run_affine_envelopes": [
+          [[8, 1447, 2903], [9, 1376, 2909]],
+          [[2, 1773, 2847], [9, 1782, 2916]],
+          [[16, 1455, 2857], [8, 1473, 2934]]
+        ]
+      }
+    ]
+  },
+  "measurement": {
+    "mode": "independent_l0c_to_gm_fixpipe_finite_stream_microbenchmark",
+    "capture_commit": "d707fd012d755a48974d599dbd0af3d97972ce0b",
+    "aic_clock_hz": 3200000000,
+    "physical_device_id": 4,
+    "run_count": 3,
+    "raw_path": "profiler_output/microbench/ascend_910b/gemm_fixpipe_finite_7de00dc8_20260908_r2/execution.csv",
+    "raw_sha256": "97a49a1af8e88833bbfcab649932c9f8c3b74fcf1b1dcceb25f4e0e8307a2463",
+    "stderr_sha256": "e8289d04a3eb98bb8b1202db21e77c31fa09b21c2ee1a5364c2259d2f9938ff7",
+    "source_snapshot_sha256": "b15abee1dca38da34b8a02cef1680cca75c0a025c420e75732e48d9f54e0a99f",
+    "binary_sha256": "cc47f8b9842bcf9575d118414b79d33517d95a13fbebfa6e646c6653085557e3",
+    "validation_rows": 24,
+    "validation": "exact",
+    "mechanism_gate_passed": true
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "only source-matched BF16 row-major MatMulV3 output-tile streams whose exact rows, columns, non-empty AIC count, and per-worker tile count are inside the published finite affine domain"
+}

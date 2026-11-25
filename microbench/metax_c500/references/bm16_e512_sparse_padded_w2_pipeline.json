@@ -1,0 +1,54 @@
+{
+  "schema_version": "midlayer.metax_c500.bm16_e512_sparse_padded_w2_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 16,
+    "tile_k": 64,
+    "tile_n": 32,
+    "group_size_m": 1,
+    "source_rows": 80,
+    "populated_experts": 75,
+    "active_m_tiles": 75,
+    "maximum_m_tiles": 485,
+    "production_k_n_tile_class": [8, 64],
+    "measured_k_n_tile_class": [8, 65]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090624,
+    "tokens": 8,
+    "experts": 512,
+    "topk": 10,
+    "source_topk": 1,
+    "event_trials_per_capture": 9,
+    "event_repetitions_per_trial": 100,
+    "independent_captures": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "01f83fecf7fb57f932afd57ee42210e97981ec712237ce3b0af81a6b9fda94e1",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "median capacity across three independent captures of one adjacent non-production N geometry"
+  },
+  "captures": [
+    {
+      "n": 2080,
+      "raw_sha256": "8b523db3e965a3ae9785ce5f3ab23fc0d2fff1f589d9517ba85ba082222f4c16",
+      "operand_pipeline_capacity_bytes_per_s": 826073586361.2452
+    },
+    {
+      "n": 2080,
+      "raw_sha256": "326adbbfb07e6058c47eeb99fc4365c5ad5533e16ffefe33b06ca910d5007916",
+      "operand_pipeline_capacity_bytes_per_s": 828216918508.234
+    },
+    {
+      "n": 2080,
+      "raw_sha256": "33ad260aca40107c13e41a0a8583db800804f130015fa9ea278c1c26c42bb96c",
+      "operand_pipeline_capacity_bytes_per_s": 829666259785.9696
+    }
+  ],
+  "selected_service": {
+    "predicate": "80 routed rows, 75 populated experts, 75 active M tiles, 485 maximum padded M tiles, and K/N tile class (8,64)",
+    "logical_byte_capacity_per_s": 828216918508.234
+  }
+}

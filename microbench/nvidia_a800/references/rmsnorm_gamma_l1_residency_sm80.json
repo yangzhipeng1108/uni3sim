@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "evidence_kind": "independent_l1_residency_mechanism_microbenchmark",
+  "production_or_evaluation_duration_consumed": false,
+  "production_parameter_published": false,
+  "hardware_execution_performed": true,
+  "capture": {
+    "owner": "agent/a800-rmsnorm-gamma-residency",
+    "physical_device_index": 5,
+    "device_uuid": "capture-device-64c46453fd77",
+    "baseline_commit": "ee826c0e",
+    "runner_pid": 625134,
+    "command": "python microbench/nvidia_a800/memory/l1/rmsnorm_gamma_residency_runner.py --device 5 --owner agent/a800-rmsnorm-gamma-residency --baseline ee826c0e --run-id capture_20260831_gpu5",
+    "raw_output": "profiler_output/microbench/nvidia_a800/rmsnorm_gamma_residency/capture_20260831_gpu5/result.json"
+  },
+  "source_identity": {
+    "probe_source": "microbench/nvidia_a800/memory/l1/rmsnorm_gamma_residency.cu",
+    "probe_source_sha256": "7382ed371fc2b4b90a6593fe41ca135ecd19e919e66afa5c0a146b856307a45d",
+    "runner": "microbench/nvidia_a800/memory/l1/rmsnorm_gamma_residency_runner.py",
+    "runner_sha256": "976a6e1693dd4d2619a968049bdfa795903cb1607c515421cebb98258e9d45c8",
+    "upstream_reference": "microbench/nvidia_a800/references/vllm_rmsnorm_v0_11_0_sm80.json",
+    "upstream_reference_sha256": "5cfc88825fe890d0881a9d870e04d19dbd59c9c9af5a9d0feddacb8add72a53e",
+    "upstream_source_path": "csrc/layernorm_kernels.cu",
+    "upstream_source_sha256": "fb3b6102d6c0efdf66ed7a2030d0bebf6a25aa46e07fe7274ec545f39e200409"
+  },
+  "published_tool_identity": {
+    "probe_source_sha256": "ed73436eca920c57055f5e93d83a7185338b7aac33412878a62477d9770b7678",
+    "runner_sha256": "a36c72eb3755d738d56f4d62201cd8f3ad7975a6e9896b72f0eea4fe91496d3d"
+  },
+  "static_contract": {
+    "grid": 1024,
+    "block_threads": 1024,
+    "registers_per_thread": 24,
+    "static_shared_memory_bytes_per_cta": 168,
+    "resident_ctas_per_sm": 2,
+    "cached_bf16_load_opcode": "LDG.E.U16.STRONG.SM",
+    "cached_bf16_load_static_sites": 4,
+    "stream_order": "private_input_a->private_input_b->barrier->private_input_a_plus_gamma->store",
+    "rms_reduction_implemented": false
+  },
+  "counter_contract": {
+    "trials_per_cell": 3,
+    "maximum_relative_spread": 0.05,
+    "metrics": [
+      "l1tex__t_requests_pipe_lsu_mem_global_op_ld.sum",
+      "l1tex__t_bytes_pipe_lsu_mem_global_op_ld.sum",
+      "l1tex__m_xbar2l1tex_read_bytes_mem_lg_op_ld.sum",
+      "lts__t_requests_srcunit_tex_op_read.sum",
+      "lts__t_sectors_srcunit_tex_op_read.sum"
+    ]
+  },
+  "cases": [
+    {
+      "case_name": "shared_gamma_h2048",
+      "hidden": 2048,
+      "gamma_scope": "grid_shared",
+      "unique_gamma_bytes": 4096,
+      "logical_read_bytes": 16777216,
+      "l1_read_request_count": 262144,
+      "l1_requested_bytes": 16777216,
+      "l1_xbar_read_bytes": 8830976,
+      "l2_read_request_count": 124990,
+      "l2_read_bytes": 8830976,
+      "l1_hit_fraction": 0.4736328125,
+      "maximum_observed_relative_spread": 0.0013921113689095127
+    },
+    {
+      "case_name": "shared_gamma_h8192",
+      "hidden": 8192,
+      "gamma_scope": "grid_shared",
+      "unique_gamma_bytes": 16384,
+      "logical_read_bytes": 67108864,
+      "l1_read_request_count": 1048576,
+      "l1_requested_bytes": 67108864,
+      "l1_xbar_read_bytes": 36514816,
+      "l2_read_request_count": 538104,
+      "l2_read_bytes": 36514816,
+      "l1_hit_fraction": 0.4558868408203125,
+      "maximum_observed_relative_spread": 0.03707833429968928
+    },
+    {
+      "case_name": "shared_gamma_h16384",
+      "hidden": 16384,
+      "gamma_scope": "grid_shared",
+      "unique_gamma_bytes": 32768,
+      "logical_read_bytes": 134217728,
+      "l1_read_request_count": 2097152,
+      "l1_requested_bytes": 134217728,
+      "l1_xbar_read_bytes": 95023168,
+      "l2_read_request_count": 1420540,
+      "l2_read_bytes": 95023168,
+      "l1_hit_fraction": 0.2920222282409668,
+      "maximum_observed_relative_spread": 0.014894335956748841
+    },
+    {
+      "case_name": "private_gamma_h16384_control",
+      "hidden": 16384,
+      "gamma_scope": "cta_private",
+      "unique_gamma_bytes": 33554432,
+      "logical_read_bytes": 134217728,
+      "l1_read_request_count": 2097152,
+      "l1_requested_bytes": 134217728,
+      "l1_xbar_read_bytes": 117145216,
+      "l2_read_request_count": 1767805,
+      "l2_read_bytes": 117145216,
+      "l1_hit_fraction": 0.12720012664794922,
+      "maximum_observed_relative_spread": 0.0033195038882338993
+    }
+  ],
+  "mechanism_conclusion": {
+    "comparison": "shared_gamma_h16384_vs_private_gamma_h16384_control",
+    "equal_logical_read_bytes": 134217728,
+    "shared_gamma_l2_read_bytes": 95023168,
+    "private_gamma_l2_read_bytes": 117145216,
+    "shared_gamma_l2_read_bytes_saved": 22122048,
+    "shared_gamma_l2_read_reduction_fraction": 0.18884294856735762
+  },
+  "limitations": [
+    "The probe preserves the source-equivalent global stream order and production resource occupancy but deliberately omits the RMS reduction and does not reproduce a production operator.",
+    "The counters are aggregate L1 and L2 read traffic; the equal-geometry private-gamma control isolates residency effect without assigning individual transactions to operands.",
+    "The evidence establishes a reproducible shared-gamma L1 reuse mechanism only; it does not publish a Forward parameter or consume a production duration."
+  ]
+}

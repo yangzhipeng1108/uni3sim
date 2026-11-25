@@ -1,0 +1,33 @@
+{
+  "kind": "independent_vllm030_v2_input_prepare_constant_proxy",
+  "mechanism": "vllm030_v2_input_prepare",
+  "duration_unit": "s_per_worker_step",
+  "timer_domain": "host_enqueue_only_no_completion_sync",
+  "rule": "equal_cell_median_of_all_nine_predeclared_cell_medians",
+  "service_time_s": 0.0004264375,
+  "source_method_sha256": {
+    "gather_batch_req_state": "83b43fddc356a3043b2d67e3905161a14aeb07aaad1621555666856da9e05487",
+    "prepare_inputs": "b6e3547468b1a0669123d18a0ca8a6dba5d8092e0b6a9e6dd4029da28c01d53a",
+    "prepare_attn": "f0a646950ada1a845eb90222dc343ec715f01cbe95d0c8f1c2979c3fe9b05e63"
+  },
+  "raw": {
+    "path": "profiler_output/microbench/nvidia_h200/serving_accuracy_v2_input_prepare_20261107/raw.json",
+    "sha256": "16c3132ca6efd1d1f5010ed912745dda94ae13ef2fee64e31f182dafd5382b42"
+  },
+  "producer": {
+    "path": "microbench/nvidia_h200/runtime/launch/vllm030_v2_input_prepare_reference.py",
+    "sha256": "e83031c234d5f1e13ed9fe5e27167196b5335ecef83407da91bab4727df31ff4"
+  },
+  "measurement_boundary": "gather_batch_req_state + prepare_inputs + prepare_attn; no model/weights",
+  "measurement_torch": "2.13.0+cu130",
+  "production_duration_consumed": false,
+  "limitations": [
+    "excludes add/update/free requests, attention metadata builder, sampler and output processing",
+    "completion and CUDA-event windows include CPU enqueue idle, not pure device service",
+    "synthetic independent state; native provider and historical CPU equivalence unbound",
+    "explicit cross-host/software CPU proxy, not target-host performance certification",
+    "constant preparation overhead approximates measured request/token-count variation",
+    "input kernel and H2D device work remains unbound; only measured Host enqueue is priced",
+    "no state-update, attention-metadata builder, sampler, completion fence or per-layer charge"
+  ]
+}

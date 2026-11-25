@@ -1,0 +1,34 @@
+{
+  "hardware_id": "nvidia_h200",
+  "mechanism": "two_row_fp32_register_chains",
+  "threads_per_cta": 128,
+  "lane_local_rows_per_thread": 2,
+  "timer_domain": "clock64_sm_cycles",
+  "production_or_evaluation_duration_consumed": false,
+  "source_sha256": "d63142f7788438401df66988e190d956e2f086062d1c10b1537af3f217ab4598",
+  "raw_path": "profiler_output/microbench/nvidia_h200/register_chain_20261107/raw.json",
+  "raw_sha256": "85b5eacd91ac1243c508cdc03f669702e1e6a13f295d203c134a709d4ac30e2a",
+  "derivation": "Median over three trials and 132 CTA clocks / 512 repeats, minus same-width empty-loop median. Exact widths only; N32 is a control, existing N32 prices retained.",
+  "entries": [
+    {
+      "score_values_per_lane_local_row": 20,
+      "fp32_max_quad4_cycles": 151.0078125,
+      "fp32_local_sum_cycles": 88.013671875
+    },
+    {
+      "score_values_per_lane_local_row": 40,
+      "fp32_max_quad4_cycles": 231.0078125,
+      "fp32_local_sum_cycles": 168.013671875
+    },
+    {
+      "score_values_per_lane_local_row": 44,
+      "fp32_max_quad4_cycles": 247.0078125,
+      "fp32_local_sum_cycles": 184.013671875
+    },
+    {
+      "score_values_per_lane_local_row": 48,
+      "fp32_max_quad4_cycles": 263.0078125,
+      "fp32_local_sum_cycles": 200.013671875
+    }
+  ]
+}

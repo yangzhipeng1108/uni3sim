@@ -1,0 +1,22 @@
+{
+  "schema": "nvidia_a800_fa2_residency_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "source_dataset": "kernel_dataset/nvidia_a800/flash_attn.json.zst",
+  "source_dataset_sha256": "89037a3ad9a8d3d6453b9af1ebdef7a17d50616194cd5e456477e07503a3a514",
+  "source_programs": [
+    "flash_fwd_kernel",
+    "flash_fwd_splitkv_kernel"
+  ],
+  "observed_source_bound_kernel_count": 278,
+  "block_limit_registers_values": [2],
+  "block_limit_shared_memory_values": [2],
+  "resident_cta_slots_per_sm": 2,
+  "allowed_conclusion": "Pinned SM80 FA2 main-kernel programs admit two resident CTA slots per SM, so cross-CTA pipeline overlap must retain at most two in-flight CTA lifetimes per SM.",
+  "excluded_programs": [
+    "flash_fwd_splitkv_combine_kernel",
+    "flash_mla_with_kvcache"
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

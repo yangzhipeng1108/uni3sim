@@ -1,0 +1,63 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_matmul_v2_full_a_dynamic_m_n_major_control_source.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "matmul_v2_full_a_dynamic_m_n_major_scalar_control_candidate",
+  "production_or_evaluation_duration_consumed": false,
+  "evidence_kind": "duration_free_cann_matmulimpl_source_semantics",
+  "scope": {
+    "dtype": "bf16",
+    "active_aic_groups": 23,
+    "base_tile": {
+      "m": 16,
+      "n": 256,
+      "k": 64
+    },
+    "worker_local_output_tiles": {
+      "m": 1,
+      "n": 5
+    },
+    "a1_buffer_depth": 1,
+    "b1_buffer_depth": 2,
+    "dynamic_logical_m": 1,
+    "static_logical_m": 16
+  },
+  "source_semantics": {
+    "single_shape_configuration": "MatmulImplBase::SetSingleShape delegates once to SetTail; SetTail configures the MLoop, NLoop, and KLoop single shapes before IterateAll.",
+    "n_major_iteration": "MatmulNormSchedulerBase::MoveOnIterateOrderN advances N after M completes, then invokes MLoop::InnerStart for the next source-local N tile.",
+    "dynamic_m_branch": "MLoopNormBase::SetSingleShape takes the tiling-derived branch when enableSetTail is true; the static M16 control uses the fixed configuration branch with enableSetTail false.",
+    "candidate_boundary": "The source establishes a five-N opportunity for dynamic-M loop-control instructions, but establishes neither their Scalar-pipe cost nor a Forward service. Only the independent PipeUtilization control may decide whether a stable service exists."
+  },
+  "source_artifacts": [
+    {
+      "path": "/usr/local/Ascend/cann-8.5.1/aarch64-linux/asc/impl/adv_api/detail/matmul/matmul_impl_base.h",
+      "sha256": "b383aa4aba99b28fa3342f188dbcaa00a5d46d9fd7d100a980e7f311977f0451"
+    },
+    {
+      "path": "/usr/local/Ascend/cann-8.5.1/aarch64-linux/asc/impl/adv_api/detail/matmul/scheduler/base/scheduler_norm_base.h",
+      "sha256": "697077b5ef4995605e1ebe5e821cbb8886d9c6f683b9ae39f5cb73f8b7d91adc"
+    },
+    {
+      "path": "/usr/local/Ascend/cann-8.5.1/aarch64-linux/asc/impl/adv_api/detail/matmul/scheduler/iterator/m_loop/m_loop_norm_base.h",
+      "sha256": "93a850ac116be92ce59447ee94aaa0d9e52d9d59a9b6a0d61947ab18728bd03d"
+    },
+    {
+      "path": "/usr/local/Ascend/cann-8.5.1/aarch64-linux/asc/impl/adv_api/detail/matmul/scheduler/iterator/n_loop/n_loop_norm_base.h",
+      "sha256": "a300b7441e16760dbc1b04a85c7f95e8fca0e28e8e46a5198482c325748bac04"
+    },
+    {
+      "path": "/usr/local/Ascend/cann-8.5.1/opp/version.info",
+      "sha256": "49437edb9a235b28a87d07d2a2ad189022b6d246dc7c4cbcd013d2b7ecaf838b"
+    }
+  ],
+  "forward_eligibility": {
+    "status": "candidate_not_published",
+    "prohibited_inputs": [
+      "whole_program_duration",
+      "production_or_evaluation_duration",
+      "per_shape_residual",
+      "unisolated_MTE2_MTE1_Cube_or_FixPipe_time"
+    ],
+    "required_next_evidence": "The full-A five-N dynamic-M1/static-M16 PipeUtilization control at independent K2048 and K4096 endpoints."
+  }
+}

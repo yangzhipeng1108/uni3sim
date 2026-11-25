@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "campaign": "swiglu_t64_queue_edges",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "service_time_selection": "median_of_independent_run_medians",
+  "lookup_policy": "exact_worker_count_direction_and_payload_only",
+  "pairing_formula": "maximum_worker(request_first_interval(pair_order=1)-control_first_interval(pair_order=0)), matched by run and trial",
+  "source_scope": "CANN 8.5.1 BF16 SwiGLU depth-two TQue edges; direction 4 is DataCopy GM-to-UB followed by MTE2-to-Vector completion and direction 5 is Vector-to-MTE3 completion followed by DataCopy UB-to-GM",
+  "source_tile_evidence": {
+    "dominant_t64_i25600_base_tile": {"rows": 6, "columns": 1536, "dtype_bytes": 2, "payload_bytes": 18432, "block_dim": 48},
+    "source_valid_payload_control": {"rows": 7, "columns": 1536, "dtype_bytes": 2, "payload_bytes": 21504, "block_dim": 48},
+    "static_basis": "source-derived CANN SwiGLU tiling; no production duration or profiler timing selected the cells"
+  },
+  "inherited_48_worker_cells": {
+    "evidence_ref": "microbench/ascend_910b/references/aiv_swiglu_t1024_queue_edge_completion_cann_8_5_1.json",
+    "evidence_sha256": "05485029581b1bb8eef6fd8330ef07dac111f99b0b7a60266c93168eb665feeb",
+    "cells": [
+      "48:tque_mte2_to_vector:19456",
+      "48:tque_mte2_to_vector:26624",
+      "48:tque_vector_to_mte3:19456",
+      "48:tque_vector_to_mte3:26624"
+    ]
+  },
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "measurement_worktree_head": "6d6d8e3b5e037fdb7a201a7006d0d0e3fec9b264",
+  "measurement_device_id": 3,
+  "measurement_container": "capture-container-2",
+  "benchmark_source_snapshot_path": "/capture-workspace/source_snapshots/first_mte_completion_1376f9be_20260831_0403_swiglu_t1024",
+  "measurement_runner_path": "/capture-workspace/deployments/midlayer-vector-swiglu-t64-195cd107-20260906/first_mte_completion_runner.py",
+  "measurement_source_files_sha256": {
+    "first_mte_completion_kernel.cpp": "d17d9d992d527f3e2cf5c26ad636f0c5376e429dcb0567e66ac83458212e6318",
+    "first_mte_completion_main.cpp": "f21fbd2029a4a699efa7f0e4b58c3cfccc77732cb5cdbb240a4e153618e38645",
+    "first_mte_completion_runner.py": "5c863456ac3dc86699a46a40fb9ba188a8049ebee7b7c51de5bcae29d0e0376f",
+    "first_mte_completion_report.py": "0cfc93aa8af64965ac082f1d411db924dbe40555a9e5ae5a62b129c68cfff086"
+  },
+  "production_source_sha256": {
+    "swi_glu.cpp": "584fcf498038a6b31adf480c4fb4a600dd4cf59657a1c0a0bf725c3df3717cf3",
+    "swi_glu_single.hpp": "ace487f5c4f3929e0cc1e02dfc54b062294a3018d0cb102baa920ea83e8dd096",
+    "swi_glu_bf16.hpp": "d18f872867f22c9f7032a44c22a09ceb84d78bdb9b4a94288062b6d1e498e933"
+  },
+  "benchmark_binary_sha256": "7bf99015e8519e1e42a6be9c0dfefe6540996591051e6cbb893148dc620b7a71",
+  "raw_archive": {
+    "path": "profiler_output/microbench/ascend_910b/swiglu_t64_exact48_6d6d8e3b_20260906_d3/raw_and_logs.tar.gz",
+    "sha256": "5fbe7f988e1454dd817a83bfb326a124456c569ae07a9bd24f6edbc171df7e10"
+  },
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/swiglu_t64_exact48_6d6d8e3b_20260906_d3/r1.csv", "sha256": "be97d762a7d0945aa85af5450538551372ecec422d2cb3058736e75e6b36efab", "runner_log_sha256": "d45b2e029edf31673356b2c23b29c64be5602e65e38d2f11b711e70fa7013f54", "run_id": "swiglu_t64_exact48_6d6d8e3b_20260906_r1"},
+    {"path": "profiler_output/microbench/ascend_910b/swiglu_t64_exact48_6d6d8e3b_20260906_d3/r2.csv", "sha256": "f0a42de40ca7b139823c7e75b988eadc7d5d5b4178bc2f22c19e71529f8c37c0", "runner_log_sha256": "64b8fc63afaaa28de2fdb7e848bdc31390eff06e9add4a0ca8210efbed3c2c02", "run_id": "swiglu_t64_exact48_6d6d8e3b_20260906_r2"},
+    {"path": "profiler_output/microbench/ascend_910b/swiglu_t64_exact48_6d6d8e3b_20260906_d3/r3.csv", "sha256": "2a8a2774197dee98e235721c8ade048378aae4e953dca45ff1deb9b3c7738838", "runner_log_sha256": "60c7ec7d4c3f78c19685fade6cb0a2c00b7064d6fd7a854b85d8f1998fc3d50d", "run_id": "swiglu_t64_exact48_6d6d8e3b_20260906_r3"}
+  ],
+  "report_path": "profiler_output/microbench/ascend_910b/swiglu_t64_exact48_6d6d8e3b_20260906_d3/three_run_report.txt",
+  "report_sha256": "d648ceb961b903edb9845820281992c0a2eb6f388a468bc1f6aca846b34b4b1a",
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 128,
+  "replication_basis": "balanced_schedule_cycle_parity",
+  "median_ns_by_run": {
+    "swiglu_t64_exact48_6d6d8e3b_20260906_r1": {"48:tque_mte2_to_vector:18432": 1410.0, "48:tque_mte2_to_vector:21504": 1470.0, "48:tque_vector_to_mte3:18432": 1450.0, "48:tque_vector_to_mte3:21504": 1460.0},
+    "swiglu_t64_exact48_6d6d8e3b_20260906_r2": {"48:tque_mte2_to_vector:18432": 1420.0, "48:tque_mte2_to_vector:21504": 1440.0, "48:tque_vector_to_mte3:18432": 1480.0, "48:tque_vector_to_mte3:21504": 1470.0},
+    "swiglu_t64_exact48_6d6d8e3b_20260906_r3": {"48:tque_mte2_to_vector:18432": 1430.0, "48:tque_mte2_to_vector:21504": 1390.0, "48:tque_vector_to_mte3:18432": 1460.0, "48:tque_vector_to_mte3:21504": 1480.0}
+  },
+  "published_cells": {
+    "48:tque_mte2_to_vector:18432": {"service_time_ns": 1420.0, "maximum_run_relative_median_spread": 0.013986013986013986},
+    "48:tque_mte2_to_vector:19456": {"service_time_ns": 1370.0, "maximum_run_relative_median_spread": 0.07092198581560284},
+    "48:tque_mte2_to_vector:26624": {"service_time_ns": 1430.0, "maximum_run_relative_median_spread": 0.08387096774193549},
+    "48:tque_vector_to_mte3:18432": {"service_time_ns": 1460.0, "maximum_run_relative_median_spread": 0.02027027027027027},
+    "48:tque_vector_to_mte3:19456": {"service_time_ns": 1170.0, "maximum_run_relative_median_spread": 0.08403361344537816},
+    "48:tque_vector_to_mte3:26624": {"service_time_ns": 1230.0, "maximum_run_relative_median_spread": 0.06349206349206349}
+  },
+  "diagnostic_cells": {
+    "48:tque_mte2_to_vector:21504": {"service_time_ns": 1440.0, "maximum_run_relative_median_spread": 0.05442176870748299},
+    "48:tque_vector_to_mte3:21504": {"service_time_ns": 1470.0, "maximum_run_relative_median_spread": 0.013513513513513514}
+  },
+  "gates": {
+    "source_identity": "pass",
+    "binary_identity": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "balanced_cell_order": "pass",
+    "within_run_replication": "pass",
+    "cross_run_relative_median_spread_limit": 0.2,
+    "cross_run_stability": "pass"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true,
+  "production_consumption_status": "exact_48_worker_18432_19456_26624_byte_cells"
+}

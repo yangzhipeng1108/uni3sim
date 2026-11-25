@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_swiglu_tile_address_control",
+  "request_size_unit": "source_swiglu_tile_address_control_groups",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "1": 6.11084
+  },
+  "mechanism": "one CaclOneTileOffsetParam uint64 GM-offset and base/tail-selection group after the source row/column quotient-and-remainder group",
+  "source_program": {
+    "path": "ops_nn/ascendc/swi_glu/glu_tiling_kernel.hpp",
+    "sha256": "2b6abc813b6e372b0d36e81f79fd618c180b0c0e4de2643056fd7aad775c2053",
+    "operations": "five uint64 multiplies, three uint64 adds, and the source four-way base/tail selection per tile"
+  },
+  "measurement": {
+    "probe": "paired source-only scalar control; mode 1 adds the GM-offset and selection group to the shared mode-0 quotient/remainder prefix",
+    "counter_tick_ns": 20.0,
+    "repetitions_per_aiv": 16384,
+    "aiv_worker_counts": [1, 24, 48],
+    "source_branch_classes": ["base_row_base_col", "base_row_tail_col", "tail_row_base_col", "tail_row_tail_col"],
+    "independent_runs": 2,
+    "selected_statistic": "median of the paired per-tile deltas; all populations and branch classes agree to SYS_CNT quantization"
+  },
+  "provenance": {
+    "probe_snapshot_sha256": "994e348df3d742988a1dc7819b1c197b81ad51298b6420ca7ae2e3060dbab343",
+    "benchmark_binary_sha256": "2ca092a0bb693f947eda52f34ceb48cbd59fdcbdbd2bd50d20d68ac0834a6638",
+    "raw_artifacts": [
+      {
+        "path": "profiler_output/microbench/ascend_910b/swiglu_tile_address_control_83f92901_20260914_r1/raw.json",
+        "sha256": "674efc3a6fc09feef8c4e0c107109f0fb3fa409e8325b7cd6ac9803ddf593a52"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/swiglu_tile_address_control_83f92901_20260914_r2/raw.json",
+        "sha256": "625479176aac0049971b951add5257696501702f6e0ae696dcedc8bb5795c6a5"
+      }
+    ]
+  },
+  "production_or_evaluation_duration_consumed": false
+}

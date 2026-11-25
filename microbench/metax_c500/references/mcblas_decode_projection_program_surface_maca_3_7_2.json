@@ -1,0 +1,2127 @@
+{
+  "allowed_use": "Discrete launch facts only: which mcBLAS compiled program, launch grid, block size, CTA count, split-K factor and split-K reduction epilogue the vendor selector picks for each deployed dense decode projection shape at each swept M. It is an identity map; it carries no timing and no service coefficient, and it selects nothing in Forward on its own. Its purpose is to bound the islands inside which a per-program operand-pipeline coefficient may legally be extracted.",
+  "canonical_launch_data_cross_check": {
+    "cells_absent_from_launch_data": [],
+    "cells_agreeing": 117,
+    "cells_compared": 117,
+    "compared": "split_k against the mcTracer launch grid z extent, and reduction against the presence of a mcblas::DevDstElementwiseAdd kernel",
+    "key_multiplicity": "exactly one canonical row per deployed (k, n, m); the nine caller-supplied key fields of the probe match it field for field (bf16, b=1, all row_major, trans_a false, trans_b true, epilogue none, has_bias false). variant is chosen by the vendor rather than supplied by the caller, and splits 114 gemm / 3 gemv",
+    "probe_workspace": "vendor default; CUBLAS_WORKSPACE_CONFIG, MCBLAS_WORKSPACE_CONFIG and MACA_WORKSPACE are all unset in the capture container",
+    "selection_key_fields": [
+      "dtype",
+      "variant",
+      "b",
+      "m",
+      "n",
+      "k",
+      "a_layout",
+      "b_layout",
+      "c_layout",
+      "trans_a",
+      "trans_b",
+      "epilogue",
+      "has_bias"
+    ],
+    "source": "launch_data/metax_c500/gemm_launch_selection.csv.zst",
+    "split_k_cells": 37,
+    "split_k_cells_agreeing": 37,
+    "statement": "Every deployed decode projection cell agrees with the device trace, including all 37 split-K cells and their fp32_external reductions. This is also the test that the probe reproduces the production configuration rather than a more permissive one: a harness with a larger mcBLAS workspace would take split-K where production recorded split_k=1, and none of the 117 cells does. The remaining Forward error on these shapes is therefore a service-model error, not a launch-selection error."
+  },
+  "contains_duration": false,
+  "dtype": "bf16",
+  "forbidden_use": "Extrapolating a program identity to any (K, N, M) not listed here. The selector moves with all three and is not monotone in M: at K=4096, N=2560 it uses split-K at M=2,4,8,32,128 and not at M=16,64,96. Fitting any coefficient across two different programs in this table.",
+  "hardware_id": "metax_c500",
+  "m1_is_a_different_program_family": {
+    "cells": [
+      {
+        "block": 64,
+        "ctas": 512,
+        "grid": [
+          512,
+          1,
+          1
+        ],
+        "k": 12288,
+        "n": 4096,
+        "program": "void b16gemvt_kernel<64, 8, 4, 4, int, float, __maca_bfloat16, __maca_bfloat16>"
+      },
+      {
+        "block": 512,
+        "ctas": 512,
+        "grid": [
+          512,
+          1,
+          1
+        ],
+        "k": 14336,
+        "n": 4096,
+        "program": "void b16gemvt_kernel<512, 8, 8, 4, int, float, __maca_bfloat16, __maca_bfloat16>"
+      },
+      {
+        "block": 128,
+        "ctas": 18992,
+        "grid": [
+          18992,
+          1,
+          1
+        ],
+        "k": 2560,
+        "n": 151936,
+        "program": "void b16gemvt_kernel<128, 8, 8, 4, int, float, __maca_bfloat16, __maca_bfloat16>"
+      },
+      {
+        "block": 128,
+        "ctas": 2432,
+        "grid": [
+          2432,
+          1,
+          1
+        ],
+        "k": 2560,
+        "n": 19456,
+        "program": "void b16gemvt_kernel<128, 8, 8, 4, int, float, __maca_bfloat16, __maca_bfloat16>"
+      },
+      {
+        "block": 64,
+        "ctas": 768,
+        "grid": [
+          768,
+          1,
+          1
+        ],
+        "k": 2560,
+        "n": 6144,
+        "program": "void b16gemvt_kernel<64, 8, 8, 8, int, float, __maca_bfloat16, __maca_bfloat16>"
+      },
+      {
+        "block": 64,
+        "ctas": 64128,
+        "grid": [
+          64128,
+          1,
+          1
+        ],
+        "k": 4096,
+        "n": 128256,
+        "program": "void b16gemvt_wave_kernel<64, 2, 8, int, float, __maca_bfloat16, __maca_bfloat16>"
+      },
+      {
+        "block": 64,
+        "ctas": 75968,
+        "grid": [
+          75968,
+          1,
+          1
+        ],
+        "k": 4096,
+        "n": 151936,
+        "program": "void b16gemvt_wave_kernel<64, 2, 8, int, float, __maca_bfloat16, __maca_bfloat16>"
+      },
+      {
+        "block": 64,
+        "ctas": 12288,
+        "grid": [
+          12288,
+          1,
+          1
+        ],
+        "k": 4096,
+        "n": 24576,
+        "program": "void b16gemvt_wave_kernel<64, 2, 8, int, float, __maca_bfloat16, __maca_bfloat16>"
+      },
+      {
+        "block": 512,
+        "ctas": 80,
+        "grid": [
+          80,
+          1,
+          1
+        ],
+        "k": 4096,
+        "n": 2560,
+        "program": "void b16gemvt_wave_kernel<512, 4, 4, int, float, __maca_bfloat16, __maca_bfloat16>"
+      },
+      {
+        "block": 64,
+        "ctas": 14336,
+        "grid": [
+          14336,
+          1,
+          1
+        ],
+        "k": 4096,
+        "n": 28672,
+        "program": "void b16gemvt_wave_kernel<64, 2, 8, int, float, __maca_bfloat16, __maca_bfloat16>"
+      },
+      {
+        "block": 64,
+        "ctas": 512,
+        "grid": [
+          512,
+          1,
+          1
+        ],
+        "k": 4096,
+        "n": 4096,
+        "program": "void b16gemvt_kernel<64, 8, 4, 4, int, float, __maca_bfloat16, __maca_bfloat16>"
+      },
+      {
+        "block": 64,
+        "ctas": 768,
+        "grid": [
+          768,
+          1,
+          1
+        ],
+        "k": 4096,
+        "n": 6144,
+        "program": "void b16gemvt_kernel<64, 8, 8, 4, int, float, __maca_bfloat16, __maca_bfloat16>"
+      },
+      {
+        "block": 64,
+        "ctas": 320,
+        "grid": [
+          320,
+          1,
+          1
+        ],
+        "k": 9728,
+        "n": 2560,
+        "program": "void b16gemvt_wave_kernel<64, 8, 4, int, float, __maca_bfloat16, __maca_bfloat16>"
+      }
+    ],
+    "statement": "Every deployed projection at M=1 selects a dedicated GEMV kernel (b16gemvt_kernel or b16gemvt_wave_kernel), never a tiled tn_ program, and six distinct template instantiations appear across the deployed shapes. A coefficient extracted on the tiled programs does not describe M=1, which is where most low-QPS decode steps run."
+  },
+  "measurement": {
+    "attribution": "Cells are delimited in the trace by the ATen fill kernels the runner emits when it allocates each cell's operands; inside a cell each F.linear emits one mcBLAS main kernel optionally followed by one mcblas::DevDstElementwiseAdd split-K reduction. Every cell's four launches were required to carry one identical launch signature. No attribution by duration or by name similarity.",
+    "cells": 117,
+    "cells_with_split_k_reduction": 37,
+    "distinct_programs": 22,
+    "identity_tool": "mcTracer, one invocation per (K, N), MACA 3.7.2",
+    "swept_m": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64,
+      96,
+      128
+    ]
+  },
+  "mechanism": "mcblas_decode_projection_program_selection",
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "capture": "profiler_output/microbench/metax_c500/mcblas_projection_surface_20260923_r1/identity",
+    "container": "capture-container-1",
+    "date": "2026-09-23",
+    "device_index": 0,
+    "host": "capture-host-1",
+    "midlayer_commit": "e889401f7 (tree identical to 309fe680d)",
+    "source": "microbench/metax_c500/operators/gemm/mcblas_projection_surface_runner.py",
+    "source_sha256": "153907a732a897f6015eb04dcd387c799d8931b40a4f13d65ebc0323e7de7144"
+  },
+  "schema": "mcblas_program_selection_surface_v1",
+  "software_revision": "maca_3.7.2",
+  "surface": [
+    {
+      "block": 64,
+      "ctas": 512,
+      "grid": [
+        512,
+        1,
+        1
+      ],
+      "k": 12288,
+      "m": 1,
+      "n": 4096,
+      "program": "void b16gemvt_kernel<64, 8, 4, 4, int, float, __maca_bfloat16, __maca_bfloat16>",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 12288,
+      "m": 2,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 12288,
+      "m": 4,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 12288,
+      "m": 8,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 12288,
+      "m": 16,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 12288,
+      "m": 32,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          2,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 12288,
+      "m": 64,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          4,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        32,
+        1,
+        3
+      ],
+      "k": 12288,
+      "m": 96,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          6,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 12288,
+      "m": 128,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          8,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 512,
+      "ctas": 512,
+      "grid": [
+        512,
+        1,
+        1
+      ],
+      "k": 14336,
+      "m": 1,
+      "n": 4096,
+      "program": "void b16gemvt_kernel<512, 8, 8, 4, int, float, __maca_bfloat16, __maca_bfloat16>",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 14336,
+      "m": 2,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 14336,
+      "m": 4,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 14336,
+      "m": 8,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 14336,
+      "m": 16,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 14336,
+      "m": 32,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          2,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 14336,
+      "m": 64,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          4,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        32,
+        1,
+        3
+      ],
+      "k": 14336,
+      "m": 96,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          6,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 14336,
+      "m": 128,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          8,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 128,
+      "ctas": 18992,
+      "grid": [
+        18992,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 1,
+      "n": 151936,
+      "program": "void b16gemvt_kernel<128, 8, 8, 4, int, float, __maca_bfloat16, __maca_bfloat16>",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 2374,
+      "grid": [
+        2374,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 2,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_64x64x64_2m1n4k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 2374,
+      "grid": [
+        2374,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 4,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_64x64x64_2m1n4k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 2374,
+      "grid": [
+        1,
+        2374,
+        1
+      ],
+      "k": 2560,
+      "m": 8,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_64x64x64_2m1n4k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 2374,
+      "grid": [
+        1,
+        2374,
+        1
+      ],
+      "k": 2560,
+      "m": 16,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_64x64x64_2m1n4k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 594,
+      "grid": [
+        1,
+        594,
+        1
+      ],
+      "k": 2560,
+      "m": 32,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_256x32x128_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 1187,
+      "grid": [
+        1,
+        1187,
+        1
+      ],
+      "k": 2560,
+      "m": 64,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 1187,
+      "grid": [
+        1,
+        1187,
+        1
+      ],
+      "k": 2560,
+      "m": 96,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 512,
+      "ctas": 594,
+      "grid": [
+        594,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 128,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_256x256x64_2m1n8k_512t_4stage_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 128,
+      "ctas": 2432,
+      "grid": [
+        2432,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 1,
+      "n": 19456,
+      "program": "void b16gemvt_kernel<128, 8, 8, 4, int, float, __maca_bfloat16, __maca_bfloat16>",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 76,
+      "grid": [
+        76,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 2,
+      "n": 19456,
+      "program": "mcblas__Mck_bf16gemm_tn_256x32x128_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 76,
+      "grid": [
+        76,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 4,
+      "n": 19456,
+      "program": "mcblas__Mck_bf16gemm_tn_256x32x128_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 76,
+      "grid": [
+        76,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 8,
+      "n": 19456,
+      "program": "mcblas__Mck_bf16gemm_tn_256x32x128_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 76,
+      "grid": [
+        76,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 16,
+      "n": 19456,
+      "program": "mcblas__Mck_bf16gemm_tn_256x32x128_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 76,
+      "grid": [
+        1,
+        76,
+        1
+      ],
+      "k": 2560,
+      "m": 32,
+      "n": 19456,
+      "program": "mcblas__Mck_bf16gemm_tn_256x32x128_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 76,
+      "grid": [
+        76,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 64,
+      "n": 19456,
+      "program": "mcblas__Mck_bf16gemm_tn_256x64x128_4m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 152,
+      "grid": [
+        152,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 96,
+      "n": 19456,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 152,
+      "grid": [
+        152,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 128,
+      "n": 19456,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 64,
+      "ctas": 768,
+      "grid": [
+        768,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 1,
+      "n": 6144,
+      "program": "void b16gemvt_kernel<64, 8, 8, 8, int, float, __maca_bfloat16, __maca_bfloat16>",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        96,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 2,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        96,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 4,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        96,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 8,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        96,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 16,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        96,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 32,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 192,
+      "grid": [
+        4,
+        48,
+        1
+      ],
+      "k": 2560,
+      "m": 64,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        96,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 96,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        96,
+        1,
+        1
+      ],
+      "k": 2560,
+      "m": 128,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 64,
+      "ctas": 64128,
+      "grid": [
+        64128,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 1,
+      "n": 128256,
+      "program": "void b16gemvt_wave_kernel<64, 2, 8, int, float, __maca_bfloat16, __maca_bfloat16>",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 2004,
+      "grid": [
+        2004,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 2,
+      "n": 128256,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 2004,
+      "grid": [
+        2004,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 4,
+      "n": 128256,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 2004,
+      "grid": [
+        1,
+        2004,
+        1
+      ],
+      "k": 4096,
+      "m": 8,
+      "n": 128256,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 1002,
+      "grid": [
+        2,
+        501,
+        1
+      ],
+      "k": 4096,
+      "m": 16,
+      "n": 128256,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 1002,
+      "grid": [
+        1002,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 32,
+      "n": 128256,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 1002,
+      "grid": [
+        2,
+        501,
+        1
+      ],
+      "k": 4096,
+      "m": 64,
+      "n": 128256,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 1002,
+      "grid": [
+        1002,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 96,
+      "n": 128256,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 1002,
+      "grid": [
+        1002,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 128,
+      "n": 128256,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 64,
+      "ctas": 75968,
+      "grid": [
+        75968,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 1,
+      "n": 151936,
+      "program": "void b16gemvt_wave_kernel<64, 2, 8, int, float, __maca_bfloat16, __maca_bfloat16>",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 2374,
+      "grid": [
+        2374,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 2,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 2374,
+      "grid": [
+        1,
+        2374,
+        1
+      ],
+      "k": 4096,
+      "m": 4,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 2374,
+      "grid": [
+        1,
+        2374,
+        1
+      ],
+      "k": 4096,
+      "m": 8,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 2374,
+      "grid": [
+        2374,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 16,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 2374,
+      "grid": [
+        2374,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 32,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 1187,
+      "grid": [
+        1,
+        1187,
+        1
+      ],
+      "k": 4096,
+      "m": 64,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 1187,
+      "grid": [
+        1,
+        1187,
+        1
+      ],
+      "k": 4096,
+      "m": 96,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 1187,
+      "grid": [
+        1,
+        1187,
+        1
+      ],
+      "k": 4096,
+      "m": 128,
+      "n": 151936,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 64,
+      "ctas": 12288,
+      "grid": [
+        12288,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 1,
+      "n": 24576,
+      "program": "void b16gemvt_wave_kernel<64, 2, 8, int, float, __maca_bfloat16, __maca_bfloat16>",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        96,
+        1
+      ],
+      "k": 4096,
+      "m": 2,
+      "n": 24576,
+      "program": "mcblas__Mck_bf16gemm_tn_256x64x128_4m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        96,
+        1
+      ],
+      "k": 4096,
+      "m": 4,
+      "n": 24576,
+      "program": "mcblas__Mck_bf16gemm_tn_256x64x128_4m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        96,
+        1
+      ],
+      "k": 4096,
+      "m": 8,
+      "n": 24576,
+      "program": "mcblas__Mck_bf16gemm_tn_256x64x128_4m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        96,
+        1
+      ],
+      "k": 4096,
+      "m": 16,
+      "n": 24576,
+      "program": "mcblas__Mck_bf16gemm_tn_256x64x128_4m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        96,
+        1
+      ],
+      "k": 4096,
+      "m": 32,
+      "n": 24576,
+      "program": "mcblas__Mck_bf16gemm_tn_256x64x128_4m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        96,
+        1
+      ],
+      "k": 4096,
+      "m": 64,
+      "n": 24576,
+      "program": "mcblas__Mck_bf16gemm_tn_256x64x128_4m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 512,
+      "ctas": 96,
+      "grid": [
+        96,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 96,
+      "n": 24576,
+      "program": "mcblas__Mck_bf16gemm_tn_256x128x64_2m1n8k_512t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 512,
+      "ctas": 96,
+      "grid": [
+        1,
+        96,
+        1
+      ],
+      "k": 4096,
+      "m": 128,
+      "n": 24576,
+      "program": "mcblas__Mck_bf16gemm_tn_256x128x64_2m1n8k_512t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 512,
+      "ctas": 80,
+      "grid": [
+        80,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 1,
+      "n": 2560,
+      "program": "void b16gemvt_wave_kernel<512, 4, 4, int, float, __maca_bfloat16, __maca_bfloat16>",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 80,
+      "grid": [
+        1,
+        20,
+        4
+      ],
+      "k": 4096,
+      "m": 2,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          80,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 80,
+      "grid": [
+        1,
+        20,
+        4
+      ],
+      "k": 4096,
+      "m": 4,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          80,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 80,
+      "grid": [
+        1,
+        20,
+        4
+      ],
+      "k": 4096,
+      "m": 8,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          80,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 40,
+      "grid": [
+        1,
+        40,
+        1
+      ],
+      "k": 4096,
+      "m": 16,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_4m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 80,
+      "grid": [
+        1,
+        20,
+        4
+      ],
+      "k": 4096,
+      "m": 32,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          80,
+          2,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 80,
+      "grid": [
+        4,
+        20,
+        1
+      ],
+      "k": 4096,
+      "m": 64,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_4m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 80,
+      "grid": [
+        4,
+        20,
+        1
+      ],
+      "k": 4096,
+      "m": 96,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_64x48x256_4m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 100,
+      "grid": [
+        1,
+        20,
+        5
+      ],
+      "k": 4096,
+      "m": 128,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          80,
+          8,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 64,
+      "ctas": 14336,
+      "grid": [
+        14336,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 1,
+      "n": 28672,
+      "program": "void b16gemvt_wave_kernel<64, 2, 8, int, float, __maca_bfloat16, __maca_bfloat16>",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 224,
+      "grid": [
+        1,
+        224,
+        1
+      ],
+      "k": 4096,
+      "m": 2,
+      "n": 28672,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 224,
+      "grid": [
+        1,
+        224,
+        1
+      ],
+      "k": 4096,
+      "m": 4,
+      "n": 28672,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 224,
+      "grid": [
+        1,
+        224,
+        1
+      ],
+      "k": 4096,
+      "m": 8,
+      "n": 28672,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 224,
+      "grid": [
+        1,
+        224,
+        1
+      ],
+      "k": 4096,
+      "m": 16,
+      "n": 28672,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 224,
+      "grid": [
+        1,
+        224,
+        1
+      ],
+      "k": 4096,
+      "m": 32,
+      "n": 28672,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 512,
+      "ctas": 112,
+      "grid": [
+        1,
+        112,
+        1
+      ],
+      "k": 4096,
+      "m": 64,
+      "n": 28672,
+      "program": "mcblas__Mck_bf16gemm_tn_256x128x64_2m1n8k_512t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 512,
+      "ctas": 112,
+      "grid": [
+        1,
+        112,
+        1
+      ],
+      "k": 4096,
+      "m": 96,
+      "n": 28672,
+      "program": "mcblas__Mck_bf16gemm_tn_256x128x64_2m1n8k_512t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 512,
+      "ctas": 112,
+      "grid": [
+        1,
+        112,
+        1
+      ],
+      "k": 4096,
+      "m": 128,
+      "n": 28672,
+      "program": "mcblas__Mck_bf16gemm_tn_256x128x64_2m1n8k_512t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 64,
+      "ctas": 512,
+      "grid": [
+        512,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 1,
+      "n": 4096,
+      "program": "void b16gemvt_kernel<64, 8, 4, 4, int, float, __maca_bfloat16, __maca_bfloat16>",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 512,
+      "grid": [
+        64,
+        1,
+        8
+      ],
+      "k": 4096,
+      "m": 2,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 512,
+      "grid": [
+        64,
+        1,
+        8
+      ],
+      "k": 4096,
+      "m": 4,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 192,
+      "grid": [
+        64,
+        1,
+        3
+      ],
+      "k": 4096,
+      "m": 8,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 64,
+      "grid": [
+        1,
+        64,
+        1
+      ],
+      "k": 4096,
+      "m": 16,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_4m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 64,
+      "grid": [
+        2,
+        32,
+        1
+      ],
+      "k": 4096,
+      "m": 32,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_4m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 64,
+      "grid": [
+        2,
+        32,
+        1
+      ],
+      "k": 4096,
+      "m": 64,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_64x64x256_4m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        32,
+        3
+      ],
+      "k": 4096,
+      "m": 96,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          6,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        32,
+        1,
+        3
+      ],
+      "k": 4096,
+      "m": 128,
+      "n": 4096,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          128,
+          8,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 64,
+      "ctas": 768,
+      "grid": [
+        768,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 1,
+      "n": 6144,
+      "program": "void b16gemvt_kernel<64, 8, 8, 4, int, float, __maca_bfloat16, __maca_bfloat16>",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        96,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 2,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        96,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 4,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        96,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 8,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        96,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 16,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        96,
+        1,
+        1
+      ],
+      "k": 4096,
+      "m": 32,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        48,
+        1,
+        2
+      ],
+      "k": 4096,
+      "m": 64,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          192,
+          4,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        1,
+        48,
+        2
+      ],
+      "k": 4096,
+      "m": 96,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          192,
+          6,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 96,
+      "grid": [
+        48,
+        1,
+        2
+      ],
+      "k": 4096,
+      "m": 128,
+      "n": 6144,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          192,
+          8,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 64,
+      "ctas": 320,
+      "grid": [
+        320,
+        1,
+        1
+      ],
+      "k": 9728,
+      "m": 1,
+      "n": 2560,
+      "program": "void b16gemvt_wave_kernel<64, 8, 4, int, float, __maca_bfloat16, __maca_bfloat16>",
+      "split_k_epilogue": null
+    },
+    {
+      "block": 256,
+      "ctas": 100,
+      "grid": [
+        1,
+        20,
+        5
+      ],
+      "k": 9728,
+      "m": 2,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          80,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 100,
+      "grid": [
+        1,
+        20,
+        5
+      ],
+      "k": 9728,
+      "m": 4,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          80,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 100,
+      "grid": [
+        1,
+        20,
+        5
+      ],
+      "k": 9728,
+      "m": 8,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          80,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 100,
+      "grid": [
+        20,
+        1,
+        5
+      ],
+      "k": 9728,
+      "m": 16,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          80,
+          1,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 100,
+      "grid": [
+        20,
+        1,
+        5
+      ],
+      "k": 9728,
+      "m": 32,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          80,
+          2,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 100,
+      "grid": [
+        1,
+        20,
+        5
+      ],
+      "k": 9728,
+      "m": 64,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          80,
+          4,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 100,
+      "grid": [
+        1,
+        20,
+        5
+      ],
+      "k": 9728,
+      "m": 96,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          80,
+          6,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    },
+    {
+      "block": 256,
+      "ctas": 100,
+      "grid": [
+        1,
+        20,
+        5
+      ],
+      "k": 9728,
+      "m": 128,
+      "n": 2560,
+      "program": "mcblas__Mck_bf16gemm_tn_128x128x128_4m1n8k_256t_4stage_bf16_bf16_fp32_sb_0_2",
+      "split_k_epilogue": {
+        "grid": [
+          80,
+          8,
+          1
+        ],
+        "kernel": "void mcblas::DevDstElementwiseAdd"
+      }
+    }
+  ],
+  "torch_build": "2.4.0+metax3.7.2.0"
+}

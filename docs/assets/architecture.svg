@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="188 162 855 458" width="855" height="458" role="img" aria-labelledby="title desc">
+  <title id="title">Uni³Sim host, memory, and kernel-plan architecture</title>
+  <desc id="desc">Requests enter a vLLM or SGLang scheduler backed by a host and memory pool. The scheduler creates a kernel plan, which feeds a performance model and a host-device timeline. Host overhead also feeds the host-device timeline. Communication operations provide H2D, D2H, D2D and collective transfers. The performance model exchanges state with local HBM, HBF and DRAM; timeline step times and memory APIs feed back to the scheduler.</desc>
+  <defs/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <g id="shape-4">
+      <g>
+        <ellipse cx="481.083" cy="283.7136" rx="8.6419" ry="8.6419" fill="#385784" stroke="#526782" stroke-width="1.5001"/>
+      </g>
+    </g>
+    <g id="shape-817">
+      <g>
+        <ellipse cx="767.8023" cy="292.6407" rx="8.6419" ry="8.6419" fill="#385784" stroke="#526782" stroke-width="1.5001"/>
+      </g>
+    </g>
+    <g id="shape-32">
+      <g>
+        <rect x="471.6815" y="190.1025" width="286.126" height="51.0236" rx="4.337" fill="#eaf7f3" stroke="#69aaa0" stroke-width="1.5001"/>
+        <g>
+          <text x="614.7445" y="223.7743" font-size="24.0000" font-weight="700" font-family="sans-serif" fill="#22324a" text-anchor="middle">Host / Memory Pool</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-2">
+      <g>
+        <rect x="213.8666" y="274.6881" width="60.2666" height="237.0395" rx="5.1227" fill="#e9f6fc" stroke="#68a4be" stroke-width="1.5001"/>
+        <g transform="rotate(-90 243.9998 393.2078)">
+          <text x="243.9998" y="401.3678" font-size="24.0000" font-weight="700" font-family="sans-serif" fill="#22324a" text-anchor="middle">Communication</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-3">
+      <g>
+        <rect x="307.2245" y="285.0817" width="112.729" height="51.0236" rx="4.337" fill="#f2edff" stroke="#9676c6" stroke-width="1.5001"/>
+        <g>
+          <text x="363.5890" y="318.7535" font-size="24.0000" font-weight="700" font-family="sans-serif" fill="#22324a" text-anchor="middle">Req</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-5">
+      <g>
+        <rect x="453.0447" y="274.688" width="323.3995" height="71.811" rx="6.1039" fill="#f2edff" stroke="#9676c6" stroke-width="1.5001"/>
+        <g>
+          <text x="614.7445" y="304.3535" font-size="24.0000" font-weight="700" font-family="sans-serif" fill="#22324a" text-anchor="middle">Request Scheduler</text>
+          <text x="614.7445" y="333.1535" font-size="24.0000" font-weight="700" font-family="sans-serif" fill="#22324a" text-anchor="middle">(vLLM/SGLang)</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-6">
+      <g>
+        <rect x="471.6815" y="378.4844" width="286.126" height="51.0236" rx="4.337" fill="#f5f8fc" stroke="#92a4bd" stroke-width="1.5001"/>
+        <g>
+          <text x="614.7445" y="412.1562" font-size="24.0000" font-weight="700" font-family="sans-serif" fill="#22324a" text-anchor="middle">Kernel Plan</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-7">
+      <g>
+        <rect x="471.6815" y="461.4934" width="286.126" height="51.0236" rx="4.337" fill="#eaf2ff" stroke="#759bce" stroke-width="1.5001"/>
+        <g>
+          <text x="614.7445" y="495.1652" font-size="24.0000" font-weight="700" font-family="sans-serif" fill="#22324a" text-anchor="middle">Performance Model</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-8">
+      <g>
+        <rect x="471.6815" y="544.5026" width="286.126" height="51.0236" rx="4.337" fill="#f5f8fc" stroke="#92a4bd" stroke-width="1.5001"/>
+        <g>
+          <text x="614.7445" y="578.1744" font-size="24.0000" font-weight="700" font-family="sans-serif" fill="#22324a" text-anchor="middle">Host-Device Timeline</text>
+        </g>
+      </g>
+    </g>
+    <g id="host-overhead">
+      <rect x="224" y="544.5026" width="216" height="51.0236" rx="4.337" fill="#f2edff" stroke="#9676c6" stroke-width="1.5001"/>
+      <text x="332" y="578.1744" font-size="24.0000" font-weight="700" font-family="sans-serif" fill="#22324a" text-anchor="middle">Host Overhead</text>
+      <path d="M 440 570.0144 L 471.6815 570.0144" fill="none" stroke="#347b99" stroke-width="2.5001"/>
+      <path d="M 471.6815 570.0144 L 462.6813 565.8893 L 462.6813 574.1395 Z" fill="#347b99"/>
+    </g>
+    <g id="shape-9">
+      <g>
+        <rect x="855.4452" y="378.4844" width="131.6146" height="170.8723" rx="11.1872" fill="#eaf7f3" stroke="#69aaa0" stroke-width="1.5001"/>
+        <g>
+          <text x="921.2525" y="408.0444" font-size="24.0000" font-weight="700" font-family="sans-serif" fill="#22324a" text-anchor="middle">Local</text>
+          <text x="921.2525" y="436.8444" font-size="24.0000" font-weight="700" font-family="sans-serif" fill="#22324a" text-anchor="middle">Memory</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-10" transform="matrix(0.65874637 0 0 0.96394263 290.31405451 13.29341535)">
+      <g>
+        <rect x="883.6778" y="458.164" width="148.2177" height="29.4572" rx="0" fill="#f7fcfa" stroke="#69aaa0" stroke-width="1"/>
+        <g transform="translate(957.7867 472.8926) scale(1.46329858 1) translate(-957.7867 -472.8926)">
+          <text x="957.7867" y="480.1459" font-size="21.3333" font-weight="400" font-family="sans-serif" fill="#22324a" text-anchor="middle">HBM</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-11" transform="matrix(0.65874637 0 0 0.96394263 290.31405451 13.29341535)">
+      <g>
+        <rect x="883.6778" y="487.6214" width="148.2177" height="29.4572" rx="0" fill="#f7fcfa" stroke="#69aaa0" stroke-width="1"/>
+        <g transform="translate(957.7867 502.3500) scale(1.46329858 1) translate(-957.7867 -502.3500)">
+          <text x="957.7867" y="509.6034" font-size="21.3333" font-weight="400" font-family="sans-serif" fill="#22324a" text-anchor="middle">HBF</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-12" transform="matrix(0.65874637 0 0 0.96394263 290.31405451 13.29341535)">
+      <g>
+        <rect x="883.6778" y="517.0786" width="148.2177" height="29.4572" rx="0" fill="#f7fcfa" stroke="#69aaa0" stroke-width="1"/>
+        <g transform="translate(957.7867 531.8072) scale(1.46329858 1) translate(-957.7867 -531.8072)">
+          <text x="957.7867" y="539.0606" font-size="21.3333" font-weight="400" font-family="sans-serif" fill="#22324a" text-anchor="middle">DRAM</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-14">
+      <g>
+        <path d="M 419.9535 310.5935 L 453.0447 310.5935" fill="none" stroke="#347b99" stroke-width="2.5001" stroke-linejoin="round"/>
+        <path d="M 453.0447 310.5935 L 444.0445 306.4684 L 444.0445 314.7186 Z" fill="#347b99"/>
+      </g>
+    </g>
+    <g id="shape-16">
+      <g>
+        <path d="M 419.9535 403.9962 L 471.6815 403.9962" fill="none" stroke="#347b99" stroke-width="2.5001" stroke-linejoin="round"/>
+        <path d="M 471.6815 403.9962 L 462.6813 399.8711 L 462.6813 408.1213 Z" fill="#347b99"/>
+      </g>
+    </g>
+    <g id="shape-17">
+      <g>
+        <path d="M 614.7445 346.4990 L 614.7445 378.4844" fill="none" stroke="#347b99" stroke-width="2.5001" stroke-linejoin="round"/>
+        <path d="M 614.7445 378.4844 L 618.8695 369.4842 L 610.6194 369.4842 Z" fill="#347b99"/>
+      </g>
+    </g>
+    <g id="shape-18">
+      <g>
+        <path d="M 614.7445 429.5080 L 614.7445 461.4934" fill="none" stroke="#347b99" stroke-width="2.5001" stroke-linejoin="round"/>
+        <path d="M 614.7445 461.4934 L 618.8695 452.4932 L 610.6194 452.4932 Z" fill="#347b99"/>
+      </g>
+    </g>
+    <g id="shape-19">
+      <g>
+        <path d="M 614.7445 512.5171 L 614.7445 544.5026" fill="none" stroke="#347b99" stroke-width="2.5001" stroke-linejoin="round"/>
+        <path d="M 614.7445 544.5026 L 618.8695 535.5024 L 610.6194 535.5024 Z" fill="#347b99"/>
+      </g>
+    </g>
+    <g id="shape-20" transform="matrix(1.00000000 0 0 1.00000000 1.18950131 0.00000000)">
+      <g>
+        <path d="M 579.7704 241.1619 L 579.7704 274.6880" fill="none" stroke="#347b99" stroke-width="2.5001" stroke-linejoin="round"/>
+        <path d="M 579.7704 274.6880 L 583.8955 265.6878 L 575.6453 265.6878 Z" fill="#347b99"/>
+      </g>
+    </g>
+    <g id="shape-21" transform="matrix(1.00000000 0 0 1.00000000 1.18950131 0.00000000)">
+      <g transform="translate(647.3396 257.9249) rotate(0) scale(1 -1) translate(-0.0000 -16.7630)">
+        <path d="M 0.0000 0.0000 L 0.0000 33.5261" fill="none" stroke="#347b99" stroke-width="2.5001" stroke-linejoin="round"/>
+        <path d="M 0.0000 33.5261 L 4.1251 24.5259 L -4.1251 24.5259 Z" fill="#347b99"/>
+      </g>
+    </g>
+    <g id="shape-22">
+      <g>
+        <path d="M 274.0334 487.0052 L 471.6815 487.0052" fill="none" stroke="#347b99" stroke-width="2.5001" stroke-linejoin="round"/>
+        <path d="M 274.0334 487.0052 L 283.0336 491.1303 L 283.0336 482.8802 Z" fill="#347b99"/>
+        <path d="M 471.6815 487.0052 L 462.6813 482.8802 L 462.6813 491.1303 Z" fill="#347b99"/>
+      </g>
+    </g>
+    <g id="shape-23">
+      <g>
+        <path d="M 757.8075 487.0052 L 855.4454 487.0052" fill="none" stroke="#328675" stroke-width="2.5001" stroke-linejoin="round"/>
+        <path d="M 757.8075 487.0052 L 766.8076 491.1303 L 766.8076 482.8802 Z" fill="#328675"/>
+        <path d="M 855.4454 487.0052 L 846.4452 482.8802 L 846.4452 491.1303 Z" fill="#328675"/>
+      </g>
+    </g>
+    <g id="shape-24">
+      <g transform="translate(362.5414 274.8799) rotate(270) scale(-1 1) translate(-0.1918 -118.5416)">
+        <path d="M 0.0000 0.0000 L -20.0000 0.0000 L -20.0000 237.0831 L 0.3836 237.0831" fill="none" stroke="#347b99" stroke-width="2.5001" stroke-linejoin="round"/>
+        <path d="M 0.0000 0.0000 L -9.0002 -4.1251 L -9.0002 4.1251 Z" fill="#347b99"/>
+        <path d="M 0.3836 237.0831 L -8.6166 232.9581 L -8.6166 241.2082 Z" fill="#347b99"/>
+      </g>
+    </g>
+    <g id="shape-25">
+      <g transform="translate(848.8485 344.5390) rotate(270) scale(1 -1) translate(-33.9455 -72.4042)">
+        <path d="M 0.0000 0.0000 L 67.8909 0.0000 L 67.8909 144.8084" fill="none" stroke="#328675" stroke-width="2.5001" stroke-linejoin="round"/>
+        <path d="M 67.8909 144.8084 L 72.0160 135.8082 L 63.7658 135.8082 Z" fill="#328675"/>
+      </g>
+    </g>
+    <g id="shape-26">
+      <g transform="translate(767.1258 431.3276) rotate(0) scale(1 -1) translate(-9.3184 -138.6868)">
+        <path d="M 0.0000 0.0000 L 251.0811 0.0000 L 251.0811 277.3736 L 18.6367 277.3736" fill="none" stroke="#347b99" stroke-width="2.5001" stroke-linejoin="round"/>
+        <path d="M 18.6367 277.3736 L 27.6369 281.4987 L 27.6369 273.2486 Z" fill="#347b99"/>
+      </g>
+    </g>
+    <g id="shape-28">
+      <g>
+        <rect x="295.7428" y="227.5845" width="135.6923" height="22.5839" rx="0" fill="none" stroke="none" stroke-width="0"/>
+        <g>
+          <text x="363.5889" y="246.1298" font-size="21.3333" font-weight="700" font-family="sans-serif" fill="#347b99" text-anchor="middle">H2D / D2H</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-29">
+      <g>
+        <rect x="270.0963" y="459.7665" width="206.6698" height="23.5658" rx="0" fill="none" stroke="none" stroke-width="0"/>
+        <g>
+          <text x="373.4312" y="478.8027" font-size="21.3333" font-weight="700" font-family="sans-serif" fill="#347b99" text-anchor="middle">D2D / Collective</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-30">
+      <g>
+        <rect x="736.6264" y="434.008" width="140" height="50" rx="0" fill="none" stroke="none" stroke-width="0"/>
+        <g>
+          <text x="806.6264" y="453.4613" font-size="21.3333" font-weight="700" font-family="sans-serif" fill="#328675" text-anchor="middle">State</text>
+          <text x="806.6264" y="479.0613" font-size="21.3333" font-weight="700" font-family="sans-serif" fill="#328675" text-anchor="middle">Update</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-31">
+      <g>
+        <rect x="787.3745" y="262.2833" width="125.2543" height="22.5839" rx="0" fill="none" stroke="none" stroke-width="0"/>
+        <g>
+          <text x="850.0016" y="280.8286" font-size="21.3333" font-weight="700" font-family="sans-serif" fill="#347b99" text-anchor="middle">Step time</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-56">
+      <g>
+        <rect x="307.2245" y="378.4844" width="112.729" height="51.0236" rx="4.337" fill="#f2edff" stroke="#9676c6" stroke-width="1.5001"/>
+        <g>
+          <text x="363.5890" y="412.1562" font-size="24.0000" font-weight="700" font-family="sans-serif" fill="#22324a" text-anchor="middle">LLM</text>
+        </g>
+      </g>
+    </g>
+    <g id="shape-828">
+      <g>
+        <rect x="780.0016" y="301.6132" width="140" height="50" rx="0" fill="none" stroke="none" stroke-width="0"/>
+        <g>
+          <text x="850.0016" y="333.8666" font-size="21.3333" font-weight="700" font-family="sans-serif" fill="#328675" text-anchor="middle">Memory API</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

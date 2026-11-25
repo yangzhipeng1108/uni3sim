@@ -1,0 +1,97 @@
+{
+  "schema": "nvidia_a800_add_rmsnorm_mixed_l2_service_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "evidence_kind": "independent_full_chip_mixed_l2_stream_capacity",
+  "production_or_evaluation_duration_consumed": false,
+  "capture": {
+    "owner": "capture-owner-4c0f2645f650",
+    "source_baseline_commit": "849ef2bc104c609b47d5da48693de2041e277a1c",
+    "output": "profiler_output/microbench/nvidia_a800/l2_directional_3r2_849ef2bc_gpu3_20260905",
+    "physical_device_index": 3,
+    "device_uuid": "capture-device-c086ef8e4219",
+    "pci_bus_id": "00000000:67:00.0",
+    "preflight_all_devices_idle": true,
+    "postflight_memory_mib": 0,
+    "postflight_utilization_percent": 0,
+    "postflight_compute_processes": 0,
+    "cleanup": "complete"
+  },
+  "source_identity": {
+    "probe_source": "microbench/nvidia_a800/memory/dram/directional_bandwidth.cu",
+    "probe_source_sha256": "73116f3e6702a9c9ce03cb0a4740f99419f88c8a8a4f66ebdcfbb737e5bcdf94",
+    "binary_sha256": "ef1b69ad067222a02dc692ab2eaa1efb82c835df595cee86f70de4c9779db623",
+    "raw_sha256": "1777685e3291fd04183b3a0f2c47badf6b13551b19d1ff6d42a9e8b117d9a98c",
+    "stderr_sha256": "abf6d88ef70895a7263d89a67a4dca7b8ae218e354d9d6ef40065097064d692d"
+  },
+  "probe_contract": {
+    "timer_domain": "cuda_event",
+    "block_threads": 256,
+    "vector_bytes_per_lane_operation": 16,
+    "read_operations_per_group": 3,
+    "write_operations_per_group": 2,
+    "read_fraction": 0.6,
+    "write_fraction": 0.4,
+    "source_buffer_bytes": 15728640,
+    "destination_buffer_bytes": 15728640,
+    "combined_working_set_bytes": 31457280,
+    "hardware_l2_bytes": 41943040,
+    "iterations": 256,
+    "trials_per_grid": 7,
+    "grids": [108, 216, 432, 864, 1024, 1728],
+    "load_cache_operator": "ld.global.cg.v4.u32",
+    "store_cache_operator": "st.global.wb.v4.u32",
+    "validation": "pass"
+  },
+  "median_total_capacity_gb_per_s": {
+    "108": 2286.139612,
+    "216": 2485.562492,
+    "432": 2442.335350,
+    "864": 2473.056604,
+    "1024": 2495.025365,
+    "1728": 2482.424314
+  },
+  "relative_trial_spread_percent": {
+    "108": 1.218851,
+    "216": 0.631317,
+    "432": 1.678177,
+    "864": 2.969684,
+    "1024": 1.528743,
+    "1728": 2.764331
+  },
+  "selected_service": {
+    "selection_rule": "minimum per-grid median across the frozen full-chip grid sweep",
+    "coupled_logical_byte_capacity_per_s": 2286139612000.0,
+    "read_logical_byte_capacity_per_s": 1371683767200.0,
+    "write_logical_byte_capacity_per_s": 914455844800.0,
+    "composition": "For an exact 3:2 stream, read_bytes/read_capacity equals write_bytes/write_capacity; their maximum is the one coupled service time.",
+    "scope": "full_chip",
+    "minimum_grid_ctas": 108,
+    "maximum_grid_ctas": 1728,
+    "maximum_relative_trial_spread_percent": 2.969684
+  },
+  "applicability": {
+    "dtype": "bf16",
+    "vector_width_elements": 8,
+    "logical_bytes_per_lane_operation": 16,
+    "threads_per_cta": 256,
+    "required_read_write_ratio": "3:2",
+    "required_source_evidence": "tail-free vec8 read/write operations with eight active producer warps per CTA",
+    "cache_scope": "L2-resident capacity endpoint; compulsory DRAM service remains an independent bound"
+  },
+  "decision": {
+    "status": "accepted_mechanism_capacity",
+    "forward_eligible": true,
+    "reason": "The exact workload-independent 3:2 stream is stable across the frozen full-chip grid sweep, includes the production 1024-CTA launch point, and supplies only a typed byte-service capacity."
+  },
+  "excluded_conclusions": [
+    "a complete production AddRMSNorm duration",
+    "a replacement for the generic or pure-read L2 capacity",
+    "read/write ratios other than exactly 3:2",
+    "blocks other than 256 threads",
+    "scalar, vec4, or non-BF16 paths",
+    "grids outside 108 through 1728 CTAs",
+    "any per-shape timing correction"
+  ]
+}

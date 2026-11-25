@@ -1,0 +1,54 @@
+# Vector glue-op workloads. op_group = {op} × layers × toks (cartesian),
+# expanded by build_vector_shapes — do not hand-enumerate. Shapes and model
+# dimensions are hardware-independent so all collectors measure the same cases
+# and remain horizontally comparable. Each hardware runner maps these semantic
+# operations to its native implementation and profiler.
+kernel_name: vector
+
+op_groups:
+  - op: rmsnorm    # standalone RMSNorm without residual (first-layer input only, 1/(2N))
+    toks: &toks [1, 2, 4, 8, 16, 64, 256, 1024]
+    layers: [Qwen3_30B_A3B, Qwen3_4B, Qwen3_8B, Qwen3_32B, Llama70B, Llama405B]
+    op2: add
+    batch: 1
+
+  - op: add_rmsnorm    # fused residual add + RMSNorm (serving main path, (2N-1)/(2N))
+    toks: *toks
+    layers: [Qwen3_4B, Qwen3_8B, Qwen3_32B, Qwen3_30B_A3B, Llama70B, Llama405B]
+    op2: add
+    batch: 1
+
+  - op: rope    # Semantic RoPE Q/K workload; vendor Serving may fuse its launch
+    toks: *toks
+    layers: [Llama8B, DeepSeek_MLA_rope, Llama70B, Llama405B]
+    op2: add
+    batch: 1
+
+  - op: silu    # SiLU-and-multiply over concatenated gate/up tensors
+    toks: *toks
+    layers: [Qwen3_30B_A3B, Qwen3_4B, Qwen3_8B, Llama8B, Qwen3_32B, Llama70B, Llama405B]
+    op2: add
+    batch: 1
+
+  - op: elementwise    # elementwise add/mul; op2 selects the operation
+    toks: *toks
+    layers: [Qwen3_30B_A3B, Qwen3_4B, Qwen3_8B, Qwen3_32B, Llama70B, Llama405B]
+    op2: [add, mul]
+    batch: 1
+
+  - op: kvcache    # paged KV write; toks is total scheduled tokens (no batch axis)
+    toks: *toks
+    layers: [Qwen3_30B_A3B, Qwen3_4B]
+    op2: add
+    batch: 1
+
+layers:
+  - {name: "Qwen3_4B", hidden: 2560, num_heads: 32, num_kv_heads: 8, head_dim: 128, intermediate: 9728, dtype: "bf16", override_only: false}
+  - {name: "Qwen3_8B", hidden: 4096, num_heads: 32, num_kv_heads: 8, head_dim: 128, intermediate: 12288, dtype: "bf16", override_only: false}
+  - {name: "Llama8B", hidden: 4096, num_heads: 32, num_kv_heads: 8, head_dim: 128, intermediate: 14336, dtype: "bf16", override_only: false}
+  - {name: "Qwen3_32B", hidden: 5120, num_heads: 64, num_kv_heads: 8, head_dim: 128, intermediate: 25600, dtype: "bf16", override_only: false}
+  - {name: "Llama70B", hidden: 8192, num_heads: 64, num_kv_heads: 8, head_dim: 128, intermediate: 28672, dtype: "bf16", override_only: false}
+  - {name: "Qwen3_30B_A3B", hidden: 2048, num_heads: 32, num_kv_heads: 4, head_dim: 128, intermediate: 6144, dtype: "bf16", override_only: false}
+  - {name: "Qwen3_235B", hidden: 4096, num_heads: 64, num_kv_heads: 4, head_dim: 128, intermediate: 12288, dtype: "bf16", override_only: false}
+  - {name: "DeepSeek_MLA_rope", hidden: 4096, num_heads: 64, num_kv_heads: 1, head_dim: 64, intermediate: 12288, dtype: "bf16", override_only: false}
+  - {name: "Llama405B", hidden: 16384, num_heads: 128, num_kv_heads: 8, head_dim: 128, intermediate: 53248, dtype: "bf16", override_only: false}

@@ -1,0 +1,73 @@
+{
+  "schema": "fused_moe_operand_load_path_v1",
+  "mechanism": "fused_moe_kernel_operand_load_path_static_semantics",
+  "hardware_id": "metax_c500",
+  "evidence_kind": "device_image_disassembly",
+  "allowed_use": "Static ISA semantics of how the Triton grouped-MoE GEMM issues its operand loads on this target: the instruction class and width, the absence of any cache or eviction modifier, and the fact that operands reach the tensor core through registers and shared memory rather than through a direct global-to-shared engine.  Use it to rule mechanisms in or out, not to price traffic.",
+  "forbidden_use": "No number here may become a Forward parameter.  The shared-memory allocation in particular is read from the container's current Triton cache, which canonical provenance does not bind to the capture-time build, so it may only support negative results.",
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "source": "Triton AOT cache entry inside container capture-container-1",
+    "cache_key": "1783e226bd8fcecbe451b28bb93c1c7e30cd071951a979b0c47d49e87ff1c078",
+    "mcfatbin_sha256": "4a7cc576ed5acf3c021d17ac139a8d86d81fcf59ca160ee402cf1b5e6a03cf58",
+    "mcfatbin_mtime": "2026-09-08T06:27:07Z",
+    "selection": "Chosen by matching the canonical BM64 tiling signature in the cached TTIR: A tile tensor<64x32xbf16>, B tile tensor<32x64xbf16>, accumulator tensor<64x64xbf16>.  All 43 cache entries carrying that signature agree on shared=16384, num_warps=4, num_stages=3.",
+    "caveat": "Canonical dataset provenance records no compile hash, so this entry is NOT proven to be the binary that ran at capture time.  The conclusions drawn from it are negative and are properties of the Triton MACA backend's code generation for this configuration rather than of one build.",
+    "extraction": "The .mcfatbin is a __CLANG_OFFLOAD_BUNDLE__; the device ELF begins at offset 4096.  dd skip=4096, then /opt/maca/mxgpu_llvm/bin/llvm-objdump -d --mcpu=mxc."
+  },
+  "findings": {
+    "global_load_instruction": "ldg_b128",
+    "global_load_bytes_per_lane": 16,
+    "global_load_count_in_text": 12,
+    "narrow_global_loads": {
+      "ldg_b32": 5,
+      "note": "scalar loads of routing metadata, not operand tiles"
+    },
+    "cache_or_eviction_modifiers": [],
+    "cache_modifier_note": "No glc, slc, nt, bypass or equivalent token appears anywhere in the disassembled text.  The operand loads take the default cached path.",
+    "shared_memory_path": {
+      "stores": {
+        "sts_b64": 20,
+        "sts_b16": 16
+      },
+      "loads": {
+        "lds_b64": 40,
+        "lds_b128": 2
+      },
+      "note": "Operands land in registers via ldg and are written to shared memory with sts; there is no direct global-to-shared copy instruction.  The tensor core reads only from shared memory."
+    },
+    "tensor_core_instruction": {
+      "mma_16x16x16bf16": 21
+    },
+    "shared_memory_bytes": 16384,
+    "threads_per_block": 256,
+    "num_warps": 4,
+    "warp_size": 64,
+    "num_stages": 3,
+    "implied_blocks_per_unit": {
+      "value": 4,
+      "derivation": "min(max_smem_per_unit_bytes / shared, max_threads_per_unit / threads_per_block) = min(65536/16384, 2048/256) = min(4, 8); shared memory binds.",
+      "use": "negative result only, see forbidden_use"
+    },
+    "loop_structure": {
+      "software_pipeline_depth": 3,
+      "barriers_in_loop_body": 3,
+      "global_loads_per_k_step": 2,
+      "bytes_per_block_per_k_step": 8192,
+      "bytes_derivation": "Two ldg_b128 per k step, each 16 bytes on every one of the 256 lanes: 4096 bytes for the activation tile, 64 rows of 64 bytes, and 4096 for the weight tile, 32 rows of 128 bytes.  That is BK * (BM + BN) * element_bytes = 32 * 128 * 2, which independently confirms the per-step operand byte count the miss core replays.",
+      "issue_position": "The loads for a stage are issued inside the MMA block of the stage two earlier, so at most three stages of operand loads, 24 KiB per block, are in flight at once."
+    },
+    "inter_block_synchronisation": {
+      "atomics": 0,
+      "semaphores": 0,
+      "global_timers": 0,
+      "spin_constructs": 0,
+      "barrier_instructions": 6,
+      "barrier_scope": "workgroup",
+      "scope_derivation": "A device-scope barrier cannot occur in this kernel: the canonical grid is 48960 blocks against a residency of 416, so a device-wide barrier would deadlock.  Three of the six barriers sit in the loop body, one per software-pipeline stage, which is what double buffering needs to order warps inside one block.",
+      "consequence": "The instruction stream relates no block's progress to any other block's.  The steady-state phase distribution across concurrently resident blocks is therefore NOT readable from the operand load path: it is set by dispatch rate, block start stagger, memory latency variance and the replacement policy, none of which appears in the instruction stream, in the kernel source, or in any available specification."
+    }
+  },
+  "consequence_for_the_miss_core": "The production operand load is the same instruction class and width as the plain vector load a pure-traffic probe issues, with no cache modifier and no special global-to-shared path.  The load path is therefore not a difference between the probe family and the production kernel, which removes the last structural difference that had been left untested.  The instruction stream also settles a second question in the negative: it carries no inter-block synchronisation, so it cannot supply the steady-state phase distribution that would be needed to replace the core's lock-step wave with a faithful reference order.",
+  "status": "candidate_pending_main_agent_review"
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism_id": "cann_fia_cross_domain_edge_completion_v1",
+  "scope": "empty source-ordered C1-to-V1, V1-to-C2, and C2-to-V2 dependency completion in KERNEL_TYPE_MIX_AIC_1_2",
+  "source_commit": "0823da60bc6baec9d64e4c23bece65d155441692",
+  "source_snapshot_sha256": "100a5d5cb43a90d147fbe94ce6ecbe702040fda2eddf7e9a198b261cd51a319a",
+  "binary_sha256": "c2b79eec15dfd5ee2177e39e2eabfe816fdaf32a894fd5263ae806bca87c118d",
+  "capture_root": "profiler_output/microbench/ascend_910b",
+  "run_ids": [
+    "fa_edge_0823da60_d6_r1",
+    "fa_edge_0823da60_d6_r2",
+    "fa_edge_0823da60_d6_r3"
+  ],
+  "raw_sha256": [
+    "afcf43114375e34a37a1fce131582c0dc6d4242842605634e80480e7be092624",
+    "fe78bafb877b36b940b0aec84585e316417d1ea5b1caa5b84ce0c9fd2b7092b7",
+    "88c03a99006a60eed37c02c38ab1f5c6c8aae6ed23ce2e9bf703731e36936eaa"
+  ],
+  "report_path": "profiler_output/microbench/ascend_910b/fa_edge_0823da60_d6_report.json",
+  "report_sha256": "786c46d47f972070a2a6a16c87d9cada4ff1bde07df76e2b1b489e573df41e91",
+  "failed_gates": {
+    "aiv_lane_max_difference_at_most_20pct": false,
+    "all_parameter_cross_run_spans_at_most_20pct": false,
+    "balanced_order_max_at_most_20pct": false,
+    "critical_edge_and_serial_sum_bound_ring": false,
+    "validation_max_ape_at_most_25pct": false
+  },
+  "failure_reason": "The v1 startup-plus-steady reduction collapses the source ring fill into one startup term and cannot reproduce the measured N=4 transition; the V1-to-C2 lane-symmetry gate also does not represent the source critical edge because the AIC observes the later of two AIV senders.",
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": false,
+  "forward_eligible": false,
+  "consumer_service_published": false,
+  "use_restrictions": [
+    "diagnostic gate evidence only",
+    "must not enter Forward, HWSpec, launch selection, or a production predictor",
+    "must not select stable cells or relax the frozen v1 gates"
+  ]
+}

@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "artifact_type": "ascend_910b_elementwise_add_mul_static_dag_accounting",
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "source_checkout": "/usr/local/Ascend/cann-8.5.1",
+  "source_inspection_baseline": "ccc46735a8ed71ca5ab8e85fd9521cc525477a27",
+  "scope": "BF16 one-dimensional Add key 210010000 and Mul key 210020000 source-level DAG, TBuf, mutex, and tile-loop accounting for four T1024 high-contribution cases",
+  "required_source_artifacts": {
+    "add_apt.cpp": {
+      "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/ascendc/add/add_apt.cpp",
+      "sha256": "f28d5649f956222d67a2381d1b241e739c73171544fa39d12cb4514e674f80c9",
+      "line_count": 56,
+      "anchors": {
+        "bf16_cast_predicate": [36, 37],
+        "bf16_dag_selection": [47, 50]
+      }
+    },
+    "mul_apt.cpp": {
+      "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/ascendc/mul/mul_apt.cpp",
+      "sha256": "682455b1a1f77fdb83ddebfa259d1aab1efe17cecd84b56692864e723ffbbd02",
+      "line_count": 74,
+      "anchors": {
+        "bf16_dag_selection": [57, 62]
+      }
+    },
+    "add_dag.h": {
+      "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/ascendc/add/arch35/add_dag.h",
+      "sha256": "478d891f6cf237cf383853555b7681e549c56cce272d17f21c56b5ad45b79fdf",
+      "line_count": 98,
+      "anchors": {
+        "bf16_dag": [49, 63]
+      }
+    },
+    "mul_dag.h": {
+      "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/ascendc/mul/arch35/mul_dag.h",
+      "sha256": "20335a70953c6a9c62088762f69e7fa74c4c4acf2e751cf62874dd0294424cbf",
+      "line_count": 507,
+      "anchors": {
+        "bf16_dag": [389, 404]
+      }
+    },
+    "broadcast_sch_one_dim.h": {
+      "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/ascendc/common/op_kernel/atvoss/broadcast/broadcast_sch_one_dim.h",
+      "sha256": "4eebc1471b440575e3017a4be3d2e4f8b1c70c6764c7aa5f25a9573c687f3e67",
+      "line_count": 556,
+      "anchors": {
+        "tbuf_init": [47, 63],
+        "worker_tail_selection": [65, 72],
+        "tile_loop_and_ping_pong": [78, 95],
+        "copy_in_lifecycle": [181, 230],
+        "copy_out_lifecycle": [240, 273],
+        "buffer_id_ping_pong": [292, 299],
+        "vector_input_lifecycle": [347, 387],
+        "vector_output_lifecycle": [439, 470],
+        "dag_dispatch": [507, 531],
+        "single_tbuf_member": [533, 551]
+      }
+    }
+  },
+  "control_dependencies": {
+    "sync.h": {
+      "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/ascendc/common/op_kernel/atvoss/atp/sync.h",
+      "sha256": "7cb3198812792f775db46f47d175d773cced914cb34f9371c2b9800fdf69b618",
+      "line_count": 79,
+      "anchors": {
+        "pipe_lock_mapping": [31, 40],
+        "pipe_unlock_mapping": [47, 56],
+        "get_tensor": [63, 67],
+        "release_tensor": [74, 78]
+      }
+    },
+    "dag.h": {
+      "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/ascendc/common/op_kernel/atvoss/atp/dag.h",
+      "sha256": "d8e3151f89c8fa7a04a5898145bd0495ab76070cf4540eab7a3420589db36dd0",
+      "anchors": {
+        "dag_node_definition": [61, 136],
+        "dag_fun_list": [157, 186],
+        "maximum_live_dtype_width": [259, 264],
+        "level_2_buffer_count": [349, 365],
+        "selected_buffer_count": [444, 463],
+        "buffer_id_generation": [441, 495]
+      }
+    }
+  },
+  "kernel_metadata_artifacts": {
+    "add": {
+      "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/kernel/ascend910b/ops_legacy/add/Add_ce3d1ff8ba23a0bcb292da3577c1625d_high_performance.json",
+      "sha256": "28d7c37cd9f93f258d97d705f1a38257f1b38426cc9cc48a31e4bc38f5b01820",
+      "required_kernel": "Add_ce3d1ff8ba23a0bcb292da3577c1625d_high_performance_210010000",
+      "core_type": "VectorCore",
+      "intercore_sync": 0
+    },
+    "mul": {
+      "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/kernel/ascend910b/ops_legacy/mul/Mul_ce3d1ff8ba23a0bcb292da3577c1625d_high_performance.json",
+      "sha256": "6f76b609ae07cddf6052a32197979cd669faf187d142ad308deec0a001af3116",
+      "required_kernel": "Mul_ce3d1ff8ba23a0bcb292da3577c1625d_high_performance_210020000",
+      "core_type": "VectorCore",
+      "intercore_sync": 0
+    }
+  },
+  "bf16_dag": {
+    "add_type": "AddOp::AddWithCastCompute<bfloat16_t>::OpDag",
+    "mul_type": "MulDag::MulXfp16Op<bfloat16_t>::OpDag",
+    "nodes": [
+      "copy_in_x1",
+      "copy_in_x2",
+      "cast_x1_bf16_to_fp32",
+      "cast_x2_bf16_to_fp32",
+      "binary_fp32",
+      "cast_result_fp32_to_bf16",
+      "copy_out_y"
+    ],
+    "edges": [
+      ["copy_in_x1", "cast_x1_bf16_to_fp32"],
+      ["copy_in_x2", "cast_x2_bf16_to_fp32"],
+      ["cast_x1_bf16_to_fp32", "binary_fp32"],
+      ["cast_x2_bf16_to_fp32", "binary_fp32"],
+      ["binary_fp32", "cast_result_fp32_to_bf16"],
+      ["cast_result_fp32_to_bf16", "copy_out_y"]
+    ],
+    "per_tile_node_calls": {
+      "gm_to_ub_copy_in": 2,
+      "bf16_to_fp32_cast": 2,
+      "fp32_binary": 1,
+      "fp32_to_bf16_cast": 1,
+      "ub_to_gm_copy_out": 1,
+      "total": 7
+    },
+    "same_topology_for_add_and_mul": true
+  },
+  "source_buffer_lifecycle": {
+    "scheduler_tque_objects_per_worker": 0,
+    "scheduler_tbuf_objects_per_worker": 1,
+    "tbuf_position": "VECCALC",
+    "tbuf_init_calls_per_worker": 1,
+    "tbuf_allocation_bytes_formula": "ubFormer * ElemDag::MaxDtypeBytes * ElemDag::BufferNum",
+    "selected_bf16_dag_compile_time_constants": {
+      "dag": "MulDag::MulXfp16Op<bfloat16_t>::OpDag",
+      "memory_level": 2,
+      "max_dtype_bytes": 4,
+      "buffer_num": 5,
+      "bytes_per_ub_element": 20
+    },
+    "key_210020000_two_tile_allocation": {
+      "element_count": 524288,
+      "block_factor_elements": 11008,
+      "ub_former_elements": 5504,
+      "allocation_bytes": 110080,
+      "derivation": "5504 * 4 * 5"
+    },
+    "buffer_id_formula": "ElemDag::GetBufferIds<true, true>()",
+    "ping_pong_selector": "i & 1",
+    "ping_pong_period_tiles": 2,
+    "per_tile_mutex_calls": {
+      "PIPE_MTE2": {"lock": 2, "unlock": 2},
+      "PIPE_V": {"lock": 9, "unlock": 9},
+      "PIPE_MTE3": {"lock": 1, "unlock": 1},
+      "all_pipes": {"lock": 12, "unlock": 12}
+    },
+    "per_tile_control_calls": {
+      "dag_node_dispatch": 7,
+      "dag_recursive_transition": 6,
+      "buffer_id_lookup": 12,
+      "ping_pong_argument": 1
+    },
+    "per_worker_control_by_tile_count": {
+      "18": {"tbuf_init_calls": 1, "tile_run_calls": 18, "dag_node_dispatches": 126, "dag_recursive_transitions": 108, "buffer_id_lookups": 216, "ping_pong_arguments": 18, "offset_updates": 17, "mutex_locks": {"PIPE_MTE2": 36, "PIPE_V": 162, "PIPE_MTE3": 18, "all_pipes": 216}, "mutex_unlocks": {"PIPE_MTE2": 36, "PIPE_V": 162, "PIPE_MTE3": 18, "all_pipes": 216}},
+      "29": {"tbuf_init_calls": 1, "tile_run_calls": 29, "dag_node_dispatches": 203, "dag_recursive_transitions": 174, "buffer_id_lookups": 348, "ping_pong_arguments": 29, "offset_updates": 28, "mutex_locks": {"PIPE_MTE2": 58, "PIPE_V": 261, "PIPE_MTE3": 29, "all_pipes": 348}, "mutex_unlocks": {"PIPE_MTE2": 58, "PIPE_V": 261, "PIPE_MTE3": 29, "all_pipes": 348}},
+      "30": {"tbuf_init_calls": 1, "tile_run_calls": 30, "dag_node_dispatches": 210, "dag_recursive_transitions": 180, "buffer_id_lookups": 360, "ping_pong_arguments": 30, "offset_updates": 29, "mutex_locks": {"PIPE_MTE2": 60, "PIPE_V": 270, "PIPE_MTE3": 30, "all_pipes": 360}, "mutex_unlocks": {"PIPE_MTE2": 60, "PIPE_V": 270, "PIPE_MTE3": 30, "all_pipes": 360}},
+      "36": {"tbuf_init_calls": 1, "tile_run_calls": 36, "dag_node_dispatches": 252, "dag_recursive_transitions": 216, "buffer_id_lookups": 432, "ping_pong_arguments": 36, "offset_updates": 35, "mutex_locks": {"PIPE_MTE2": 72, "PIPE_V": 324, "PIPE_MTE3": 36, "all_pipes": 432}, "mutex_unlocks": {"PIPE_MTE2": 72, "PIPE_V": 324, "PIPE_MTE3": 36, "all_pipes": 432}},
+      "58": {"tbuf_init_calls": 1, "tile_run_calls": 58, "dag_node_dispatches": 406, "dag_recursive_transitions": 348, "buffer_id_lookups": 696, "ping_pong_arguments": 58, "offset_updates": 57, "mutex_locks": {"PIPE_MTE2": 116, "PIPE_V": 522, "PIPE_MTE3": 58, "all_pipes": 696}, "mutex_unlocks": {"PIPE_MTE2": 116, "PIPE_V": 522, "PIPE_MTE3": 58, "all_pipes": 696}},
+      "59": {"tbuf_init_calls": 1, "tile_run_calls": 59, "dag_node_dispatches": 413, "dag_recursive_transitions": 354, "buffer_id_lookups": 708, "ping_pong_arguments": 59, "offset_updates": 58, "mutex_locks": {"PIPE_MTE2": 118, "PIPE_V": 531, "PIPE_MTE3": 59, "all_pipes": 708}, "mutex_unlocks": {"PIPE_MTE2": 118, "PIPE_V": 531, "PIPE_MTE3": 59, "all_pipes": 708}}
+    },
+    "mte_dependency_edges": [
+      {"from": "PIPE_MTE2:copy_in_x1", "to": "PIPE_V:cast_x1_bf16_to_fp32", "count_per_tile": 1},
+      {"from": "PIPE_MTE2:copy_in_x2", "to": "PIPE_V:cast_x2_bf16_to_fp32", "count_per_tile": 1},
+      {"from": "PIPE_V:cast_result_fp32_to_bf16", "to": "PIPE_MTE3:copy_out_y", "count_per_tile": 1}
+    ],
+    "counting_level": "CANN source API calls and DAG dependencies, not compiler instruction counts"
+  },
+  "tiling_derivation": {
+    "element_count_formula": "tokens * hidden",
+    "vector_workers": 48,
+    "block_alignment_elements": 128,
+    "block_factor_formula": "align_up(ceil(element_count / vector_workers), block_alignment_elements)",
+    "grid_formula": "ceil(element_count / block_factor)",
+    "add_ub_limit_elements": 6016,
+    "mul_ub_limit_elements": 9728,
+    "ub_factor_formula": "align_up(ceil(block_factor / ceil(block_factor / operation_ub_limit)), block_alignment_elements)",
+    "worker_tile_formula": "ceil(worker_elements / ub_factor)",
+    "worker_element_formula": "min(block_factor, element_count - worker_index * block_factor)"
+  },
+  "cases": {
+    "VECTOR_ELEMENTWISE_T1024_H8192_B1_ADD": {
+      "operation": "add",
+      "input_mode": "two_equal_shape_bf16_tensors",
+      "scalar_flag": 0,
+      "tokens": 1024,
+      "hidden": 8192,
+      "element_count": 8388608,
+      "tiling_key": 210010000,
+      "kernel_name": "Add_ce3d1ff8ba23a0bcb292da3577c1625d_high_performance_210010000",
+      "grid": [48, 1, 1],
+      "block": [1, 1, 1],
+      "block_factor_elements": 174848,
+      "ub_factor_elements": 5888,
+      "worker_groups": [
+        {"first_worker": 0, "worker_count": 47, "worker_elements": 174848, "nonterminal_full_tiles": 29, "terminal_tile_elements": 4096, "tiles_per_worker": 30},
+        {"first_worker": 47, "worker_count": 1, "worker_elements": 170752, "nonterminal_full_tiles": 28, "terminal_tile_elements": 5888, "tiles_per_worker": 29}
+      ],
+      "aggregate": {"tiles": 1439, "dag_node_calls": 10073, "dag_edge_traversals": 8634, "mte2_copy_requests": 2878, "vector_node_calls": 5756, "mte3_copy_requests": 1439, "mutex_locks": {"PIPE_MTE2": 2878, "PIPE_V": 12951, "PIPE_MTE3": 1439, "all_pipes": 17268}, "mutex_unlocks": {"PIPE_MTE2": 2878, "PIPE_V": 12951, "PIPE_MTE3": 1439, "all_pipes": 17268}}
+    },
+    "VECTOR_ELEMENTWISE_T1024_H16384_B1_ADD": {
+      "operation": "add",
+      "input_mode": "two_equal_shape_bf16_tensors",
+      "scalar_flag": 0,
+      "tokens": 1024,
+      "hidden": 16384,
+      "element_count": 16777216,
+      "tiling_key": 210010000,
+      "kernel_name": "Add_ce3d1ff8ba23a0bcb292da3577c1625d_high_performance_210010000",
+      "grid": [48, 1, 1],
+      "block": [1, 1, 1],
+      "block_factor_elements": 349568,
+      "ub_factor_elements": 6016,
+      "worker_groups": [
+        {"first_worker": 0, "worker_count": 47, "worker_elements": 349568, "nonterminal_full_tiles": 58, "terminal_tile_elements": 640, "tiles_per_worker": 59},
+        {"first_worker": 47, "worker_count": 1, "worker_elements": 347520, "nonterminal_full_tiles": 57, "terminal_tile_elements": 4608, "tiles_per_worker": 58}
+      ],
+      "aggregate": {"tiles": 2831, "dag_node_calls": 19817, "dag_edge_traversals": 16986, "mte2_copy_requests": 5662, "vector_node_calls": 11324, "mte3_copy_requests": 2831, "mutex_locks": {"PIPE_MTE2": 5662, "PIPE_V": 25479, "PIPE_MTE3": 2831, "all_pipes": 33972}, "mutex_unlocks": {"PIPE_MTE2": 5662, "PIPE_V": 25479, "PIPE_MTE3": 2831, "all_pipes": 33972}}
+    },
+    "VECTOR_ELEMENTWISE_T1024_H8192_B1_MUL": {
+      "operation": "mul",
+      "input_mode": "two_equal_shape_bf16_tensors",
+      "scalar_flag": 0,
+      "tokens": 1024,
+      "hidden": 8192,
+      "element_count": 8388608,
+      "tiling_key": 210020000,
+      "kernel_name": "Mul_ce3d1ff8ba23a0bcb292da3577c1625d_high_performance_210020000",
+      "grid": [48, 1, 1],
+      "block": [1, 1, 1],
+      "block_factor_elements": 174848,
+      "ub_factor_elements": 9728,
+      "worker_groups": [
+        {"first_worker": 0, "worker_count": 47, "worker_elements": 174848, "nonterminal_full_tiles": 17, "terminal_tile_elements": 9472, "tiles_per_worker": 18},
+        {"first_worker": 47, "worker_count": 1, "worker_elements": 170752, "nonterminal_full_tiles": 17, "terminal_tile_elements": 5376, "tiles_per_worker": 18}
+      ],
+      "aggregate": {"tiles": 864, "dag_node_calls": 6048, "dag_edge_traversals": 5184, "mte2_copy_requests": 1728, "vector_node_calls": 3456, "mte3_copy_requests": 864, "mutex_locks": {"PIPE_MTE2": 1728, "PIPE_V": 7776, "PIPE_MTE3": 864, "all_pipes": 10368}, "mutex_unlocks": {"PIPE_MTE2": 1728, "PIPE_V": 7776, "PIPE_MTE3": 864, "all_pipes": 10368}}
+    },
+    "VECTOR_ELEMENTWISE_T1024_H16384_B1_MUL": {
+      "operation": "mul",
+      "input_mode": "two_equal_shape_bf16_tensors",
+      "scalar_flag": 0,
+      "tokens": 1024,
+      "hidden": 16384,
+      "element_count": 16777216,
+      "tiling_key": 210020000,
+      "kernel_name": "Mul_ce3d1ff8ba23a0bcb292da3577c1625d_high_performance_210020000",
+      "grid": [48, 1, 1],
+      "block": [1, 1, 1],
+      "block_factor_elements": 349568,
+      "ub_factor_elements": 9728,
+      "worker_groups": [
+        {"first_worker": 0, "worker_count": 47, "worker_elements": 349568, "nonterminal_full_tiles": 35, "terminal_tile_elements": 9088, "tiles_per_worker": 36},
+        {"first_worker": 47, "worker_count": 1, "worker_elements": 347520, "nonterminal_full_tiles": 35, "terminal_tile_elements": 7040, "tiles_per_worker": 36}
+      ],
+      "aggregate": {"tiles": 1728, "dag_node_calls": 12096, "dag_edge_traversals": 10368, "mte2_copy_requests": 3456, "vector_node_calls": 6912, "mte3_copy_requests": 1728, "mutex_locks": {"PIPE_MTE2": 3456, "PIPE_V": 15552, "PIPE_MTE3": 1728, "all_pipes": 20736}, "mutex_unlocks": {"PIPE_MTE2": 3456, "PIPE_V": 15552, "PIPE_MTE3": 1728, "all_pipes": 20736}}
+    }
+  },
+  "ambiguity_policy": {
+    "source_identity": "reject unless every required source and control dependency has one exact lowercase SHA256",
+    "dag_topology": "reject missing, duplicate, cyclic, or unknown-node edges",
+    "case_schedule": "reject unless worker groups cover the grid exactly and their tile elements sum exactly to the case element count",
+    "control_counts": "reject unless all per-case totals are exact integer multiples of the source-level per-tile accounting",
+    "compiler_instruction_counts": "out_of_scope; this reference must not relabel source API calls as compiler instructions"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "profiler_counter_consumed": false,
+  "target_kernel_submitted": false,
+  "static_accounting_complete": true,
+  "forward_eligible": false,
+  "mechanism_publishable": false,
+  "next_step": "Use this exact source-level request and worker schedule to design an independent TBuf/mutex lifecycle microbenchmark before adding any new Forward service."
+}

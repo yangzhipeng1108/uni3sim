@@ -1,0 +1,369 @@
+{
+ "schema_version": 1,
+ "hardware_id": "ascend_910b",
+ "software_revision": "cann_8.5.1",
+ "mechanism": "aic_mte2_nd2nz_paged_gqa_tail_page_v2",
+ "duration_unit": "ns_per_descriptor_copy_per_aic",
+ "publication_scope": {
+  "source_residency": "dram_cold_disjoint",
+  "dtype": "bf16",
+  "descriptor_class": "paged_gqa_d128_hkv8_short_final_page",
+  "physical_meaning": "per-descriptor ND2NZ copy service for the short final block-table page of a paged K/V panel; rows are the page's occupied token rows, source_row_stride_elements is the physical KV row stride num_kv_heads*head_dim",
+  "estimator": "median_of_per_process_medians_dispersion_by_relative_mad",
+  "resolvable_row_bound": {
+   "lowest_accepted_rows": 4,
+   "refused_rows_from_v1": [
+    1
+   ],
+   "ladder_tested": [
+    4,
+    8,
+    16,
+    32
+   ],
+   "meaning": "the instrument's differential-interval method resolves descriptors at or above this row count; decode tails below it are unsupported and must not be interpolated",
+   "unsupported_tail_fraction_estimate_pct": 2.36
+  },
+  "programs": [
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 128,
+    "issue_mode": 0,
+    "active_aic_groups": 22,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 426.4566,
+    "relative_mad_pct": 0.0234
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 128,
+    "issue_mode": 0,
+    "active_aic_groups": 23,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 427.9902,
+    "relative_mad_pct": 0.084
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 128,
+    "issue_mode": 0,
+    "active_aic_groups": 24,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 429.4922,
+    "relative_mad_pct": 0.0364
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 128,
+    "issue_mode": 1,
+    "active_aic_groups": 22,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 244.9253,
+    "relative_mad_pct": 0.0676
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 128,
+    "issue_mode": 1,
+    "active_aic_groups": 23,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 249.6509,
+    "relative_mad_pct": 0.0623
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 128,
+    "issue_mode": 1,
+    "active_aic_groups": 24,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 255.2626,
+    "relative_mad_pct": 0.13
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 0,
+    "active_aic_groups": 22,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 199.1332,
+    "relative_mad_pct": 1.4258
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 0,
+    "active_aic_groups": 23,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 203.2448,
+    "relative_mad_pct": 0.7679
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 0,
+    "active_aic_groups": 24,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 201.978,
+    "relative_mad_pct": 0.5546
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 1,
+    "active_aic_groups": 22,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 123.0859,
+    "relative_mad_pct": 1.3309
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 1,
+    "active_aic_groups": 23,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 127.3824,
+    "relative_mad_pct": 1.3205
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 1,
+    "active_aic_groups": 24,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 124.6857,
+    "relative_mad_pct": 1.1821
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 4096,
+    "issue_mode": 0,
+    "active_aic_groups": 22,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 182.1842,
+    "relative_mad_pct": 0.0591
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 4096,
+    "issue_mode": 0,
+    "active_aic_groups": 23,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 183.8485,
+    "relative_mad_pct": 0.4192
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 4096,
+    "issue_mode": 0,
+    "active_aic_groups": 24,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 182.8921,
+    "relative_mad_pct": 0.1377
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 4096,
+    "issue_mode": 1,
+    "active_aic_groups": 22,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 116.0851,
+    "relative_mad_pct": 0.2276
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 4096,
+    "issue_mode": 1,
+    "active_aic_groups": 23,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 116.2901,
+    "relative_mad_pct": 0.0413
+   },
+   {
+    "rows": 61,
+    "columns": 128,
+    "source_row_stride_elements": 4096,
+    "issue_mode": 1,
+    "active_aic_groups": 24,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 116.8139,
+    "relative_mad_pct": 0.3284
+   },
+   {
+    "rows": 81,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 0,
+    "active_aic_groups": 22,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 282.4791,
+    "relative_mad_pct": 0.1435
+   },
+   {
+    "rows": 81,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 0,
+    "active_aic_groups": 23,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 281.2127,
+    "relative_mad_pct": 0.4482
+   },
+   {
+    "rows": 81,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 0,
+    "active_aic_groups": 24,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 282.6044,
+    "relative_mad_pct": 0.4905
+   },
+   {
+    "rows": 81,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 1,
+    "active_aic_groups": 22,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 161.8392,
+    "relative_mad_pct": 0.9687
+   },
+   {
+    "rows": 81,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 1,
+    "active_aic_groups": 23,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 164.5057,
+    "relative_mad_pct": 0.181
+   },
+   {
+    "rows": 81,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 1,
+    "active_aic_groups": 24,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 163.8025,
+    "relative_mad_pct": 0.0241
+   },
+   {
+    "rows": 127,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 0,
+    "active_aic_groups": 22,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 319.5503,
+    "relative_mad_pct": 1.4629
+   },
+   {
+    "rows": 127,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 0,
+    "active_aic_groups": 23,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 320.6865,
+    "relative_mad_pct": 1.406
+   },
+   {
+    "rows": 127,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 0,
+    "active_aic_groups": 24,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 322.2547,
+    "relative_mad_pct": 0.442
+   },
+   {
+    "rows": 127,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 1,
+    "active_aic_groups": 22,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 243.7735,
+    "relative_mad_pct": 0.8708
+   },
+   {
+    "rows": 127,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 1,
+    "active_aic_groups": 23,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 246.2858,
+    "relative_mad_pct": 1.3784
+   },
+   {
+    "rows": 127,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "issue_mode": 1,
+    "active_aic_groups": 24,
+    "process_count": 8,
+    "ns_per_descriptor_copy": 245.8892,
+    "relative_mad_pct": 0.1348
+   }
+  ]
+ },
+ "measurement": {
+  "mode": "independent_strided_nd2nz_descriptor_microbenchmark",
+  "registration": "microbench/ascend_910b/memory/dram/mte2_tile/nd2nz/PAGED_GQA_TAIL_REGISTRATION_V2.md",
+  "criteria_frozen_commit": "468464143",
+  "measurement_baseline_commit": "468464143",
+  "physical_device_id": 0,
+  "trials_per_cell": 8,
+  "binary_sha256": "d66a2603d9cca7c69ca0a9a122c2cc1ffaff175358ca3f4cdfa04468684ab370",
+  "source_snapshot_sha256": "4336ce272ddee49a7dc632db734432223dab71b98e8412ef5134a488956abb4d",
+  "source_kernel_sha256": "2f0d0a67ea132e28a04564b5094b8b7586146463a994d52ce643fd3d97e78d51",
+  "source_main_sha256": "1f9d8a9d5fdb382b0e728de7e55150d76230dcf9df485ea9d13fd1a6948b9f3c",
+  "cmake_sha256": "7a4738d879d740319f98d159f734a9631762628670caf2c984ddf49dfb9f8a5f",
+  "raw_paths": [
+   "profiler_output/microbench/ascend_910b/nd2nz_paged_gqa_tail_v2_468464143_20260927/raw_arm1.csv",
+   "profiler_output/microbench/ascend_910b/nd2nz_paged_gqa_tail_v2_468464143_20260927/raw_arm2.csv",
+   "profiler_output/microbench/ascend_910b/nd2nz_paged_gqa_tail_v2_468464143_20260927/run_arm1.log",
+   "profiler_output/microbench/ascend_910b/nd2nz_paged_gqa_tail_v2_468464143_20260927/run_arm2.log"
+  ],
+  "raw_sha256": [
+   "d6a57b6f77fed58de0d09d6c35d50dab37682895a922c9ccf9f946420714bdfe",
+   "4790ed44032499044a2e423ccba59c90056c924d7a2749ab0144b335d5140419",
+   "5e6e58876e9a8e16a906dd0bbb9970110c930f969a8030b62da8731e42c37c7a",
+   "21ef286642d16c0fc4d44e7f6f7612953a367c55cecb8cd62c39570cfb3ee0f7"
+  ],
+  "acceptance": {
+   "validation_pass": true,
+   "stderr_clean": true,
+   "worst_relative_mad_pct": 1.4629,
+   "relative_mad_tolerance_pct": 3.0,
+   "peer_bracketing_monotone": true,
+   "rows_below_resolvable_bound": 0
+  },
+  "mechanism_gate_passed": true
+ },
+ "production_or_evaluation_duration_consumed": false,
+ "parameter_fit_from_production_duration": false,
+ "mechanism_publishable": true,
+ "forward_eligible": false,
+ "forward_eligibility_constraint": "NOT yet Forward-eligible. Publishing this descriptor service does not by itself license publishing the paged KV stride in Forward: measured_paged_kv_stride clause 2 (flash_attn.py:1394-1417) must first be argued from CANN source to admit a short final page, and two independent fail-open holes remain open -- formula.py:3832 (<=160 drained D128 descriptors per worker) and flash_attn.py:1946 (_has_graph_padding drops the per-AIC program on padded steps). See PAGED_GQA_TAIL_REGISTRATION_V2.md publication boundary."
+}

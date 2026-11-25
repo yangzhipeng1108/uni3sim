@@ -1,0 +1,53 @@
+{
+  "allowed_use": "A conservative completion floor for a finite asynchronous operand stream within the stated topology and measured round domain.",
+  "derived_model": {
+    "cache_tiers": {
+      "dram_unique": {
+        "conservative_ns_per_round": 608.0,
+        "measured_ns_per_round_from_128_to_512": 632.0
+      },
+      "l2_resident": {
+        "conservative_ns_per_round": 475.0,
+        "measured_ns_per_round_from_128_to_512": 480.0
+      }
+    },
+    "fixed_completion_ns": 10240.0,
+    "formula": "completion_ns = fixed_completion_ns + rounds * conservative_ns_per_round",
+    "selection_rule": "The common fixed completion is the intercept through the two longest measured streams (128 and 512 rounds). For each cache tier, the conservative service is min_over_measured_rounds((observed_completion_ns - fixed_completion_ns) / rounds), so the result does not exceed any measured copy-only completion in the stated domain.",
+    "verification": {
+      "dram_unique": {
+        "64": {"floor_ns": 49152.0, "observed_ns": 49152.002},
+        "128": {"floor_ns": 88064.0, "observed_ns": 91136.001},
+        "256": {"floor_ns": 165888.0, "observed_ns": 173056.006},
+        "512": {"floor_ns": 321536.0, "observed_ns": 333824.009}
+      },
+      "l2_resident": {
+        "64": {"floor_ns": 40640.0, "observed_ns": 44032.0},
+        "128": {"floor_ns": 71040.0, "observed_ns": 71680.002},
+        "256": {"floor_ns": 131840.0, "observed_ns": 132095.993},
+        "512": {"floor_ns": 253440.0, "observed_ns": 256000.012}
+      }
+    }
+  },
+  "forbidden_use": "A production GEMM duration, a per-shape correction, extrapolation outside the measured topology or round domain, or a replacement for compute and output work.",
+  "hardware_id": "nvidia_a800",
+  "mechanism": "finite_async_operand_stream_completion",
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "candidate_path": "profiler_output/microbench/nvidia_a800/staged_ldgsts_finite_stream_d720df059_d7_r5/candidate.json",
+    "candidate_sha256": "f877fc90201387a1163ae6e038d9c90eeaaa18470adfa7527d6bee4fa727bcbe",
+    "runner_sha256": "7417c1804a524a3f665ac1d79d81fa0292afa2034853243bbedac1a1ea8e0c07",
+    "source_sha256": "bbd11b2f1adee9a6d2eb9533dd79f503840c678967ad6b981b491cd394b75aee"
+  },
+  "schema": "finite_async_operand_stream_completion_reference_v1",
+  "scope": {
+    "complete_operand_pair_slots": 3,
+    "dtype": "fp16",
+    "grid_ctas": 64,
+    "maximum_rounds": 512,
+    "minimum_rounds": 64,
+    "operand_pair_bytes": 16384,
+    "resident_ctas_per_compute_unit": 1,
+    "threads_per_cta": 128
+  }
+}

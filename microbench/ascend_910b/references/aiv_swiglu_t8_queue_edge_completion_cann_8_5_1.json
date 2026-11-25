@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "campaign": "swiglu_t8_queue_edges",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "service_time_selection": "median_of_independent_run_medians",
+  "lookup_policy": "exact_worker_count_direction_and_payload_only",
+  "pairing_formula": "maximum_worker(request_first_interval(pair_order=1)-control_first_interval(pair_order=0)), matched by run and trial",
+  "source_scope": "CANN 8.5.1 BF16 SwiGLU depth-one TQue edges; direction 4 is DataCopy GM-to-UB followed by MTE2-to-Vector completion and direction 5 is Vector-to-MTE3 completion followed by DataCopy UB-to-GM",
+  "source_tile_evidence": {
+    "production_case": "VECTOR_SILU_T8_I25600_B1",
+    "tile": {"rows": 7, "columns": 1280, "dtype_bytes": 2, "payload_bytes": 17920, "block_dim": 40},
+    "static_basis": "source-derived CANN SwiGLU tiling and canonical launch observation; duration was not consumed"
+  },
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "measurement_worktree_head": "d6e187379f4cfacff27fcbab71ac3c9d1dee12fa",
+  "benchmark_source_snapshot_path": "/capture-workspace/source_snapshots/first_mte_completion_1376f9be_20260831_0403_swiglu_t1024",
+  "measurement_source_path": "/capture-workspace/profiler_output/microbench/ascend_910b/swiglu_t8_queue_edges_d6e18737_20260905/source",
+  "measurement_source_files_sha256": {
+    "first_mte_completion_runner.py": "a513aefab4c87ca0845053e8fd7dbb865896ea10330be62c04227ad88600eec6",
+    "first_mte_completion_report.py": "51cd691114618b89d50de520004dd409556412e179cd529301c8a43ea78ffe5c"
+  },
+  "production_source_sha256": {
+    "swi_glu.cpp": "584fcf498038a6b31adf480c4fb4a600dd4cf59657a1c0a0bf725c3df3717cf3",
+    "swi_glu_single.hpp": "ace487f5c4f3929e0cc1e02dfc54b062294a3018d0cb102baa920ea83e8dd096",
+    "swi_glu_bf16.hpp": "d18f872867f22c9f7032a44c22a09ceb84d78bdb9b4a94288062b6d1e498e933"
+  },
+  "benchmark_binary_sha256": "7bf99015e8519e1e42a6be9c0dfefe6540996591051e6cbb893148dc620b7a71",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_t8_queue_edges_d6e18737_20260905/r1/raw.csv",
+      "sha256": "8f75253efdf4352331d8cac3a0c835c2f42c382486a42865378adc3726878a72",
+      "runner_log_path": "profiler_output/microbench/ascend_910b/swiglu_t8_queue_edges_d6e18737_20260905/r1/runner.log",
+      "runner_log_sha256": "124223d196c377422f9ca1c04159d639fdb596ee2f13b0f61f16c0d7e83976e4",
+      "device_id": 7,
+      "run_id": "swiglu_t8_queue_edges_r1"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_t8_queue_edges_d6e18737_20260905/r2/raw.csv",
+      "sha256": "12a8522809c104781f5f94134f1b4644ac7916234803cef9cc602b656ea391b7",
+      "runner_log_path": "profiler_output/microbench/ascend_910b/swiglu_t8_queue_edges_d6e18737_20260905/r2/runner.log",
+      "runner_log_sha256": "2e979a4cbef3ee2886795e0e614fa6d35ad0e807d913f09dcdbf19acd43b9651",
+      "device_id": 7,
+      "run_id": "swiglu_t8_queue_edges_r2"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_t8_queue_edges_d6e18737_20260905/r3/raw.csv",
+      "sha256": "5f0513550c0e5e162f7092109a9b498d6f05dbe9f8ca084734afa615f3f37dd7",
+      "runner_log_path": "profiler_output/microbench/ascend_910b/swiglu_t8_queue_edges_d6e18737_20260905/r3/runner.log",
+      "runner_log_sha256": "04cc7f84650bf53850e28e2a35c5d9a157912cfd99cf58c85df1ca17d5ab8172",
+      "report_path": "profiler_output/microbench/ascend_910b/swiglu_t8_queue_edges_d6e18737_20260905/three_run_report.txt",
+      "report_sha256": "a3b7c455b52ebf6a3f084cf9a93bc4cb8a922728e4d0b9f8605e135ed7c48b36",
+      "device_id": 7,
+      "run_id": "swiglu_t8_queue_edges_r3"
+    }
+  ],
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 32,
+  "replication_basis": "balanced_schedule_cycle_parity",
+  "median_ns_by_run": {
+    "swiglu_t8_queue_edges_r1": {"40:tque_mte2_to_vector:17920": 2140.0, "40:tque_vector_to_mte3:17920": 2330.0},
+    "swiglu_t8_queue_edges_r2": {"40:tque_mte2_to_vector:17920": 2160.0, "40:tque_vector_to_mte3:17920": 2370.0},
+    "swiglu_t8_queue_edges_r3": {"40:tque_mte2_to_vector:17920": 2160.0, "40:tque_vector_to_mte3:17920": 2410.0}
+  },
+  "published_cells": {
+    "40:tque_mte2_to_vector:17920": {"service_time_ns": 2160.0, "maximum_run_relative_median_spread": 0.009259259259259259},
+    "40:tque_vector_to_mte3:17920": {"service_time_ns": 2370.0, "maximum_run_relative_median_spread": 0.03319502074688797}
+  },
+  "gates": {
+    "source_identity": "pass",
+    "binary_identity": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "balanced_cell_order": "pass",
+    "within_run_replication": "pass",
+    "cross_run_relative_median_spread_limit": 0.2,
+    "cross_run_stability": "pass"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true,
+  "production_consumption_status": "exact_40_worker_17920_byte_cell_only"
+}

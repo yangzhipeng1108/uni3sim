@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_rope_key22_first_q_slice_vector_to_mte3_completion_4_workers",
+  "request_size_unit": "payload_bytes",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "production_or_evaluation_duration_consumed": false,
+  "service_time_ns_by_request_size": {
+    "8192": 350.0
+  },
+  "campaign": "rope_key22_active4_replication_edges",
+  "source_scope": "ATB BF16 RoPE key-22 single-UB program, first complete 4096-element Q slice, exact 4-worker Vector-to-MTE3 hard completion edge only",
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "source_commit": "ad7cc5471483d0cfaa450942b2be4e2cfc058491",
+  "source_snapshot_path": "/capture-workspace/source_snapshots/vector_rope_key22_active4_ad7cc547_20260909",
+  "source_snapshot_files_sha256": {
+    "first_mte_completion_kernel.cpp": "53c38e88ded1955b2ffe9a4e3f11f4a55e21b5595c7dcaaeef1a72edc9d46b88",
+    "first_mte_completion_main.cpp": "2e50e99ae03335066cad9ed54b6a3c6654a05e0a1462994993745cf4b0102b66",
+    "first_mte_completion_runner.py": "0499e57b043388f35b619cdc8ed6ebed3c435ee296ce9b82ee6b6f6a038b0045",
+    "first_mte_completion_report.py": "0cfc93aa8af64965ac082f1d411db924dbe40555a9e5ae5a62b129c68cfff086"
+  },
+  "benchmark_binary_sha256": "e1b1aa445c59099b9b32820fab839788959737079703c71e095f8faa663cb59f",
+  "device_id": 7,
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 32,
+  "replication_basis": "balanced_schedule_cycle_parity",
+  "median_ns_by_run": {
+    "rope_key22_active4_ad7cc547_r1": 350.0,
+    "rope_key22_active4_ad7cc547_r2": 340.0,
+    "rope_key22_active4_ad7cc547_r3": 370.0
+  },
+  "maximum_run_relative_median_spread": 0.081081081,
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/rope_key22_active4_replication_ad7cc547_20260909_d7/r1/raw.csv", "sha256": "fef549fe50f95360f5633bd9ae814419bb5dab089ad3b22d5706519a4b433f92"},
+    {"path": "profiler_output/microbench/ascend_910b/rope_key22_active4_replication_ad7cc547_20260909_d7/r2/raw.csv", "sha256": "9fa0da0621bbe6c85f95810d88ee1a94e4b8a4d73f17fe7a3dcd3b9c620a4cbf"},
+    {"path": "profiler_output/microbench/ascend_910b/rope_key22_active4_replication_ad7cc547_20260909_d7/r3/raw.csv", "sha256": "5038562e9acb7c722946ebeb8dc5aeedc4cc7d153d2a93ca38a66c5c45fb925b"}
+  ],
+  "audit_report": {
+    "path": "profiler_output/microbench/ascend_910b/rope_key22_active4_replication_ad7cc547_20260909_d7/execution/three_run_report.txt",
+    "sha256": "768351f308568f3449cb02a5d36251226b2d5a9e75f7fdef7f5a5061cf13364b"
+  },
+  "measurement_gate_passed": true,
+  "mechanism_publishable": true
+}

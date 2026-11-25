@@ -1,0 +1,1010 @@
+{
+  "schema_version": 3,
+  "hardware_id": "nvidia_h200",
+  "mechanism": "isolated_bf16_wgmma_retirement_batches",
+  "timer_domain": "same_WG_clock64_globaltimer",
+  "instruction_m": 64,
+  "instruction_k": 16,
+  "selection": "median_three_grids_of_ns512_minus_ns128_over384",
+  "midpoint_validation_fraction": 0.05,
+  "two_wg_validation_fraction": 0.1,
+  "mixed_clock_validation_fraction": 0.05,
+  "batch_services": [
+    {
+      "operand_source": "ss",
+      "instruction_n": 176,
+      "k_steps": 8,
+      "register_a_words_per_thread": 0,
+      "accumulator_words_per_thread": 88,
+      "scalar_values_per_thread": 88,
+      "measurements": [
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "ns_128": 58496,
+          "ns_256": 113760,
+          "ns_512": 225312
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "ns_128": 56320.0,
+          "ns_256": 111936.0,
+          "ns_512": 223168.0
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "ns_128": 57280.0,
+          "ns_256": 113344.0,
+          "ns_512": 225760.0
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "ns_128": 102528.0,
+          "ns_256": 202848.0,
+          "ns_512": 403088.0
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "ns_128": 100896.0,
+          "ns_256": 201024.0,
+          "ns_512": 401232.0
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "ns_128": 102560.0,
+          "ns_256": 204416.0,
+          "ns_512": 404608.0
+        }
+      ],
+      "mixed_clock_validation": [
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1803313023.6100533
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1798945635.0766811
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1799419607.6498423
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1797358372.5410953
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1798275353.7735848
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1798918399.5269537
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1779177624.2231684
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1788732101.8699002
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1789786376.1153054
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1799442382.5858846
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1801055324.0154948
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1800289753.9034038
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1799141765.510949
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1799433425.2134788
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1799700201.7177866
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1780660555.897056
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1787126966.086534
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1779145215.9842012
+        }
+      ]
+    },
+    {
+      "operand_source": "ss",
+      "instruction_n": 192,
+      "k_steps": 4,
+      "register_a_words_per_thread": 0,
+      "accumulator_words_per_thread": 96,
+      "scalar_values_per_thread": 96,
+      "measurements": [
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "ns_128": 35776,
+          "ns_256": 68640,
+          "ns_512": 134368
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "ns_128": 33632.0,
+          "ns_256": 66496.0,
+          "ns_512": 132192.0
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "ns_128": 34304.0,
+          "ns_256": 67136.0,
+          "ns_512": 133696.0
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "ns_128": 57536.0,
+          "ns_256": 112160.0,
+          "ns_512": 221360.0
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "ns_128": 55456.0,
+          "ns_256": 110048.0,
+          "ns_512": 219296.0
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "ns_128": 56800.0,
+          "ns_256": 112464.0,
+          "ns_512": 223808.0
+        }
+      ],
+      "mixed_clock_validation": [
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1798350164.3964303
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1801923412.4214933
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1799583283.9008186
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1797022242.5045395
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1797978940.2173913
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1798584968.5795588
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1786103946.8541884
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1789497854.4556785
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1789697988.6947236
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1799493076.1251395
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1799694112.8323598
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1799807358.322304
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1799032850.0645027
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1799342098.9526768
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1799559643.9697418
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1787612506.083962
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1793881229.6683085
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1790339329.809971
+        }
+      ]
+    },
+    {
+      "operand_source": "ss",
+      "instruction_n": 128,
+      "k_steps": 8,
+      "register_a_words_per_thread": 0,
+      "accumulator_words_per_thread": 64,
+      "scalar_values_per_thread": 64,
+      "measurements": [
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "ns_128": 44736,
+          "ns_256": 86720,
+          "ns_512": 170624
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "ns_128": 42560.0,
+          "ns_256": 84512.0,
+          "ns_512": 168448.0
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "ns_128": 43168.0,
+          "ns_256": 85472.0,
+          "ns_512": 170352.0
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "ns_128": 75424.0,
+          "ns_256": 146272.0,
+          "ns_512": 293888.0
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "ns_128": 73424.0,
+          "ns_256": 146256.0,
+          "ns_512": 291872.0
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "ns_128": 74496.0,
+          "ns_256": 149408.0,
+          "ns_512": 295584.0
+        }
+      ],
+      "mixed_clock_validation": [
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1798308200.3988035
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1798922575.79554
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1799220418.2891595
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1796836093.12749
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1798558053.6072145
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1799051353.3031902
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1786472088.3971443
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1790186215.7534246
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1792497027.906395
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1802913849.804758
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1799381812.7643685
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1799767581.8925056
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1798988855.9850373
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1799434793.1355543
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1799713018.948891
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1776919617.5304437
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1781890623.6185665
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1783736863.7799425
+        }
+      ]
+    },
+    {
+      "operand_source": "rs",
+      "instruction_n": 128,
+      "k_steps": 11,
+      "register_a_words_per_thread": 44,
+      "accumulator_words_per_thread": 64,
+      "scalar_values_per_thread": 88,
+      "measurements": [
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "ns_128": 59136,
+          "ns_256": 116896,
+          "ns_512": 232576
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "ns_128": 58848.0,
+          "ns_256": 116960.0,
+          "ns_512": 233152.0
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "ns_128": 59616.0,
+          "ns_256": 118240.0,
+          "ns_512": 234912.0
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "ns_128": 101280.0,
+          "ns_256": 200960.0,
+          "ns_512": 401392.0
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "ns_128": 101024.0,
+          "ns_256": 201152.0,
+          "ns_512": 401408.0
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "ns_128": 103264.0,
+          "ns_256": 205408.0,
+          "ns_512": 406560.0
+        }
+      ],
+      "mixed_clock_validation": [
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1798808292.5911996
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1799045549.045549
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1799218379.9147322
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1797228999.1306238
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1798078047.8912854
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1798560535.4970293
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1784045997.3163893
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1788152845.3762636
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1789807626.061205
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1799727349.8443367
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1799729660.5370226
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1799820611.593857
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1799025367.5584478
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1799474443.8213692
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1799699240.9283252
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1771070318.082434
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1777756372.2963986
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1781072557.03238
+        }
+      ]
+    },
+    {
+      "operand_source": "rs",
+      "instruction_n": 64,
+      "k_steps": 12,
+      "register_a_words_per_thread": 48,
+      "accumulator_words_per_thread": 32,
+      "scalar_values_per_thread": 96,
+      "measurements": [
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "ns_128": 36032,
+          "ns_256": 71328,
+          "ns_512": 142656
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "ns_128": 36192.0,
+          "ns_256": 71648.0,
+          "ns_512": 142592.0
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "ns_128": 36768.0,
+          "ns_256": 72384.0,
+          "ns_512": 143808.0
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "ns_128": 55456.0,
+          "ns_256": 110512.0,
+          "ns_512": 219760.0
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "ns_128": 55520.0,
+          "ns_256": 110144.0,
+          "ns_512": 219360.0
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "ns_128": 56640.0,
+          "ns_256": 113408.0,
+          "ns_512": 224544.0
+        }
+      ],
+      "mixed_clock_validation": [
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1799028962.7301302
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1798505651.9753368
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1798893437.9294548
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1795875850.340136
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1797735791.7001066
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1797583499.6024575
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1785554271.8665462
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1788915573.820407
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1789710688.1054788
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1799582369.3613112
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1799118258.4487538
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1799447205.5957856
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1797782924.2370818
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1798514148.4472775
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1798740346.090136
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1789119536.5015235
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1791307675.1088314
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1787785073.951799
+        }
+      ]
+    },
+    {
+      "operand_source": "rs",
+      "instruction_n": 128,
+      "k_steps": 8,
+      "register_a_words_per_thread": 32,
+      "accumulator_words_per_thread": 64,
+      "scalar_values_per_thread": 64,
+      "measurements": [
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "ns_128": 45536,
+          "ns_256": 89824,
+          "ns_512": 178464
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "ns_128": 44992.0,
+          "ns_256": 89280.0,
+          "ns_512": 177888.0
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "ns_128": 45664.0,
+          "ns_256": 90848.0,
+          "ns_512": 180640.0
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "ns_128": 74000.0,
+          "ns_256": 146832.0,
+          "ns_512": 292432.0
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "ns_128": 73600.0,
+          "ns_256": 146432.0,
+          "ns_512": 292064.0
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "ns_128": 75232.0,
+          "ns_256": 150000.0,
+          "ns_512": 296800.0
+        }
+      ],
+      "mixed_clock_validation": [
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1797695707.070707
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1799270015.2014186
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1799191148.2334871
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1796827682.851972
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1798248590.5417833
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1798915466.9384634
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 128,
+          "clock_hz_p50": 1782543416.8592873
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 256,
+          "clock_hz_p50": 1782001925.8700519
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 1,
+          "repeats": 512,
+          "clock_hz_p50": 1789872115.56819
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1799188583.1759896
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1799472911.9243417
+        },
+        {
+          "grid_ctas": 1,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1799688003.854917
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1798466245.0722733
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1799024138.375894
+        },
+        {
+          "grid_ctas": 32,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1799479704.1348033
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 128,
+          "clock_hz_p50": 1765860370.568903
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 256,
+          "clock_hz_p50": 1772824900.6465979
+        },
+        {
+          "grid_ctas": 132,
+          "active_warpgroups": 2,
+          "repeats": 512,
+          "clock_hz_p50": 1780136171.134026
+        }
+      ]
+    }
+  ],
+  "raw": {
+    "path": "profiler_output/microbench/nvidia_h200/non128_wgmma_service_20261107/raw.json",
+    "sha256": "8a7cd05f00506bab725a1c3e12d5f0296b0881da67ca08ad69b7a788d01fb940"
+  },
+  "executed_source_sha256": "b67646c01250dc1b0f812f2de1e1225bb773a9677b6032d99087ac7d6b744943",
+  "executed_runner_sha256": "da0e3959f1dd038824468901c9378992465ed9fe443497bbd70b02a9c6b747cb",
+  "generated_helper_sha256": "dc411c2f6fabb2088166e8bbbf41d961d585f1686a493abb1d5c2ed2480643ce",
+  "production_or_evaluation_duration_consumed": false,
+  "scope_limitations": [
+    "Independent static-shared BF16 SS/RS batches; no global traffic, Attention, max/normalization or complete output operator.",
+    "RS uses4 distinct A-register words per K16 slice; control matrices and finite numeric outputs are verified.",
+    "Retirement is a per-WG isolated lower-bound approximation, separate from normalized Tensor busy capacity.",
+    "Mixed clock cells validate the existing common clock point; they do not select a new clock or exact native phase frequency."
+  ],
+  "enqueue_reference": {
+    "reference_path": "microbench/nvidia_h200/references/bf16_wgmma_enqueue_sm90.json",
+    "reference_sha256": "203f1a785d1a66726a9e54867704ce168dcc319b3eb4c56c7d37a96d99df4590",
+    "production_or_evaluation_duration_consumed": false
+  },
+  "ss_busy_capacity_reference": {
+    "reference_path": "microbench/nvidia_h200/references/ss_wgmma_busy_capacity_sm90.json",
+    "reference_sha256": "54fab87bfe6e3d59b7ecfc77797fae5e3eca3c990073dbf14b11abb23b25951d",
+    "production_or_evaluation_duration_consumed": false
+  }
+}

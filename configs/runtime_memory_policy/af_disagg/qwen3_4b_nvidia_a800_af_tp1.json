@@ -1,0 +1,89 @@
+{
+ "schema_version": 2,
+ "scheduler_pools": [
+  {
+   "pool_name": "attention",
+   "binding": {
+    "hardware_id": "nvidia_a800",
+    "hardware_config_sha256": "4fd8c3cbed54268219dc8dac76ed51d747f53b5d0c7d0fdb2033454979f2bf0c",
+    "model_config_sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+    "deployment": "af_disagg",
+    "worker_role": "attention",
+    "tensor_parallel_size": 1,
+    "pipeline_parallel_size": 1,
+    "expert_parallel_size": 1,
+    "max_model_len": 8192,
+    "max_batched_tokens": 8192,
+    "max_requests": 256,
+    "kv_block_size_tokens": 16
+   },
+   "gpu_memory_utilization": {
+    "numerator": 4,
+    "denominator": 5,
+    "provenance": {
+     "source_kind": "runtime_configuration",
+     "source_reference": "configs/evaluation/experiments/sharegpt_phase1.json prediction_contract gpu_memory_utilization=0.8 runtime binding, inherited from the colocated nvidia_a800/qwen3-4b policy; no standalone AF runtime profile exists, so the AF Attention pool reuses the same utilization and reserves as a conservative analytical bound (accuracy unknown, no AF hardware truth) UNVERIFIED ANALYTICAL ASSUMPTION for AF: this value is inherited unchanged from the colocated A800 vLLM 0.11.0 DEBUG memory profile of the same model/hardware solely to give the AF-bound runtime an analytical capacity input; it is NOT AF runtime truth and no conservative or verified claim is made, as the policy-level reserve_scope/completeness_assertion fields honestly record (assumed_uniform_across_pool_ranks_unverified / reserves_inherited_unverified_not_complete_for_bound_runtime). All behavior runs consuming this policy are independent of these reserve values: peak possible concurrent KV, upper-bounded with per-request block rounding as sum over all 128 requests of ceil((input+output tokens)/16) = 3722 16-token blocks (58629 tokens total), is below the smallest allocated pool (4054 blocks), so KV capacity never binds and no preemption occurs.",
+     "source_sha256": "bc9d93b69a7cd57eb31880ef49d82fd75c5efacbcf8d4d0854bfbd7722a86c4a"
+    }
+   },
+   "non_kv_reserves": [
+    {
+     "kind": "activation",
+     "bytes": 654982513,
+     "provenance": {
+      "source_kind": "runtime_configuration",
+      "source_reference": "profiler_output/serving_dataset/runtime_memory_policy/nvidia_a800/qwen3-4b/init-debug.log: A800 vLLM 0.11.0 DEBUG memory profile (colocated); AF Attention pool inherits the colocated activation reserve as a conservative bound because no AF-specific runtime profile exists; torch peak activation bytes UNVERIFIED ANALYTICAL ASSUMPTION for AF: this value is inherited unchanged from the colocated A800 vLLM 0.11.0 DEBUG memory profile of the same model/hardware solely to give the AF-bound runtime an analytical capacity input; it is NOT AF runtime truth and no conservative or verified claim is made, as the policy-level reserve_scope/completeness_assertion fields honestly record (assumed_uniform_across_pool_ranks_unverified / reserves_inherited_unverified_not_complete_for_bound_runtime). All behavior runs consuming this policy are independent of these reserve values: peak possible concurrent KV, upper-bounded with per-request block rounding as sum over all 128 requests of ceil((input+output tokens)/16) = 3722 16-token blocks (58629 tokens total), is below the smallest allocated pool (4054 blocks), so KV capacity never binds and no preemption occurs.",
+      "source_sha256": "8efd542ff5975095f03fdc07fc4fc9a0d7bf33194ff245c38b64f7db3e6a0e49"
+     }
+    },
+    {
+     "kind": "cuda_graph",
+     "bytes": 0,
+     "provenance": {
+      "source_kind": "framework_source",
+      "source_reference": "A800 vLLM 0.11.0 DEBUG memory profile (colocated); vLLM pre-KV accounting applies no additional independent reserve for this category; inherited by the AF Attention pool as-is UNVERIFIED ANALYTICAL ASSUMPTION for AF: this value is inherited unchanged from the colocated A800 vLLM 0.11.0 DEBUG memory profile of the same model/hardware solely to give the AF-bound runtime an analytical capacity input; it is NOT AF runtime truth and no conservative or verified claim is made, as the policy-level reserve_scope/completeness_assertion fields honestly record (assumed_uniform_across_pool_ranks_unverified / reserves_inherited_unverified_not_complete_for_bound_runtime). All behavior runs consuming this policy are independent of these reserve values: peak possible concurrent KV, upper-bounded with per-request block rounding as sum over all 128 requests of ceil((input+output tokens)/16) = 3722 16-token blocks (58629 tokens total), is below the smallest allocated pool (4054 blocks), so KV capacity never binds and no preemption occurs.",
+      "source_sha256": "8efd542ff5975095f03fdc07fc4fc9a0d7bf33194ff245c38b64f7db3e6a0e49"
+     }
+    },
+    {
+     "kind": "communication",
+     "bytes": 0,
+     "provenance": {
+      "source_kind": "framework_source",
+      "source_reference": "A800 vLLM 0.11.0 DEBUG memory profile (colocated); vLLM pre-KV accounting applies no additional independent reserve for this category; inherited by the AF Attention pool as-is UNVERIFIED ANALYTICAL ASSUMPTION for AF: this value is inherited unchanged from the colocated A800 vLLM 0.11.0 DEBUG memory profile of the same model/hardware solely to give the AF-bound runtime an analytical capacity input; it is NOT AF runtime truth and no conservative or verified claim is made, as the policy-level reserve_scope/completeness_assertion fields honestly record (assumed_uniform_across_pool_ranks_unverified / reserves_inherited_unverified_not_complete_for_bound_runtime). All behavior runs consuming this policy are independent of these reserve values: peak possible concurrent KV, upper-bounded with per-request block rounding as sum over all 128 requests of ceil((input+output tokens)/16) = 3722 16-token blocks (58629 tokens total), is below the smallest allocated pool (4054 blocks), so KV capacity never binds and no preemption occurs.",
+      "source_sha256": "8efd542ff5975095f03fdc07fc4fc9a0d7bf33194ff245c38b64f7db3e6a0e49"
+     }
+    },
+    {
+     "kind": "allocator",
+     "bytes": 0,
+     "provenance": {
+      "source_kind": "framework_source",
+      "source_reference": "A800 vLLM 0.11.0 DEBUG memory profile (colocated); vLLM pre-KV accounting applies no additional independent reserve for this category; inherited by the AF Attention pool as-is UNVERIFIED ANALYTICAL ASSUMPTION for AF: this value is inherited unchanged from the colocated A800 vLLM 0.11.0 DEBUG memory profile of the same model/hardware solely to give the AF-bound runtime an analytical capacity input; it is NOT AF runtime truth and no conservative or verified claim is made, as the policy-level reserve_scope/completeness_assertion fields honestly record (assumed_uniform_across_pool_ranks_unverified / reserves_inherited_unverified_not_complete_for_bound_runtime). All behavior runs consuming this policy are independent of these reserve values: peak possible concurrent KV, upper-bounded with per-request block rounding as sum over all 128 requests of ceil((input+output tokens)/16) = 3722 16-token blocks (58629 tokens total), is below the smallest allocated pool (4054 blocks), so KV capacity never binds and no preemption occurs.",
+      "source_sha256": "8efd542ff5975095f03fdc07fc4fc9a0d7bf33194ff245c38b64f7db3e6a0e49"
+     }
+    },
+    {
+     "kind": "fragmentation",
+     "bytes": 0,
+     "provenance": {
+      "source_kind": "framework_source",
+      "source_reference": "A800 vLLM 0.11.0 DEBUG memory profile (colocated); vLLM pre-KV accounting applies no additional independent reserve for this category; inherited by the AF Attention pool as-is UNVERIFIED ANALYTICAL ASSUMPTION for AF: this value is inherited unchanged from the colocated A800 vLLM 0.11.0 DEBUG memory profile of the same model/hardware solely to give the AF-bound runtime an analytical capacity input; it is NOT AF runtime truth and no conservative or verified claim is made, as the policy-level reserve_scope/completeness_assertion fields honestly record (assumed_uniform_across_pool_ranks_unverified / reserves_inherited_unverified_not_complete_for_bound_runtime). All behavior runs consuming this policy are independent of these reserve values: peak possible concurrent KV, upper-bounded with per-request block rounding as sum over all 128 requests of ceil((input+output tokens)/16) = 3722 16-token blocks (58629 tokens total), is below the smallest allocated pool (4054 blocks), so KV capacity never binds and no preemption occurs.",
+      "source_sha256": "8efd542ff5975095f03fdc07fc4fc9a0d7bf33194ff245c38b64f7db3e6a0e49"
+     }
+    },
+    {
+     "kind": "framework",
+     "bytes": 42949673,
+     "provenance": {
+      "source_kind": "runtime_configuration",
+      "source_reference": "profiler_output/serving_dataset/runtime_memory_policy/nvidia_a800/qwen3-4b/init-debug.log: A800 vLLM 0.11.0 DEBUG memory profile (colocated); AF Attention pool inherits the colocated non-Torch/framework reserve as a conservative bound because no AF-specific runtime profile exists UNVERIFIED ANALYTICAL ASSUMPTION for AF: this value is inherited unchanged from the colocated A800 vLLM 0.11.0 DEBUG memory profile of the same model/hardware solely to give the AF-bound runtime an analytical capacity input; it is NOT AF runtime truth and no conservative or verified claim is made, as the policy-level reserve_scope/completeness_assertion fields honestly record (assumed_uniform_across_pool_ranks_unverified / reserves_inherited_unverified_not_complete_for_bound_runtime). All behavior runs consuming this policy are independent of these reserve values: peak possible concurrent KV, upper-bounded with per-request block rounding as sum over all 128 requests of ceil((input+output tokens)/16) = 3722 16-token blocks (58629 tokens total), is below the smallest allocated pool (4054 blocks), so KV capacity never binds and no preemption occurs.",
+      "source_sha256": "8efd542ff5975095f03fdc07fc4fc9a0d7bf33194ff245c38b64f7db3e6a0e49"
+     }
+    }
+   ],
+   "reserve_scope": "assumed_uniform_across_pool_ranks_unverified",
+   "completeness_assertion": "reserves_inherited_unverified_not_complete_for_bound_runtime"
+  }
+ ]
+}

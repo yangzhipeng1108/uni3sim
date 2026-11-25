@@ -1,0 +1,56 @@
+{
+ "chain_length_used": 64,
+ "cost_ns_by_grid": {
+  "1": 0.0,
+  "108": 222.4,
+  "16": 54.0,
+  "2": 0.0,
+  "32": 75.6,
+  "4": 46.8,
+  "64": 157.2,
+  "8": 54.0
+ },
+ "derivation_rule": "median_over_block_sizes_minus_single_cta",
+ "derivation_trials": [
+  1,
+  2
+ ],
+ "domain_note": "the table stops at the full-chip width because beyond one wave the cost becomes residency-dependent, which cta_round_ns already models; larger grids reuse the last entry via the step-down rule",
+ "duration_unit": "ns_per_launch",
+ "full_chip_width": 108,
+ "geometry_independence": {
+  "block_sizes_swept": [
+   128,
+   256,
+   512,
+   1024
+  ],
+  "cost_range_over_blocks_at_full_chip_ns": [
+   219.19999999999982,
+   238.4000000000001
+  ],
+  "dynamic_smem_bytes_swept": [
+   0,
+   16384
+  ],
+  "note": "cost at the full-chip grid varies by this much across block sizes 128 to 1024 and is unchanged by 16 KiB of dynamic shared memory, so it is charged per launch without a geometry gate"
+ },
+ "hardware_id": "nvidia_a800",
+ "lookup_rule": "step_down_largest_sampled_grid_not_exceeding_request",
+ "max_cross_trial_spread_ns": 26.4,
+ "model": "geometry_independent_cta_dispatch_cost_v1",
+ "monotonicity": "running maximum applied: dispatching more CTAs cannot cost less, so noise is not allowed to invert the table",
+ "probe": "microbench/nvidia_a800/runtime/cta_dispatch/cta_dispatch_cost.cu",
+ "probe_sha256": "c68730808340a395dd93eddc3eda09fc03b24c2a25ba058e04038e3736047d9a",
+ "production_or_evaluation_duration_consumed": false,
+ "raw_sha256": {
+  "trial_1.csv": "880a99455cabb5f14bf6736443c24c68ba27caaab2095ec128b85076b0edbea3",
+  "trial_2.csv": "0f8b78eca66fd5b95f4c69404c0f2de94f0fb286f320545e4358573678593ea5",
+  "trial_3.csv": "9ac97c6dbab70896aa778241e86d915c97f25259272127fc9210c24dc0aeece7"
+ },
+ "schema_version": 1,
+ "software_revision": "cuda_12.2_sm80",
+ "target_operator_used": false,
+ "timer_domain": "paired_differential_cuda_graph_replay",
+ "validation_trial": 3
+}

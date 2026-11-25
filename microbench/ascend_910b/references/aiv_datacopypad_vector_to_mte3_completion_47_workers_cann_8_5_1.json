@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_datacopypad_vector_to_mte3_completion_47_workers",
+  "request_size_unit": "payload_bytes",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "4096": 880.0,
+    "5120": 800.0,
+    "8192": 810.0,
+    "10240": 860.0,
+    "16384": 890.0
+  },
+  "service_time_selection": "median_of_independent_run_medians",
+  "mechanism": "one source-form depth-one TQue UB-to-GM DataCopyPad per AIV with byte-valued blockLen followed by its Vector-to-MTE3 completion edge while exactly 47 AIV workers are admitted",
+  "scope": "maximum worker completion envelope for the first source-form MTE3 request of exactly 47 concurrently admitted AIV workers; shared byte throughput and later requests remain separate mechanisms",
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "pairing_formula": "maximum_worker(request_first_interval(pair_order=1)-control_first_interval(pair_order=0)), matched by run and trial",
+  "source_commit": "4626c63407f1c55e914df14f739534c78abb8a3b",
+  "source_snapshot_path": "/capture-workspace/source_snapshots/first_mte_completion_68c565ce_20260829_2011",
+  "source_snapshot_files_sha256": {
+    "first_mte_completion_kernel.cpp": "d17d9d992d527f3e2cf5c26ad636f0c5376e429dcb0567e66ac83458212e6318",
+    "first_mte_completion_main.cpp": "f21fbd2029a4a699efa7f0e4b58c3cfccc77732cb5cdbb240a4e153618e38645",
+    "first_mte_completion_runner.py": "39e1f1e5dfbedac64f6a47bdfbf6f39a568d40467deb291cee3ed51e3611fa92"
+  },
+  "analysis_report_source_sha256": "cb38c02df1786fae113cb6d8855fca9fc4a4e6aa1a5ca2ab51f9de42f40beab8",
+  "benchmark_binary_sha256": "2a503084fdb46d45f5fdd5f70c60c2eb5c8ef17f0e22be8db2d9b77e9325749c",
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_row_group_edges_68c565ce_20260829_d7/run1.csv", "sha256": "92fe44ab7ff28edaa5ddd48ee79e2fdd7127c3c9dc2ee243da59804a748dbeda", "report_path": "profiler_output/microbench/ascend_910b/rmsnorm_row_group_edges_68c565ce_20260829_d7/run1_report.txt", "report_sha256": "4dbe5fd7835527664789067a89bc7d45ac14e291ca0e21408146180666a13194", "device_id": 7, "run_id": "rmsnorm_row_group_edges_r1"},
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_row_group_edges_68c565ce_20260829_d7/run2.csv", "sha256": "bc92f4c9bbc28c395322cc8d82ad1596601652152ef3efad8986b7597d529802", "report_path": "profiler_output/microbench/ascend_910b/rmsnorm_row_group_edges_68c565ce_20260829_d7/run2_report.txt", "report_sha256": "de9ca28b0227c4e34e468e39d55a012a466ffbd77bc9ab8b42957ee1e08f483b", "device_id": 7, "run_id": "rmsnorm_row_group_edges_r2"},
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_row_group_edges_68c565ce_20260829_d7/run3.csv", "sha256": "327b04c19a2d1ebe62e39a2b891ec6f15ece7ba307d206965836427ed1d928a0", "report_path": "profiler_output/microbench/ascend_910b/rmsnorm_row_group_edges_68c565ce_20260829_d7/run3_report.txt", "report_sha256": "af0bd92bec25f5f27f5eff61d6d06b217a43f3175aa42b15054141a554642f1a", "device_id": 7, "run_id": "rmsnorm_row_group_edges_r3"}
+  ],
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 120,
+  "block_dim": 47,
+  "direction": "tque_datacopypad_vector_to_mte3",
+  "replication_basis": "balanced_schedule_cycle_parity",
+  "median_ns_by_run_and_request_size": {
+    "rmsnorm_row_group_edges_r1": {"4096": 910.0, "5120": 810.0, "8192": 790.0, "10240": 860.0, "16384": 890.0},
+    "rmsnorm_row_group_edges_r2": {"4096": 880.0, "5120": 780.0, "8192": 810.0, "10240": 860.0, "16384": 880.0},
+    "rmsnorm_row_group_edges_r3": {"4096": 870.0, "5120": 800.0, "8192": 810.0, "10240": 840.0, "16384": 900.0}
+  },
+  "maximum_run_relative_median_spread": 0.04395604395604396,
+  "all_per_run_replication_gates_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

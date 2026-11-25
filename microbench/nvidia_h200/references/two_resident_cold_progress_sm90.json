@@ -1,0 +1,1530 @@
+{
+  "hardware_id": "nvidia_h200",
+  "mechanism": "independent_two_resident_cold_request_progress",
+  "production_or_evaluation_duration_consumed": false,
+  "full_capture_qualified": true,
+  "selection_rule": "Protocol2 SOURCE-CACHE READ ACCOUNTING,explicitly distinct from failed unique-byte protocol1. Same163physicalpoints/27controls/two63sampleprocesses,unchangedbytekernel/copybody and all numeric/resource/132SM/instruction/upstream/downstream/source-unit/precision/process/clock/pendingratio>0.60 gates. DRAMreadcounts must match frozen unchanged60MiB/264resident/source-cache predictions within1%,including legitimateB replays;originalunique-read checks are separately reported and may remain false. Independent eight-counter check with six novel cells passed before this plan:allreaderrors<=0.593%,no hardware/phase/rate fit. Stage1all27controls/countersmustpass this NEW protocol before remaining136points are measured. Failed or missing cells stop publication. Only full163point qualification permits slower-process-median logicalB capacity for exact measured keys as a competingbyteprogressbound,never an additiveoperator price,new generic bandwidth,selectedcasepolicy or empiricalcounterratio. Source maximumfanin17 remains outside<=16scope. Production/evaluation duration never enters a parameter.",
+  "source_bindings": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/two_resident_cold_copy_20261108/attempt_3_cache_accounted/raw.json",
+      "sha256": "1f5476da9ce755268aa4cd431b30b5cc129712f4b091b557d40f768884c5c7c7"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/two_resident_cold_copy_20261108/attempt_3_cache_accounted/summary.json",
+      "sha256": "ee1ba152667e9aae9793127e71000666a7345f752c8822b290d8c119cedfa7be"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/two_resident_cold_copy_20261108/attempt_3_cache_accounted/manifest.json",
+      "sha256": "63c8eae495af8eea10c8ab0bd62aaa4aad220edbc91fca21757720cc71f46d77"
+    },
+    {
+      "path": "microbench/nvidia_h200/references/two_resident_cold_copy_cache_accounted_plan_sm90.json",
+      "sha256": "bf7caba4ea1fd8cfbe3ef6f3795f5dc2154dc10b40f35cbb4572159b1e6e56e6"
+    }
+  ],
+  "physical_points": 163,
+  "timing_cells": 326,
+  "counter_cells": 27,
+  "legacy_unique_read_all_pass": false,
+  "composition": "Competing compulsory-B byte floor; exact source physical signature and grid, adjacent fanout time-per-byte interpolation; preserve every original resource, byte, pipeline and floor.",
+  "approximations": [
+    "Uniform resident waves and mean fanout from static grouped source order.",
+    "One broadcast valid A row in padded destination; normal pipeline retains original A work.",
+    "Source-cache read forecasts bind DRAM accounting, not a new physical capacity or parameter.",
+    "Native layout, source metadata and CTA arrival phases remain analytical; no operator duration price."
+  ],
+  "programs": [
+    {
+      "program_id": "b16384_s3_r128_resident2_stride1024_fanout1",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 1,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          5088,
+          3406972045120.1567
+        ],
+        [
+          6112,
+          3462142442262.481
+        ],
+        [
+          8160,
+          3533124735729.3867
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride1024_fanout2",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 2,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          5088,
+          3677509793541.556
+        ],
+        [
+          8160,
+          3737376719221.738
+        ],
+        [
+          12256,
+          3769661034767.5903
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride1024_fanout4",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 4,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          12256,
+          3809712074068.4526
+        ],
+        [
+          20448,
+          3810336563395.6597
+        ],
+        [
+          36832,
+          3821370146153.6514
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride1024_fanout8",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 8,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          5088,
+          3769297883884.97
+        ],
+        [
+          20448,
+          3809989901287.3584
+        ],
+        [
+          36832,
+          3817985321658.1465
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride2048_fanout1",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 2048
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 1,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          18816,
+          4209883432566.778
+        ],
+        [
+          21376,
+          4227006348516.668
+        ],
+        [
+          26496,
+          4242674589523.065
+        ],
+        [
+          36736,
+          4262624815864.0225
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride2048_fanout2",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 2048
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 2,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          18816,
+          4604925522062.558
+        ],
+        [
+          36736,
+          4620979838771.593
+        ],
+        [
+          57216,
+          4628811692672.329
+        ],
+        [
+          98176,
+          4636426898798.028
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride2048_fanout4",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 2048
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 4,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          18816,
+          4640135825882.778
+        ],
+        [
+          57216,
+          4654414188256.557
+        ],
+        [
+          98176,
+          4658987933381.607
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride3072_fanout1",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 3072
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 1,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          6112,
+          4143454485269.7783
+        ],
+        [
+          8160,
+          4195576383949.119
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride3072_fanout2",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 3072
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 2,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          6112,
+          4874683974816.642
+        ],
+        [
+          8160,
+          4923163941670.349
+        ],
+        [
+          12256,
+          4964619350585.133
+        ],
+        [
+          20448,
+          4980969848349.6875
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride3072_fanout4",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 3072
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 4,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          12256,
+          4969861993861.994
+        ],
+        [
+          20448,
+          4979193151417.87
+        ],
+        [
+          36832,
+          5000736047732.17
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride3072_fanout8",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 3072
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 8,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          36832,
+          4971622079420.003
+        ],
+        [
+          69600,
+          4976606751118.688
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride3072_fanout16",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout16",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout16",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 3072
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 16,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          6112,
+          4857972574385.511
+        ],
+        [
+          69600,
+          4960270039844.797
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride4096_fanout1",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 1,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          2544,
+          3969609142857.143
+        ],
+        [
+          3056,
+          4023262675773.403
+        ],
+        [
+          4080,
+          4133996289424.861
+        ],
+        [
+          17808,
+          4338144879267.2773
+        ],
+        [
+          21392,
+          4349493404152.3438
+        ],
+        [
+          28560,
+          4363525681674.0645
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride4096_fanout2",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 2,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          2544,
+          4891549818096.468
+        ],
+        [
+          4080,
+          5054954627949.184
+        ],
+        [
+          6128,
+          5083087889833.94
+        ],
+        [
+          28560,
+          5189099417798.725
+        ],
+        [
+          42896,
+          5197285019153.121
+        ],
+        [
+          71568,
+          5207811970367.212
+        ],
+        [
+          128912,
+          5212640602980.846
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride4096_fanout4",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 4,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          6128,
+          5074353179015.466
+        ],
+        [
+          10224,
+          5136925879358.459
+        ],
+        [
+          18416,
+          5161533161126.982
+        ],
+        [
+          42896,
+          5184097248653.832
+        ],
+        [
+          71568,
+          5187032142193.597
+        ],
+        [
+          128912,
+          5193925463608.486
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride4096_fanout8",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 8,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          2544,
+          4936155376598.769
+        ],
+        [
+          10224,
+          5107012682926.829
+        ],
+        [
+          18416,
+          5127761530879.304
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride5760_fanout1",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 5760
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 1,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          1472,
+          3864062891648.627
+        ],
+        [
+          2880,
+          4107409470752.0894
+        ],
+        [
+          3657,
+          4143257277734.068
+        ],
+        [
+          4393,
+          4158882360192.3
+        ],
+        [
+          5865,
+          4198788180095.081
+        ],
+        [
+          7155,
+          4232923353447.169
+        ],
+        [
+          8595,
+          4250730890591.796
+        ],
+        [
+          11475,
+          4270043284449.9
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride5760_fanout2",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 5760
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 2,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          1472,
+          4861651376146.789
+        ],
+        [
+          2208,
+          5144334108605.521
+        ],
+        [
+          2880,
+          5223996221067.549
+        ],
+        [
+          3680,
+          5262036864643.456
+        ],
+        [
+          4320,
+          5267679280232.866
+        ],
+        [
+          5865,
+          5277057054711.603
+        ],
+        [
+          7200,
+          5307396979779.882
+        ],
+        [
+          8809,
+          5327436806047.721
+        ],
+        [
+          11475,
+          5356239870340.356
+        ],
+        [
+          14697,
+          5366554882880.599
+        ],
+        [
+          17235,
+          5376384733072.476
+        ],
+        [
+          28755,
+          5384682656436.682
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride5760_fanout4",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 5760
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 4,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          2208,
+          5217673846153.846
+        ],
+        [
+          3680,
+          5264977645305.514
+        ],
+        [
+          4320,
+          5239947354566.991
+        ],
+        [
+          6624,
+          5254138465245.98
+        ],
+        [
+          7200,
+          5275329135661.134
+        ],
+        [
+          8809,
+          5313628652214.892
+        ],
+        [
+          12960,
+          5345095231275.956
+        ],
+        [
+          14697,
+          5359420087999.747
+        ],
+        [
+          17235,
+          5358031088082.901
+        ],
+        [
+          26473,
+          5370353686990.976
+        ],
+        [
+          28755,
+          5373545728838.8545
+        ],
+        [
+          51795,
+          5381128842433.726
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride5760_fanout8",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 5760
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 8,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          6624,
+          5216960415669.652
+        ],
+        [
+          12512,
+          5325238851738.279
+        ],
+        [
+          12960,
+          5319196237708.423
+        ],
+        [
+          24288,
+          5335578947368.421
+        ],
+        [
+          24480,
+          5337098193586.237
+        ],
+        [
+          26473,
+          5343863743888.977
+        ],
+        [
+          47520,
+          5343703877240.248
+        ],
+        [
+          51795,
+          5350056264150.098
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride5760_fanout16",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout16",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout16",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 5760
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 16,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          1472,
+          4961217086015.214
+        ],
+        [
+          12512,
+          5308861346936.5205
+        ],
+        [
+          24288,
+          5315256504022.568
+        ],
+        [
+          24480,
+          5318627765309.394
+        ],
+        [
+          47520,
+          5324033163947.579
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride8192_fanout1",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 8192
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 1,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          4584,
+          4209172000224.1777
+        ],
+        [
+          6120,
+          4238674332093.338
+        ],
+        [
+          9408,
+          4278001498709.445
+        ],
+        [
+          10688,
+          4284562019060.202
+        ],
+        [
+          13248,
+          4293744636657.666
+        ],
+        [
+          18368,
+          4305958863634.738
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride8192_fanout2",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 8192
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 2,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          4584,
+          5389612917115.178
+        ],
+        [
+          6120,
+          5406706748267.773
+        ],
+        [
+          9192,
+          5471054891561.013
+        ],
+        [
+          15336,
+          5496637112387.202
+        ],
+        [
+          18368,
+          5500261578389.443
+        ],
+        [
+          28608,
+          5520901222643.643
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride8192_fanout4",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 8192
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 4,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          9192,
+          5427284875130.636
+        ],
+        [
+          15336,
+          5474064268752.314
+        ],
+        [
+          27624,
+          5492983342334.743
+        ],
+        [
+          28608,
+          5495236762042.102
+        ],
+        [
+          49088,
+          5497450670385.143
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride8192_fanout8",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 8192
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 8,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          27624,
+          5456428131385.894
+        ],
+        [
+          49088,
+          5456164826479.697
+        ],
+        [
+          52200,
+          5464089802646.29
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride8192_fanout16",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout16",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout16",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 8192
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 16,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          4584,
+          5329377754124.534
+        ],
+        [
+          52200,
+          5441838624086.128
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride12288_fanout1",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 12288
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 1,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          6144,
+          4205225906172.977
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride12288_fanout2",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 12288
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 2,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          6144,
+          5563147299388.401
+        ],
+        [
+          10240,
+          5616431177816.214
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride12288_fanout4",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 12288
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 4,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          10240,
+          5576357814733.157
+        ],
+        [
+          18432,
+          5607427701372.813
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride12288_fanout8",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 12288
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 8,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          18432,
+          5568721081326.949
+        ],
+        [
+          34816,
+          5589975703370.757
+        ],
+        [
+          67584,
+          5606099694708.792
+        ],
+        [
+          133120,
+          5610002520727.41
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride12288_fanout16",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout16",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout16",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 12288
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 16,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          6144,
+          5450293964770.431
+        ],
+        [
+          34816,
+          5569164083221.328
+        ],
+        [
+          67584,
+          5584677042880.055
+        ],
+        [
+          133120,
+          5589811087674.694
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride14336_fanout1",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 14336
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 1,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          10176,
+          4237462921544.1367
+        ],
+        [
+          12224,
+          4242793063583.815
+        ],
+        [
+          16320,
+          4251852888394.1753
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride14336_fanout2",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 14336
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 2,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          10176,
+          5639139767489.056
+        ],
+        [
+          16320,
+          5678416105916.546
+        ],
+        [
+          24512,
+          5682770067961.204
+        ],
+        [
+          40896,
+          5663071553279.193
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride14336_fanout4",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 14336
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 4,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          24512,
+          5659363562427.024
+        ],
+        [
+          40896,
+          5672358578052.55
+        ],
+        [
+          73664,
+          5674827560913.682
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride14336_fanout8",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 14336
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 8,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          10176,
+          5562591575074.116
+        ],
+        [
+          73664,
+          5635549896539.441
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride32768_fanout1",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 32768
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 1,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          1152,
+          3918282748598.713
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride32768_fanout2",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 32768
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 2,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          1152,
+          5440475030626.216
+        ],
+        [
+          1920,
+          5524879034028.54
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride32768_fanout4",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 32768
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 4,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          1920,
+          5534234380841.378
+        ],
+        [
+          3456,
+          5569166097027.22
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride32768_fanout8",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout8",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 32768
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 8,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          3456,
+          5520704333837.079
+        ],
+        [
+          6528,
+          5577241070031.809
+        ],
+        [
+          12672,
+          5686646662877.725
+        ],
+        [
+          24960,
+          5704436567040.5625
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_resident2_stride32768_fanout16",
+      "service": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout16",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots3_b16384_resident2_fanout16",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 32768
+      },
+      "threads_per_cta": 256,
+      "resident_ctas_per_sm": 2,
+      "shared_bytes": 98304,
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "request_fanout": 16,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          1152,
+          5459753543534.856
+        ],
+        [
+          6528,
+          5551837008006.852
+        ],
+        [
+          12672,
+          5661988696096.8125
+        ],
+        [
+          24960,
+          5680131813565.061
+        ]
+      ]
+    }
+  ]
+}

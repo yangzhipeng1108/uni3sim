@@ -1,0 +1,100 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_matmul_v2_output_tile_credit_continuity.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_output_tile_credit_continuity_v1",
+  "duration_unit": "ns_per_worker",
+  "source_program": {
+    "dtype": "bf16",
+    "base_tile_m": 128,
+    "base_tile_n_values": [112, 128],
+    "base_tile_k": 128,
+    "a1_b1_descriptor_k": 256,
+    "a1_b1_descriptor_slots": 2,
+    "l0a_l0b_slots": 2,
+    "l0c_slots": 1,
+    "projection_k_values": [1024, 2048, 4096],
+    "output_tiles_per_worker_values": [1, 2, 4, 6, 9],
+    "active_aic_profiles": [
+      {"base_tile_n": 112, "active_aic_workers": 24},
+      {"base_tile_n": 128, "active_aic_workers": 22}
+    ],
+    "dynamic_tail": false,
+    "operator_or_production_shape_reproduced": false
+  },
+  "capture": {
+    "measurement_baseline_commit": "9f66c95ea2ea494869745db9f4d13e851259b2f2",
+    "source_snapshot": "/capture-workspace_worker_wt_kernel_accuracy_9f66c95_20260916",
+    "source_files_sha256": {
+      "CMakeLists.txt": "529164b9d2296cc9b48bdc92a7cea0971b749178042b4c29ba820ef1f0616976",
+      "README.md": "6ad3858221ebd6d0d19b8e7e4c825a385a7f5e1d19b95167648771c03c5dfc7b",
+      "matmul_v2_output_tile_lifecycle_kernel.cpp": "2d9d3f21e55eb925ba4dbfb86b2d1c95ec5307f6519534ba95674afa1bd8fcab",
+      "matmul_v2_output_tile_lifecycle_main.cpp": "36a7da86409e42029fc842d2887705a86257d95f9b32c22bc5f65b9024fbd266"
+    },
+    "binary_sha256": "8e139f5d63d7892cbf8b4ecb80d05c37562f7a2cba91bcc9aad30621019db0c2",
+    "physical_device_id": 4,
+    "raw_directory": "profiler_output/microbench/ascend_910b/matmul_v2_output_tile_lifecycle_9f66c95_20260916_d4",
+    "run_file_sha256_aggregate": "39d69c2020f81feed317ccf48a8e7e5bc76aaad2cd1aa53ef6d6bd3d187774a5",
+    "independent_launches_per_cell": 3,
+    "worker_statistic": "median",
+    "cell_statistic": "median_of_independent_worker_medians"
+  },
+  "measurements": {
+    "validated_run_files": 180,
+    "validated_configurations": 60,
+    "invalid_rows": 0,
+    "maximum_three_run_span_pct": 10.965,
+    "program_median_ns": {
+      "n112_workers24": {
+        "1024": {
+          "continuous": {"1": 3960, "2": 25810, "4": 28220, "6": 65250, "9": 83020},
+          "forced_tile_drain": {"1": 4000, "2": 28040, "4": 31410, "6": 68480, "9": 92730}
+        },
+        "2048": {
+          "continuous": {"1": 7160, "2": 50400, "4": 54440, "6": 118070, "9": 159000},
+          "forced_tile_drain": {"1": 7190, "2": 51400, "4": 57490, "6": 122110, "9": 168220}
+        },
+        "4096": {
+          "continuous": {"1": 13570, "2": 86220, "4": 104050, "6": 212570, "9": 307860},
+          "forced_tile_drain": {"1": 13630, "2": 87060, "4": 107100, "6": 221200, "9": 318160}
+        }
+      },
+      "n128_workers22": {
+        "1024": {
+          "continuous": {"1": 4280, "2": 9290, "4": 18380, "6": 26640, "9": 39480},
+          "forced_tile_drain": {"1": 4310, "2": 9980, "4": 19720, "6": 29420, "9": 43930}
+        },
+        "2048": {
+          "continuous": {"1": 7690, "2": 17530, "4": 34390, "6": 50470, "9": 73600},
+          "forced_tile_drain": {"1": 7700, "2": 17920, "4": 36470, "6": 53250, "9": 78900}
+        },
+        "4096": {
+          "continuous": {"1": 14650, "2": 32610, "4": 65220, "6": 95490, "9": 142270},
+          "forced_tile_drain": {"1": 14460, "2": 33680, "4": 66050, "6": 98590, "9": 144930}
+        }
+      }
+    },
+    "output_boundary_result": {
+      "boundary_cells": 24,
+      "continuous_faster_cells": 24,
+      "delta_ns_min": 390,
+      "delta_ns_max": 10300,
+      "delta_pct_min": 0.974,
+      "delta_pct_max": 11.696,
+      "one_tile_control": "No inter-output boundary exists at one tile; its -190 to 60 ns difference is retained only as measurement noise control."
+    }
+  },
+  "interpretation": {
+    "source_semantics": "The production-relevant mode has one terminal PIPE_ALL after the N-major output loop. The counterfactual inserts PIPE_ALL after every IterateAll<false> call while retaining identical tiling, operand descriptors, worker population, allocation, and output order.",
+    "conclusion": "For every measured multi-output-tile cell, terminal-only execution is faster than forced per-tile drain. MatmulImpl therefore retains producer/consumer credits across the output boundary; a per-output-tile reset or complete drain is not a valid Forward mechanism.",
+    "forward_effect": "This validates the existing continuous A1/B1/L0/Cube/FixPipe max-plus recurrence direction. It adds no service value, does not change the MTE2 capacity, and cannot lower an MTE2-only probe by treating its full program duration as an overlap correction.",
+    "next_discriminator": "A future Forward change requires an independently measurable source-specific ingress mechanism beyond the already-continuous recurrence, such as a non-duration pipe-duty or queue-credit fact that distinguishes MatmulImpl ingress from the isolated MTE2-only program."
+  },
+  "excluded_conclusions": [
+    "A complete microbenchmark program duration is a production GEMM duration.",
+    "The continuous-versus-drain delta is a production residual correction.",
+    "The MTE2-only source-transition duration may be globally removed or scaled.",
+    "A per-output-tile PIPE_ALL should be inserted into Forward."
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

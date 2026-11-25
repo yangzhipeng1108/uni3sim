@@ -1,0 +1,97 @@
+{
+  "schema": "nvidia_h200_staged_ldgsts_k32_depth6_l2_service_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "source_baseline_commit": "aeb34ee300b317a6e3820ec9a9745a2c3ac41928",
+  "source": "microbench/nvidia_h200/memory/l2/staged_ldgsts_k32_depth6_l2.cu",
+  "source_sha256": "c777fdcf173fba7077ef5e0d770a87e0f107737f50eea5ea0967efb9ee0faa88",
+  "runner": "microbench/nvidia_h200/memory/l2/staged_ldgsts_k32_depth6_l2_runner.py",
+  "runner_sha256": "f659f5334ad9e942922e688a649d618b3322dea8f614335a2b7816c7beeb5ffe",
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp3_k32_r1_t1",
+      "device_index": 2,
+      "device_uuid": "capture-device-077372b98985",
+      "provenance_sha256": "e45cd2402d5c93aa5f1a9ef1345d55f1a71ae241e8fdab140a3eae548826a3d9",
+      "raw_sha256": "4627e9e785065450cd699ccd6d388bee7431b8560b2c0d2192fb17ca7da30b92",
+      "sass_sha256": "731289240ce17e5e0a3092c20c17e8d03c9507062013160a6a64a41de0af9561",
+      "logical_byte_capacity_per_s": 10259329014543.428,
+      "relative_trial_spread": 0.02324951436687782
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp3_k32_r2_t1",
+      "device_index": 2,
+      "device_uuid": "capture-device-077372b98985",
+      "provenance_sha256": "21dbc4fc6ca8a72669c79b5034367701043bdefb818f12132b6b31dc928d7942",
+      "raw_sha256": "747c3c4e875685a39af614fb5f63b8865e1897b99755aea655135201bc5717cf",
+      "sass_sha256": "731289240ce17e5e0a3092c20c17e8d03c9507062013160a6a64a41de0af9561",
+      "logical_byte_capacity_per_s": 10310276578527.2,
+      "relative_trial_spread": 0.06381286827258127
+    }
+  ],
+  "probe_contract": {
+    "dtype": "fp16",
+    "tile_m": 64,
+    "tile_n": 128,
+    "tile_k": 32,
+    "threads_per_cta": 128,
+    "pipeline_slots": 6,
+    "resident_ctas_per_sm": 2,
+    "physical_sm_count": 132,
+    "grid_ctas": 264,
+    "panel_bytes": 12288,
+    "shared_bytes_per_cta": 77824,
+    "backing_bytes": 33554432,
+    "rounds": 4096,
+    "load_instruction": "LDGSTS",
+    "cache_operator": "cg"
+  },
+  "selected_service": {
+    "selection_rule": "minimum complete-capture capacity across two independent clock-accepted capture processes on H200 GPU 2",
+    "logical_byte_capacity_per_s": 10259329014543.428,
+    "throughput_per_sm_clock": 5181.479300274458,
+    "scope": "full_chip"
+  },
+  "applicability": {
+    "dtype": "fp16",
+    "tile_shape": [
+      64,
+      128,
+      32
+    ],
+    "threads_per_cta": 128,
+    "pipeline_slots": 6,
+    "minimum_ctas_per_sm": 2,
+    "required_launch_algorithm": "observed_gemm:gemm",
+    "required_operand_streams": 2,
+    "required_source_evidence": "six-slot CUTLASS SM80 A/B operand staging with LDGSTS"
+  },
+  "decision": {
+    "status": "accepted_mechanism_capacity",
+    "forward_eligible": true,
+    "reason": "The workload-independent staged copy is stable in two independent clock-gated H200 captures at the A800 source class's two-resident-CTA topology and provides only the exact source-class L2 read service ceiling."
+  },
+  "excluded_conclusions": [
+    "a complete production GEMM duration",
+    "a generic L2 capacity replacement",
+    "write or read/write-duplex capacity",
+    "a per-shape timing correction",
+    "an H200 three-resident-CTA topology (the H200 SM could hold three 74,752-B CTAs; the probe pins two by construction)"
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "sm_clock_hz_for_per_clock_values": 1980000000.0,
+    "clock_gate": {
+      "rule": "every probe process runs under nvidia-smi -lms 50; a process is accepted only if it shows a busy sample and every busy sample is >= 1980 MHz, otherwise it is rejected and re-run",
+      "accepted_captures": 2,
+      "rejected_captures": 0,
+      "accepted_busy_sm_clock_min_mhz": 1980,
+      "accepted_busy_sm_clock_max_mhz": 1980,
+      "accepted_busy_samples": 12,
+      "rejected_busy_sm_clock_min_mhz": []
+    },
+    "residency_note": "dynamic shared reservation padded 74,752 -> 77,824 B so the occupancy query reports exactly two CTAs per H200 SM, as on A800; the six 12-KiB ring slots are unchanged",
+    "remote_raw_root": "/capture-public/h200_microbench/wp3_ldgsts/repo/profiler_output/microbench/nvidia_h200"
+  }
+}

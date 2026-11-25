@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_h200",
+  "mechanism": "signed32_divide_and_inclusive_warp_scan",
+  "selection": "grid132_onewarp64_256_d7_minus_matched_feedback",
+  "validation_fraction": 0.05,
+  "measurements": [
+    {
+      "mode": 0,
+      "warps": 1,
+      "divisor": 1,
+      "grid": 1,
+      "cycles64": 2106,
+      "cycles128": 4090,
+      "cycles256": 8057
+    },
+    {
+      "mode": 0,
+      "warps": 1,
+      "divisor": 1,
+      "grid": 132,
+      "cycles64": 2127.0,
+      "cycles128": 4111.0,
+      "cycles256": 8079.0
+    },
+    {
+      "mode": 0,
+      "warps": 1,
+      "divisor": 7,
+      "grid": 1,
+      "cycles64": 2106,
+      "cycles128": 4090,
+      "cycles256": 8058
+    },
+    {
+      "mode": 0,
+      "warps": 1,
+      "divisor": 7,
+      "grid": 132,
+      "cycles64": 2127.0,
+      "cycles128": 4111.0,
+      "cycles256": 8079.0
+    },
+    {
+      "mode": 0,
+      "warps": 1,
+      "divisor": 257,
+      "grid": 1,
+      "cycles64": 2105,
+      "cycles128": 4090,
+      "cycles256": 8057
+    },
+    {
+      "mode": 0,
+      "warps": 1,
+      "divisor": 257,
+      "grid": 132,
+      "cycles64": 2127.0,
+      "cycles128": 4111.0,
+      "cycles256": 8079.0
+    },
+    {
+      "mode": 0,
+      "warps": 4,
+      "divisor": 1,
+      "grid": 1,
+      "cycles64": 2106.0,
+      "cycles128": 4090.0,
+      "cycles256": 8058.0
+    },
+    {
+      "mode": 0,
+      "warps": 4,
+      "divisor": 1,
+      "grid": 132,
+      "cycles64": 2200.0,
+      "cycles128": 4184.0,
+      "cycles256": 8152.0
+    },
+    {
+      "mode": 0,
+      "warps": 4,
+      "divisor": 7,
+      "grid": 1,
+      "cycles64": 2106.0,
+      "cycles128": 4089.0,
+      "cycles256": 8057.5
+    },
+    {
+      "mode": 0,
+      "warps": 4,
+      "divisor": 7,
+      "grid": 132,
+      "cycles64": 2200.0,
+      "cycles128": 4185.0,
+      "cycles256": 8152.0
+    },
+    {
+      "mode": 0,
+      "warps": 4,
+      "divisor": 257,
+      "grid": 1,
+      "cycles64": 2106.0,
+      "cycles128": 4089.0,
+      "cycles256": 8058.0
+    },
+    {
+      "mode": 0,
+      "warps": 4,
+      "divisor": 257,
+      "grid": 132,
+      "cycles64": 2200.0,
+      "cycles128": 4184.0,
+      "cycles256": 8152.0
+    },
+    {
+      "mode": 1,
+      "warps": 1,
+      "divisor": 1,
+      "grid": 1,
+      "cycles64": 11004,
+      "cycles128": 21883,
+      "cycles256": 43644
+    },
+    {
+      "mode": 1,
+      "warps": 1,
+      "divisor": 1,
+      "grid": 132,
+      "cycles64": 11026.0,
+      "cycles128": 21905.0,
+      "cycles256": 43665.0
+    },
+    {
+      "mode": 1,
+      "warps": 1,
+      "divisor": 7,
+      "grid": 1,
+      "cycles64": 11004,
+      "cycles128": 21883,
+      "cycles256": 43644
+    },
+    {
+      "mode": 1,
+      "warps": 1,
+      "divisor": 7,
+      "grid": 132,
+      "cycles64": 11025.0,
+      "cycles128": 21905.0,
+      "cycles256": 43665.0
+    },
+    {
+      "mode": 1,
+      "warps": 1,
+      "divisor": 257,
+      "grid": 1,
+      "cycles64": 11004,
+      "cycles128": 21883,
+      "cycles256": 43644
+    },
+    {
+      "mode": 1,
+      "warps": 1,
+      "divisor": 257,
+      "grid": 132,
+      "cycles64": 11025.0,
+      "cycles128": 21905.0,
+      "cycles256": 43665.0
+    },
+    {
+      "mode": 1,
+      "warps": 4,
+      "divisor": 1,
+      "grid": 1,
+      "cycles64": 11003.0,
+      "cycles128": 21884.0,
+      "cycles256": 43643.0
+    },
+    {
+      "mode": 1,
+      "warps": 4,
+      "divisor": 1,
+      "grid": 132,
+      "cycles64": 11098.0,
+      "cycles128": 21978.0,
+      "cycles256": 43738.0
+    },
+    {
+      "mode": 1,
+      "warps": 4,
+      "divisor": 7,
+      "grid": 1,
+      "cycles64": 11003.0,
+      "cycles128": 21884.0,
+      "cycles256": 43643.0
+    },
+    {
+      "mode": 1,
+      "warps": 4,
+      "divisor": 7,
+      "grid": 132,
+      "cycles64": 11099.0,
+      "cycles128": 21978.0,
+      "cycles256": 43738.0
+    },
+    {
+      "mode": 1,
+      "warps": 4,
+      "divisor": 257,
+      "grid": 1,
+      "cycles64": 11003.5,
+      "cycles128": 21884.0,
+      "cycles256": 43643.0
+    },
+    {
+      "mode": 1,
+      "warps": 4,
+      "divisor": 257,
+      "grid": 132,
+      "cycles64": 11098.0,
+      "cycles128": 21978.0,
+      "cycles256": 43738.0
+    },
+    {
+      "mode": 2,
+      "warps": 1,
+      "divisor": 1,
+      "grid": 1,
+      "cycles64": 12042,
+      "cycles128": 23947,
+      "cycles256": 47755
+    },
+    {
+      "mode": 2,
+      "warps": 1,
+      "divisor": 1,
+      "grid": 132,
+      "cycles64": 12064.0,
+      "cycles128": 23968.0,
+      "cycles256": 47776.0
+    },
+    {
+      "mode": 2,
+      "warps": 4,
+      "divisor": 1,
+      "grid": 1,
+      "cycles64": 12043.0,
+      "cycles128": 23947.0,
+      "cycles256": 47755.0
+    },
+    {
+      "mode": 2,
+      "warps": 4,
+      "divisor": 1,
+      "grid": 132,
+      "cycles64": 12137.5,
+      "cycles128": 24041.0,
+      "cycles256": 47849.0
+    }
+  ],
+  "evidence": {
+    "raw": {
+      "path": "profiler_output/microbench/nvidia_h200/warp_integer_dependencies_20261108/attempt_01/raw.json",
+      "sha256": "16efa63888bf368382d5ac7d93645299bff2ec23ad60ab20f8508d27253ffaf3",
+      "size": 4371656
+    },
+    "source": {
+      "path": "profiler_output/microbench/nvidia_h200/warp_integer_dependencies_20261108/attempt_01/warp_integer_dependencies.cu",
+      "sha256": "2b827c077f67c54af90b38964f10005b5fdadbd9bca1bed086b919eb05e86207",
+      "size": 3959
+    },
+    "runner": {
+      "path": "profiler_output/microbench/nvidia_h200/warp_integer_dependencies_20261108/attempt_01/warp_integer_dependencies_modal_runner.py",
+      "sha256": "16b378a28c85df7fe2788884ae708e9cebe48e689b06b77e5bdec4fd102815fa",
+      "size": 3723
+    },
+    "plan": {
+      "path": "profiler_output/microbench/nvidia_h200/warp_integer_dependencies_20261108/plan.json",
+      "sha256": "df0c6e3dc21bbb11075a89d9017abc80b04247f70f810aeac0976c165d51bfe8",
+      "size": 1829
+    },
+    "analysis": {
+      "path": "profiler_output/microbench/nvidia_h200/warp_integer_dependencies_20261108/analysis.json",
+      "sha256": "ca5a5d436def6ebd261e5446a2178a13530ddefbc114a7e734c25c0fddbb2b8b",
+      "size": 7614
+    },
+    "analyzer": {
+      "path": "profiler_output/microbench/nvidia_h200/warp_integer_dependencies_20261108/analyze.py",
+      "sha256": "adfa4fa23ebedf889cd6671718dcf7887f00eb2e77131e4ec11c2bad54a36930",
+      "size": 4207
+    }
+  },
+  "scope_limitations": [
+    "Incremental warp dependency cycles,not an entire scheduler or production operator service.",
+    "Positive signed32 numerator and divisor;divisors1,7,257 and1/4activewarps verified independently.",
+    "Five shuffle-up/add levels describe inclusive warp scan;ballot/popcount/control and memory are separate.",
+    "Standalone-to-native compiler and co-resident producer transfer remain a coarse composition approximation."
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

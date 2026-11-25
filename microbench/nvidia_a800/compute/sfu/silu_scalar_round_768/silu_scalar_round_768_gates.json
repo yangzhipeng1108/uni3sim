@@ -1,0 +1,15 @@
+{
+  "schema": "nvidia_a800_silu_scalar_round_768_gates_v1",
+  "hardware_id": "nvidia_a800",
+  "threads_per_cta": 768,
+  "rounds_per_cta": 64,
+  "static_shared_bytes": 1024,
+  "registers_per_thread": 24,
+  "grid_ctas": [108, 216],
+  "trials_per_run": 3,
+  "independent_runs": 3,
+  "maximum_relative_spread": 0.2,
+  "capacity_range_ctas_per_sm": [1.0, 2.0],
+  "production_or_evaluation_duration_consumed": false,
+  "production_parameter_published": false
+}

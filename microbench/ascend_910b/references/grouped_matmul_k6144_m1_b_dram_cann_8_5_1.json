@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "mechanism": "grouped_matmul_k6144_m1_b_nd2nz_dram_stream",
+  "duration_unit": "ns_per_64x256_b_descriptor_per_aic",
+  "publication_scope": {
+    "source_residency": "dram_cold",
+    "dtype": "bf16",
+    "rows": 64,
+    "columns": 256,
+    "source_row_stride_elements": 6144,
+    "source_tile_span_bytes": 774656,
+    "copied_bytes_per_descriptor": 32768,
+    "active_aic_groups": 24,
+    "iterations_per_worker": 224,
+    "source_allocation_bytes": 8589934592,
+    "source_lifecycle": "two_buffer_stream",
+    "source_precondition": "CANN GroupedMatmul has blockDimM == 1 and SetL2CacheHint(CACHE_MODE_DISABLE) on B"
+  },
+  "parameters_ns": {
+    "serial_completion": 670.476190476,
+    "two_buffer_stream": 658.601190476,
+    "two_buffer_stream_full_chip_logical_byte_capacity_per_s": 1194094410048.0
+  },
+  "measurement": {
+    "serial_trial_ns": [674.94047619, 670.476190476, 668.571428571],
+    "two_buffer_stream_trial_ns": [653.601190476, 661.130952381, 658.601190476],
+    "serial_relative_span": 0.00946334274362278,
+    "two_buffer_stream_relative_span": 0.01147634064164925,
+    "maximum_allowed_relative_span": 0.05,
+    "stability_gate": true,
+    "mechanism_gate_passed": true
+  },
+  "provenance": {
+    "capture_commit": "db044aaf1fabedcbed608cec29aab0efc95c1547",
+    "snapshot_path": "/capture-workspace/execution_snapshots/fusedmoe_k6144_b_ingress_db044aaf_20260910_r1",
+    "raw_path": "profiler_output/microbench/ascend_910b/fusedmoe_k6144_b_ingress_db044aaf_20260910_r1/capture.csv",
+    "raw_sha256": "9c2100dc5994f1abd9c7f7502848c61476be38193a717376b3a3549ce6b49803",
+    "stderr_path": "profiler_output/microbench/ascend_910b/fusedmoe_k6144_b_ingress_db044aaf_20260910_r1/capture.stderr",
+    "stderr_sha256": "10e8d6c21b3b7dbfb37db48ef841cdae4f19c3e9591cf1959a25e6205ca50fd1",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_id": 2,
+    "logical_device_id": 0,
+    "owner": "kernel-accuracy-fusedmoe",
+    "source_snapshot_sha256": "eca8a279583c6a90a745dd9c5e069e3f730fd8bd042ee810b5a1205117023a6d",
+    "source_sha256": {
+      "CMakeLists.txt": "d50d0b908a5aed58a55c5976a95c5f067f6d144b5bda3599b4f40ac8231d1a39",
+      "aic_mte2_nd2nz_stride_kernel.cpp": "3cdee9b19b126143b4351af4f60a0f4aa088dc4c496d0626e754eda65bcbfc72",
+      "aic_mte2_nd2nz_stride_main.cpp": "fe3d48698872b094ec1fd92039e463f3a46e3eb299ee38eb72ffe85101e7aba7",
+      "aic_mte2_nd2nz_stride_runner.py": "d44b1117d07f6eca422e00f0643a541205d446225001ce680fe202bdde410bd6"
+    },
+    "binary_sha256": "7bb8d2618a0f1a2e281dca6a1b7d6edb52a38af66ee512928930562da1fa7c70",
+    "command": "python aic_mte2_nd2nz_stride_runner.py --binary build_k6144_b_cold/aic_mte2_nd2nz_stride --device-id 2 --run-id fusedmoe-k6144-b-r1 --profile fused_moe_k6144_b_cold --trials 3"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "CANN 8.5.1 BF16 GroupedMatmul must statically emit 64x256 B1 ND2NZ descriptors with 6144-element physical K stride on 24 AIC groups, use B1 depth/step 8/4 with two buffers, and have every non-empty expert satisfy blockDimM == 1 so the source disables B L2 residency"
+}

@@ -1,0 +1,104 @@
+{
+  "schema": "nvidia_h200_l2_read_bandwidth_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "production_or_evaluation_duration_consumed": false,
+  "method": "The A800 value (2921.842 GB/s) was read from NCU for this probe; NCU is not installed on the H200 host.  The probe times each cell itself with CUDA events (median of nine trials of one kernel reading every byte of an L2-resident footprint 16-32 GiB of logical traffic); logical bytes over event time measures the same sustained ld.global.cg L2 read service as the NCU L2 throughput because the footprints (8-32 MiB) are warmed into the 60 MiB L2 and bypass L1, so every logical byte is one L2 read.",
+  "selection_rule": "per (footprint, grid) cell the smaller of the two process medians; the published value is the largest such conservative cell (sustained envelope over the sweep)",
+  "cells_gb_per_s": {
+    "8MiB/132": [
+      8210.856,
+      8136.318
+    ],
+    "8MiB/264": [
+      8407.722,
+      8546.246
+    ],
+    "8MiB/528": [
+      8882.855,
+      8662.492
+    ],
+    "8MiB/1056": [
+      7426.627,
+      7400.064
+    ],
+    "16MiB/132": [
+      8184.944,
+      8101.511
+    ],
+    "16MiB/264": [
+      8337.734,
+      8141.131
+    ],
+    "16MiB/528": [
+      8805.204,
+      8663.68
+    ],
+    "16MiB/1056": [
+      7641.04,
+      7622.38
+    ],
+    "24MiB/132": [
+      8186.818,
+      8186.881
+    ],
+    "24MiB/264": [
+      8504.794,
+      8812.322
+    ],
+    "24MiB/528": [
+      8792.128,
+      8832.682
+    ],
+    "24MiB/1056": [
+      8394.803,
+      8095.815
+    ],
+    "32MiB/132": [
+      8159.566,
+      7929.034
+    ],
+    "32MiB/264": [
+      8839.491,
+      8820.176
+    ],
+    "32MiB/528": [
+      8749.669,
+      8868.695
+    ],
+    "32MiB/1056": [
+      8424.874,
+      8469.064
+    ]
+  },
+  "selected_cell": {
+    "footprint_mib": 32,
+    "grid": 264
+  },
+  "l2_read_gb_per_s": 8820.176,
+  "sm_clock_hz": 1980000000.0,
+  "throughput_per_clk": 4454.6343434343435,
+  "provenance": {
+    "source": "microbench/nvidia_h200/memory/l2/l2_bandwidth.cu",
+    "source_sha256": "00e21673cdcb4e115674deb5a090fd6bf4b9d528ccf4340aa1cf99699fc30135",
+    "runner": "microbench/nvidia_h200/memory/l2/l2_bandwidth_runner.py",
+    "runner_sha256": "bdaf0885d04ce84c68a4dffac37707334cddb1bf43baa7afae4ab11de1831a01",
+    "binary_sha256": "cde605435ddd85735d2844a36e08931d2e2d7dc729a03b32d56514ec1d60ce84",
+    "raw": "profiler_output/microbench/nvidia_h200/l2_bandwidth_20260925",
+    "measurements_sha256": "eac06258dbc33f4f476b9d96444b104d599f0029e95dda58c40a1d4157901bb1",
+    "clock": {
+      "gate": "every busy nvidia-smi sample (utilization.gpu > 0, 50 ms period) must report at least boost_mhz; otherwise the process is rejected and re-run",
+      "boost_mhz": 1980,
+      "accepted_captures": 2,
+      "rejected_captures": 0,
+      "busy_sm_clock_mhz_min": 1980,
+      "busy_sm_clock_mhz_max": 1980,
+      "busy_samples": 32,
+      "rejected": []
+    },
+    "device_index": 1,
+    "device_uuid": "capture-device-31adbc24ad46",
+    "git_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919"
+  }
+}

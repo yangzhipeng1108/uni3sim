@@ -1,0 +1,3274 @@
+{
+ "schema_version": 1,
+ "hardware_id": "nvidia_h200",
+ "campaign": "dsr1_mtpoff_ops",
+ "case_count": 189,
+ "plans": [
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M1",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M1",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M1"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M1",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M1",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M1"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H32_M1",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H32_M1",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "32",
+    "--tokens",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H32_M1"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H32_M1",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H32_M1",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "32",
+    "--tokens",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H32_M1"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M1_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M1_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "1",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M1_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M1_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M1_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "1",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M1_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M1_E256_K8_H7168_I512",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M1_E256_K8_H7168_I512",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "1",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "512",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M1_E256_K8_H7168_I512"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M1_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M1_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "1",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M1_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M1_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M1_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "1",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M1_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M1_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M1_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "1",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M1_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M1_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M1_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "1",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M1_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M1_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M1_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "1",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M1_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M2",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M2",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "2",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M2"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M2",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M2",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "2",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M2"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M2_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M2_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "2",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M2_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M2_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M2_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "2",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M2_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M2_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M2_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "2",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M2_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M2_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M2_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "2",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M2_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M2_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M2_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "2",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M2_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M2_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M2_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "2",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M2_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M2_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M2_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "2",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M2_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M3",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M3",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "3",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M3"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M3",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M3",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "3",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M3"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M3_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M3_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "3",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M3_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M3_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M3_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "3",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M3_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M3_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M3_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "3",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M3_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M3_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M3_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "3",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M3_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M3_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M3_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "3",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M3_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M3_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M3_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "3",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M3_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M3_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M3_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "3",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M3_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M4",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M4",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "4",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M4"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M4",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M4",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "4",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M4"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H32_M4",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H32_M4",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "32",
+    "--tokens",
+    "4",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H32_M4"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H32_M4",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H32_M4",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "32",
+    "--tokens",
+    "4",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H32_M4"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M4_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M4_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "4",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M4_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M4_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M4_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "4",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M4_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M4_E256_K8_H7168_I512",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M4_E256_K8_H7168_I512",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "4",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "512",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M4_E256_K8_H7168_I512"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M4_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M4_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "4",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M4_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M4_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M4_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "4",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M4_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M4_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M4_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "4",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M4_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M4_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M4_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "4",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M4_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M4_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M4_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "4",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M4_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M6",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M6",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "6",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M6"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M6",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M6",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "6",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M6"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M6_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M6_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "6",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M6_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M6_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M6_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "6",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M6_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M6_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M6_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "6",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M6_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M6_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M6_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "6",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M6_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M6_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M6_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "6",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M6_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M6_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M6_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "6",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M6_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M6_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M6_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "6",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M6_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M8",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M8",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "8",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M8"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M8",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M8",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "8",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M8"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M8_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M8_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "8",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M8_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M8_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M8_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "8",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M8_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M8_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M8_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "8",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M8_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M8_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M8_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "8",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M8_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M8_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M8_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "8",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M8_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M8_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M8_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "8",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M8_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M8_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M8_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "8",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M8_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M9",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M9",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "9",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M9"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M9",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M9",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "9",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M9"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M9_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M9_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "9",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M9_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M9_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M9_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "9",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M9_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M9_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M9_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "9",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M9_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M9_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M9_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "9",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M9_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M9_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M9_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "9",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M9_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M9_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M9_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "9",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M9_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M9_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M9_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "9",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M9_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M12",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M12",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "12",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M12"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M12",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M12",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "12",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M12"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M12_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M12_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "12",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M12_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M12_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M12_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "12",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M12_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M12_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M12_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "12",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M12_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M12_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M12_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "12",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M12_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M12_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M12_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "12",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M12_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M12_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M12_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "12",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M12_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M12_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M12_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "12",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M12_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M16",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M16",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "16",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M16"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M16",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M16",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "16",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M16"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H32_M16",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H32_M16",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "32",
+    "--tokens",
+    "16",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H32_M16"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H32_M16",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H32_M16",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "32",
+    "--tokens",
+    "16",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H32_M16"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M16_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M16_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "16",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M16_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M16_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M16_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "16",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M16_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M16_E256_K8_H7168_I512",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M16_E256_K8_H7168_I512",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "16",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "512",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M16_E256_K8_H7168_I512"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M16_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M16_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "16",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M16_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M16_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M16_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "16",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M16_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M16_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M16_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "16",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M16_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M16_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M16_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "16",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M16_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M16_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M16_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "16",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M16_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M17",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M17",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "17",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M17"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M17",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M17",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "17",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M17"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M17_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M17_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "17",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M17_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M17_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M17_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "17",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M17_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M17_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M17_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "17",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M17_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M17_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M17_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "17",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M17_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M17_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M17_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "17",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M17_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M17_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M17_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "17",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M17_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M17_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M17_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "17",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M17_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M24",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M24",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "24",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M24"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M24",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M24",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "24",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M24"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M24_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M24_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "24",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M24_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M24_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M24_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "24",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M24_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M24_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M24_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "24",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M24_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M24_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M24_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "24",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M24_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M24_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M24_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "24",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M24_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M24_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M24_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "24",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M24_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M24_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M24_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "24",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M24_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M32",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M32",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "32",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M32"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M32",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M32",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "32",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M32"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M32_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M32_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "32",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M32_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M32_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M32_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "32",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M32_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M32_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M32_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "32",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M32_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M32_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M32_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "32",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M32_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M32_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M32_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "32",
+    "--k",
+    "7168",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M32_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M32_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M32_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "32",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M32_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M32_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M32_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "32",
+    "--k",
+    "1536",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M32_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M32_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M32_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "32",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M32_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M32_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M32_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "32",
+    "--k",
+    "2048",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M32_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M32_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M32_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "32",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M32_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M32_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M32_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "32",
+    "--k",
+    "2304",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M32_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M48",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M48",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "48",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M48"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M48",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M48",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "48",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M48"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M48_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M48_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "48",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M48_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M48_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M48_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "48",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M48_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M48_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M48_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "48",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M48_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M48_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M48_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "48",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M48_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M48_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M48_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "48",
+    "--k",
+    "7168",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M48_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M48_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M48_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "48",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M48_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M48_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M48_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "48",
+    "--k",
+    "1536",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M48_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M48_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M48_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "48",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M48_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M48_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M48_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "48",
+    "--k",
+    "2048",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M48_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M48_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M48_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "48",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M48_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M48_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M48_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "48",
+    "--k",
+    "2304",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M48_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M64",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M64",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "64",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M64"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M64",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M64",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "64",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M64"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H32_M64",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H32_M64",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "32",
+    "--tokens",
+    "64",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H32_M64"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H32_M64",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H32_M64",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "32",
+    "--tokens",
+    "64",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H32_M64"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M64_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M64_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "64",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M64_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M64_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M64_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "64",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M64_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M64_E256_K8_H7168_I512",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M64_E256_K8_H7168_I512",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "64",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "512",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M64_E256_K8_H7168_I512"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M64_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M64_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "64",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M64_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M64_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M64_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "64",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M64_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M64_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M64_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "64",
+    "--k",
+    "7168",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M64_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M64_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M64_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "64",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M64_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M64_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M64_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "64",
+    "--k",
+    "1536",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M64_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M64_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M64_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "64",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M64_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M64_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M64_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "64",
+    "--k",
+    "2048",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M64_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M64_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M64_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "64",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M64_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M64_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M64_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "64",
+    "--k",
+    "2304",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M64_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M96",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M96",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "96",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M96"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M96",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M96",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "96",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M96"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M96_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M96_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "96",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M96_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M96_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M96_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "96",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M96_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M96_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M96_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "96",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M96_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M96_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M96_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "96",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M96_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M96_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M96_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "96",
+    "--k",
+    "7168",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M96_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M96_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M96_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "96",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M96_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M96_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M96_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "96",
+    "--k",
+    "1536",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M96_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M96_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M96_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "96",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M96_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M96_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M96_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "96",
+    "--k",
+    "2048",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M96_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M96_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M96_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "96",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M96_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M96_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M96_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "96",
+    "--k",
+    "2304",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M96_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M128",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M128",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "128",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M128"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M128",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M128",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "128",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M128"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M128_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M128_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "128",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M128_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M128_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M128_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "128",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M128_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M128_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M128_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "128",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M128_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M128_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M128_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "128",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M128_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M128_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M128_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "128",
+    "--k",
+    "7168",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M128_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M128_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M128_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "128",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M128_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M128_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M128_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "128",
+    "--k",
+    "1536",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M128_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M128_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M128_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "128",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M128_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M128_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M128_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "128",
+    "--k",
+    "2048",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M128_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M128_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M128_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "128",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M128_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M128_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M128_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "128",
+    "--k",
+    "2304",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M128_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UK_H16_M192",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M192",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uk",
+    "--heads",
+    "16",
+    "--tokens",
+    "192",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UK_H16_M192"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_BMM_UV_H16_M192",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M192",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "mla_bmm_uv",
+    "--heads",
+    "16",
+    "--tokens",
+    "192",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_BMM_UV_H16_M192"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ROUTER_M192_H7168_E256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M192_H7168_E256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "router",
+    "--tokens",
+    "192",
+    "--hidden",
+    "7168",
+    "--experts",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ROUTER_M192_H7168_E256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOE_FP8_M192_E256_K8_H7168_I256",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M192_E256_K8_H7168_I256",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "fused_moe_fp8",
+    "--tokens",
+    "192",
+    "--experts",
+    "256",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--intermediate",
+    "256",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOE_FP8_M192_E256_K8_H7168_I256"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_MOESUM_M192_K8_H7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M192_K8_H7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "moe_sum",
+    "--tokens",
+    "192",
+    "--top-k",
+    "8",
+    "--hidden",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_MOESUM_M192_K8_H7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M192_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M192_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "192",
+    "--k",
+    "7168",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M192_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M192_K7168",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M192_K7168",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "192",
+    "--k",
+    "7168",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M192_K7168"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M192_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M192_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "192",
+    "--k",
+    "1536",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M192_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M192_K1536",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M192_K1536",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "192",
+    "--k",
+    "1536",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M192_K1536"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M192_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M192_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "192",
+    "--k",
+    "2048",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M192_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M192_K2048",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M192_K2048",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "192",
+    "--k",
+    "2048",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M192_K2048"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_ROW_M192_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M192_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "192",
+    "--k",
+    "2304",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_ROW_M192_K2304"
+   ]
+  },
+  {
+   "family": "dsr1_decode_op",
+   "case_id": "DSR1_ACTQ_COL_M192_K2304",
+   "marker": "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M192_K2304",
+   "runner_relpath": "scripts/kernel_dataset/nvidia_h200/kc_deepseek_r1_decode_runner.py",
+   "runner_args": [
+    "--op",
+    "act_quant",
+    "--tokens",
+    "192",
+    "--k",
+    "2304",
+    "--column-major-scales",
+    "1",
+    "--nvtx_range_name",
+    "H200_KERNEL::dsr1_decode_op::DSR1_ACTQ_COL_M192_K2304"
+   ]
+  }
+ ]
+}

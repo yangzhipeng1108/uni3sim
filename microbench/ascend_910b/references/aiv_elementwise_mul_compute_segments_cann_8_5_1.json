@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "b9eedce0bd697c9b34ab11031c60cdc3b9f449f0",
+  "mechanism": "UB-only BF16 Mul DAG compute segments on either side of the source-defined B-input completion boundary",
+  "static_source_evidence_ref": "microbench/ascend_910b/references/elementwise_add_mul_dag_accounting_cann_8_5_1.json",
+  "static_source_evidence_sha256": "ac2f90c76a4cc6b2966d6dc97dc34f45a6ec51333d53f9fb7b739b63c5f46c5b",
+  "source_snapshot_path": "/capture-workspace/source_snapshots/vector_elementwise_mul_segments_b9eedce0_20260909",
+  "source_kernel_sha256": "ee6aa4120d9b4927e394100825674cd22c6536e3aa220a2eebc9e973df7e4d26",
+  "benchmark_binary_sha256": "cfbe64d83e82a87ce55bf8885ea7bf8b2a5c7585b3e94b40665158fdbd0bd68d",
+  "raw_path": "profiler_output/microbench/ascend_910b/elementwise_mul_compute_segments_b9eedce0_20260909_d7",
+  "raw_sha256": {
+    "run1/raw.csv": "e2357f8aada4e3520b4000fa3901e748885b6fbabfca2312a08ab2e47c0002e9",
+    "run2/raw.csv": "f194ec277e99a4e968b322eaff450abd025b63581d41701a280d35df04f07d98",
+    "run3/raw.csv": "ba08101b74fa1fcb4eaa29320ba5d5f49625a4ecb7cc743b3179197c30daf696",
+    "report.json": "426ccf0c41f1c535d1defd6079a32bde9511fefe6c389f4b103998498adff46f"
+  },
+  "device_id": 7,
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 24,
+  "position_balanced_cycles_per_run": 2,
+  "cross_run_spread_limit_percent": 20.0,
+  "maximum_cross_run_spread_percent": 0.0,
+  "request_size_unit": "source_vector_operations",
+  "services": {
+    "aiv_elementwise_mul_prefix_46_workers": {
+      "segment": "cast_x1_bf16_to_fp32",
+      "active_workers": 46,
+      "service_time_ns_by_request_size": {
+        "1280": 80.0,
+        "1792": 100.0
+      }
+    },
+    "aiv_elementwise_mul_suffix_46_workers": {
+      "segment": "cast_x2_bf16_to_fp32_then_mul_then_cast_output_fp32_to_bf16",
+      "active_workers": 46,
+      "service_time_ns_by_request_size": {
+        "3840": 140.0,
+        "5376": 180.0
+      }
+    },
+    "aiv_elementwise_mul_prefix_47_workers": {
+      "segment": "cast_x1_bf16_to_fp32",
+      "active_workers": 47,
+      "service_time_ns_by_request_size": {
+        "768": 60.0,
+        "1408": 80.0,
+        "1536": 100.0,
+        "2816": 140.0
+      }
+    },
+    "aiv_elementwise_mul_suffix_47_workers": {
+      "segment": "cast_x2_bf16_to_fp32_then_mul_then_cast_output_fp32_to_bf16",
+      "active_workers": 47,
+      "service_time_ns_by_request_size": {
+        "2304": 120.0,
+        "4224": 160.0,
+        "4608": 160.0,
+        "8448": 260.0
+      }
+    }
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "measurement_gate_passed": true,
+  "mechanism_publishable": true
+}

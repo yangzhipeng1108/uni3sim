@@ -1,0 +1,108 @@
+{
+  "allowed_use": "Fill span plus per-256-wide-K-round issue service of the one compiled program that the Qwen3-30B-A3B TP2 decode qkv and o_proj projections select on this deployment. Coefficients are fitted only on NON-PRODUCTION output widths N=3584/4096/4608; the production widths N=2048 and N=2560 were held out and used solely as an independent check.",
+  "applicability_warning": "DOES NOT APPLY TO THE CANONICAL qwen3-30b-a3b tp2_ep2 DATASET. The raw device-launch projection that dataset was built from shows every mcBLAS launch in it is tn_64x32x256_2m1n8k_256t (plus a tn_128x64x256_2m1n8k split-K form), not the tn_64x32x256_4m1n8k_256t this reference measures. The 4m1n8k program is what the CURRENT container selects for those shapes; the capture ran an older build that selects 2m1n8k. This reference remains a valid measurement of 4m1n8k and must not be used to price that dataset.",
+  "cta_versus_bytes": {
+    "statement": "The output-width term is weight bytes, not per-CTA dispatch. Raising M from 32 to 35 doubles the launched CTA count (ceil(M/32) M-tiles) at identical weight bytes and does not change the measured time, so a per-CTA cost is falsified."
+  },
+  "dtype": "bf16",
+  "fitted_cells_non_production": {
+    "n_3584": {
+      "ctas": 56,
+      "fill_us": 7.757,
+      "k_round_service_us": 1.4989
+    },
+    "n_4096": {
+      "ctas": 64,
+      "fill_us": 7.967,
+      "k_round_service_us": 1.5606
+    },
+    "n_4608": {
+      "ctas": 72,
+      "fill_us": 9.1,
+      "k_round_service_us": 1.5562
+    }
+  },
+  "forbidden_use": "Any other compiled program -- in particular tn_64x32x256_2m1n8k_256t (selected at N=1920/3072), tn_256x32x128_2m1n8k_256t (M=2), tn_16x16x64_1m1n1k_256t (N=128) and tn_64x48x256_4m1n8k_256t (M=48) -- and not a per-shape correction. Also invalid at N>=5120, where the per-round weight footprint leaves the issue-limited regime.",
+  "hardware_id": "metax_c500",
+  "held_out_validation": [
+    {
+      "measured_us": 18.01,
+      "n": 2048,
+      "predicted_us": 17.897,
+      "role": "production o_proj",
+      "signed_pct": -0.63
+    },
+    {
+      "measured_us": 18.56,
+      "n": 2560,
+      "predicted_us": 18.569,
+      "role": "production qkv",
+      "signed_pct": 0.05
+    },
+    {
+      "measured_us": 21.427,
+      "n": 4480,
+      "predicted_us": 21.087,
+      "role": "non-production held out",
+      "signed_pct": -1.59
+    }
+  ],
+  "independent_cross_check": {
+    "prior_reference": "microbench/metax_c500/references/mcblas_decode_program_pipeline_maca_3_7_2.json",
+    "statement": "An independent earlier sweep of the same program at N=2560 measured k_round_service_us = 1.5607; this fit, from three different and disjoint output widths, gives 1.5386 (1.4% apart). The per-round service is therefore a property of the compiled program rather than of the shape, which is what licenses extrapolating it to the production widths."
+  },
+  "l2_residency_control": {
+    "buffers": 8,
+    "rotating_us": {
+      "n_2048": 18.01,
+      "n_2560": 18.56,
+      "n_3584": 19.712,
+      "n_4096": 20.352,
+      "n_4608": 21.35
+    },
+    "statement": "The single-buffer probe replays one weight back to back and could in principle retain part of it in the 8.39 MB L2. Re-measuring with eight rotating weight buffers (working sets 67-151 MB) changes every cell by at most 3.5% and with no systematic sign, so these numbers are the DRAM-streaming regime that serving runs."
+  },
+  "mechanism": "mcblas_serving_decode_program_pipeline",
+  "model": {
+    "fill_us_intercept": 2.9027,
+    "fill_us_per_output_column": 0.0013115,
+    "form": "t_us = fill_us(N) + (K / k_round_width_elements) * k_round_service_us",
+    "k_round_service_is_output_width_independent": true,
+    "k_round_service_us": 1.5386,
+    "k_round_width_elements": 256,
+    "validity": {
+      "k_max": 3584,
+      "k_min": 2048,
+      "m_max": 32,
+      "m_min": 4,
+      "n_max": 4608,
+      "n_min": 2048
+    }
+  },
+  "observed_canonical_grids_2m1n8k": {
+    "block": 256,
+    "forms": [
+      "(1,32,1)",
+      "(40,1,1)",
+      "(4,20,1)",
+      "(2,32,1)",
+      "(4,1,1)",
+      "(1,2,1)",
+      "(1,20,4) split-K on tn_128x64x256_2m1n8k",
+      "(2,1,8) split-K"
+    ],
+    "note": "From the canonical capture's own raw projection; grid/block only."
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "program": "mcblas__Mck_bf16gemm_tn_64x32x256_4m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+  "provenance": {
+    "capture": "profiler_output/microbench/metax_c500/mcblas_serving_program_20260919_r1",
+    "container": "capture-container-1",
+    "device_index": 0,
+    "identity_tool": "mcTracer, one invocation per swept shape",
+    "maca": "3.7.2",
+    "source": "microbench/metax_c500/operators/gemm/mcblas_decode_program_rotating_probe.py",
+    "source_sha256": "18f2c08004fda70e8652b491d247bb388aa1723efad85a40e65891895764f743"
+  },
+  "schema": "mcblas_program_pipeline_v1"
+}

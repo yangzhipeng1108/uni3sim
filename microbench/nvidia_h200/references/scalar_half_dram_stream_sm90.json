@@ -1,0 +1,100 @@
+{
+  "schema": "nvidia_h200_scalar_half_dram_stream_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "production_or_evaluation_duration_consumed": false,
+  "probe_meta": {
+    "block_threads": "128",
+    "cached_first_stream_bytes": "16384",
+    "device": "NVIDIA H200",
+    "loads_per_stream_per_group": "64",
+    "producer_warps_per_cta": "4",
+    "resident_ctas_per_sm": "3",
+    "sm_count": "132"
+  },
+  "cell_medians": {
+    "132/248": {
+      "median_elapsed_ns": 441952.005,
+      "median_sectors_per_active_sm_s": 287307229.1729273,
+      "bytes": 536346624,
+      "trials": 18
+    },
+    "264/124": {
+      "median_elapsed_ns": 253823.99550000002,
+      "median_sectors_per_active_sm_s": 500252159.86329377,
+      "bytes": 536346624,
+      "trials": 18
+    },
+    "396/1": {
+      "median_elapsed_ns": 8656.0,
+      "median_sectors_per_active_sm_s": 177449778.8704396,
+      "bytes": 6488064,
+      "trials": 18
+    },
+    "396/2": {
+      "median_elapsed_ns": 10976.0,
+      "median_sectors_per_active_sm_s": 279883388.10408485,
+      "bytes": 12976128,
+      "trials": 18
+    },
+    "396/3": {
+      "median_elapsed_ns": 13440.0,
+      "median_sectors_per_active_sm_s": 342859089.254147,
+      "bytes": 19464192,
+      "trials": 18
+    },
+    "396/4": {
+      "median_elapsed_ns": 15807.999,
+      "median_sectors_per_active_sm_s": 388663984.8716633,
+      "bytes": 25952256,
+      "trials": 18
+    },
+    "396/8": {
+      "median_elapsed_ns": 25696.0,
+      "median_sectors_per_active_sm_s": 478206723.2135848,
+      "bytes": 51904512,
+      "trials": 18
+    },
+    "396/82": {
+      "median_elapsed_ns": 200751.9975,
+      "median_sectors_per_active_sm_s": 627400984.0454705,
+      "bytes": 532021248,
+      "trials": 18
+    }
+  },
+  "gemv_scalar_half_issue_group_elements_per_lane": 64,
+  "gemv_scalar_half_resident_ctas_per_sm": 3,
+  "gemv_scalar_half_dram_transactions_per_sm_s": 627400984.0454705,
+  "three_group_median_ns": 13440.0,
+  "three_group_bytes": 19464192,
+  "three_group_steady_service_ns": 7344.585228871809,
+  "dram_latency_ns": 352.61976432800293,
+  "submit_ns": 803.1987,
+  "submit_source": "microbench/nvidia_h200/references/isolated_empty_task_scheduler_sm90.json",
+  "gemv_scalar_half_source_fill_ns": 4939.596306800188,
+  "formula": "transactions_per_sm_s = median sectors_per_active_sm_s of the long stream at grid 3 x 132; steady_ns = three_group_bytes / (rate * 132 * 32) ; source_fill_ns = three_group_median_ns - steady_ns - submit_ns - dram_latency_ns (A800 selection rule, same formula)",
+  "fill_before_submit_ns": 5742.795006800188,
+  "provenance": {
+    "source": "microbench/nvidia_h200/memory/lsu/scalar_half_dram_stream.cu",
+    "source_sha256": "77d745174e46663fbf7d589226efbdfae85c0bd98abbaaae78aa77d5d4954014",
+    "runner": "microbench/nvidia_h200/memory/lsu/scalar_half_dram_stream_runner.py",
+    "runner_sha256": "4807f6395f33959158083db25f5ed9eeb127007169fbe8729cfe3ec459944902",
+    "binary_sha256": "5ecd9367aff4ac56548c30f0ba199776f42d3fee500430f5282bfeda6082df0e",
+    "raw": "profiler_output/microbench/nvidia_h200/scalar_half_dram_stream_20260925",
+    "results_sha256": "178a8eb494d79cc9f93d094113f9f678c2bb2e7e58a48af7ba534f9a3a13cc95",
+    "clock": {
+      "gate": "every busy nvidia-smi sample (utilization.gpu > 0, 50 ms period) must report at least boost_mhz; otherwise the process is rejected and re-run",
+      "boost_mhz": 1980,
+      "accepted_captures": 2,
+      "rejected_captures": 0,
+      "busy_sm_clock_mhz_min": 1980,
+      "busy_sm_clock_mhz_max": 1980,
+      "busy_samples": 6,
+      "rejected": []
+    },
+    "device_index": 1,
+    "device_uuid": "capture-device-31adbc24ad46",
+    "git_commit": "9c93d56a8b92c1c2bf51ef545cf34166da4f58e9"
+  }
+}

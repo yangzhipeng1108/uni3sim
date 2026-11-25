@@ -1,0 +1,97 @@
+{
+  "schema_version": "midlayer.ascend.aic_mte2_fia_mla_strided_service.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_gm_to_l1_nd2nz_mla_strided_resident_cold_completion",
+  "duration_unit": "ns_per_descriptor_per_aic",
+  "production_or_evaluation_duration_consumed": false,
+  "source_semantics": {
+    "production_kernel_name": "FusedInferAttentionScore_3b093497fc536d61a77a7a3293a524da",
+    "production_binary_sha256": "68d62254dd49dcb398adb340636d4b8a7686aa6e67a4a6e3bc079bfd7bd76ae2",
+    "production_metadata_sha256": "699448c8278ec2d9faecf4563d2d725167e9ef4a7573a41c45833f37ae4864d6",
+    "q_main": {"columns": 256, "source_row_stride_elements": 512},
+    "q_rope": {"columns": 64, "source_row_stride_elements": 64},
+    "k_main": {"columns": 256, "source_row_stride_elements": 512},
+    "k_rope": {"columns": 32, "source_row_stride_elements": 64},
+    "probability": {"columns": 256, "source_row_stride_elements": 512},
+    "value": {"columns": 128, "source_row_stride_elements": 512}
+  },
+  "measurement_scope": {
+    "dtype": "bf16",
+    "active_aic_groups": [1, 4, 8, 16, 22, 24],
+    "modes": {"serial_completion": 0, "two_buffer_stream": 1},
+    "resident_footprint_bytes": 67108864,
+    "cold_footprint_bytes": 536870912,
+    "published_l2_capacity_bytes": 201326592,
+    "minimum_cold_long_interval_unique_bytes": 266338304,
+    "resident_trials": 3,
+    "cold_trials": 7,
+    "statistic": "median"
+  },
+  "parameters_ns": [
+    {
+      "rows": 64,
+      "columns": 256,
+      "source_row_stride_elements": 512,
+      "resident_serial_by_active_aic_group": [279.947916667, 283.932291667, 283.541666667, 290.3125, 278.0078125, 288.697916667],
+      "resident_stream_by_active_aic_group": [133.541666667, 137.174479167, 137.447916667, 138.697916667, 179.309895833, 179.700520833],
+      "cold_serial_by_active_aic_group": [366.783854167, 391.614583333, 390.885416667, 401.666666667, 439.375, 446.354166667],
+      "cold_stream_by_active_aic_group": [169.479166667, 179.84375, 169.427083333, 191.354166667, 274.791666667, 312.083333333]
+    },
+    {
+      "rows": 128,
+      "columns": 256,
+      "source_row_stride_elements": 512,
+      "resident_serial_by_active_aic_group": [413.59375, 430.325520833, 443.307291667, 439.778645833, 477.174479167, 467.9296875],
+      "resident_stream_by_active_aic_group": [273.671875, 279.427083333, 278.046875, 385.885416667, 259.6484375, 361.9140625],
+      "cold_serial_by_active_aic_group": [588.7109375, 655.3125, 589.6875, 871.770833333, 851.25, 870.833333333],
+      "cold_stream_by_active_aic_group": [295.325520833, 320.78125, 307.5, 716.5625, 691.875, 735.208333333]
+    },
+    {
+      "rows": 128,
+      "columns": 32,
+      "source_row_stride_elements": 64,
+      "resident_serial_by_active_aic_group": [514.53125, 515.130208333, 514.010416667, 525.338541667, 553.046875, 569.075520833],
+      "resident_stream_by_active_aic_group": [418.177083333, 419.21875, 424.53125, 434.453125, 459.505208333, 480.0],
+      "cold_serial_by_active_aic_group": [911.635742188, 927.389322917, 985.9765625, 938.307291667, 906.951871658, 931.150097466],
+      "cold_stream_by_active_aic_group": [730.872395833, 758.255208333, 791.432291667, 795.390625, 773.618538324, 777.738791423]
+    },
+    {
+      "rows": 128,
+      "columns": 128,
+      "source_row_stride_elements": 512,
+      "resident_serial_by_active_aic_group": [292.265625, 307.434895833, 308.424479167, 310.208333333, 312.122395833, 312.135416667],
+      "resident_stream_by_active_aic_group": [226.861979167, 238.033854167, 236.145833333, 237.486979167, 240.78125, 242.174479167],
+      "cold_serial_by_active_aic_group": [465.2734375, 540.3125, 496.5625, 786.770833333, 769.583333333, 815.9375],
+      "cold_stream_by_active_aic_group": [245.546875, 253.697916667, 260.9375, 663.541666667, 645.104166667, 742.916666667]
+    }
+  ],
+  "stability_gate": {
+    "metric": "maximum_cross_trial_median_absolute_deviation_pct",
+    "resident_value_pct": 0.938790837159,
+    "cold_value_pct": 9.451219512196,
+    "limit_pct": 10.0,
+    "passed": true
+  },
+  "provenance": {
+    "measurement_baseline_commit": "63208f37f4cdfa267002629b3431da4829db8206",
+    "source_snapshot_sha256": "a8b62f74457d5489b12315c346a8dc60c43cec9c79cc8d44357dc5ea3589de58",
+    "binary_sha256": "abbd412ec66253a3925bf9648fb1188fb0727a05ea81ad2c919e707408fd49ac",
+    "physical_device_id": 5,
+    "container": "capture-container-2",
+    "resident_raw": [
+      {"path": "profiler_output/microbench/ascend_910b/fa_mla_mte2_finite_drain_diag_63208f37_20260906/stride_sweep_resident_run1.csv", "sha256": "96e2ec4295d093a6b0e72afb71144cf9f1a3d63fdf6edef7b0b6505c27c572eb"},
+      {"path": "profiler_output/microbench/ascend_910b/fa_mla_mte2_finite_drain_diag_63208f37_20260906/stride_sweep_resident_run2.csv", "sha256": "e56105b6c19c8b63ab3da3b728e67b7f5f73c2a0edac515d437a6b1b2ce16e76"},
+      {"path": "profiler_output/microbench/ascend_910b/fa_mla_mte2_finite_drain_diag_63208f37_20260906/stride_sweep_resident_run3.csv", "sha256": "76d8dbeec450b76fc020e36ac31b2f6940c47bbf04fc09e5c91830091454f489"}
+    ],
+    "cold_raw": [
+      {"path": "profiler_output/microbench/ascend_910b/fa_mla_mte2_finite_drain_diag_63208f37_20260906/stride_sweep_corrected_run1.csv", "sha256": "61d4c55d79ddbef16a56689c63d53c05499bf03d94a65edbd98520e9f8ce29c9"},
+      {"path": "profiler_output/microbench/ascend_910b/fa_mla_mte2_finite_drain_diag_63208f37_20260906/stride_sweep_corrected_run2.csv", "sha256": "bda5650743296fd3a8d16341f4c8a126a87d247349f8834f77143cd397b36f8b"},
+      {"path": "profiler_output/microbench/ascend_910b/fa_mla_mte2_finite_drain_diag_63208f37_20260906/stride_sweep_corrected_run3.csv", "sha256": "2cb4df9ef7263550dbffefaa1c3df4466067a6f1e49687b2f23d21375c7f655f"},
+      {"path": "profiler_output/microbench/ascend_910b/fa_mla_mte2_finite_drain_diag_63208f37_20260906/stride_sweep_corrected_run4.csv", "sha256": "7370b41ad4eabaec85b4bd92d240b74fbe70939109c919b84f09ea7e9dbd3349"},
+      {"path": "profiler_output/microbench/ascend_910b/fa_mla_mte2_finite_drain_diag_63208f37_20260906/stride_sweep_corrected_run5.csv", "sha256": "6a61737a1cae01b7cc284223b76540e4075c39f49939b9c1f86188f03b86f4c9"},
+      {"path": "profiler_output/microbench/ascend_910b/fa_mla_mte2_finite_drain_diag_63208f37_20260906/stride_sweep_corrected_run6.csv", "sha256": "eda5e04b47974831f10116ad268bb9da3ee8880e13501aa005f147b0ba5fbf5d"},
+      {"path": "profiler_output/microbench/ascend_910b/fa_mla_mte2_finite_drain_diag_63208f37_20260906/stride_sweep_corrected_run7.csv", "sha256": "79b7b3e660ed581fb03bde1fe352115fac002bc6e35ba6f3ba4a1e83b37d21a6"}
+    ]
+  }
+}

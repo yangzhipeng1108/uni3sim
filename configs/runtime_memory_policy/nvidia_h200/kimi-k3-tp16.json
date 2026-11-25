@@ -1,0 +1,89 @@
+{
+  "schema_version": 2,
+  "scheduler_pools": [
+    {
+      "pool_name": "main",
+      "binding": {
+        "hardware_id": "nvidia_h200",
+        "hardware_config_sha256": "cb5f33773e1332d666267b4b10243331ba6a4acfaebabc638d62fbd35436291e",
+        "model_config_sha256": "9710e121a58d03ac92c8d6da287a19541994319afbbe6d6202af001ffd379213",
+        "deployment": "colocated",
+        "worker_role": "colocated",
+        "tensor_parallel_size": 16,
+        "pipeline_parallel_size": 1,
+        "expert_parallel_size": 1,
+        "max_model_len": 640,
+        "max_batched_tokens": 2048,
+        "max_requests": 2,
+        "kv_block_size_tokens": 640
+      },
+      "gpu_memory_utilization": {
+        "numerator": 9,
+        "denominator": 10,
+        "provenance": {
+          "source_kind": "runtime_configuration",
+          "source_reference": "projected K3 TP16 H200 deployment HBM utilization setting",
+          "source_sha256": null
+        }
+      },
+      "non_kv_reserves": [
+        {
+          "kind": "activation",
+          "bytes": 2147483648,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "projected conservative 2 GiB per-rank activation and MoE workspace allowance; symbolic graph validation remains separate",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "cuda_graph",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "eager K3 source scope disables CUDA graphs",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "communication",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "allocator",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "fragmentation",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "framework",
+          "bytes": 2147483648,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "projected conservative 2 GiB per-rank framework and communication reserve; completeness is unverified",
+            "source_sha256": null
+          }
+        }
+      ],
+      "reserve_scope": "assumed_uniform_across_pool_ranks_unverified",
+      "completeness_assertion": "reserves_inherited_unverified_not_complete_for_bound_runtime"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "independent_cub_block_scan_e128_plan",
+  "experts": 128,
+  "threads_per_cta": 1024,
+  "grid_ctas": 1,
+  "processes": 2,
+  "samples_per_process": 63,
+  "selection": "One independent CUB BlockScan<int32_t,1024> E128 component with CPU output validation and no alignment, routing, matrix, production output or duration fitting. Two independent processes each run one launch with63 scans; use the slower process median cycles/63. Require process medians within3% and positive cycles. No production duration, rate, prefix or coefficient is selected before capture. Only this exact E128 component may inform an alignment floor; other experts, dual-CTA scheduling and remaining stages remain unbound.",
+  "limits": "One H200, expected30s/max120s including build/warmup/cleanup, max0.033333GPU-hours, shared US$0.35 reservation, no retries or Volume. Failure closes this component without a production change."
+}

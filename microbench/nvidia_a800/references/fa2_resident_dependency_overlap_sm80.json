@@ -1,0 +1,215 @@
+{
+  "schema": "nvidia_a800_fa2_resident_dependency_overlap_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "evidence_kind": "independent_two_resident_cta_scalar_dependency_microbenchmark",
+  "source_capture": "profiler_output/microbench/nvidia_a800/a800_fa2_resident_dependency_b9eb0a0b_20260908_r4",
+  "source_baseline_commit": "b9eb0a0b548157608417dbdc954c501170d12d1f",
+  "physical_device_index": 1,
+  "device_uuid": "capture-device-c776d040251d",
+  "timer_domains": [
+    "cuda_event_grid_span",
+    "clock64_same_cta_envelope_cycles"
+  ],
+  "resource_contract": {
+    "threads_per_cta": 128,
+    "dynamic_shared_bytes_per_cta": 77824,
+    "resident_ctas_per_sm": 2,
+    "physical_sm_count": 108,
+    "one_resident_grid": 108,
+    "two_resident_grid": 216
+  },
+  "source_geometries": [
+    {
+      "lane_local_rows_per_thread": 2,
+      "score_values_per_lane_local_row": 32
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 16
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 32
+    }
+  ],
+  "overlap_classes": [
+    "cta_barrier",
+    "fp32_quad4_sum"
+  ],
+  "contention_span_upper_bounds": [
+    {
+      "lane_local_rows_per_thread": 2,
+      "score_values_per_lane_local_row": 32,
+      "mode_name": "fp32_max_quad4",
+      "maximum_grid_span_ratio_216_to_108": 1.3616071079799108,
+      "per_cta_demand_factor_upper_bound": 0.6808035539899554,
+      "cross_trial_ratio_spread": 0.002348502036596358
+    },
+    {
+      "lane_local_rows_per_thread": 2,
+      "score_values_per_lane_local_row": 32,
+      "mode_name": "cta_barrier",
+      "maximum_grid_span_ratio_216_to_108": 1.0156739314423036,
+      "per_cta_demand_factor_upper_bound": 0.5078369657211518,
+      "cross_trial_ratio_spread": 0.027660641884187584
+    },
+    {
+      "lane_local_rows_per_thread": 2,
+      "score_values_per_lane_local_row": 32,
+      "mode_name": "fp32_quad4_sum",
+      "maximum_grid_span_ratio_216_to_108": 1.0496295578875203,
+      "per_cta_demand_factor_upper_bound": 0.5248147789437602,
+      "cross_trial_ratio_spread": 0.03893464245052962
+    },
+    {
+      "lane_local_rows_per_thread": 2,
+      "score_values_per_lane_local_row": 32,
+      "mode_name": "fp32_scale_exp2_sum",
+      "maximum_grid_span_ratio_216_to_108": 1.6107554495287402,
+      "per_cta_demand_factor_upper_bound": 0.8053777247643701,
+      "cross_trial_ratio_spread": 0.0042896303071458365
+    },
+    {
+      "lane_local_rows_per_thread": 2,
+      "score_values_per_lane_local_row": 32,
+      "mode_name": "integer_column_predicate",
+      "maximum_grid_span_ratio_216_to_108": 1.4578834030777537,
+      "per_cta_demand_factor_upper_bound": 0.7289417015388768,
+      "cross_trial_ratio_spread": 0.003006432017048796
+    },
+    {
+      "lane_local_rows_per_thread": 2,
+      "score_values_per_lane_local_row": 32,
+      "mode_name": "fp32_to_bf16_conversion",
+      "maximum_grid_span_ratio_216_to_108": 1.1766233766233767,
+      "per_cta_demand_factor_upper_bound": 0.5883116883116883,
+      "cross_trial_ratio_spread": 0.014573458082522339
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 16,
+      "mode_name": "fp32_max_quad4",
+      "maximum_grid_span_ratio_216_to_108": 1.354978354978355,
+      "per_cta_demand_factor_upper_bound": 0.6774891774891775,
+      "cross_trial_ratio_spread": 0.028564394138491107
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 16,
+      "mode_name": "cta_barrier",
+      "maximum_grid_span_ratio_216_to_108": 1.0541600738736228,
+      "per_cta_demand_factor_upper_bound": 0.5270800369368114,
+      "cross_trial_ratio_spread": 0.05416007387362276
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 16,
+      "mode_name": "fp32_quad4_sum",
+      "maximum_grid_span_ratio_216_to_108": 1.0135811293781272,
+      "per_cta_demand_factor_upper_bound": 0.5067905646890636,
+      "cross_trial_ratio_spread": 0.003573981415296682
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 16,
+      "mode_name": "fp32_scale_exp2_sum",
+      "maximum_grid_span_ratio_216_to_108": 1.6509768760739758,
+      "per_cta_demand_factor_upper_bound": 0.8254884380369879,
+      "cross_trial_ratio_spread": 0.02303613769189508
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 16,
+      "mode_name": "integer_column_predicate",
+      "maximum_grid_span_ratio_216_to_108": 1.4557624252123682,
+      "per_cta_demand_factor_upper_bound": 0.7278812126061841,
+      "cross_trial_ratio_spread": 0.028300346878395635
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 16,
+      "mode_name": "fp32_to_bf16_conversion",
+      "maximum_grid_span_ratio_216_to_108": 1.179195831512238,
+      "per_cta_demand_factor_upper_bound": 0.589597915756119,
+      "cross_trial_ratio_spread": 0.007994074270542547
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 32,
+      "mode_name": "fp32_max_quad4",
+      "maximum_grid_span_ratio_216_to_108": 1.479112244911003,
+      "per_cta_demand_factor_upper_bound": 0.7395561224555015,
+      "cross_trial_ratio_spread": 0.005866224198968333
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 32,
+      "mode_name": "cta_barrier",
+      "maximum_grid_span_ratio_216_to_108": 1.022709524275646,
+      "per_cta_demand_factor_upper_bound": 0.511354762137823,
+      "cross_trial_ratio_spread": 0.02111034114104489
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 32,
+      "mode_name": "fp32_quad4_sum",
+      "maximum_grid_span_ratio_216_to_108": 1.0099361249112846,
+      "per_cta_demand_factor_upper_bound": 0.5049680624556423,
+      "cross_trial_ratio_spread": 0.009936124911284594
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 32,
+      "mode_name": "fp32_scale_exp2_sum",
+      "maximum_grid_span_ratio_216_to_108": 1.7594843176676869,
+      "per_cta_demand_factor_upper_bound": 0.8797421588338434,
+      "cross_trial_ratio_spread": 0.004155783777444425
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 32,
+      "mode_name": "integer_column_predicate",
+      "maximum_grid_span_ratio_216_to_108": 1.5658009775866328,
+      "per_cta_demand_factor_upper_bound": 0.7829004887933164,
+      "cross_trial_ratio_spread": 0.010109646261793968
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 32,
+      "mode_name": "fp32_to_bf16_conversion",
+      "maximum_grid_span_ratio_216_to_108": 1.1851542334677734,
+      "per_cta_demand_factor_upper_bound": 0.5925771167338867,
+      "cross_trial_ratio_spread": 0.016443007792910965
+    }
+  ],
+  "maximum_overlap_grid_span_ratio_216_to_108": 1.0541600738736228,
+  "maximum_overlap_cta_cycle_ratio_216_to_108": 1.054482225656878,
+  "maximum_overlap_cross_trial_ratio_spread": 0.05416007387362276,
+  "publication_gates": {
+    "all_cells_have_constant_clocks": true,
+    "barrier_and_quad_grid_span_ratio_at_most_1_10": true,
+    "barrier_and_quad_cta_cycle_ratio_at_most_1_10": true,
+    "barrier_and_quad_cross_trial_ratio_spread_at_most_0_10": true,
+    "all_contention_grid_span_ratios_finite_and_at_most_2_00": true,
+    "all_contention_cross_trial_ratio_spreads_at_most_0_10": true
+  },
+  "artifact_sha256": {
+    "source": "dd4a50724dc3ebc3799563ec887dc13fbbb27aab7a46eb089883bc8332c2860e",
+    "runner": "ff6cdf476a37601236ae8dc5a2b44e7f61e5db420129add352326e33f47187cf",
+    "reporter": "cfc63da413bf3c38f85201007227f93d781a0b2a58ace1cb3250260b2aa565e2",
+    "capture_manifest": "0b46aea9637318a79b8b6a07001a56d83444ef500c97eba5eca9dac50f128241",
+    "raw": "db16d13ff40198b83442710f183d853cb66fb2db5772cd8706506590b7eeb3e0",
+    "report": "bfb2307b2e8347dbf7e9f33796389b225b3e042edea96866651abe115ef4eb64",
+    "binary": "7ae734409b108ca828f3d61f2a72d65973841c81e7fc04fb5e70c89c2d99b43b"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "allowed_conclusion": "For the three captured source geometries with exactly two resident 128-thread CTAs per SM, each measured dependency has a finite conservative per-CTA demand-factor upper bound derived from the maximum 216/108 aggregate grid-span ratio across three trials. CTA barriers and FP32 quad reductions additionally satisfy the frozen near-complete-overlap gates.",
+  "excluded_conclusions": [
+    "a complete production FlashAttention duration",
+    "resident counts other than two",
+    "source geometries outside the three captured entries",
+    "CUDA admission topology"
+  ]
+}

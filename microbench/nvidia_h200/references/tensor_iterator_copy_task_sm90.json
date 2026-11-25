@@ -1,0 +1,103 @@
+{
+  "allowed_conclusion": "A source-shaped non-contiguous TensorIterator offset program has a fixed launch/fanout cost plus per-CTA service, expressed in SM cycles for rank-4 BF16 vt4 and rank-3 FP32 vt2 copies.",
+  "cache_policy": "warm_default_cache",
+  "capture_runner_sha256": "b25fe06d2e77f1164e1184b2b2c8f8e0ee0ac7658ff2b85410d0c2f7b54069ee",
+  "capture_source_sha256": "abd0ad4b4338b1eecb29caea7475fefdd472781e8e635162364b8c3771ac7145",
+  "cycle_unit": "sm_cycles_per_complete_task",
+  "entries": [
+    {
+      "base_cycles": 5662.483596202092,
+      "contract": "torch_tensor_iterator_strided_copy_bf16_rank4_v1",
+      "cta_cycles": 2.2173388821495053,
+      "dtype": "bf16",
+      "fanout_activation_cycles": 180.9270516711192,
+      "tensor_iterator_dimensions": 4,
+      "train_accuracy": {
+        "mape_pct": 2.8330673232057784,
+        "max_ape_pct": 6.762258052149309,
+        "row_count": 48
+      },
+      "validation_accuracy": {
+        "mape_pct": 2.78728048145719,
+        "max_ape_pct": 6.655557222656536,
+        "row_count": 32
+      },
+      "values_per_thread": 4
+    },
+    {
+      "base_cycles": 4685.108784307225,
+      "contract": "torch_tensor_iterator_strided_copy_fp32_rank3_v1",
+      "cta_cycles": 1.2805488578532411,
+      "dtype": "float32",
+      "fanout_activation_cycles": 305.48306856270966,
+      "tensor_iterator_dimensions": 3,
+      "train_accuracy": {
+        "mape_pct": 2.090447239726102,
+        "max_ape_pct": 7.183000722047396,
+        "row_count": 48
+      },
+      "validation_accuracy": {
+        "mape_pct": 2.0932510469410004,
+        "max_ape_pct": 7.135670239507164,
+        "row_count": 32
+      },
+      "values_per_thread": 2
+    }
+  ],
+  "excluded_conclusions": [
+    "production FlashAttention duration",
+    "a per-shape or per-kernel-name latency correction",
+    "a limit of eight simultaneously outstanding requests per warp"
+  ],
+  "fanout_activation_grid": 4,
+  "hardware_id": "nvidia_h200",
+  "launch_rank": 1,
+  "maximum_grid_size": 4224,
+  "minimum_grid_size": 1,
+  "model": "isolated_tensor_iterator_strided_copy_task_v1",
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "capture": {
+      "baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+      "binary_sha256": "bb8296295e0f2a0e138b5d2a8714f4468446f4b8b5de0ab415889708ef49da91",
+      "compile": "CUDA 12.2 nvcc -O3 -std=c++17 -arch=sm_90 -cudart static",
+      "device": 0,
+      "host_loadavg_before": [
+        "3.78",
+        "2.82",
+        "2.53"
+      ],
+      "production_or_evaluation_duration_consumed": false,
+      "runner_sha256": "b25fe06d2e77f1164e1184b2b2c8f8e0ee0ac7658ff2b85410d0c2f7b54069ee",
+      "schema": "nvidia_h200_full_lane_copy_task_capture_v1",
+      "source_sha256": "abd0ad4b4338b1eecb29caea7475fefdd472781e8e635162364b8c3771ac7145",
+      "trials": 5
+    },
+    "clock_gate": {
+      "accepted_captures": 1,
+      "busy_clock_mhz_max": 1980,
+      "busy_clock_mhz_min": 1980,
+      "busy_samples": 25,
+      "rejected_captures": 0,
+      "rule": "every nvidia-smi -lms 50 sample with nonzero utilization >= 1980 MHz"
+    },
+    "raw_sha256": "7e356811983b00a1ab7f2d91cda433144c37558b854b46fb7625cdcc80b8d0f3",
+    "report": "microbench/nvidia_h200/runtime/launch/full_lane_copy_task_report.py",
+    "report_sha256": "4cbfb4e303ebaeadbfefacae8ade41ce9764578a6e5a94d9300f930cd09aa827"
+  },
+  "reference_sm_clock_hz": 1980000000.0,
+  "resident_ctas_per_sm": 16,
+  "schema": "nvidia_h200_tensor_iterator_copy_task_candidate_v1",
+  "software_revision": "pytorch_2.8.0_cuda_12.8_sm90_source_semantics",
+  "threads_per_cta": 128,
+  "timer_domain": "cuda_event_gpu_timeline",
+  "train_trials": [
+    0,
+    1,
+    2
+  ],
+  "validation_trials": [
+    3,
+    4
+  ]
+}

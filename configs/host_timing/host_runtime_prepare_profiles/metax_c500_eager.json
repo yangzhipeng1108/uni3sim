@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "runtime": {
+    "name": "MACA",
+    "version": "3.8.2.2"
+  },
+  "framework": {
+    "name": "MetaX PyTorch",
+    "version": "2.10.0+metax3.8.2.2"
+  },
+  "service_time_s": {
+    "collective_all_gather_prepare": 0.00006767894667192812,
+    "collective_all_reduce_prepare": 0.00005286814778005518,
+    "compiled_fx_backend_entry": 3.880080869565217e-05,
+    "compiled_fx_moe_wrapper_control": 1.5553573913043478e-05,
+    "fused_attention_source_wrapper_prepare": 3.1397547826086955e-05,
+    "moe_gating_prepare": 1.603782608695652e-05,
+    "moe_unquant_mlp_wrapper_prepare": 0.0001635734956521739,
+    "reshape_cache_prepare": 3.7732956521739126e-06,
+    "unquantized_gemm_prepare": 5.377365217391305e-06
+  },
+  "measurement": {
+    "boundary": "independent_runtime_mechanism_microbenchmark",
+    "artifacts": [
+      {
+        "path": "profiler_output/microbench/metax_c500/host_runtime_prepare_20260916_r5/summary.json",
+        "sha256": "8d9a9a5ddcc3006415402cbca041e396d76a9df17be66d2760e188f78b1d3f83"
+      },
+      {
+        "path": "profiler_output/microbench/metax_c500/collective_host_prepare_20260916_r1/summary-rank-0.json",
+        "sha256": "8b41dab26274f8f587aa0291eca906011675b9792c0bdcdde89082abe80b3fe1"
+      },
+      {
+        "path": "profiler_output/microbench/metax_c500/collective_host_prepare_20260916_r1/summary-rank-1.json",
+        "sha256": "656c560dd8c6068d39b5240fd3d136621afeb7a5ebdee732974b9293007e825f"
+      }
+    ]
+  }
+}

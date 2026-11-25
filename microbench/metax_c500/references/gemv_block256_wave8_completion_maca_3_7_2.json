@@ -1,0 +1,240 @@
+{
+  "analysis": {
+    "path": "microbench/metax_c500/compute/reduction/gemv_block256_wave8_completion_runner.py",
+    "sha256": "e5d1c31843bb878dbaa07d0cda685793c449cd855bc4080af970534de7a62e87"
+  },
+  "baseline_commit": "f1f021d3aac254992b16fd92b35534e016b196f5",
+  "campaign": {
+    "block_threads": 256,
+    "derivation": "adjacent_runtime_repetition_count_reduce8_minus_control",
+    "derivation_trials": [
+      1,
+      2
+    ],
+    "fit_grids": [
+      1,
+      104,
+      208,
+      416,
+      832,
+      1664
+    ],
+    "grids": [
+      1,
+      104,
+      192,
+      208,
+      416,
+      640,
+      832,
+      1664
+    ],
+    "held_out_grids": [
+      192,
+      640
+    ],
+    "launches_per_batch": 16,
+    "outputs_per_cta": 8,
+    "peus_per_ap": 4,
+    "repetition_counts": [
+      4,
+      8,
+      16,
+      32
+    ],
+    "samples_per_cell": 31,
+    "timer_domain": "mcevent_paired_default_stream",
+    "trials": [
+      1,
+      2,
+      3
+    ],
+    "validation_trial": 3,
+    "waves_per_cta": 4
+  },
+  "disposition": "candidate_for_forward_evaluation",
+  "forward_scope": {
+    "block_threads": 256,
+    "dtype": "bf16",
+    "maximum_resident_grid_size": 832,
+    "minimum_grid_size": 1,
+    "outputs_per_cta": 8,
+    "requires_four_wave_cta": true,
+    "requires_fully_resident_grid": true,
+    "static_shared_bytes_per_cta": 144,
+    "waves_per_cta": 4
+  },
+  "hardware_id": "metax_c500",
+  "mechanism": "four_wave_eight_output_reduction_completion",
+  "parameters": {
+    "block_threads": 256,
+    "first_wave_cohort_completion_ns_per_ap": 2736.7500151740387,
+    "first_wave_cohort_completion_rate_per_ap_s": 365396.91037013,
+    "outputs_per_cta": 8,
+    "resident_ctas_per_ap": 8,
+    "static_shared_bytes_per_cta": 144,
+    "subsequent_wave_cohort_completion_ns_per_ap": 1055.875074598589,
+    "subsequent_wave_cohort_completion_rate_per_ap_s": 947081.7372785971,
+    "wave_completion_slots_per_ap": 1,
+    "waves_per_cta": 4
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "publishable": true,
+  "resources": {
+    "1": {
+      "control": {
+        "registers_per_thread": 10,
+        "resident_ctas_per_ap": 8,
+        "shared_bytes_per_cta": 0
+      },
+      "reduce8": {
+        "registers_per_thread": 26,
+        "resident_ctas_per_ap": 8,
+        "shared_bytes_per_cta": 144
+      }
+    },
+    "2": {
+      "control": {
+        "registers_per_thread": 10,
+        "resident_ctas_per_ap": 8,
+        "shared_bytes_per_cta": 0
+      },
+      "reduce8": {
+        "registers_per_thread": 26,
+        "resident_ctas_per_ap": 8,
+        "shared_bytes_per_cta": 144
+      }
+    },
+    "3": {
+      "control": {
+        "registers_per_thread": 10,
+        "resident_ctas_per_ap": 8,
+        "shared_bytes_per_cta": 0
+      },
+      "reduce8": {
+        "registers_per_thread": 26,
+        "resident_ctas_per_ap": 8,
+        "shared_bytes_per_cta": 144
+      }
+    }
+  },
+  "schema_version": 1,
+  "software_revision": "maca_3.7.2",
+  "source": {
+    "path": "microbench/metax_c500/compute/reduction/gemv_block256_wave8_completion.cpp",
+    "sha256": "c0d1e5f6410b14e6e87bd8654d8ad8bc6ada27a7f54ab6f5aca824c319d64783"
+  },
+  "target_operator_used": false,
+  "thresholds": {
+    "maximum_mape_percent": 15.0,
+    "maximum_max_ape_percent": 25.0
+  },
+  "trial_stdout_sha256": {
+    "1": "355940964bc381e8fe5b877169ce43aa478fd29e80a6d5892284ad00d10ce370",
+    "2": "bec309498ce3f2fb2bc605ecfffd57acfe63d4e10794013e36ed137216a25801",
+    "3": "53e2b6b44ed801b5705f45555d3e56c6444c8e4dcd81d28f3e8172afa5e3cb90"
+  },
+  "validation": {
+    "count": 12,
+    "mape_percent": 7.737983805247293,
+    "max_ape_percent": 16.984113090783946
+  },
+  "validation_rows": [
+    {
+      "grid": 192,
+      "held_out_geometry": true,
+      "held_out_trial": false,
+      "measured_ns": 3403.9999882224947,
+      "predicted_ns": 3792.6250897726277,
+      "trial": 1
+    },
+    {
+      "grid": 640,
+      "held_out_geometry": true,
+      "held_out_trial": false,
+      "measured_ns": 8758.001029491425,
+      "predicted_ns": 9072.000462765573,
+      "trial": 1
+    },
+    {
+      "grid": 192,
+      "held_out_geometry": true,
+      "held_out_trial": false,
+      "measured_ns": 3278.999764006585,
+      "predicted_ns": 3792.6250897726277,
+      "trial": 2
+    },
+    {
+      "grid": 640,
+      "held_out_geometry": true,
+      "held_out_trial": false,
+      "measured_ns": 8546.000230126083,
+      "predicted_ns": 9072.000462765573,
+      "trial": 2
+    },
+    {
+      "grid": 1,
+      "held_out_geometry": false,
+      "held_out_trial": true,
+      "measured_ns": 2708.0000727437437,
+      "predicted_ns": 2736.7500151740387,
+      "trial": 3
+    },
+    {
+      "grid": 104,
+      "held_out_geometry": false,
+      "held_out_trial": true,
+      "measured_ns": 2726.0000351816416,
+      "predicted_ns": 2736.7500151740387,
+      "trial": 3
+    },
+    {
+      "grid": 192,
+      "held_out_geometry": true,
+      "held_out_trial": true,
+      "measured_ns": 3354.9999934621155,
+      "predicted_ns": 3792.6250897726277,
+      "trial": 3
+    },
+    {
+      "grid": 208,
+      "held_out_geometry": false,
+      "held_out_trial": true,
+      "measured_ns": 3242.0001225546002,
+      "predicted_ns": 3792.6250897726277,
+      "trial": 3
+    },
+    {
+      "grid": 416,
+      "held_out_geometry": false,
+      "held_out_trial": true,
+      "measured_ns": 5145.000002812594,
+      "predicted_ns": 5904.375238969806,
+      "trial": 3
+    },
+    {
+      "grid": 640,
+      "held_out_geometry": true,
+      "held_out_trial": true,
+      "measured_ns": 8667.99964569509,
+      "predicted_ns": 9072.000462765573,
+      "trial": 3
+    },
+    {
+      "grid": 832,
+      "held_out_geometry": false,
+      "held_out_trial": true,
+      "measured_ns": 9684.000979177654,
+      "predicted_ns": 10127.875537364162,
+      "trial": 3
+    },
+    {
+      "grid": 1664,
+      "held_out_geometry": false,
+      "held_out_trial": true,
+      "measured_ns": 18677.000422030687,
+      "predicted_ns": 18574.876134152873,
+      "trial": 3
+    }
+  ]
+}

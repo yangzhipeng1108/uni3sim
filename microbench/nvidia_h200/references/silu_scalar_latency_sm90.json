@@ -1,0 +1,124 @@
+{
+  "schema": "nvidia_h200_silu_scalar_round_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism": "register_resident_dependent_scalar_silu_round_block1024",
+  "a800_counterpart": {
+    "value_cycles_per_round": 249.125,
+    "artifact": "profiler_output/microbench/nvidia_a800/silu_scalar_latency_0ea587f0_20260825_r1/run/silu_scalar_latency.txt",
+    "rate_rule": "1.14e9 / 249.125 = 4576016.056196689 (A800 model clock)"
+  },
+  "selection_rule": "dependent_cycles_per_scalar of the threads=1024, iterations=64 line ((dependent - zero-iteration baseline) / 64, median of 1000 launches); median over independent process rotations",
+  "selected_services": {
+    "silu_scalar_round": {
+      "cycles_per_round": 215.266,
+      "measured_sm_clock_mhz": 1980,
+      "ns_per_round": 108.72020202020202,
+      "operations_per_second_at_1_98ghz": 9197922.570215454
+    }
+  },
+  "rotations": [
+    {
+      "rotation": 0,
+      "header": "device=0 name=NVIDIA H200 clock_khz=1980000 trials=1000",
+      "raw_sha256": "837e7dc7415aed6968a3d7acf1cc065a23351749a86b801f80d586eb91d5ad76",
+      "selected_dependent_cycles_per_scalar": 215.266
+    },
+    {
+      "rotation": 1,
+      "header": "device=0 name=NVIDIA H200 clock_khz=1980000 trials=1000",
+      "raw_sha256": "837e7dc7415aed6968a3d7acf1cc065a23351749a86b801f80d586eb91d5ad76",
+      "selected_dependent_cycles_per_scalar": 215.266
+    }
+  ],
+  "rotation_relative_spread": 0.0,
+  "curves_1024_threads": [
+    {
+      "threads": 1024,
+      "iterations": 1,
+      "dependent_cycles": 397,
+      "dependent_cycles_per_scalar": 268.0,
+      "independent_cycles": 1801,
+      "independent_cycles_per_scalar": 217.125
+    },
+    {
+      "threads": 1024,
+      "iterations": 2,
+      "dependent_cycles": 609,
+      "dependent_cycles_per_scalar": 240.0,
+      "independent_cycles": 3486,
+      "independent_cycles_per_scalar": 213.875
+    },
+    {
+      "threads": 1024,
+      "iterations": 4,
+      "dependent_cycles": 1044,
+      "dependent_cycles_per_scalar": 228.75,
+      "independent_cycles": 6890,
+      "independent_cycles_per_scalar": 213.312
+    },
+    {
+      "threads": 1024,
+      "iterations": 8,
+      "dependent_cycles": 1922,
+      "dependent_cycles_per_scalar": 224.125,
+      "independent_cycles": 13607,
+      "independent_cycles_per_scalar": 211.609
+    },
+    {
+      "threads": 1024,
+      "iterations": 16,
+      "dependent_cycles": 3672,
+      "dependent_cycles_per_scalar": 221.438,
+      "independent_cycles": 27052,
+      "independent_cycles_per_scalar": 210.844
+    },
+    {
+      "threads": 1024,
+      "iterations": 32,
+      "dependent_cycles": 7089,
+      "dependent_cycles_per_scalar": 217.5,
+      "independent_cycles": 54070,
+      "independent_cycles_per_scalar": 210.961
+    },
+    {
+      "threads": 1024,
+      "iterations": 64,
+      "dependent_cycles": 13906,
+      "dependent_cycles_per_scalar": 215.266,
+      "independent_cycles": 107865,
+      "independent_cycles_per_scalar": 210.549
+    }
+  ],
+  "provenance": {
+    "source": "microbench/nvidia_h200/compute/sfu/silu_scalar_latency.cu",
+    "source_sha256": "ddab1ddc1a03b4eb65ad8908a15efab47376370581dbdc7966de143336cb1289",
+    "runner": "microbench/nvidia_h200/compute/sfu/silu_scalar_latency_runner.py",
+    "runner_sha256": "e6b8eb637eddb1f0e05509dec076f28b2236082f1117aaf500eebc1f82c9fea1",
+    "reporter": "microbench/nvidia_h200/compute/sfu/silu_scalar_latency_report.py",
+    "reporter_sha256": "27c99b15ff5883d2f393d004957244a546239d1153e50dee4c6d6a60361155fd",
+    "baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+    "device": {
+      "index": 3,
+      "name": "NVIDIA H200",
+      "uuid": "capture-device-462006ac8ee4",
+      "pci_bus_id": "00000000:AA:00.0",
+      "driver_version": "575.57.08",
+      "memory_used_mib": 4
+    },
+    "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86",
+    "compile_command": "/capture-public/tools/cuda-12.9/bin/nvcc -O3 -std=c++17 -arch=sm_90 -lineinfo -Xptxas=-v /capture-public/h200_microbench/wp5_vector/repo/microbench/nvidia_h200/compute/sfu/silu_scalar_latency.cu -o /capture-public/h200_microbench/wp5_vector/runs/h200_silu_scalar_latency_b5f13ef0_20260925_gpu3/build/silu_scalar_latency",
+    "remote_raw_dir": "h200-capture-host:/capture-public/h200_microbench/wp5_vector/runs/h200_silu_scalar_latency_b5f13ef0_20260925_gpu3",
+    "local_raw_dir": "profiler_output/microbench/nvidia_h200/h200_silu_scalar_latency_b5f13ef0_20260925_gpu3",
+    "clock_gate": {
+      "gate": "every busy nvidia-smi sample (50 ms) >= 1980 MHz; a window without busy samples requires every sample >= boost",
+      "accepted_captures": 2,
+      "rejected_captures": 0,
+      "captures_without_busy_sample": 0,
+      "busy_samples_total": 26,
+      "busy_clock_mhz_min": 1980,
+      "busy_clock_mhz_max": 1980,
+      "measured_sm_clock_mhz": 1980
+    }
+  }
+}

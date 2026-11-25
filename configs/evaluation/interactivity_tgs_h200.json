@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "contract_id": "h200_pd_p99_tpot_output_tgs_v1",
+  "interactivity_metric": "tpot_s",
+  "interactivity_percentile": 99,
+  "interactivity_unit": "seconds",
+  "interactivity_aggregation": "linear_percentile_over_eligible_requests",
+  "interactivity_eligibility": "successful_requests_with_positive_output_tokens",
+  "tgs_metric": "output_token_throughput_per_s",
+  "tgs_unit": "output_tokens_per_second",
+  "tgs_aggregation": "completed_tokens_over_simulation_origin_to_last_completion",
+  "peak_selection": "maximum_tgs_then_lowest_arrival_rate_scale",
+  "saturation_rule": "first_consecutive_marginal_tgs_gain_ratio_at_or_below_threshold",
+  "saturation_marginal_gain_ratio_threshold": 0.05,
+  "saturation_minimum_consecutive_intervals": 2
+}

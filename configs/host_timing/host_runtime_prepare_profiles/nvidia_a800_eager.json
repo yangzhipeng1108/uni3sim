@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "runtime": {
+    "name": "CUDA",
+    "version": "12.8"
+  },
+  "framework": {
+    "name": "PyTorch",
+    "version": "2.8.0+cu128"
+  },
+  "service_time_s": {
+    "collective_all_gather_prepare": 0.00005249462212378231,
+    "collective_all_reduce_prepare": 0.00002424661127841201,
+    "compiled_fx_backend_entry": 4.914133913043478e-05,
+    "compiled_fx_moe_wrapper_control": 2.0799295652173914e-05,
+    "fused_attention_source_wrapper_prepare": 2.379258260869565e-05,
+    "moe_gating_prepare": 3.316426086956522e-05,
+    "moe_unquant_mlp_wrapper_prepare": 0.0002656834173913043,
+    "reshape_cache_prepare": 2.918460869565218e-06,
+    "unquantized_gemm_prepare": 8.286252173913045e-06
+  },
+  "measurement": {
+    "boundary": "independent_runtime_mechanism_microbenchmark",
+    "artifacts": [
+      {
+        "path": "profiler_output/microbench/nvidia_a800/host_runtime_prepare_20260916_r3/summary.json",
+        "sha256": "fa00054ea16104c8bf4c1a3014fe2ce7c133f228a60306ea89c312c9372569f9"
+      },
+      {
+        "path": "profiler_output/microbench/nvidia_a800/collective_host_prepare_20260916_r1/summary-rank-0.json",
+        "sha256": "352aa288501a904193a82ffef1ff063b7f6ab1df732636f19d32864f50a8a88e"
+      },
+      {
+        "path": "profiler_output/microbench/nvidia_a800/collective_host_prepare_20260916_r1/summary-rank-1.json",
+        "sha256": "617e3f4a92c5d0db7d72eab84ffd918746b0ce8c0f2eb9279c8819e9d346cd6d"
+      }
+    ]
+  }
+}

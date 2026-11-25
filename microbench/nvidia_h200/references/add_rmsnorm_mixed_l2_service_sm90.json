@@ -1,0 +1,154 @@
+{
+  "schema": "nvidia_h200_add_rmsnorm_mixed_l2_service_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "evidence_kind": "independent_full_chip_mixed_l2_stream_capacity",
+  "production_or_evaluation_duration_consumed": false,
+  "capture": {
+    "owner": "h200-port-wp4_dram",
+    "source_baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+    "output": "profiler_output/microbench/nvidia_h200/l2_directional_3r2_20260925",
+    "physical_device_index": 1,
+    "device_uuid": "capture-device-31adbc24ad46",
+    "pci_bus_id": "00000000:4C:00.0",
+    "preflight_all_devices_idle": false,
+    "preflight_owned_device_idle": true,
+    "postflight_memory_mib": 4,
+    "postflight_utilization_percent": 0,
+    "postflight_compute_processes": 0,
+    "cleanup": "complete",
+    "rotations": 2,
+    "clock_gate": {
+      "gate": "every busy nvidia-smi sample (utilization.gpu > 0, 50 ms period) must report at least boost_mhz; otherwise the process is rejected and re-run",
+      "boost_mhz": 1980,
+      "accepted_captures": 12,
+      "rejected_captures": 1,
+      "busy_sm_clock_mhz_min": 1980,
+      "busy_sm_clock_mhz_max": 1980,
+      "busy_samples": 39,
+      "rejected": [
+        {
+          "all_sm_clock_mhz_min": 1980,
+          "attempt": 0,
+          "busy_samples": 0,
+          "busy_sm_clock_mhz_max": null,
+          "busy_sm_clock_mhz_median": null,
+          "busy_sm_clock_mhz_min": null,
+          "clock_log": "r1_g528.attempt0.clock.csv",
+          "grid": 528,
+          "rotation": 1,
+          "samples": 14
+        }
+      ]
+    },
+    "note": "Only the owned GPU 1 was checked idle; the other H200 devices were in use by other workers.  capture_pids were not recorded by the runner."
+  },
+  "source_identity": {
+    "probe_source": "microbench/nvidia_h200/memory/dram/directional_bandwidth.cu",
+    "probe_source_sha256": "53b1259917cfc74c9d83b3f2442e97dbbfd3302514194bb4a45b2940d8c2a99e",
+    "runner": "microbench/nvidia_h200/memory/dram/directional_read60_write40_runner.py",
+    "runner_sha256": "1206afc2b99b0dfd54795f49dfea1b6f6efaf7b4514afe48df1d464829672558",
+    "build_flags": [
+      "-DDIRECTIONAL_ENABLE_READ60_WRITE40=1",
+      "-DDIRECTIONAL_BUFFER_BYTES=15728640",
+      "-DDIRECTIONAL_ITERATIONS=256"
+    ],
+    "binary_sha256": "dafda564d671fec6eb51514015d5af411639609dec428043a354614f617eba1e",
+    "raw_sha256": "8937548619edee9473950b79c1d7eb3a18bda807b40c9847c8609b57e5ba3e4f",
+    "stderr_sha256": "8acb3174839d177d46a60428c2161cefa7a0953d8fcf742627b98347923624e8"
+  },
+  "probe_contract": {
+    "timer_domain": "cuda_event",
+    "block_threads": 256,
+    "vector_bytes_per_lane_operation": 16,
+    "read_operations_per_group": 3,
+    "write_operations_per_group": 2,
+    "read_fraction": 0.6,
+    "write_fraction": 0.4,
+    "source_buffer_bytes": 15728640,
+    "destination_buffer_bytes": 15728640,
+    "combined_working_set_bytes": 31457280,
+    "hardware_l2_bytes": 62914560,
+    "iterations": 256,
+    "trials_per_grid": 14,
+    "grids": [
+      132,
+      264,
+      528,
+      1056,
+      1024,
+      2112
+    ],
+    "load_cache_operator": "ld.global.cg.v4.u32",
+    "store_cache_operator": "st.global.wb.v4.u32",
+    "validation": "pass"
+  },
+  "median_total_capacity_gb_per_s": {
+    "132": 7345.1128445,
+    "264": 8040.970234,
+    "528": 8572.9490655,
+    "1056": 8704.584889,
+    "1024": 8582.5747505,
+    "2112": 8643.891416
+  },
+  "relative_trial_spread_percent": {
+    "132": 0.6609861690056187,
+    "264": 2.6197092996228135,
+    "528": 6.673582959945329,
+    "1056": 7.07985509772883,
+    "1024": 2.2796804652193754,
+    "2112": 6.534363226202747
+  },
+  "selected_service": {
+    "selection_rule": "minimum per-grid median across the frozen full-chip grid sweep",
+    "coupled_logical_byte_capacity_per_s": 7345112844500.0,
+    "read_logical_byte_capacity_per_s": 4407067706700.0,
+    "write_logical_byte_capacity_per_s": 2938045137800.0,
+    "composition": "For an exact 3:2 stream, read_bytes/read_capacity equals write_bytes/write_capacity; their maximum is the one coupled service time.",
+    "scope": "full_chip",
+    "minimum_grid_ctas": 132,
+    "maximum_grid_ctas": 2112,
+    "maximum_relative_trial_spread_percent": 7.07985509772883,
+    "selected_grid_ctas": 132,
+    "read_logical_byte_capacity_per_s_by_grid_ctas": {
+      "132": 4407067706700.0,
+      "264": 4824582140400.0,
+      "528": 5143769439300.0,
+      "1056": 5222750933400.0,
+      "1024": 5149544850300.0,
+      "2112": 5186334849600.0
+    },
+    "write_logical_byte_capacity_per_s_by_grid_ctas": {
+      "132": 2938045137800.0,
+      "264": 3216388093600.0,
+      "528": 3429179626200.0005,
+      "1056": 3481833955600.0,
+      "1024": 3433029900200.0,
+      "2112": 3457556566400.0
+    }
+  },
+  "applicability": {
+    "dtype": "bf16",
+    "vector_width_elements": 8,
+    "logical_bytes_per_lane_operation": 16,
+    "threads_per_cta": 256,
+    "required_read_write_ratio": "3:2",
+    "required_source_evidence": "tail-free vec8 read/write operations with eight active producer warps per CTA",
+    "cache_scope": "L2-resident capacity endpoint; compulsory DRAM service remains an independent bound"
+  },
+  "decision": {
+    "status": "accepted_mechanism_capacity",
+    "forward_eligible": true,
+    "reason": "The exact workload-independent 3:2 stream is stable across the frozen full-chip 132..2112-CTA sweep, includes the 1024-CTA launch point, and supplies only a typed byte-service capacity."
+  },
+  "excluded_conclusions": [
+    "a complete production AddRMSNorm duration",
+    "a replacement for the generic or pure-read L2 capacity",
+    "read/write ratios other than exactly 3:2",
+    "blocks other than 256 threads",
+    "scalar, vec4, or non-BF16 paths",
+    "grids outside 132 through 2112 CTAs",
+    "any per-shape timing correction"
+  ]
+}

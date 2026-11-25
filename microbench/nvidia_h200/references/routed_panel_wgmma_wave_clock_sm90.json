@@ -1,0 +1,53 @@
+{
+  "hardware_id": "nvidia_h200",
+  "k_rounds": 12,
+  "measurements": [
+    {
+      "cta_clock_mhz_p50": 1784.931,
+      "grid_ctas": 132
+    },
+    {
+      "cta_clock_mhz_p50": 1777.6,
+      "grid_ctas": 2112
+    },
+    {
+      "cta_clock_mhz_p50": 1784.739,
+      "grid_ctas": 33784
+    }
+  ],
+  "mechanism": "bf16_w2_panel_wgmma_active_sm_clock",
+  "parameter_fit_from_production_duration": false,
+  "probe_mode": "gather_plus_wgmma",
+  "production_or_evaluation_duration_consumed": false,
+  "raw": {
+    "path": "profiler_output/microbench/nvidia_h200/routed_panel_wgmma_wave_clock_20261103/attempt_1/raw.json",
+    "sha256": "25da3170a05d1795ec69b66f5bd9bc9e465d7a5ec4a65cd70f272fe60ebac617",
+    "size": 1581666
+  },
+  "schema_version": 1,
+  "scope_limitations": [
+    "Modal H200 deployment only; production source has 48 rather than 28 static LDGSTS and 214 rather than 196 registers.",
+    "Applies only to source-matched BF16 W2 BM128/BN256/BK64/GSM16 with K768, block256, shared196608 and grids 132..33784.",
+    "The measured clock changes cycle-derived resource rates, not fixed per-second measured services or the missing CTA pipeline progress."
+  ],
+  "selected_sm_clock_hz": 1784739000.0,
+  "selection": "median_of_three_grid_cta_clock_mhz_p50",
+  "source_launch": {
+    "algorithm": "triton_grouped_gemm:w2",
+    "dtype": "bf16",
+    "dynamic_shared_memory_bytes": 196608,
+    "experts": 128,
+    "grid_max": 33784,
+    "grid_min": 132,
+    "group_size_m": 16,
+    "hidden": 2048,
+    "intermediate": 768,
+    "threads_per_cta": 256,
+    "tile_k": 64,
+    "tile_m": 128,
+    "tile_n": 256,
+    "variant": "w2"
+  },
+  "source_sha256": "3451aafc938f3cded81791b09045bcdffef38b305e54cbc1c7f60de68ccbffcc",
+  "static_probe_boundary": "synthetic_routed_panel_cp_async_and_wgmma_no_router_or_output"
+}

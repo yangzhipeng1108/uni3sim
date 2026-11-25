@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism_id": "cann_fia_aiv_instruction_cold_fill_v1",
+  "scope": "first source-exact AIV Vec1 instruction-cache fill before steady resident execution",
+  "production_or_evaluation_duration_consumed": false,
+  "regular_points": [
+    {"active_aic_groups": 16, "source_s2": 1024, "head_dims": [64], "duration_ns": 5320.0}
+  ],
+  "split_fuse": {"active_aic_groups": 24, "aiv_per_group": 2, "duration_ns_per_aiv": 8600.0},
+  "provenance": {
+    "source_commit": "6099a9c6a77a85f7ac9850572846a15db74b10c3",
+    "regular_source_dir": "profiler_output/microbench/ascend_910b/fia_aiv_instruction_cold_fill_g16_s1024_d64_6099a9c6_device2_r1",
+    "regular_kernel_sha256": "d7aff85f763e8746d0227d233a2d7f51983491ccea98257db086a2df301f0e37",
+    "regular_host_sha256": "19aa00f44f9892298778dca1c8a166fb952279e0253152b7363162f04b93c072",
+    "regular_supplement_commit": "6099a9c6a77a85f7ac9850572846a15db74b10c3",
+    "regular_supplement_source_dir": "profiler_output/microbench/ascend_910b/fia_aiv_instruction_cold_fill_g16_s1024_d64_6099a9c6_device2_r1",
+    "regular_supplement_kernel_sha256": "d7aff85f763e8746d0227d233a2d7f51983491ccea98257db086a2df301f0e37",
+    "regular_supplement_host_sha256": "19aa00f44f9892298778dca1c8a166fb952279e0253152b7363162f04b93c072",
+    "regular_supplement_raw_files": [
+      {"path": "profiler_output/microbench/ascend_910b/fia_aiv_instruction_cold_fill_g16_s1024_d64_6099a9c6_device2_r1/results/device2_fresh_1.csv", "sha256": "238945b999e1d7b9ee50af6ae9355bc9716c79dbcb6aae1c9da392733f267d48"},
+      {"path": "profiler_output/microbench/ascend_910b/fia_aiv_instruction_cold_fill_g16_s1024_d64_6099a9c6_device2_r1/results/device2_fresh_2.csv", "sha256": "222c9d761cab35b56a545169d8a91b1decc6c414b574a4118aaeb62c9af34fe2"},
+      {"path": "profiler_output/microbench/ascend_910b/fia_aiv_instruction_cold_fill_g16_s1024_d64_6099a9c6_device2_r1/results/device2_fresh_3.csv", "sha256": "f57c5e7c432f4d7c61728d06ca9915c02a4855a35e0223eecbac604d2d6a1f2c"},
+      {"path": "profiler_output/microbench/ascend_910b/fia_aiv_instruction_cold_fill_g16_s1024_d64_6099a9c6_device2_r1/results/device2_fresh_4.csv", "sha256": "55d3b9c2a13a023578bafcddf9ee4cef536d9b99fdd54b92b59bfcb2a86eb029"},
+      {"path": "profiler_output/microbench/ascend_910b/fia_aiv_instruction_cold_fill_g16_s1024_d64_6099a9c6_device2_r1/results/device2_fresh_5.csv", "sha256": "3d85c4765254e4d2035da68492ebef21ebb489d6219d4726f6dd8ed754994cdb"}
+    ],
+    "split_fuse_source_dir": "profiler_output/microbench/ascend_910b/fia_icache_splitfuse_footprint_c601348b_20260907_r1",
+    "split_fuse_kernel_sha256": "aced5f4244a4789255d863c5df45f1f2c025facd7a1c3fb536c2c693efc0ff52",
+    "split_fuse_host_sha256": "98bd43a5fae0d0004d57f0e3a55bcbc2371d4371c24d7166c46a8d4e18842662"
+  }
+}

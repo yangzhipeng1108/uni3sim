@@ -1,0 +1,195 @@
+{
+  "control_comparison": {
+    "collective_lifecycle_excess_ns": 4070.0,
+    "interpretation": "The excess measures only the source-mandatory all-AIV and all-AIC SyncAll lifecycle for the second N slab. The probe does not contain production GEMM arithmetic or traffic.",
+    "same_flag_and_pipe_control_ns": 2810.0,
+    "source_collective_complete_ns": 6880.0
+  },
+  "duration_unit": "ns_per_two_slab_24aic_48aiv_control_sequence",
+  "exclusions": [
+    "operand traffic",
+    "cube",
+    "fixpipe",
+    "workspace",
+    "aiv reduction body",
+    "output storage",
+    "production duration"
+  ],
+  "hardware_id": "ascend_910b",
+  "measurement_quality": {
+    "cells": {
+      "one_slab_source_collective": {
+        "median_cycles": {
+          "max_actor_cycles": 166.5,
+          "max_aic_reverse_wait_cycles": 0.0,
+          "max_aic_sync_cycles": 0.0,
+          "max_aiv_first_sync_cycles": 152.5,
+          "max_aiv_second_sync_cycles": 0.0
+        },
+        "median_ns": {
+          "max_actor_cycles": 3330.0,
+          "max_aic_reverse_wait_cycles": 0.0,
+          "max_aic_sync_cycles": 0.0,
+          "max_aiv_first_sync_cycles": 3050.0,
+          "max_aiv_second_sync_cycles": 0.0
+        },
+        "mode": "source_collective",
+        "per_run_median_cycles": [
+          {
+            "max_actor_cycles": 166.5,
+            "max_aic_reverse_wait_cycles": 0.0,
+            "max_aic_sync_cycles": 0.0,
+            "max_aiv_first_sync_cycles": 152.5,
+            "max_aiv_second_sync_cycles": 0.0
+          },
+          {
+            "max_actor_cycles": 167.0,
+            "max_aic_reverse_wait_cycles": 0.0,
+            "max_aic_sync_cycles": 0.0,
+            "max_aiv_first_sync_cycles": 152.5,
+            "max_aiv_second_sync_cycles": 0.0
+          },
+          {
+            "max_actor_cycles": 166.0,
+            "max_aic_reverse_wait_cycles": 0.0,
+            "max_aic_sync_cycles": 0.0,
+            "max_aiv_first_sync_cycles": 152.0,
+            "max_aiv_second_sync_cycles": 0.0
+          }
+        ],
+        "slab_count": 1
+      },
+      "two_slab_flags_and_pipe_only": {
+        "median_cycles": {
+          "max_actor_cycles": 140.5,
+          "max_aic_reverse_wait_cycles": 116.5,
+          "max_aic_sync_cycles": 0.0,
+          "max_aiv_first_sync_cycles": 0.0,
+          "max_aiv_second_sync_cycles": 0.0
+        },
+        "median_ns": {
+          "max_actor_cycles": 2810.0,
+          "max_aic_reverse_wait_cycles": 2330.0,
+          "max_aic_sync_cycles": 0.0,
+          "max_aiv_first_sync_cycles": 0.0,
+          "max_aiv_second_sync_cycles": 0.0
+        },
+        "mode": "flags_and_pipe_only",
+        "per_run_median_cycles": [
+          {
+            "max_actor_cycles": 141.0,
+            "max_aic_reverse_wait_cycles": 117.0,
+            "max_aic_sync_cycles": 0.0,
+            "max_aiv_first_sync_cycles": 0.0,
+            "max_aiv_second_sync_cycles": 0.0
+          },
+          {
+            "max_actor_cycles": 139.0,
+            "max_aic_reverse_wait_cycles": 116.0,
+            "max_aic_sync_cycles": 0.0,
+            "max_aiv_first_sync_cycles": 0.0,
+            "max_aiv_second_sync_cycles": 0.0
+          },
+          {
+            "max_actor_cycles": 140.5,
+            "max_aic_reverse_wait_cycles": 116.5,
+            "max_aic_sync_cycles": 0.0,
+            "max_aiv_first_sync_cycles": 0.0,
+            "max_aiv_second_sync_cycles": 0.0
+          }
+        ],
+        "slab_count": 2
+      },
+      "two_slab_source_collective": {
+        "median_cycles": {
+          "max_actor_cycles": 344.0,
+          "max_aic_reverse_wait_cycles": 206.0,
+          "max_aic_sync_cycles": 80.0,
+          "max_aiv_first_sync_cycles": 152.0,
+          "max_aiv_second_sync_cycles": 88.0
+        },
+        "median_ns": {
+          "max_actor_cycles": 6880.0,
+          "max_aic_reverse_wait_cycles": 4120.0,
+          "max_aic_sync_cycles": 1600.0,
+          "max_aiv_first_sync_cycles": 3040.0,
+          "max_aiv_second_sync_cycles": 1760.0
+        },
+        "mode": "source_collective",
+        "per_run_median_cycles": [
+          {
+            "max_actor_cycles": 341.0,
+            "max_aic_reverse_wait_cycles": 206.0,
+            "max_aic_sync_cycles": 80.0,
+            "max_aiv_first_sync_cycles": 152.0,
+            "max_aiv_second_sync_cycles": 85.5
+          },
+          {
+            "max_actor_cycles": 348.0,
+            "max_aic_reverse_wait_cycles": 204.0,
+            "max_aic_sync_cycles": 81.0,
+            "max_aiv_first_sync_cycles": 152.0,
+            "max_aiv_second_sync_cycles": 88.0
+          },
+          {
+            "max_actor_cycles": 344.0,
+            "max_aic_reverse_wait_cycles": 211.0,
+            "max_aic_sync_cycles": 80.0,
+            "max_aiv_first_sync_cycles": 152.5,
+            "max_aiv_second_sync_cycles": 88.5
+          }
+        ],
+        "slab_count": 2
+      }
+    },
+    "failed_rows": 0,
+    "independent_runs": 3,
+    "statistic": "median_of_run_medians",
+    "system_counter": {
+      "frequency_hz": 50000000,
+      "tick_ns": 20.0
+    },
+    "trials_per_cell": 8,
+    "validated_rows": 72
+  },
+  "mechanism": "cann_deterministic_split_k_collective_barrier",
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "binary_sha256": "38638994a2be8fa6856962cc63e417cd79f1217f45204145a8744bb9bd3781c2",
+    "container": "capture-container-2",
+    "measurement_baseline_commit": "d1d84358935ea645b829ab65a1af7d1002036c56",
+    "physical_device_id": 4,
+    "raw_path": "profiler_output/microbench/ascend_910b/deterministic_splitk_barrier_d1d843589_20260916_d4/raw.csv",
+    "raw_sha256": "9651c57425daf05132d9fe6e906d35666a2c1e274d99c7f1101a7d846e10a9ab",
+    "run_id": "deterministic_splitk_barrier_d1d843589_20260916_d4",
+    "runner_log_path": "profiler_output/microbench/ascend_910b/deterministic_splitk_barrier_d1d843589_20260916_d4/run.log",
+    "runner_log_sha256": "763b07f117fa03dd37ec6fca56ac61ef72b262a2613f96180b0a39b733f03f17",
+    "source_sha256": {
+      "CMakeLists.txt": "20fb0afe5c714af393e2cff690606e34cbb2d7b51d76c9baf271dea81921fc6b",
+      "deterministic_split_k_barrier_kernel.cpp": "a5701347934a9b9e6b02b1b6817c0d373212f9aa01cf3559b2775829b3a57dac",
+      "deterministic_split_k_barrier_main.cpp": "7989bbbeea432a602b6998dbfaf818f73103876a4d080105ca23600eb09b74e9",
+      "deterministic_split_k_barrier_runner.py": "a5e90e751c4da2b9cc0381e778365970b63878da2ca23962bf92e1c427d2e31b"
+    },
+    "source_snapshot_sha256": "f07fb1d8341b2297f6d577d4e94a8a5a681f7db5bb3be93bd35c1a9d3af0abab"
+  },
+  "schema_version": "midlayer.ascend_910b.deterministic_split_k_collective_barrier.v1",
+  "software_revision": "cann_8.5.1",
+  "source_binding": {
+    "aic_symbols": [
+      "Mc2MatMulMultiCoreSplitKDivideL2cache"
+    ],
+    "aiv_symbols": [
+      "ReduceKInUbL2cache"
+    ],
+    "cann_source_path": "opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/3rd/mat_mul_v3/op_kernel/mat_mul_deterministic_splitk_kernel.h",
+    "cann_source_sha256": "f88f88f9278f55cf2deeb34ea0c2dce0aac0d1f20525b7ab1bc71ad9f5201605"
+  },
+  "source_program": {
+    "active_aic_groups": 24,
+    "active_aiv_workers": 48,
+    "dtype": "bf16",
+    "n_slabs": 2,
+    "scheduler_policy": "l2_split_matmul",
+    "sequence": "AIC_PIPE_FIX_flag_to_paired_AIV; all_AIV_wait_then_SyncAll;PIPE_ALL; all_AIV_PIPE_MTE3_flag_back; next_AIC_wait_then_SyncAll; PIPE_ALL"
+  }
+}

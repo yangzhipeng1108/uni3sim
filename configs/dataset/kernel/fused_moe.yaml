@@ -1,0 +1,38 @@
+# ==============================================================================
+# Fused-MoE kernel configuration
+# ==============================================================================
+kernel_name: fused_moe
+
+# Workload parameter combinations
+# Test cases = workload_configs × layers (Cartesian product)
+workload_configs:
+  - {num_tokens: 1}
+  - {num_tokens: 2}
+  - {num_tokens: 4}
+  - {num_tokens: 8}
+  - {num_tokens: 16}
+  - {num_tokens: 32}
+  - {num_tokens: 64}
+  - {num_tokens: 128}
+  - {num_tokens: 256}
+  - {num_tokens: 512}
+  - {num_tokens: 1024}
+  - {num_tokens: 2048}
+  - {num_tokens: 4096}
+  - {num_tokens: 8192}
+  - {num_tokens: 16384}
+  - {num_tokens: 32768}
+
+# Model configuration (layer profile)
+layers:
+  - {name: "Mixtral_8x7B",         num_experts: 8,   top_k: 2,  hidden_size: 4096, intermediate_size: 14336, dtype: "bf16"}
+  - {name: "Mixtral_8x22B",        num_experts: 8,   top_k: 2,  hidden_size: 6144, intermediate_size: 16384, dtype: "bf16"}
+  - {name: "GPT_OSS_20B",          num_experts: 32,  top_k: 4,  hidden_size: 2880, intermediate_size: 2880,  dtype: "bf16"}
+  - {name: "GPT_OSS_120B",         num_experts: 128, top_k: 4,  hidden_size: 2880, intermediate_size: 2880,  dtype: "bf16"}
+  - {name: "Qwen3_30B_A3B",        num_experts: 128, top_k: 8,  hidden_size: 2048, intermediate_size: 768,   dtype: "bf16"}
+  - {name: "Qwen3_30B_A3B_TOPK16", num_experts: 128, top_k: 16, hidden_size: 2048, intermediate_size: 768,   dtype: "bf16"}
+  - {name: "Qwen3_235B_A22B",      num_experts: 128, top_k: 8,  hidden_size: 4096, intermediate_size: 1536,  dtype: "bf16"}
+  - {name: "DeepSeek_R1",          num_experts: 256, top_k: 8,  hidden_size: 7168, intermediate_size: 2048,  dtype: "bf16"}
+  - {name: "Qwen3p5_35B_A3B",      num_experts: 256, top_k: 8,  hidden_size: 2048, intermediate_size: 512,   dtype: "bf16"}
+  - {name: "Qwen3_Next_80B_A3B",   num_experts: 512, top_k: 10, hidden_size: 2048, intermediate_size: 512,   dtype: "bf16"}
+  - {name: "Qwen3p5_397B_A17B",    num_experts: 512, top_k: 10, hidden_size: 4096, intermediate_size: 1024,  dtype: "bf16"}

@@ -1,0 +1,253 @@
+{
+ "check_table_n2": [
+  {
+   "measured_auto_us": 9.074500296264887,
+   "measured_forced_selected_us": 5.620999960228801,
+   "message_bytes": 256,
+   "predicted_us": 5.620999960228801,
+   "relative_error_vs_forced": 0.0,
+   "selected_protocol": "ll"
+  },
+  {
+   "measured_auto_us": 9.099500253796577,
+   "measured_forced_selected_us": 5.6859999895095825,
+   "message_bytes": 512,
+   "predicted_us": 5.622016626895467,
+   "relative_error_vs_forced": -0.011252789787576822,
+   "selected_protocol": "ll"
+  },
+  {
+   "measured_auto_us": 9.133500047028065,
+   "measured_forced_selected_us": 5.926000187173486,
+   "message_bytes": 1024,
+   "predicted_us": 5.624049960228801,
+   "relative_error_vs_forced": -0.05095346226924535,
+   "selected_protocol": "ll"
+  },
+  {
+   "measured_auto_us": 9.57199977710843,
+   "measured_forced_selected_us": 6.014999933540821,
+   "message_bytes": 2048,
+   "predicted_us": 5.628116626895467,
+   "relative_error_vs_forced": -0.06431975243890131,
+   "selected_protocol": "ll"
+  },
+  {
+   "measured_auto_us": 9.031000081449747,
+   "measured_forced_selected_us": 6.15749997086823,
+   "message_bytes": 4096,
+   "predicted_us": 5.636249960228801,
+   "relative_error_vs_forced": -0.08465286449135478,
+   "selected_protocol": "ll"
+  },
+  {
+   "measured_auto_us": 10.037999600172043,
+   "measured_forced_selected_us": 6.555499974638224,
+   "message_bytes": 8192,
+   "predicted_us": 5.652516626895467,
+   "relative_error_vs_forced": -0.13774439039527098,
+   "selected_protocol": "ll"
+  },
+  {
+   "measured_auto_us": 9.891499765217304,
+   "measured_forced_selected_us": 6.750000175088644,
+   "message_bytes": 16384,
+   "predicted_us": 5.685049960228801,
+   "relative_error_vs_forced": -0.1577703981090427,
+   "selected_protocol": "ll"
+  },
+  {
+   "measured_auto_us": 10.626500006765127,
+   "measured_forced_selected_us": 6.867500022053719,
+   "message_bytes": 32768,
+   "predicted_us": 5.750116626895467,
+   "relative_error_vs_forced": -0.16270599076373926,
+   "selected_protocol": "ll"
+  },
+  {
+   "measured_auto_us": 10.660999920219183,
+   "measured_forced_selected_us": 7.526500150561333,
+   "message_bytes": 65536,
+   "predicted_us": 5.8802499602288005,
+   "relative_error_vs_forced": -0.21872718493332566,
+   "selected_protocol": "ll"
+  },
+  {
+   "measured_auto_us": 10.185500141233206,
+   "measured_forced_selected_us": 7.846999913454056,
+   "message_bytes": 131072,
+   "predicted_us": 6.140516626895468,
+   "relative_error_vs_forced": -0.21746951769844436,
+   "selected_protocol": "ll"
+  },
+  {
+   "measured_auto_us": 11.061999946832657,
+   "measured_forced_selected_us": 8.814000058919191,
+   "message_bytes": 262144,
+   "predicted_us": 6.661049960228801,
+   "relative_error_vs_forced": -0.24426481555462964,
+   "selected_protocol": "ll"
+  },
+  {
+   "measured_auto_us": 12.5215002335608,
+   "measured_forced_selected_us": 10.507500264793634,
+   "message_bytes": 524288,
+   "predicted_us": 7.702116626895467,
+   "relative_error_vs_forced": -0.26698868115167873,
+   "selected_protocol": "ll"
+  },
+  {
+   "measured_auto_us": 16.42849948257208,
+   "measured_forced_selected_us": 14.223999809473753,
+   "message_bytes": 1048576,
+   "predicted_us": 9.784249960228802,
+   "relative_error_vs_forced": -0.312130899094072,
+   "selected_protocol": "ll"
+  },
+  {
+   "measured_auto_us": 29.504000209271908,
+   "measured_forced_selected_us": 27.37800031900406,
+   "message_bytes": 2097152,
+   "predicted_us": 27.378000319004055,
+   "relative_error_vs_forced": -1.1102230246251565e-16,
+   "selected_protocol": "simple"
+  },
+  {
+   "measured_auto_us": 33.94100069999695,
+   "measured_forced_selected_us": 32.55149908363819,
+   "message_bytes": 4194304,
+   "predicted_us": 34.16962502524257,
+   "relative_error_vs_forced": 0.04970972112364924,
+   "selected_protocol": "simple"
+  },
+  {
+   "measured_auto_us": 46.03799991309643,
+   "measured_forced_selected_us": 46.824000775814056,
+   "message_bytes": 8388608,
+   "predicted_us": 47.75287443771958,
+   "relative_error_vs_forced": 0.019837554384829925,
+   "selected_protocol": "simple"
+  },
+  {
+   "measured_auto_us": 74.01999831199646,
+   "measured_forced_selected_us": 75.11600106954575,
+   "message_bytes": 16777216,
+   "predicted_us": 74.91937326267362,
+   "relative_error_vs_forced": -0.002617655413925446,
+   "selected_protocol": "simple"
+  },
+  {
+   "measured_auto_us": 134.5840021967888,
+   "measured_forced_selected_us": 135.66000014543533,
+   "message_bytes": 33554432,
+   "predicted_us": 129.25237091258168,
+   "relative_error_vs_forced": -0.04723300328751512,
+   "selected_protocol": "simple"
+  },
+  {
+   "measured_auto_us": 246.75599485635757,
+   "measured_forced_selected_us": 246.66400253772736,
+   "message_bytes": 67108864,
+   "predicted_us": 237.91836621239784,
+   "relative_error_vs_forced": -0.03545566533970379,
+   "selected_protocol": "simple"
+  },
+  {
+   "measured_auto_us": 463.62799406051636,
+   "measured_forced_selected_us": 463.9959931373596,
+   "message_bytes": 134217728,
+   "predicted_us": 455.25035681203013,
+   "relative_error_vs_forced": -0.018848516915404567,
+   "selected_protocol": "simple"
+  }
+ ],
+ "derivation_script": {
+  "path": "microbench/nvidia_h200/communication/nccl_protocol_sweep/nccl_ring_protocol_protobridge_inputs.py",
+  "sha256": "062f50390d83fa1e1cec0b9f13b5b4b38586546d589cc6afc179f2b3667094d0"
+ },
+ "derived_inputs": {
+  "ll128_phase_fixed_us": 0.659,
+  "ll128_startup_us": 11.350483296855288,
+  "num_lanes": 18,
+  "per_link_bytes_per_us": 25000.0,
+  "simple_allreduce_ring_bw_by_participant": [
+   [
+    2,
+    220733.0447194697
+   ]
+  ],
+  "simple_phase_fixed_us": 6.321,
+  "simple_startup_us": 7.944375612765548,
+  "small_phase_fixed_us": 2.59,
+  "small_startup_us": 0.4399832935621344
+ },
+ "hardware_id": "nvidia_h200",
+ "mechanism": "nccl_ring_all_reduce_two_rank_protobridge_inputs",
+ "production_or_evaluation_duration_consumed": false,
+ "raw_report": {
+  "environment": {
+   "cuda_runtime": "12.8",
+   "cuda_visible_devices": "4,5",
+   "driver_version": "580.95.05",
+   "hardware_id": "nvidia_h200",
+   "nccl_version": "2.27.3",
+   "python": "3.12.3",
+   "torch_version": "2.8.0+cu128"
+  },
+  "path": "profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848/profiler_output/microbench/nvidia_h200/nccl_ring_protocol_ws2/report.json",
+  "runner": {
+   "git_commit": "a132507d8513a2daacdfd35fb3fcc98ee4c52ef3",
+   "path": "/capture-public/src/midlayer_h200_host_profiles/a132507d8/microbench/nvidia_h200/communication/nccl_protocol_sweep/nccl_ring_protocol_runner.py",
+   "sha256": "787c647a29526e40e200f4eff62e2f032f6e1a4701d1db83460d34362d34cbf2"
+  },
+  "sha256": "467377c216672992a8cb93461d1300427f22ced2c918ed57ec207aa7f2100efa",
+  "statistic": "max_over_ranks_of_per_rank_median",
+  "timer_domain": "cuda_event_around_graph_replay_divided_by_chain"
+ },
+ "schema_version": 1,
+ "simple_ring_bandwidth": {
+  "measured_slope_us_per_byte": 3.238499024504904e-06,
+  "participants": 2,
+  "slope_sizes_bytes": [
+   67108864,
+   134217728
+  ],
+  "surrogate_ring_bw_bytes_per_us": 220733.0447194697
+ },
+ "spec_inputs": {
+  "note": "NVLink4 450 GB/s one-way = 18 links x 25 GB/s",
+  "num_lanes": 18,
+  "per_link_bytes_per_us": 25000.0,
+  "source": "configs/hardware/nvidia_h200.yaml",
+  "source_sha256": "1b67bb9e4c555976a9d96386967bf50ca36bf11287ad33aedff5adca8ebf406a"
+ },
+ "startup_anchors": {
+  "ll": {
+   "anchor_rule": "smallest_selected_size_at_n2",
+   "measured_us": 5.620999960228801,
+   "message_bytes": 256,
+   "phase_fixed_us_kept": 2.59,
+   "startup_us": 0.4399832935621344
+  },
+  "ll128": {
+   "anchor_rule": "smallest_forced_size_protocol_not_selected_at_n2",
+   "measured_us": 12.669499963521957,
+   "message_bytes": 256,
+   "phase_fixed_us_kept": 0.659,
+   "startup_us": 11.350483296855288
+  },
+  "simple": {
+   "anchor_rule": "smallest_selected_size_at_n2",
+   "measured_us": 27.37800031900406,
+   "message_bytes": 2097152,
+   "phase_fixed_us_kept": 6.321,
+   "startup_us": 7.944375612765548
+  }
+ },
+ "unmeasured_on_h200": [
+  "small/ll128/simple phase_fixed_us (A800 NV8 values kept; a two-rank scan identifies only startup + 2 * phase_fixed)",
+  "simple_allreduce_ring_bw_by_participant for 4 and 8 ranks (dropped; spec-derived default ring bandwidth applies)",
+  "t_min_switch_us, spray_chunk_bytes, wire_efficiency, link_latency_us (A800 values; link_latency_us is replaced by phase_fixed per protocol)",
+  "NCCL protocol selection table (A800 NCCL 2.27.3 tuning projection)"
+ ]
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "scheduler_pools": [
+    {
+      "pool_name": "main",
+      "binding": {
+        "hardware_id": "nvidia_a800",
+        "hardware_config_sha256": "4fd8c3cbed54268219dc8dac76ed51d747f53b5d0c7d0fdb2033454979f2bf0c",
+        "model_config_sha256": "03af24788bd7788c65db1fcb8326c5f5c5270aab717c442df67ba9db01041b3d",
+        "deployment": "colocated",
+        "worker_role": "colocated",
+        "tensor_parallel_size": 8,
+        "pipeline_parallel_size": 2,
+        "expert_parallel_size": 8,
+        "max_model_len": 131072,
+        "max_batched_tokens": 32768,
+        "max_requests": 64,
+        "kv_block_size_tokens": 16
+      },
+      "gpu_memory_utilization": {
+        "numerator": 9,
+        "denominator": 10,
+        "provenance": {
+          "source_kind": "runtime_configuration",
+          "source_reference": "projected A800 deployment HBM utilization setting",
+          "source_sha256": null
+        }
+      },
+      "non_kv_reserves": [
+        {"kind": "activation", "bytes": 0, "provenance": {"source_kind": "runtime_configuration", "source_reference": "included in explicit aggregate framework reserve", "source_sha256": null}},
+        {"kind": "cuda_graph", "bytes": 0, "provenance": {"source_kind": "runtime_configuration", "source_reference": "included in explicit aggregate framework reserve", "source_sha256": null}},
+        {"kind": "communication", "bytes": 0, "provenance": {"source_kind": "runtime_configuration", "source_reference": "included in explicit aggregate framework reserve", "source_sha256": null}},
+        {"kind": "allocator", "bytes": 0, "provenance": {"source_kind": "runtime_configuration", "source_reference": "included in explicit aggregate framework reserve", "source_sha256": null}},
+        {"kind": "fragmentation", "bytes": 0, "provenance": {"source_kind": "runtime_configuration", "source_reference": "included in explicit aggregate framework reserve", "source_sha256": null}},
+        {"kind": "framework", "bytes": 2147483648, "provenance": {"source_kind": "runtime_configuration", "source_reference": "projected aggregate non-weight non-KV reserve of 2 GiB per rank", "source_sha256": null}}
+      ],
+      "reserve_scope": "verified_uniform_across_pool_ranks",
+      "completeness_assertion": "all_non_kv_reserves_for_bound_runtime"
+    }
+  ]
+}

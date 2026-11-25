@@ -1,0 +1,57 @@
+{
+ "schema_version": "midlayer.fia_kv_line_fill_span.v1",
+ "hardware_id": "ascend_910b",
+ "software_revision": "cann_8.5.1",
+ "mechanism": "aic_nd2nz_row_slice_l2_fill_span",
+ "fill_span_bytes": 512,
+ "selection_rule": "largest in-row byte span whose adjacent Nd2NzParams column slices are served by one L2 read miss-allocate; measured as the worker count at which added slices stop adding fills",
+ "description": "CANN FusedInferAttentionScore loads K and V with DataCopy(Nd2NzParams) (fia_block_cube_nonquant_gqa.h CopyKToL1/CopyVToL1 -> CopyKvGmToL1 -> CopySingleMatrixNDToNZ, memory_copy.h). One kv_head occupies head_dim*element_bytes contiguous bytes of a row whose stride is kv_heads*head_dim*element_bytes, and every kv_head of a row is read by the launch. Adjacent slices inside one fill span are served by a single L2 miss-allocate, so the counted fills fall by the number of slices per span. The probe reproduces only that copy geometry; it never executes attention and consumes no production duration.",
+ "source_program": {
+  "binary": "microbench/ascend_910b/memory/dram/mte2_tile/nd2nz/aic_mte2_nd2nz_mix",
+  "dtype": "bf16",
+  "task_type": "KERNEL_TYPE_MIX_AIC_1_2",
+  "rows": 512,
+  "passes": 1,
+  "prologue": "per_worker_disjoint_region",
+  "worker_addressing": "adjacent_column_slices_of_shared_rows",
+  "profiler_metric": "Memory,L2Cache"
+ },
+ "measurements": [
+  {
+   "slice_bytes": 256,
+   "row_stride_bytes": 2048,
+   "workers": [1, 2, 4, 8],
+   "fills_over_delivered": [1.002, 0.751, 0.750, 0.750],
+   "read_hit_rate_pct": [0.77, 25.66, 25.18, 25.18],
+   "slices_per_fill_span": 2,
+   "raw_path": "profiler_output/microbench/ascend_910b/l2_width_20260921"
+  },
+  {
+   "slice_bytes": 128,
+   "row_stride_bytes": 1024,
+   "workers": [1, 2, 4, 8],
+   "fills_over_delivered": [1.006, 0.753, 0.625, 0.625],
+   "read_hit_rate_pct": [1.44, 26.18, 37.74, 37.76],
+   "slices_per_fill_span": 4,
+   "raw_path": "profiler_output/microbench/ascend_910b/l2_share_width_20260921"
+  },
+  {
+   "slice_bytes": 256,
+   "row_stride_bytes": 8192,
+   "workers": [1, 2],
+   "fills_over_delivered": [1.002, 2.004],
+   "note": "negative control: a row stride wide enough that the probe's two workers do not cover one span shows no sharing, so the effect is the in-row span and not the worker count",
+   "raw_path": "profiler_output/microbench/ascend_910b/l2_linesize_20260921"
+  }
+ ],
+ "derivation": {
+  "slices_per_fill_span": "fill_span_bytes // (head_dim * element_bytes)",
+  "note": "Worker counts beyond slices_per_fill_span add no further sharing: the 128 B slice saturates at 4 workers and the 256 B slice at 2, which fixes the span at 512 B independently of how many AICs are resident."
+ },
+ "capture": {
+  "physical_device_id": 3,
+  "container": "capture-container-2"
+ },
+ "production_or_evaluation_duration_consumed": false,
+ "parameter_fit_from_production_duration": false
+}

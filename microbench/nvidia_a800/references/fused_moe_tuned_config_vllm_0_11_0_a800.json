@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "evidence_kind": "installed_runtime_source_and_bundled_tuned_config",
+  "production_or_evaluation_duration_consumed": false,
+  "hardware_execution_performed": false,
+  "deployment": {
+    "python_environment": "capture-python",
+    "vllm_version": "0.11.0",
+    "device_name": "NVIDIA A800-SXM4-80GB",
+    "vllm_tuned_config_folder": null
+  },
+  "source": {
+    "path": "/capture-home/miniconda3/envs/capture-python/lib/python3.10/site-packages/vllm/model_executor/layers/fused_moe/fused_moe.py",
+    "sha256": "8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e",
+    "resolution_precedence": "get_config override, VLLM_TUNED_CONFIG_FOLDER candidate, bundled config candidate, default"
+  },
+  "bundled_bf16_config_domains": [
+    {
+      "local_experts": 64,
+      "hidden": 640,
+      "path": "configs/E=64,N=640,device_name=NVIDIA_A800-SXM4-80GB.json",
+      "sha256": "f81ea06401182f030964e9e93bcd694f1aacf9854ab3fd78e0d9fd0522da321d"
+    },
+    {
+      "local_experts": 64,
+      "hidden": 1280,
+      "path": "configs/E=64,N=1280,device_name=NVIDIA_A800-SXM4-80GB.json",
+      "sha256": "58fbbcd3e396c84241cb585d9dec0b3751f59de156f14549aeac9e0c67a05dcd",
+      "nearest_batch_example": {
+        "physical_tokens": 2,
+        "selected_key": 2,
+        "tile": {
+          "m": 16,
+          "n": 128,
+          "k": 64
+        },
+        "group_size_m": 64,
+        "num_warps": 8,
+        "num_stages": 5
+      }
+    },
+    {
+      "local_experts": 160,
+      "hidden": 192,
+      "path": "configs/E=160,N=192,device_name=NVIDIA_A800-SXM4-80GB.json",
+      "sha256": "4ed0e7806ee58eb53946d599ee0fb1c5d053dee12e6b088a84ff04c0fafded73"
+    },
+    {
+      "local_experts": 256,
+      "hidden": 64,
+      "path": "configs/E=256,N=64,device_name=NVIDIA_A800-SXM4-80GB.json",
+      "sha256": "ad53915f136cc72e1698ee52251f1277893bbe8ccaaa161fe74c1934231e433b"
+    }
+  ],
+  "forward_scope": {
+    "status": "unsupported_with_boundary",
+    "unsupported": "BF16/FP16 FusedMoE whose local expert count and hidden width match a bundled A800 tuned-config domain; the selector rejects these rather than substituting the generic default",
+    "also_unrepresented": "explicit get_config override and any VLLM_TUNED_CONFIG_FOLDER candidate"
+  }
+}

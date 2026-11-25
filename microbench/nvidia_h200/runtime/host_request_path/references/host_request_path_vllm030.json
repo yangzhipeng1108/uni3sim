@@ -1,0 +1,102 @@
+{
+  "hardware_id": "nvidia_h200",
+  "host": {
+    "host_cpu": "INTEL(R) XEON(R) PLATINUM 8558",
+    "hostname": "capture-host-4d1c951312e8",
+    "operating_system": "Linux 5.15.0-168-generic",
+    "python_version": "3.12.3",
+    "vllm_path": "/capture-public/envs/vllm011/lib/python3.12/site-packages/vllm",
+    "vllm_version": "0.11.0"
+  },
+  "measurement_boundary": "host_only_no_device_no_model",
+  "production_or_evaluation_duration_consumed": false,
+  "raw": {
+    "admission_ipc_regions": [
+      {
+        "admission_enqueue_s": 1.29e-05,
+        "engine_core_ipc_s": 4.338e-05,
+        "label": "admission_ipc_region_r1",
+        "path": "/capture-workspace/wt-h200-serving-eval/profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848/profiler_output/microbench/nvidia_h200/admission_ipc_region_r1/manifest.json",
+        "sha256": "d46ae70088500f9940399b5ef32da894296be98e131455b872cfb63c2fea2728"
+      },
+      {
+        "admission_enqueue_s": 1.2893e-05,
+        "engine_core_ipc_s": 4.3218e-05,
+        "label": "admission_ipc_region_r2",
+        "path": "/capture-workspace/wt-h200-serving-eval/profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848/profiler_output/microbench/nvidia_h200/admission_ipc_region_r2/manifest.json",
+        "sha256": "ecd00725a2ee5e22c03b85f0a36a3c6ebf1185614d8ced5e847f03e67b1056e1"
+      },
+      {
+        "admission_enqueue_s": 1.3073e-05,
+        "engine_core_ipc_s": 4.34765e-05,
+        "label": "admission_ipc_region_r3",
+        "path": "/capture-workspace/wt-h200-serving-eval/profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848/profiler_output/microbench/nvidia_h200/admission_ipc_region_r3/manifest.json",
+        "sha256": "9168a98763adf2776aff1a94c89b4160bc97f34919e94468d44943d53e4cef3b"
+      }
+    ],
+    "delivery_region": {
+      "path": "/capture-workspace/wt-h200-serving-eval/profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848/profiler_output/microbench/nvidia_h200/output_delivery_region_r1.json",
+      "sha256": "4d2a06bc8a3338a4f099ff2c7e4e60e14fe9f2a57d19762a4008f2ea870b1ce8"
+    },
+    "primitives_r1": {
+      "path": "/capture-workspace/wt-h200-serving-eval/profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848/profiler_output/microbench/nvidia_h200/host_request_path_r1/manifest.json",
+      "sha256": "14141e585228fe4c70d519369721fa92bbe7c2a029bd1ea496bb56126340bd45"
+    },
+    "primitives_r2_evidence_only": {
+      "api_entry_s": 0.000374227,
+      "path": "/capture-workspace/wt-h200-serving-eval/profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848/profiler_output/microbench/nvidia_h200/host_request_path_r2/manifest.json",
+      "sha256": "ea9ea4d4b5c10b1a0262a9a17353d7ac979e2e9f03f6dca3c748db9864bfc316",
+      "tokenizer_async_call_s": 0.002190347
+    },
+    "retention": "local_raw_not_committed"
+  },
+  "run": {
+    "hostname": "capture-host-4d1c951312e8",
+    "run_dir": "/capture-workspace/wt-h200-serving-eval/profiler_output/microbench/nvidia_h200/host_profiles/20260927_221848",
+    "source_commit": "a132507d8513a2daacdfd35fb3fcc98ee4c52ef3",
+    "versions": {
+      "nccl": "2.27.3",
+      "nvidia-nccl-cu12": "2.27.3",
+      "pyzmq": "27.2.0",
+      "torch": "2.8.0+cu128",
+      "torch_cuda": "12.8",
+      "transformers": "4.57.1",
+      "uvicorn": "0.38.0",
+      "vllm": "0.11.0",
+      "zstandard": "0.25.0"
+    }
+  },
+  "schema_version": 1,
+  "selection": {
+    "rules": {
+      "admission_enqueue / engine_core_ipc": "median across admission/IPC region runs r1-r3",
+      "api_entry": "primitives r1 api_entry median",
+      "first_token_delivery / output_delivery_per_output": "delivery-region probe selection (per-fanout median of repeated setups, least-squares single-output and marginal terms)",
+      "input_processor_*": "primitives r1 input_processor affine through measured endpoints",
+      "tokenizer_async_call": "primitives r1 tokenizer_microbatch_window median",
+      "tokenizer_encode_*": "primitives r1 tokenizer_encode affine fit",
+      "tokenizer_render_region_*": "null: this runtime reaches the tokenizer through the batching wrapper, not a render region"
+    },
+    "runtime_version": "0.11.0",
+    "service_time_s": {
+      "admission_enqueue": 1.29e-05,
+      "api_entry": 0.0003698945,
+      "engine_core_ipc": 4.338e-05,
+      "first_token_delivery": 0.0001961223306451613,
+      "input_processor_intercept": 3.822638888888889e-05,
+      "input_processor_per_token": 9.881944444444447e-09,
+      "output_delivery_per_output": 3.699416935483871e-05,
+      "tokenizer_async_call": 0.002191019,
+      "tokenizer_encode_intercept": 2.1611692913385825e-05,
+      "tokenizer_encode_per_token": 1.6387379429133858e-06,
+      "tokenizer_render_region_intercept": null,
+      "tokenizer_render_region_per_token": null
+    },
+    "source_identity": "vllm.utils.AsyncMicrobatchTokenizer(batch_wait_timeout_s=0.002,max_batch_size=32)"
+  },
+  "substitution": {
+    "measured_vllm_version": "0.11.0",
+    "reason": "The only vLLM 0.30 Host profile run (20260927_234639_vllm030) is clean for host_launch_r1 alone (23:46:39-23:46:50, before a kernel runner started on the same GPU at 23:46:57); every later step failed or ran contaminated, and the H200 host was reclaimed on 2026-09-28 so no re-measurement is possible. These Host mechanisms are therefore the clean vLLM 0.11.0 run 20260927_221848 on the same H200 host (torch 2.8.0+cu128; vLLM 0.30.0 runs torch 2.13.0+cu129).",
+    "target_vllm_version": "0.30.0"
+  }
+}

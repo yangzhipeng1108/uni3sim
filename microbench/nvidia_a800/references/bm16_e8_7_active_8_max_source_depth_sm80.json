@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "software_revision": "vllm_0.11.0_triton_sm80",
+  "mechanism": "bm16_e8_7_active_8_max_source_depth_operand_pipeline_v1",
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "use only for BF16 BM16/BN32/BK64/GSM1 E8 source launches with 8 routed rows, 7 active M tiles, 8 maximum M tiles, and the exact W1 K/N tile class 64/896 or W2 class 224/128",
+  "source_geometry": {
+    "dtype": "bf16",
+    "experts": 8,
+    "routed_rows": 8,
+    "active_m_tiles": 7,
+    "maximum_m_tiles": 8,
+    "tile_m": 16,
+    "tile_n": 32,
+    "tile_k": 64,
+    "group_size_m": 1,
+    "threads_per_cta": 128,
+    "w1": {
+      "source_tokens": 4,
+      "source_topk": 2,
+      "production_k_tiles": 64,
+      "production_n_tiles": 896,
+      "adjacent_nonproduction_n": [28160, 29184],
+      "mul_routed_weight": false,
+      "activation_refresh_before_timed_launch": false
+    },
+    "w2": {
+      "source_tokens": 8,
+      "source_topk": 1,
+      "production_k_tiles": 224,
+      "production_n_tiles": 128,
+      "adjacent_nonproduction_n": [4064, 4128],
+      "mul_routed_weight": true,
+      "activation_refresh_before_timed_launch": true
+    },
+    "cache_polluter_bytes": 134217728,
+    "synthetic_routing_rule": "eight routes distributed round-robin over seven populated experts"
+  },
+  "selected_services": {
+    "w1": {
+      "logical_byte_capacity_per_s": 1831031427428.9458,
+      "selection": "minimum of the per-device/per-geometry median capacities across three fresh processes",
+      "capture_medians_ns": {
+        "device2_n28160": 913407.9813957214,
+        "device2_n29184": 943104.0287017822,
+        "device6_n28160": 910336.0176086426,
+        "device6_n29184": 945151.9846916199
+      }
+    },
+    "w2": {
+      "logical_byte_capacity_per_s": 1704528963555.0315,
+      "selection": "minimum of the per-device/per-geometry median capacities across three fresh processes",
+      "capture_medians_ns": {
+        "device2_n4064": 492543.9953804016,
+        "device2_n4128": 501760.00595092773,
+        "device6_n4064": 495615.98896980286,
+        "device6_n4128": 500735.9981536865
+      }
+    }
+  },
+  "capture": {
+    "baseline_commit": "e08e52a84faea6699c1e609e027f23f47b773d91",
+    "runner_path": "microbench/nvidia_a800/operators/fused_moe/sm80_bf16_bm16_sparse_w2_source_runner.py",
+    "runner_sha256": "32713e1b20605fd92aea8b96cacf96baae272bc40d4879269829dd9d040ef739",
+    "vllm_source_sha256": "8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e",
+    "physical_devices": [2, 6],
+    "fresh_processes_per_device_role_and_geometry": 3,
+    "trials_per_process": 9,
+    "maximum_capture_capacity_range_over_mean_pct": 1.247415,
+    "raw_tree_digest_rule": "sha256sum of the concatenated sorted relative-path sha256sum records",
+    "raw_root": {
+      "path": "profiler_output/microbench/nvidia_a800/bm16_e8_7_active_8_max_source_e08e52a8_20260909_r1",
+      "sha256": "160e621283d8c54131af51192c69bd9565b70e9b0fa56069a6bb1c8c0bb2aa4e"
+    }
+  },
+  "allowed_conclusion": "The exact BM16 E8 7-active/8-maximum source-depth class uses conservative role-specific full-source logical-operand completion services measured with production source semantics.",
+  "excluded_conclusions": [
+    "complete production MoE operator duration",
+    "exact production K/N duration",
+    "per-case residual correction",
+    "other source depths or projection tile classes"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "software_revision": "maca_3.7.2",
+  "mechanism": "fresh_operand_load_barrier_bf16_mma_completion",
+  "duration_unit": "ns_per_operand_completion",
+  "clock_hz": 1125000000.0,
+  "ap_count": 104,
+  "active_ap_count": 64,
+  "wave_size": 64,
+  "panel_rows": 16,
+  "panel_count": 256,
+  "trial_count": 7,
+  "selected_statistic": "median_block_cycles_per_operand",
+  "maximum_relative_span": 0.05,
+  "measurements": [
+    {
+      "head_dim": 64,
+      "loads_128b_per_lane": 2,
+      "mma_16x16x16bf16_per_lane": 4,
+      "median_cycles_per_operand": 413.84375,
+      "completion_ns": 367.8611111111111,
+      "relative_span": 0.01302575,
+      "trial_median_cycles": [412.34375, 412.875, 413.796875, 413.84375, 415.078125, 415.921875, 417.734375]
+    },
+    {
+      "head_dim": 128,
+      "loads_128b_per_lane": 4,
+      "mma_16x16x16bf16_per_lane": 8,
+      "median_cycles_per_operand": 824.09375,
+      "completion_ns": 732.5277777777778,
+      "relative_span": 0.00629479,
+      "trial_median_cycles": [821.609375, 822.015625, 823.421875, 824.09375, 824.3125, 824.546875, 826.796875]
+    }
+  ],
+  "provenance": {
+    "capture_commit": "4ec3eb2c00769931ef3fd60de39a60c4ecaa6878",
+    "physical_device_id": 1,
+    "owner": "research/kernel-accuracy-fa",
+    "remote_snapshot": "/capture-workspace/midlayer_hw_model/execution_snapshots/fa_tile16_operand_completion_4ec3eb2c_20260908_r1",
+    "source_sha256": "4b71cb8409f137a0f6afd135366fe52850bdc04ee27e9d1d6dc856af2bd3f446",
+    "binary_sha256": "c5368dfbed870f5f2c526b4f9b69548c903ed8e3ae1c3a24b4a9b35f4562f11d",
+    "disassembly_sha256": "b1252f7cf8f208ee13e96d9c7f5718fab7749691ad94d76b9e477173f445a756",
+    "raw_sha256": "dc1b2b9bc4322488794dbe8c286731dbe24433a55ffe77c52066ee12f2f36d50"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true
+}

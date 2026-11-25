@@ -1,0 +1,44 @@
+{
+  "schema_version": 2,
+  "hardware_id": "nvidia_a800",
+  "host_cpu": "Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz",
+  "operating_system": "Ubuntu 22.04; Linux 5.15.0-88-generic x86_64",
+  "driver_version": "535.183.06",
+  "runtime": {
+    "name": "CUDA",
+    "version": "12.8"
+  },
+  "framework": {
+    "name": "PyTorch",
+    "version": "2.8.0+cu128"
+  },
+  "service_time_s": {
+    "eager_enqueue": 4.465240234375e-06,
+    "graph_replay_enqueue": 2.9892e-05
+  },
+  "measurement": {
+    "artifact": "microbench/nvidia_a800/runtime/launch/references/host_launch_20260830.json",
+    "sha256": "3f013706625bda9c7c4505ce82b815d454b7d5aa5fb66fc730e03be36b5d6c41",
+    "boundary": "host_submit_only_no_device_sync"
+  },
+  "source": {
+    "commit": "e2516da13945af5bce5565deb62945b7000370bd",
+    "path": "microbench/nvidia_a800/runtime/launch/torch_eager_graph_runner.py",
+    "sha256": "1da4659c8b76d2a5b17676adce4d6a9ff12e215d4d8282bac43aee6441cbdb14"
+  },
+  "device_launch_gap": {
+    "gap_s": {
+      "graph_node": 6.400000001303851e-08,
+      "graph_entry": 3.5519999999960423e-06,
+      "graph_exit": 1.5354999999981375e-06,
+      "eager": 1.2479999999923167e-06
+    },
+    "runtime_version": "CUDA 12.8",
+    "framework_version": "2.8.0+cu128",
+    "measurement": {
+      "artifact": "microbench/nvidia_a800/references/device_launch_gap_cuda.json",
+      "sha256": "38e0121b0071de2f3a89f5b24f2d59836827c4687a2623c87f687468cd9c66f6",
+      "boundary": "device_side_host_ahead"
+    }
+  }
+}

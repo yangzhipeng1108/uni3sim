@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "evidence_kind": "versioned_source_and_installed_binary_static_identity",
+  "production_or_evaluation_duration_consumed": false,
+  "hardware_execution_performed": false,
+  "runtime_stack": {
+    "vllm_version": "0.11.0",
+    "vllm_source_commit": "b8b302cde434df8c9289a2b465406b47ebab1c2d",
+    "pytorch_version": "2.8.0+cu128",
+    "cuda_architecture": "sm_80",
+    "cub_version": 200700
+  },
+  "upstream_sources": [
+    {
+      "repository": "https://github.com/vllm-project/vllm.git",
+      "commit": "b8b302cde434df8c9289a2b465406b47ebab1c2d",
+      "path": "csrc/layernorm_kernels.cu",
+      "sha256": "fb3b6102d6c0efdf66ed7a2030d0bebf6a25aa46e07fe7274ec545f39e200409"
+    }
+  ],
+  "installed_artifacts": [
+    {
+      "path_scope": "capture-python_site_packages",
+      "relative_path": "vllm/_C.abi3.so",
+      "sha256": "984de21ce38cc8083d207663a380ca75acc6ad3dc230858092f59e363c4eebd5"
+    },
+    {
+      "path_scope": "capture-python_site_packages",
+      "relative_path": "torch/include/c10/util/BFloat16-inl.h",
+      "sha256": "27bc1f488ed34c4b0edd457aca5d6c1b5205f2a895d3e9b566dbe95b1e773f7e"
+    }
+  ],
+  "kernel": {
+    "symbol": "_ZN4vllm15rms_norm_kernelIN3c108BFloat16EEEvPT_PKS3_lS6_fii",
+    "registers_per_thread_sm80": 24,
+    "static_shared_memory_bytes_per_cta_sm80": 168,
+    "maximum_threads_per_cta": 1024,
+    "thread_limited_resident_ctas_per_sm": 2,
+    "register_limited_resident_ctas_per_sm": 2,
+    "shared_memory_limited_resident_ctas_per_sm": 975,
+    "resident_ctas_per_sm": 2
+  },
+  "add_rmsnorm_kernel": {
+    "symbol": "_ZN4vllm25fused_add_rms_norm_kernelIN3c108BFloat16ELi8EEENSt9enable_ifIXaagtT0_Li0Esr4vllm12_typeConvertIT_EE6existsEvE4typeEPS4_lS7_PKS4_fii",
+    "vector_width_elements": 8,
+    "registers_per_thread_sm80": 32,
+    "static_shared_memory_bytes_per_cta_sm80": 168,
+    "maximum_threads_per_cta": 1024,
+    "thread_limited_resident_ctas_per_sm_by_block_threads": {
+      "256": 8,
+      "1024": 2
+    },
+    "register_limited_resident_ctas_per_sm_by_block_threads": {
+      "256": 8,
+      "1024": 2
+    },
+    "shared_memory_limited_resident_ctas_per_sm": 975,
+    "resident_ctas_per_sm_by_block_threads": {
+      "256": 8,
+      "1024": 2
+    }
+  },
+  "source_facts": {
+    "grid_rule": "one_cta_per_row",
+    "block_rule": "min_hidden_1024",
+    "input_passes": 2,
+    "bf16_conversions_per_element": 6,
+    "reduction_type": "cub_block_reduce_float_1024",
+    "reduction_operator": "CubAddOp",
+    "reduction_valid_items": "blockDim.x",
+    "scalar_publication_sequence": "variance_divide_epsilon_add_rsqrtf_shared_store_syncthreads",
+    "tail_free_hidden_multiple": 256,
+    "active_read_warps_per_1024_thread_cta": 32,
+    "source_equivalent_add_rmsnorm_lines": "fused_add_rms_norm_kernel reduction and scalar publication"
+  },
+  "forward_scope": {
+    "dtype": "bf16",
+    "block_threads": 1024,
+    "reduction_service_reuse": "The RMSNorm and Add-RMSNorm sources instantiate the same CUB float/1024 reduction with runtime blockDim.x valid count and the same variance division, epsilon, rsqrtf, shared publication, and block barrier. The installed sm_80 RMSNorm kernel uses 24 registers per thread and 168 bytes of static shared memory per CTA; the installed BF16 vec8 Add-RMSNorm kernel uses 32 registers per thread and the same 168 bytes of static shared memory per CTA. Both admit two 1024-thread CTAs per SM, while Add-RMSNorm admits eight 256-thread CTAs per SM, so the reduction service occupancy boundaries remain unchanged.",
+    "limitations": [
+      "The source-bound L2 transaction and CTA-pipeline contract is restricted to hidden sizes divisible by 256.",
+      "The evidence transfers only the independently measured reduction/publication mechanism; it does not consume or transfer a production RMSNorm duration.",
+      "The six source-language BF16 conversions per element are recorded as a static fact but are not assigned to the generic integer ALU resource; a direction-specific independent conversion service is not yet available.",
+      "The 32 active read warps in each CTA do not prove that two resident CTAs simultaneously expose 64 independent L2 request producers, so Forward retains its one-CTA producer bound.",
+      "FP16 and non-1024-thread RMSNorm launches remain outside this contract."
+    ]
+  }
+}

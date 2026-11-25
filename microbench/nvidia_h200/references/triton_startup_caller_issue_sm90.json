@@ -1,0 +1,1882 @@
+{
+  "parser_path": "dataset_pipeline/kernel_dataset/nvidia_h200_startup_issue.py",
+  "parser_sha256": "d70e0d888bd388e1875f5cfacfd5228caff16e9b43a6ebdffdb1ea9971ae8e0e",
+  "kind": "discrete_compiled_startup_entry_issue_lower_bound",
+  "production_or_evaluation_duration_consumed": false,
+  "hardware_id": "nvidia_h200",
+  "count_unit": "unpredicated warp instructions per active CTA on shortest entry path including verified straight-line callees before first operand LDGSTS",
+  "excluded": "Predicated instructions, unsupported callees, all dependency and metadata/cache latency; no complete startup duration or fitted overhead",
+  "classes": [
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 32,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 40960,
+        "registers_per_thread": 99,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1024_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 360
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 32,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 40960,
+        "registers_per_thread": 102,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1024_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 372
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 36864,
+        "registers_per_thread": 97,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E128_TOPK16_H2048_INT768/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 561
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 36864,
+        "registers_per_thread": 99,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E128_TOPK16_H2048_INT768/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 567
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 256
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 40960,
+        "registers_per_thread": 96,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E128_TOPK16_H2048_INT768/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 493
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 256
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 40960,
+        "registers_per_thread": 94,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E128_TOPK16_H2048_INT768/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 534
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 55296,
+        "registers_per_thread": 75,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 356
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 55296,
+        "registers_per_thread": 77,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 363
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 256
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 81920,
+        "registers_per_thread": 106,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 541
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 256
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 81920,
+        "registers_per_thread": 108,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 557
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 64
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 40960,
+        "registers_per_thread": 54,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E128_TOPK8_H2048_INT768/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 252
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 64
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 40960,
+        "registers_per_thread": 54,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E128_TOPK8_H2048_INT768/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 254
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 32,
+          "k": 64
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 18432,
+        "registers_per_thread": 39,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 195
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 32,
+          "k": 64
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 18432,
+        "registers_per_thread": 39,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 198
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 147456,
+        "registers_per_thread": 95,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 533
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 147456,
+        "registers_per_thread": 96,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 571
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 363
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 370
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 64
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 30720,
+        "registers_per_thread": 54,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E128_TOPK8_H2048_INT768/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 243
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 64
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 30720,
+        "registers_per_thread": 54,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E128_TOPK8_H2048_INT768/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 245
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 55296,
+        "registers_per_thread": 78,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 340
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 32,
+          "n": 64,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 98304,
+        "registers_per_thread": 72,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 450
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 32,
+          "n": 64,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 98304,
+        "registers_per_thread": 80,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 472
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 64,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK32_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 365
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 64,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK32_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 371
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK32_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 363
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK32_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 371
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 20480,
+        "registers_per_thread": 63,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E128_TOPK16_H2048_INT768/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 351
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 20480,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E128_TOPK16_H2048_INT768/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 361
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 36864,
+        "registers_per_thread": 78,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 362
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 40960,
+        "registers_per_thread": 54,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 255
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 40960,
+        "registers_per_thread": 56,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 263
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 256,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 69632,
+        "registers_per_thread": 98,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK512_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 552
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 256,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 69632,
+        "registers_per_thread": 100,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK512_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 557
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 64,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 98,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 529
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 64,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 100,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 552
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 32,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 64,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 81920,
+        "registers_per_thread": 128,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 552
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 32,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 64,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 81920,
+        "registers_per_thread": 135,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 565
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 32,
+          "n": 64,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 49152,
+        "registers_per_thread": 71,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E8_TOPK2_H6144_INT16384/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 360
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 32,
+          "n": 64,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 49152,
+        "registers_per_thread": 80,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E8_TOPK2_H6144_INT16384/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 372
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 40960,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E128_TOPK16_H2048_INT768/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 352
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 40960,
+        "registers_per_thread": 72,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E128_TOPK16_H2048_INT768/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 364
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 147456,
+        "registers_per_thread": 98,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 536
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 147456,
+        "registers_per_thread": 100,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 582
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 61440,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E8_TOPK2_H6144_INT16384/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 346
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 61440,
+        "registers_per_thread": 72,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E8_TOPK2_H6144_INT16384/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 361
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 61440,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/bm16/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 357
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 61440,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/bm16/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 360
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 98304,
+        "registers_per_thread": 116,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/output_n128/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 312
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 98304,
+        "registers_per_thread": 116,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/output_n128/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 326
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 256,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 210,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 419
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 256,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 214,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 415
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 64,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 120,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E128_TOPK4_H2880_INT2880/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 376
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 64,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 122,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E128_TOPK4_H2880_INT2880/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 395
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 64,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 80,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 344
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 64,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 94,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 358
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 98304,
+        "registers_per_thread": 116,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16384_E32_TOPK4_H2880_INT2880/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 313
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 98304,
+        "registers_per_thread": 116,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16384_E32_TOPK4_H2880_INT2880/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 327
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 256,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 214,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16384_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 414
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 256,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 32,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 210,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2048_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 419
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 256,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 32,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 214,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2048_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 415
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 64,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E128_TOPK4_H2880_INT2880/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 303
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 64,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E128_TOPK4_H2880_INT2880/startup_issue_lower_bound.json",
+          "projection": "w2"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 294
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 20480,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "evidence": [
+        {
+          "static_summary_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E128_TOPK8_H2048_INT768/startup_issue_lower_bound.json",
+          "projection": "w1"
+        }
+      ],
+      "minimum_unpredicated_startup_warp_instructions": 354
+    }
+  ],
+  "source_records": [
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1024_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+      "sha256": "d24b9d4e1bce7dfefd41958a09fe29413fff72b428fd76d21839f389a717f519",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1024_E512_TOPK10_H2048_INT512/input.json",
+      "input_manifest_sha256": "d5cc8227c47158a5b63b4ce888913ff584c5cb66e0563dcfd8d5f963f45b924e"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E128_TOPK16_H2048_INT768/startup_issue_lower_bound.json",
+      "sha256": "a1e240f4db826b7049e4297b4aa59ce20c6dcdec3e79a9085db7f4baf3f7c6ac",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E128_TOPK16_H2048_INT768/input.json",
+      "input_manifest_sha256": "90f7db5d01103c79fa5989a4080d2295b6bd5f726132f6e971b7c2c3b21b64a8"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E128_TOPK16_H2048_INT768/startup_issue_lower_bound.json",
+      "sha256": "38de8ec74b242955e002ea5bf510aac9821abebbf81335d29347cb08aa2149a8",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E128_TOPK16_H2048_INT768/input.json",
+      "input_manifest_sha256": "2b8a87901f3fd6819efbceae70fe7461e7718bb7695696c7d9d1b4d6ead98008"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+      "sha256": "c9cfa58ebac190d3ff6ab23543214061a62d715106e8bf4359445d0cb53db50a",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E512_TOPK10_H2048_INT512/input.json",
+      "input_manifest_sha256": "5893f1e81a7ec6b97390678d696e0328bae0283e2588ebffd7917ccba171cb17"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+      "sha256": "9308d2125de82799f9db901cc1f56b33954799df82ef5a6d31b65f668320f879",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16_E8_TOPK2_H4096_INT14336/input.json",
+      "input_manifest_sha256": "7762e16c952fd5ba6a92d5c54d557d9a39021b325e0bbec3ebe0c62543cfbd83"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E128_TOPK8_H2048_INT768/startup_issue_lower_bound.json",
+      "sha256": "82260d47c174d9de789b77fe55d276f60dca248ac15807076d45924154414ba1",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E128_TOPK8_H2048_INT768/input.json",
+      "input_manifest_sha256": "22617dacc11bf92992e8e7cf6e9c18478c5dcf425565b97a02e85239b920aaab"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+      "sha256": "bc55d27bf1c7483969e850d59bf5b4cc7ec32b100eff99addcbe25aaa4860ccd",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E512_TOPK10_H2048_INT512/input.json",
+      "input_manifest_sha256": "f57c3c908bb850e0eac4441589085c27e6078b1b1452ad29a4b7d378860b4dde"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+      "sha256": "5b55e43dd9ad32d30bf5afee27a9bd3839a7302c8774a3acc4f70fafd941fed2",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK1_E8_TOPK2_H4096_INT14336/input.json",
+      "input_manifest_sha256": "238b37f4fa40110dd2121cdfb6a9425f174610971fabd91bf4c223cc5db411c2"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E128_TOPK16_H2048_INT768/startup_issue_lower_bound.json",
+      "sha256": "7ff40962d227a04e438058a21fbd9bc9e21a6ed2b86b1861a026ec0eb931cb95",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E128_TOPK16_H2048_INT768/input.json",
+      "input_manifest_sha256": "4c84bacf865bb9575916a082b2e6f541f4d85b917fbcb21bddd51ed2cd12016d"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+      "sha256": "f887aaa8af8a5c327487a6b8150c064429447cacf7f9939ba01f6898408f9b47",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E512_TOPK10_H2048_INT512/input.json",
+      "input_manifest_sha256": "3008241fb03ffb171097dc6139fb0cba05b0198c9e157eb11f89a372943926d6"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E128_TOPK8_H2048_INT768/startup_issue_lower_bound.json",
+      "sha256": "590b7485a0f135c2ba51406f8ebd866a93096baebed2bcff69527eaaddcbf4c6",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E128_TOPK8_H2048_INT768/input.json",
+      "input_manifest_sha256": "9f7eb31d9b59725121fa367956d0708ec0a66bea829d664bbe43c146b6efbe9b"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+      "sha256": "900081c922e6104667321930b17b675d8a4c95f1c612905d316d2a18f2cdf07d",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E512_TOPK10_H2048_INT512/input.json",
+      "input_manifest_sha256": "d0561619219a87f49bfbd994daeda34563a27088a5ef88a92bab699234d8ba76"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+      "sha256": "3c0daf80ecf23d203e049b998e1dbe587d899768f48d69eb99f5565671573dc8",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E8_TOPK2_H4096_INT14336/input.json",
+      "input_manifest_sha256": "56f0cf634b6ae011d910b4c069e93627ff9bf3bb8ef543bd10fa8efdea4a4358"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK32_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+      "sha256": "12285fce7e234aa98352e348f79a04319a9ec3ed2bc28af36ef03cf32171bab0",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK32_E512_TOPK10_H2048_INT512/input.json",
+      "input_manifest_sha256": "ef93319f6a9322948b59dcdf0b40d6b2d36a613321b793c6f23d1ca5696fb7ad"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK32_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+      "sha256": "5dd6e68eddd76449b96b89d2a97ef4fe0140f68c6666c502dedf85c459db9dda",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK32_E8_TOPK2_H4096_INT14336/input.json",
+      "input_manifest_sha256": "c7f7bb782603e743e95eb2dde08f8bbbf62f1573daeff18dc955d981a2e78df1"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E128_TOPK16_H2048_INT768/startup_issue_lower_bound.json",
+      "sha256": "38ea4c7974bb5f988b068d51203298ade3a4537e2b74152bd9b63caba41bf0d0",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E128_TOPK16_H2048_INT768/input.json",
+      "input_manifest_sha256": "3a37dae2a8c8f76af871b350c8ecdccef39d5ccd18075aa27459e84e30ee6395"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+      "sha256": "85c23d4c855bef34bda210684e59cbed60e7fb2d231900f6986400af85d37aef",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E512_TOPK10_H2048_INT512/input.json",
+      "input_manifest_sha256": "ccca47b23b634efd75a01d6829b31a5a1c7293f39e4b013820ec1da250afc18e"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+      "sha256": "35da3ff56ddc5b8ea26632cc291d1082dd918014a45649deee782dc4aa8e8b40",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E8_TOPK2_H4096_INT14336/input.json",
+      "input_manifest_sha256": "8e1ba21ee020a9ed8579a35a69f2cbc1a872e7778652724b9ae5bab1202fbc53"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK512_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+      "sha256": "34a90f34fe92100bbe046aa9be89850a00f8054173f750297b65da40bd16d80b",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK512_E512_TOPK10_H2048_INT512/input.json",
+      "input_manifest_sha256": "27cc532056ebfbe3221e4b49264083c261b95165f9e3a05f1b9521142211ed4b"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+      "sha256": "b7fe6248ac2c68d1929157406443ac424da39dea27a7177dcf7af9141e91e4ef",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E512_TOPK10_H2048_INT512/input.json",
+      "input_manifest_sha256": "8038541bc78938865a505b4dce0d58019e7b0c567004b1cd5bddc57df3fc5f07"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+      "sha256": "94a8d49672fbc4f54d7dc03c2f71f85ef2cc080d748814a36b4e11873a4cded6",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E8_TOPK2_H4096_INT14336/input.json",
+      "input_manifest_sha256": "6f702e333e10779458183982e4543a4bc8017dfa688c7a14cf795e209ee54a4d"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E8_TOPK2_H6144_INT16384/startup_issue_lower_bound.json",
+      "sha256": "211e0759285d56d65ffeed832f689cbf545a496a6f8ba7ae59d4b8e31213b50a",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK64_E8_TOPK2_H6144_INT16384/input.json",
+      "input_manifest_sha256": "d82d8d4f42094d606c1a0ff8b549f24b304b3ba9e0abfddae254a00eed559050"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E128_TOPK16_H2048_INT768/startup_issue_lower_bound.json",
+      "sha256": "e06f6326514eabc8a995660f458d1bd27c63c1b0925c6ae81ecaf67a58d8be34",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E128_TOPK16_H2048_INT768/input.json",
+      "input_manifest_sha256": "3542da11e574d8be6129332c41365ea4ac9b2ad78c44541f675d56f354121be6"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+      "sha256": "f5c461d9ca6d2f5675d8b314cc9f7b1d02d11621b0546a5c022dd27412e4b1cf",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E8_TOPK2_H4096_INT14336/input.json",
+      "input_manifest_sha256": "a518740c0ffc90c0c6a4f8783f2d8f1daf1c0d3f06012895e60cbd2256fcaa0f"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E8_TOPK2_H6144_INT16384/startup_issue_lower_bound.json",
+      "sha256": "a2f7d7bf7b7326f48d0a6ddec17637bc76d2971f10134b5753898fee0ef44555",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK8_E8_TOPK2_H6144_INT16384/input.json",
+      "input_manifest_sha256": "bbddc9e482d4cb967f9b83b115201c150a315d04867cc488a992501394555efa"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/bm16/startup_issue_lower_bound.json",
+      "sha256": "18d2346d498e914b061e4fef250d457ba70ea7bece4162241a9cabaa3e10319a",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/bm16/input.json",
+      "input_manifest_sha256": "2e8d814d005c2577cdf36474d0ebcef951fed9e97f5bc94e5ad0d9cb421c363b"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/output_n128/startup_issue_lower_bound.json",
+      "sha256": "5b86c5efb47fca111044f7a44dc64d170c0d48b7215652065c571e54b73d276c",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/output_n128/input.json",
+      "input_manifest_sha256": "3330439cdfc97b07ea42f44a03baa63d6f0d2f7ff8c677c5127adc11fb0fbbc4"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/startup_issue_lower_bound.json",
+      "sha256": "1df81586e396575a9ef2e21f1b97290b0a3a9024d232ac68eded8261ce746123",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/input.json",
+      "input_manifest_sha256": "f33107d5ebc7814db921676df4ef6961c241e989a4d0f0d8bb8ac01a49a32156"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E128_TOPK4_H2880_INT2880/startup_issue_lower_bound.json",
+      "sha256": "b3da4bff97ff2cbaabf42621058dc1e6f47aecc4f9ab80ef3d1ab172307b2726",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E128_TOPK4_H2880_INT2880/startup_source_export.json",
+      "input_manifest_sha256": "d3cbbae941b19efa24e0afae051e759476d009ac719fb71f4e12554c4dd7f844"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+      "sha256": "1ac92225ab1be67bea3575ad9389b3b8044f0a174ac834b74a619d9fba5b23bf",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E8_TOPK2_H4096_INT14336/startup_source_export.json",
+      "input_manifest_sha256": "c982b6b79893d1e57b1e2b74275db0dfacc4017e0edc1afb595884bf5ebe770d"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16384_E32_TOPK4_H2880_INT2880/startup_issue_lower_bound.json",
+      "sha256": "238f87dad15344ccc3a4eff25b1818d7271ad80cca1066790cf242936887a113",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16384_E32_TOPK4_H2880_INT2880/startup_source_export.json",
+      "input_manifest_sha256": "0efa8ada6c2c326aafc6ae0eedaed9d5cb356857aebc584ac2ce3371199d4c6c"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16384_E512_TOPK10_H2048_INT512/startup_issue_lower_bound.json",
+      "sha256": "1a6f8436595955e797d3d80dc368f145e194c172f196144692fa6816d9a6746d",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16384_E512_TOPK10_H2048_INT512/startup_source_export.json",
+      "input_manifest_sha256": "0121e7d3d7a153531540ad38bc86cb6da38c41a8092ddedad8bc819750b82781"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2048_E8_TOPK2_H4096_INT14336/startup_issue_lower_bound.json",
+      "sha256": "bc0c14e0cc5a97e99c4b6069e1182beae669c28d3aeff140b77b45f0ef8ce03e",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2048_E8_TOPK2_H4096_INT14336/startup_source_export.json",
+      "input_manifest_sha256": "31ea4ef17dcea8edc83b5f876264c5c9b55d92338e0453c6c8328c588c17890c"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E128_TOPK4_H2880_INT2880/startup_issue_lower_bound.json",
+      "sha256": "b0f903aa5f30eba57801f970413787f0b86d9708e3d998ed13552f8b0f2a9d49",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E128_TOPK4_H2880_INT2880/startup_source_export.json",
+      "input_manifest_sha256": "05202ffd89c0e0590d9cd873b0ec0b313cb4e190381831b2dccb14fc38fd6d7a"
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E128_TOPK8_H2048_INT768/startup_issue_lower_bound.json",
+      "sha256": "56d2279699d8b460b846be8f0dffb8685d50223b9782a8723407e8e9042eaa72",
+      "input_manifest_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E128_TOPK8_H2048_INT768/startup_source_export.json",
+      "input_manifest_sha256": "310b666696aec91fe3ce32207a03d10d5f90ed4ac148259b4f34383cf7537e42"
+    }
+  ],
+  "unbound_exports": [
+    {
+      "source": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E128_TOPK16_H2048_INT768/source_sass.txt",
+      "variant": "w1",
+      "reason": "unknown explicit return register",
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 32,
+          "n": 256,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 233,
+        "static_shared_bytes": 0
+      }
+    },
+    {
+      "source": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E128_TOPK16_H2048_INT768/source_sass.txt",
+      "variant": "w2",
+      "reason": "unknown explicit return register",
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 32,
+          "n": 256,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 237,
+        "static_shared_bytes": 0
+      }
+    },
+    {
+      "source": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2_E512_TOPK10_H2048_INT512/source_sass.txt",
+      "variant": "w2",
+      "reason": "copy-free callee return is unbound",
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 55296,
+        "registers_per_thread": 77,
+        "static_shared_bytes": 0
+      }
+    },
+    {
+      "source": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E512_TOPK10_H2048_INT512/source_sass.txt",
+      "variant": "w2",
+      "reason": "copy-free callee return is unbound",
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 36864,
+        "registers_per_thread": 77,
+        "static_shared_bytes": 0
+      }
+    },
+    {
+      "source": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16384_E512_TOPK10_H2048_INT512/startup_source_sass.txt",
+      "variant": "w1",
+      "reason": "unknown explicit return register",
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 256,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 210,
+        "static_shared_bytes": 0
+      }
+    },
+    {
+      "source": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK4_E128_TOPK8_H2048_INT768/startup_source_sass.txt",
+      "variant": "w2",
+      "reason": "copy-free callee return is unbound",
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "assignment_mode": "naive",
+        "group_size_m": 16,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 20480,
+        "registers_per_thread": 63,
+        "static_shared_bytes": 0
+      }
+    }
+  ],
+  "ambiguous_classes_not_admitted": []
+}

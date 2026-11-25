@@ -1,0 +1,37 @@
+{
+  "construction_form": "renderer_from_config",
+  "hardware_id": "ascend_910b",
+  "host": {
+    "cpu": "Kunpeng-920 (aarch64)",
+    "cpu_count": 192,
+    "load_average_1min_at_capture": 10.53,
+    "vllm_version": "0.18.0"
+  },
+  "measurement_boundary": "host_only_no_device_no_model",
+  "mechanism": "vLLM v1 runs the input processor once per request between the API entrypoint and the EngineCore IPC hop: it validates the request against the engine configuration and builds the EngineCoreRequest, copying the prompt's token ids, so the cost is affine in prompt length.  The engine configuration is built with a dummy weight format, so no weights are read and no device is touched.",
+  "production_or_evaluation_duration_consumed": false,
+  "runner": {
+    "entry_point": "measure_input_processor",
+    "path": "microbench/nvidia_a800/runtime/host_request_path/vllm_host_request_path_runner.py",
+    "prompt_lengths": [
+      16,
+      128,
+      1024
+    ],
+    "sha256": "b1d97ed3becd221d3a4118e7ac4f688e3cfa4382565ba734fb349b16a462a79d",
+    "trials": 40,
+    "warmup": 5
+  },
+  "schema_version": 1,
+  "selection": {
+    "input_processor_intercept_s": 9.937087301587302e-05,
+    "input_processor_per_token_s": 2.5382936507936504e-08,
+    "median_s_by_prompt_tokens": {
+      "1024": 0.000125363,
+      "128": 0.000101812,
+      "16": 9.9777e-05
+    },
+    "statistic": "affine_through_measured_endpoints"
+  },
+  "tokenizer_path": "/capture-workspace/models/Qwen3-4B"
+}

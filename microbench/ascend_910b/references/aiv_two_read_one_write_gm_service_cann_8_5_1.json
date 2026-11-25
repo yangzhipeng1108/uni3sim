@@ -1,0 +1,111 @@
+{
+  "schema": "ascend_910b_aiv_two_read_one_write_gm_service_v1",
+  "mechanism_id": "aiv_two_read_one_write_gm_service",
+  "hardware_id": "ascend_910b",
+  "device": 7,
+  "software_revision": "cann_8.5.1",
+  "baseline_commit": "d6e187379f4cfacff27fcbab71ac3c9d1dee12fa",
+  "source_snapshot_sha256": "3beb707426e2691d8ac925ce3225ea66ddb470f86ab4562aac09855b101245bd",
+  "binary_sha256": "447af744140df7f3584b4798d0c9358fcbd8f58a628d8ae9b60ddfe1f272a8df",
+  "production_or_evaluation_duration_consumed": false,
+  "composition": "max(existing analytical resource and pipeline bounds, exact source-tile 2R+1W GM service)",
+  "source_contract": {
+    "active_aiv_workers": 48,
+    "input_streams": 2,
+    "output_streams": 1,
+    "queue_depth": 2,
+    "tiles_per_worker": 512,
+    "production_add_or_mul_payload": false,
+    "each_stream_exceeds_l2_bytes": 201326592
+  },
+  "publication_gate": {
+    "required_independent_runs": 3,
+    "maximum_cross_run_median_spread_pct": 5.0,
+    "all_validations_pass": true,
+    "mechanism_publishable": true
+  },
+  "services": {
+    "tile_11008": {
+      "tile_bytes": 11008,
+      "tile_elements_bf16": 5504,
+      "run_bandwidth_gbs": [1209.02128886, 1208.931227866, 1208.404655857],
+      "median_total_2r1w_bandwidth_gbs": 1208.931227866,
+      "cross_run_median_spread_pct": 0.051006458332,
+      "read_share_capacity_bytes_per_s": 805954151910.6666,
+      "write_share_capacity_bytes_per_s": 402977075955.3333
+    },
+    "tile_11520": {
+      "tile_bytes": 11520,
+      "tile_elements_bf16": 5760,
+      "run_bandwidth_gbs": [1207.487263128, 1209.017040151, 1208.127101637],
+      "median_total_2r1w_bandwidth_gbs": 1208.127101637,
+      "cross_run_median_spread_pct": 0.126623847849,
+      "read_share_capacity_bytes_per_s": 805418067758.0,
+      "write_share_capacity_bytes_per_s": 402709033879.0
+    },
+    "tile_9216": {
+      "tile_bytes": 9216,
+      "tile_elements_bf16": 4608,
+      "run_bandwidth_gbs": [1216.26263481, 1217.139444459, 1215.756629416],
+      "median_total_2r1w_bandwidth_gbs": 1216.26263481,
+      "cross_run_median_spread_pct": 0.113695632,
+      "read_share_capacity_bytes_per_s": 810841756540.0,
+      "write_share_capacity_bytes_per_s": 405420878270.0
+    },
+    "tile_11776": {
+      "tile_bytes": 11776,
+      "tile_elements_bf16": 5888,
+      "run_bandwidth_gbs": [1218.188044028, 1219.248697057, 1218.474489178],
+      "median_total_2r1w_bandwidth_gbs": 1218.474489178,
+      "cross_run_median_spread_pct": 0.087051917,
+      "read_share_capacity_bytes_per_s": 812316326118.6666,
+      "write_share_capacity_bytes_per_s": 406158163059.3333
+    },
+    "tile_12032": {
+      "tile_bytes": 12032,
+      "tile_elements_bf16": 6016,
+      "run_bandwidth_gbs": [1205.333419416, 1206.120137656, 1205.530051568],
+      "median_total_2r1w_bandwidth_gbs": 1205.530051568,
+      "cross_run_median_spread_pct": 0.065259114775,
+      "read_share_capacity_bytes_per_s": 803686701045.3334,
+      "write_share_capacity_bytes_per_s": 401843350522.6667
+    }
+  },
+  "holdout_tiles": {
+    "8192": [1224.632944441, 1223.621885529, 1224.359866399],
+    "12288": [1220.309073085, 1219.21696727, 1220.194063697],
+    "16384": [1229.94797037, 1229.350279217, 1230.09197759]
+  },
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/aiv_two_read_one_write_d6e18737_20260905_d7_probe1/raw_probe2.csv",
+      "sha256": "4b50dbe4203fe18ac81ec3a70c23bb7c7b0c27918cf7b33417974e9f20f62ce9",
+      "execution_log_sha256": "4c490b4ba8d89862aef961277b0e27c6a01561bc3dc6253ae757237f920ec763"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/aiv_two_read_one_write_d6e18737_20260905_d7_probe1/raw_probe3.csv",
+      "sha256": "e43d867067cde2dccd78d2fec6ee42cd8742b427835bc1b78292e8a54708aaa9",
+      "execution_log_sha256": "21f2757e9d46feaee31bbdf4f38885f4198717cb0ead8a13ecb97ad8d9985538"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/aiv_two_read_one_write_d6e18737_20260905_d7_probe1/raw_probe4.csv",
+      "sha256": "fbd931f5c290b862ca932e5f307bd8c297b5e54bd6703e5f4276fa79dfca06ca",
+      "execution_log_sha256": "5b811689a25d3c89e32bb15aedd484165317e54d2cbb4e25af9407e726df21f8"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/aiv_two_read_one_write_vector_tiles_72b3389b_20260905_d7/raw_run1.csv",
+      "sha256": "9f7c65aa0d55a98a4efcd00d205287d0dad69bb14779b73104d097b6120a2daa",
+      "execution_log_sha256": "b9125f41c1749baa106a105c2a8467cc99f89f49cfbb0735c9c3dfa2bfbebaf8"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/aiv_two_read_one_write_vector_tiles_72b3389b_20260905_d7/raw_run2.csv",
+      "sha256": "84d933e02f7700fc6f1481f704cea3c732b0b9b2cf90e15d2f5774f0d8fc680a",
+      "execution_log_sha256": "43d9d2827a49e1323c1ce95e1043110425e316a7f3a953"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/aiv_two_read_one_write_vector_tiles_72b3389b_20260905_d7/raw_run3.csv",
+      "sha256": "1388539e6bcba198bc9dcc17aba7408cda393debb7041af34d2efac02eeb5a28",
+      "execution_log_sha256": "c7af4f5e9fd8e12e624e4f6a08416c4d24ec7ad9b3d038767142b7111abf4b39"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "3abf735cf376b77ccbfdb9f351fb529dea5f8603",
+  "capture_source_snapshot": "add_rmsnorm_scalar_handoff_3abf735c_20260829_r1",
+  "service": "add_rmsnorm_local_scalar_handoff",
+  "request_size_unit": "source_scalar_handoff_chains",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"1": 17.77750651},
+  "benchmark_binary_sha256": "50224686b9e7e0cd49c21e01c0ecfd5fe543abc44283970ebfc9b6c0ac1ff963",
+  "benchmark_source_sha256": {
+    "vector_opcode_kernel.cpp": "8d8845cbec237182aa3528d60be48864621636bb197fb223bf7657c2f9e75cc8",
+    "vector_opcode_main.cpp": "8c39c096f89b48d2f873706ab4d4b6e31f0abcba5d4859261f2eedeb729a9e50",
+    "vector_opcode_report.py": "3d2cf5b2094f0944eee948b8aed4131c5cbf539600c798948c1ece42da2d27a6",
+    "vector_opcode_runner.py": "535f8f0097474861acc261d532d61a3be945fb6cef47eab5732b3b96f1facad2"
+  },
+  "production_source_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/add_rms_norm",
+  "production_source_symbol": "KernelAddRmsNorm<bfloat16_t>::Compute",
+  "production_source_sha256": {
+    "add_rms_norm.cpp": "cfe1427a7cc10d4731fb122d5763009eda140bc25eaf3db8885fb7044fad3ddf",
+    "add_rms_norm.h": "655b84f7fbe5c911cc83daa6a3e77d1b219ac8206965a1e3065af6fa835ac817"
+  },
+  "device_id": 3,
+  "independent_runs": 3,
+  "samples_per_cell": 18,
+  "block_dims": [1, 24, 48],
+  "tick_intersection_ns": [20.0, 20.0],
+  "maximum_run_relative_median_spread": 0.00018327606895086743,
+  "maximum_concurrency_relative_median_spread": 0.0008239871543155877,
+  "mechanism": "one V-to-scalar event handoff, one LocalTensor GetValue, one scalar-to-Vector event handoff, one LocalTensor SetValue, and one terminal PIPE_V barrier",
+  "composition": "one source-exact handoff request per CANN key-30 AddRmsNorm row and AIV worker, after the size-one reciprocal-square-root Vector sequence and before row output scaling",
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_scalar_handoff_3abf735c_20260829_r1/run1.csv", "sha256": "394f820f9f5b0a45fbf83ed44faa1dfb95dabe4ea2ef844598cd0b598e61d915"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_scalar_handoff_3abf735c_20260829_r1/run2.csv", "sha256": "70221cf482b187a4663740667e48ade60dce0f91aae7e419cf31bbe4c553ccee"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_scalar_handoff_3abf735c_20260829_r1/run3.csv", "sha256": "5ba76dd0a2afb2ae77d5f27938ba46e86227c831c878fb5e7503900a7f07e8e8"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_scalar_handoff_3abf735c_20260829_r1/audit.txt", "sha256": "ce2aad30c31d06a592845adae8d1f546a18caab1323bbefbcc70077750436cf5"}
+  ],
+  "measurement_gate_passed": true,
+  "provenance_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": "midlayer.metax_c500.bm16_31_active_32_max_w1_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 16,
+    "tile_k": 64,
+    "tile_n": 32,
+    "group_size_m": 1,
+    "routed_rows": 32,
+    "populated_experts": 31,
+    "active_m_tiles": 31,
+    "launch_m_tiles": 32,
+    "projection_k_tiles": 32,
+    "supported_projection_n_tiles": [32, 48]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090004,
+    "route_sha256": "005e6e5ff2893c98f516b30ee4b57bc733d5c6301ff79caedc3d4b1ed816e99d",
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 100,
+    "independent_captures_per_adjacent_geometry": 3,
+    "physical_devices": [0, 2],
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "6830b3e020abdb010b161876e983cb01071c1d6fc02903fbf9df1cbac1da0f88",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "interpolate median event duration between adjacent non-production N geometries per device, derive production-cell capacity, then take the minimum across devices and the prior 48-N-tile topology"
+  },
+  "topology_evidence": {
+    "32_n_tiles": {
+      "experts": 256,
+      "tokens": 4,
+      "topk": 8,
+      "production_n": 1024,
+      "adjacent_nonproduction_n": [992, 1056],
+      "production_operand_bytes": 134217728,
+      "interpolated_event_ms_by_device": {
+        "0": 0.09139584064483643,
+        "2": 0.0914675235748291
+      },
+      "capacity_per_s_by_device": {
+        "0": 1468532124143.0352,
+        "2": 1467381238218.3628
+      }
+    },
+    "48_n_tiles": {
+      "prior_evidence_ref": "microbench/metax_c500/references/bm16_e128_31_active_operand_pipeline.json#selected_services/w1",
+      "logical_byte_capacity_per_s": 1533440900077.7522
+    }
+  },
+  "selected_service": {
+    "logical_byte_capacity_per_s": 1467381238218.3628
+  },
+  "raw": {
+    "root": "profiler_output/microbench/metax_c500/bm16_31_active_32_launch_e256_1d7cee96_20260908_r1",
+    "sha256_by_device_n": {
+      "device0/n992": [
+        "3a1ebae7ae2d8ba5921da1ca9e764fc335e63a19bc498dbb30a0f735eba808ef",
+        "71c05df87e75694b5ce21395b2962b3f1f11d613f1ed7b5429c75cc7a6e8a4a4",
+        "89e7027fc08156c9c72c24ee3f83f8ad4827c40be02d8db78bf51f1787ea85ed"
+      ],
+      "device0/n1056": [
+        "f0d87fbfbc0414ea8542205184ece4185630684a6c32c3def3c94b0e7a115e84",
+        "d5e0f1e5fe4e4cb08d345ff93415eb0a0e0dafcbc73ee5e4836de3608db3eb5c",
+        "1f80a69e16c9fcce7ecf307669dc0a3dc1eefe06ad87b636067ebb951d285cb7"
+      ],
+      "device2/n992": [
+        "c2d623920bcd5ab4a0c12406c328d59021db2beefbf0d3d97dd28da39e05b25b",
+        "e503b9691d889c8fb2f57cebadb6b6b2877dfa3a368795e84f43c38244d3165b",
+        "f710c55915ae720caaa3fd8187493fad19704a90a291549b7a5b3eea674668d9"
+      ],
+      "device2/n1056": [
+        "3a9bfaea1fd8623067e562a6d00a1dafa45bcf4ac484a03dcba34b10958ada3f",
+        "f258f2d0d6fe0541ceea4705a08d8819027668dea4935c88f658d574af3eef71",
+        "7b971061488cd2d145f0de5063cf5413f95504da6f3ca40a63ed1d2b8a661807"
+      ]
+    }
+  },
+  "allowed_conclusion": "A one-collision 31-active/32-launched BM16 W1 source uses one conservative full-source operand completion service across the observed 32- and 48-N-tile projections."
+}

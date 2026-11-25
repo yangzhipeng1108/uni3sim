@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "evidence_kind": "installed_artifact_static_host_dispatch",
+  "artifact_identity_reference": "bf16_vec4_elementwise_2r1w_dram_maca_3_7_2.json#/production_source_identity",
+  "hardware_execution_performed": false,
+  "duration_consumed": false,
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/bf16_launch_binding.json",
+      "sha256": "b18786a73677c4007f2044493cd6601458ada30c329f29ad7dedeeb111cba3a3"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/host_dispatch.json",
+      "sha256": "c8ed28a717ee8abecd13aec6738fefd16d6517fcee60db537bb5460fd841a316"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/index_math_dispatch.json",
+      "sha256": "8106449ada131aadea169ee4ce7f13769a42fe4ce762977ae4631a7ea946cf57"
+    }
+  ],
+  "software_version": "Torch 2.4.0+metax3.7.2.0",
+  "source_chain": [
+    "The retained profiler-container libtorch_cuda artifact matches the existing production_source_identity exactly.",
+    "BF16 host caller 0x1deefa3 invokes the BF16/unsigned-index dispatcher at0x1eeff40.",
+    "Caller geometry at0x1deeaa1..0x1deeb4c: small grid=min(ceil(H/128),CU*32), block=min(H,128); large grid=min(ceil(N*H/128),CU*64), block=min(N*H,128).",
+    "Three canUse32BitIndexMath checks at0x1deeb72/0x1deeb87/0x1deeba1 guard output/source/indices; failure takes a different index-width dispatcher.",
+    "The exact libtorch_cpu implementation is retained in index_math_dispatch.json and bf16_launch_binding.json; it bounds numel and element-stride offsets, not observed row counts.",
+    "The BF16 dispatcher tests index count<=16 at0x1ef0542; larger counts select the large-index branch. No8192-row branch is present in the selected host program."
+  ],
+  "accepted_scope": {
+    "operation": "BF16 contiguous 2D table index_select(dim0), contiguous INT64 indices, fresh contiguous output",
+    "known_source_extent": "source_rows is the real table extent; rows is the selected count, not the table extent",
+    "conservative_sufficient_32bit_domain": "2*source_rows*hidden<2^31 and2*rows*hidden<2^31 and8*rows<2^31; these byte bounds are stronger than the source element-offset checks",
+    "legacy_observed_scope": "Without explicit contiguous source extent, the existing1..8192-row observation-bound scope remains unchanged.",
+    "registers_per_thread": 14,
+    "sharded_embedding_extent": "Unquantized vLLM0.24 TP2/no-added-vocabulary uses pad(global_vocab,64)/TP physical table rows from the same forward; the local shard is not padded again. Mask helper returns Long IDs; no additional ID conversion."
+  },
+  "limitations": [
+    "No GPU or provider correctness/timing validation",
+    "No64-bit-addressing or strided-source expansion",
+    "No change to physical rates or predictor mechanisms",
+    "Observed8192-row coverage is not a source launch cutoff",
+    "Native RoPE supplies the actual contiguous cache extent from the same virtual forward; storage and payload are unchanged",
+    "TP mask helper and mask-output fill are separate producers and do not inherit this index_select launch or acceptance."
+  ]
+}

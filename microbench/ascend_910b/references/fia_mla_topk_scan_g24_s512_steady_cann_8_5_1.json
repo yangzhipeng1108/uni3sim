@@ -1,0 +1,42 @@
+{
+  "schema_version": "midlayer.ascend.fia_mla_topk_scan_steady_service.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "fia_mla_calc_sinner_topk_begin_source_scan",
+  "duration_unit": "ns_per_subsequent_source_task_per_aic",
+  "production_or_evaluation_duration_consumed": false,
+  "source_domain": {
+    "aic_pipeline_kind": "fia_block_cube_nonquant_mla_multibuffer",
+    "active_aic_groups": 24,
+    "source_s2": 512,
+    "sparse_block_size": 1,
+    "indices_per_task": 512,
+    "maximum_tasks_per_aic": 11
+  },
+  "parameters_ns": {
+    "first_task": "unavailable",
+    "subsequent_task": 5788.75
+  },
+  "validation": {
+    "task_counts": [1, 3, 11],
+    "fresh_process_triplets": 6,
+    "s13_ns": [5850.0, 5750.0, 5810.0, 5835.0, 5720.0, 5845.0],
+    "s311_ns": [5797.5, 5737.5, 5802.5, 5715.0, 5802.5, 5780.0],
+    "s13_median_ns": 5822.5,
+    "s311_median_ns": 5788.75,
+    "s13_relative_span_pct": 2.232718,
+    "s311_relative_span_pct": 1.511553,
+    "interval_median_disagreement_pct": 0.579648,
+    "all_rows_validated": true,
+    "all_stderr_empty": true
+  },
+  "provenance": {
+    "measurement_baseline_commit": "6a1ab241a384b5def95dbad14031ad89499ec55a",
+    "source_dir": "profiler_output/microbench/ascend_910b/fia_mla_topk_scan_g24_s512_steady_6a1ab241_20260909_r1",
+    "source_aggregate_sha256": "6ffcb311ca5c74fb4d507f6ecc8948e1da9c840721dc31feffb39e5536c76da3",
+    "binary_sha256": "0dca6194834465eabe4cddcbe9672800d9949960d12894c1ac90b02dd4eea28f",
+    "raw_csv_aggregate_sha256": "dbb70b909239a7dd63e0ef26e9e195a3b93f5275eca1ec1dcc3a55d00fbe8ac2",
+    "physical_device_id": 2,
+    "container": "capture-container-2"
+  }
+}

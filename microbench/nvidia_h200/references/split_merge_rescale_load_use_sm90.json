@@ -1,0 +1,91 @@
+{
+ "schema": "nvidia_h200_split_merge_rescale_load_use_reference_v1",
+ "hardware_id": "nvidia_h200",
+ "mechanism": "split_kv_merge_chunk_load_use",
+ "timer_domain": "clock64_cta_envelope_differential_43_minus_11_chunks",
+ "production_or_evaluation_duration_consumed": false,
+ "production_predictor_consumption_allowed": true,
+ "method": "One cooperative launch of 132 CTAs x 128 threads (128 KiB dynamic shared memory). Every chunk (LSE float + 2 KiB BF16 partial output) is written by another CTA (cross) or warmed by the reader with ld.global.cg (self_warm), then grid.sync; CTA 0 walks the chunks in order with volatile PTX: ld.global.f32 + ld.global.v4.u32 consumed by one xor (int_min) or by the online-softmax rescale chain max/sub/2x ex2.approx/8x mul+fma on unpacked BF16 (rescale); chain = the rescale chain on registers without loads. Per-chunk interval = (median cycles at 43 chunks - median at 11) / 32 per trial; published value = median over trials.",
+ "runner": {
+  "source": "microbench/nvidia_h200/memory/lsu/split_merge_rescale_load_use.cu",
+  "git_commit": "57d99b720",
+  "samples_per_point": 20,
+  "trials": 3
+ },
+ "capture": {
+  "device": "H200 GPU 4 alone (kcampaign yield_gpus.sh / resume_gpus.sh)",
+  "date": "2026-09-27 18:02",
+  "busy_sm_clock_samples_mhz": {
+   "1980": 11,
+   "1815": 1,
+   "1695": 1
+  }
+ },
+ "reference_sm_clock_hz": 1980000000.0,
+ "raw": {
+  "trial0.csv": {
+   "sha256": "5ab142548c1e9de3d29b5e2e87169066d18a2d1477c0dfe349a3664369fb9bea"
+  },
+  "trial1.csv": {
+   "sha256": "07dc6b788d57d4eefea243969de08626307243e529c74db979c7d733972c93cf"
+  },
+  "trial2.csv": {
+   "sha256": "6952c8f075ab602729b45f0a7d77ee53d403e82b6600682a879a1ae9ea020d6c"
+  }
+ },
+ "per_chunk_cycles": {
+  "self_warm/int_min": {
+   "trials": [
+    359.03,
+    359.91,
+    352.88
+   ],
+   "median": 359.03
+  },
+  "self_warm/rescale": {
+   "trials": [
+    405.53,
+    406.09,
+    398.19
+   ],
+   "median": 405.53
+  },
+  "self_warm/chain": {
+   "trials": [
+    108.02,
+    108.02,
+    108.02
+   ],
+   "median": 108.02
+  },
+  "cross/int_min": {
+   "trials": [
+    432.23,
+    433.22,
+    426.59
+   ],
+   "median": 432.23
+  },
+  "cross/rescale": {
+   "trials": [
+    478.81,
+    479.28,
+    470.39
+   ],
+   "median": 478.81
+  },
+  "cross/chain": {
+   "trials": [
+    108.0,
+    108.0,
+    108.0
+   ],
+   "median": 108.0
+  }
+ },
+ "published": {
+  "writer": "cross",
+  "consumer": "rescale",
+  "per_chunk_cycles": 478.81
+ }
+}

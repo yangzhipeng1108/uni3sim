@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_rmsnorm_key0_steady_mte2_completion_47_workers",
+  "request_size_unit": "payload_bytes",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"4096": 430.0, "5120": 455.0, "10240": 515.0},
+  "mechanism": "warmed repeated-row depth-one TQue GM-to-UB DataCopyPad followed by its MTE2-to-Vector completion edge while exactly 47 AIV workers are admitted",
+  "scope": "maximum worker completion envelope per repeated row for exact retained payloads; first gamma requests and shared byte throughput remain separate mechanisms",
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "campaign_evidence_ref": "microbench/ascend_910b/references/aiv_rmsnorm_key0_steady_mte2_completion_cann_8_5_1.json",
+  "campaign_evidence_sha256": "d9a6324944df7dc68e05225ff67525e59602ab72e1fe2cb9d2048b3bdb391ca8",
+  "production_or_evaluation_duration_consumed": false
+}

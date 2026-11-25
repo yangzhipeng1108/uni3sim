@@ -1,0 +1,23 @@
+{
+  "schema": "nvidia_a800_cta_assignment_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "source_capture": "profiler_output/microbench/nvidia_a800/20260825_cta_assignment_full_f02a36ea",
+  "source_baseline_commit": "4a8da5ecd6711e0cfcbcea5e580c68ddba5dea00",
+  "source_manifest_sha256": "6b604ed12746f5fd889ab25b7f37f052c4fb146a3599a3d90fb5ede8f0f198d3",
+  "source_candidate_sha256": "3d7ea64e6bbac3f42b42a444386ce16eed3a29fb0d675b428fcc9fc97646da55",
+  "evidence_status": "candidate",
+  "mechanism": "one_resident_cta_per_sm_greedy_assignment",
+  "heterogeneous_cell_count": 42,
+  "all_heterogeneous_cells_passed": true,
+  "queued_cta_instrumented_handoff_upper_bound_sm_cycles": 1363,
+  "allowed_conclusion": "A nonempty A800 CTA queue is work-conserving for the frozen one-resident-CTA-per-SM probe; identical CTA programs therefore have an assignment-invariant worker makespan.",
+  "excluded_conclusions": [
+    "deterministic CTA-to-SM identity",
+    "round-robin placement for heterogeneous CTA programs",
+    "bare scheduler reissue latency",
+    "production or evaluation kernel duration"
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

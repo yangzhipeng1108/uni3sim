@@ -1,0 +1,42 @@
+{
+  "hardware_id": "nvidia_h200",
+  "mechanism": "independent_exact_geometry_two_read_one_write_stream_capacity",
+  "mechanism_qualified": true,
+  "production_or_evaluation_duration_consumed": false,
+  "selection": "Each exact grid/block uses its slower qualified process median and read+write logical bytes; no interpolation or global rate.",
+  "points": [
+    {"grid": 131072, "block": 96, "process_median_ms": [0.143935993, 0.144160002], "logical_bytes_per_second": 4189648776503.2075},
+    {"grid": 131072, "block": 128, "process_median_ms": [0.189152002, 0.188383996], "logical_bytes_per_second": 4257456222958.7183},
+    {"grid": 262144, "block": 96, "process_median_ms": [0.281760007, 0.28143999], "logical_bytes_per_second": 4287193079179.6157},
+    {"grid": 262144, "block": 128, "process_median_ms": [0.371872008, 0.371520013], "logical_bytes_per_second": 4331094304898.5825},
+    {"grid": 524288, "block": 96, "process_median_ms": [0.555040002, 0.555360019], "logical_bytes_per_second": 4350185503720.966},
+    {"grid": 524288, "block": 128, "process_median_ms": [0.73942399, 0.739135981], "logical_bytes_per_second": 4356398379771.2593},
+    {"grid": 65536, "block": 1024, "process_median_ms": [0.740256011, 0.739455998], "logical_bytes_per_second": 4351501945453.3003},
+    {"grid": 262144, "block": 256, "process_median_ms": [0.740736008, 0.739808023], "logical_bytes_per_second": 4348682171800.1323},
+    {"grid": 32768, "block": 1024, "process_median_ms": [0.372960001, 0.371167988], "logical_bytes_per_second": 4318459705280.8354},
+    {"grid": 262144, "block": 192, "process_median_ms": [0.556415975, 0.557792008], "logical_bytes_per_second": 4331218571349.628},
+    {"grid": 131072, "block": 360, "process_median_ms": [0.52384001, 0.523967981], "logical_bytes_per_second": 4322638485804.7275},
+    {"grid": 327680, "block": 128, "process_median_ms": [0.464639992, 0.465407997], "logical_bytes_per_second": 4325808608742.0625},
+    {"grid": 131072, "block": 256, "process_median_ms": [0.373695999, 0.373344004], "logical_bytes_per_second": 4309954455787.47},
+    {"grid": 16384, "block": 1024, "process_median_ms": [0.189024001, 0.189375997], "logical_bytes_per_second": 4252420479666.175},
+    {"grid": 131072, "block": 192, "process_median_ms": [0.281823993, 0.281856], "logical_bytes_per_second": 4285732970027.248},
+    {"grid": 65536, "block": 360, "process_median_ms": [0.265567988, 0.266112], "logical_bytes_per_second": 4255584415584.4155},
+    {"grid": 327680, "block": 64, "process_median_ms": [0.236223996, 0.236000001], "logical_bytes_per_second": 4261349300009.3013},
+    {"grid": 163840, "block": 128, "process_median_ms": [0.235039994, 0.235520005], "logical_bytes_per_second": 4274086865784.501}
+  ],
+  "source_bindings": {
+    "raw": {"path": "profiler_output/microbench/nvidia_h200/vec16_mixed_stream_capacity_20261109/attempt_1/raw.json", "sha256": "402e765e024bedcd44c0bfb17e034f82611f5c57ba04c8f84927488580a29318"},
+    "analysis": {"path": "profiler_output/microbench/nvidia_h200/vec16_mixed_stream_capacity_20261109/analysis_corrected.json", "sha256": "c373a2f62fe6e368fb133ae911eb2f72913eede4709425d2583e5a12f97eef31"},
+    "plan": {"path": "microbench/nvidia_h200/references/vec16_mixed_stream_capacity_plan_sm90.json", "sha256": "41ec054147272d5569438b2140d7f889097d2a89e4a84105816ba83446492a2a"},
+    "source": {"path": "microbench/nvidia_h200/memory/dram/vec16_two_read_one_write.cu", "sha256": "241f6c85d799a08a0b893803e59761bf859b88f6789370f0d2e1ebf9712d97dd"},
+    "extended_raw": {"path": "profiler_output/microbench/nvidia_h200/vec16_mixed_stream_capacity_extended_20261109/attempt_1/raw.json", "sha256": "14f984d23476cffbf8257c142c74dd0948f210dc07d1a6822403fde079cebd72"},
+    "extended_analysis": {"path": "profiler_output/microbench/nvidia_h200/vec16_mixed_stream_capacity_extended_20261109/attempt_1/raw.json", "sha256": "14f984d23476cffbf8257c142c74dd0948f210dc07d1a6822403fde079cebd72"},
+    "extended_plan": {"path": "microbench/nvidia_h200/references/vec16_mixed_stream_capacity_extended_plan_sm90.json", "sha256": "2fd61553f9e7a32728786b96c1cef5e5c42d2a58b5b5a2e3b775433902b6519f"},
+    "extended_source": {"path": "microbench/nvidia_h200/memory/dram/vec16_mixed_stream_capacity_extended.cu", "sha256": "b0d1bedf3f53b14c4f07552ce384798d2271b1f26c0d63c9f69b8bea7eb5a01f"}
+  },
+  "scope_limitations": [
+    "Two 16B reads, one 16B write and XOR only; not an activation, SiLU, routing or model output price.",
+    "Logical stream capacity is a competing floor, not physical DRAM bandwidth or a memory/SFU overlap claim.",
+    "Only exact observed grid/block cells are bound; all other launch geometries remain unchanged."
+  ]
+}

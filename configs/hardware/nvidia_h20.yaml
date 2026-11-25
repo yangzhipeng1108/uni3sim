@@ -1,0 +1,71 @@
+# NVIDIA H20 (SXM5 96GB) —— aggregate roofline 级用户申报配置。
+#
+# H20 不在 Uni3Sim 官方 CANONICAL_HARDWARE_IDS 里，但它是 Token 工厂
+# TF-DESIGN-03《容量规划与算力测算说明书》全篇的基准卡，因此必须补这一份。
+#
+# 规格来源（本仓一手资料，未做外部检索）：
+#   optimization/知识/ai-infra-book/calculations/results/pd-pool-all-h20.json
+#     device                            = h20-sxm5-96gb
+#     peak_tera_ops_per_second          = 148      (FP16/BF16 稠密)
+#     memory_bandwidth_bytes_per_second = 4096e9
+#     nominal_capacity_bytes            = 96e9
+#   tokens-gateway/tokens-factory-design/03-容量规划与算力测算说明书.md
+#     §4.1 H20 FP8 296 TFLOPS / §5.1 HBM 4.0 TB/s / §5.2 96GB×8
+#
+# 可信度：
+#   FP16/BF16 148 TF    = 本仓计算结果直接给出 🟢
+#   HBM3 96GB/4.096TB/s = 同上 🟢
+#   FP8 296 TF          = 由 148×2 反推，TF-03 §4.1 采用同值 🟡
+#   FP4                 = 无，H20 不提供 FP4 加速
+#
+# 写法说明：aggregate roofline 格式（同 nvidia_rtx_pro_5500.yaml / hygon_bw1100.yaml）——
+# clock_domains / memory_subsystem / scheduling 必须为空，直接用
+# capacity_per_second 声明整卡总量。这避开了 per-clk 的 subcore 口径分歧。
+#
+# 建模边界：只服务屋顶线与容量估算，本卡 roofline_only = True
+#   ✗ 无 launch_config/nvidia_h20/ → 不能做 kernel 级 launch 建模
+#   ✗ 无 microbench 标定           → 不能做逐 cycle / occupancy 建模
+hardware_id: nvidia_h20
+clock_domains: {}
+components:
+  - name: tensor_bf16
+    count: 1
+    type: compute
+    role: compute_tensor
+    scope: shared
+    capacity_per_second: 148000000000000        # 148 TFLOPS dense
+  - name: tensor_fp16
+    count: 1
+    type: compute
+    role: compute_tensor_fp16
+    scope: shared
+    capacity_per_second: 148000000000000        # 148 TFLOPS dense
+  - name: tensor_fp8
+    count: 1
+    type: compute
+    role: compute_tensor_fp8
+    scope: shared
+    capacity_per_second: 296000000000000        # 296 TFLOPS dense (148 × 2)
+  - name: dram
+    count: 1
+    type: memory
+    role: dram
+    scope: shared
+    capacity_per_second: 4096000000000          # 4.096 TB/s HBM3
+    size_bytes: 96000000000                     # 96 GB
+resource_groups: []
+memory_subsystem: {}
+scheduling: {}
+# aggregate 拓扑：沿用 TF-03 的集群口径，每 NIC 挂 2 卡、400Gb/s RoCE、
+# 无阻塞全互联交换机（单向 50 GB/s）。这不是某台实机的拓扑声明。
+interconnect:
+  roce_unidir_bw_GB_s: 50
+  roce_devices_per_nic: 2
+  roce_switch_topology: fully_connected
+  roce_signal_latency_ns: null
+  roce_collective_startup_ns: null
+  parameter_source: user_supplied_2026_11_25_h20_from_tf03_two_cards_per_400Gbps_roce
+features:
+  kernel_memory_model: roofline
+  kernel_dtype: bf16
+  parameter_source: user_supplied_2026_11_25_h20_from_tf03_and_pd_pool_all_h20

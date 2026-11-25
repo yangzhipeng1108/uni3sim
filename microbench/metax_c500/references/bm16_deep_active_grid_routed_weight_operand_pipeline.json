@@ -1,0 +1,135 @@
+{
+  "schema_version": "midlayer.metax_c500.bm16_deep_active_grid_routed_weight_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "production_source_grouped_operand_pipeline_with_routed_weight_epilogue",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 16,
+    "tile_k": 64,
+    "tile_n": 32,
+    "group_size_m": 1,
+    "source_rows_range": [1, 2],
+    "active_experts_range": [8, 16],
+    "routes_per_populated_expert": 1,
+    "projection": "w1",
+    "k_loop_counts": [64, 112],
+    "mul_routed_weight": true,
+    "launch_rule": "min(maximum_padded_routes, source_rows*source_topk*block_m)"
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 0,
+    "device": 2,
+    "container": "capture-container-1",
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 100,
+    "independent_captures_per_geometry": 2,
+    "production_or_evaluation_duration_consumed": false,
+    "baseline_commit": "057480a20da5efdaa666140b8e65d333e30a66b5",
+    "runner_source_sha256": "6830b3e020abdb010b161876e983cb01071c1d6fc02903fbf9df1cbac1da0f88",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "minimum production-source routed-weight full-pipeline capacity across both active-grid endpoints, adjacent non-production N cells, and two independent executions"
+  },
+  "captures": [
+    {
+      "tokens": 1,
+      "experts": 128,
+      "k": 4096,
+      "n": 3040,
+      "grid": 760,
+      "expected_operand_l2_read_bytes": 205455360,
+      "routed_weight_read_bytes": 16,
+      "event_median_ms": 0.14008064270019532,
+      "operand_pipeline_capacity_bytes_per_s": 1466693442003.415,
+      "raw_sha256": "bb44c563aa010f2949bec1eba3ede37d6e11cc4cbf6b2500dd1bdb86adedf53f"
+    },
+    {
+      "tokens": 1,
+      "experts": 128,
+      "k": 4096,
+      "n": 3040,
+      "grid": 760,
+      "expected_operand_l2_read_bytes": 205455360,
+      "routed_weight_read_bytes": 16,
+      "event_median_ms": 0.13997056007385253,
+      "operand_pipeline_capacity_bytes_per_s": 1467846952184.7722,
+      "raw_sha256": "977343463507ad207c46b73f6819f7427dc1a94f90c28e54ba9c69cad2052f30"
+    },
+    {
+      "tokens": 1,
+      "experts": 128,
+      "k": 4096,
+      "n": 3104,
+      "grid": 776,
+      "expected_operand_l2_read_bytes": 209780736,
+      "routed_weight_read_bytes": 16,
+      "event_median_ms": 0.14142975807189942,
+      "operand_pipeline_capacity_bytes_per_s": 1483285687962.166,
+      "raw_sha256": "2ad04869b4822721d404935a663723cc9275d356f7fc45e972fda1b9ebb00060"
+    },
+    {
+      "tokens": 1,
+      "experts": 128,
+      "k": 4096,
+      "n": 3104,
+      "grid": 776,
+      "expected_operand_l2_read_bytes": 209780736,
+      "routed_weight_read_bytes": 16,
+      "event_median_ms": 0.14142975807189942,
+      "operand_pipeline_capacity_bytes_per_s": 1483285687962.166,
+      "raw_sha256": "2ad04869b4822721d404935a663723cc9275d356f7fc45e972fda1b9ebb00060"
+    },
+    {
+      "tokens": 2,
+      "experts": 256,
+      "k": 7168,
+      "n": 4064,
+      "grid": 2032,
+      "expected_operand_l2_read_bytes": 961314816,
+      "routed_weight_read_bytes": 32,
+      "event_median_ms": 0.609612808227539,
+      "operand_pipeline_capacity_bytes_per_s": 1576926867391.519,
+      "raw_sha256": "c42cec3debf1ef5fe2cabe9f029b6be87ceee53f79c1f6a029610fb2ef053f7a"
+    },
+    {
+      "tokens": 2,
+      "experts": 256,
+      "k": 7168,
+      "n": 4064,
+      "grid": 2032,
+      "expected_operand_l2_read_bytes": 961314816,
+      "routed_weight_read_bytes": 32,
+      "event_median_ms": 0.6098457717895508,
+      "operand_pipeline_capacity_bytes_per_s": 1576324474922.7124,
+      "raw_sha256": "c129f7680c1e4d648043e24c96bf2ed5718841e26b1d250ccd113e6a69d28165"
+    },
+    {
+      "tokens": 2,
+      "experts": 256,
+      "k": 7168,
+      "n": 4128,
+      "grid": 2064,
+      "expected_operand_l2_read_bytes": 976453632,
+      "routed_weight_read_bytes": 32,
+      "event_median_ms": 0.6183244705200195,
+      "operand_pipeline_capacity_bytes_per_s": 1579192929529.0366,
+      "raw_sha256": "62f2630a34298f54b2da6d79171803fc5d6c775c0070c850fb6fa111b9c23ebd"
+    },
+    {
+      "tokens": 2,
+      "experts": 256,
+      "k": 7168,
+      "n": 4128,
+      "grid": 2064,
+      "expected_operand_l2_read_bytes": 976453632,
+      "routed_weight_read_bytes": 32,
+      "event_median_ms": 0.6194611358642578,
+      "operand_pipeline_capacity_bytes_per_s": 1576295227363.4966,
+      "raw_sha256": "e65dad52124cabbd4fbefc17f37a885d4ad58bebec5d781de9231022f81b4f19"
+    }
+  ],
+  "selected_service": {
+    "predicate": "W1, source_rows<16, eight through sixteen one-row populated experts, projection K/N tile classes (64,96) or (112,128)",
+    "logical_byte_capacity_per_s": 1466693442003.415
+  }
+}

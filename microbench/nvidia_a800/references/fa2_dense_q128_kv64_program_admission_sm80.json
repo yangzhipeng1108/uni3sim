@@ -1,0 +1,44 @@
+{
+  "schema": "nvidia_a800_fa2_dense_q128_kv64_program_admission_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "source_capture": "profiler_output/microbench/nvidia_a800/fa2_dense_q128_kv64_program_admission_b9eb0a0b_20260908_r3",
+  "source_baseline_commit": "5d18c31ecfcdc58bce6b69a6be587cb1d067daf6",
+  "physical_device_index": 1,
+  "device_uuid": "capture-device-c776d040251d",
+  "resource_contract": {
+    "threads_per_cta": 128,
+    "dynamic_shared_bytes_per_cta": 66560,
+    "resident_ctas_per_sm": 2,
+    "physical_sm_count": 108,
+    "grid_ctas": 256,
+    "resident_prefix_ctas": 216,
+    "queued_suffix_ctas": 40,
+    "source_program_period": 8
+  },
+  "publication_gates": {
+    "all_samples_cover_every_sm_twice": true,
+    "all_resident_pairs_are_adjacent_source_program_classes": true,
+    "maximum_queued_begin_inversion_within_timer_resolution": true,
+    "maximum_same_sm_release_gap_within_timer_resolution": true
+  },
+  "sample_count": 7,
+  "global_timer_resolution_ns": 1024,
+  "maximum_queued_begin_inversion_ns": 0,
+  "maximum_same_sm_release_gap_ns": 1024,
+  "artifact_sha256": {
+    "source": "0fdf05311e2371cafaa950f85d9e6229bd9d569ce8249b5af397ca684184dc56",
+    "binary": "7978c2f9ac1ff36107d5b69f659449c2ac6e8450fb7ce31a26a664bdd7178864",
+    "raw": "5b514b1a2a3c4a7c1e4158d7c5824af8cb2023ab7844664f46f1d5909fffbc7e"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "allowed_conclusion": "For the frozen dense Q128/KV64, 128-thread, 66560-byte, grid-256 source program, every SM initially receives two adjacent classes from the exact eight-program source period; the remaining 40 classes are admitted globally in FIFO order as resident slots complete, within the 1024ns timer resolution.",
+  "excluded_conclusions": [
+    "production FlashAttention duration",
+    "physical block-ID adjacency",
+    "a fixed CTA-to-SM identity",
+    "grids other than 256",
+    "source programs other than dense Q128/KV64"
+  ]
+}

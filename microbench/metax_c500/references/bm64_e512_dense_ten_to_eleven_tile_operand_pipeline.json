@@ -1,0 +1,61 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_e512_dense_ten_to_eleven_tile_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "routed_rows": 327680,
+    "populated_experts": 512,
+    "active_m_tiles": 5373,
+    "maximum_m_tiles": 5624,
+    "w1_source_rows": 32768,
+    "w2_source_rows": 327680,
+    "production_k_n_tile_classes": [[64, 16], [16, 32]]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090603,
+    "route_sha256": "e348c0d3792fc640cee76cd6dd357ab776704b9927ecb93e2593cbd1ef03d3c5",
+    "tokens": 32768,
+    "experts": 512,
+    "topk": 10,
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 1,
+    "independent_captures_per_adjacent_geometry": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "6830b3e020abdb01071c1d6fc02903fbf9df1cbac1da0f88",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "per projection, linearly interpolate the median event duration between two adjacent non-production N geometries, then divide the reference operand bytes by that duration"
+  },
+  "captures": {
+    "w1_n960": [
+      {"event_median_ms": 68.91136169433594, "raw_sha256": "49b039120ef1bfeefd4b3da89a4880581a5d5f2747009fcddfbd48f8278a42cd", "operand_pipeline_capacity_bytes_per_s": 1197484822982.1387},
+      {"event_median_ms": 66.77043151855469, "raw_sha256": "0b362eace1b9c53569354e86d66c4404b65c5e26b9ab9fabe61b94b5c37b7446", "operand_pipeline_capacity_bytes_per_s": 1235881031217.6672},
+      {"event_median_ms": 69.32915496826172, "raw_sha256": "f44458b0bb250ebfb7c12a7cac7422521563ad6d3dcb7adedab4b8359ba01b7d", "operand_pipeline_capacity_bytes_per_s": 1190268506774.3442}
+    ],
+    "w1_n1088": [
+      {"event_median_ms": 76.35199737548828, "raw_sha256": "3de8ae65598a0ea34c5be361eea07b44bd77f84b942b71b6991f90885cc2e87a", "operand_pipeline_capacity_bytes_per_s": 1224892876974.3518},
+      {"event_median_ms": 79.8686752319336, "raw_sha256": "19cd3a36ea72a440ee694761fd200f7e775e9db394c4f74fcacdf9e843274971", "operand_pipeline_capacity_bytes_per_s": 1170959922102.3142},
+      {"event_median_ms": 77.78662109375, "raw_sha256": "56e711bd14b5a4e60b84782d9099d7b5dac7b80bfe340d33673ef8a46ed67297", "operand_pipeline_capacity_bytes_per_s": 1202302097879.842}
+    ],
+    "w2_n1984": [
+      {"event_median_ms": 40.546302795410156, "raw_sha256": "94304d98dfef115c306f6964667c76b7792f85623f0dd56150c87deee87db552", "operand_pipeline_capacity_bytes_per_s": 1051526043968.3379},
+      {"event_median_ms": 41.34681701660156, "raw_sha256": "55625f9d6c0b9a57392044b688d59045076338a7e2fb57c45bc33247b790c296", "operand_pipeline_capacity_bytes_per_s": 1031167486456.8417},
+      {"event_median_ms": 40.86067199707031, "raw_sha256": "978039dd6481aa7d5949f31ba5fe2ce225b247940ea511f9e740bcfd54511c99", "operand_pipeline_capacity_bytes_per_s": 1043435932210.2423}
+    ],
+    "w2_n2112": [
+      {"event_median_ms": 43.534847259521484, "raw_sha256": "765c32afb682dea7e608d803bfd1f0b8ae1003d19b01cc402d561c76a2d67b0f", "operand_pipeline_capacity_bytes_per_s": 1042525085650.1769},
+      {"event_median_ms": 43.52076721191406, "raw_sha256": "97a155dba540c15bed60c8c58027b3789bb74406bf2d05c0e735ab84738c169d", "operand_pipeline_capacity_bytes_per_s": 1042862368372.3864},
+      {"event_median_ms": 43.727359771728516, "raw_sha256": "ff70c7a1a72b3f740f2d02f3fd71127abde17d62291851a9ef23bd673c880a7d", "operand_pipeline_capacity_bytes_per_s": 1037935301946.6768}
+    ]
+  },
+  "selected_services": {
+    "w1": {"predicate": "512 populated experts, 10-11 active M tiles per expert on average, 5624 maximum M tiles, 32768 source rows, and K/N tile class (64,16)", "production_n": 1024, "interpolated_event_ms": 73.34899139404297, "reference_operand_bytes": 88021663744, "logical_byte_capacity_per_s": 1200039183512.872},
+    "w2": {"predicate": "512 populated experts, 10-11 active M tiles per expert on average, 5624 maximum M tiles, 327680 source rows, and K/N tile class (16,32)", "production_n": 2048, "interpolated_event_ms": 42.1977596282959, "reference_operand_bytes": 44010831872, "logical_byte_capacity_per_s": 1042966078286.4961}
+  },
+  "raw_path": "profiler_output/microbench/metax_c500/bm64_e512_5373_active_5624_max_dc531f6e_20260908_r1"
+}

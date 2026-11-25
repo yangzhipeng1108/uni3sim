@@ -1,0 +1,111 @@
+# Pre-registered discrete helper-launch emission observation.
+#
+# WHY THIS EXISTS (zero-fitting discipline, contract in
+# docs/serving_system.md §11):
+# The helper-launch emission counts come from vLLM source predicates wherever
+# the predicate exists.  A small set of (hardware, call point, phase) triples
+# measurably diverge from the source predicate at the vendor dispatch layer —
+# capture windows that never show a launch, card-level elisions, phase laws.
+# Those divergences are consumed from THIS registry, never re-derived ad hoc.
+#
+# CONTRACT:
+# - This registry is fixed BEFORE the model-vs-trace count comparison.  It is
+#   a run INPUT, never tuned per result to make a case pass.
+# - Every entry records an integer per-step count for rank 0 of one sample
+#   step, measured with the structural filters of g3_validation.py /
+#   g1_model_vs_trace.py (no kernel-name matching on the model side, no
+#   durations anywhere).
+# - A count of 0 must carry an authorization note: "measured zero" and
+#   "nobody wrote this branch" are indistinguishable in the data otherwise.
+# - CANONICAL v1 provenance: published by the main agent onto main from
+#   worktree wt-serving-helper-emit (baseline 91f9f76bf35b6994657ae0c925cb12a649337a92,
+#   worker commit a7b16972d) on 2026-09-24.  Counter-emissions and count edits
+#   require a new version, fail-closed on schema mismatch.
+#
+# Evidence traces (read-only): serving_dataset/sharegpt/<cell>/alignment_steps.json.zst
+# for the cells listed per item.
+
+version: 1
+
+items:
+  - key:
+      hardware_id: nvidia_a800
+      call_point: token_embedding_gather
+      phase: prefill
+      model_type: any
+    observed_count: 0
+    authorization: >-
+      Explicit measured zero. A800 prefill sample windows contain no
+      step-head input-prep launches at all (no embedding lookup, no copy,
+      no add, no Fill before the first rms_norm-family kernel), while
+      decode and mixed windows contain exactly one embedding gather. The
+      vLLM 0.11.0 source path (vllm/v1/worker/gpu_model_runner.py) embeds
+      every step input, so this is a launch-placement / capture-window
+      divergence at the vendor layer, not a source predicate branch.
+      Count semantics: per step, rank 0.
+    evidence: >-
+      g1_model_vs_trace.py gather-family positional filter (kernels before
+      the first rms_norm-family kernel) over the alignment sample steps of
+      nvidia_a800/qwen3-4b/tp1_qps4 and nvidia_a800/qwen3-30b-a3b/tp2_ep2_qps4,
+      both phases prefill=0, decode/mixed=1; A800 replay logs in
+      profiler_output/serving/helper_launch_20260923/.
+  - key:
+      hardware_id: ascend_910b
+      call_point: attention_output_writeback
+      phase: decode
+      model_type: any
+    observed_count: 0
+    authorization: >-
+      Explicit measured zero. 910B decode sample windows contain no
+      TensorMove between FusedInfer and the next GEMM in every canonical
+      case, under both candidate source branches (paged out= and fused
+      elision); the mechanism is not decidable at the python source layer.
+      The workload-level copy plan stays source-authored; the vendor
+      dispatch layer launches none of it in decode.  Count semantics: per
+      attention layer per launch role, rank 0.
+    evidence: >-
+      g3_validation.py class1_writeback_tensormove positional filter
+      (TensorMove between FusedInfer and next GEMM) over the alignment
+      sample steps of ascend_910b/qwen3-4b/tp1_qps4 and
+      ascend_910b/qwen3-30b-a3b/tp2_ep2_qps4: decode measured 0 in all
+      windows, mixed 2L-1; contract docs/serving_system.md
+      §11 call point 1 (corrected 2026-09-23).
+  - key:
+      hardware_id: ascend_910b
+      call_point: attention_output_writeback
+      phase: prefill
+      model_type: qwen3_moe
+    observed_count: 0
+    authorization: >-
+      Explicit measured zero scoped to the qwen3_moe model type. The
+      qwen3-30b-a3b tp2_ep2 prefill sample window contains no TensorMove
+      between FusedInfer and the next GEMM, while the qwen3 (dense 4b/8b)
+      prefill and mixed windows measure 2L-1. The divergence sits at the
+      torch_npu/aclnn dispatch layer and its mechanism is not decidable at
+      the python source layer, so it is consumed from this registry.
+      Count semantics: per attention layer per launch role, rank 0.
+    evidence: >-
+      g3_validation.py class1_writeback_tensormove positional filter over
+      ascend_910b/qwen3-30b-a3b/tp2_ep2_qps4 prefill (measured 0) and
+      ascend_910b/qwen3-4b/tp1_qps4 prefill/mixed (measured 71 = 2L-1);
+      phase law per docs/serving_system.md §11 call point 1.
+  - key:
+      hardware_id: ascend_910b
+      call_point: qkv_v_materialization
+      phase: prefill
+      model_type: any
+    observed_count: 1
+    authorization: >-
+      Vendor-layer extra launch. 910B prefill sample windows carry one
+      additional Contiguous-family copy per attention layer beyond the
+      two source-authored q/k norm input materializations; mixed and decode
+      windows carry exactly the two. The vLLM-Ascend python source does not
+      author a third copy, so the extra launch is a torch_npu/aclnn
+      dispatch-layer fact consumed from this registry, not a source
+      predicate.  Count semantics: per attention layer, rank 0.
+    evidence: >-
+      g3_validation.py class1b_qkv_split_materialize family 'Contiguous'
+      counts: ascend_910b/qwen3-4b prefill 108 = 3L vs mixed/decode 72 =
+      2L; ascend_910b/qwen3-30b-a3b prefill 144 = 3L vs mixed/decode 96 =
+      2L; phase law per docs/serving_system.md §11 call point 1 ("prefill
+      carries +L v-materialization").

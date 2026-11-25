@@ -1,0 +1,84 @@
+// Independent Ascend 910B AIC strided GM-to-L1 ND2NZ service benchmark.
+//
+// This reproduces the public DataCopy(Nd2NzParams) geometry used by the
+// CANN FIA CopyPToL1 path.  It varies srcDValue while keeping copied rows and
+// columns explicit; it does not reproduce the attention operator.
+#include "kernel_operator.h"
+
+KERNEL_TASK_TYPE_DEFAULT(KERNEL_TYPE_AIC_ONLY);
+
+namespace {
+
+constexpr int64_t kElementBytes = sizeof(bfloat16_t);
+constexpr int64_t kCycleSlotBytes = 64;
+
+__aicore__ inline int64_t Align16(int64_t value) {
+    return (value + 15) / 16 * 16;
+}
+
+__aicore__ inline void CopyNd2Nz(
+        AscendC::LocalTensor<bfloat16_t>& destination,
+        AscendC::GlobalTensor<bfloat16_t>& source, int64_t rows,
+        int64_t columns, int64_t source_row_stride) {
+    AscendC::Nd2NzParams parameters;
+    parameters.ndNum = 1;
+    parameters.nValue = static_cast<uint16_t>(rows);
+    parameters.dValue = static_cast<uint16_t>(columns);
+    parameters.srcNdMatrixStride = 0;
+    parameters.srcDValue = static_cast<uint16_t>(source_row_stride);
+    parameters.dstNzC0Stride = static_cast<uint16_t>(Align16(rows));
+    parameters.dstNzNStride = 1;
+    parameters.dstNzMatrixStride = 0;
+    AscendC::DataCopy(destination, source, parameters);
+}
+
+}  // namespace
+
+extern "C" __global__ __aicore__ void aic_mte2_nd2nz_stride(
+        __gm__ bfloat16_t* gm_source, __gm__ int64_t* gm_output,
+        int64_t rows, int64_t columns, int64_t source_row_stride,
+        int64_t source_tile_stride, int64_t source_tiles,
+        int64_t iterations, int64_t mode) {
+    const int64_t block = AscendC::GetBlockIdx();
+    const int64_t local_elements = Align16(rows) * columns;
+
+    AscendC::TPipe pipe;
+    AscendC::TBuf<AscendC::TPosition::A1> buffer;
+    AscendC::TBuf<AscendC::TPosition::A1> peer_buffer;
+    pipe.InitBuffer(buffer, local_elements * kElementBytes);
+    pipe.InitBuffer(peer_buffer, local_elements * kElementBytes);
+    auto local = buffer.Get<bfloat16_t>();
+    auto peer_local = peer_buffer.Get<bfloat16_t>();
+
+    AscendC::GlobalTensor<bfloat16_t> source;
+    const int64_t block_source_offset = (
+        block * source_tiles * source_tile_stride);
+    source.SetGlobalBuffer(gm_source + block_source_offset);
+    CopyNd2Nz(local, source, rows, columns, source_row_stride);
+    AscendC::PipeBarrier<PIPE_MTE2>();
+
+    const int64_t start = AscendC::GetSystemCycle();
+    for (int64_t iteration = 0; iteration < iterations; ++iteration) {
+        const int64_t tile = iteration % source_tiles;
+        source.SetGlobalBuffer(
+            gm_source + block_source_offset + tile * source_tile_stride);
+        if (mode == 0 || (iteration & 1) == 0) {
+            CopyNd2Nz(local, source, rows, columns, source_row_stride);
+        } else {
+            CopyNd2Nz(peer_local, source, rows, columns, source_row_stride);
+        }
+        if (mode == 0) {
+            AscendC::PipeBarrier<PIPE_MTE2>();
+        }
+    }
+    if (mode == 1) {
+        AscendC::PipeBarrier<PIPE_MTE2>();
+    }
+    const int64_t end = AscendC::GetSystemCycle();
+
+    AscendC::GlobalTensor<int64_t> output;
+    output.SetGlobalBuffer(
+        gm_output + block * kCycleSlotBytes / sizeof(int64_t));
+    output.SetValue(0, end - start);
+    output.SetValue(1, 1);
+}

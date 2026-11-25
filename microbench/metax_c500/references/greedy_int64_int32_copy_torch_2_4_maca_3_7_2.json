@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "evidence_kind": "installed_copy_source_and_selected_compiled_integer_branches",
+  "artifact_identity_reference": "bf16_vec4_elementwise_2r1w_dram_maca_3_7_2.json#/production_source_identity",
+  "shared_copy_source_reference": "embedding_id_widen_torch_2_4_maca_3_7_2.json",
+  "hardware_execution_performed": false,
+  "duration_consumed": false,
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/id_narrow_selected_program.json",
+      "sha256": "b4d7b4594b86f2e199767233c8cc6530918ce9d44cef4b30da221ca1d3541d00"
+    }
+  ],
+  "source_chain": [
+    "vLLM0.24 sampler argmax returnsInt64; subsequent long() aliases it, then final to(torch.int32) creates a fresh contiguousInt32 result.",
+    "Matching CUDALoops_copy.cuh excludes the optimized-copy branch whenN<2048, independent of the optimization flag or stronger pointer alignment. Generic unrolled Copy is256threads/vt4/gridceil(N/1024).",
+    "Exact Int-output generic kernel at0x519400 uses ScalarTypeLong4 input branch. Four unrolled slot paths issue LDG_B32 at0x51a260,0x51b2d0,0x51c338,0x51d3b0. Source addresses advance8B, but each load reads only the low32bits.",
+    "cast_and_store<int> helper0x37d100 selects ScalarTypeInt3 output and emits STX_B32 devc at0x37dc88. No cvt/sign-extension data instruction on the selected Long-to-Int path; other source dtype branches are unrelated.",
+    "Exact kernel metadata:mtreg15,streg40,maxblock256,private/shared0."
+  ],
+  "accepted_scope": {
+    "source": "vllm_0_24_plain_greedy_bf16/output_int32",
+    "input": "contiguousInt64[N] argmax IDs with declared vocabulary<2^31",
+    "output": "fresh contiguousInt32[N]",
+    "elements": "1<=N<2048",
+    "logical_operand_bytes": "Int64 source8N plusInt32 output4N",
+    "issued_access_bytes": "4N lowword loads at8B stride plus4N generic-address global stores; not observed transactions",
+    "data_conversion_operations": 0,
+    "rates": "existing memory services only; address/control/helper-call instruction service excluded"
+  },
+  "limitations": [
+    "Source binding, not actual GPU/provider/timing validation",
+    "Does not bind argmax comparison/order/shuffle/scratch services",
+    "N>=2048 optimized/flag-dependent branch remains outside this contract",
+    "Issued byte counts are not measuredDRAM/cache traffic",
+    "No physical rates changed and no duration consumed"
+  ]
+}

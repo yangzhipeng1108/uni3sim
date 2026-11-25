@@ -1,0 +1,36 @@
+{
+  "hardware_id": "nvidia_h200",
+  "host": {
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8558"
+  },
+  "measurement": {
+    "artifacts": [
+      {
+        "path": "microbench/nvidia_h200/runtime/host_request_path/references/host_request_path_vllm011.json",
+        "sha256": "d05fd7da832de195da0f526a3f59da95b2e0bcae850fbb0d4c2bf747689691d1"
+      }
+    ],
+    "boundary": "host_only_no_device_no_model",
+    "statistic": "median_of_independent_primitive_samples",
+    "time_unit": "seconds"
+  },
+  "runtime": {
+    "source_identity": "vllm.utils.AsyncMicrobatchTokenizer(batch_wait_timeout_s=0.002,max_batch_size=32)",
+    "version": "0.11.0"
+  },
+  "schema_version": 1,
+  "service_time_s": {
+    "admission_enqueue": 1.29e-05,
+    "api_entry": 0.0003698945,
+    "engine_core_ipc": 4.338e-05,
+    "first_token_delivery": 0.0001961223306451613,
+    "input_processor_intercept": 3.822638888888889e-05,
+    "input_processor_per_token": 9.881944444444447e-09,
+    "output_delivery_per_output": 3.699416935483871e-05,
+    "tokenizer_async_call": 0.002191019,
+    "tokenizer_encode_intercept": 2.1611692913385825e-05,
+    "tokenizer_encode_per_token": 1.6387379429133858e-06,
+    "tokenizer_render_region_intercept": null,
+    "tokenizer_render_region_per_token": null
+  }
+}

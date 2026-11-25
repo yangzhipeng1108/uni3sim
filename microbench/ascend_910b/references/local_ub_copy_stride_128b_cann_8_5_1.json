@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "8da2ce83",
+  "service": "local_ub_copy_stride_128b",
+  "request_size_unit": "payload_bytes",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "source_snapshot_path": "/capture-workspace/profiler_output/microbench/ascend_910b/local_ub_copy_8da2ce83_20260828_r1/source_snapshot.tar",
+  "source_snapshot_sha256": "d476433c70b7087d227ace54847148e2167616a1036431bfda85897552907981",
+  "binary_sha256": "2f16d488425a64512e11212588a6f1e25c1b740cf3691ae9d4f1becfce755fca",
+  "raw_path": "/capture-workspace/profiler_output/microbench/ascend_910b/local_ub_copy_8da2ce83_20260828_r1",
+  "raw_sha256": {
+    "raw_run1.csv": "d893710965c262ecddf3eb2ed9afdfacc2270f7a601bd735a00046cac3009a36",
+    "raw_run2.csv": "0b92d4eeb5e0035bc5cbcf0a779ecc9f63dcf73d29a9a1890f0f2f67986f8332",
+    "raw_run3.csv": "6c7052331153772e7321bc1ac15a2d7a8e6fcdaae5d5e87d9d80a1902810b1be",
+    "report.txt": "b424b0db673a42995efa1adc671103ec932f11bf9e7948c65209d025adce6322"
+  },
+  "independent_runs": 3,
+  "samples_per_cell": 162,
+  "block_dims": [1, 24, 48],
+  "maximum_run_relative_median_spread": 0.00007709505031159765,
+  "maximum_concurrency_relative_median_spread": 0.00004405674057524561,
+  "service_time_ns_by_request_size": {
+    "1024": 13.889160156,
+    "2048": 18.471679688,
+    "4096": 27.639160156
+  },
+  "mechanism": "one UB-to-UB DataCopy request made of 128-byte blocks separated by one 128-byte source and destination stride, followed by the terminal Vector-pipe barrier",
+  "composition": "one exact source-issued half-rotation request; request size is the sum of copied blocks in bytes",
+  "source_semantics": {
+    "repository": "ascend-transformer-boost",
+    "commit": "f10dc20391d8af04c3f8024aca0e0dfa94d2a0a5",
+    "files": [
+      "src/kernels/mixkernels/rope/op_kernel/rotary_pos_emb_base.h"
+    ],
+    "symbols": [
+      "RopeBase::QkComm",
+      "RopeBase::QkCommBF16"
+    ]
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

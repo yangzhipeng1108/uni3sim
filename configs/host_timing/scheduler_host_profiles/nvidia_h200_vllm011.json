@@ -1,0 +1,96 @@
+{
+  "hardware_id": "nvidia_h200",
+  "max_scheduled_request_count": 86,
+  "measurement": {
+    "artifacts": [
+      {
+        "path": "microbench/nvidia_h200/runtime/scheduler_host/references/vllm011/nvidia_h200/llama-3.1-8b/tp1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "a7741459a4328070acbdb1fdcfd61720a9273fc3377a93ecc87b2ed884ba91b9"
+      },
+      {
+        "path": "microbench/nvidia_h200/runtime/scheduler_host/references/vllm011/nvidia_h200/llama-3.1-8b/tp1_qps64/scheduler_steps.jsonl.zst",
+        "sha256": "e480aabd05c7d7bd204fe202e81f34193b1d35be81b6aa5a8226e999640388f2"
+      },
+      {
+        "path": "microbench/nvidia_h200/runtime/scheduler_host/references/vllm011/nvidia_h200/qwen3-30b-a3b/tp2_ep2_qps1/scheduler_steps.jsonl.zst",
+        "sha256": "35d40da6c5e50278050f66770af91f01b94fd505d8ea7f22fc658f7aa817cb6c"
+      },
+      {
+        "path": "microbench/nvidia_h200/runtime/scheduler_host/references/vllm011/nvidia_h200/qwen3-30b-a3b/tp2_ep2_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "c01ce4b846495be76b44c8835f9029501850b956a19aeb3d43659fcb18992ad7"
+      },
+      {
+        "path": "microbench/nvidia_h200/runtime/scheduler_host/references/vllm011/nvidia_h200/qwen3-32b/tp2_ep1_qps1/scheduler_steps.jsonl.zst",
+        "sha256": "60eb5dc5cbd6c8521d010cef13314aab135037e01f1a7bd54780075f5222952c"
+      },
+      {
+        "path": "microbench/nvidia_h200/runtime/scheduler_host/references/vllm011/nvidia_h200/qwen3-32b/tp2_ep1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "0a436e97f2501fc1417a38e7eddd543aafc9582fb2b7e4d530a7ff651581e12b"
+      },
+      {
+        "path": "microbench/nvidia_h200/runtime/scheduler_host/references/vllm011/nvidia_h200/qwen3-4b/tp1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "50554fc52ecbb9f1babb2c29c2c2d7d4a88fedaa66964ef84e4f24b076051f52"
+      },
+      {
+        "path": "microbench/nvidia_h200/runtime/scheduler_host/references/vllm011/nvidia_h200/qwen3-4b/tp1_qps64/scheduler_steps.jsonl.zst",
+        "sha256": "ecab82f5359f459d085eeb77382a0e92ea410a4601463ac01cd6c2fac6dd4841"
+      },
+      {
+        "path": "microbench/nvidia_h200/runtime/scheduler_host/references/vllm011/nvidia_h200/qwen3-8b/tp1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "e7768381fbfaeefca60fb622566667e981bb6a956dd3774709700db554f86982"
+      },
+      {
+        "path": "microbench/nvidia_h200/runtime/scheduler_host/references/vllm011/nvidia_h200/qwen3-8b/tp1_qps64/scheduler_steps.jsonl.zst",
+        "sha256": "8f5e791c4eefc47b8beff26535264e8faeebe6a8d6b7dc98d31e69bc5fc5659d"
+      },
+      {
+        "path": "microbench/nvidia_h200/runtime/scheduler_host/references/vllm011/nvidia_h200/scheduler-microbench/prefill_sweep_rep1/scheduler_steps.jsonl.zst",
+        "sha256": "cfcf7a7b1fe39c4df4a0f1023559d33364f82938cc17af8c294d0b60b93c971e"
+      }
+    ],
+    "boundary": "vllm_scheduler_trace_host_monotonic_plan_and_update",
+    "time_unit": "seconds",
+    "training_selection": {
+      "eligible_step_rule": "nonzero_scheduled_request_count_with_positive_plan_and_update",
+      "excluded_target_qps": 16,
+      "minimum_samples_per_phase": 32
+    }
+  },
+  "model": {
+    "kind": "scheduled_request_count_affine",
+    "state_dimensions": [
+      "scheduled_request_count"
+    ],
+    "statistic": "median_of_count_medians_theil_sen"
+  },
+  "scheduler": {
+    "source_identity": "vllm=0.11.0;source_identities=vllm=0.11.0;core=4573563d...cfbedd;executor=ad938d34...e0cd16;vllm=0.11.0;source_commit=not_recorded",
+    "vllm_version": "0.11.0"
+  },
+  "schema_version": 1,
+  "service_time_s": {
+    "plan": {
+      "intercept": 3.917374253731345e-05,
+      "per_request": 6.077067164179104e-06
+    },
+    "prefill": {
+      "plan": {
+        "intercept": 3.191060714285714e-05,
+        "per_request": 5.645242857142857e-05
+      },
+      "update": {
+        "intercept": 1.2316785714285714e-05,
+        "per_request": 3.3096428571428567e-06
+      }
+    },
+    "update": {
+      "intercept": 2.9547931818181816e-05,
+      "per_request": 3.5426136363636364e-06
+    }
+  },
+  "supported_phases": [
+    "prefill",
+    "mixed",
+    "decode"
+  ]
+}

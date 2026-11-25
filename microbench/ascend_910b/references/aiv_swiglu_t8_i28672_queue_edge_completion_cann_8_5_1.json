@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "campaign": "swiglu_t8_i28672_queue_edges",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "service_time_selection": "median_of_independent_run_medians",
+  "lookup_policy": "exact_worker_count_direction_and_payload_only",
+  "pairing_formula": "maximum_worker(request_first_interval(pair_order=1)-control_first_interval(pair_order=0)), matched by run and trial",
+  "source_scope": "CANN 8.5.1 BF16 SwiGLU depth-two TQue edges; direction 4 is DataCopy GM-to-UB followed by MTE2-to-Vector completion and direction 5 is Vector-to-MTE3 completion followed by DataCopy UB-to-GM",
+  "source_tile_evidence": {
+    "production_case": "VECTOR_SILU_T8_I28672_B1",
+    "base_tile": {"rows": 1, "columns": 5632, "dtype_bytes": 2, "payload_bytes": 11264, "block_dim": 48},
+    "tail_tile": {"rows": 1, "columns": 512, "dtype_bytes": 2, "payload_bytes": 1024, "block_dim": 48},
+    "static_basis": "source-derived CANN SwiGLU tiling and canonical launch observation; duration was not consumed"
+  },
+  "inherited_48_worker_cells": {
+    "evidence_ref": "microbench/ascend_910b/references/aiv_swiglu_t64_queue_edge_completion_cann_8_5_1.json",
+    "evidence_sha256": "5e6d108ae92e7ffd8c3451df3ccef0eb6eb98cd2ac8a0402de68b3c430939838",
+    "cells": [
+      "48:tque_mte2_to_vector:18432",
+      "48:tque_mte2_to_vector:19456",
+      "48:tque_mte2_to_vector:26624",
+      "48:tque_vector_to_mte3:18432",
+      "48:tque_vector_to_mte3:19456",
+      "48:tque_vector_to_mte3:26624"
+    ]
+  },
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "measurement_worktree_head": "86485b661713e20068a3d91122739e6633f176b1",
+  "measurement_device_id": 7,
+  "measurement_container": "capture-container-2",
+  "benchmark_source_snapshot_path": "/capture-workspace/source_snapshots/vector_swiglu_t8_i28672_86485b66_20260908",
+  "measurement_source_files_sha256": {
+    "first_mte_completion_kernel.cpp": "53c38e88ded1955b2ffe9a4e3f11f4a55e21b5595c7dcaaeef1a72edc9d46b88",
+    "first_mte_completion_main.cpp": "2e50e99ae03335066cad9ed54b6a3c6654a05e0a1462994993745cf4b0102b66",
+    "first_mte_completion_runner.py": "e119505df550147e50adebd4a9a1ea0d3c182c97ec2fd782456f7e4804d3e9b1",
+    "first_mte_completion_report.py": "0cfc93aa8af64965ac082f1d411db924dbe40555a9e5ae5a62b129c68cfff086"
+  },
+  "production_source_sha256": {
+    "swi_glu.cpp": "584fcf498038a6b31adf480c4fb4a600dd4cf59657a1c0a0bf725c3df3717cf3",
+    "swi_glu_single.hpp": "ace487f5c4f3929e0cc1e02dfc54b062294a3018d0cb102baa920ea83e8dd096",
+    "swi_glu_bf16.hpp": "d18f872867f22c9f7032a44c22a09ceb84d78bdb9b4a94288062b6d1e498e933"
+  },
+  "benchmark_binary_sha256": "528dfba91ae6e30792a5be1d0b672268a6d2e3de721f9cc3fdab8a91c348d94a",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_t8_i28672_queue_edges_86485b66_20260908_d7/run1/raw.csv",
+      "sha256": "4ed9c184ee16cd546560d1699a5dcafa24781272de20f0643d1541ae17b102c6",
+      "runner_log_path": "profiler_output/microbench/ascend_910b/swiglu_t8_i28672_queue_edges_86485b66_20260908_d7/run1/runner.log",
+      "runner_log_sha256": "c20a3349280bb52068997971bd50a5b1735d38a82352590d63743b68598a688b",
+      "device_id": 7,
+      "run_id": "swiglu_t8_i28672_86485b66_r1"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_t8_i28672_queue_edges_86485b66_20260908_d7/run2/raw.csv",
+      "sha256": "fd0cddd35f0cd229e20a2b546de224de59683350699e11955962fe36dd0722b2",
+      "runner_log_path": "profiler_output/microbench/ascend_910b/swiglu_t8_i28672_queue_edges_86485b66_20260908_d7/run2/runner.log",
+      "runner_log_sha256": "078beb3a05e33223e2a1f24e10766fd9e45b414fe7c103b69332984d86d2649a",
+      "device_id": 7,
+      "run_id": "swiglu_t8_i28672_86485b66_r2"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_t8_i28672_queue_edges_86485b66_20260908_d7/run3/raw.csv",
+      "sha256": "9f47f6ae55139d9cca688e13e25236e616ab62c56b523278ec3d847223a3df09",
+      "runner_log_path": "profiler_output/microbench/ascend_910b/swiglu_t8_i28672_queue_edges_86485b66_20260908_d7/run3/runner.log",
+      "runner_log_sha256": "909f8f979cd06b772be18abc4e002439f752af33c6fc125a0f9485c08ae5b6a3",
+      "device_id": 7,
+      "run_id": "swiglu_t8_i28672_86485b66_r3"
+    }
+  ],
+  "report_path": "profiler_output/microbench/ascend_910b/swiglu_t8_i28672_queue_edges_86485b66_20260908_d7/report.txt",
+  "report_sha256": "bf99b2df115b9bf11b86e58dd3c7f36f3cf79faadaa0abcdf0c9be2eb4827517",
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 32,
+  "replication_basis": "balanced_schedule_cycle_parity",
+  "median_ns_by_run": {
+    "swiglu_t8_i28672_86485b66_r1": {"48:tque_mte2_to_vector:1024": 2240.0, "48:tque_mte2_to_vector:11264": 2350.0, "48:tque_vector_to_mte3:1024": 1800.0, "48:tque_vector_to_mte3:11264": 1840.0},
+    "swiglu_t8_i28672_86485b66_r2": {"48:tque_mte2_to_vector:1024": 1940.0, "48:tque_mte2_to_vector:11264": 2330.0, "48:tque_vector_to_mte3:1024": 2070.0, "48:tque_vector_to_mte3:11264": 1930.0},
+    "swiglu_t8_i28672_86485b66_r3": {"48:tque_mte2_to_vector:1024": 2220.0, "48:tque_mte2_to_vector:11264": 2170.0, "48:tque_vector_to_mte3:1024": 1700.0, "48:tque_vector_to_mte3:11264": 2090.0}
+  },
+  "published_cells": {
+    "48:tque_mte2_to_vector:1024": {"service_time_ns": 2220.0, "maximum_run_relative_median_spread": 0.13392857142857142},
+    "48:tque_mte2_to_vector:11264": {"service_time_ns": 2330.0, "maximum_run_relative_median_spread": 0.07659574468085106},
+    "48:tque_mte2_to_vector:18432": {"service_time_ns": 1420.0, "maximum_run_relative_median_spread": 0.013986013986013986},
+    "48:tque_mte2_to_vector:19456": {"service_time_ns": 1370.0, "maximum_run_relative_median_spread": 0.07092198581560284},
+    "48:tque_mte2_to_vector:26624": {"service_time_ns": 1430.0, "maximum_run_relative_median_spread": 0.08387096774193549},
+    "48:tque_vector_to_mte3:1024": {"service_time_ns": 1800.0, "maximum_run_relative_median_spread": 0.178743961352657},
+    "48:tque_vector_to_mte3:11264": {"service_time_ns": 1930.0, "maximum_run_relative_median_spread": 0.11961722488038277},
+    "48:tque_vector_to_mte3:18432": {"service_time_ns": 1460.0, "maximum_run_relative_median_spread": 0.02027027027027027},
+    "48:tque_vector_to_mte3:19456": {"service_time_ns": 1170.0, "maximum_run_relative_median_spread": 0.08403361344537816},
+    "48:tque_vector_to_mte3:26624": {"service_time_ns": 1230.0, "maximum_run_relative_median_spread": 0.06349206349206349}
+  },
+  "gates": {
+    "source_identity": "pass",
+    "binary_identity": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "balanced_cell_order": "pass",
+    "within_run_replication": "pass",
+    "cross_run_relative_median_spread_limit": 0.2,
+    "cross_run_stability": "pass"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true,
+  "production_consumption_status": "candidate_only_unwired_after_full_bucket_gate_failure"
+}

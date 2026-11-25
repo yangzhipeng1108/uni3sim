@@ -1,0 +1,70 @@
+# Ascend 950PR —— aggregate roofline 级配置。
+#
+# 架构：第三代 DaVinci，Chiplet（2 AI Die + 2 IO Die）
+# 内存：HiBL 1.0（白鹭），经济型自研 HBM，对标接近 HBM2e
+# 定位：Prefill + Recommendation（顶配档 32 Cube / 64 Vector）
+#
+# 规格来源：2026 年昇腾 950 公开规格汇总（多档位中取顶配）
+#   容量另有 112 GB 档、算力另有 1561/804/425/212 档（SKU 或集群规模差异）
+#
+# 可信度：
+#   Cube/Vector 核数、各档算力、带宽、容量、L2、PCIe/UB = 🟢 有明确公布值
+#   时钟（sm / aic / aiv）                               = 🔴 未公布
+#   SMEM/寄存器/occupancy 上限                            = 🔴 未公布
+#
+# 建模边界：aggregate roofline，本卡 roofline_only = True
+#   ✗ AIC/AIV 域划分未确认（DaVinci 通常分离，Cube:Vector = 1:2 需核实）
+#   ✗ 是否引入专用累加器内存未知
+#   ✗ dram 延迟、cacheline 未知
+#   ✗ 无 launch_config/ascend_950pr/
+#   拿到 CANN platform.ini 后可升级为 native 配置（见 README 升级路径）
+hardware_id: ascend_950pr
+clock_domains: {}
+components:
+  - name: tensor_bf16
+    count: 1
+    type: compute
+    role: compute_tensor
+    scope: shared
+    capacity_per_second: 486000000000000        # 486 TFLOPS
+  - name: tensor_fp16
+    count: 1
+    type: compute
+    role: compute_tensor_fp16
+    scope: shared
+    capacity_per_second: 486000000000000        # 486 TFLOPS
+  - name: tensor_fp8
+    count: 1
+    type: compute
+    role: compute_tensor_fp8
+    scope: shared
+    capacity_per_second: 919000000000000        # 919 TFLOPS（FP8 / MXFP8 / HiF8）
+  - name: tensor_mxfp4
+    count: 1
+    type: compute
+    role: compute_tensor_mxfp4
+    scope: shared
+    capacity_per_second: 1784000000000000       # 1784 TFLOPS（MXFP4）
+  - name: dram
+    count: 1
+    type: memory
+    role: dram
+    scope: shared
+    capacity_per_second: 1600000000000          # 1.6 TB/s（HiBL 1.0）
+    size_bytes: 128000000000                    # 128 GB（另有 112 GB 档）
+resource_groups: []
+memory_subsystem: {}
+scheduling: {}
+# UB 双向 2016 GB/s = 18 Port × 112 Gbps → 单向 1008 GB/s
+# PCIe 5.0 x16 双向 128 GB/s → 单向 64 GB/s
+interconnect:
+  roce_unidir_bw_GB_s: 50
+  roce_devices_per_nic: 2
+  roce_switch_topology: fully_connected
+  roce_signal_latency_ns: null
+  roce_collective_startup_ns: null
+  parameter_source: user_supplied_2026_11_25_ascend_950pr_public_specs
+features:
+  kernel_memory_model: roofline
+  kernel_dtype: bf16
+  parameter_source: user_supplied_2026_11_25_ascend_950pr_public_specs_clock_unpublished

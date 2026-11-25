@@ -1,0 +1,88 @@
+{
+  "schema": "nvidia_h200_silu_nonrecurrent_envelope_gates_v2",
+  "hardware_id": "nvidia_h200",
+  "probe_variants": [
+    "arithmetic_control",
+    "source_silu"
+  ],
+  "intermediate_elements_per_cta": [
+    6144,
+    9728,
+    12288,
+    14336,
+    25600,
+    28672,
+    53248
+  ],
+  "grid_ctas": [
+    132,
+    264,
+    313,
+    1056
+  ],
+  "threads_per_cta": 1024,
+  "trials_per_cell_per_run": 8,
+  "independent_runs": 3,
+  "calibration_rotations": [
+    0,
+    1
+  ],
+  "held_out_rotation": 2,
+  "segmented_service_model": {
+    "resident_ctas_per_sm": 2,
+    "calibration_grid_ctas": [
+      132,
+      264,
+      1056
+    ],
+    "validation_grid_ctas": [
+      313
+    ],
+    "calibration_endpoint_widths": [
+      6144,
+      53248
+    ],
+    "service_segments": [
+      "first",
+      "resident",
+      "queued"
+    ]
+  },
+  "cycle_unit": "sm_clock_cycles",
+  "work_unit": "scalar_silu_evaluations",
+  "service_rate_unit": "source_rounds_per_sm_cycle",
+  "static_success_gates": {
+    "probe_and_production_source_math_spine_identical": true,
+    "source_silu_mufu_ex2_per_loop": 1,
+    "source_silu_fast_path_mufu_rcp_per_loop": 1,
+    "arithmetic_control_mufu_ex2_per_loop": 0,
+    "arithmetic_control_fast_path_mufu_rcp_per_loop": 0,
+    "source_silu_result_cannot_feed_next_loop_input": true,
+    "local_memory_instructions": 0,
+    "resident_cta_limit_per_sm": 2
+  },
+  "capture_success_gates": {
+    "position_balanced_cyclic_schedule": true,
+    "all_cells_present_in_every_run": true,
+    "within_run_interquartile_relative_spread_max": 0.2,
+    "cross_run_median_relative_spread_max": 0.2,
+    "held_out_segmented_duration_ape_max": 0.1,
+    "source_silu_slower_than_arithmetic_control_for_every_cell": true
+  },
+  "exit_conditions": [
+    "any static success gate fails before a native launch",
+    "the selected GPU is not an idle 132-SM NVIDIA H200",
+    "any capture schema, position balance, unit, or artifact identity differs",
+    "any within-run or cross-run stability gate fails",
+    "any held-out segmented source-math duration error exceeds 10 percent",
+    "a production or evaluation duration is requested or consumed"
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "production_parameter_publication_allowed": true,
+  "hardware_coupling_changes": [
+    "hardware_id nvidia_a800 -> nvidia_h200",
+    "grid_ctas [108,216,256,1024] -> [132,264,313,1056] (x132/108; held-out 256 -> 313 = round(256*132/108))",
+    "calibration grids [108,216,1024] -> [132,264,1056]; validation [256] -> [313]",
+    "static_success_gates.probe_and_production_source_math_spine_identical: no vLLM 0.11 sm_90 production binary exists; checked against the probe SASS only (MUFU.EX2/MUFU.RCP counts, no local memory, 2 resident CTAs)"
+  ]
+}

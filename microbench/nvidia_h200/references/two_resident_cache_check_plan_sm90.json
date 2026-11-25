@@ -1,0 +1,67 @@
+{
+  "kind": "independent_traffic_only_cache_heldout_plan",
+  "physical_cells": [
+    {
+      "stride": 16384,
+      "grid": 1056,
+      "fanout": 1,
+      "predicted_read_bytes": 2214658048,
+      "unique_read_bytes": 2214608896
+    },
+    {
+      "stride": 16384,
+      "grid": 1056,
+      "fanout": 16,
+      "predicted_read_bytes": 138428416,
+      "unique_read_bytes": 138428416
+    },
+    {
+      "stride": 16384,
+      "grid": 1152,
+      "fanout": 1,
+      "predicted_read_bytes": 2416001024,
+      "unique_read_bytes": 2415935488
+    },
+    {
+      "stride": 16384,
+      "grid": 1152,
+      "fanout": 16,
+      "predicted_read_bytes": 151011328,
+      "unique_read_bytes": 151011328
+    },
+    {
+      "stride": 32768,
+      "grid": 1056,
+      "fanout": 1,
+      "predicted_read_bytes": 4429316096,
+      "unique_read_bytes": 4429217792
+    },
+    {
+      "stride": 32768,
+      "grid": 1056,
+      "fanout": 16,
+      "predicted_read_bytes": 285343744,
+      "unique_read_bytes": 276856832
+    },
+    {
+      "stride": 32768,
+      "grid": 1152,
+      "fanout": 1,
+      "predicted_read_bytes": 4832002048,
+      "unique_read_bytes": 4831870976
+    },
+    {
+      "stride": 32768,
+      "grid": 1152,
+      "fanout": 16,
+      "predicted_read_bytes": 310515456,
+      "unique_read_bytes": 302022656
+    }
+  ],
+  "forecast_source_path": "experiment_logs/h200_moe_accuracy_20261107/two_resident_cache_heldout_forecast.json",
+  "forecast_sha256": "09abeea94cd23f42ad5a977b73cf869f6f924c11d627f7dde4d7055238bdca18",
+  "production_or_evaluation_duration_consumed": false,
+  "selection": "All eight forecasts fixed before capture:rowstrides16384/32768,grids1056/1152,fanout1/16,unchanged16KiBB/16KiBpaddedA/one128BvalidArow/3slots/256threads/98304Bshared/2residentbyteprogram. No matrix,routing,operatoroutput or timingprice. All samples must pass CPU/directglobal/all-lanechecksum,resources/132SMcoverage/exactCTA/LDGSTS,upstreamlogical1%,unique<=TEX<=logical1%,source-unitclosure1%,directSMnominal3%/allSMandLTSstable3%. ALL DRAM readcounts must match the frozen unchanged60MiB/264residentwindow/cachetrace forecasts within1%;high-stridefanout16mustshow>1%replaywhilehalf-stridefanout16retainsunique1%. No capacity,phase,threshold or rate is chosen from measurements. Original unique-readgate remains failed;only a fully qualified independent heldout accounting result can reopen expected-traffic attribution. No pricing/rate or Forward policy is published by this check. Six cells are new;32768/grid1152/fanout1and16 repeat earlier cells as controls. None of the six novel measurements exists at freeze time.",
+  "novel_cells": 6,
+  "repeat_controls": 2
+}

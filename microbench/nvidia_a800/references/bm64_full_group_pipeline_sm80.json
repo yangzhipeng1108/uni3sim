@@ -1,0 +1,84 @@
+{
+  "schema": "nvidia_a800_bm64_full_group_pipeline_reference_v2",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "source_baseline_commit": "144df7321497d3f9be41cbf6010695e1e9c01245",
+  "source": "microbench/nvidia_a800/compute/tensor_core/sm80_bf16_bm64_operand_residency.cu",
+  "source_sha256": "7256bd98986ee0bca6606ad87363f6e3a3561a828955075f8928cf0ae74172d6",
+  "runner": "microbench/nvidia_a800/compute/tensor_core/sm80_bf16_bm64_operand_residency_runner.py",
+  "runner_sha256": "f6ab48300819a18dbd115c11c137f984ee5f2702e89cf8cacbc0c53559992906",
+  "probe_contract": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_n": 64,
+    "tile_k": 32,
+    "group_size_m": 8,
+    "threads_per_cta": 128,
+    "resident_ctas_per_sm": 5,
+    "physical_sm_count": 108,
+    "pipeline_slots": 2,
+    "dynamic_shared_bytes": 16384,
+    "fanout": 8,
+    "source_group_cases": [
+      {
+        "projection_k": 2048,
+        "projection_n": 7168,
+        "grid_ctas": 896,
+        "rounds": 64,
+        "combined_a_plus_b_logical_bytes": 469762048
+      },
+      {
+        "projection_k": 2880,
+        "projection_n": 5760,
+        "grid_ctas": 720,
+        "rounds": 90,
+        "combined_a_plus_b_logical_bytes": 530841600
+      }
+    ]
+  },
+  "captures": [
+    {
+      "device_index": 6,
+      "device_uuid": "capture-device-0b790647dba7",
+      "path": "profiler_output/microbench/nvidia_a800/bm64_source_group_multiwave_144df732_20260906_d6_r2",
+      "manifest_sha256": "bd740239bc62980dd863ba47189d0aba2baedd9b6bf47289ba1d75cf9de81e85",
+      "report_sha256": "2742886b7b0dc9e22b4aacb025ff5f075dd66fb4ad6fb6000f804f13667d4caf",
+      "raw_sha256": "3ec671f3c33a46fe048a6fa3c3c08a635605ea75fd26d4a046d8b5032b113a38",
+      "binary_sha256": "dd0ba8be87992484ef4fd0beba27c41c2af1265c96b6f90b07044a550e7f6d3e",
+      "sass_sha256": "cc827b02b6ef3404f5c78df24939590ab35c2a6ddc08bd8137cc2d19570a0353",
+      "k2048_n7168_median_duration_ms": 0.189983994,
+      "k2048_n7168_combined_pipeline_bytes_per_s": 2472640131989.224,
+      "k2880_n5760_median_duration_ms": 0.233472005,
+      "k2880_n5760_combined_pipeline_bytes_per_s": 2273684161833.4497
+    },
+    {
+      "device_index": 7,
+      "device_uuid": "capture-device-ceb3fcab78ae",
+      "path": "profiler_output/microbench/nvidia_a800/bm64_source_group_multiwave_144df732_20260906_d7_r2",
+      "manifest_sha256": "349a4ae758aadb34f4bca311cf7d3d83d28afae4209de66955034cd387302467",
+      "report_sha256": "5cba5c54fad9b7b0d26810239ad3f021272888c52c43bd99aab48a1d25118599",
+      "raw_sha256": "a1b8de7043e513d79b6623742c8eba52390bb5c74cb1f3233fb00404f8c077f2",
+      "binary_sha256": "cff80bfc2843e49f6f9d1b3d4c6f437fa8b0cdc670e16a7fde9ea18404a576d3",
+      "sass_sha256": "cc827b02b6ef3404f5c78df24939590ab35c2a6ddc08bd8137cc2d19570a0353",
+      "k2048_n7168_median_duration_ms": 0.196991995,
+      "k2048_n7168_combined_pipeline_bytes_per_s": 2384675824010.006,
+      "k2880_n5760_median_duration_ms": 0.234016001,
+      "k2880_n5760_combined_pipeline_bytes_per_s": 2268398732273.012
+    }
+  ],
+  "selected_service": {
+    "selection_rule": "minimum complete source-group capacity across both static shapes and idle devices 6 and 7",
+    "logical_byte_capacity_per_s": 2268398732273.012,
+    "cross_device_selected_shape_relative_spread": 0.002330884367667423
+  },
+  "mechanism": "complete_single_expert_gsm8_bm64_two_slot_copy_and_hmma_pipeline",
+  "allowed_conclusion": "Complete single-expert GSM8 groups use the measured full-chip combined operand pipeline service for their L2-hit bytes.",
+  "excluded_conclusions": [
+    "production operator duration",
+    "per-shape residual correction",
+    "mixed-expert or partial source groups",
+    "application outside the exact BM64/BN64/BK32/GSM8 BF16 launch"
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

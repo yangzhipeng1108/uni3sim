@@ -1,0 +1,99 @@
+{
+    "allowed_use": "A lower bound on the profiler-reported duration of a launch that performs at least one global memory access, given its CTA grid. It composes with an execution time by maximum and never adds to one. It does not describe a launch that touches no memory: a truly empty CTA measures 800, 896, 896, 928, 928, 960, 992 ns (isolated median) at grids 1, 16, 48, 108, 132, 216, 264, below these values, and every production kernel touches memory.",
+    "derived_model": {
+        "empty_cta_reference_ns": {
+            "1": 800.0,
+            "108": 928.0,
+            "132": 928.0,
+            "16": 896.0,
+            "216": 960.0,
+            "264": 992.0,
+            "48": 896.0
+        },
+        "floor_by_grid_ctas": [
+            {
+                "back_to_back_median_ns": 928.0,
+                "grid_ctas": 1,
+                "isolated_median_ns": 928.0,
+                "minimum_span_ns": 736.0
+            },
+            {
+                "back_to_back_median_ns": 1056.0,
+                "grid_ctas": 16,
+                "isolated_median_ns": 1056.0,
+                "minimum_span_ns": 1024.0
+            },
+            {
+                "back_to_back_median_ns": 1088.0,
+                "grid_ctas": 48,
+                "isolated_median_ns": 1088.0,
+                "minimum_span_ns": 1056.0
+            },
+            {
+                "back_to_back_median_ns": 1152.0,
+                "grid_ctas": 108,
+                "isolated_median_ns": 1152.0,
+                "minimum_span_ns": 1088.0
+            },
+            {
+                "back_to_back_median_ns": 1184.0,
+                "grid_ctas": 132,
+                "isolated_median_ns": 1184.0,
+                "minimum_span_ns": 1120.0
+            },
+            {
+                "back_to_back_median_ns": 1216.0,
+                "grid_ctas": 216,
+                "isolated_median_ns": 1216.0,
+                "minimum_span_ns": 1184.0
+            },
+            {
+                "back_to_back_median_ns": 1280.0,
+                "grid_ctas": 264,
+                "isolated_median_ns": 1280.0,
+                "minimum_span_ns": 1216.0
+            }
+        ],
+        "selection_rule": "At each measured grid retain the smallest one-store duration seen across trials, both block sizes (128, 512) and both launch patterns, isolated and back-to-back. The published value is therefore a floor rather than a typical duration, which is what composing by maximum requires. A grid below the first measured point takes the first point and one above the last takes the last; the surface is not extrapolated. Captures with no busy SM-clock sample at or above 1980 MHz are rejected."
+    },
+    "forbidden_use": "An additive launch cost, a typical or median duration, a host launch latency, a CUDA-event interval, a per-shape correction, or a floor for a launch with no global memory access.",
+    "hardware_id": "nvidia_h200",
+    "mechanism": "small_kernel_span_floor",
+    "production_or_evaluation_duration_consumed": false,
+    "provenance": {
+        "accepted_captures": 160,
+        "captures": [
+            {
+                "device_index": 0,
+                "launches_per_point": 30,
+                "path": "profiler_output/microbench/nvidia_h200/span_floor_20260925_021635",
+                "profiler": "nsys 2025.6.1",
+                "raw_points_sha256": "312c3490fd067ac0b13060cc08a1f1b079bfde252d2ba1b6edb60291e0a6cc6a",
+                "remote_path": "h200-capture-host:/capture-public/h200_microbench/span_floor_20260925_021635",
+                "report": "cuda_gpu_trace",
+                "trials": 3
+            }
+        ],
+        "clock_gate": "nvidia-smi -lms 50 during every capture; a capture is rejected when it has no busy sample or any busy sample is below 1980 MHz (all 160 accepted captures have a busy minimum of exactly 1980 MHz; all 8 rejected ones had no busy sample)",
+        "derivation": "microbench/nvidia_h200/compute/small_kernel_span_floor_reference.py",
+        "derivation_sha256": "e2d166df203a46051c81dac664964ac6a9a600c4fd14b89d0a1ff01ab076f4e6",
+        "git_commit": "dee07904c5cc3f298ad6486a617b54bfaae9fcfc",
+        "host_contention": "GPUs 1-3 of the same host were used concurrently by other workers; the minimum selection rule is the A800 one",
+        "rejected_captures": 8,
+        "runner": "microbench/nvidia_h200/compute/small_kernel_span_floor_runner.py",
+        "runner_sha256": "dff19a427b4f511d5005e12c3644801b331c7557530e0a11da6926e391e76164",
+        "source": "microbench/nvidia_h200/compute/small_kernel_span_floor.cu",
+        "source_sha256": "bb79a99c5d4a45175d7be229e929e4e7245708653dfa3679d38f01b37dec0bbf"
+    },
+    "schema": "small_kernel_span_floor_reference_v1",
+    "scope": {
+        "block_size_dependence": "grid 48: 1056 ns at block 128 and 1088 at 512, grid 132: 1184 ns at block 128 and 1184 at 512",
+        "maximum_grid_ctas": 264,
+        "minimum_grid_ctas": 1,
+        "threads_per_cta_measured": [
+            128,
+            512
+        ],
+        "timer_domain": "nsys_gpu_kernel"
+    }
+}

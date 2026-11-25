@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism_id": "cann_fia_cross_domain_edge_completion_v2",
+  "scope": "empty source-ordered C1-to-V1, V1-to-C2, and C2-to-V2 dependency completion with explicit three-task fill in KERNEL_TYPE_MIX_AIC_1_2",
+  "source_commit": "514c943d8f7d0996a12c1b02f11636360638679a",
+  "source_snapshot_sha256": "c675fbcac41b7b0f82a7591ccde0f8e6f27fb4fc164c82cc4f5875ddc4ba6dce",
+  "binary_sha256": "e89c4f204083b87ddab3ea733e0f1b0de8a1269320180c272d099a11012cb19a",
+  "capture_root": "profiler_output/microbench/ascend_910b",
+  "run_ids": [
+    "fa_edge_v2_514c943d_d6_r1",
+    "fa_edge_v2_514c943d_d6_r2",
+    "fa_edge_v2_514c943d_d6_r3"
+  ],
+  "raw_sha256": [
+    "c5675aac7781ba0e212cf240f529bdb4c3dab2fcbc84d52f29072f8075333f71",
+    "e95433fbe48626dcfcf3bc7a8d97649200509f2fbbf8998729b8c3ee3d0573c7",
+    "b0bd026a849dfaeb5655cab25b4461356882efa724662b09bf7a6b00a24a1726"
+  ],
+  "report_path": "profiler_output/microbench/ascend_910b/fa_edge_v2_514c943d_d6_report.json",
+  "report_sha256": "ba1219a39bbec05f1772294c712d05f79586dc3d58eb3e02f5fb6ddaa134ccdf",
+  "passed_gate": {
+    "critical_edge_not_longer_than_ring": true
+  },
+  "failed_gates": {
+    "all_parameter_cross_run_spans_at_most_20pct": false,
+    "all_parameter_task_count_spans_at_most_25pct": false,
+    "balanced_order_p95_at_most_20pct": false,
+    "validation_max_ape_at_most_25pct": false
+  },
+  "maximum_task_count_span": 1.6288659793814433,
+  "balanced_order_p95_relative_error": 0.72,
+  "validation_maximum_absolute_percentage_error": 1.1618497109826589,
+  "validation_worst": {
+    "profile_id": "uniform_b24_n8",
+    "edge": "c2_to_v2",
+    "component": "second",
+    "observed_ns": 1870.0,
+    "reference_ns": 865.0
+  },
+  "failure_reason": "Even when the three ring-fill completions are retained separately, individual edge latency depends strongly on the surrounding task count and balanced execution order. The edge therefore is not an independently stable service and cannot be composed with the nonempty production stages without a scheduler-state model.",
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": false,
+  "forward_eligible": false,
+  "consumer_service_published": false,
+  "use_restrictions": [
+    "diagnostic gate evidence only",
+    "must not enter Forward, HWSpec, launch selection, or a production predictor",
+    "must not select stable cells, topology-specific values, or relax the frozen v2 gates"
+  ]
+}

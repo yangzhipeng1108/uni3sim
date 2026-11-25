@@ -1,0 +1,4 @@
+[submodule "protobridge"]
+	url = https://github.com/Hazuyuki/ProtoBridge.git
+	path = third_party/protobridge
+	branch = master

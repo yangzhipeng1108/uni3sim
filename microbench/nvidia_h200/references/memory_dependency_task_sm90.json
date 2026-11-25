@@ -1,0 +1,173 @@
+{
+  "duration_source": "nsys_gpu_kernel",
+  "evidence": {
+    "artifact_sha256": {
+      "capture.json": "697d2f846fbc91f81d2b0d2fb23d48115fb9aad97e00ba8c15f4994f990d72ab",
+      "cell_minimum_by_trial.csv": "6a11a9ca4331762ba40b6c9ef7c1a36e90b3bd9960bfe783c782b184c7468649",
+      "memory_dependency_task_duration.sass": "0bf15ec70fdb79ee73f44423861d537ff612b250512b17e83f0c3b4b07519dab",
+      "summary_by_trial.csv": "8387cd26d30a55283968fa34ad86d8771a4a59e76f86ec573959697db82cef7b"
+    },
+    "audited_report_generator_sha256": "7b933439a240b1195589572a21d70616a7873badec000a81da62b25cc123bf8c",
+    "baseline_commit": "dee07904c5cc3f298ad6486a617b54bfaae9fcfc",
+    "binary_sha256": "c1de02bf56fcb5b3b421c78ddb4f7231006028df3a5a8cf079976951ca139f10",
+    "capture": {
+      "binary": "bin/memory_dependency_task_duration",
+      "device": "NVIDIA H200, capture-device-3628c660fa6e, 575.57.08",
+      "device_index": 0,
+      "kernel_name": "memory_dependency_task",
+      "label_prefix": "memory_dependency",
+      "nsys": "/capture-public/tools/nsys_2025.6.1/bin/nsys",
+      "nsys_command": "nsys profile -t cuda,nvtx -s none --cpuctxsw=none",
+      "samples_per_cell": 200,
+      "trials": [
+        {
+          "accepted": true,
+          "busy_clock_mhz_max": 1980,
+          "busy_clock_mhz_min": 1980,
+          "busy_samples": 20,
+          "host_loadavg_before": [
+            "3.64",
+            "2.81",
+            "2.52"
+          ],
+          "labelled_launches": 24200,
+          "trial": 1
+        },
+        {
+          "accepted": true,
+          "busy_clock_mhz_max": 1980,
+          "busy_clock_mhz_min": 1980,
+          "busy_samples": 20,
+          "host_loadavg_before": [
+            "3.59",
+            "2.81",
+            "2.53"
+          ],
+          "labelled_launches": 24200,
+          "trial": 2
+        },
+        {
+          "accepted": true,
+          "busy_clock_mhz_max": 1980,
+          "busy_clock_mhz_min": 1980,
+          "busy_samples": 16,
+          "host_loadavg_before": [
+            "3.46",
+            "2.80",
+            "2.52"
+          ],
+          "labelled_launches": 24200,
+          "trial": 3
+        }
+      ]
+    },
+    "clock_gate": "SM clock not lockable in the container; every nvidia-smi -lms 50 sample with nonzero utilization during each trial must be >= 1980 MHz, else the trial is rejected",
+    "compiler_version": "CUDA 12.2 nvcc -O3 -arch=sm_90 -cudart static",
+    "device_name": "NVIDIA H200",
+    "device_uuid": "capture-device-3628c660fa6e",
+    "driver_version": "575.57.08",
+    "host_contention": "GPUs 1-3 of the same host were used concurrently by other workers",
+    "manifest_sha256": "d13c0325dffc1d6f45688dd02b9ced140c9016c6024d6560ee369c08442c56ee",
+    "nsys_version": "2025.6.1.190",
+    "runner": "microbench/nvidia_h200/runtime/launch/nvtx_kernel_sweep_runner.py",
+    "runner_sha256": "8640f6ad16093568a1b8febd7a62e89cbb58091fe1dcd02e54c6c82010f8098c",
+    "sass_contract": "one default-cache LDG.E -> dependent IADD3 -> STG.E chain per active warp, with no barrier or atomic",
+    "sm_clock_mhz": 1980,
+    "source": "microbench/nvidia_h200/runtime/launch/memory_dependency_task_duration.cu",
+    "source_sha256": "67a2ca15da8325e723beaf75a1dc635517453a8c111d6b0a4d16977477a72276"
+  },
+  "fit_diagnostics": {
+    "training_lower_envelope": {
+      "cell_count": 242,
+      "cells_above_observed_minimum": 0,
+      "maximum_above_observed_minimum_ns": 2.2737367544323206e-13,
+      "minimum_margin_below_observed_minimum_ns": -2.2737367544323206e-13
+    },
+    "training_median": {
+      "cell_count": 242,
+      "mape_percent": 24.04013641225436,
+      "maximum_absolute_percentage_error": 33.773710619917416,
+      "p95_absolute_percentage_error": 33.19181859789286,
+      "signed_mean_percentage_error": -24.04013641225436,
+      "wmae_percent": 24.007700898049812
+    },
+    "validation_lower_envelope": {
+      "cell_count": 121,
+      "cells_above_observed_minimum": 0,
+      "maximum_above_observed_minimum_ns": 2.2737367544323206e-13,
+      "minimum_margin_below_observed_minimum_ns": -2.2737367544323206e-13
+    },
+    "validation_median": {
+      "cell_count": 121,
+      "mape_percent": 24.018401431685295,
+      "maximum_absolute_percentage_error": 33.773710619917416,
+      "p95_absolute_percentage_error": 33.19181859789286,
+      "signed_mean_percentage_error": -24.018401431685295,
+      "wmae_percent": 23.989192426007584
+    }
+  },
+  "formula": "base_ns + (fanout_activation_ns if grid >= 3 else 0) + grid * cta_ns + ceil(block/32) * warp_ns",
+  "hardware_id": "nvidia_h200",
+  "input": {
+    "measurement_path": "profiler_output/microbench/nvidia_h200/memory_dependency_wp7_20260925/cell_minimum_by_trial.csv",
+    "measurement_sha256": "6a11a9ca4331762ba40b6c9ef7c1a36e90b3bd9960bfe783c782b184c7468649",
+    "samples_per_cell": 200,
+    "summary_path": "profiler_output/microbench/nvidia_h200/memory_dependency_wp7_20260925/summary_by_trial.csv",
+    "summary_sha256": "8387cd26d30a55283968fa34ad86d8771a4a59e76f86ec573959697db82cef7b",
+    "training_trials": [
+      1,
+      2
+    ],
+    "validation_trials": [
+      3
+    ]
+  },
+  "limitations": [
+    "ordinary LDG.E/STG.E plus repeated warm-up proves warm default-cache behavior, not exclusive L2 residency",
+    "the grid-three fanout transition has no public internal scheduler-topology label",
+    "the floor applies only to statically proven default-cache load-dependency-store typed paths",
+    "the measured nanosecond floor was captured at a 1980 MHz busy SM clock (unlocked, boost) and is not rescaled at lower clocks",
+    "the model must not be extrapolated to Dim3, grid greater than 132, or multi-wave launch"
+  ],
+  "lower_envelope_derivation": {
+    "rule": "subtract the largest training-cell excess over any observed sample from the intercept only",
+    "training_observed_minimum_guard_ns": 272.43694240120885,
+    "unconstrained_relative_least_squares_parameters": {
+      "base_ns": 1015.4726370449894,
+      "cta_ns": 2.622582731959355,
+      "fanout_activation_ns": 15.146740399371314,
+      "warp_ns": 6.121863547560643
+    }
+  },
+  "mechanism": "warm_default_cache_memory_dependency_task_floor",
+  "parameters": {
+    "base_ns": 743.0356946437805,
+    "cta_ns": 2.622582731959355,
+    "fanout_activation_ns": 15.146740399371314,
+    "warp_ns": 6.121863547560643
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "publication_gates": {
+    "training_never_above_observed_minimum": true,
+    "validation_mape_at_most_5_percent": false,
+    "validation_max_at_most_15_percent": false,
+    "validation_never_above_observed_minimum": true
+  },
+  "publishable": false,
+  "schema_version": 2,
+  "support": {
+    "active_lane_contract": "lane_zero_only_per_physical_warp",
+    "address_contract": "separate_contiguous_uint32_arrays",
+    "cache_policy": "warm_default_cache",
+    "launch_rank": 1,
+    "maximum_block": 1024,
+    "maximum_grid": 132,
+    "maximum_supported_sm_clock_mhz": 1980,
+    "measured_sm_clock_mhz": 1980,
+    "memory_contract": "one active lane per warp executes a 32-bit default-cache global load -> integer dependency -> global store",
+    "minimum_block": 1,
+    "minimum_grid": 1,
+    "warm_input_footprint_bytes": 16896,
+    "warm_output_footprint_bytes": 16896
+  }
+}

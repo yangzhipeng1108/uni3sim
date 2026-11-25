@@ -1,0 +1,226 @@
+{
+  "duration_unit": "ns_per_completed_tail_N256_K64_operand_pair_per_aic",
+  "forward_eligibility_constraint": "use only as a lower bound for 24-AIC BF16 M16/M32 tail operand streams under source-selected base-M64/base-M128, N256/K64, 512--6144 pairs per worker, four-pair drain semantics, resident-or-slower A, and DRAM-cold B",
+  "forward_eligible": true,
+  "hardware_id": "ascend_910b",
+  "measurement": {
+    "campaigns": {
+      "m128_tail16": {
+        "active_m": 16,
+        "base_m": 128,
+        "constant_rate_gate": true,
+        "median_completion_span_ns": {
+          "1024": 714220.0,
+          "3072": 2091820.0,
+          "512": 351540.0,
+          "6144": 4099620.0
+        },
+        "median_ns_per_pair": {
+          "1024": 697.48046875,
+          "3072": 680.9309895833334,
+          "512": 686.6015625,
+          "6144": 667.255859375
+        },
+        "rate_relative_span": 0.04420312968631726,
+        "stability_gate": true,
+        "within_count_relative_spans": {
+          "1024": 0.015653440116490717,
+          "3072": 0.012716199290569934,
+          "512": 0.028787620185469646,
+          "6144": 0.0016489333157707299
+        }
+      },
+      "m128_tail32": {
+        "active_m": 32,
+        "base_m": 128,
+        "constant_rate_gate": true,
+        "median_completion_span_ns": {
+          "1024": 701140.0,
+          "3072": 2097660.0,
+          "512": 355180.0,
+          "6144": 4115560.0
+        },
+        "median_ns_per_pair": {
+          "1024": 684.70703125,
+          "3072": 682.83203125,
+          "512": 693.7109375,
+          "6144": 669.8502604166666
+        },
+        "rate_relative_span": 0.03489578870195289,
+        "stability_gate": true,
+        "within_count_relative_spans": {
+          "1024": 0.008871266794078216,
+          "3072": 0.015197887169512696,
+          "512": 0.019201531617771272,
+          "6144": 0.013553441086996666
+        }
+      },
+      "m64_tail16": {
+        "active_m": 16,
+        "base_m": 64,
+        "constant_rate_gate": true,
+        "median_completion_span_ns": {
+          "1024": 703540.0,
+          "3072": 2100240.0,
+          "512": 355940.0,
+          "6144": 4097240.0
+        },
+        "median_ns_per_pair": {
+          "1024": 687.05078125,
+          "3072": 683.671875,
+          "512": 695.1953125,
+          "6144": 666.8684895833334
+        },
+        "rate_relative_span": 0.041331224500458286,
+        "stability_gate": true,
+        "within_count_relative_spans": {
+          "1024": 0.017085027148420844,
+          "3072": 0.005770769054965147,
+          "512": 0.029218407596785977,
+          "6144": 0.0066825472757270745
+        }
+      },
+      "m64_tail32": {
+        "active_m": 32,
+        "base_m": 64,
+        "constant_rate_gate": true,
+        "median_completion_span_ns": {
+          "1024": 704560.0,
+          "3072": 2089220.0,
+          "512": 354560.0,
+          "6144": 4099820.0
+        },
+        "median_ns_per_pair": {
+          "1024": 688.046875,
+          "3072": 680.0846354166666,
+          "512": 692.5,
+          "6144": 667.2884114583334
+        },
+        "rate_relative_span": 0.03685550453258459,
+        "stability_gate": true,
+        "within_count_relative_spans": {
+          "1024": 0.020864085386624275,
+          "3072": 0.007313734312327088,
+          "512": 0.03390117328519856,
+          "6144": 0.005678298071622657
+        }
+      }
+    },
+    "cross_geometry_rate_relative_span": 0.04474196295609059,
+    "maximum_allowed_cross_geometry_rate_relative_span": 0.1,
+    "maximum_allowed_rate_relative_span": 0.1,
+    "maximum_allowed_within_count_relative_span": 0.1,
+    "mechanism_gate_passed": true,
+    "published_completion_ns_per_pair": 697.48046875
+  },
+  "mechanism_id": "aic_grouped_matmul_wide_base_tail_completion_v1",
+  "mechanism_publishable": true,
+  "parameter_fit_from_production_duration": false,
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "build_command": "cmake -S <source> -B build_<campaign> -DSOC_VERSION=Ascend910B2 -DGROUPED_PAIR_BASE_M=<64|128> -DGROUPED_PAIR_ACTIVE_M=<16|32> && cmake --build build_<campaign> -j 8",
+    "campaigns": {
+      "m128_tail16": {
+        "binary_sha256": "49d3c21c983359d4b1bcef3d634c7f57f3ff4d02e4a735f2e825ab1baaf44000",
+        "cmake_cache_sha256": "79ed506742b3863635cd7e510dc6dc999fd2127ea735dc69336504bd0d4321db",
+        "raw_sha256": [
+          "6504e82bf61fed5c1e12def079beb065dc403c06c9c627d49730502a62d1abd5",
+          "4174232002f3854bc157e917dc4bad2cbd0b8f108703c2114bbffda5094eabc7",
+          "eabc1c3676a9654bccdddab32d33fb2ce64f697fa6fb3d4d4ff0fadea5072949"
+        ],
+        "stderr_sha256": [
+          "f3a23db4252c77ffae48e2f5d6105d76c7155d751a291739da9e5396e134c12f",
+          "6271379b70922af537056b722a3a2f535053e0de90d01dde53575ca88f87b66a",
+          "afa9beb2e1ebe776cdbc2d567e9a0eb8cf2a91d12ef474967f1bb6692d3b0074"
+        ]
+      },
+      "m128_tail32": {
+        "binary_sha256": "9b4d9a3a978a235045337160c5d721f177700cb89f855fe825a8b90e5122f686",
+        "cmake_cache_sha256": "0f84241c85adcb378b8a9aff0dce724380feaa8e996e82d361a30b42cf292711",
+        "raw_sha256": [
+          "f519f3192ff3ef958f6a128cec9bef956fffe9ae5a8045bc58c9a1cdb898732d",
+          "2d16a417f629e326b250e2d8ca09cb54587766114bc846cfb4a168a688e97650",
+          "4a0705ce1fe708da55e24f9e57343bbdfad8a2006880865bf376460331c9870d"
+        ],
+        "stderr_sha256": [
+          "b2a19ab910b69c632e808d1f0591af1c576a0a00cc14f80a4deca52ee689b661",
+          "b441df8d9113ab71c9b025237e10154e38d0c1d1360d3c5252bde142479f7724",
+          "05fa59e017b89fcb5cf8f2fb55472fbe8936432bf2068ede7db1f053ebb19f95"
+        ]
+      },
+      "m64_tail16": {
+        "binary_sha256": "41b1da8a3dcff715c0a0bc12e60ea24a9294708cb6bc0f652f4b8dba53f00673",
+        "cmake_cache_sha256": "db4dab33c36cb7f9dbe681f345db25721cad5385df988de35f647b4496c763ee",
+        "raw_sha256": [
+          "db5cf53b8c4b76e4d38654b5d5808f42276fe1683d741f04921d1ef99c5add3f",
+          "eeb8440e916c6f3ce8691b0509e85cc12eb9683248cba97d92c5ce26e5939cbe",
+          "ae4e9b1c7e6e09d48cf0f0f54abbefec1cfc7deb7fb2ae8e33f5b68810d5743b"
+        ],
+        "stderr_sha256": [
+          "d7ef8d252ad6a507ec8f2d9742337b5ed4f5c8784e19bc3b8aa1b3751ee229dd",
+          "e872a4516ed1c7e3d2130ab2b6ce51b1cb848f08fa89acd8a889d8535390aef9",
+          "d4743faee9f6d714512cda1ae4f7125526139b0153a3da14e8316c33f686c20d"
+        ]
+      },
+      "m64_tail32": {
+        "binary_sha256": "b2b553742bbee5cda640b18d024329cb1eadcc960b4b571201db4c1ba823b41f",
+        "cmake_cache_sha256": "30e9e0eea34e2dac35ee56c07964b84c1e5ca8ad930ddc4a9ea0696afebfa2dc",
+        "raw_sha256": [
+          "6a4b722b7f8a286c6a1dac70fa886274b7804901f0a290e33bc8e30e989d5b13",
+          "0d210446c5917598487b85e6054a26a6509942a40549c4da244d6243b451d454",
+          "66386bc08e28914425c950edd7fd9d37b43ca0b76fa4cc6740972b4895d87745"
+        ],
+        "stderr_sha256": [
+          "b708216864598bbaa51ed39cf80e7ba44dac33f85b3eb732802ac48f9adf7ede",
+          "7c5f49baab938a35715b770665e811946577065b41d0a55547e03d132850fa5e",
+          "29ee45d2716ea2e8b1a69143ad8d1810f365ede4723bd22985b1a4b1a2fe5525"
+        ]
+      }
+    },
+    "container": "capture-container-2",
+    "host": "capture-host-1",
+    "logical_device_id": 0,
+    "measurement_baseline_commit": "e83efef7291ed8cb91706594a40598bf2dda6958",
+    "owner": "fused_moe_worker",
+    "physical_device_id": 2,
+    "raw_root": "profiler_output/microbench/ascend_910b/grouped_pair_tail_e83efef7_20260908_r2",
+    "run_command": "python grouped_pair_completion_runner.py --binary build_<campaign>/grouped_pair_completion --device-id 2 --owner fused_moe_worker --baseline e83efef7291ed8cb91706594a40598bf2dda6958 --run-id <campaign>-r1-${run_index} --run-index ${run_index} --campaign <campaign>",
+    "snapshot_path": "/capture-workspace/execution_snapshots/grouped_pair_tail_e83efef7_20260908_r2",
+    "source_sha256": {
+      "CMakeLists.txt": "8c3c55e14597993b2e0340fe4a736bc3d5b9f72fbeb2b304ce2e14ab971f54ff",
+      "README.md": "4e3d5b8ee837a11b24c11be06a5677d9e0d71ec873659651404229417d139952",
+      "grouped_pair_completion_kernel.cpp": "60d772b50e841fc2d5a258b0b9ac81ddeecda8108359dbc313098d42e95cc787",
+      "grouped_pair_completion_main.cpp": "06d7b5a0d8efe134d8c852c886aba4ab8ce1ab7b7a56c92cc46deb37ff0e7386",
+      "grouped_pair_completion_runner.py": "673af0fda106e35d195791ff72e332b1da93fecd0e22de7f87289246a17257eb"
+    },
+    "source_snapshot_sha256": "7c5e725a28c50030d97d9eae02df714c6b25542344d190b56d627af0289e77ea"
+  },
+  "publication_scope": {
+    "a_columns": 64,
+    "a_residency": "l2_resident",
+    "active_aic_groups": 24,
+    "active_m_values": [
+      16,
+      32
+    ],
+    "b_columns": 256,
+    "b_residency": "dram_cold",
+    "b_rows": 64,
+    "base_m_values": [
+      64,
+      128
+    ],
+    "drain_interval_pairs": 4,
+    "eviction_bytes": 537919488,
+    "maximum_pairs_per_worker": 6144,
+    "measured_pairs_per_worker": [
+      512,
+      1024,
+      3072,
+      6144
+    ],
+    "minimum_pairs_per_worker": 512
+  },
+  "schema_version": 1,
+  "software_revision": "cann_8.5.1"
+}

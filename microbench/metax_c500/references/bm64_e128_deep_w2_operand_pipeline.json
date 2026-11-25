@@ -1,0 +1,38 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_e128_deep_w2_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "populated_experts": 128,
+    "minimum_m_tiles_per_populated_expert_exclusive": 11,
+    "production_k_n_tile_class": [48, 64]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090600,
+    "tokens": 16384,
+    "experts": 128,
+    "topk": 8,
+    "source_topk": 1,
+    "event_trials_per_capture": 7,
+    "independent_captures": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "01f83fecf7fb57f932afd57ee42210e97981ec712237ce3b0af81a6b9fda94e1",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "median capacity across three independent captures of an adjacent non-production N geometry"
+  },
+  "captures": [
+    {"capture": 1, "k": 1536, "n": 4032, "active_m_tiles": 2108, "maximum_m_tiles": 2174, "raw_sha256": "ec12a82cfcbffccf477afc3c986008ddad148632d3e6f56a86e5da814512d934", "operand_pipeline_capacity_bytes_per_s": 623119888448.7385},
+    {"capture": 2, "k": 1536, "n": 4032, "active_m_tiles": 2108, "maximum_m_tiles": 2174, "raw_sha256": "f18bac7191a2caf13be4d181c353fcb27a94e8ab2ea5c85747f3fba9a68cdf6e", "operand_pipeline_capacity_bytes_per_s": 621342710773.0978},
+    {"capture": 3, "k": 1536, "n": 4032, "active_m_tiles": 2108, "maximum_m_tiles": 2174, "raw_sha256": "ba999abb58c797a35da233bca757c8f302f906f22019aa97fd4a7ea553551f9c", "operand_pipeline_capacity_bytes_per_s": 622072184468.4724}
+  ],
+  "selected_service": {
+    "predicate": "128 populated experts, more than eleven active M tiles per expert, and K/N tile class (48,64)",
+    "logical_byte_capacity_per_s": 622072184468.4724
+  }
+}

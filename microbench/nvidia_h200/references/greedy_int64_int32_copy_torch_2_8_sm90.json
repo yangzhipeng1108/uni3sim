@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_h200",
+  "evidence_kind": "installed_artifact_static_host_dispatch_and_sm90_lowword_copy",
+  "artifact_identity_reference": "../../nvidia_a800/references/pytorch_moe_reduce_vllm_0_11_0_torch_2_8_0.json#/installed_artifacts/4",
+  "containing_code_object_reference": "embedding_id_widen_torch_2_8.json",
+  "host_copy_source_reference": "../../nvidia_a800/references/embedding_id_widen_torch_2_8.json",
+  "hardware_execution_performed": false,
+  "GPU_queried": false,
+  "duration_consumed": false,
+  "actual_provider_bound": false,
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/int64_int32_sm90_selected_program.json",
+      "sha256": "da452c1689eb863ad0e8237540964715e748c4f2b10717c67509ff9029cf5310"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/int64_int32_sm90_host_dispatch.json",
+      "sha256": "63207a5498939f741605e6c5904e69fb41e0013db8f941d56c30750d362f84e1"
+    }
+  ],
+  "compiled_entry": {
+    "symbol": "_ZN2at6native27unrolled_elementwise_kernelIZZZNS0_23direct_copy_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE1_clEvENKUlvE1_clEvEUliE_St5arrayIPcLm2EELi4E23TrivialOffsetCalculatorILi1EjESB_NS0_6memory12LoadWithCastILi1EEENSC_13StoreWithCastILi1EEEEEviT_T0_T2_T3_T4_T5_",
+    "symbol_index": 474,
+    "registers_per_thread": 30,
+    "static_shared_bytes": 0,
+    "frame_bytes": 0,
+    "minimum_stack_bytes": 0,
+    "max_threads": [
+      128,
+      1,
+      1
+    ]
+  },
+  "host_dispatch": {
+    "output_int_dtype_tag": 3,
+    "jump_table": "0x3a6e8b8",
+    "destination": "0x16a7eab",
+    "gpu_kernel": "0x16a26f0",
+    "gpu_kernel_impl": "0x1684200",
+    "contiguous_dynamic_input_cast_entry_load": "0x1684b20"
+  },
+  "data_program": {
+    "input_long_dtype_tag": 4,
+    "output_int_dtype_tag": 3,
+    "input_load_offsets": [
+      "0x270",
+      "0x1110",
+      "0x1fb0",
+      "0x2e20"
+    ],
+    "output_store_offsets": [
+      "0x3ce0",
+      "0x4bc0",
+      "0x5a80",
+      "0x6960"
+    ],
+    "per_element": "LDG.E reads low32bits at Long stride8; STG.E stores unchanged32bits. No data conversion, sign extension, FP arithmetic or SFU.",
+    "issued_read_bytes_per_element": 4,
+    "issued_write_bytes_per_element": 4,
+    "logical_storage_read_bytes_per_element": 8,
+    "logical_storage_write_bytes_per_element": 4
+  },
+  "accepted_scope": {
+    "source": "vllm0.11 ordinary BF16 all-greedy final sampled.to(int32)",
+    "input": "fresh contiguous INT64[rows] argmax output",
+    "output": "fresh contiguous INT32[rows], subsequent unsqueeze is a view",
+    "elements": "1<=rows<=2^28; one unsplit32bitTensorIterator",
+    "launch": "block128/vt4/gridceil(rows/512)",
+    "rate_mapping": "existing H200 memory resources; no new numeric rate"
+  },
+  "limitations": [
+    "No argmax typed-service, actual provider, device correctness/timing or normal-capacity acceptance.",
+    "Issued logical payload is not measured physical DRAM or cache-hit traffic.",
+    "Address, dtype-dispatch, uniform and control instruction services excluded as in existing Copy model.",
+    "Other versions, strided/split iterators, other hardware are not admitted."
+  ]
+}

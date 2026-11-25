@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "mechanism": "cann_8_5_1_block_reduce_sum_fp32_full_repeat_plus_tail_v1",
+  "source_program": "AddRmsNorm_3_high_performance_31",
+  "production_source": {
+    "add_rms_norm_split_d.h": "9ff6a5cde40fbaa7948de058a5172ebc80824ab985531af8103eb34ed4b9e64a",
+    "add_rms_norm_base.h": "46134fb99b1741d55ae225c56c213c5bfe10c79ab98b0910f9849b3b8b992312"
+  },
+  "source_counting_rule": "ComputeFormer invokes BlockReduceSumFP32 once for every owned row group and UB column tile with count=calc_row_num*8. The helper executes BlockReduceSum(repeatTimes, 64) plus PipeBarrier when count//64 is nonzero, then one masked BlockReduceSum(1, count%64) plus PipeBarrier when count%64 is nonzero.",
+  "source_domain": {
+    "minimum_group_rows": 1,
+    "maximum_group_rows": 64,
+    "input_count_unit": "fp32_partials",
+    "input_count_multiple": 8,
+    "maximum_input_count": 512
+  },
+  "full_repeat_service": {
+    "service": "cann_add_rmsnorm_split_d_block_reduce_full64",
+    "operation_unit": "64_fp32_repeats",
+    "setup_time_ns_per_source_invocation": 15.555013021,
+    "interval_ns_per_repeat": 0.556175595,
+    "calibration_input_counts": [64, 128, 256],
+    "validation_input_counts": [192, 320, 448, 512]
+  },
+  "tail_service": {
+    "service": "cann_add_rmsnorm_split_d_block_reduce_tail8",
+    "operation_unit": "masked_tail_branch_invocations",
+    "service_time_ns_per_source_invocation": 19.444376628,
+    "calibration_input_counts": [8, 16],
+    "validation_input_counts": [32, 56]
+  },
+  "combined_validation_input_counts": [72, 120, 504],
+  "independent_runs": 3,
+  "block_dims": [1, 32, 47],
+  "tick_intersection_ns": [20.0, 20.0],
+  "maximum_run_relative_median_spread": 0.00000523,
+  "maximum_concurrency_relative_median_spread": 0.00058514,
+  "maximum_validation_ape_percent": 3.030277,
+  "maximum_allowed_validation_ape_percent": 10.0,
+  "benchmark_binary_sha256": "7e03de8d24c41f50d46ba2a0e81bbc68b66af8f4a3dee99c91786cf2d8fd0494",
+  "benchmark_source_sha256": {
+    "CMakeLists.txt": "007f392f84397b3b66760e900a9d30563aed7537e8810a18b3e3d0aee7f603f9",
+    "vector_opcode_kernel.cpp": "ca305d265b5a1ea34da73797640075b87cc9ba983412112f9d34201425a7c50d",
+    "vector_opcode_main.cpp": "5433092dfc796a17e4f7e3433bef1e5e1206f3d2887a68cde3eedcf870ab797f",
+    "vector_opcode_report.py": "d99501680b463708638158d7c0609d8180c510d612cfc2cb5f8039fdd5f9da4a",
+    "vector_opcode_runner.py": "8df9b4d0e95aeca1712ba68e9e67d79424b4b84030a2e7ce0f8d6070e00402ef"
+  },
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/add_rmsnorm_key31_block_reduce_branches_ef947b40_20260914/raw/key31_block_reduce_composed_r1.csv",
+      "sha256": "0949fa4b9789b98d312b1d982616984add14ea45fa4086584597947e187cd1d2"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/add_rmsnorm_key31_block_reduce_branches_ef947b40_20260914/raw/key31_block_reduce_composed_r2.csv",
+      "sha256": "da856e5dc1e209eef8dfc82bfd17346b8e04cc6b0a0db45328e23ea56a0c1c81"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/add_rmsnorm_key31_block_reduce_branches_ef947b40_20260914/raw/key31_block_reduce_composed_r3.csv",
+      "sha256": "79cb0dde3600f09272d04d91755fc503c77689aba78c3043447c16c85639f908"
+    }
+  ],
+  "measurement_gate_passed": true,
+  "provenance_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

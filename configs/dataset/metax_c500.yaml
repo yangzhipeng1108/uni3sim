@@ -1,0 +1,13 @@
+schema_version: 1
+hardware_id: metax_c500
+
+kernel:
+  pipeline:
+    workloads: [gemm, flash_attn, fused_moe, vector]
+    settings:
+      gpu_device_id: null
+
+serving:
+  suites:
+    sharegpt:
+      historical_alignment_root: profiler_output/serving/metax_c500/sharegpt_raw

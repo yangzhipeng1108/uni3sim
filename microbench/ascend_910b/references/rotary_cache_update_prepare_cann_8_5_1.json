@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "kind": "ascend_rotary_cache_update_runtime_prepare",
+  "hardware_id": "ascend_910b",
+  "runtime": {
+    "name": "CANN",
+    "version": "8.5.1"
+  },
+  "framework": {
+    "name": "torch_npu",
+    "version": "2.9.0.post1+gitee7ba04"
+  },
+  "baseline_commit": "a8bf950d3e5953cfc4c5bcd76dfa1fff4f1c9855",
+  "runner": {
+    "path": "microbench/ascend_910b/runtime/launch/torch_runtime_call_suite_runner.py",
+    "sha256": "a12aa0ddc85eaa0af125c98be4c2fb1e588fde3b6e053c6c56d68fdc7f9440e7"
+  },
+  "source_contract": {
+    "path": "src/serving/runtime_prepare.py",
+    "mechanism": "rotary_cache_update_prepare",
+    "occurrence": {
+      "source_helper": "vllm_ascend.ops.rotary_embedding.update_cos_sin",
+      "anchor": "one token-embedding Host anchor per concrete lane; all IDs must be uniformly ranked or uniformly unranked, and ranked IDs must equal logical Host ranks",
+      "children_per_helper": "one cache update per Host rank and eager occurrence",
+      "graph_domain": "graph-external ModelRunner preparation; retained around graph replay",
+      "gate": "Ascend-only non-VL plan with an explicit non-MLA RoPE source call and a concrete token-embedding Host anchor",
+      "fused_paths": "fused Qwen3 and native Llama RoPE both use this source helper; MLA, VL, missing, duplicated, mixed-form, or rank-inconsistent anchors fail closed"
+    },
+    "source_evidence": {
+      "model_runner": "vllm_ascend/worker/model_runner_v1.py:1303,2446 calls update_cos_sin(positions) after _preprocess without a QKV/RoPE variant check",
+      "rotary_setup": "vllm_ascend/ops/rotary_embedding.py:62-78 sets caches for every non-VL model with has_rope",
+      "cache_early_return": "vllm_ascend/ops/rotary_embedding.py:129-132 returns only when the cache tensors are absent"
+    }
+  },
+  "measurement": {
+    "boundary": "independent_runtime_mechanism_microbenchmark",
+    "operation_kind": "ascend_rotary_cache_update",
+    "synthetic_cache_shape": [257, 128],
+    "fit_chain_lengths": [1, 8, 64, 512],
+    "holdout_chain_length": 2048,
+    "device_id": 0,
+    "production_or_evaluation_duration_consumed": false,
+    "host_clock": "time.perf_counter_ns",
+    "synchronization": "outside timed interval"
+  },
+  "artifact": {
+    "summary_path": "profiler_output/microbench/ascend_910b/rotary_cache_update_20260919_r1/summary.json",
+    "summary_sha256": "541b8643ccde360e4593103b37bcdf7e847f9d321cce16b6ae70157d85843bab",
+    "manifest_path": "profiler_output/microbench/ascend_910b/rotary_cache_update_20260919_r1/manifest.json",
+    "manifest_sha256": "7c70f70d60559e45672e0691c09fe6805e6b0dc35c59b2a8efc1165dd39f58d3"
+  },
+  "service_time_s": {
+    "rotary_cache_update_prepare": 0.0002549758976569686
+  },
+  "fit": {
+    "wall_slope_ns_per_call": 254975.8976569686,
+    "thread_cpu_slope_ns_per_call": 254817.96432202158,
+    "holdout_wall_signed_error_percent": -0.14192894487263796,
+    "holdout_thread_cpu_signed_error_percent": -0.17777401942559168
+  }
+}

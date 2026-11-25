@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "76ef7439a7d2e574324d69d129d848fcce03a1ab",
+  "service": "rmsnorm_local_scalar_dependency",
+  "request_size_unit": "lowered_scalar_operations_per_chain",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "source_path": "/usr/local/Ascend/ascend-toolkit/latest/opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/rms_norm",
+  "source_sha256": {
+    "reduce_common.h": "33cd7dc4bd23b645dc95067872362a619517d24f5cf51c602133d13e0334df88",
+    "rms_norm.cpp": "e4f362e3b408696795e5b5f1a1fe1333780d70edfc60c7d02bdfb06144259836",
+    "rms_norm.h": "d6f83f716070a583367c95c6f215cf1a4f94631953730aa50268e446b45f28f8",
+    "rms_norm_base.h": "a2ece498a72530c9163330d3631676ed5879af99ad16ea3e8f37a2d8838dae93",
+    "rms_norm_single_row.h": "26e5bd5749c8c1f77c20d09c854dc0e5232002139a480c5fd897fb56f239d446"
+  },
+  "production_binary": "RmsNorm_normal_all_bf16_high_performance.o",
+  "production_binary_sha256": "693763dc33a770d60009ea89b701569de25f10059fe4a323765127d91af1fb75",
+  "production_metadata_sha256": "7e1f36fb7e72f726d0c05e486efd32e4c0e582ff8169e3f01589dfe3f221b531",
+  "benchmark_binary_sha256": "51a10e8eb1ad352c15e326b4fa0e90bb019a227b9598d5a383017fa65980115b",
+  "raw_path": "/capture-workspace/profiler_output/microbench/ascend_910b/rmsnorm_local_scalar_1388daf2_20260828_r1",
+  "raw_sha256": {
+    "run1.csv": "8a87357a0d78a458006adc0c842f519e19b741c0433249dd9f0ff076eb732443",
+    "run2.csv": "7c330f243d5e25ad278500148c08586687ddd9bca70cbda58b989c505a809022",
+    "run3.csv": "f72afd181eea9523e36cc32a6a696c55aa2581edb010399d887869a249108227",
+    "audit.txt": "8d31a395636cb623e7c7ece3e97a537692f9873e51fe9ba7ded19727d03d4402"
+  },
+  "device_id": 6,
+  "independent_runs": 3,
+  "samples_per_cell": 18,
+  "block_dims": [1, 24, 48],
+  "tick_intersection_ns": [20.0, 20.0],
+  "maximum_run_relative_median_spread": 0.00009769520723587692,
+  "maximum_concurrency_relative_median_spread": 0.00030924478999992287,
+  "service_time_ns_by_request_size": {
+    "2": 50.0
+  },
+  "mechanism": "two ordered V_S handoffs, one LocalTensor GetValue, scalar reciprocal-square-root normalization, one LocalTensor SetValue, and one S_V handoff",
+  "composition": "one exact two-lowered-operation scalar dependency chain per RMSNorm row and AIV worker",
+  "measurement_gate_passed": true,
+  "provenance_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

@@ -1,0 +1,202 @@
+{
+  "schema": "nvidia_h200_bm16_grouped_gemm_pipeline_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "software_revision": "vllm_0.24.0_triton_3.6.0_sm90",
+  "environment": {
+    "conda_env": "venv /capture-public/envs/vllm024",
+    "python": "3.12",
+    "torch": "2.11.0+cu129",
+    "triton": "3.6.0",
+    "cuda": "12.9 driver API (driver 575.57.08)"
+  },
+  "source_baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+  "runner": "microbench/nvidia_h200/compute/tensor_core/sm80_bf16_bm16_sparse_row_pipeline_runner.py",
+  "runner_sha256": "0645a70be2f9e4b25e78ce37ffa3b381d564fcad3a526e580119506e61f9ed35",
+  "production_source": "/capture-public/envs/vllm024/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/fused_moe.py",
+  "production_source_sha256": "57a3f7efc9624f5c437908892ed5109a81ba0dbf45e1c6ac8a1438a23131f207",
+  "canonical_launch_observation": {
+    "path": "microbench/nvidia_h200/references/bm16_grouped_gemm_launch_facts_sm90.json",
+    "sha256": "6821f5137ca79501f4993fc4a99b2f1eb9cf2e85eacaa63cba2512f1eabd97c2",
+    "w1_registers_per_thread": 39,
+    "w2_registers_per_thread": 45,
+    "dynamic_shared_memory_bytes_per_cta": 12288,
+    "threads_per_cta": 128,
+    "residency_uses_conservative_w2_register_count": true
+  },
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp2_triton_v2/v2/sparse_row/p1.csv",
+      "remote_path": "/capture-public/h200_microbench/wp2_moe_cuda/runs/v2/sparse_row/p1.csv",
+      "device_index": 1,
+      "process": 1,
+      "status": "accepted",
+      "clock": {
+        "samples": 27,
+        "minimum_mhz": 1980,
+        "median_mhz": 1980,
+        "maximum_mhz": 1980,
+        "busy_samples": 11,
+        "accepted": true
+      },
+      "command": "CUDA_VISIBLE_DEVICES=1 /capture-public/envs/vllm024/bin/python microbench/nvidia_h200/compute/tensor_core/sm80_bf16_bm16_sparse_row_pipeline_runner.py --trials 9 --clock-log p1.clock.csv",
+      "raw_sha256": "572447297a2527225e75b47552ce9f9d765db4343b4b195daa2e258d26c305bc"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp2_triton_v2/v2/sparse_row/p2.csv",
+      "remote_path": "/capture-public/h200_microbench/wp2_moe_cuda/runs/v2/sparse_row/p2.csv",
+      "device_index": 1,
+      "process": 2,
+      "status": "accepted",
+      "clock": {
+        "samples": 16,
+        "minimum_mhz": 1980,
+        "median_mhz": 1980.0,
+        "maximum_mhz": 1980,
+        "busy_samples": 0,
+        "accepted": true
+      },
+      "command": "CUDA_VISIBLE_DEVICES=1 /capture-public/envs/vllm024/bin/python microbench/nvidia_h200/compute/tensor_core/sm80_bf16_bm16_sparse_row_pipeline_runner.py --trials 9 --clock-log p2.clock.csv",
+      "raw_sha256": "fbcc7ff32e83dd3118ab6949d505738150dfc26e03a26d508b9db6d61f631e8f"
+    }
+  ],
+  "source_and_launch_contract": {
+    "dtype": "bf16",
+    "tile_m": 16,
+    "tile_n": 32,
+    "tile_k": 64,
+    "group_size_m": 1,
+    "threads_per_cta": 128,
+    "registers_per_thread": 45,
+    "dynamic_shared_memory_bytes_per_cta": 12288,
+    "pipeline_depth": 2,
+    "physical_sm_count": 132,
+    "resident_ctas_per_sm": 10
+  },
+  "probe_contract": {
+    "active_rows_per_tile": 1,
+    "independent_streams": 8,
+    "projection_cells": [
+      "K512_N1024_grid256",
+      "K2048_N1024_grid256",
+      "K512_N2048_grid512",
+      "K2048_N2048_grid512"
+    ],
+    "trial_count_per_cell": 9,
+    "timer_domain": "cuda_event_gpu_timeline",
+    "cache_polluter_bytes": 134217728,
+    "production_routing_sort_reduce_absent": true,
+    "production_or_evaluation_duration_consumed": false
+  },
+  "median_duration_ns": {
+    "device_1_process_1": {
+      "K512_N1024_grid256": 11488.0,
+      "K2048_N1024_grid256": 29120.0,
+      "K512_N2048_grid512": 12736.0,
+      "K2048_N2048_grid512": 32352.0
+    },
+    "device_1_process_2": {
+      "K512_N1024_grid256": 11488.0,
+      "K2048_N1024_grid256": 30144.0,
+      "K512_N2048_grid512": 12768.0,
+      "K2048_N2048_grid512": 32352.0
+    }
+  },
+  "service_parameters": {
+    "fixed_span_ns": 6240.0,
+    "local_k_round_interval_ns": 817.3333333333334,
+    "derivation": "For each accepted process and fixed grid, the K-round interval is (median(K=2048)-median(K=512))/(32-8), and the fixed span is median(K=512)-8*interval. Forward uses the component-wise maximum across both processes and both grids; no production accuracy or duration selects either value."
+  },
+  "decision": {
+    "status": "accepted_independent_pipeline_mechanism",
+    "forward_eligible": true,
+    "reason": "The synthetic sparse-row program isolates the source-shaped two-slot load-to-HMMA K loop without routing, sorting, reduction, or production timing. The two-process upper envelope supplies launch-wide fixed and K-round services; HWSpec and source launch facts supply residency."
+  },
+  "excluded_conclusions": [
+    "a complete FusedMoE operator duration",
+    "a production-shape latency lookup",
+    "a residual correction",
+    "tile signatures other than BF16 BM16 BN32 BK64 GSM1",
+    "resources or devices outside the recorded H200 contract"
+  ],
+  "h200_capture_provenance": {
+    "git_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+    "report": "microbench/nvidia_h200/compute/tensor_core/sm80_bf16_bm16_grouped_gemm_pipeline_report.py",
+    "report_sha256": "11fdb624d962ddb5e5d05105a66610e6e7be77ac9d0f182f9867d61a56caeafd",
+    "clock_gate": "every 50-ms SM-clock sample of the timed section >= 1980 MHz; first two accepted processes are used",
+    "selection_substitution": "A800 two idle devices -> first two clock-accepted independent processes on H200 GPU 1",
+    "launch_facts": "microbench/nvidia_h200/references/bm16_grouped_gemm_launch_facts_sm90.json",
+    "launch_facts_sha256": "6821f5137ca79501f4993fc4a99b2f1eb9cf2e85eacaa63cba2512f1eabd97c2",
+    "all_processes": [
+      {
+        "path": "profiler_output/microbench/nvidia_h200/wp2_triton_v2/v2/sparse_row/p1.csv",
+        "remote_path": "/capture-public/h200_microbench/wp2_moe_cuda/runs/v2/sparse_row/p1.csv",
+        "device_index": 1,
+        "process": 1,
+        "status": "accepted",
+        "clock": {
+          "samples": 27,
+          "minimum_mhz": 1980,
+          "median_mhz": 1980,
+          "maximum_mhz": 1980,
+          "busy_samples": 11,
+          "accepted": true
+        },
+        "command": "CUDA_VISIBLE_DEVICES=1 /capture-public/envs/vllm024/bin/python microbench/nvidia_h200/compute/tensor_core/sm80_bf16_bm16_sparse_row_pipeline_runner.py --trials 9 --clock-log p1.clock.csv",
+        "raw_sha256": "572447297a2527225e75b47552ce9f9d765db4343b4b195daa2e258d26c305bc"
+      },
+      {
+        "path": "profiler_output/microbench/nvidia_h200/wp2_triton_v2/v2/sparse_row/p2.csv",
+        "remote_path": "/capture-public/h200_microbench/wp2_moe_cuda/runs/v2/sparse_row/p2.csv",
+        "device_index": 1,
+        "process": 2,
+        "status": "accepted",
+        "clock": {
+          "samples": 16,
+          "minimum_mhz": 1980,
+          "median_mhz": 1980.0,
+          "maximum_mhz": 1980,
+          "busy_samples": 0,
+          "accepted": true
+        },
+        "command": "CUDA_VISIBLE_DEVICES=1 /capture-public/envs/vllm024/bin/python microbench/nvidia_h200/compute/tensor_core/sm80_bf16_bm16_sparse_row_pipeline_runner.py --trials 9 --clock-log p2.clock.csv",
+        "raw_sha256": "fbcc7ff32e83dd3118ab6949d505738150dfc26e03a26d508b9db6d61f631e8f"
+      },
+      {
+        "path": "profiler_output/microbench/nvidia_h200/wp2_triton_v2/v2/sparse_row/p3.csv",
+        "remote_path": "/capture-public/h200_microbench/wp2_moe_cuda/runs/v2/sparse_row/p3.csv",
+        "device_index": 1,
+        "process": 3,
+        "status": "accepted",
+        "clock": {
+          "samples": 17,
+          "minimum_mhz": 1980,
+          "median_mhz": 1980,
+          "maximum_mhz": 1980,
+          "busy_samples": 5,
+          "accepted": true
+        },
+        "command": "CUDA_VISIBLE_DEVICES=1 /capture-public/envs/vllm024/bin/python microbench/nvidia_h200/compute/tensor_core/sm80_bf16_bm16_sparse_row_pipeline_runner.py --trials 9 --clock-log p3.clock.csv",
+        "raw_sha256": "36e35147798cd43092bbcb427054289746415b1e2e9b0134ae42f6fe0d04f5ca"
+      }
+    ],
+    "accepted_captures": 3,
+    "rejected_captures": 0,
+    "per_capture_grid_values_ns": {
+      "fixed_span": [
+        5610.666666666667,
+        6197.333333333333,
+        5269.333333333333,
+        6240.0
+      ],
+      "local_k_round_interval": [
+        734.6666666666666,
+        817.3333333333334,
+        777.3333333333334,
+        816.0
+      ]
+    },
+    "pipeline_depth_note": "the probe launches num_stages=2 as on A800; the H200 vLLM 0.24 production launch compiles with Triton num_stages=3 and the same 12288-B shared memory"
+  }
+}

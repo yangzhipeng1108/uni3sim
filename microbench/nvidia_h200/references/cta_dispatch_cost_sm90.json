@@ -1,0 +1,137 @@
+{
+ "chain_length_used": 64,
+ "cost_ns_by_grid": {
+  "1": 0.0,
+  "132": 69.2,
+  "16": 46.3,
+  "2": 3.1,
+  "32": 60.1,
+  "4": 3.4,
+  "64": 65.3,
+  "8": 29.4
+ },
+ "derivation_rule": "median_over_block_sizes_minus_single_cta",
+ "derivation_trials": [
+  1,
+  2
+ ],
+ "domain_note": "the table stops at the full-chip width because beyond one wave the cost becomes residency-dependent, which cta_round_ns already models; larger grids reuse the last entry via the step-down rule",
+ "duration_unit": "ns_per_launch",
+ "full_chip_width": 132,
+ "geometry_independence": {
+  "block_sizes_swept": [
+   128,
+   256,
+   512,
+   1024
+  ],
+  "cost_range_over_blocks_at_full_chip_ns": [
+   61.69999999999993,
+   74.20000000000005
+  ],
+  "dynamic_smem_bytes_swept": [
+   0,
+   16384
+  ],
+  "note": "cost at the full-chip grid varies by this much across block sizes 128 to 1024; 16 KiB of dynamic shared memory changes it by -2.5 to +12.3 percent across the four block sizes"
+ },
+ "hardware_id": "nvidia_h200",
+ "lookup_rule": "step_down_largest_sampled_grid_not_exceeding_request",
+ "max_cross_trial_spread_ns": 6.3,
+ "model": "geometry_independent_cta_dispatch_cost_v1",
+ "monotonicity": "running maximum applied: dispatching more CTAs cannot cost less, so noise is not allowed to invert the table",
+ "probe": "microbench/nvidia_h200/runtime/cta_dispatch/cta_dispatch_cost.cu",
+ "probe_sha256": "f703d9daa0d3e861b6eb1d4b6a84eb617027e74614fe8284fee522a7119362bf",
+ "production_or_evaluation_duration_consumed": false,
+ "provenance": {
+  "capture": {
+   "device_index": 0,
+   "trials": [
+    {
+     "accepted": true,
+     "busy_clock_mhz_max": 1980,
+     "busy_clock_mhz_min": 1980,
+     "busy_samples": 3152,
+     "host_loadavg_before": [
+      "1.54",
+      "1.96",
+      "2.34"
+     ],
+     "trial": 1
+    },
+    {
+     "accepted": true,
+     "busy_clock_mhz_max": 1980,
+     "busy_clock_mhz_min": 1980,
+     "busy_samples": 3147,
+     "host_loadavg_before": [
+      "1.53",
+      "1.84",
+      "2.24"
+     ],
+     "trial": 2
+    },
+    {
+     "accepted": true,
+     "busy_clock_mhz_max": 1980,
+     "busy_clock_mhz_min": 1980,
+     "busy_samples": 3149,
+     "host_loadavg_before": [
+      "2.94",
+      "2.23",
+      "2.32"
+     ],
+     "trial": 3
+    }
+   ]
+  },
+  "clock_gate": "nvidia-smi -lms 50 per trial; reject a trial with no busy sample or a busy sample below 1980 MHz",
+  "derivation": "microbench/nvidia_h200/runtime/cta_dispatch/cta_dispatch_cost_reference.py",
+  "derivation_sha256": "e1305bda50d74c65fbd67723c6875e4177f5bf9fb6bc19cd2d7a44bd47008cee",
+  "full_chip_cost_by_chain_length_ns": {
+   "1024": 76.8,
+   "16384": 150.2,
+   "262144": 232.9,
+   "64": 69.2
+  },
+  "git_commit": "dee07904c5cc3f298ad6486a617b54bfaae9fcfc",
+  "host_contention": "GPUs 1-3 of the same host were used concurrently by other workers",
+  "nvcc": "CUDA 12.2, -O3 -arch=sm_90 -cudart static",
+  "raw_path": "profiler_output/microbench/nvidia_h200/cta_dispatch_wp7_20260925",
+  "remote_path": "h200-capture-host:/capture-public/h200_microbench/wp7_launch/runs/cta_dispatch_wp7",
+  "runner": "microbench/nvidia_h200/runtime/cta_dispatch/cta_dispatch_cost_runner.py",
+  "runner_sha256": "f71c30fe7da24273739007951a2ef0b36913c22a134b544b490535a5275e7583",
+  "two_wave_grid_264_cost_by_block_ns": {
+   "1024": 564.0,
+   "128": 151.9,
+   "256": 161.5,
+   "512": 302.8
+  },
+  "untabled_grid_108_cost_by_trial_ns": {
+   "1": 101.9,
+   "2": 98.7,
+   "3": 94.5
+  },
+  "untabled_grid_108_note": "grid 108 (the A800 full-chip width, a partial wave on 132 SMs) costs more than the H200 full-chip grid 132 at every block size and trial; it is kept out of the step-down table because it is not an A800 grid, and including it would, through the running maximum, raise every entry from 108 upward to its value",
+  "validation_trial_minus_published_ns": {
+   "1": 0.0,
+   "132": 3.9,
+   "16": -3.1,
+   "2": 1.0,
+   "32": -5.6,
+   "4": -2.8,
+   "64": 4.1,
+   "8": -2.6
+  }
+ },
+ "raw_sha256": {
+  "trial_1.csv": "64ff67e853f0f384c9e2f2686702f427664ec0843cf8baa9e73f2b1f670b5a5d",
+  "trial_2.csv": "1af82de1d029a94c65b85bf2c61a28eb20bc62b23e378c3ddad0aae2e7331ed8",
+  "trial_3.csv": "03fcfab39480059a8edad703da382364a8cec4422bf39729eeaed9f3a337c3dd"
+ },
+ "schema_version": 1,
+ "software_revision": "cuda_12.2_sm90",
+ "target_operator_used": false,
+ "timer_domain": "paired_differential_cuda_graph_replay",
+ "validation_trial": 3
+}

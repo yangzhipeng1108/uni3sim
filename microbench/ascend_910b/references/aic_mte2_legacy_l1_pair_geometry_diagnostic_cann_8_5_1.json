@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "campaign": "aic_mte2_legacy_l1_pair_geometry_diagnostic",
+  "mechanism_id": "cann_matmul_v2_exact_operand_pair_mte2_only_v1",
+  "scope": "exact MatMulV2 K=14336, N=4096 A/B legacy L1 operand-pair MTE2 programs for tile_m in {16,32,48,64}; excludes Cube, Fixpipe, scalar control, and full-kernel timing",
+  "duration_unit": "ns_per_a_b_operand_pair_per_aic",
+  "source_commit": "1b9dd1e739cdf44f0d191a8db8d031e24ab5852e",
+  "capture_root": "profiler_output/microbench/ascend_910b/legacy_l1_pair_1b9dd1e7_20260905",
+  "execution_snapshot_root": "profiler_output/microbench/ascend_910b/execution_snapshots/1b9dd1e7_legacy_pair/repo",
+  "source_snapshot_sha256": "747025ecab65b8d6c26d394bea994c3254f9bcb70df19441fe041a05284ddcd3",
+  "binary_sha256": "bbe4af695f645cc5b9faf5423e0f92b5d57d1297a38a2c9b51da4793b3b262cd",
+  "device": {
+    "model": "910B2",
+    "physical_device_id": 0,
+    "logical_device_id": 0
+  },
+  "capture": {
+    "independent_runs": 3,
+    "footprint_mb_per_operand": 16384,
+    "short_programs": 1,
+    "long_programs": 4,
+    "active_aic_groups": 22,
+    "pairs_per_worker": 112,
+    "a_columns": 256,
+    "a_source_row_stride_elements": 14336,
+    "b_rows": 96,
+    "b_columns": 256,
+    "b_source_row_stride_elements": 14336,
+    "raw_paths": [
+      "profiler_output/microbench/ascend_910b/legacy_l1_pair_1b9dd1e7_20260905/r0.csv",
+      "profiler_output/microbench/ascend_910b/legacy_l1_pair_1b9dd1e7_20260905/r1.csv",
+      "profiler_output/microbench/ascend_910b/legacy_l1_pair_1b9dd1e7_20260905/r2.csv"
+    ],
+    "raw_sha256": [
+      "8c7cf06ce3d39b2506c91e86b2b3376e6c31349f33dd652cee47391028476669",
+      "7572c1573da132c79dfc3a62aa644b26a90f3c07391a4058de8ebe0e7b646a1a",
+      "fbde05d49764903f685362ece3ea2b1736c5e272fba40e81202767f28609afe6"
+    ]
+  },
+  "cells": [
+    {
+      "tile_m": 16,
+      "drain_after_each_pair": 0,
+      "ns_per_pair_samples": [1101.845238095, 1007.916666667, 1110.119047619],
+      "median_ns_per_pair": 1101.845238095
+    },
+    {
+      "tile_m": 16,
+      "drain_after_each_pair": 1,
+      "ns_per_pair_samples": [1071.25, 1069.464285714, 1074.761904762],
+      "median_ns_per_pair": 1071.25
+    },
+    {
+      "tile_m": 32,
+      "drain_after_each_pair": 0,
+      "ns_per_pair_samples": [1147.797619048, 1156.25, 1161.666666667],
+      "median_ns_per_pair": 1156.25
+    },
+    {
+      "tile_m": 32,
+      "drain_after_each_pair": 1,
+      "ns_per_pair_samples": [1235.654761905, 1276.547619048, 1228.511904762],
+      "median_ns_per_pair": 1235.654761905
+    },
+    {
+      "tile_m": 48,
+      "drain_after_each_pair": 0,
+      "ns_per_pair_samples": [1290.297619048, 1322.916666667, 1294.821428571],
+      "median_ns_per_pair": 1294.821428571
+    },
+    {
+      "tile_m": 48,
+      "drain_after_each_pair": 1,
+      "ns_per_pair_samples": [1439.345238095, 1458.214285714, 1438.571428571],
+      "median_ns_per_pair": 1439.345238095
+    },
+    {
+      "tile_m": 64,
+      "drain_after_each_pair": 0,
+      "ns_per_pair_samples": [1493.214285714, 1510.654761905, 1488.214285714],
+      "median_ns_per_pair": 1493.214285714
+    },
+    {
+      "tile_m": 64,
+      "drain_after_each_pair": 1,
+      "ns_per_pair_samples": [1636.726190476, 1628.392857143, 1628.333333333],
+      "median_ns_per_pair": 1628.392857143
+    }
+  ],
+  "stability_gate": {
+    "cross_run_span_threshold_fraction": 0.2,
+    "maximum_observed_cross_run_span_fraction": 0.038874602772,
+    "maximum_cell": "tile_m=32,drain_after_each_pair=1",
+    "passed": true
+  },
+  "diagnostic_boundary": "The measured service contains only the exact source-derived MTE2 operand-pair issue and completion sequence. It cannot identify the unmeasured Cube, Fixpipe, scalar-control, or cross-pipe dependency service, so it must not replace or augment a complete MatMulV2 tile pipeline by itself.",
+  "production_or_evaluation_duration_consumed": false,
+  "forward_eligible": false,
+  "consumer_service_published": false,
+  "parameter_or_lut_published": false,
+  "use_restrictions": [
+    "diagnostic mechanism evidence only",
+    "must not enter Forward, HWSpec, launch selection, or a production predictor",
+    "must not be combined with production or evaluation durations to derive a residual service",
+    "must not be interpreted as a complete GEMM tile or kernel duration"
+  ]
+}

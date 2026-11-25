@@ -1,0 +1,139 @@
+{
+  "schema_version": 4,
+  "suite_id": "sharegpt_nvidia_h200_vllm030_qwen3_30b_a3b",
+  "dataset_root": "serving_dataset/sharegpt",
+  "models": [
+    {
+      "dataset_model_id": "qwen3-30b-a3b",
+      "simulation_model_path": "configs/model/qwen3-30b-a3b.json",
+      "model_config_sha256": "2850ddb3bf7aecad20b611e2d44f3077fc8193f4827c93beddd4c02ad63c2297"
+    }
+  ],
+  "hardware": [
+    {
+      "hardware_id": "nvidia_h200",
+      "hardware_config_path": "configs/hardware/nvidia_h200.yaml",
+      "hardware_config_sha256": "2dc939911eb7d3ea1bbb3cc746a44f64f430f6ce8fadf81aa5f4bf38d290c1fe",
+      "graph_execution": {
+        "configured_mode": "FULL_AND_PIECEWISE",
+        "piecewise_eager_workload_kinds": [
+          "flash_attn",
+          "kv_update"
+        ],
+        "uniform_decode_query_len": 1,
+        "capture_sizes": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          272,
+          288,
+          304,
+          320,
+          336,
+          352,
+          368,
+          384,
+          400,
+          416,
+          432,
+          448,
+          464,
+          480,
+          496,
+          512
+        ]
+      }
+    }
+  ],
+  "qps_values": [
+    1,
+    4,
+    16
+  ],
+  "cells": [
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-30b-a3b",
+      "case_id": "tp2_ep2_qps1",
+      "manifest_sha256": "4e558269c7c8993b8a5cb5788eec0f7cb59ced1a60cb0c97149186785b69f3cb",
+      "requests_sha256": "8eaf4091a0efa100c7c4c572a0285da61f720230bd284bccc82145f36c8982d1"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-30b-a3b",
+      "case_id": "tp2_ep2_qps4",
+      "manifest_sha256": "836b92a533e5c7a3c0aea8ce04a01bb8c0ab998873bf7a2ba623c6ea1b18ae37",
+      "requests_sha256": "8169e75193f4c2209bad0548d620d52e7872e347fb6a5a43a9277ae207a2733c"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-30b-a3b",
+      "case_id": "tp2_ep2_qps16",
+      "manifest_sha256": "94c5f64de07bc0d87415186be311e36103dfaa287f48f4ec76a229a160526e9c",
+      "requests_sha256": "9d0d1f1d11c7fb39df2d386e6559f16354c13d97d3606aeb316a98bfa63e1148"
+    }
+  ],
+  "prediction_contract": {
+    "semantics": "current_pinned_vllm_not_capture_replay",
+    "backend": "vllm",
+    "scheduler_version": "0.30.0",
+    "scheduler_source_commit": "ced6857afa0ea7b2e3f0846a62e1394e90f15607",
+    "deployment": "colocated",
+    "compute_dtype": "bf16",
+    "prediction_method": "midlayer",
+    "tensor_collective_backend": "protobridge",
+    "tensor_all_reduce_profile_sha256": "c417487bf5d03981eba272686e213e94e5e37fbb608b7aa5bf9202e6c7ae602e",
+    "tensor_all_gather_profile_sha256": "6709f8507ef2a8577bb9101856f0ddb7e4d69ee33e024ae66ace302893ce7485",
+    "launch_policy": "injected_launch",
+    "tensor_parallel_size": 2,
+    "pipeline_parallel_size": 1,
+    "expert_parallel_size": 2,
+    "max_model_len": 8192,
+    "max_batched_tokens": 8192,
+    "max_requests": 256,
+    "runtime_memory_policy_path": "configs/runtime_memory_policy/{hardware_id}/{model_id}.json",
+    "kv_block_size_tokens": 16,
+    "attention_kv_layout": "paged_varlen",
+    "attention_kv_distribution": "uniform",
+    "enable_chunked_prefill": true,
+    "enable_prefix_caching": true,
+    "router_resource_id": "router_cpu",
+    "router_dispatch_service_time_s": 0.0,
+    "mtp_num_speculative_tokens": 0,
+    "mtp_acceptance_policy": "disabled",
+    "mtp_fixed_accepted_tokens": 0,
+    "mtp_acceptance_source_id": "disabled"
+  }
+}

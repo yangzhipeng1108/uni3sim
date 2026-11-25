@@ -1,0 +1,52 @@
+{
+  "hardware_id": "metax_c500",
+  "host": {
+    "cpu": "Intel(R) Xeon(R) Gold 6430",
+    "cpu_count": 128,
+    "load_average_1min_at_capture": 1.2,
+    "vllm_version": "0.24.0"
+  },
+  "measurement_boundary": "host_only_no_device_no_model",
+  "mechanism": "Same three-process region as the superseded reference -- one process builds the step's EngineCoreOutputs and encodes them with the runtime's MsgpackEncoder over ZeroMQ, the API server decodes on one event loop, and a third runs the client the canonical capture uses, aiohttp with vLLM's own StreamedResponseHandler with every stream on one event loop -- but the API server side now runs the deployment's own chain instead of a short-circuit: OutputProcessor.process_outputs updates each request's stats, advances its IncrementalDetokenizer, runs its LogprobsProcessor and builds the RequestOutput, RequestOutputCollector.put hands it over, the per-request generate task wakes and yields it, and the completion stream generator frames it. Cross-process timestamps share CLOCK_MONOTONIC.",
+  "production_or_evaluation_duration_consumed": false,
+  "runner": {
+    "fanouts": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "harness_sha256": "d872d40851d99f3b7e020e3cf910361e79a2450aea58592888a9771200c2bbca",
+    "host_request_path_runner_sha256": "574450812f701af7c95e3e2990172039c2ab3cdfe25270407e9b0b14c8975c0e",
+    "note": "probe harness kept with the evidence, not a published runner",
+    "path": "experiment_logs/serving/ttft_wait_undercoverage/delivery_v5.py",
+    "rounds": 40,
+    "warmup": 5
+  },
+  "runs": [
+    {
+      "marginal_s_per_output": 8.8451e-05,
+      "single_output_s": 0.0006344
+    },
+    {
+      "marginal_s_per_output": 9.4937e-05,
+      "single_output_s": 0.0005796
+    },
+    {
+      "marginal_s_per_output": 8.2556e-05,
+      "single_output_s": 0.000585
+    }
+  ],
+  "schema_version": 1,
+  "selection": {
+    "first_token_delivery_s": 0.000585,
+    "output_delivery_per_output_s": 8.8451e-05,
+    "run_count": 3,
+    "statistic": "median_across_independent_runs"
+  },
+  "supersedes": "output_delivery_region_20260922.json, whose API server side detokenized and framed inline and pushed the bytes straight into the response body queue, skipping OutputProcessor, the RequestOutputCollector hand-off and the two generator hops the deployment runs. That short-circuit under-measured the marginal term by about a third and the single-output term by about a quarter.",
+  "tokenizer_path": "/capture-workspace/Qwen3-30B-A3B"
+}

@@ -1,0 +1,140 @@
+{
+  "identity": "ascend018-installed-startup-native-bytes-reset-epochs-v2",
+  "binding_ast_python": [
+    3,
+    11
+  ],
+  "software_versions": {
+    "vllm": "0.18.0+empty",
+    "vllm_ascend": "0.18.0",
+    "torch": "2.9.0+cpu",
+    "torch-npu": "2.9.0.post1+gitee7ba04"
+  },
+  "source_snapshot_reference": "profiler_output/serving/ascend_910b/startup_native_memory_20261026/installed_source_readonly",
+  "modules": {
+    "vllm.utils.mem_utils": {
+      "module_ast_sha256": "bbc3e9ade06d9557c5efc6ff3a33db79543786a69c97bc6e065559465f11bc37",
+      "methods": [
+        {
+          "owner": null,
+          "name": "memory_profiling",
+          "method_ast_sha256": "1d299db274633260784a5cdc325d9bb00a1f42b8fcb12cacf4f68a12f6f0022e"
+        },
+        {
+          "owner": "MemorySnapshot",
+          "name": "measure",
+          "method_ast_sha256": "74b008e96f44c02724a137cd45aa25e84d99dc50c90c03b60245e67f5c90e05f"
+        },
+        {
+          "owner": "DeviceMemoryProfiler",
+          "name": "current_memory_usage",
+          "method_ast_sha256": "757cfd6de5eb9d0532dd8c4b194a71b77200b98d78e515c492acfd6481ad2fbf"
+        }
+      ]
+    },
+    "vllm_ascend.worker.model_runner_v1": {
+      "module_ast_sha256": "763863a1b8a9f8d73ba2674df1edc084c827c0c32142e5f7547e024cf42d0e70",
+      "methods": [
+        {
+          "owner": "NPUModelRunner",
+          "name": "load_model",
+          "method_ast_sha256": "92d1e07b4e184890ebb57140257ae91b3896a1f8dff6741c5cd05caeb7f1115e"
+        },
+        {
+          "owner": "NPUModelRunner",
+          "name": "capture_model",
+          "method_ast_sha256": "a9d1815089aaee8ee28ca6d278a0f55ff0897a91699988d362fcab1b75c62f7b"
+        },
+        {
+          "owner": "NPUModelRunner",
+          "name": "initialize_kv_cache",
+          "method_ast_sha256": "997a24281396d525ac4d41ef9773478e654d1f1f8cdf8a941fac77acc58d908e"
+        },
+        {
+          "owner": null,
+          "name": "_torch_cuda_wrapper",
+          "method_ast_sha256": "d16dac89ae1c0ed7965df19d7e3daf48b0ce0e9e985875034e32160bc81a9cab"
+        }
+      ]
+    },
+    "vllm_ascend.worker.worker": {
+      "module_ast_sha256": "658b0178fa50b09df7656d41884c2caee9fa9cd5348431e92b3dad57aba56861",
+      "methods": [
+        {
+          "owner": "NPUWorker",
+          "name": "_init_device",
+          "method_ast_sha256": "ef59e10dd08e997222890b4f99504d54de711af41c73569cc6fd33c3f30edeb6"
+        },
+        {
+          "owner": "NPUWorker",
+          "name": "init_device",
+          "method_ast_sha256": "d5170f30fcb0544812ec89362c4055b6cb92d801c45387ce23e6d493cf6cab58"
+        },
+        {
+          "owner": "NPUWorker",
+          "name": "determine_available_memory",
+          "method_ast_sha256": "d445046a65f7bce5fcbcb512d6fd1c4ae2c44e38417ccfbdf3de365e8e5391c2"
+        },
+        {
+          "owner": "NPUWorker",
+          "name": "initialize_from_config",
+          "method_ast_sha256": "ed8f05f9a8d58e011ba295419f667f31e58534754397a6b5194bfef39d2516cc"
+        },
+        {
+          "owner": "NPUWorker",
+          "name": "compile_or_warm_up_model",
+          "method_ast_sha256": "a010b13214b684218e89f1cf7fa41cfbce39cf9b4afe7df0803704855e601ae1"
+        },
+        {
+          "owner": "NPUWorker",
+          "name": "_warm_up_atb",
+          "method_ast_sha256": "51c10b7108dde53b92c4b48ae04fc4800cf9ff85a8c795de18527a4ae4cc54a8"
+        }
+      ]
+    },
+    "vllm_ascend.patch.platform.patch_torch_accelerator": {
+      "module_ast_sha256": "1f5bcaae33a902ce43153b6026be68f91d11c047361a838f725643b68cd59026",
+      "methods": [
+        {
+          "owner": null,
+          "name": "patch_empty_cache",
+          "method_ast_sha256": "61ce19aac1d586ad144fa489dfbe2e66f295c41f4bfc3d8f784d3eac4a776c55"
+        }
+      ]
+    },
+    "vllm_ascend.platform": {
+      "module_ast_sha256": "5daa56911b0d4f786295a013f508ca1cb0d6133c0938f8e3833870253ef441ac",
+      "methods": [
+        {
+          "owner": "NPUPlatform",
+          "name": "get_current_memory_usage",
+          "method_ast_sha256": "655bb8864e07fd032a3a9fcab85123092b4a95d2c9b01ea56ad32afffa042d41"
+        }
+      ]
+    },
+    "vllm.v1.worker.gpu_model_runner": {
+      "module_ast_sha256": "8d2da27bc5c431cf2abb2fdbd5e35c7604096a73b1189b3948572d6dd1e521c6",
+      "methods": [
+        {
+          "owner": "GPUModelRunner",
+          "name": "capture_model",
+          "method_ast_sha256": "2c0c514cf4969aa23877b4c6d76c456eb632da9318ce5be1f952163080708ebd"
+        }
+      ]
+    },
+    "vllm_ascend.utils": {
+      "module_ast_sha256": "88fd934c00f7123c65b462d8db281d8e14d3fee0926547ffc3bd75c608c93dbb",
+      "methods": [
+        {
+          "owner": null,
+          "name": "refresh_block_size",
+          "method_ast_sha256": "546ba09daa79d37d02d68814cb2cbebb367239920ba7da8e0efaf62839b5f168"
+        }
+      ]
+    },
+    "vllm.v1.kv_cache_interface": {
+      "module_ast_sha256": "b6f9b653970e5598f8d055c500a70937e97af217881386fea8b9eea765b41fa8",
+      "methods": []
+    }
+  }
+}

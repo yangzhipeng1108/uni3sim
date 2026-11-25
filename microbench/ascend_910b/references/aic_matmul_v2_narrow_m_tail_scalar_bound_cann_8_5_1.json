@@ -1,0 +1,68 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_matmul_v2_narrow_m_tail_scalar_bound.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_narrow_dynamic_m_tail_scalar_bound",
+  "duration_unit": "ns_per_tail_output_tile_base_k_pair",
+  "source_program": {
+    "dtype": "bf16",
+    "active_aic_workers": 23,
+    "base_tile_m": 16,
+    "base_tile_n": 224,
+    "base_tile_k": 64,
+    "projection_k": 1536,
+    "k_tiles_per_output_tile": 24,
+    "output_tiles_per_worker": 1,
+    "a1_buffer_slots": 1,
+    "b1_buffer_slots": 2,
+    "a1_descriptor_k": 1536,
+    "b1_descriptor_k": 256,
+    "dynamic_logical_m": 1,
+    "static_logical_m": 16,
+    "static_enable_set_tail": false
+  },
+  "capture": {
+    "measurement_baseline_commit": "73fcfc303398b17aec059b732885f3cbf5be6430",
+    "physical_device_id": 4,
+    "container": "capture-container-2",
+    "source_snapshot_sha256": "c22786fe14abc3e6d77c0a0c2d42ea4cafab70a2b260ea8e1a9bc58e24423c6f",
+    "source_files_sha256": {
+      "CMakeLists.txt": "cf7426e7e11be9c281c5a3fd78238aad3271d197cd8340dfd29b82af54eeac9d",
+      "matmul_v2_narrow_scalar_control_kernel.cpp": "b9841e25e5e5d646a49324cedd8fa060fb1d5ba1a34d9a1d6b7f55955ffbb8d2",
+      "matmul_v2_narrow_scalar_control_main.cpp": "e9c56fa297bbbac2786d513aaaa32c5a2be8822b3e36280a6c4bdde615bd582b",
+      "matmul_v2_narrow_scalar_control_runner.py": "b1706a71b79f40c28533b7f20048d9ac42c2c3c5e08c2cd2258d4c6ded80cf42"
+    },
+    "binary_sha256": "793ca0e68ee7da3572b0eb27a2b6076090b8b9bf8dc657ca5e2388a2ee3cdb91",
+    "profiler": "msprof op PipeUtilization",
+    "launches_per_mode": 3,
+    "worker_statistic": "median of 23 AIC Scalar-pipe values per launch; median over three launch medians",
+    "dynamic_pipe_directory": "profiler_output/microbench/ascend_910b/matmul_v2_narrow_scalar_control_328aaf7e3_20260916_d4_v2/op_pipe_dynamic_m1_k1536",
+    "dynamic_pipe_manifest_sha256": "8f093de96dfc4b984a39ed7b6097be0bf0d85b6dc7b6e5ceb9ba2d38d0ac65ff",
+    "dynamic_profiler_log_sha256": "1b29ecac8be3f459a4f501cf183b2090453edf86dcc4854f824ca04775af142d",
+    "static_pipe_directory": "profiler_output/microbench/ascend_910b/matmul_v2_narrow_scalar_control_328aaf7e3_20260916_d4_v2/op_pipe_static_m16_k1536",
+    "static_pipe_manifest_sha256": "473eb7a33fbe04cfefab758f8ac943d7363c94402e025be836698dde45653ddb",
+    "static_profiler_log_sha256": "94cc1d23aca0e48db523186cb4882b08315bfb7208cd67f2f5a3f23284e54073"
+  },
+  "measurements": {
+    "dynamic_aic_scalar_worker_median_us_by_launch": [6.320556, 6.646111, 6.398889],
+    "static_aic_scalar_worker_median_us_by_launch": [5.669445, 5.719444, 5.695556],
+    "dynamic_minus_static_scalar_us_by_launch": [0.651111, 0.926667, 0.703333],
+    "dynamic_minus_static_scalar_median_ns": 703.333,
+    "observed_tail_scalar_ns_per_base_k_pair": 29.305541666666667,
+    "existing_forward_tail_scalar_ns_per_base_k_pair": 37.6041640625,
+    "existing_minus_observed_tail_scalar_ns_per_base_k_pair": 8.298622395833333
+  },
+  "interpretation": {
+    "forward_use": "rejected",
+    "candidate": "a missing dynamic-M Scalar service in the 16x224x64 A1=1/B1=2 persistent MatMulV2 program explains the M=1,K=1536,N=5120 shared underprediction",
+    "decision": "rejected because the existing source-order tail Scalar service is already a conservative upper bound on the independently observed dynamic-minus-static Scalar component",
+    "controls": [
+      "Dynamic and static launches keep dtype, worker population, base tile, K extent, A1/B1 slots, descriptor spans, allocation, output-tile count, and source order fixed.",
+      "MTE1 and Cube worker medians are equal in all paired launches; only the source dynamic-tail branch is intentionally changed.",
+      "The complete program, MTE2, FixPipe, and AIC wall spans are not consumed by Forward because they vary with concurrent payload execution."
+    ],
+    "boundary": "Do not add a second tail-control floor or increase the existing tail service for this program. The remaining production residual must be explained by another independently isolated mechanism, not by a per-shape correction."
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "forward_eligible": false
+}

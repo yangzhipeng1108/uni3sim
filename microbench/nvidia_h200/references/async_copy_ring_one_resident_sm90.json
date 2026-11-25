@@ -1,0 +1,33 @@
+{
+  "hardware_id": "nvidia_h200",
+  "mechanism": "async_copy_ring_capacity",
+  "production_or_evaluation_duration_consumed": false,
+  "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_3/manifest.json",
+  "source_manifest_sha256": "55f44503d4d4a3ed4a4ac4fb187ab58ef6d47e0d4a458e2c4510ad66cf328b23",
+  "selection_rule": "Before capture: panel49152/slots4/grid132/rounds1024/private4-panel footprint; smaller of two process median payload rates; no control subtraction; all five frozen checks required",
+  "frozen_checks": {
+    "process_spread_le_3pct": true,
+    "iqr_le_3pct": true,
+    "warm_dram_le_1pct": true,
+    "warm_l2_within_1pct": true,
+    "long_warm_clock_spread_le_3pct": true
+  },
+  "selected_service": {
+    "logical_byte_capacity_per_s": 7608679884193.938,
+    "weighted_sm_mhz": 1976.76741,
+    "threads_per_cta": 256,
+    "panel_bytes": 49152,
+    "buffer_slots": 4,
+    "dynamic_shared_bytes": 196608,
+    "resident_ctas_per_sm": 1,
+    "minimum_rounds": 64,
+    "maximum_rounds": 1024,
+    "minimum_active_sms": 132
+  },
+  "scope": "Independent byte-ring/frontend capacity, used beside generic hierarchy and downstream service; no per-shape latency, fabric multiplier or complete production-program price",
+  "approximations": [
+    "masked partial panels use the same aggregate byte capacity",
+    "cold bytes compete with this request frontend while DRAM remains independently priced",
+    "exact copy/MMA issue overlap and per-task cache ratios remain analytical"
+  ]
+}

@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "mechanism": "vllm_custom_all_reduce_cuda_graph_node_service",
+  "timer_domain": "cuda_event_around_graph_replay_divided_by_chain",
+  "chain_length": 64,
+  "trials": 30,
+  "warmup_replays": 5,
+  "dtype": "bfloat16",
+  "custom_all_reduce_max_bytes": 8388608,
+  "production_or_evaluation_duration_consumed": false,
+  "runner": {
+    "path": "/capture-public/h200_microbench/bin/custom_allreduce_latency_runner.py",
+    "sha256": "bffc2827474c6620bfb89072ffd2c4c7158bda2a8e57af65ddee8e5ee7bfb59a",
+    "git_commit": "57f98f78a78e2203464fb2cbb584a8d3c72f041c"
+  },
+  "command": "/capture-public/envs/vllm024/bin/python bin/custom_allreduce_latency_runner.py --world-sizes 2 4 --output-dir car_20260924_235106 --source-commit 57f98f78a78e2203464fb2cbb584a8d3c72f041c",
+  "environment": {
+    "hardware_id": "nvidia_h200",
+    "cuda_visible_devices": "0,1,2,3",
+    "driver_version": "575.57.08",
+    "torch_version": "2.11.0+cu129",
+    "cuda_runtime": "12.9",
+    "nccl_version": "2.28.9",
+    "vllm_version": "0.24.0",
+    "python": "3.12.3",
+    "host_cpu": "x86_64"
+  },
+  "world_sizes": {
+    "2": {
+      "per_rank_raw": [
+        "car_20260924_235106/ws2_rank0.json",
+        "car_20260924_235106/ws2_rank1.json"
+      ],
+      "summary": [
+        {
+          "tokens": 1,
+          "payload_bytes": 14336,
+          "custom_all_reduce_ns": 3943.7501691281796,
+          "nccl_all_reduce_plus_clone_ns": 8496.999740600586
+        },
+        {
+          "tokens": 2,
+          "payload_bytes": 28672,
+          "custom_all_reduce_ns": 3980.749985203147,
+          "nccl_all_reduce_plus_clone_ns": 8993.249852210283
+        },
+        {
+          "tokens": 3,
+          "payload_bytes": 43008,
+          "custom_all_reduce_ns": 4223.250085487962,
+          "nccl_all_reduce_plus_clone_ns": 9075.250010937452
+        },
+        {
+          "tokens": 4,
+          "payload_bytes": 57344,
+          "custom_all_reduce_ns": 4249.250050634146,
+          "nccl_all_reduce_plus_clone_ns": 8496.999740600586
+        },
+        {
+          "tokens": 6,
+          "payload_bytes": 86016,
+          "custom_all_reduce_ns": 4359.500017017126,
+          "nccl_all_reduce_plus_clone_ns": 9217.749815434217
+        },
+        {
+          "tokens": 8,
+          "payload_bytes": 114688,
+          "custom_all_reduce_ns": 4434.5001224428415,
+          "nccl_all_reduce_plus_clone_ns": 8636.750280857086
+        },
+        {
+          "tokens": 12,
+          "payload_bytes": 172032,
+          "custom_all_reduce_ns": 4566.750023514032,
+          "nccl_all_reduce_plus_clone_ns": 8791.250176727772
+        },
+        {
+          "tokens": 16,
+          "payload_bytes": 229376,
+          "custom_all_reduce_ns": 4757.999908179045,
+          "nccl_all_reduce_plus_clone_ns": 9682.250209152699
+        },
+        {
+          "tokens": 24,
+          "payload_bytes": 344064,
+          "custom_all_reduce_ns": 5829.00014705956,
+          "nccl_all_reduce_plus_clone_ns": 10364.750400185585
+        },
+        {
+          "tokens": 32,
+          "payload_bytes": 458752,
+          "custom_all_reduce_ns": 5895.999958738685,
+          "nccl_all_reduce_plus_clone_ns": 11362.5000230968
+        },
+        {
+          "tokens": 48,
+          "payload_bytes": 688128,
+          "custom_all_reduce_ns": 6965.000182390213,
+          "nccl_all_reduce_plus_clone_ns": 12797.500006854534
+        },
+        {
+          "tokens": 64,
+          "payload_bytes": 917504,
+          "custom_all_reduce_ns": 7939.999923110008,
+          "nccl_all_reduce_plus_clone_ns": 14308.000449091196
+        },
+        {
+          "tokens": 96,
+          "payload_bytes": 1376256,
+          "custom_all_reduce_ns": 9125.999640673399,
+          "nccl_all_reduce_plus_clone_ns": 17564.00056183338
+        },
+        {
+          "tokens": 128,
+          "payload_bytes": 1835008,
+          "custom_all_reduce_ns": 11161.250062286854,
+          "nccl_all_reduce_plus_clone_ns": 28216.99995547533
+        },
+        {
+          "tokens": 192,
+          "payload_bytes": 2752512,
+          "custom_all_reduce_ns": 14279.750175774097,
+          "nccl_all_reduce_plus_clone_ns": 30561.24970316887
+        },
+        {
+          "tokens": 256,
+          "payload_bytes": 3670016,
+          "custom_all_reduce_ns": 17442.25062429905,
+          "nccl_all_reduce_plus_clone_ns": 33177.24913358688
+        },
+        {
+          "tokens": 384,
+          "payload_bytes": 5505024,
+          "custom_all_reduce_ns": 23823.750205338,
+          "nccl_all_reduce_plus_clone_ns": 38645.25072276592
+        },
+        {
+          "tokens": 512,
+          "payload_bytes": 7340032,
+          "custom_all_reduce_ns": 30144.25002038479,
+          "nccl_all_reduce_plus_clone_ns": 46299.999579787254
+        }
+      ]
+    },
+    "4": {
+      "per_rank_raw": [
+        "car_20260924_235106/ws4_rank0.json",
+        "car_20260924_235106/ws4_rank1.json",
+        "car_20260924_235106/ws4_rank2.json",
+        "car_20260924_235106/ws4_rank3.json"
+      ],
+      "summary": [
+        {
+          "tokens": 1,
+          "payload_bytes": 14336,
+          "custom_all_reduce_ns": 4229.499958455563,
+          "nccl_all_reduce_plus_clone_ns": 12496.000155806541
+        },
+        {
+          "tokens": 2,
+          "payload_bytes": 28672,
+          "custom_all_reduce_ns": 4422.500031068921,
+          "nccl_all_reduce_plus_clone_ns": 14476.249925792217
+        },
+        {
+          "tokens": 3,
+          "payload_bytes": 43008,
+          "custom_all_reduce_ns": 4747.75000475347,
+          "nccl_all_reduce_plus_clone_ns": 14365.500304847956
+        },
+        {
+          "tokens": 4,
+          "payload_bytes": 57344,
+          "custom_all_reduce_ns": 4829.7501634806395,
+          "nccl_all_reduce_plus_clone_ns": 14420.000370591879
+        },
+        {
+          "tokens": 6,
+          "payload_bytes": 86016,
+          "custom_all_reduce_ns": 5117.000080645084,
+          "nccl_all_reduce_plus_clone_ns": 14396.000187844038
+        },
+        {
+          "tokens": 8,
+          "payload_bytes": 114688,
+          "custom_all_reduce_ns": 5534.749943763018,
+          "nccl_all_reduce_plus_clone_ns": 12512.249872088432
+        },
+        {
+          "tokens": 12,
+          "payload_bytes": 172032,
+          "custom_all_reduce_ns": 5903.749959543347,
+          "nccl_all_reduce_plus_clone_ns": 14755.99966943264
+        },
+        {
+          "tokens": 16,
+          "payload_bytes": 229376,
+          "custom_all_reduce_ns": 6494.0000884234905,
+          "nccl_all_reduce_plus_clone_ns": 12735.500000417233
+        },
+        {
+          "tokens": 24,
+          "payload_bytes": 344064,
+          "custom_all_reduce_ns": 8236.499968916178,
+          "nccl_all_reduce_plus_clone_ns": 12892.000377178192
+        },
+        {
+          "tokens": 32,
+          "payload_bytes": 458752,
+          "custom_all_reduce_ns": 8633.249904960394,
+          "nccl_all_reduce_plus_clone_ns": 15351.000241935253
+        },
+        {
+          "tokens": 48,
+          "payload_bytes": 688128,
+          "custom_all_reduce_ns": 10767.499916255474,
+          "nccl_all_reduce_plus_clone_ns": 16261.00018620491
+        },
+        {
+          "tokens": 64,
+          "payload_bytes": 917504,
+          "custom_all_reduce_ns": 11536.250356584787,
+          "nccl_all_reduce_plus_clone_ns": 19236.999563872814
+        },
+        {
+          "tokens": 96,
+          "payload_bytes": 1376256,
+          "custom_all_reduce_ns": 16257.249750196934,
+          "nccl_all_reduce_plus_clone_ns": 22769.500501453876
+        },
+        {
+          "tokens": 128,
+          "payload_bytes": 1835008,
+          "custom_all_reduce_ns": 17077.749595046043,
+          "nccl_all_reduce_plus_clone_ns": 26573.25007021427
+        },
+        {
+          "tokens": 192,
+          "payload_bytes": 2752512,
+          "custom_all_reduce_ns": 22772.000171244144,
+          "nccl_all_reduce_plus_clone_ns": 31351.249665021896
+        },
+        {
+          "tokens": 256,
+          "payload_bytes": 3670016,
+          "custom_all_reduce_ns": 28278.250247240067,
+          "nccl_all_reduce_plus_clone_ns": 40129.74910438061
+        },
+        {
+          "tokens": 384,
+          "payload_bytes": 5505024,
+          "custom_all_reduce_ns": 35867.75064468384,
+          "nccl_all_reduce_plus_clone_ns": 45833.74969661236
+        },
+        {
+          "tokens": 512,
+          "payload_bytes": 7340032,
+          "custom_all_reduce_ns": 46393.249183893204,
+          "nccl_all_reduce_plus_clone_ns": 58443.499729037285
+        }
+      ]
+    }
+  }
+}

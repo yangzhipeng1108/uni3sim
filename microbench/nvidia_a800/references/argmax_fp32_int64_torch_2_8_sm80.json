@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "evidence_kind": "offline_exact_sm80_argmax_resources_and_value_dependent_program",
+  "artifact_identity_reference": "pytorch_moe_reduce_vllm_0_11_0_torch_2_8_0.json#/installed_artifacts/4",
+  "reduce_source_reference": "pytorch_moe_reduce_vllm_0_11_0_torch_2_8_0.json#/installed_artifacts/2",
+  "greater_or_nan_source_identity_reference": "../../nvidia_h200/references/argmax_fp32_int64_torch_2_8_sm90.json#/additional_source_artifacts/0",
+  "host_dispatch_reference": "../../nvidia_h200/references/argmax_fp32_int64_torch_2_8_sm90.json#/host_dispatch",
+  "host_dispatch_scope": "same pinned x86lib and FloatArgMaxOps host/template dispatch; only host facts reused; SM80 resources/code independently decoded",
+  "raw_summary": "profiler_output/microbench/nvidia_a800/argmax_launch_static_20261023/argmax_fp32_int64_sm80_summary.json",
+  "raw_summary_sha256": "9153f7d1eb39afa4c89044694beeb3a78cd7838cc239f832db8dd463123241eb",
+  "source_branch_check": "profiler_output/microbench/nvidia_a800/argmax_launch_static_20261023/source_branch_check.json",
+  "symbol": "_ZN2at6native13reduce_kernelILi512ELi1ENS0_8ReduceOpIfNS0_9ArgMaxOpsIfEEjlLi4ELi4EEEEEvT1_",
+  "resources": {
+    "registers_per_thread": 32,
+    "stack_bytes": 0,
+    "static_shared_bytes": 16,
+    "local_bytes": 0
+  },
+  "static_instruction_site_count": 4368,
+  "static_sites_are_not_dynamic_counts": true,
+  "conditional_source_geometry": {
+    "input": "fresh contiguousFP32[1,128256], lastdim reduction, unsplit32bit iterator",
+    "output": "INT64[1]",
+    "output_vec_size": 1,
+    "input_vec_size": 4,
+    "block": [
+      512,
+      1,
+      1
+    ],
+    "grid": [
+      1,
+      1,
+      1
+    ],
+    "dynamic_shared_bytes": 8192,
+    "compiled_static_shared_bytes": 16,
+    "raw_sum_shared_bytes": 8208,
+    "global_partial_bytes": 0,
+    "global_semaphore_bytes": 0,
+    "derivation": "Reduce.cuh setReduceConfig: dim0=128256/4, dim1=1; block512x1; ceil(128256/512)=251<256, hence no grid-y split. Resource/admission alignment and actual runtime/provider not proven."
+  },
+  "value_dependent_example": {
+    "predicate_def": "0x13e0 FSETP.GTU.AND P1,PT,|R8|,+INF,PT",
+    "branch": "0x1430 @P1 BRA0x14d0",
+    "numeric_path": "0x1440..0x14c0:9 static instructions including unconditional join branch",
+    "nan_path": "0x14d0..0x14f0:3 static instructions",
+    "join": "0x1500 BSYNC B2",
+    "synthetic_counterexamples": [
+      {
+        "synthetic_state": "finite_pair",
+        "accumulator_is_nan": false,
+        "branch_taken_at_0x1430": false,
+        "selected_path_static_instructions": 9,
+        "source_selects_accumulator": true,
+        "checkpoint_or_GPU_observation": false
+      },
+      {
+        "synthetic_state": "nan_accumulator",
+        "accumulator_is_nan": true,
+        "branch_taken_at_0x1430": true,
+        "selected_path_static_instructions": 3,
+        "source_selects_accumulator": true,
+        "checkpoint_or_GPU_observation": false
+      }
+    ],
+    "conclusion": "Actual SM80 source retains distinct NaN/numeric paths. Shape/dtype and selected ID do not select a single physical program. Different paths alone do not prove a hardware duration difference."
+  },
+  "existing_dynamic_contract": {
+    "SymbolicGreedy_parameters": [
+      "model_execution_version",
+      "sample_logits",
+      "copy_dispatch"
+    ],
+    "argmax_KernelSpec_attributes": [
+      "sampling_source",
+      "stage",
+      "source_num_compute_units_optional",
+      "source_max_threads_per_unit_optional"
+    ],
+    "lowering_transports_logits_or_branch_domain": false,
+    "domain_or_branch_parameters_accepted": false
+  },
+  "minimal_additional_fact": {
+    "domain_option": "Independently proved complete-input non-NaN invariant for every applicable argmax invocation; an assumption or config alone is insufficient",
+    "general_option": "Actual or explicitly supplied source-scenario warp-active/NaN branch masks per reduction merge/iteration; if services depend on active masks, tie/order masks must also be bound",
+    "why_global_nan_count_or_winning_token_is_insufficient": "Distribution/order of NaNs changes per-thread accumulator propagation and warp divergence along the actual reduction schedule",
+    "parameter_support_required": "Current public source/workload/KernelSpec path has no branch-domain field; any future payload requires owner-bound schema validation and cannot silently default to finite",
+    "remaining_separate_gap": "Typed opcode/64bit order/select/SHFL resource units still require exact independent mapping; compare+select bundle rates are not pure predicates"
+  },
+  "excluded_shortcuts": [
+    "No universal finite/no-NaN assumption",
+    "No upper or lower bound presented as a point estimate",
+    "No expected random-logit distribution without source evidence",
+    "No source minimumN-1 merged into compiled work",
+    "No borrowing SM90 static shared/resources or C500 program",
+    "No production argmax duration measurement/fitting"
+  ],
+  "GPU_executed": false,
+  "duration_consumed": false,
+  "production_launch_or_rate_added": false,
+  "point_prediction_bound": false,
+  "original_serving_acceptance": false
+}

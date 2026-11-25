@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_rmsnorm_key0_first_mte2_completion_16_workers",
+  "request_size_unit": "payload_bytes",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"8192": 1600.0, "10240": 1190.0},
+  "service_time_selection": "median_of_independent_run_medians",
+  "mechanism": "first source-form depth-one gamma TQue GM-to-UB DataCopyPad and its MTE2-to-Vector hard completion edge with exactly 16 admitted AIV workers",
+  "scope": "maximum-worker completion envelope for the first gamma request in CANN BF16 RMSNorm key-0 single-row H4096 and H5120 only; later input and output requests retain their independent worker-local completion services",
+  "composition": "maximum_with_same_stage_byte_capacity_time; applied once to the first gamma request per source program",
+  "pairing_formula": "maximum_worker(request_interval(pair_order=1)-control_interval(pair_order=0)), matched by run and trial",
+  "source_scope": {
+    "tiling_key": 0,
+    "row_count": 16,
+    "hidden_elements": [4096, 5120],
+    "payload_bytes": [8192, 10240],
+    "queue_depth": 1,
+    "production_worker_count": 16,
+    "source_boundary": "CANN BF16 RMSNorm key-0 first gamma request only"
+  },
+  "capture": {
+    "owner": "research/capture-owner-4c0f2645f650",
+    "device_ids": [7],
+    "baseline": "63c51ddeaa3d6f81820197c3cb631b1bd6da6671",
+    "started_at": "2026-09-07T18:45:14+08:00",
+    "completed_at": "2026-09-07T18:49:00+08:00",
+    "output": "profiler_output/microbench/ascend_910b/rmsnorm_key0_midworker_mte_edges_63c51dde_20260907_d7",
+    "preflight_devices_2_through_7_idle": true,
+    "devices_0_and_1_externally_occupied": true,
+    "postflight_device_7_idle": true,
+    "cleanup": "complete"
+  },
+  "source_identity": {
+    "production_source_sha256": "d6f83f716070a583367c95c6f215cf1a4f94631953730aa50268e446b45f28f8",
+    "probe_kernel_sha256": "53c38e88ded1955b2ffe9a4e3f11f4a55e21b5595c7dcaaeef1a72edc9d46b88",
+    "probe_main_sha256": "2e50e99ae03335066cad9ed54b6a3c6654a05e0a1462994993745cf4b0102b66",
+    "runner_sha256": "b8e5086760b65e001345badae6360df067f2f242a908dbf55519de34cac754b6",
+    "reporter_sha256": "0cfc93aa8af64965ac082f1d411db924dbe40555a9e5ae5a62b129c68cfff086",
+    "benchmark_binary_sha256": "ba6a511e71f84be6247c653717b8f15a1538808f460763d2bc972c17abed92d9"
+  },
+  "source_snapshot_path": "/capture-workspace/source_snapshots/rmsnorm_key0_midworker_mte_edges_63c51dde_20260907",
+  "raw_artifacts": [
+    {
+      "run_id": "rmsnorm-key0-midworker-63c51dde-d7-r1",
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_midworker_mte_edges_63c51dde_20260907_d7/r1/raw.csv",
+      "sha256": "af444a67bd3b5ee2a05a0542fb4efe39b220b1a86c6bc9ce21c6e86790f7077e",
+      "runner_log_sha256": "6350bd5e98ea9895d730be1030782ffa78341406d96ae523634539448f1e2b46",
+      "device_id": 7
+    },
+    {
+      "run_id": "rmsnorm-key0-midworker-63c51dde-d7-r2",
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_midworker_mte_edges_63c51dde_20260907_d7/r2/raw.csv",
+      "sha256": "3933d12bb5c15d443aa94655e9e9e559c6dffd988acef0b5782058a65c15f434",
+      "runner_log_sha256": "d7ddb4161aab2b391515ef22ff964b62db2942e466341657515ce916d8aa0390",
+      "device_id": 7
+    },
+    {
+      "run_id": "rmsnorm-key0-midworker-63c51dde-d7-r3",
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_midworker_mte_edges_63c51dde_20260907_d7/r3/raw.csv",
+      "sha256": "041893e1203aabed1073e6131996595c6d33586af1c8f745546886524e71694d",
+      "runner_log_sha256": "c5e0475d98b2adb2bbd6cc263e4b7c74dd288b9c5a59c61df5a5c61ed2fc58dc",
+      "device_id": 7
+    }
+  ],
+  "audit_report": {
+    "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_midworker_mte_edges_63c51dde_20260907_d7/report.txt",
+    "sha256": "4b8af134c0d00ca6b532b0f1028611ed4addf2984306583856635ae202b3c9e6"
+  },
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 32,
+  "replication_basis": "balanced_schedule_cycle_parity",
+  "median_ns_by_run": {
+    "rmsnorm-key0-midworker-63c51dde-d7-r1": {"8192": 1600.0, "10240": 1140.0},
+    "rmsnorm-key0-midworker-63c51dde-d7-r2": {"8192": 1580.0, "10240": 1190.0},
+    "rmsnorm-key0-midworker-63c51dde-d7-r3": {"8192": 1670.0, "10240": 1210.0}
+  },
+  "maximum_cross_run_relative_median_spread": {"8192": 0.05389221556886228, "10240": 0.05785123966942149},
+  "gates": {
+    "source_identity": "pass",
+    "binary_identity": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "balanced_cell_order": "pass",
+    "within_run_replication": "pass",
+    "cross_run_relative_median_spread_limit": 0.2,
+    "cross_run_stability": "pass"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

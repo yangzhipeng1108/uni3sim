@@ -1,0 +1,13 @@
+repos:
+  - repo: local
+    hooks:
+      - id: repository-contract
+        name: repository architecture contract
+        entry: python scripts/run_tests.py -q tests/repository
+        language: system
+        pass_filenames: false
+      - id: git-diff-check
+        name: git diff whitespace check
+        entry: git diff --cached --check
+        language: system
+        pass_filenames: false

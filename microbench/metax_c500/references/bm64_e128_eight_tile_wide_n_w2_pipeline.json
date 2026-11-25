@@ -1,0 +1,39 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_e128_eight_tile_wide_n_w2_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "populated_experts": 128,
+    "minimum_m_tiles_per_populated_expert_exclusive": 5,
+    "maximum_m_tiles_per_populated_expert": 11,
+    "production_k_n_tile_class": [48, 64]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090600,
+    "tokens": 8192,
+    "experts": 128,
+    "topk": 8,
+    "source_topk": 1,
+    "event_trials_per_capture": 7,
+    "independent_captures": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "01f83fecf7fb57f932afd57ee42210e97981ec712237ce3b0af81a6b9fda94e1",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "median capacity across three independent captures of an adjacent non-production N geometry"
+  },
+  "captures": [
+    {"capture": 1, "k": 1536, "n": 4032, "active_m_tiles": 1085, "maximum_m_tiles": 1150, "raw_sha256": "3c28ddfc46fc5d258122969bedc5c99a527716ec51640228bb4551507b8fcfeb", "operand_pipeline_capacity_bytes_per_s": 681927005659.2876},
+    {"capture": 2, "k": 1536, "n": 4032, "active_m_tiles": 1085, "maximum_m_tiles": 1150, "raw_sha256": "4475f981a2e2086bfe79d8cdff27bcb728b5b453c7a41d665285068ed85b05f5", "operand_pipeline_capacity_bytes_per_s": 681690158790.7874},
+    {"capture": 3, "k": 1536, "n": 4032, "active_m_tiles": 1085, "maximum_m_tiles": 1150, "raw_sha256": "09ed85d399257a78729cfd3747a8b56a29669b18aff1b4e108a8f90e40701a17", "operand_pipeline_capacity_bytes_per_s": 680903210150.5566}
+  ],
+  "selected_service": {
+    "predicate": "128 populated experts, more than five and at most eleven active M tiles per expert, and K/N tile class (48,64)",
+    "logical_byte_capacity_per_s": 681690158790.7874
+  }
+}

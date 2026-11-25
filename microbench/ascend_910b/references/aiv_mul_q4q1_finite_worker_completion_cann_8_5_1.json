@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_mul_q4q1_finite_worker_completion_48_workers",
+  "request_size_unit": "source_worker_programs",
+  "service_time_unit": "ns_per_maximum_worker_program",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "1": 7100.0
+  },
+  "source_contract": {
+    "active_aiv_workers": 48,
+    "input_streams": 2,
+    "output_streams": 1,
+    "input_queue_depth": 4,
+    "output_queue_depth": 1,
+    "full_tile_bytes": 14592,
+    "full_tiles_per_maximum_worker": 3,
+    "production_mul_arithmetic_executed": false,
+    "completion_boundary": "PIPE_ALL barrier before the worker end counter"
+  },
+  "derivation": {
+    "statistic": "median of the maximum per-worker completion span",
+    "run_values_ns": [7080.0, 7120.0, 7100.0],
+    "median_ns": 7100.0,
+    "cross_run_spread_percent": 0.5633802816901409,
+    "maximum_allowed_cross_run_spread_percent": 5.0
+  },
+  "composition": "max of the existing analytical bounds and this exact finite 2R1W queue-program completion; aggregate production Vector arithmetic remains independently conserved",
+  "source_files_sha256": {
+    "CMakeLists.txt": "e2900f2fe45b82a2f2ea6266d0641427cb5362ccd56e74da1fb1e488f633f757",
+    "aiv_two_read_one_write_mul_q4q1_contract.h": "8e2e80eb6506e696e27f6441e5b9c157c9ca0c6e8ac5267ee0fece6910557bd6",
+    "aiv_two_read_one_write_mul_q4q1_kernel.cpp": "8c94dd2fda45ec10ac4e1d61ac7747e07f0d489acb712eaacf8e8d7dab224392",
+    "aiv_two_read_one_write_mul_q4q1_main.cpp": "a460c9b4f18e6f1fa0d758b31c43304c323862b4868cb1323c38ed0dafac4de9"
+  },
+  "binary_sha256": "6a4b170b120999eee00f1a8c1afe73fa782f2deff7227097f578c0ebae4ad31f",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/aiv_mul_q4q1_finite_5730c1f9_20260907_d7/raw_run1.csv",
+      "sha256": "fefa970d776fe71e0076d24669a81264c40fbb08c58491b9a984aea69de3ff97"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/aiv_mul_q4q1_finite_5730c1f9_20260907_d7/raw_run2.csv",
+      "sha256": "4914ca10a76a07ecfac931558bc4f82a4f1a0ee56354a62e003c30cf5ddabdbf"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/aiv_mul_q4q1_finite_5730c1f9_20260907_d7/raw_run3.csv",
+      "sha256": "acc22f01a59932f3d8978c7b5ba167ff3e46012438d622137f1453e2877b2587"
+    }
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

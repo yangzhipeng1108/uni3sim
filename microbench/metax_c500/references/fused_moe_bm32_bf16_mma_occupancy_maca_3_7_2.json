@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "software_revision": "maca_3.7.2",
+  "compiler": "mxcc 1.0.0 (d9102a1572)",
+  "mechanism": "register_only_bf16_mma_wave_accumulator_saturation",
+  "rate_unit": "flops_per_ap_cycle",
+  "architecture_peak_flops_per_ap_cycle": 2048.0,
+  "ap_count": 104,
+  "wave_size": 64,
+  "mma_shape": [16, 16, 16],
+  "accumulator_dtype": "fp32",
+  "accumulator_vector_width": 4,
+  "selection": {
+    "active_waves_per_ap": 4,
+    "accumulator_chains": 2,
+    "tile_m": 32,
+    "tile_n": 64,
+    "tile_k": 128,
+    "threads_per_cta": 256,
+    "dynamic_shared_memory_bytes": 49152,
+    "resident_ctas_per_ap": 1
+  },
+  "measurement": {
+    "iterations": 65536,
+    "selected_repeat": 2,
+    "flops_per_ap_cycle": 1352.660353
+  },
+  "stability": {
+    "repeat_count": 2,
+    "maximum_relative_rate_delta": 0.003083601,
+    "comparison": "absolute difference divided by the two-repeat mean",
+    "repeat_result_sha256": [
+      "865612d598c8e34352964918dad24c738fb2cb44fe2a1a8042732e51b3d2ac0b",
+      "13c0c33ee800496236a23725135e6bf1aa36addc9d29ca0569b8a4650792fa46"
+    ]
+  },
+  "provenance": {
+    "capture_baseline_commit": "d8b222f1e0687305e4654d1a052cd4f82a84bb05",
+    "capture_command": "MACA_VISIBLE_DEVICES=0 mma_accumulator_sweep",
+    "source_sha256": "db74f025000019629c378176b3095d060658098a7dc7ecda79927a3e5b9fa162",
+    "binary_sha256": "2714b57160e4991039488bcf49f01229b2d8d997fd8849472b382a8d77337ae6",
+    "physical_device_id": 0,
+    "owner": "diagnosis worker",
+    "remote_snapshot": "/capture-workspace/midlayer_hw_model/profiler_output/microbench/metax_c500/mma_accumulator_chain2_long_db74f025_20260916_r1",
+    "recorded_pids": [1543161, 1543373],
+    "result_paths": [
+      "profiler_output/microbench/metax_c500/mma_accumulator_chain2_long_db74f025_20260916_r1/raw_r1.csv",
+      "profiler_output/microbench/metax_c500/mma_accumulator_chain2_long_db74f025_20260916_r1/raw_r2.csv"
+    ]
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true
+}

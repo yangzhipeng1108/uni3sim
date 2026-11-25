@@ -1,0 +1,134 @@
+{
+  "schema": "nvidia_a800_silu_bf16_load_pair_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "device_uuid": "capture-device-6f63e60145b9",
+  "compute_capability": "sm_80",
+  "physical_sm_count": 108,
+  "source_baseline_commit": "a027acca5e81032847ed1c199d236b6f1885534c",
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_a800/silu_bf16_load_pair_a027acca_run0",
+      "run_id": "a027acca_run0",
+      "rotation": 0,
+      "probe_binary_sha256": "3b6d630caa2d32f6c387589a1d8107af5e7f39eb42299f278008a5e2bad28fa6",
+      "raw_sha256": "6116dc65487a5185e1603566c6e81e17abd562cbe36557c020e4caa46e7a6452",
+      "manifest_sha256": "5418682c6e6924c53e966af60b460ad9617966db9ab549110f2cc74851b82d12"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_a800/silu_bf16_load_pair_a027acca_run1",
+      "run_id": "a027acca_run1",
+      "rotation": 1,
+      "probe_binary_sha256": "9ad5a6398d9f5a464f699f53a9ebceeda0e05fff716081abb64e3fc622682649",
+      "raw_sha256": "cb7fa9e790b98afb4cb6259f686fdf4bcb35a5be18c5feeb78eddfe8231a153a",
+      "manifest_sha256": "9024e141e6a78b8158adda999738811533915e1513b706cbb8ca4cd1f108cb73"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_a800/silu_bf16_load_pair_a027acca_run2",
+      "run_id": "a027acca_run2",
+      "rotation": 2,
+      "probe_binary_sha256": "58335b8bdaf14eb7740d9ce06606549a8d890d42d1ee135e0040f3f01f728174",
+      "raw_sha256": "9d000e85e2623230b95a10d0935057cc339e60559d11267f243f31225d1ba2ec",
+      "manifest_sha256": "ae2ad9642b7874d695e962a3d27dff7ea5160cc2f10b9be6a3a187c339284793"
+    }
+  ],
+  "audit": {
+    "path": "profiler_output/microbench/nvidia_a800/silu_bf16_load_pair_a027acca_audit.json",
+    "sha256": "92ea41dcdc71f6d0fb52aca6e95133202f8b6061fc8d7d1344f96aa1b093907b",
+    "trials_per_cell_per_run": 9,
+    "position_balanced_cyclic_schedule": true,
+    "within_run_interquartile_relative_limit": 0.2,
+    "within_run_replication_gate": "pass",
+    "cross_run_relative_median_limit": 0.2,
+    "cross_run_stability_gate": "pass"
+  },
+  "identity": {
+    "source_sha256": "cb6749f41af2fb107f3555a09a752f469554866e1df1075e9c0b4950dfc503fc",
+    "runner_sha256": "a60a8944b05779c7949b453b15bfd87eb5ba294b056106a28e7bd5189761c193",
+    "report_sha256": "9b959a7bcb1d3c0d0d3fd2e9fd74d1b23a722520c75e562ba00432996a3d1f6a",
+    "probe_resource_sha256": "f63588d07908bb0dc9e6b8efbf6a919085c213166f6cac49d8321bb13f21d499",
+    "probe_sass_sha256": "ac07f2138a42273b0a4843d4aafb7ec015ac78649851e879c942ebd9ee7ba991",
+    "production_binary_path": "/capture-workspace/miniconda_capture/envs/capture-python/lib/python3.10/site-packages/vllm/_C.abi3.so",
+    "production_binary_sha256": "984de21ce38cc8083d207663a380ca75acc6ad3dc230858092f59e363c4eebd5",
+    "production_sm80_cubin_sha256": "5d69f0fc996af251da17e14f0e3a54332f4df4b2414c68084575bd8abf7b4f91",
+    "production_silu_function_sass_sha256": "f898ea074ad6febdf63d3dff32cd766117e4b30bdab4c8acf81cb8aac7cfca08"
+  },
+  "published_tool_identity": {
+    "source_sha256": "22b5ea840258a29a517e8fab87ac38679e01055c70886ed296fec6a0cd1bf3d5",
+    "runner_sha256": "930b1836cd691d416f7cd0b9cba854d0f5f31ae659619baf0fa3eb6f789d27fc",
+    "report_sha256": "845a894228a7faa661c05fe481afdfe46550c97519ac8d0cde8b198ed248612c"
+  },
+  "probe_contract": {
+    "threads_per_cta": {
+      "value": 1024,
+      "unit": "threads_per_cta",
+      "physical_meaning": "one source-shaped SiLU CTA"
+    },
+    "widths": {
+      "values": [6144, 9728, 12288, 14336, 25600, 28672, 53248],
+      "unit": "bf16_elements_per_input_half_per_cta",
+      "physical_meaning": "exact production intermediate widths"
+    },
+    "grids": {
+      "values": [108, 216, 432],
+      "unit": "ctas",
+      "physical_meaning": "one CTA per SM, one complete two-resident-CTA cohort, and two complete two-resident-CTA cohorts"
+    },
+    "load_width": {
+      "value": 2,
+      "unit": "bytes_per_lane_per_load",
+      "physical_meaning": "one scalar BF16 source load"
+    },
+    "paired_read_transactions": {
+      "value": 4,
+      "unit": "32_byte_sectors_per_warp_iteration",
+      "physical_meaning": "two adjacent coalesced scalar BF16 loads"
+    },
+    "maximum_resident_ctas_per_sm": {
+      "value": 2,
+      "unit": "ctas_per_sm",
+      "physical_meaning": "2048 thread SM limit divided by 1024 threads per CTA"
+    }
+  },
+  "static_sass_contract": {
+    "probe_registers_per_thread": {
+      "control": 11,
+      "single_bf16_load": 13,
+      "paired_bf16_load": 20
+    },
+    "probe_bf16_load_instruction_counts": {
+      "control": 0,
+      "single_bf16_load": 1,
+      "paired_bf16_load": 2
+    },
+    "probe_paired_loads_are_adjacent": true,
+    "production_symbol": "_ZN4vllm18act_and_mul_kernelIN3c108BFloat16EXadL_ZNS_11silu_kernelIS2_EET_RKS4_EELb0EEEvPS4_PS5_i",
+    "production_bf16_load_instruction_count": 2,
+    "production_bf16_load_offsets": ["0x170", "0x180"],
+    "production_loads_are_adjacent": true,
+    "production_loop_back_offset": "0xe0"
+  },
+  "exact_domain": {
+    "hardware_id": "nvidia_a800",
+    "dtype": "bf16",
+    "variant": "silu",
+    "block": [1024, 1, 1],
+    "grid_equals_tokens": true,
+    "tail_free_widths": [6144, 9728, 12288, 14336, 25600, 28672, 53248]
+  },
+  "mechanism": "adjacent_scalar_bf16_load_issue_and_thread_limited_dual_cta_residency",
+  "allowed_conclusion": "The frozen SM80 SiLU function and the probe each issue two adjacent scalar BF16 global loads, and a 1024-thread CTA has a physical occupancy ceiling of two CTAs per 2048-thread A800 SM. All position-balanced probe cells pass the declared within-run and cross-run stability gates.",
+  "production_decision": {
+    "status": "not_consumed",
+    "reason": "The physical second-resident-CTA boundary starts at 216 CTAs and therefore also covers the 256-CTA production cases. Crediting both resident CTAs improves the 1024-token bucket but regresses every 256-token case to approximately 20.3-21.8 percent APE, so the evidence does not identify a composable Forward source-credit rule."
+  },
+  "excluded_conclusions": [
+    "production SiLU duration",
+    "a production-specific correction factor",
+    "a per-shape latency lookup",
+    "excluding the 216- or 256-CTA domain from physical dual residency",
+    "using measured duration or ratio values as Forward parameters"
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "production_predictor_consumption_allowed": false
+}

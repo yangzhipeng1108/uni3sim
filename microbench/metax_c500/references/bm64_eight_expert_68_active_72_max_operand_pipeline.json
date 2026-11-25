@@ -1,0 +1,46 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_eight_expert_68_active_72_max_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "populated_experts": 8,
+    "active_m_tiles": 68,
+    "maximum_m_tiles": 72,
+    "production_k_n_tile_classes": [[192, 512], [512, 96]]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090730,
+    "tokens": 2048,
+    "experts": 8,
+    "topk": 2,
+    "event_trials_per_capture": 3,
+    "event_repetitions_per_trial": 1,
+    "independent_captures_per_projection": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "01f83fecf7fb57f932afd57ee42210e97981ec712237ce3b0af81a6b9fda94e1",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "per projection, median capacity across three independent captures using adjacent non-production N geometries"
+  },
+  "captures": {
+    "w1": [
+      {"capture": 1, "source_topk": 2, "k": 6144, "n": 32704, "active_m_tiles": 68, "maximum_m_tiles": 72, "raw_sha256": "750e7bae54e88dd0422bf916ac43397ce2742b29b338e2b16f7f16f0e3abb04f", "operand_pipeline_capacity_bytes_per_s": 2538405148803.977},
+      {"capture": 2, "source_topk": 2, "k": 6144, "n": 32832, "active_m_tiles": 68, "maximum_m_tiles": 72, "raw_sha256": "2b5fb47716b160be886a1cbda4f5c15c5259d41822e1c38ee91ffa9ce1c97500", "operand_pipeline_capacity_bytes_per_s": 2658770776305.729},
+      {"capture": 3, "source_topk": 2, "k": 6144, "n": 32704, "active_m_tiles": 68, "maximum_m_tiles": 72, "raw_sha256": "d106c1ddf7cd020124fc8df9f4070a229c3d0b3614dc9fb0eba504eb27547fdb", "operand_pipeline_capacity_bytes_per_s": 2695745790238.048}
+    ],
+    "w2": [
+      {"capture": 1, "source_topk": 1, "k": 16384, "n": 6080, "active_m_tiles": 68, "maximum_m_tiles": 72, "raw_sha256": "692d90314061fa804cdea421a00b438b2bf8b2b1e72072f138c932f894f3c54f", "operand_pipeline_capacity_bytes_per_s": 1313057123385.8208},
+      {"capture": 2, "source_topk": 1, "k": 16384, "n": 6208, "active_m_tiles": 68, "maximum_m_tiles": 72, "raw_sha256": "268af83225ec460b15ab648a198ff39df5f7377f47b8e97ee6a3cb99b3d04654", "operand_pipeline_capacity_bytes_per_s": 1311465635780.216},
+      {"capture": 3, "source_topk": 1, "k": 16384, "n": 6080, "active_m_tiles": 68, "maximum_m_tiles": 72, "raw_sha256": "8c18f65f0db0a17160230b3a6ae1ddfedbc6bcfe227709c795f9fef2aba6d0bb", "operand_pipeline_capacity_bytes_per_s": 1378062582506.4473}
+    ]
+  },
+  "selected_services": {
+    "w1": {"predicate": "eight populated experts, 68 active M tiles, 72 maximum padded M tiles, and K/N tile class (192,512)", "logical_byte_capacity_per_s": 2658770776305.729},
+    "w2": {"predicate": "eight populated experts, 68 active M tiles, 72 maximum padded M tiles, and K/N tile class (512,96)", "logical_byte_capacity_per_s": 1313057123385.8208}
+  }
+}

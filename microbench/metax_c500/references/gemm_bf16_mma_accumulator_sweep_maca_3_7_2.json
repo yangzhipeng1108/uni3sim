@@ -1,0 +1,68 @@
+{
+  "schema_version": 2,
+  "hardware_id": "metax_c500",
+  "software_revision": "maca_3.7.2",
+  "compiler": "mxcc 1.0.0 (d9102a1572)",
+  "mechanism": "register_only_bf16_mma_wave_accumulator_saturation",
+  "rate_unit": "flops_per_ap_cycle",
+  "architecture_peak_flops_per_ap_cycle": 2048.0,
+  "ap_count": 104,
+  "wave_size": 64,
+  "mma_shape": [16, 16, 16],
+  "accumulator_dtype": "fp32",
+  "accumulator_vector_width": 4,
+  "iterations": 16384,
+  "selected_repeat": 2,
+  "measurements": [
+    {"active_waves_per_ap": 1, "accumulator_chains": 4, "flops_per_ap_cycle": 402.360255},
+    {"active_waves_per_ap": 1, "accumulator_chains": 8, "flops_per_ap_cycle": 451.091385},
+    {"active_waves_per_ap": 1, "accumulator_chains": 16, "flops_per_ap_cycle": 479.304509},
+    {"active_waves_per_ap": 1, "accumulator_chains": 32, "flops_per_ap_cycle": 495.105762},
+    {"active_waves_per_ap": 2, "accumulator_chains": 4, "flops_per_ap_cycle": 806.112470},
+    {"active_waves_per_ap": 2, "accumulator_chains": 8, "flops_per_ap_cycle": 901.855440},
+    {"active_waves_per_ap": 2, "accumulator_chains": 16, "flops_per_ap_cycle": 958.917229},
+    {"active_waves_per_ap": 2, "accumulator_chains": 32, "flops_per_ap_cycle": 990.343070},
+    {"active_waves_per_ap": 4, "accumulator_chains": 4, "flops_per_ap_cycle": 1612.224940},
+    {"active_waves_per_ap": 4, "accumulator_chains": 8, "flops_per_ap_cycle": 1803.928912},
+    {"active_waves_per_ap": 4, "accumulator_chains": 16, "flops_per_ap_cycle": 1916.971647},
+    {"active_waves_per_ap": 4, "accumulator_chains": 32, "flops_per_ap_cycle": 1980.949182},
+    {"active_waves_per_ap": 8, "accumulator_chains": 4, "flops_per_ap_cycle": 1860.182268},
+    {"active_waves_per_ap": 8, "accumulator_chains": 8, "flops_per_ap_cycle": 1935.004712},
+    {"active_waves_per_ap": 8, "accumulator_chains": 16, "flops_per_ap_cycle": 1986.093656},
+    {"active_waves_per_ap": 8, "accumulator_chains": 32, "flops_per_ap_cycle": 2015.519516},
+    {"active_waves_per_ap": 16, "accumulator_chains": 4, "flops_per_ap_cycle": 1943.832179},
+    {"active_waves_per_ap": 16, "accumulator_chains": 8, "flops_per_ap_cycle": 1989.007428},
+    {"active_waves_per_ap": 16, "accumulator_chains": 16, "flops_per_ap_cycle": 2016.371139},
+    {"active_waves_per_ap": 16, "accumulator_chains": 32, "flops_per_ap_cycle": 2031.443517},
+    {"active_waves_per_ap": 32, "accumulator_chains": 4, "flops_per_ap_cycle": 1994.060665},
+    {"active_waves_per_ap": 32, "accumulator_chains": 8, "flops_per_ap_cycle": 2017.905901},
+    {"active_waves_per_ap": 32, "accumulator_chains": 16, "flops_per_ap_cycle": 2031.927882},
+    {"active_waves_per_ap": 32, "accumulator_chains": 32, "flops_per_ap_cycle": 2039.674567}
+  ],
+  "stability": {
+    "repeat_count": 2,
+    "maximum_relative_rate_delta": 0.001296466,
+    "comparison": "absolute difference divided by the two-repeat mean",
+    "repeat_result_sha256": [
+      "2e2f17196be576e637aa01bcaef5cf02decb4ce738bccb1908b5f9a6fb24fe5e",
+      "1046e5db6a217ed883b7b99ddc0f8cd5a0af680dcdfb2fd4020524aea8f51db9"
+    ]
+  },
+  "provenance": {
+    "capture_baseline_commit": "b0f6db466",
+    "capture_command": "MACA_VISIBLE_DEVICES=0 mma_accumulator_sweep",
+    "source_sha256": "9f40d19ba1bf6efa1fdd48dbf1d31175320c7e356cf99fc96455025267001e52",
+    "binary_sha256": "0066751e1d3ce0ec4da09afbf1a8f7d5d3a1064ba4d0da3f3d711338d1d0710c",
+    "physical_device_id": 0,
+    "owner": "GEMM worker",
+    "remote_snapshot": "/capture-workspace/midlayer_hw_model/execution_snapshots/gemm_mma_chains32_b0f6db466_20260915",
+    "recorded_pids": [342831, 342949],
+    "result_paths": [
+      "profiler_output/microbench/metax_c500/mma_accumulator_chain32_b0f6db466_20260915/raw_r1.csv",
+      "profiler_output/microbench/metax_c500/mma_accumulator_chain32_b0f6db466_20260915/raw_r2.csv"
+    ]
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true
+}

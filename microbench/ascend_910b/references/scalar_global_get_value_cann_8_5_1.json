@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "scalar_global_get_value_serialized",
+  "request_size_unit": "int32_values",
+  "duration_unit": "ns_per_serialized_request_per_aiv",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "1": 92.0439453125
+  },
+  "mechanism": "one dependency-chained GlobalTensor<int32_t>::GetValue",
+  "scope": "hierarchy-insensitive serialized scalar global read",
+  "composition": "serialized_per_source_get_value_on_each_aiv_worker",
+  "source_commit": "7ac2d3d10e0bc846d9d65ac9fa0547fa274b7fa1",
+  "source_sha256": "4d4b83e71dee9ca3809d4019ee2fbbedda8b9b1ac66bf568b5e2677b0efa4f8e",
+  "raw_path": "profiler_output/microbench/ascend_910b/scalar_get_value_49e1d6a9_807e1b36_r1/raw.csv",
+  "raw_sha256": "65de10980fa182063f92303e1d016f8f276d60e641683faf7c25de2df772a8e9",
+  "samples_per_working_set": 24,
+  "working_sets": {
+    "l2": {
+      "buffer_bytes": 1048576,
+      "stride_bytes": 64,
+      "median_ns": 91.6725870768225
+    },
+    "dram": {
+      "buffer_bytes": 536870912,
+      "stride_bytes": 4096,
+      "median_ns": 94.9594923655195
+    }
+  },
+  "pooled_median_ns": 92.0439453125,
+  "pooled_odd_to_even": {
+    "candidate_ns": 92.0439453125,
+    "mape_percent": 2.063019852821891,
+    "max_ape_percent": 4.270766723189409
+  },
+  "pooled_even_to_odd": {
+    "candidate_ns": 92.636124928792,
+    "mape_percent": 2.4599102201868237,
+    "max_ape_percent": 7.021347091870854
+  },
+  "interpretation": "The original hierarchy-separation hypothesis failed because the two working-set distributions overlap. Both independently replicated cells nevertheless measure the same dependency-chained GetValue mechanism, and a single pooled service passes bidirectional odd/even validation. The service makes no L2-versus-DRAM claim.",
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

@@ -1,0 +1,508 @@
+{
+    "allowed_use": "Whether the L2-served fraction of a grouped operand stream depends on the resident working set, at a fixed sharing structure. The discriminating quantity is the presence and position of a knee, not the absolute rate.",
+    "consequence": "A DRAM-served fraction indexed by occupancy or reuse footprint cannot express a shortfall that is flat in footprint. The residency-profile shape carried by the shared miss core is the wrong abstraction for this phenomenon and must not be filled with it.",
+    "dram_read_capability_bytes_per_s": {
+        "metax_c500": 1653069600000.0,
+        "nvidia_a800": 1790532000000.0
+    },
+    "finding": "The probe detects a capacity knee where one must exist: nvidia_a800 holds a flat 45-50 percent served fraction from a 0.06 MiB working set through 16.5 MiB and then falls to 34.3 and 24.1 percent at 33.0 and 66.0 MiB, bracketing its 40 MiB L2. metax_c500 shows no such knee at its documented 8 MiB. Its served fraction is flat near 33 percent from 0.13 MiB through 8.25 MiB and is still 30.2 percent at 16.5 MiB, declining only in the same far region as nvidia_a800, where a single program's own K stream no longer fits any cache. The metax_c500 shortfall is therefore not a residency effect: it does not depend on the working set at all across a 128x range that spans its capacity. It is a level difference. Against the 68.3 percent a same-K-step sharing model predicts for this structure, nvidia_a800 realizes about 46 percent and metax_c500 about 33 percent. The 49 percent level that 'the repeatedly referenced object shares and the streamed object does not' would produce sits just above nvidia_a800's plateau and well above metax_c500's.",
+    "forbidden_use": "An absolute DRAM bandwidth, an L2 capacity, a production operator duration, a per-shape traffic correction, or any parameter chosen to move a production MAPE.",
+    "measurements": {
+        "metax_c500": {
+            "by_tile_bytes": [
+                {
+                    "k_steps": 3723,
+                    "l2_served_fraction": 0.19331998420167418,
+                    "logical_byte_rate_per_s": 2049225923074.4053,
+                    "logical_request_bytes": 128826998784,
+                    "median_ms": 62.866177,
+                    "relative_spread": 0.010775,
+                    "resident_working_set_bytes": 67584,
+                    "tile_bytes": 1024
+                },
+                {
+                    "k_steps": 1861,
+                    "l2_served_fraction": 0.3490307962293505,
+                    "logical_byte_rate_per_s": 2539397548186.338,
+                    "logical_request_bytes": 128792395776,
+                    "median_ms": 50.717697,
+                    "relative_spread": 0.041556,
+                    "resident_working_set_bytes": 135168,
+                    "tile_bytes": 2048
+                },
+                {
+                    "k_steps": 930,
+                    "l2_served_fraction": 0.33236792560742234,
+                    "logical_byte_rate_per_s": 2476018848411.364,
+                    "logical_request_bytes": 128723189760,
+                    "median_ms": 51.987968,
+                    "relative_spread": 0.010321,
+                    "resident_working_set_bytes": 270336,
+                    "tile_bytes": 4096
+                },
+                {
+                    "k_steps": 465,
+                    "l2_served_fraction": 0.3251188476050604,
+                    "logical_byte_rate_per_s": 2449423271243.8022,
+                    "logical_request_bytes": 128723189760,
+                    "median_ms": 52.552448,
+                    "relative_spread": 0.017576,
+                    "resident_working_set_bytes": 540672,
+                    "tile_bytes": 8192
+                },
+                {
+                    "k_steps": 232,
+                    "l2_served_fraction": 0.3283427856319825,
+                    "logical_byte_rate_per_s": 2461180442400.85,
+                    "logical_request_bytes": 128446365696,
+                    "median_ms": 52.188927,
+                    "relative_spread": 0.032733,
+                    "resident_working_set_bytes": 1081344,
+                    "tile_bytes": 16384
+                },
+                {
+                    "k_steps": 116,
+                    "l2_served_fraction": 0.33048760913565767,
+                    "logical_byte_rate_per_s": 2469064983048.159,
+                    "logical_request_bytes": 128446365696,
+                    "median_ms": 52.02227,
+                    "relative_spread": 0.022622,
+                    "resident_working_set_bytes": 2162688,
+                    "tile_bytes": 32768
+                },
+                {
+                    "k_steps": 58,
+                    "l2_served_fraction": 0.3288468348654616,
+                    "logical_byte_rate_per_s": 2463028837342.409,
+                    "logical_request_bytes": 128446365696,
+                    "median_ms": 52.149761,
+                    "relative_spread": 0.009641,
+                    "resident_working_set_bytes": 4325376,
+                    "tile_bytes": 65536
+                },
+                {
+                    "k_steps": 29,
+                    "l2_served_fraction": 0.3277167866277855,
+                    "logical_byte_rate_per_s": 2458888705115.958,
+                    "logical_request_bytes": 128446365696,
+                    "median_ms": 52.237568,
+                    "relative_spread": 0.018309,
+                    "resident_working_set_bytes": 8650752,
+                    "tile_bytes": 131072
+                },
+                {
+                    "k_steps": 16,
+                    "l2_served_fraction": 0.3018956056857214,
+                    "logical_byte_rate_per_s": 2367940401841.6865,
+                    "logical_request_bytes": 141733920768,
+                    "median_ms": 59.855358,
+                    "relative_spread": 0.026355,
+                    "resident_working_set_bytes": 17301504,
+                    "tile_bytes": 262144
+                },
+                {
+                    "k_steps": 16,
+                    "l2_served_fraction": 0.19283416662923702,
+                    "logical_byte_rate_per_s": 2047992533450.905,
+                    "logical_request_bytes": 283467841536,
+                    "median_ms": 138.412537,
+                    "relative_spread": 0.005893,
+                    "resident_working_set_bytes": 34603008,
+                    "tile_bytes": 524288
+                },
+                {
+                    "k_steps": 16,
+                    "l2_served_fraction": 0.11107384741032178,
+                    "logical_byte_rate_per_s": 1859625341412.4094,
+                    "logical_request_bytes": 566935683072,
+                    "median_ms": 304.86554,
+                    "relative_spread": 0.005522,
+                    "resident_working_set_bytes": 69206016,
+                    "tile_bytes": 1048576
+                }
+            ],
+            "container": "capture-container-1",
+            "device": "MetaX C500",
+            "device_index": 3,
+            "remote_output": "profiler_output/microbench/metax_c500/grouped_program_l2_service_knee_20260920/",
+            "source": "microbench/metax_c500/memory/l2/grouped_program_l2_service_knee.cpp",
+            "toolchain": "/opt/maca/mxgpu_llvm/bin/mxcc -x maca -offload-arch native --maca-path=/opt/maca -O3",
+            "trials": 5
+        },
+        "nvidia_a800": {
+            "by_tile_bytes": [
+                {
+                    "k_steps": 3723,
+                    "l2_served_fraction": 0.42009062257007235,
+                    "logical_byte_rate_per_s": 3087606563520.963,
+                    "logical_request_bytes": 128826998784,
+                    "median_ms": 41.723904,
+                    "relative_spread": 0.010259,
+                    "resident_working_set_bytes": 67584,
+                    "tile_bytes": 1024
+                },
+                {
+                    "k_steps": 1861,
+                    "l2_served_fraction": 0.47962689989124185,
+                    "logical_byte_rate_per_s": 3440861950061.943,
+                    "logical_request_bytes": 128792395776,
+                    "median_ms": 37.430271,
+                    "relative_spread": 0.004842,
+                    "resident_working_set_bytes": 135168,
+                    "tile_bytes": 2048
+                },
+                {
+                    "k_steps": 930,
+                    "l2_served_fraction": 0.5015389149392088,
+                    "logical_byte_rate_per_s": 3592119934059.9087,
+                    "logical_request_bytes": 128723189760,
+                    "median_ms": 35.834881,
+                    "relative_spread": 0.009687,
+                    "resident_working_set_bytes": 270336,
+                    "tile_bytes": 4096
+                },
+                {
+                    "k_steps": 465,
+                    "l2_served_fraction": 0.5563489989312437,
+                    "logical_byte_rate_per_s": 4035902084491.1973,
+                    "logical_request_bytes": 128723189760,
+                    "median_ms": 31.894527,
+                    "relative_spread": 0.065432,
+                    "resident_working_set_bytes": 540672,
+                    "tile_bytes": 8192
+                },
+                {
+                    "k_steps": 232,
+                    "l2_served_fraction": 0.4497046286735732,
+                    "logical_byte_rate_per_s": 3253765329125.1904,
+                    "logical_request_bytes": 128446365696,
+                    "median_ms": 39.476223,
+                    "relative_spread": 0.003424,
+                    "resident_working_set_bytes": 1081344,
+                    "tile_bytes": 16384
+                },
+                {
+                    "k_steps": 116,
+                    "l2_served_fraction": 0.4585548056951535,
+                    "logical_byte_rate_per_s": 3306949657755.9204,
+                    "logical_request_bytes": 128446365696,
+                    "median_ms": 38.841343,
+                    "relative_spread": 0.002214,
+                    "resident_working_set_bytes": 2162688,
+                    "tile_bytes": 32768
+                },
+                {
+                    "k_steps": 58,
+                    "l2_served_fraction": 0.4586547244755629,
+                    "logical_byte_rate_per_s": 3307560037843.487,
+                    "logical_request_bytes": 128446365696,
+                    "median_ms": 38.834175,
+                    "relative_spread": 0.005458,
+                    "resident_working_set_bytes": 4325376,
+                    "tile_bytes": 65536
+                },
+                {
+                    "k_steps": 29,
+                    "l2_served_fraction": 0.4599108614797315,
+                    "logical_byte_rate_per_s": 3315252746807.099,
+                    "logical_request_bytes": 128446365696,
+                    "median_ms": 38.744064,
+                    "relative_spread": 0.008352,
+                    "resident_working_set_bytes": 8650752,
+                    "tile_bytes": 131072
+                },
+                {
+                    "k_steps": 16,
+                    "l2_served_fraction": 0.4501448957997525,
+                    "logical_byte_rate_per_s": 3256370608042.805,
+                    "logical_request_bytes": 141733920768,
+                    "median_ms": 43.52512,
+                    "relative_spread": 0.006023,
+                    "resident_working_set_bytes": 17301504,
+                    "tile_bytes": 262144
+                },
+                {
+                    "k_steps": 16,
+                    "l2_served_fraction": 0.34270289493554174,
+                    "logical_byte_rate_per_s": 2724083197999.8,
+                    "logical_request_bytes": 283467841536,
+                    "median_ms": 104.059906,
+                    "relative_spread": 0.010313,
+                    "resident_working_set_bytes": 34603008,
+                    "tile_bytes": 524288
+                },
+                {
+                    "k_steps": 16,
+                    "l2_served_fraction": 0.24124070770468298,
+                    "logical_byte_rate_per_s": 2359815580753.5156,
+                    "logical_request_bytes": 566935683072,
+                    "median_ms": 240.245758,
+                    "relative_spread": 0.008652,
+                    "resident_working_set_bytes": 69206016,
+                    "tile_bytes": 1048576
+                }
+            ],
+            "device": "NVIDIA A800-SXM4-80GB",
+            "device_index": 0,
+            "source": "microbench/nvidia_a800/memory/l2/grouped_program_l2_service_knee.cu",
+            "toolchain": "/usr/local/cuda-12.2/bin/nvcc -O3 -arch=sm_80",
+            "trials": 5
+        }
+    },
+    "mechanism": "grouped_program_l2_service_knee",
+    "method": "Group width one and a fixed N tile count hold the sharing structure constant: one A object is referenced by every program of an N sweep and each B object by about 1.6 of them. Only the object size moves, which moves the resident working set across each target's L2. The K depth is scaled against the object size to hold the logical request volume roughly fixed. The served fraction is 1 - configured_dram_read_capability / logical_byte_rate, valid while the stream is DRAM bound.",
+    "production_or_evaluation_duration_consumed": false,
+    "retraction": "The wall-clock derived l2_served_fraction in this reference and in grouped_program_l2_service_knee.json is RETRACTED. It was computed as 1 - configured_dram_read_capability / logical_byte_rate, which is only valid if the probe is DRAM bound. A direct nvidia_a800 measurement with dram__bytes_read.sum and l1tex__m_xbar2l1tex_read_bytes.sum shows the probe is not DRAM bound: at the same geometry the true served fraction is 57.7 / 60.9 / 71.7 / 73.2 / 75.5 percent at group width 1 / 2 / 4 / 8 / 16, against 67.0 / 65.6 / 67.9 / 68.1 / 70.5 from the wall-clock expression. The wall-clock numbers are wrong in level everywhere and wrong in trend at the low widths. Every conclusion drawn from them is withdrawn, including the reported metax_c500 levels, the claim that the sharing model over-credits by 26 points, and the absence of a knee at 8 MiB. The raw timings are kept because they are correct measurements of the probe's duration; only the served-fraction interpretation fails. A usable version of this probe must either be made genuinely DRAM bound or read DRAM counters directly, which on metax_c500 means mcProfiler.",
+    "same_k_step_sharing_model_served_fraction": 0.683,
+    "schema": "grouped_program_l2_service_knee_reference_v1",
+    "scope": {
+        "block_threads": 256,
+        "group_width": 1,
+        "m_tiles": 264,
+        "n_tiles": 64,
+        "read_instruction": "16-byte vector load",
+        "resident_working_set_model": "66 objects per K step = 2 A plus 64 B",
+        "tile_bytes_sweep": [
+            1024,
+            2048,
+            4096,
+            8192,
+            16384,
+            32768,
+            65536,
+            131072,
+            262144,
+            524288,
+            1048576
+        ]
+    },
+    "sharing_shape_sweep": {
+        "finding": "nvidia_a800's apparent served fraction follows the same-K-step sharing model's shape and matches it at both ends, where one object is shared by the whole wave: 48.2 against 49.5 percent at one N tile and 48.4 against 49.5 at 256 and 512. It falls short only in the middle, by at most 26.2 points at eight N tiles. metax_c500 is different in kind: its apparent served fraction is lowest exactly where the model is highest, and across the whole sweep it rises monotonically with the number of distinct concurrent address streams -- 18.8 percent at 21 streams up to 35.8-38.6 percent at 105 -- rather than with the sharing structure.",
+        "metax_c500": [
+            {
+                "apparent_l2_served_fraction": 0.38648124576518605,
+                "distinct_a_streams": 104,
+                "distinct_b_streams": 1,
+                "logical_byte_rate_per_s": 2694407609530.5728,
+                "m_tiles": 16896,
+                "median_ms": 47.774208,
+                "n_tiles": 1,
+                "relative_spread": 0.004957,
+                "same_k_step_sharing_model_served_fraction": 0.4951923076923077
+            },
+            {
+                "apparent_l2_served_fraction": 0.2910991535613623,
+                "distinct_a_streams": 52,
+                "distinct_b_streams": 2,
+                "logical_byte_rate_per_s": 2331877029495.2515,
+                "m_tiles": 8448,
+                "median_ms": 55.201534,
+                "n_tiles": 2,
+                "relative_spread": 0.011687,
+                "same_k_step_sharing_model_served_fraction": 0.7403846153846154
+            },
+            {
+                "apparent_l2_served_fraction": 0.22068279291946258,
+                "distinct_a_streams": 26,
+                "distinct_b_streams": 4,
+                "logical_byte_rate_per_s": 2121176826305.0374,
+                "m_tiles": 4224,
+                "median_ms": 60.684799,
+                "n_tiles": 4,
+                "relative_spread": 0.011424,
+                "same_k_step_sharing_model_served_fraction": 0.8557692307692308
+            },
+            {
+                "apparent_l2_served_fraction": 0.18806030079301628,
+                "distinct_a_streams": 13,
+                "distinct_b_streams": 8,
+                "logical_byte_rate_per_s": 2035951193930.4636,
+                "m_tiles": 2112,
+                "median_ms": 63.225086,
+                "n_tiles": 8,
+                "relative_spread": 0.018026,
+                "same_k_step_sharing_model_served_fraction": 0.8990384615384616
+            },
+            {
+                "apparent_l2_served_fraction": 0.2229084398990423,
+                "distinct_a_streams": 7,
+                "distinct_b_streams": 16,
+                "logical_byte_rate_per_s": 2127252031646.358,
+                "m_tiles": 1056,
+                "median_ms": 60.51149,
+                "n_tiles": 16,
+                "relative_spread": 0.03074,
+                "same_k_step_sharing_model_served_fraction": 0.8894230769230769
+            },
+            {
+                "apparent_l2_served_fraction": 0.2817756071887485,
+                "distinct_a_streams": 4,
+                "distinct_b_streams": 32,
+                "logical_byte_rate_per_s": 2301606039206.7812,
+                "m_tiles": 528,
+                "median_ms": 55.927551,
+                "n_tiles": 32,
+                "relative_spread": 0.036486,
+                "same_k_step_sharing_model_served_fraction": 0.8269230769230769
+            },
+            {
+                "apparent_l2_served_fraction": 0.3240865612616527,
+                "distinct_a_streams": 2,
+                "distinct_b_streams": 64,
+                "logical_byte_rate_per_s": 2445682398452.68,
+                "m_tiles": 264,
+                "median_ms": 52.632832,
+                "n_tiles": 64,
+                "relative_spread": 0.015423,
+                "same_k_step_sharing_model_served_fraction": 0.6826923076923077
+            },
+            {
+                "apparent_l2_served_fraction": 0.3576131367436224,
+                "distinct_a_streams": 1,
+                "distinct_b_streams": 104,
+                "logical_byte_rate_per_s": 2573324105073.203,
+                "m_tiles": 132,
+                "median_ms": 50.022144,
+                "n_tiles": 128,
+                "relative_spread": 0.00371,
+                "same_k_step_sharing_model_served_fraction": 0.4951923076923077
+            },
+            {
+                "apparent_l2_served_fraction": 0.37149981789363784,
+                "distinct_a_streams": 1,
+                "distinct_b_streams": 104,
+                "logical_byte_rate_per_s": 2630181576813.367,
+                "m_tiles": 66,
+                "median_ms": 48.9408,
+                "n_tiles": 256,
+                "relative_spread": 0.013098,
+                "same_k_step_sharing_model_served_fraction": 0.4951923076923077
+            },
+            {
+                "apparent_l2_served_fraction": 0.37818342127271043,
+                "distinct_a_streams": 1,
+                "distinct_b_streams": 104,
+                "logical_byte_rate_per_s": 2658452116833.938,
+                "m_tiles": 33,
+                "median_ms": 48.420353,
+                "n_tiles": 512,
+                "relative_spread": 0.004357,
+                "same_k_step_sharing_model_served_fraction": 0.4951923076923077
+            }
+        ],
+        "method": "Object size fixed at 8 KiB; the N tile count moves the sharing shape while the program count and logical request volume stay fixed. A 104/108 program wave then spans ceil(W/n) A streams and min(W,n) B streams.",
+        "metric_confound": "The apparent served fraction is 1 - configured_dram_read_capability / logical_byte_rate, which credits every byte the probe does not achieve to L2 service and therefore assumes DRAM runs at its capability. The monotone dependence on stream count is the signature of achieved DRAM bandwidth scaling with memory-level parallelism, not of L2 service, so for metax_c500 this metric cannot separate 'L2 served less' from 'DRAM delivered less than its capability'. Separating them needs a DRAM byte counter, which on this target is mcProfiler and is a host-global serial resource. The knee result above is unaffected: its stream count is fixed at 66 throughout, so the confound is constant across it and the absence of a knee at 8 MiB stands.",
+        "nvidia_a800": [
+            {
+                "apparent_l2_served_fraction": 0.48192526323011065,
+                "distinct_a_streams": 108,
+                "distinct_b_streams": 1,
+                "logical_byte_rate_per_s": 3456126834448.0024,
+                "m_tiles": 16896,
+                "median_ms": 37.244926,
+                "n_tiles": 1,
+                "relative_spread": 0.005691,
+                "same_k_step_sharing_model_served_fraction": 0.49537037037037035
+            },
+            {
+                "apparent_l2_served_fraction": 0.6325389635089418,
+                "distinct_a_streams": 54,
+                "distinct_b_streams": 2,
+                "logical_byte_rate_per_s": 4872712538717.205,
+                "m_tiles": 8448,
+                "median_ms": 26.417152,
+                "n_tiles": 2,
+                "relative_spread": 0.015621,
+                "same_k_step_sharing_model_served_fraction": 0.7407407407407407
+            },
+            {
+                "apparent_l2_served_fraction": 0.6292913967862235,
+                "distinct_a_streams": 27,
+                "distinct_b_streams": 4,
+                "logical_byte_rate_per_s": 4830025482218.049,
+                "m_tiles": 4224,
+                "median_ms": 26.650623,
+                "n_tiles": 4,
+                "relative_spread": 0.037117,
+                "same_k_step_sharing_model_served_fraction": 0.8564814814814815
+            },
+            {
+                "apparent_l2_served_fraction": 0.6357438151488733,
+                "distinct_a_streams": 14,
+                "distinct_b_streams": 8,
+                "logical_byte_rate_per_s": 4915584345484.208,
+                "m_tiles": 2112,
+                "median_ms": 26.186752,
+                "n_tiles": 8,
+                "relative_spread": 0.037813,
+                "same_k_step_sharing_model_served_fraction": 0.8981481481481481
+            },
+            {
+                "apparent_l2_served_fraction": 0.6460847917871135,
+                "distinct_a_streams": 7,
+                "distinct_b_streams": 16,
+                "logical_byte_rate_per_s": 5059211806809.279,
+                "m_tiles": 1056,
+                "median_ms": 25.443329,
+                "n_tiles": 16,
+                "relative_spread": 0.048819,
+                "same_k_step_sharing_model_served_fraction": 0.8935185185185185
+            },
+            {
+                "apparent_l2_served_fraction": 0.5993082209674081,
+                "distinct_a_streams": 4,
+                "distinct_b_streams": 32,
+                "logical_byte_rate_per_s": 4468601787446.1045,
+                "m_tiles": 528,
+                "median_ms": 28.806145,
+                "n_tiles": 32,
+                "relative_spread": 0.059792,
+                "same_k_step_sharing_model_served_fraction": 0.8333333333333334
+            },
+            {
+                "apparent_l2_served_fraction": 0.540054123436913,
+                "distinct_a_streams": 2,
+                "distinct_b_streams": 64,
+                "logical_byte_rate_per_s": 3892918909023.8687,
+                "m_tiles": 264,
+                "median_ms": 33.065983,
+                "n_tiles": 64,
+                "relative_spread": 0.075996,
+                "same_k_step_sharing_model_served_fraction": 0.6944444444444444
+            },
+            {
+                "apparent_l2_served_fraction": 0.5114098664801523,
+                "distinct_a_streams": 1,
+                "distinct_b_streams": 108,
+                "logical_byte_rate_per_s": 3664691276307.2905,
+                "m_tiles": 132,
+                "median_ms": 35.125248,
+                "n_tiles": 128,
+                "relative_spread": 0.044691,
+                "same_k_step_sharing_model_served_fraction": 0.49537037037037035
+            },
+            {
+                "apparent_l2_served_fraction": 0.484474902643646,
+                "distinct_a_streams": 1,
+                "distinct_b_streams": 108,
+                "logical_byte_rate_per_s": 3473219847456.4355,
+                "m_tiles": 66,
+                "median_ms": 37.06163,
+                "n_tiles": 256,
+                "relative_spread": 0.008206,
+                "same_k_step_sharing_model_served_fraction": 0.49537037037037035
+            },
+            {
+                "apparent_l2_served_fraction": 0.4841900116132344,
+                "distinct_a_streams": 1,
+                "distinct_b_streams": 108,
+                "logical_byte_rate_per_s": 3471301526362.4946,
+                "m_tiles": 33,
+                "median_ms": 37.082111,
+                "n_tiles": 512,
+                "relative_spread": 0.004777,
+                "same_k_step_sharing_model_served_fraction": 0.49537037037037035
+            }
+        ]
+    }
+}

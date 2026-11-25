@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "evidence_kind": "conditional_installed_argmax_source_not_selected_launch_or_rate",
+  "artifact_identity_reference": "bf16_vec4_elementwise_2r1w_dram_maca_3_7_2.json#/production_source_identity",
+  "hardware_execution_performed": false,
+  "GPU_queried": false,
+  "duration_consumed": false,
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/metax_c500/argmax_launch_static_20261023/argmax_continuous_dispatch_source.json",
+      "sha256": "3056f319aec23c1ffd7d472a800ef824615353538dcd56e9a9655584353730ff"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/argmax_launch_static_20261023/argmax_continuous_program_source.json",
+      "sha256": "dc146b140435ec2a6b89aa465006b3fa2b067c94e87c8f782bb02c737922a5af"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/argmax_launch_static_20261023/argmax_dtype_dispatch.json",
+      "sha256": "030fbf406709379ac6c909dddab9dcdac8afad02e3b39cb00ba41e1a5cea743c"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/argmax_launch_static_20261023/argmax_float_dispatch_table.json",
+      "sha256": "07d3a39ab7e5b7258d00133ff7844446c6a290d09010e090d16f6791926fd364"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/argmax_launch_static_20261023/argmax_pair_shuffle_source.json",
+      "sha256": "1e096812217b839122d0faf1266dc97f764cd0b1112485001bca6c419ca4022a"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/argmax_launch_static_20261023/argmax_code_object_inventory.json",
+      "sha256": "19dc9b7df77982cb0b0453874e82f07e491657e4343c45c5afe26c336367de93"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/argmax_launch_static_20261023/argmax_float_host_symbols.json",
+      "sha256": "34c6cc03d6b53bbf00c2cae701c7565bd9354a210ff268d7cee14b154c1a351a"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/argmax_launch_static_20261023/argmax_fatbin_registration.json",
+      "sha256": "7cb8ae6be862389d91d966cf9ed86d6966c42665444682ceabc18bffc1c525c3"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/argmax_launch_static_20261023/argmax_device_symbol_binding.json.gz",
+      "sha256": "def251c00254ba5e9d374db09a49d8905e878ba687ec384c8253b3d8e4b499c1"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/argmax_launch_static_20261023/argmax_vec4_continuous_device_code.json.gz",
+      "sha256": "e674a8bd5fe597713134a2dd0855e0ab4b6dcd740731ce9d686b8308c485c641"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/argmax_launch_static_20261023/argmax_vec4_continuous_metadata.json.gz",
+      "sha256": "af55c9e11456813649a7c5132ed3fd97c96dc2bd8153e188427d2671314aea6c"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/argmax_launch_static_20261023/argmax_vec4_continuous_selected_metadata.json",
+      "sha256": "120ac93b12bb68795c661af0dd4a0926e757f5350d729750558be6a9ab0f88aa"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/argmax_launch_static_20261023/argmax_vec4_continuous_selected_program.json",
+      "sha256": "f0945450cf558c481e2d3c996101da8a02e2216728f54cf0a695a94759d46aff"
+    }
+  ],
+  "host_float_dispatch": {
+    "dtype_tag": 6,
+    "dispatch_table_base": "0x4912c38",
+    "signed_relative_table_slot": 6,
+    "branch_target": "0x26e579b",
+    "call_site": "0x26e57af",
+    "callee": "gpu_reduce_kernel<float,long,1,ArgMaxOps<float>,thrust::pair<float,long>>",
+    "limitation": "The dtype dispatcher does not select among MACA continuous/no-struct/origin reduction programs."
+  },
+  "pair_semantics": {
+    "value_dtype": "fp32",
+    "index_dtype": "int64",
+    "order": "NaN wins; equal finite values or two NaNs choose smaller original INT64 index",
+    "signed_zero": "equal; choose lower original index",
+    "shuffle_source": "SharedReduceOps.h:495-497 shuffles both fields; MACA SDK FP32 overload bitcasts one32bit value, long/longlong overloads split low/high32 and shuffle separately",
+    "source_32bit_permute_calls_per_pair_shuffle": 3,
+    "actual_isa_count_bound": false
+  },
+  "conditional_source_scenario": {
+    "rows": 1,
+    "vocab": 128256,
+    "logits_dtype": "fp32",
+    "output_dtype": "int64",
+    "requirements": [
+      "32bit iterator indexing and no external accumulation buffer",
+      "input/output addresses4B-aligned,reduce/output dimensions<=8",
+      "runtime continuous-reduce kernel not disabled",
+      "contiguous all-to-one iterator with block-x reduction,not a3D transpose case",
+      "pair<float,int64> element size16B"
+    ],
+    "source_program": "ReduceContinuousKernel / InputPerOutputContinuousReduceKernel",
+    "input_vector_elements": 4,
+    "block": [
+      512,
+      1,
+      1
+    ],
+    "grid": [
+      1,
+      1,
+      1
+    ],
+    "dynamic_shared_bytes": 8200,
+    "global_reduction_buffer_bytes": 0,
+    "global_semaphore_bytes": 0,
+    "input_logical_bytes": 513024,
+    "output_logical_bytes": 8,
+    "block_reduction": "shared pair merge offsets256,128,64; wave64 shuffle offsets1,2,4,8,16,32. Active identity/padded thread merges are not the minimalN-1 mathematical count.",
+    "selected_in_original_serving": false
+  },
+  "remaining_minimal_facts": [
+    "Original target Copy/reduction cachedflag state and required pointer alignment, using exact source/allocator guarantees or non-duration launch observations",
+    "Dynamic control-path and instruction counts for the selected runtime scenario, preserving NaN/tie domains and loop structure",
+    "Typed cmp_o_f32/cmp_eq_f32/cmp_gt_f32,cmp_lt_i64/cmp_le_i64,csel_b32,sm_bperm_b32 pipe/issue and dependency mapping from hardware documentation or independent mechanisms",
+    "Normal capacity and actual provider remain separate acceptance gaps; compiled conditional entry is not original runtime selection"
+  ],
+  "excluded_substitutions": [
+    "No float-sum reduction service forFP32/INT64 argmax",
+    "No generic integer peak for INT64 comparisons or permute without a typed mapping",
+    "No assumption that generic Reduce.cuh kernel runs when MACA specialized programs precede it",
+    "No production argmax duration LUT or complete operator timing",
+    "No source-call count promoted to selected ISA instruction count"
+  ],
+  "production_launch_or_rate_added": false,
+  "serving_or_normal_acceptance": false,
+  "compiled_conditional_entry": {
+    "bundle_id": 124,
+    "target": "maca-mxc-metax-macahca--xcore1000",
+    "symbol": "_ZN2at6native36InputPerOutputContinuousReduceKernelIflN6thrust4pairIflEELi4ELb0ELb0ENS0_9ArgMaxOpsIfEENS0_6reduce16OffsetCalculatorILi1EjLb0EEENS8_ILi2EjLb0EEEEENSt9enable_ifIXaaoooosr3std7is_sameIT1_NS3_IT_lEEEE5valuesr3std7is_sameISC_NS3_IT0_lEEEE5valuesr3std7is_sameISC_S4_EE5valuentsr3std7is_sameISC_NS3_IllEEEE5valueEvE4typeEPKSD_T5_SC_iiT6_T7_ibPKcSQ_PvPiSR_lbb",
+    "address": "0x722e00",
+    "code_size_bytes": 14856,
+    "thread_registers": 24,
+    "scalar_registers": 58,
+    "max_block_size": 512,
+    "private_memory_bytes": 0,
+    "static_shared_bytes": 4,
+    "dynamic_shared_bytes_in_source_scenario": 8200,
+    "total_shared_bytes_in_source_scenario": 8204,
+    "typed_instruction_site_counts": {
+      "cmp_o_f32": 48,
+      "cmp_lt_i64": 22,
+      "cmp_gt_f32": 24,
+      "cmp_eq_f32": 24,
+      "cmp_le_i64": 2,
+      "sm_bperm_b32": 21
+    },
+    "value_dependent_control_retained": true,
+    "selected_in_original_serving": false,
+    "limitations": [
+      "Exact compiled entry is now known only for the declared conditional source scenario.",
+      "The entire entry includes loops, NaN masks and global-reduce branches. Static site counts must not be multiplied byN or used as dynamic counts.",
+      "Native cmp_lt_i64/cmp_le_i64 remain; compiler did not simply substitute a proved INT32 tie comparison in this entry.",
+      "The21 sm_bperm_b32 sites form7 source-code triples across entry branches; this does not prove21 dynamic instructions per lane or all branches execute.",
+      "Four bytes of static SMEM are separate from the8200B dynamic host launch amount. This SMEM is not a global activation allocation.",
+      "No typed opcode throughput/dependency service or production timing is derived."
+    ],
+    "shared_bytes_scope": "8204B is the raw sum of static4B and dynamic8200B requirements. Runtime alignment/allocation granularity and actual per-CTA admission footprint are not bound by this sum."
+  }
+}

@@ -1,0 +1,150 @@
+{
+    "allowed_use": "The DRAM-served byte fraction of a repeated same-operand single-pass stream at a given complete operand-and-result footprint, by linear interpolation between the measured footprints. At or below the first measured footprint the first fraction applies; at or above the last measured footprint the stream is fully DRAM-served.",
+    "derived_model": {
+        "dram_asymptote_logical_byte_rate_per_s": 1721611208406.3047,
+        "excluded_footprints": {
+            "6291456": "The probe's grid-stride inner loop performs fewer than two iterations per thread at this footprint, so its rate reflects loop shape rather than memory service. The measurement is retained in the capture but excluded from the published domain."
+        },
+        "formula": "dram_served_byte_fraction = (1/rate - 1/resident_plateau) / (1/dram_asymptote - 1/resident_plateau), clamped to [0, 1] and then replaced by its running maximum over increasing footprint",
+        "residency_curve": [
+            {
+                "conservative_logical_byte_rate_per_s": 2541313868613.1387,
+                "dram_served_byte_fraction": 0.0,
+                "total_footprint_bytes": 12582912
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 2533839416058.394,
+                "dram_served_byte_fraction": 0.00619553819498423,
+                "total_footprint_bytes": 18874368
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 2451102232667.4497,
+                "dram_served_byte_fraction": 0.07730006693481377,
+                "total_footprint_bytes": 22020096
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 2529007263922.518,
+                "dram_served_byte_fraction": 0.07730006693481377,
+                "total_footprint_bytes": 25165824
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 2468571428571.4287,
+                "dram_served_byte_fraction": 0.07730006693481377,
+                "total_footprint_bytes": 28311552
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 2373818181818.1816,
+                "dram_served_byte_fraction": 0.14819546470776124,
+                "total_footprint_bytes": 31457280
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 2297263157894.737,
+                "dram_served_byte_fraction": 0.22312491394821052,
+                "total_footprint_bytes": 34603008
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 2198492012779.5527,
+                "dram_served_byte_fraction": 0.32750832686955333,
+                "total_footprint_bytes": 37748736
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 2181378151260.5042,
+                "dram_served_byte_fraction": 0.3465554419538157,
+                "total_footprint_bytes": 40894464
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 2037891411648.5684,
+                "dram_served_byte_fraction": 0.5188362154187768,
+                "total_footprint_bytes": 44040192
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 1879963735267.4524,
+                "dram_served_byte_fraction": 0.7388575416681449,
+                "total_footprint_bytes": 47185920
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 1825273209549.0715,
+                "dram_served_byte_fraction": 0.8239266322945656,
+                "total_footprint_bytes": 50331648
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 1785298429319.3716,
+                "dram_served_byte_fraction": 0.8894029769149537,
+                "total_footprint_bytes": 56623104
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 1762835443037.9746,
+                "dram_served_byte_fraction": 0.9274992015330565,
+                "total_footprint_bytes": 62914560
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 1750961832061.0686,
+                "dram_served_byte_fraction": 0.9480312086508188,
+                "total_footprint_bytes": 75497472
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 1739160909856.7817,
+                "dram_served_byte_fraction": 0.9687153047101941,
+                "total_footprint_bytes": 100663296
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 1721611208406.3047,
+                "dram_served_byte_fraction": 1.0,
+                "total_footprint_bytes": 201326592
+            },
+            {
+                "conservative_logical_byte_rate_per_s": 1729182058047.4932,
+                "dram_served_byte_fraction": 1.0,
+                "total_footprint_bytes": 402653184
+            }
+        ],
+        "resident_plateau_logical_byte_rate_per_s": 2541313868613.1387,
+        "selection_rule": "At each measured footprint retain the minimum median logical byte rate across the two idle devices. The endpoints are measured extremes, not a fit: the resident plateau is the largest conservative rate at or below 27 MiB and the DRAM asymptote the smallest at or above 54 MiB. A stream serving a fraction f of its bytes from DRAM and the rest from L2 takes (1-f)/resident_plateau + f/dram_asymptote per byte, so inverting the measured rate gives f directly. The running maximum over increasing footprint keeps the published fraction monotone and conservative against measurement noise; no intermediate value is fitted."
+    },
+    "forbidden_use": "A production operator duration, a per-shape correction, a binary residency threshold at the L2 capacity, or extrapolation outside the measured stream contract or footprint domain.",
+    "hardware_id": "nvidia_a800",
+    "mechanism": "l2_operand_residency_curve",
+    "production_or_evaluation_duration_consumed": false,
+    "provenance": {
+        "captures": [
+            {
+                "binary_sha256": "50edee20f0bf465f9fc700b3776fdf6be059570e60c649777799a304f81d1c8e",
+                "device_index": 6,
+                "device_uuid": "capture-device-0b790647dba7",
+                "maximum_relative_spread": 0.043673012318029114,
+                "measurements_sha256": "ec5954f274c138a428cbaf43d093d7e8c83ac333501687bb72a23cf9306079ff",
+                "memory_clock_mhz": 1593,
+                "path": "profiler_output/microbench/nvidia_a800/l2_residency_knee_20260918_d6",
+                "sass_sha256": "759dbf1e87e051e0bd819a12dfaf574660bbc7e3de290955ae2871d0d8dd75d1",
+                "sm_clock_mhz": 1140,
+                "trials": 5
+            },
+            {
+                "binary_sha256": "27c6ff35f7ef03d156fc40a3d5c3e1ab2c2f0a34e6234bf6bf7b02ad2014ade1",
+                "device_index": 7,
+                "device_uuid": "capture-device-ceb3fcab78ae",
+                "maximum_relative_spread": 0.06358381502890173,
+                "measurements_sha256": "29bd494296f89ed3476c76b64a6db47d749573d8e4ae8eb08a7d28278da54f3f",
+                "memory_clock_mhz": 1593,
+                "path": "profiler_output/microbench/nvidia_a800/l2_residency_knee_20260918_d7",
+                "sass_sha256": "759dbf1e87e051e0bd819a12dfaf574660bbc7e3de290955ae2871d0d8dd75d1",
+                "sm_clock_mhz": 1140,
+                "trials": 5
+            }
+        ],
+        "runner": "microbench/nvidia_a800/memory/l2/l2_residency_knee_runner.py",
+        "runner_sha256": "eb44390a803fad6c291f84b60a6fa8d187ed7d066e471733a6d7be7ff700bb2e",
+        "source": "microbench/nvidia_a800/memory/l2/l2_residency_knee.cu",
+        "source_sha256": "43db12bd7cc63d8a47ffefe3b84aed08edf0dc11a4039d86b57b6c378b35557c"
+    },
+    "schema": "l2_operand_residency_curve_reference_v1",
+    "scope": {
+        "l2_capacity_bytes": 41943040,
+        "maximum_footprint_bytes": 402653184,
+        "minimum_footprint_bytes": 12582912,
+        "read_instruction": "ld.global.cg.v4.u32",
+        "stream": "two_read_one_write_vec4",
+        "threads_per_cta": 128,
+        "write_policy": "default_write_back"
+    }
+}

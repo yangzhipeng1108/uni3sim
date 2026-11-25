@@ -1,0 +1,78 @@
+{
+  "allowed_conclusion": "MetaX contiguous BF16 device copies have at least the selected source-independent task floor in addition to directional payload service; the production FusedMoE source serially executes exactly one such copy between activation and W2.",
+  "derivation_rule": "minimum_trial_1_2_copy_differential_minus_directional_read_write_payload_service",
+  "derivation_trials": [
+    1,
+    2
+  ],
+  "device_name": "MetaX C500",
+  "directional_payload_service": {
+    "read_capacity_bytes_per_s": 1653069600000.0,
+    "write_capacity_bytes_per_s": 1607860088572.5767
+  },
+  "hardware_id": "metax_c500",
+  "maximum_cross_trial_median_spread_fraction": 0.053490716337682154,
+  "model": "contiguous_bf16_dtod_copy_task_floor_v1",
+  "probe_byte_counts": [
+    8192,
+    16384,
+    65536,
+    262144,
+    1048576,
+    4194304,
+    16777216,
+    67108864,
+    268435456
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "profiler_attached": false,
+  "raw": {
+    "root": "profiler_output/microbench/metax_c500/bf16_dtod_copy_77a1fe86_20260909_r2",
+    "runner_sha256": "97ba553ca32c95326c2a979d721219395e111e991efa5112fbd389e5409ebab5",
+    "trial_sha256": {
+      "trial_1.json": "d4b4d46734d7306f18abafc19da2e41380286c50f901098ec017c5db7bd43cc9",
+      "trial_2.json": "471da266083bed0951e12b902bf8d8546e7ecdf045b7e79b2593e294f46e95af",
+      "trial_3.json": "af41b6e74c2eac0380fb2a0b387977ee3db3b6a7ea4beeecaba8a32ec98cb69d"
+    }
+  },
+  "samples_per_cell": 15,
+  "schema_version": "midlayer.metax_c500.bf16_dtod_copy_task_floor.v1",
+  "selected_floor_ns": 9612.988764927777,
+  "selected_sample": {
+    "byte_count": 8192,
+    "differential_ns": 9623.039364814758,
+    "directional_payload_ns": 10.050599886981082,
+    "sample": 2,
+    "trial": 1
+  },
+  "software_revision": "torch_2.4.0_metax_3.7.2.0",
+  "source_requirement": {
+    "copy_bytes_formula": "tokens * topk * intermediate * dtype_bytes",
+    "operation": "intermediate_cache2.copy_(silu(gate) * up)",
+    "runner_path": "scripts/kernel_dataset/metax_c500/fused_moe_runner.py",
+    "runner_sha256": "436bee88cb5fe444ec0aa5204e7df158edb51119891424ed15237e9dc9c13474",
+    "trace_duration_consumed": false,
+    "trace_identity": "memcpy HTOA(device,device)",
+    "trace_path": "profiler_output/diagnostics/metax_c500/top_c500_traces_956a08fd/FUSEDMOE_TOK1_E256_TOPK8_H2048_INT512/tracer_out-1394566.json",
+    "trace_sha256": "c8f128293f87b4265fcd6215e78d22ef380a37d8bdae51fc1905d58feec34436"
+  },
+  "target_operator_used": false,
+  "task_class": "pytorch_contiguous_bf16_dtod_copy",
+  "timer_domain": "paired_differential_events_around_cuda_graph_replay",
+  "torch_version": "2.4.0+metax3.7.2.0",
+  "trial_median_ns_by_byte_count": {
+    "1048576": [38270.71964740753, 37068.79794597626, 38412.79983520508],
+    "16384": [10912.640392780304, 10940.800309181213, 10734.720230102539],
+    "16777216": [54288.00284862518, 57244.79854106903, 54297.60217666626],
+    "262144": [37214.71846103668, 36056.95843696594, 37304.95810508728],
+    "268435456": [399455.9720158577, 405759.9976658821, 399199.9998688698],
+    "4194304": [44384.001940488815, 42745.60064077377, 44451.20021700859],
+    "65536": [17168.00034046173, 16851.839423179626, 16997.75993824005],
+    "67108864": [123392.00377464294, 126118.40069293976, 123404.79791164398],
+    "8192": [9854.080080986023, 10037.120282649994, 9778.560400009155]
+  },
+  "validation_below_floor_count": 0,
+  "validation_minimum_residual_ns": 9686.589176342877,
+  "validation_sample_count": 135,
+  "validation_trial": 3
+}

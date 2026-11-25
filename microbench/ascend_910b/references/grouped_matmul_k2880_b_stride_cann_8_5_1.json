@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "mechanism": "grouped_matmul_k2880_l2_resident_b_nd2nz_stride",
+  "duration_unit": "ns_per_64x256_b_descriptor_per_aic",
+  "publication_scope": {
+    "source_residency": "l2_resident",
+    "dtype": "bf16",
+    "rows": 64,
+    "columns": 256,
+    "source_row_stride_elements": 2880,
+    "source_tile_span_bytes": 363392,
+    "copied_bytes_per_descriptor": 32768,
+    "active_aic_groups": 24,
+    "iterations_per_worker": 224,
+    "source_allocation_bytes": 67108864,
+    "source_tiles_per_worker": 7,
+    "aggregate_copied_ring_bytes": 5505024,
+    "source_ring_constraint": "the 5.25 MiB aggregate copied ring remains resident in the 192 MiB shared L2",
+    "source_lifecycle": "two_buffer_stream"
+  },
+  "parameters_ns": {
+    "serial_completion": 418.869047619,
+    "two_buffer_stream": 319.5089285715,
+    "two_buffer_stream_full_chip_logical_byte_capacity_per_s": 2461377225093.7627
+  },
+  "measurement": {
+    "serial_trial_ns": [420.208333333, 418.005952381, 419.345238095, 418.392857143],
+    "two_buffer_stream_trial_ns": [318.898809524, 320.089285714, 318.928571429, 321.339285714],
+    "serial_relative_span": 0.005257922409209064,
+    "two_buffer_stream_relative_span": 0.007638209676678549,
+    "serial_order_balance_error": 0.003765809292824071,
+    "two_buffer_stream_order_balance_error": 0.005635508358249508,
+    "maximum_allowed_relative_span": 0.1,
+    "maximum_allowed_order_balance_error": 0.1,
+    "stability_gate": true,
+    "mechanism_gate_passed": true
+  },
+  "provenance": {
+    "capture_commit": "f3b50acd58d5bc0640524fdca5da31b67357c28c",
+    "baseline_commit": "e7c853b5db0bb8a769016341afb96f44aaa28c0b",
+    "snapshot_path": "/capture-workspace/execution_snapshots/fused_moe_k2880_resident_f3b50acd",
+    "raw_path": "profiler_output/microbench/ascend_910b/fused_moe_k2880_stride_resident_f3b50acd_20260908_r1/raw.csv",
+    "raw_sha256": "32addc290a10fdf79d3858bc1b45e9b3b11ece2b8623c8a56856d7338a7cb5b6",
+    "stderr_path": "profiler_output/microbench/ascend_910b/fused_moe_k2880_stride_resident_f3b50acd_20260908_r1/capture.stderr",
+    "stderr_sha256": "4f0d0551d3d72e02797c8ca50038b162a0b448231c5ba542e8847162466f3d14",
+    "preflight_path": "profiler_output/microbench/ascend_910b/fused_moe_k2880_stride_resident_f3b50acd_20260908_r1/preflight.txt",
+    "preflight_sha256": "feaebf05dc85d0093e0b68f30a9ee3bd1ccd0e986b60c82f859452f1fdf0c02b",
+    "postflight_path": "profiler_output/microbench/ascend_910b/fused_moe_k2880_stride_resident_f3b50acd_20260908_r1/postflight.txt",
+    "postflight_sha256": "0024da110d36238b331db6581832bb5c681dac745cad48c601c4f711f543ea64",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_id": 2,
+    "logical_device_id": 0,
+    "owner": "kernel-accuracy-fusedmoe",
+    "runner_pid": 3465707,
+    "source_snapshot_sha256": "5b557cd6cfd6793adadee6c87efe3571ea33a47628fba1a2becb27c472d7dc61",
+    "source_sha256": {
+      "CMakeLists.txt": "1f21a218864e05349b4a107e1c1b1cb079dc0bd828b61c4c714cfefd06695d22",
+      "aic_mte2_nd2nz_stride_kernel.cpp": "3cdee9b19b126143b4351af4f60a0f4aa088dc4c496d0626e754eda65bcbfc72",
+      "aic_mte2_nd2nz_stride_main.cpp": "fe3d48698872b094ec1fd92039e463f3a46e3eb299ee38eb72ffe85101e7aba7",
+      "aic_mte2_nd2nz_stride_runner.py": "0f9c6bb5f18395cf4c48da4e5dbaab668fa56569c9eb0364e50aa3c95fc587ee"
+    },
+    "binary_sha256": "fb9b6d46c3ef5c4e5a41012e90e0a801c9d1d20994617a97134d2bbc1d4d5606",
+    "command": "python aic_mte2_nd2nz_stride_runner.py --binary build/aic_mte2_nd2nz_stride --device-id 2 --run-id fused-moe-k2880-resident-d2 --profile fused_moe_k2880_b_cold --footprint-mb 64 --iterations 224 --trials 4"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "CANN 8.5.1 BF16 GroupedMatmul must statically emit a 64x256 B1 descriptor with 2880-element physical source-row stride on 24 AIC groups, classify the descriptor as an L2 hit, and retain the two-buffer B1 lifecycle"
+}

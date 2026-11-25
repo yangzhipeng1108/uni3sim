@@ -1,0 +1,17 @@
+{
+  "hardware_ids": ["nvidia_a800", "metax_c500", "ascend_910b", "nvidia_h200"],
+  "hardware_status": {
+    "nvidia_a800": "active",
+    "metax_c500": "active",
+    "ascend_910b": "active",
+    "nvidia_h200": "deferred_by_user"
+  },
+  "models": [
+    {"model_id": "qwen3-4b", "native_model": "Qwen/Qwen3-4B", "config": "configs/model/qwen3-4b.json"},
+    {"model_id": "llama-3.1-8b", "native_model": "meta-llama/Llama-3.1-8B-Instruct", "config": "configs/model/llama-3.1-8b-instruct.json"}
+  ],
+  "case_id": "tp1_qps16",
+  "dtype": "bfloat16",
+  "tensor_parallel_size": 1,
+  "prediction_settings": "configs/evaluation/experiments/sharegpt_phase1.json"
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_mul_q4q1_finite_worker_completion_48_workers_11008b_x2",
+  "request_size_unit": "source_worker_programs",
+  "service_time_unit": "ns_per_maximum_worker_program",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"1": 3320.0},
+  "source_contract": {
+    "active_aiv_workers": 48,
+    "input_streams": 2,
+    "output_streams": 1,
+    "input_queue_depth": 4,
+    "output_queue_depth": 1,
+    "full_tile_bytes": 11008,
+    "full_tiles_per_maximum_worker": 2,
+    "production_mul_arithmetic_executed": false,
+    "replacement_operation": "Duplicate",
+    "completion_boundary": "PIPE_ALL barrier before the worker end counter"
+  },
+  "derivation": {
+    "statistic": "median of three independent maximum per-worker completion spans",
+    "run_values_ns": [3620.0, 3100.0, 3320.0],
+    "median_ns": 3320.0,
+    "cross_run_spread_percent": 15.662650602409638,
+    "maximum_allowed_cross_run_spread_percent": 20.0,
+    "position_balancing": "four-cell order permuted in runs 2 and 3",
+    "published_control_maximum_relative_error_percent": 9.090909090909092
+  },
+  "composition": "max of the existing analytical bounds and this exact finite 2R1W queue-program completion; aggregate production Vector arithmetic remains independently conserved",
+  "source_path": "microbench/ascend_910b/memory/dram/aiv_two_read_one_write_mul_q4q1",
+  "source_files_sha256": {
+    "CMakeLists.txt": "e2900f2fe45b82a2f2ea6266d0641427cb5362ccd56e74da1fb1e488f633f757",
+    "aiv_two_read_one_write_mul_q4q1_contract.h": "8e2e80eb6506e696e27f6441e5b9c157c9ca0c6e8ac5267ee0fece6910557bd6",
+    "aiv_two_read_one_write_mul_q4q1_kernel.cpp": "8c94dd2fda45ec10ac4e1d61ac7747e07f0d489acb712eaacf8e8d7dab224392",
+    "aiv_two_read_one_write_mul_q4q1_main.cpp": "a460c9b4f18e6f1fa0d758b31c43304c323862b4868cb1323c38ed0dafac4de9"
+  },
+  "binary_sha256": "82eb90e92ae422866a5663c6bac242adaae0af712d6fa100083d4e850c0c9795",
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/vector_mul_q4q1_11008x2_2d32d61c_20260909_d7_v2/run1.csv", "sha256": "99e9d2334642830dd481259f6b00a85c24cce7449b60361c6c3721af1396a085"},
+    {"path": "profiler_output/microbench/ascend_910b/vector_mul_q4q1_11008x2_2d32d61c_20260909_d7_v2/run2.csv", "sha256": "4d0f6964546fb0a005f432df99f5f899963594417d951cf8e7ddb97712135184"},
+    {"path": "profiler_output/microbench/ascend_910b/vector_mul_q4q1_11008x2_2d32d61c_20260909_d7_v2/run3.csv", "sha256": "a7ef1c677b78e19b7e9ab5f909028c444b44b69a2f9a97ca3014ab03f6299336"}
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

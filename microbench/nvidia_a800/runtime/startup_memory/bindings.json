@@ -1,0 +1,84 @@
+{
+  "identity": "nvidia-a800-vllm-0.11.0-startup-native-bytes-reset-epochs-v1",
+  "binding_ast_python": [
+    3,
+    10
+  ],
+  "software_versions": {
+    "vllm": "0.11.0",
+    "torch": "2.8.0"
+  },
+  "modules": {
+    "vllm.utils": {
+      "source_file": "/capture-workspace/miniconda_capture/envs/capture-python/lib/python3.10/site-packages/vllm/utils/__init__.py",
+      "file_sha256": "15644926d0877d9b11694fc03629717a7a47d6f995afdef141746ed385cd4ce4",
+      "module_ast_sha256": "5f3c366f94fb96de5f69319d9fdf20ec6823de9f6c00922486f99168441ec396",
+      "methods": [
+        {
+          "owner": null,
+          "name": "memory_profiling",
+          "method_ast_sha256": "969bf80d1bdc2d88f52f9c624a9b6b6fd162231e8384b9111859c7a215e67773"
+        },
+        {
+          "owner": "MemorySnapshot",
+          "name": "measure",
+          "method_ast_sha256": "7231abc61ca8ecbb50abe7a8ab8b9f299945529babfead924400a9be38f30d92"
+        }
+      ]
+    },
+    "vllm.v1.worker.gpu_worker": {
+      "source_file": "/capture-workspace/miniconda_capture/envs/capture-python/lib/python3.10/site-packages/vllm/v1/worker/gpu_worker.py",
+      "file_sha256": "e06833e8a5247dea488f067078b9f64e1284ca9c97b248b279852b046e815256",
+      "module_ast_sha256": "f57a43eb207dbe8ab7b7f3e12eedfc0faca165f7576565f34ee8e68068a20d87",
+      "methods": [
+        {
+          "owner": "Worker",
+          "name": "init_device",
+          "method_ast_sha256": "164f5aa492072234c8bef31a0196322c92a58d45805497eb60201b641bc3080b"
+        },
+        {
+          "owner": "Worker",
+          "name": "load_model",
+          "method_ast_sha256": "dbcaf93d41b44d54d9b1ec5388474cd96d365d49071643f904a10ff82b22ecc0"
+        },
+        {
+          "owner": "Worker",
+          "name": "determine_available_memory",
+          "method_ast_sha256": "934072e8ac44c456f73d8928a354eef5ab4f2e914c608d692c60f60a0ca00537"
+        },
+        {
+          "owner": "Worker",
+          "name": "initialize_from_config",
+          "method_ast_sha256": "02c5c8bcad8a079c8cfcaf1ea2d4d463d382b31441b58d8f8985d355776ecc89"
+        },
+        {
+          "owner": "Worker",
+          "name": "compile_or_warm_up_model",
+          "method_ast_sha256": "3965794d6a2c67c0f9001d59b652f0a237a6e0aa480523e30445174746ae4ffd"
+        }
+      ]
+    },
+    "vllm.v1.worker.gpu_model_runner": {
+      "source_file": "/capture-workspace/miniconda_capture/envs/capture-python/lib/python3.10/site-packages/vllm/v1/worker/gpu_model_runner.py",
+      "file_sha256": "ea6b7bfe4082349e80042df4801c7ef9e18c80d1c3879eeb6ac6e9c476303574",
+      "module_ast_sha256": "b9ac7110a7a5720263d8523d1ce67a3c53324a3d29930aea7415ee2721add2da",
+      "methods": [
+        {
+          "owner": "GPUModelRunner",
+          "name": "load_model",
+          "method_ast_sha256": "84ba487299ca13b2d6cb45161a62a012cf70fb4da50f4c6c106c92e05e23b5a0"
+        },
+        {
+          "owner": "GPUModelRunner",
+          "name": "capture_model",
+          "method_ast_sha256": "a2c2ed77d88d9f2b5629b28952c617981e55fdca61c259dd7ad7b635e646c930"
+        },
+        {
+          "owner": "GPUModelRunner",
+          "name": "initialize_kv_cache",
+          "method_ast_sha256": "971331e4c8c7456509dc4a2f8089a9a0d2fb9c0623b31ea39cd69c06c3e4c20a"
+        }
+      ]
+    }
+  }
+}

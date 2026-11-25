@@ -1,0 +1,111 @@
+{
+  "schema": "nvidia_a800_fa2_chunked_q8192_two_resident_ingress_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "evidence_kind": "independent_chunked_prefill_kv_ingress_microbenchmark",
+  "source_capture": "profiler_output/microbench/nvidia_a800/fa2_chunked_two_resident_ingress_b81cfe82_20260910_r1",
+  "source_baseline_commit": "b81cfe82360f024b934771b891dc0430e893aa5e",
+  "physical_device_index": 1,
+  "device_uuid": "capture-device-c776d040251d",
+  "resource_contract": {
+    "threads_per_cta": 128,
+    "dynamic_shared_bytes_per_cta": 82944,
+    "registers_per_thread": 80,
+    "resident_ctas_per_sm": 2,
+    "physical_sm_count": 108,
+    "panel_bytes_per_cta": 65536,
+    "initial_transaction_bytes": 32,
+    "static_ldgsts_bypass_128_instructions": 32,
+    "stack_frame_bytes": 0,
+    "spill_store_bytes": 0,
+    "spill_load_bytes": 0,
+    "source_period_ctas": 128,
+    "source_profiles": {
+      "skew_q1024_q4096": {
+        "q_lens": [1024, 4096],
+        "kv_lens": [1024, 4096]
+      },
+      "uniform_q256_to_q1019": {
+        "q_lens": [256, 365, 474, 583, 692, 801, 910, 1019],
+        "kv_lens": [1024, 1462, 1900, 2338, 2776, 3214, 3652, 4090]
+      }
+    }
+  },
+  "campaign": {
+    "warmup_launches": 10,
+    "samples_per_cell": 31,
+    "grids": [2048, 4096],
+    "profiles": {
+      "skew_q1024_q4096": {
+        "2048": {
+          "total_rounds": 18048,
+          "median_makespan_ns": 343040,
+          "relative_span_pct": 4.179104477611941
+        },
+        "4096": {
+          "total_rounds": 36096,
+          "median_makespan_ns": 647168,
+          "relative_span_pct": 3.0063291139240507,
+          "payload_32b_transactions_per_model_sm_cycle": 100.19986675549634
+        }
+      },
+      "uniform_q256_to_q1019": {
+        "2048": {
+          "total_rounds": 27712,
+          "median_makespan_ns": 502784,
+          "relative_span_pct": 3.8696537678207736
+        },
+        "4096": {
+          "total_rounds": 55424,
+          "median_makespan_ns": 970752,
+          "relative_span_pct": 1.5822784810126582,
+          "payload_32b_transactions_per_model_sm_cycle": 102.5686579317492
+        }
+      }
+    },
+    "ncu_dynamic_counter_closure": {
+      "skew_q1024_q4096": {
+        "2048": {"ldgsts_instructions": 2310144, "ldgsts_bytes": 1182793728},
+        "4096": {"ldgsts_instructions": 4620288, "ldgsts_bytes": 2365587456}
+      },
+      "uniform_q256_to_q1019": {
+        "2048": {"ldgsts_instructions": 3547136, "ldgsts_bytes": 1816133632},
+        "4096": {"ldgsts_instructions": 7094272, "ldgsts_bytes": 3632267264}
+      }
+    }
+  },
+  "selected_service": {
+    "selection_rule": "lower_4096_cta_direct_median_across_the_two_source_profiles",
+    "exact_grid_ctas": 4096,
+    "model_sm_clock_hz": 1140000000.0,
+    "full_chip_initial_32b_transactions_per_model_sm_cycle": 100.19986675549634,
+    "logical_byte_capacity_per_s": 3655291139240.5063
+  },
+  "publication_gates": {
+    "two_resident_ctas_per_sm": true,
+    "static_ldgsts_bypass_128_count_is_32": true,
+    "no_stack_or_spill": true,
+    "dynamic_instruction_and_byte_counters_close_exactly": true,
+    "all_native_cells_relative_span_at_most_5_pct": true,
+    "selected_grid_source_profiles_within_5_pct": true
+  },
+  "artifact_sha256": {
+    "wrapper_source": "f0f919bff8e6412055300de9311831c48130a3fbc95040f514e9487a6965cb02",
+    "ingress_source": "e981cb805cdcd2f7f143ea52d48aa1639ce161e0feed99721f2e228672718e71",
+    "binary": "a6f79f360a7e22c528c80c201447bc8daafe8d1630708021e9a10c72d57faa2d",
+    "ptxas": "4a38f4cc77d7e7a4bf009109a9a80ccea82f70c05567685824603b322752228d",
+    "sass": "c73490d92c41e372a7080a55b1442c151cb32a260b2631c7ca5407b41cd3ddf1",
+    "profile_skew_grid2048": "20864d41e6c375141021fc4863512de8be0a7a2a0bb2596d3fdc609f7368c727",
+    "profile_skew_grid4096": "a4366455e4c14c6cf514e3bf6dc9d61eb8678586304d69f197d79551b753a08b",
+    "profile_uniform_grid2048": "9b5efd1417a7c55568c8c1d5954d66bf46a8a3a5c4938992fa30b1f6f141aa62",
+    "profile_uniform_grid4096": "cd92fbf3ac79099b0ac27be9ac31abc89a1ad8f1d6da48d2a4d591cbead20413",
+    "ncu_skew_grid2048": "c9acb05aa88747c055dc33990bb817cfd66922ec475f1d2a1d5916aae504223a",
+    "ncu_skew_grid4096": "4dc43122644261efc81307f75abe02683c1ae1a5e67ef3cf4a3e2c434ae71829",
+    "ncu_uniform_grid2048": "4dea530c418f00c84ca6786ceeb1e98ae6ef24f79a86393e7cd87034bd3efb0a",
+    "ncu_uniform_grid4096": "b04606153265e59e2de52e0e3fe7d70136f86efafec6eea15c9047cabd464e01"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "allowed_conclusion": "For the two exact 4096-CTA chunked-prefill source profiles, each with 128 threads, 82944 dynamic shared bytes, two resident CTAs per SM, and one 64-KiB K/V LDGSTS round, the shared K/V ingress service has at least 100.19986675549634 initial 32-byte transactions per model-SM cycle.",
+  "forbidden_conclusion": "This reference does not price Q ingress, MMA, softmax, output, different source profiles, different grids, different resident topology, generic L2 or DRAM traffic, or a production FlashAttention duration."
+}

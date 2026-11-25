@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "repository_baseline": "17221648399b26f08816da8ad55bf4c21e25442f",
+  "evidence_kind": "static_host_disassembly_and_device_source",
+  "duration_consumed": false,
+  "hardware_execution_performed": false,
+  "remote_environment": {
+    "ssh_target": "ascend-capture-target-2",
+    "opp_version_path": "/usr/local/Ascend/cann-8.5.1/opp/version.info",
+    "opp_version_sha256": "49437edb9a235b28a87d07d2a2ad189022b6d246dc7c4cbcd013d2b7ecaf838b",
+    "opp_version": "8.5.1"
+  },
+  "host_tiler": {
+    "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/op_tiling/lib/linux/x86_64/liboptiling.so",
+    "sha256": "2be9b7e4b0514931abdc2899ce8104de30a2aae83fed43e3668e48b28009f2cf",
+    "symbol": "optiling::ReshapeAndCacheTiling::DoOpTiling()",
+    "symbol_address": "0x19d1b20",
+    "disassembler": {
+      "path": "/usr/bin/llvm-objdump-15",
+      "sha256": "6881608bace7b7cef33fe73caa4ef9eb1aba0cbb525f04d0ff3700d8bb6d331e",
+      "version": "Ubuntu LLVM 15.0.7",
+      "command": "/usr/bin/llvm-objdump-15 -d --x86-asm-syntax=intel --start-address=0x19d1b20 --stop-address=0x19d1d00 liboptiling.so"
+    },
+    "facts": {
+      "token_byte_alignment": 32,
+      "fast_token_max_inclusive": 999,
+      "equal_head_tiling_key": 200000000,
+      "unequal_head_tiling_key": 201000000,
+      "fallback_tiling_key": 202000000,
+      "instruction_evidence": [
+        "0x19d1b8e..0x19d1b9d computes both K and V token byte extents and ORs them",
+        "0x19d1ba5 tests the combined low five bits against 31",
+        "0x19d1ba9 compares numTokens with 999 and takes the fast branch only for numTokens <= 999",
+        "0x19d1bb6 adds 2000000 to the dtype-derived base key for the fallback path",
+        "0x19d1ca0 adds 1000000 only when headSizeK differs from headSizeV; equal heads retain the base key"
+      ]
+    }
+  },
+  "device_sources": [
+    {
+      "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/ascendc/reshape_and_cache/reshape_and_cache.cpp",
+      "sha256": "dda9a4f36ec658ceec13b54dfd26388218f119d2dca42abf533b7d81d38185b8",
+      "facts": [
+        "ProcessKVEqual owns one tokenBuf_ and invokes CopyKvCache for K before V",
+        "tiling keys 200000000 and 202000000 dispatch to ProcessKVEqual and ProcessKVUnequal respectively",
+        "ProcessKVUnequal initializes independent two-slot TQueBind queues for K and V and reads the slot mapping once in each path"
+      ]
+    },
+    {
+      "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/ascendc/reshape_and_cache/reshape_and_cache_base.h",
+      "sha256": "e80c4a4ca36b6b2a949f72fbfc0f275b938ce8adf90645e288481fe94301da33",
+      "facts": [
+        "AllocateTask assigns contiguous token intervals with the first remainder workers receiving one extra token",
+        "CopyKvCache waits MTE2_MTE3 before store and MTE3_MTE2 before buffer reuse",
+        "BLOCK_SIZE is 32 bytes and BUFFER_NUM is 2 only for the TQueBind fallback path",
+        "the fallback K and V queues have independent buffer lifetimes and add no K-to-V or cross-token completion wait beyond each queue's two-slot reuse"
+      ]
+    }
+  ],
+  "forward_scope": {
+    "dtype": "bf16",
+    "equal_k_v_head_size_required_by_contract": true,
+    "key_200_pipeline_support": "partial",
+    "key_202_pipeline_support": "partial",
+    "limitations": [
+      "MTE2 and MTE3 transaction geometry, first-request latency, descriptor capacity, and credit remain unavailable"
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_mid_k_repeated_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "minimum_populated_m_tiles_per_compute_unit": 1,
+    "maximum_m_tiles_per_populated_expert": 2.5,
+    "long_k_k_tiles": 64,
+    "long_k_n_tiles": 16,
+    "wide_n_k_tiles": 16,
+    "wide_n_n_tiles": 32
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090607,
+    "tokens": 4096,
+    "experts": 256,
+    "topk": 8,
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "39853a9d8b8516d95d252469e2e1e08c34ce2bde7e06e1eb7a14259bf5dd8890",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "conservative minimum capacity across two non-production N cells"
+  },
+  "captures": {
+    "long_k": [
+      {
+        "k": 2048,
+        "n": 960,
+        "active_m_tiles": 639,
+        "grid": 11460,
+        "raw_sha256": "99050ca43a5b7eea5ad6359036eb63dd832c40ceded54387738e264823599914",
+        "operand_pipeline_capacity_bytes_per_s": 1272293024427.2485
+      },
+      {
+        "k": 2048,
+        "n": 1088,
+        "active_m_tiles": 639,
+        "grid": 12988,
+        "raw_sha256": "754b890f96da99ff782bfee07382ac0fd27ae000786c88c32fd73575973c6e8a",
+        "operand_pipeline_capacity_bytes_per_s": 1166761923844.5005
+      }
+    ],
+    "wide_n": [
+      {
+        "k": 512,
+        "n": 1984,
+        "active_m_tiles": 639,
+        "grid": 23684,
+        "raw_sha256": "07a5998ef4ee8ec0035f761b88216fd12812e27620e99db161e48556283bdf9c",
+        "operand_pipeline_capacity_bytes_per_s": 917854571779.9362
+      },
+      {
+        "k": 512,
+        "n": 2112,
+        "active_m_tiles": 639,
+        "grid": 25212,
+        "raw_sha256": "a24d6425b9e6a8aeb936583588ac275962bf095a776b9016b65e24cb54256f52",
+        "operand_pipeline_capacity_bytes_per_s": 874114351029.0723
+      }
+    ]
+  },
+  "selected_services": {
+    "long_k": {
+      "predicate": "1<=populated_m_tiles/compute_units and populated_m_tiles/populated_experts<=2.5, projection_k/tile_k=64, projection_n/tile_n=16, projection_k>projection_n",
+      "logical_byte_capacity_per_s": 1166761923844.5005
+    },
+    "wide_n": {
+      "predicate": "1<=populated_m_tiles/compute_units and populated_m_tiles/populated_experts<=2.5, projection_k/tile_k=16, projection_n/tile_n=32, projection_k<=projection_n",
+      "logical_byte_capacity_per_s": 874114351029.0723
+    }
+  }
+}

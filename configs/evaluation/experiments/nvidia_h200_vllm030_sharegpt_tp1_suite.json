@@ -1,0 +1,191 @@
+{
+  "schema_version": 4,
+  "suite_id": "sharegpt_nvidia_h200_vllm030_sharegpt_tp1",
+  "dataset_root": "serving_dataset/sharegpt",
+  "models": [
+    {
+      "dataset_model_id": "qwen3-4b",
+      "simulation_model_path": "configs/model/qwen3-4b.json",
+      "model_config_sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a"
+    },
+    {
+      "dataset_model_id": "qwen3-8b",
+      "simulation_model_path": "configs/model/qwen3-8b.json",
+      "model_config_sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    {
+      "dataset_model_id": "llama-3.1-8b",
+      "simulation_model_path": "configs/model/llama-3.1-8b-instruct.json",
+      "model_config_sha256": "29e4c210b0d6ac178b16b2a255a568bdb23b581e50ca1ef6a6d071dd85704e6e"
+    }
+  ],
+  "hardware": [
+    {
+      "hardware_id": "nvidia_h200",
+      "hardware_config_path": "configs/hardware/nvidia_h200.yaml",
+      "hardware_config_sha256": "2dc939911eb7d3ea1bbb3cc746a44f64f430f6ce8fadf81aa5f4bf38d290c1fe",
+      "graph_execution": {
+        "configured_mode": "FULL_AND_PIECEWISE",
+        "piecewise_eager_workload_kinds": [
+          "flash_attn",
+          "kv_update"
+        ],
+        "uniform_decode_query_len": 1,
+        "capture_sizes": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          272,
+          288,
+          304,
+          320,
+          336,
+          352,
+          368,
+          384,
+          400,
+          416,
+          432,
+          448,
+          464,
+          480,
+          496,
+          512
+        ]
+      }
+    }
+  ],
+  "qps_values": [
+    4,
+    16,
+    64
+  ],
+  "cells": [
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "babd708ad764e125e8eebfcce1103c1e3362ee6fed43b05f189df31185d2470a",
+      "requests_sha256": "639df2b6aa0675df84a61f787fc2757506d5525eb2f7dc4d7e0badedca475d0f"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "609857f83e7a5e4dae67f07d0af04170859175ce73be7a904f2804bac37c7b3b",
+      "requests_sha256": "ab02b9d540e9fd6d35d8fb612a2df32a5868f4bbe19696c103b32ec3139b78a4"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "3490ed2f3013d3c94f9c90933cf35f83b5009d7e49db965e9d4159f765c38834",
+      "requests_sha256": "e169977d6b55bc410d2be544f028b99d767fd5980c72f708954e53903747a563"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "1ac352ac328732898f4d4084dccde64fc93e4e316c03786f51c526471ce18512",
+      "requests_sha256": "a42ae9abb7cc196040213b27636eb480214cd9bc8a3361fbc1ac5f825193d47d"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "c709d3cc0c836875634fdc8ff8164b6e89187ea9c91f5390ba04010eec9d4884",
+      "requests_sha256": "aefc90b259581b642ef1ff8f692c0dae11e6c82dd2f394b12bff7585771d7cc8"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "33bc3c7516c3ee3395317fb3d8ae0eb40625b029532ab35f39c35d6778d0e49b",
+      "requests_sha256": "cb36b79edf5b2ff22c8c91f3eaf2557b9c66dc680a3c7f63edba7f769731b780"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "6ef93a13239188ccbeaca7bd9ffaeb77dfd7b4b7b56afc1949031e09bf5be6af",
+      "requests_sha256": "11bec2ddf6f24cc9cf62ab937fafde1973029998d8e19c303ea0e8490403a727"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "7077fb2cc1b220e478b4031c3686a6d15d1a5ec10dbff8e91b2c7e63bc78b60d",
+      "requests_sha256": "f85c5db9b6e568906fd119d406f1be91c135afed551b4b0c00d5fdb1932a04eb"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "5c902b65ef78fb37bbd2833ff3e2acbb1f8313697ea4937b791fe58834b3d029",
+      "requests_sha256": "6e626cda89cc4a59ad75291d345354085089f97680873c9150947dc5acc26d3a"
+    }
+  ],
+  "prediction_contract": {
+    "semantics": "current_pinned_vllm_not_capture_replay",
+    "backend": "vllm",
+    "scheduler_version": "0.30.0",
+    "scheduler_source_commit": "ced6857afa0ea7b2e3f0846a62e1394e90f15607",
+    "deployment": "colocated",
+    "compute_dtype": "bf16",
+    "prediction_method": "midlayer",
+    "tensor_collective_backend": "protobridge",
+    "tensor_all_reduce_profile_sha256": null,
+    "tensor_all_gather_profile_sha256": null,
+    "launch_policy": "injected_launch",
+    "tensor_parallel_size": 1,
+    "pipeline_parallel_size": 1,
+    "expert_parallel_size": 1,
+    "max_model_len": 8192,
+    "max_batched_tokens": 8192,
+    "max_requests": 256,
+    "runtime_memory_policy_path": "configs/runtime_memory_policy/{hardware_id}/{model_id}.json",
+    "kv_block_size_tokens": 16,
+    "attention_kv_layout": "paged_varlen",
+    "attention_kv_distribution": "uniform",
+    "enable_chunked_prefill": true,
+    "enable_prefix_caching": true,
+    "router_resource_id": "router_cpu",
+    "router_dispatch_service_time_s": 0.0,
+    "mtp_num_speculative_tokens": 0,
+    "mtp_acceptance_policy": "disabled",
+    "mtp_fixed_accepted_tokens": 0,
+    "mtp_acceptance_source_id": "disabled"
+  }
+}

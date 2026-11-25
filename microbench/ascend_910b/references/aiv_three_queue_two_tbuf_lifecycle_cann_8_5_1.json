@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "37351cbe30ee8bcd9768e8aa6a3223053932d96a",
+  "service": "aiv_three_queue_two_tbuf_lifecycle",
+  "request_size_unit": "queue_depth",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"1": 140.0, "2": 140.0},
+  "benchmark_binary_sha256": "e6a4e15664751cfa74171008829cb535fd9e03d01947c54d3a08bd7b9b5e17a6",
+  "benchmark_source_sha256": "af291f117e04faa04804f08bf4c842fa1c0fd1cf62d0113811a3be85fa2b3463",
+  "production_source_sha256": {
+    "swi_glu.cpp": "584fcf498038a6b31adf480c4fb4a600dd4cf59657a1c0a0bf725c3df3717cf3",
+    "swi_glu_single.hpp": "ace487f5c4f3929e0cc1e02dfc54b062294a3018d0cb102baa920ea83e8dd096",
+    "swi_glu_bf16.hpp": "d18f872867f22c9f7032a44c22a09ceb84d78bdb9b4a94288062b6d1e498e933",
+    "rms_norm.h": "d6f83f716070a583367c95c6f215cf1a4f94631953730aa50268e446b45f28f8"
+  },
+  "device_id": 3,
+  "independent_runs": 3,
+  "block_dims": [1, 24, 48],
+  "tick_ns": 20.0,
+  "maximum_quantized_spread_ns": 20.0,
+  "mechanism": "one TPipe lifetime containing three TQue and two TBuf initializations",
+  "composition": "one exact source-proven lifecycle request per active AIV worker; RMSNorm consumes only the matching two-VECIN-one-VECOUT-two-TBuf subset and leaves its fourth queue and third TBuf unsupported",
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/swiglu_buffer_lifecycle_37351cbe_20260829_d3_run1.csv", "sha256": "0041ab3f1ed943d942b7b67f8f1a23e66c424158aa054eb876a2b98dd8d41ab3"},
+    {"path": "profiler_output/microbench/ascend_910b/swiglu_buffer_lifecycle_8e49b859_20260829_d3_run2.csv", "sha256": "fc01e56bd5e1111fd66d0713c29947edd8f7cdf3e167b2467d099bd4cd1e8128"},
+    {"path": "profiler_output/microbench/ascend_910b/swiglu_buffer_lifecycle_8e49b859_20260829_d3_run3.csv", "sha256": "a6bc651192e49b40d40c2b3a48b01a78be84c7f9ba5d42725e5c34ee3d2cf51f"}
+  ],
+  "measurement_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

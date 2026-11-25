@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_identity": {
+    "cann_toolkit_version": "8.5.1",
+    "cann_toolkit_inner_version": "V100R001C25SPC002B220",
+    "container": "capture-container-2",
+    "npu_smi_version": "25.2.3"
+  },
+  "evidence_kind": "independent_cache_steady_equal_head_copy_chain_completion_microbenchmark",
+  "campaign": "reshape_cache_equal_chain_equal_midworkers_warm",
+  "production_or_evaluation_duration_consumed": false,
+  "source_contract": {
+    "operator_source": "CANN 8.5.1 ReshapeAndCache key 200 ProcessKVEqual CopyKvCache",
+    "isolated_mechanism": "one K GM-to-UB-to-GM copy chain followed by one V chain through one TBuf, retaining one MTE2_MTE3 and one MTE3_MTE2 hard completion edge per copy chain",
+    "excluded_work": [
+      "slot mapping",
+      "token loop",
+      "host tiler",
+      "cache layout",
+      "complete production operator duration"
+    ],
+    "conditioning": "sixteen completed launches over the same mechanism buffers precede the measured launch; the measured device interval remains only the two copy chains and excludes TPipe/TBuf initialization",
+    "forward_composition": "maximum_with_same_token_memory_capacity_time",
+    "forward_domain": "exact CANN key-200 one-token-per-worker cells at worker counts 2, 4, 8, or 16 and payloads 1024 or 2048 bytes; no interpolation, extrapolation, or repeated-token reuse"
+  },
+  "capture": {
+    "owner": "capture-owner-4c0f2645f650",
+    "baseline_commit": "cd50f517e025443a6b340144e695d2a45dfce0bf",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_ids": [3, 7],
+    "source_snapshot": "/capture-workspace/profiler_output/microbench/ascend_910b/kv_equal_chain_warm_v2_cd50f517_20260906_d7/source_snapshot",
+    "binary": "/capture-workspace/profiler_output/microbench/ascend_910b/kv_equal_chain_warm_v2_cd50f517_20260906_d7/build/reshape_cache_equal_chain",
+    "binary_sha256": "b0ecad0040476d3993ceb214e9dc2d8b8ea6068f99085dd1226bc0b05c8b8f86",
+    "runner_command": "python3 <snapshot>/reshape_cache_equal_chain_runner.py --binary <binary> --device-id <3|7> --run-id <unique-run-id> --campaign equal_midworkers_warm --warmup-launches 16",
+    "report_command": "python3 <snapshot>/reshape_cache_equal_chain_report.py --campaign equal_midworkers_warm --warmup-launches 16 <run01.csv> <run02.csv> <run03.csv>",
+    "preflight_idle": true,
+    "postflight_idle": true,
+    "cleanup": "all benchmark processes exited; devices 3 and 7 had no remaining process"
+  },
+  "source_snapshot_sha256": {
+    "CMakeLists.txt": "369ae5e5810e82ed1162c3d5029921e8ab47458143fa303d931ddbb520be4a07",
+    "reshape_cache_equal_chain_kernel.cpp": "6ab62105e73e71ea70cedfb3fc57bb5bd3ad62d0e1adb7b27f88751461774e93",
+    "reshape_cache_equal_chain_main.cpp": "a0f3e51132e8210d47dcecaed01606a240dd305b157e4c6e76f0be870d6a6488",
+    "reshape_cache_equal_chain_runner.py": "4f2a406ce290db9946ec2fdfcc45bdec5b919f084151264a43b7307f1f9c2db9",
+    "reshape_cache_equal_chain_report.py": "ffd5fae6a3b7ba33a00b6e15186ae8c2ba9fdfb16a1d5703c483a8698d42766f"
+  },
+  "probe_contract": {
+    "timer_domain": "GetSystemCycle converted at 20 ns per tick",
+    "service_time_unit": "ns_per_two_copy_chains_per_aiv",
+    "service_time_selection": "median_of_three_independent_run_medians",
+    "worker_counts": [2, 4, 8, 16],
+    "payload_bytes": [1024, 2048],
+    "pair_orders": [0, 1],
+    "warmup_launches": 16,
+    "stride_bytes": 4096,
+    "independent_runs": 3,
+    "schedule_cycles_per_run": 8,
+    "trials_per_run": 128,
+    "samples_per_cell_per_run": 128,
+    "pairing_formula": "maximum_worker(request_first_interval(pair_order=1)-control_first_interval(pair_order=0)), matched by run and trial"
+  },
+  "service_time_ns_by_worker_and_payload": {
+    "2:1024": 380,
+    "2:2048": 420,
+    "4:1024": 400,
+    "4:2048": 440,
+    "8:1024": 420,
+    "8:2048": 440,
+    "16:1024": 440,
+    "16:2048": 460
+  },
+  "maximum_run_relative_median_spread_by_worker_and_payload": {
+    "2:1024": 0.05,
+    "2:2048": 0.045454545,
+    "4:1024": 0.047619048,
+    "4:2048": 0.022727273,
+    "8:1024": 0.045454545,
+    "8:2048": 0.043478261,
+    "16:1024": 0.043478261,
+    "16:2048": 0.041666667
+  },
+  "gates": {
+    "source_and_binary_identity": "pass",
+    "hardware_preflight_and_cleanup": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "three_distinct_run_ids": "pass",
+    "balanced_cell_and_pair_order": "pass",
+    "every_cell_positive_first_quartile": "pass",
+    "within_run_replication_relative_spread_limit": 0.2,
+    "cross_run_relative_median_spread_limit": 0.2,
+    "observed_maximum_cross_run_relative_median_spread": 0.05,
+    "mechanism_gate": "pass"
+  },
+  "artifact_sha256": {
+    "run01.csv": "066a310877b8b864438946178e6486483ebd48cebb9c4817ae8d1123540baa7c",
+    "run02.csv": "0bfcae078108c6fbba656d3faabe3fcc305acbe99d93956f84a93b5c5522fbaf",
+    "run03.csv": "1de88ea49df32e40b2e1cf8c9b99f786fd4978cd261e9814084ed80ff3f263d8",
+    "run01.log": "551a42d5b33df13f698e1aac55993bbe1f6f621e4360d91d057cc49f2240c290",
+    "run02.log": "4399fc71065e34d3aeb0d4dd52e0a42156da57b476b5e6e9bd8b3afae49ef86f",
+    "run03.log": "c21f59fb648609f062c5d2b9aa5e90ddb435d3bc92be72b4644cabf9dccd7296",
+    "report.txt": "f5c4a92959cae32dc23d81dde263f6548c2b200fedf4dfbb86c1dbff9bf79156",
+    "pre_formal_npu_smi.txt": "755a7a1ac05bdbcd0794687e908fbd3b0272569eddb5e0d5bdea9a18a8cf5671",
+    "post_formal_npu_smi.txt": "498377febcfd22ed864368b28639c7e660b897a5b71279001e173ece3af0e399"
+  },
+  "lookup_policy": {
+    "matching": "exact_worker_count_and_payload_only",
+    "interpolation_allowed": false,
+    "extrapolation_allowed": false,
+    "smoothing_allowed": false
+  },
+  "decision": {
+    "mechanism_publishable": true,
+    "forward_eligible": true,
+    "reason": "The workload-independent source-shaped chain reaches a stable cache-steady service after fixed conditioning, passes three-run publication gates, and is consumed only for exact one-token-per-worker key-200 cells."
+  }
+}

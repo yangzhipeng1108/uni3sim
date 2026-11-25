@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "evidence_kind": "versioned_public_operator_source",
+  "production_or_evaluation_duration_consumed": false,
+  "hardware_execution_performed": false,
+  "upstream": {
+    "repository": "https://github.com/ai2open/cann-ops-transformer.git",
+    "commit": "f6c15f3da135ad9bc0ec9a2fae4870285a3067cb",
+    "source_tree": "moe/moe_compute_expert_tokens"
+  },
+  "source_files": [
+    {
+      "path": "op_host/moe_compute_expert_tokens_tiling.cpp",
+      "sha256": "ca94933d1276042a2fc47207d20127f61ba1bf5ed147761dfa85ba6c6174c7e4"
+    },
+    {
+      "path": "op_host/moe_compute_expert_tokens_tiling.h",
+      "sha256": "43956e41ae9dcbe36538a0a34e055090798d9ea186c975953de8463a3308587e"
+    },
+    {
+      "path": "op_kernel/moe_compute_expert_tokens.cpp",
+      "sha256": "c226e15734d26d52363e9f1ab32cd76ab58f4bc093cd1dc0fcb5cb5246027878"
+    },
+    {
+      "path": "op_kernel/moe_compute_expert_tokens_int32_ss.h",
+      "sha256": "04de50ba440d8ffb9b1bf6c57fb472ab25e078d1e5d905f50fe1f5df156e98b6"
+    },
+    {
+      "path": "op_kernel/moe_compute_expert_tokens_int32_m.h",
+      "sha256": "6ea0d1a5e7f64b67d39731c7d29968adf83eab5494b1a8703531e91baed96b27"
+    },
+    {
+      "path": "op_kernel/moe_compute_expert_tokens_int32_l.h",
+      "sha256": "4ec81d4360475faefd74e49a09350d5cbb711b02f9f748ef10fdbb46a744b260"
+    }
+  ],
+  "source_facts": {
+    "input_dtype": "int32",
+    "maximum_sorted_items": 16777216,
+    "maximum_experts": 2048,
+    "small_sorted_items_max_inclusive": 12000,
+    "small_experts_max_inclusive": 256,
+    "special_small_sorted_items": 65536,
+    "special_small_experts": 8,
+    "tiling_key_small": 1001,
+    "tiling_key_medium": 1002,
+    "tiling_key_large": 1003,
+    "input_elements_per_copy_loop": 320,
+    "large_program_experts_per_scan": 256,
+    "gm_copy_alignment_bytes": 32,
+    "runtime_block_dim": "platform_total_aiv_cores",
+    "runtime_task_type": "KERNEL_TYPE_MIX_AIV_1_0",
+    "runtime_task_ratio": "0:1",
+    "small_program": {
+      "input_scan_count": 1,
+      "workspace_matrix": false,
+      "output_initialization": true,
+      "atomic_output_per_active_input_worker": true
+    },
+    "medium_program": {
+      "input_scan_count": 1,
+      "workspace_elements": "experts_times_total_aiv_cores",
+      "workspace_row_read_width": "active_input_workers",
+      "whole_reduce_max": true,
+      "sync_all_count": 2
+    },
+    "large_program": {
+      "input_scan_count": "ceil_div_experts_256",
+      "workspace_elements": "experts_times_total_aiv_cores",
+      "workspace_row_read_width": "active_input_workers",
+      "whole_reduce_max": true,
+      "sync_all_count": 2
+    }
+  },
+  "forward_scope": {
+    "public_source_semantics": "candidate",
+    "production_capture_binary_binding": "evidence_pending",
+    "observed_runtime_symbol_family": "MoeComputeExpertTokens_d1c627adc45619675efeff94a5330a80_{1001,1002,1003}_mix_aiv",
+    "public_source_binary_config_name": "MoeComputeExpertTokens_1980d2db1a80c523e7e59a032c95969880af8",
+    "limitations": [
+      "The public source commit is versioned but has not been proven byte-for-byte equivalent to the CANN 8.5.1 operator binary used by the retained production capture.",
+      "SyncAll, scalar binary search, atomic scatter, WholeReduceMax, and short MTE2/MTE3 service times require independent mechanism measurements before final latency closure."
+    ]
+  }
+}

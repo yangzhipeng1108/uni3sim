@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism_id": "aic_l1_to_l0_grouped_matmul_pair_completion_v1",
+  "scope": "one completed BF16 CFG_MDL GroupedMatmul L0A/L0B base-K pair on one AIC",
+  "composition": "max(pair_byte_capacity_time, pair_completion_ns)",
+  "bounds": {
+    "m_rows": [16, 32, 48, 64, 80, 96, 112, 128],
+    "n_columns": 256,
+    "k_columns": 64,
+    "active_aic_groups": [1, 8, 16, 24]
+  },
+  "source_geometry": {
+    "a_load_calls": [1, 2, 3, 4, 5, 6, 7, 8],
+    "a_repeat_times": 4,
+    "b_load_calls": 4,
+    "b_repeat_times": 16,
+    "b_l1_k_extent": 256
+  },
+  "parameters_ns": [
+    149.446614583,
+    154.4921875,
+    159.440104167,
+    164.420572917,
+    169.440104167,
+    174.43359375,
+    179.436848958,
+    184.479166667
+  ],
+  "validation": {
+    "physical_device": 6,
+    "iterations_per_interval": 1024,
+    "trials_per_24_aic_cell": 12,
+    "maximum_24_aic_sample_span_over_median": 0.00154425,
+    "maximum_1_8_16_24_aic_span_over_median": 0.00130729,
+    "alternating_row_order": true
+  },
+  "source_semantics": {
+    "scheduler_mdl_base_sha256": "241c5f1ec362e1f7755ac9e5d1d8cc18490f28ab8e04631f94d32999e2db5526",
+    "load_to_l0a_load2d_sha256": "a79157ec4701d1318df40c75c516d84276c443c86aa5666b7cb386ba16db2f4a",
+    "load_to_l0b_load2d_sha256": "88b65b7f291db1c08da671acfecee4ad44dc3c5191d4614c3886c7e5f5c1b8e5"
+  },
+  "provenance": {
+    "measurement_baseline_commit": "fb458b8686346e8b264577e4275b02fb5f91b929",
+    "source_snapshot_sha256": "c27b44128760f304d51fd5323ad5b3d3ee1bf28177032eba26aecbded12aa7da",
+    "binary_sha256": "600578dbb2e5f3d3022778162047aeb507ebbc320b64e40cb23e1c36fdcfa3d3",
+    "raw_path": "profiler_output/microbench/ascend_910b/grouped_matmul_mte1_pair_final_fb458b86_20260904",
+    "raw_tree_sha256": "69e89f290455e0c07360f7f85e708d2cbdaeb32545c30c176cd5e84d8fc76aa0"
+  },
+  "production_or_evaluation_duration_consumed": false
+}

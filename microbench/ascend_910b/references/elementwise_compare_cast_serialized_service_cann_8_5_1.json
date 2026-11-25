@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "artifact_type": "ascend_910b_elementwise_compare_cast_serialized_completion_service",
+  "hardware_id": "ascend_910b",
+  "device": 7,
+  "device_name": "Ascend910B2",
+  "software_revision": "CANN 8.5.1",
+  "capture_baselines": ["e5937e544"],
+  "mechanism": "Per-launch device completion of the routing-mask elementwise compare (aten ne.Scalar, int32 source -> bool result) and conversion (aten _to_copy/copy_, bool -> BF16) services on dedicated independent probe tensors, measured as an NPU-graph-captured chain of 256 identical back-to-back ops with NPU event timing.  The measured law is affine: t = setup + N / rate, where the steady term is the chip-level serialized completion-stream rate of back-to-back dependent elementwise launches.  The steady rate does NOT parallelize across the 48 AIV workers (measured: per-launch completion grows with total N at constant per-worker elements), so the service is consumed as a single-owner worker stream.  The probe never replays the production router chain, never touches the serving dataset, and consumes no production or evaluation duration.",
+  "service_family": "gm_elementwise_compare_cast_serialized_completion",
+  "calibration_run_ids": ["run1", "run2"],
+  "validation_run_ids": ["run3"],
+  "calibration_method": "Per-cell median over the 60 graph-mode trials pooled from run1 and run2 across the 11 production-domain element counts; ordinary least squares on t(seconds) = setup + N/rate.",
+  "validation_method": "Run3 is an independent holdout run: per-cell median of its 30 graph-mode trials, maximum absolute percentage error over all 11 cells against the calibrated law.",
+  "request_sizes_elements": [8, 32, 128, 512, 1024, 1536, 2048, 4096, 8192, 16384, 27648],
+  "out_of_domain_diagnostic_sizes_elements": [65536, 131072],
+  "validation_maximum_ape_percent": 9.597785821277665,
+  "source_capture_paths": [
+    "profiler_output/microbench/ascend_910b/elementwise_compare_cast_2d1bf8d6e_20260924_d7"
+  ],
+  "source_snapshot_sha256": {
+    "elementwise_compare_cast_service_runner.py": "8b444b934b2262a5c1de702a134dcdf185f05903634c8d12fc5c9621de8e7f6b",
+    "cann_opp_version.info": "49437edb9a235b28a87d07d2a2ad189022b6d246dc7c4cbcd013d2b7ecaf838b"
+  },
+  "raw_sha256": {
+    "run1/samples.csv": "9b95bec2b70d321290ad1565ce380c51066ba3f915f176d3255e05dd61658e43",
+    "run1/summary.json": "f284336b8a0003308e919af14df37eb5912d7bd110626656186e2fd4667f33b4",
+    "run1/manifest.json": "308aae4462127eabba71af412110a64fb2d116cd117f0366e337bfd2b2795458",
+    "run2/samples.csv": "f88601020c12198d7e57e50ac2c4a15c7f925a54edc152fc429dd6a8d1f47e2c",
+    "run2/summary.json": "b620d79bdff8caa653330130ec95d0e5d3b4c11cbaa1b967ecca281edbd58d08",
+    "run2/manifest.json": "8cd349e94c0fbc3b7ef04dfe1a9de3a0ac0904ea9c4e8dddd52adafbc8f90be3",
+    "run3/samples.csv": "5cc507cc847bb9b43d178885173a72e531ea88776724908c4a160ebf921ad998",
+    "run3/summary.json": "140f2c062db8508b7d188ec9c10bc62a5f2759b98c1b6a32ce0eb131e8d9296f",
+    "run3/manifest.json": "b335cb90d768f2b81aa055e6ecb1179fafb1a6bb62a2c11fa48b894e0a98af2f"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "services": {
+    "notequal_int32_bool_serialized": {
+      "setup_time_s_per_launch": 1.1356729808943533e-06,
+      "steady_rate_elements_per_s_serialized_stream": 10242694134.990414,
+      "maximum_validation_ape_percent": 9.597785821277665,
+      "service_publishable": true
+    },
+    "cast_bool_bf16_serialized": {
+      "setup_time_s_per_launch": 9.614320350673968e-07,
+      "steady_rate_elements_per_s_serialized_stream": 26043124700.73857,
+      "maximum_validation_ape_percent": 3.1177684061590636,
+      "service_publishable": true
+    }
+  }
+}

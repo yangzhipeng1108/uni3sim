@@ -1,0 +1,160 @@
+{
+ "schema": "nvidia_h200_add_rmsnorm_round_service_reference_v1",
+ "hardware_id": "nvidia_h200",
+ "device_name": "NVIDIA H200",
+ "device_uuid": "capture-device-462006ac8ee4",
+ "compute_capability": "sm_90",
+ "physical_sm_count": 132,
+ "source_baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+ "capture": {
+  "path": "profiler_output/microbench/nvidia_h200/h200_add_rmsnorm_round_service_b5f13ef0_20260925_gpu3_r2",
+  "raw_sha256": "577e6139118bc99b5635d080c4977fc2d8d4159ca83a66db9bb0f79a39f12910",
+  "trials": 5,
+  "candidate_sha256": "not_applicable_reference_written_directly",
+  "provenance_sha256": "not_applicable_provenance_embedded",
+  "preflight_cleanup": "target_device_no_compute_processes",
+  "postflight_cleanup": "runner_exits_after_single_probe_process"
+ },
+ "tool_identity": {
+  "cuobjdump_sha256": "not_recorded_on_h200_host",
+  "cuobjdump_version": "not_recorded_on_h200_host",
+  "nvcc_sha256": "not_recorded_on_h200_host",
+  "nvidia_smi_sha256": "not_recorded_on_h200_host",
+  "probe_resource_dump_sha256": "not_recorded_on_h200_host",
+  "probe_sass_dump_sha256": "not_recorded_on_h200_host",
+  "source_sha256": "c36a23e5cf552022a3e517fe9d36e2f0989422afd84c1c8d9032c903b00e75a8",
+  "runner_sha256": "b14531c50fb59781f22e6eac8be0f7596db98ecd81e8688b18b555f740c11b65",
+  "probe_binary_sha256": "e8f00a50822b2a68f4e32bdcd4c38d9df98425477f295622764dc63da611a741",
+  "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86",
+  "driver_version": "575.57.08"
+ },
+ "production_artifact": {
+  "binary_path": "not_applicable_on_h200",
+  "binary_sha256": "not_applicable_on_h200",
+  "cubin_name": "not_applicable_on_h200",
+  "cubin_sha256": "not_applicable_on_h200",
+  "function_sass_sha256": "not_applicable_on_h200",
+  "instruction_count": "not_applicable_on_h200",
+  "local_bytes": "not_applicable_on_h200",
+  "registers_per_thread": "not_applicable_on_h200",
+  "rejected_activation_cubin": "not_applicable_on_h200",
+  "required_opcodes": "not_applicable_on_h200",
+  "resource_dump_sha256": "not_applicable_on_h200",
+  "static_shared_bytes": "not_applicable_on_h200",
+  "symbol": "not_applicable_on_h200",
+  "status": "not_applicable_on_h200",
+  "reason": "No vLLM 0.11.0 sm_90 production binary exists on the H200 host; the probe keeps the vLLM 0.11.0 source loops."
+ },
+ "probe_contract": {
+  "block_threads": 256,
+  "rounds": 512,
+  "resident_ctas_per_sm": 8,
+  "cells": {
+   "first": {
+    "grid_blocks": 132,
+    "ctas_per_sm": 1
+   },
+   "resident": {
+    "grid_blocks": 1056,
+    "ctas_per_sm": 8
+   }
+  },
+  "supported_grid_scope": "grid_blocks <= 1056",
+  "supported_service_scope": [
+   "first_cta_source_round",
+   "resident_cta_source_round"
+  ],
+  "probe_ptxas_resource_usage": "ptxas info    : 0 bytes gmem\nptxas info    : Compiling entry function '_Z25add_rmsnorm_round_serviceIL13RoundFunction1EEvPK4PackPS1_S3_S4_PfiPmS6_Pj' for 'sm_90'\nptxas info    : Function properties for _Z25add_rmsnorm_round_serviceIL13RoundFunction1EEvPK4PackPS1_S3_S4_PfiPmS6_Pj\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 32 registers, used 1 barriers\nptxas info    : Compile time = 8.303 ms\nptxas info    : Compiling entry function '_Z25add_rmsnorm_round_serviceIL13RoundFunction0EEvPK4PackPS1_S3_S4_PfiPmS6_Pj' for 'sm_90'\nptxas info    : Function properties for _Z25add_rmsnorm_round_serviceIL13RoundFunction0EEvPK4PackPS1_S3_S4_PfiPmS6_Pj\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 29 registers, used 1 barriers\nptxas info    : Compile time = 5.537 ms\n",
+  "probe_resources": {
+   "scale_multiply": {
+    "registers_per_thread": 32,
+    "static_shared_bytes": 0,
+    "local_bytes": 0
+   },
+   "add_square": {
+    "registers_per_thread": 29,
+    "static_shared_bytes": 0,
+    "local_bytes": 0
+   }
+  },
+  "required_probe_opcodes": "not_checked_no_cuobjdump_on_h200_host",
+  "forbidden_probe_opcodes_absent": "not_checked_no_cuobjdump_on_h200_host"
+ },
+ "measurements": {
+  "time_unit": "ns_per_cta_round",
+  "service_rate_unit": "cta_rounds_per_sm_second",
+  "add_square": {
+   "first": {
+    "incremental_ns_per_cta_round": 138.1875,
+    "service_rate_per_sm_s": 7236544.549977385,
+    "maximum_relative_spread": 0.0013568521031207597
+   },
+   "resident": {
+    "incremental_ns_per_cta_round": 325.10714285714283,
+    "service_rate_per_sm_s": 3075909.0409755027,
+    "maximum_relative_spread": 0.005540739973590865
+   }
+  },
+  "scale_multiply": {
+   "first": {
+    "incremental_ns_per_cta_round": 120.9375,
+    "service_rate_per_sm_s": 8268733.850129199,
+    "maximum_relative_spread": 0.01808785529715762
+   },
+   "resident": {
+    "incremental_ns_per_cta_round": 248.9375,
+    "service_rate_per_sm_s": 4017072.5583730857,
+    "maximum_relative_spread": 0.01395224040783472
+   }
+  }
+ },
+ "allowed_conclusion": "The independent block-256 probe characterizes first and resident CTA Add-RMSNorm source-round service on the captured H200 through grid 1056.",
+ "gates": {
+  "all_cells_stable_within_10_percent": true,
+  "probe_resource_and_sass_contract_exact": "ptxas_resources_recorded_sass_not_checked",
+  "all_incremental_services_positive": true,
+  "production_artifact_identity_exact": "not_applicable_on_h200",
+  "clock_gate_passed": true
+ },
+ "decision": {
+  "status": "mechanism_candidate_only",
+  "mechanism_publishable": true,
+  "forward_eligible": false,
+  "reason": "Supports only block-256 first and resident source-round service through grid 1056."
+ },
+ "excluded_conclusions": [
+  "a complete Add-RMSNorm duration",
+  "a reduction or reciprocal-square-root service",
+  "a production-specific correction factor",
+  "queued CTA service or grids above 1056",
+  "direct Forward consumption before composition review"
+ ],
+ "provenance": {
+  "source": "microbench/nvidia_h200/compute/sfu/add_rmsnorm_round_service.cu",
+  "source_sha256": "c36a23e5cf552022a3e517fe9d36e2f0989422afd84c1c8d9032c903b00e75a8",
+  "runner": "microbench/nvidia_h200/compute/sfu/add_rmsnorm_round_service_runner.py",
+  "runner_sha256": "b14531c50fb59781f22e6eac8be0f7596db98ecd81e8688b18b555f740c11b65",
+  "helper_sha256": "f001aca483d0276f8150dbf5be325e8754afa5846e06f4a74962d371706e2480",
+  "baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+  "probe_binary_sha256": "e8f00a50822b2a68f4e32bdcd4c38d9df98425477f295622764dc63da611a741",
+  "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86",
+  "ptxas_verbose": "ptxas info    : 0 bytes gmem\nptxas info    : Compiling entry function '_Z25add_rmsnorm_round_serviceIL13RoundFunction1EEvPK4PackPS1_S3_S4_PfiPmS6_Pj' for 'sm_90'\nptxas info    : Function properties for _Z25add_rmsnorm_round_serviceIL13RoundFunction1EEvPK4PackPS1_S3_S4_PfiPmS6_Pj\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 32 registers, used 1 barriers\nptxas info    : Compile time = 8.303 ms\nptxas info    : Compiling entry function '_Z25add_rmsnorm_round_serviceIL13RoundFunction0EEvPK4PackPS1_S3_S4_PfiPmS6_Pj' for 'sm_90'\nptxas info    : Function properties for _Z25add_rmsnorm_round_serviceIL13RoundFunction0EEvPK4PackPS1_S3_S4_PfiPmS6_Pj\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 29 registers, used 1 barriers\nptxas info    : Compile time = 5.537 ms\n",
+  "raw_dir": "profiler_output/microbench/nvidia_h200/h200_add_rmsnorm_round_service_b5f13ef0_20260925_gpu3_r2",
+  "remote_raw_dir": "h200-capture-host:/capture-public/h200_microbench/wp5_vector/runs/h200_add_rmsnorm_round_service_b5f13ef0_20260925_gpu3_r2",
+  "raw_sha256": "577e6139118bc99b5635d080c4977fc2d8d4159ca83a66db9bb0f79a39f12910",
+  "clock_gate": {
+   "gate": "every busy nvidia-smi sample (50 ms) >= 1980 MHz; a window without busy samples requires every sample >= boost",
+   "accepted_captures": 1,
+   "rejected_captures": 0,
+   "captures_without_busy_sample": 0,
+   "busy_samples_total": 6,
+   "busy_clock_mhz_min": 1980,
+   "busy_clock_mhz_max": 1980,
+   "measured_sm_clock_mhz": 1980
+  },
+  "accepted_captures": 1,
+  "rejected_captures": 0
+ },
+ "production_or_evaluation_duration_consumed": false,
+ "production_predictor_consumption_allowed": false
+}

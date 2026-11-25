@@ -1,0 +1,871 @@
+{
+  "allowed_conclusion": "The BF16 bm64_bk64_bn128_gsm1 grouped-MoE source program on C500 pays a per-useful-CTA fixed span of fixed_span_ns plus a per-complete-K-round service of max(local_k_round_interval_ns, analytic DRAM round service), serialized at one resident CTA per AP, with empty grid CTAs adding empty_wave_slot_ns per 104-CTA slot wave.  Established for complete K tiles (K % 64 == 0) over the swept K and N ranges, 128 populated experts, and at most 6 populated M tiles per expert.  No production or evaluation duration was consumed or fitted.",
+  "cells": {
+    "emptyscan_n1024": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.01596160054206848,
+        0.01668352007865906,
+        0.016721919775009156
+      ],
+      "experts": 128,
+      "grid": 1264,
+      "k": 576,
+      "median_ms": 0.01668352007865906,
+      "n": 1024,
+      "tokens": 256,
+      "topk": 8
+    },
+    "emptyscan_n1664": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.01639423966407776,
+        0.016596479415893553,
+        0.01768704056739807
+      ],
+      "experts": 128,
+      "grid": 2054,
+      "k": 576,
+      "median_ms": 0.016596479415893553,
+      "n": 1664,
+      "tokens": 256,
+      "topk": 8
+    },
+    "emptyscan_n2176": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.016383999586105348,
+        0.016532479524612426,
+        0.019875839948654175
+      ],
+      "experts": 128,
+      "grid": 2686,
+      "k": 576,
+      "median_ms": 0.016532479524612426,
+      "n": 2176,
+      "tokens": 256,
+      "topk": 8
+    },
+    "emptyscan_n2688": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.01672703981399536,
+        0.02391808032989502,
+        0.024209918975830077
+      ],
+      "experts": 128,
+      "grid": 3318,
+      "k": 576,
+      "median_ms": 0.02391808032989502,
+      "n": 2688,
+      "tokens": 256,
+      "topk": 8
+    },
+    "emptyscan_n512": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.015879679918289185,
+        0.020523519515991212,
+        0.02397439956665039
+      ],
+      "experts": 128,
+      "grid": 632,
+      "k": 576,
+      "median_ms": 0.020523519515991212,
+      "n": 512,
+      "tokens": 256,
+      "topk": 8
+    },
+    "fourtile_n1664_k1600": {
+      "active_m_tiles": 469,
+      "captures_ms": [
+        1.7718067932128907,
+        1.7718809509277345,
+        1.7733375549316406
+      ],
+      "experts": 128,
+      "grid": 6838,
+      "k": 1600,
+      "median_ms": 1.7718809509277345,
+      "n": 1664,
+      "tokens": 3200,
+      "topk": 8
+    },
+    "fourtile_n1664_k2368": {
+      "active_m_tiles": 469,
+      "captures_ms": [
+        2.4331187438964843,
+        2.4342681884765627,
+        2.435030975341797
+      ],
+      "experts": 128,
+      "grid": 6838,
+      "k": 2368,
+      "median_ms": 2.4342681884765627,
+      "n": 1664,
+      "tokens": 3200,
+      "topk": 8
+    },
+    "fourtile_n1664_k576": {
+      "active_m_tiles": 469,
+      "captures_ms": [
+        0.8680448150634765,
+        0.8680985260009766,
+        0.8687283325195313
+      ],
+      "experts": 128,
+      "grid": 6838,
+      "k": 576,
+      "median_ms": 0.8680985260009766,
+      "n": 1664,
+      "tokens": 3200,
+      "topk": 8
+    },
+    "onetile_n1664_k1088": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.38882305145263674,
+        0.38937854766845703,
+        0.3894937515258789
+      ],
+      "experts": 128,
+      "grid": 2054,
+      "k": 1088,
+      "median_ms": 0.38937854766845703,
+      "n": 1664,
+      "tokens": 256,
+      "topk": 8
+    },
+    "onetile_n1664_k1600": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.5263129425048828,
+        0.5263820648193359,
+        0.5265459060668946
+      ],
+      "experts": 128,
+      "grid": 2054,
+      "k": 1600,
+      "median_ms": 0.5263820648193359,
+      "n": 1664,
+      "tokens": 256,
+      "topk": 8
+    },
+    "onetile_n1664_k2112": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.6609613037109375,
+        0.6612761688232421,
+        0.6613913726806641
+      ],
+      "experts": 128,
+      "grid": 2054,
+      "k": 2112,
+      "median_ms": 0.6612761688232421,
+      "n": 1664,
+      "tokens": 256,
+      "topk": 8
+    },
+    "onetile_n1664_k2368": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.7399705505371094,
+        0.7401292419433594,
+        0.7403340911865235
+      ],
+      "experts": 128,
+      "grid": 2054,
+      "k": 2368,
+      "median_ms": 0.7401292419433594,
+      "n": 1664,
+      "tokens": 256,
+      "topk": 8
+    },
+    "onetile_n1664_k576": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.24425727844238282,
+        0.24462080001831055,
+        0.24494848251342774
+      ],
+      "experts": 128,
+      "grid": 2054,
+      "k": 576,
+      "median_ms": 0.24462080001831055,
+      "n": 1664,
+      "tokens": 256,
+      "topk": 8
+    },
+    "onetile_n1664_k832": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.3172710418701172,
+        0.31742464065551756,
+        0.31755264282226564
+      ],
+      "experts": 128,
+      "grid": 2054,
+      "k": 832,
+      "median_ms": 0.31742464065551756,
+      "n": 1664,
+      "tokens": 256,
+      "topk": 8
+    },
+    "onetile_n1920_k1600": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.6090675354003906,
+        0.6095001602172851,
+        0.6097740936279297
+      ],
+      "experts": 128,
+      "grid": 2370,
+      "k": 1600,
+      "median_ms": 0.6095001602172851,
+      "n": 1920,
+      "tokens": 256,
+      "topk": 8
+    },
+    "onetile_n1920_k2368": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.8557286071777344,
+        0.8561023712158203,
+        0.8562099456787109
+      ],
+      "experts": 128,
+      "grid": 2370,
+      "k": 2368,
+      "median_ms": 0.8561023712158203,
+      "n": 1920,
+      "tokens": 256,
+      "topk": 8
+    },
+    "onetile_n1920_k576": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.28042495727539063,
+        0.2805683135986328,
+        0.28069631576538084
+      ],
+      "experts": 128,
+      "grid": 2370,
+      "k": 576,
+      "median_ms": 0.2805683135986328,
+      "n": 1920,
+      "tokens": 256,
+      "topk": 8
+    },
+    "sixtile_n1664_k1600": {
+      "active_m_tiles": 712,
+      "captures_ms": [
+        2.6940518188476563,
+        2.695303649902344,
+        2.698780212402344
+      ],
+      "experts": 128,
+      "grid": 10088,
+      "k": 1600,
+      "median_ms": 2.695303649902344,
+      "n": 1664,
+      "tokens": 5200,
+      "topk": 8
+    },
+    "sixtile_n1664_k2368": {
+      "active_m_tiles": 712,
+      "captures_ms": [
+        3.692152404785156,
+        3.693143005371094,
+        3.695065612792969
+      ],
+      "experts": 128,
+      "grid": 10088,
+      "k": 2368,
+      "median_ms": 3.693143005371094,
+      "n": 1664,
+      "tokens": 5200,
+      "topk": 8
+    },
+    "sixtile_n1664_k576": {
+      "active_m_tiles": 712,
+      "captures_ms": [
+        1.317744598388672,
+        1.3179852294921874,
+        1.3183769226074218
+      ],
+      "experts": 128,
+      "grid": 10088,
+      "k": 576,
+      "median_ms": 1.3179852294921874,
+      "n": 1664,
+      "tokens": 5200,
+      "topk": 8
+    },
+    "twotile_n1664_k1600": {
+      "active_m_tiles": 310,
+      "captures_ms": [
+        1.1733145904541016,
+        1.1740723419189454,
+        1.1744640350341797
+      ],
+      "experts": 128,
+      "grid": 4966,
+      "k": 1600,
+      "median_ms": 1.1740723419189454,
+      "n": 1664,
+      "tokens": 2048,
+      "topk": 8
+    },
+    "twotile_n1664_k2368": {
+      "active_m_tiles": 310,
+      "captures_ms": [
+        1.6123085021972656,
+        1.6128640747070313,
+        1.6130252075195313
+      ],
+      "experts": 128,
+      "grid": 4966,
+      "k": 2368,
+      "median_ms": 1.6128640747070313,
+      "n": 1664,
+      "tokens": 2048,
+      "topk": 8
+    },
+    "twotile_n1664_k576": {
+      "active_m_tiles": 310,
+      "captures_ms": [
+        0.5836441421508789,
+        0.5843302536010743,
+        0.5859328079223632
+      ],
+      "experts": 128,
+      "grid": 4966,
+      "k": 576,
+      "median_ms": 0.5843302536010743,
+      "n": 1664,
+      "tokens": 2048,
+      "topk": 8
+    }
+  },
+  "domain": {
+    "maximum_expert_m_tiles": 6,
+    "reason": "The onetile_*, twotile_*, fourtile_* and sixtile_* groups hold one, two, four and six populated M tiles per expert at the same N extent, so a populated expert may span at most 6 M tiles inside the swept domain.  The retained prefill route signatures reach five."
+  },
+  "extraction": {
+    "analytic_round_conditioned_span": {
+      "fourtile_n1664": {
+        "fixed_span_us": 2.723560062993734,
+        "fixed_span_us_by_cell": {
+          "fourtile_n1664_k1600": 2.629270785087268,
+          "fourtile_n1664_k2368": 0.7332380536754357,
+          "fourtile_n1664_k576": 4.808171350218499
+        },
+        "points": 3
+      },
+      "onetile_n1664": {
+        "fixed_span_us": 4.047849940645579,
+        "fixed_span_us_by_cell": {
+          "onetile_n1664_k1088": 4.559979928611561,
+          "onetile_n1664_k1600": 3.8710644886318875,
+          "onetile_n1664_k2112": 3.0503107269664227,
+          "onetile_n1664_k2368": 3.3528101660189407,
+          "onetile_n1664_k576": 4.764255962387011,
+          "onetile_n1664_k832": 4.688678371257648
+        },
+        "points": 6
+      },
+      "onetile_n1920": {
+        "fixed_span_us": 3.838555166847833,
+        "fixed_span_us_by_cell": {
+          "onetile_n1920_k1600": 3.7802058650264456,
+          "onetile_n1920_k2368": 3.234709734854171,
+          "onetile_n1920_k576": 4.500749900662882
+        },
+        "points": 3
+      },
+      "sixtile_n1664": {
+        "fixed_span_us": 2.9398253815449116,
+        "fixed_span_us_by_cell": {
+          "sixtile_n1664_k1600": 2.902991391831627,
+          "sixtile_n1664_k2368": 0.9917344804179962,
+          "sixtile_n1664_k576": 4.924750272385111
+        },
+        "points": 3
+      },
+      "twotile_n1664": {
+        "fixed_span_us": 2.8254045524289992,
+        "fixed_span_us_by_cell": {
+          "twotile_n1664_k1600": 2.657474635455177,
+          "twotile_n1664_k2368": 0.7856096441966613,
+          "twotile_n1664_k576": 5.033129377635159
+        },
+        "points": 3
+      }
+    },
+    "cell_structure": {
+      "fourtile_n1664_k1600": {
+        "active_ctas": 6097,
+        "dram_bytes": 691814400.0,
+        "dram_round_us": 0.4081752647189596,
+        "empty_tail_us": 3.7265398114908272,
+        "empty_waves": 8,
+        "grid": 6838,
+        "k_tiles": 25,
+        "maximum_expert_m_tiles": 4,
+        "populated_experts": 128,
+        "t_us": 1771.8809509277344,
+        "waves": 59
+      },
+      "fourtile_n1664_k2368": {
+        "active_ctas": 6097,
+        "dram_bytes": 1023885312.0,
+        "dram_round_us": 0.4081752647189596,
+        "empty_tail_us": 3.7265398114908272,
+        "empty_waves": 8,
+        "grid": 6838,
+        "k_tiles": 37,
+        "maximum_expert_m_tiles": 4,
+        "populated_experts": 128,
+        "t_us": 2434.2681884765625,
+        "waves": 59
+      },
+      "fourtile_n1664_k576": {
+        "active_ctas": 6097,
+        "dram_bytes": 249053184.0,
+        "dram_round_us": 0.4081752647189596,
+        "empty_tail_us": 3.7265398114908272,
+        "empty_waves": 8,
+        "grid": 6838,
+        "k_tiles": 9,
+        "maximum_expert_m_tiles": 4,
+        "populated_experts": 128,
+        "t_us": 868.0985260009766,
+        "waves": 59
+      },
+      "onetile_n1664_k1088": {
+        "active_ctas": 1664,
+        "dram_bytes": 464027648.0,
+        "dram_round_us": 1.156454407738701,
+        "empty_tail_us": 1.8632699057454136,
+        "empty_waves": 4,
+        "grid": 2054,
+        "k_tiles": 17,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 389.37854766845703,
+        "waves": 16
+      },
+      "onetile_n1664_k1600": {
+        "active_ctas": 1664,
+        "dram_bytes": 682393600.0,
+        "dram_round_us": 1.156454407738701,
+        "empty_tail_us": 1.8632699057454136,
+        "empty_waves": 4,
+        "grid": 2054,
+        "k_tiles": 25,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 526.3820648193359,
+        "waves": 16
+      },
+      "onetile_n1664_k2112": {
+        "active_ctas": 1664,
+        "dram_bytes": 900759552.0,
+        "dram_round_us": 1.156454407738701,
+        "empty_tail_us": 1.8632699057454136,
+        "empty_waves": 4,
+        "grid": 2054,
+        "k_tiles": 33,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 661.2761688232422,
+        "waves": 16
+      },
+      "onetile_n1664_k2368": {
+        "active_ctas": 1664,
+        "dram_bytes": 1009942528.0,
+        "dram_round_us": 1.156454407738701,
+        "empty_tail_us": 1.8632699057454136,
+        "empty_waves": 4,
+        "grid": 2054,
+        "k_tiles": 37,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 740.1292419433594,
+        "waves": 16
+      },
+      "onetile_n1664_k576": {
+        "active_ctas": 1664,
+        "dram_bytes": 245661696.0,
+        "dram_round_us": 1.156454407738701,
+        "empty_tail_us": 1.8632699057454136,
+        "empty_waves": 4,
+        "grid": 2054,
+        "k_tiles": 9,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 244.62080001831055,
+        "waves": 16
+      },
+      "onetile_n1664_k832": {
+        "active_ctas": 1664,
+        "dram_bytes": 354844672.0,
+        "dram_round_us": 1.156454407738701,
+        "empty_tail_us": 1.8632699057454136,
+        "empty_waves": 4,
+        "grid": 2054,
+        "k_tiles": 13,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 317.4246406555176,
+        "waves": 16
+      },
+      "onetile_n1920_k1600": {
+        "active_ctas": 1920,
+        "dram_bytes": 787251200.0,
+        "dram_round_us": 1.1270466555781071,
+        "empty_tail_us": 2.329087382181767,
+        "empty_waves": 5,
+        "grid": 2370,
+        "k_tiles": 25,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 609.5001602172852,
+        "waves": 19
+      },
+      "onetile_n1920_k2368": {
+        "active_ctas": 1920,
+        "dram_bytes": 1165131776.0,
+        "dram_round_us": 1.1270466555781071,
+        "empty_tail_us": 2.329087382181767,
+        "empty_waves": 5,
+        "grid": 2370,
+        "k_tiles": 37,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 856.1023712158203,
+        "waves": 19
+      },
+      "onetile_n1920_k576": {
+        "active_ctas": 1920,
+        "dram_bytes": 283410432.0,
+        "dram_round_us": 1.1270466555781071,
+        "empty_tail_us": 2.329087382181767,
+        "empty_waves": 5,
+        "grid": 2370,
+        "k_tiles": 9,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 280.5683135986328,
+        "waves": 19
+      },
+      "sixtile_n1664_k1600": {
+        "active_ctas": 9256,
+        "dram_bytes": 698214400.0,
+        "dram_round_us": 0.31427570102945734,
+        "empty_tail_us": 3.7265398114908272,
+        "empty_waves": 8,
+        "grid": 10088,
+        "k_tiles": 25,
+        "maximum_expert_m_tiles": 6,
+        "populated_experts": 128,
+        "t_us": 2695.3036499023438,
+        "waves": 89
+      },
+      "sixtile_n1664_k2368": {
+        "active_ctas": 9256,
+        "dram_bytes": 1033357312.0,
+        "dram_round_us": 0.31427570102945734,
+        "empty_tail_us": 3.7265398114908272,
+        "empty_waves": 8,
+        "grid": 10088,
+        "k_tiles": 37,
+        "maximum_expert_m_tiles": 6,
+        "populated_experts": 128,
+        "t_us": 3693.1430053710938,
+        "waves": 89
+      },
+      "sixtile_n1664_k576": {
+        "active_ctas": 9256,
+        "dram_bytes": 251357184.0,
+        "dram_round_us": 0.31427570102945734,
+        "empty_tail_us": 3.7265398114908272,
+        "empty_waves": 8,
+        "grid": 10088,
+        "k_tiles": 9,
+        "maximum_expert_m_tiles": 6,
+        "populated_experts": 128,
+        "t_us": 1317.9852294921875,
+        "waves": 89
+      },
+      "twotile_n1664_k1600": {
+        "active_ctas": 4030,
+        "dram_bytes": 688128000.0,
+        "dram_round_us": 0.5513910355939687,
+        "empty_tail_us": 4.19235728792718,
+        "empty_waves": 9,
+        "grid": 4966,
+        "k_tiles": 25,
+        "maximum_expert_m_tiles": 3,
+        "populated_experts": 128,
+        "t_us": 1174.0723419189453,
+        "waves": 39
+      },
+      "twotile_n1664_k2368": {
+        "active_ctas": 4030,
+        "dram_bytes": 1018429440.0,
+        "dram_round_us": 0.5513910355939687,
+        "empty_tail_us": 4.19235728792718,
+        "empty_waves": 9,
+        "grid": 4966,
+        "k_tiles": 37,
+        "maximum_expert_m_tiles": 3,
+        "populated_experts": 128,
+        "t_us": 1612.8640747070312,
+        "waves": 39
+      },
+      "twotile_n1664_k576": {
+        "active_ctas": 4030,
+        "dram_bytes": 247726080.0,
+        "dram_round_us": 0.5513910355939687,
+        "empty_tail_us": 4.19235728792718,
+        "empty_waves": 9,
+        "grid": 4966,
+        "k_tiles": 9,
+        "maximum_expert_m_tiles": 3,
+        "populated_experts": 128,
+        "t_us": 584.3302536010742,
+        "waves": 39
+      }
+    },
+    "dram_round_service_analytic_ns": "dram_bytes/k_tiles/waves/1653.07GB/s + 373.333ns/3",
+    "empty_wave_slot_ns": 465.8174764363534,
+    "empty_wave_slot_scan": {
+      "intercept_us": 16.86105661761965,
+      "model": "all_empty_prefix_launch_us = intercept + slope * waves",
+      "points": [
+        {
+          "cell": "emptyscan_n512",
+          "grid": 632,
+          "median_us": 20.52351951599121,
+          "waves": 7
+        },
+        {
+          "cell": "emptyscan_n1024",
+          "grid": 1264,
+          "median_us": 16.683520078659058,
+          "waves": 13
+        },
+        {
+          "cell": "emptyscan_n1664",
+          "grid": 2054,
+          "median_us": 16.596479415893555,
+          "waves": 20
+        },
+        {
+          "cell": "emptyscan_n2176",
+          "grid": 2686,
+          "median_us": 16.532479524612427,
+          "waves": 26
+        },
+        {
+          "cell": "emptyscan_n2688",
+          "grid": 3318,
+          "median_us": 23.91808032989502,
+          "waves": 32
+        }
+      ],
+      "relative_residual_by_cell": {
+        "emptyscan_n1024": -0.08974573394651565,
+        "emptyscan_n1664": -0.13827894635417706,
+        "emptyscan_n2176": -0.1795286375046634,
+        "emptyscan_n2688": 0.1592283863754445,
+        "emptyscan_n512": 0.14382692141517137
+      },
+      "selected_us_per_wave": 0.4658174764363534,
+      "slope_resolved": false,
+      "slope_standard_error_us_per_wave": 0.18214957609086532,
+      "slope_us_per_wave": 0.10151832425462273,
+      "upper_bound_us_per_wave": 0.4658174764363534
+    },
+    "forward_model_relative_residual_by_cell": {
+      "fourtile_n1664_k1600": 0.04723577514286063,
+      "fourtile_n1664_k2368": 0.08033712236679517,
+      "fourtile_n1664_k576": -0.051674967554030754,
+      "onetile_n1664_k1088": -0.021043993965565565,
+      "onetile_n1664_k1600": 0.005373601080405059,
+      "onetile_n1664_k2112": 0.02413609951689142,
+      "onetile_n1664_k2368": 0.015025262837645345,
+      "onetile_n1664_k576": -0.04685822443146668,
+      "onetile_n1664_k832": -0.03230138299477638,
+      "onetile_n1920_k1600": 0.008343291386421791,
+      "onetile_n1920_k2368": 0.018046514563550886,
+      "onetile_n1920_k576": -0.030670246151312624,
+      "sixtile_n1664_k1600": 0.037803685253842874,
+      "sixtile_n1664_k2368": 0.0736484548701964,
+      "sixtile_n1664_k576": -0.059214722425143224,
+      "twotile_n1664_k1600": 0.04618509010594623,
+      "twotile_n1664_k2368": 0.07888288514617568,
+      "twotile_n1664_k576": -0.06576058283100165
+    },
+    "free_slope_group_decomposition": {
+      "fourtile_n1664": {
+        "fill_us": 6.1558850412255985,
+        "points": 3,
+        "relative_residual_by_cell": {
+          "fourtile_n1664_k1600": 0.0032991987738672564,
+          "fourtile_n1664_k2368": -0.0013722604573227976,
+          "fourtile_n1664_k576": -0.0028860059176871885
+        },
+        "round_us": 0.9485501059140297
+      },
+      "onetile_n1664": {
+        "fill_us": 5.45209145780688,
+        "points": 6,
+        "relative_residual_by_cell": {
+          "onetile_n1664_k1088": 0.007264446639703233,
+          "onetile_n1664_k1600": -0.00027705573447403087,
+          "onetile_n1664_k2112": -0.00790850693686253,
+          "onetile_n1664_k2368": 0.004910465287024428,
+          "onetile_n1664_k576": -0.007976239000009863,
+          "onetile_n1664_k832": 0.002720959749002569
+        },
+        "round_us": 1.0935779218956576
+      },
+      "onetile_n1920": {
+        "fill_us": 4.908428077044203,
+        "points": 3,
+        "relative_residual_by_cell": {
+          "onetile_n1920_k1600": 6.001530543795209e-05,
+          "onetile_n1920_k2368": -2.4415863943229395e-05,
+          "onetile_n1920_k576": -5.587537331575851e-05
+        },
+        "round_us": 1.081840757964176
+      },
+      "sixtile_n1664": {
+        "fill_us": 6.246116026607915,
+        "points": 3,
+        "relative_residual_by_cell": {
+          "sixtile_n1664_k1600": 0.00493443312599986,
+          "sixtile_n1664_k2368": -0.002057836156723669,
+          "sixtile_n1664_k576": -0.004324716452625835
+        },
+        "round_us": 0.9538755002732772
+      },
+      "twotile_n1664": {
+        "fill_us": 6.411452409902097,
+        "points": 3,
+        "relative_residual_by_cell": {
+          "twotile_n1664_k1600": 0.0011327555668568968,
+          "twotile_n1664_k2368": -0.0004711891108341717,
+          "twotile_n1664_k576": -0.0009754295425074523
+        },
+        "round_us": 0.9420547729883435
+      }
+    }
+  },
+  "forward_eligible": true,
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "method": {
+    "compiled_resource_fact": {
+      "note": "runtime introspection of the compiled kernel matched the deployed AOT resource record in every cell",
+      "num_stages": 3,
+      "num_warps": 8,
+      "shared": 49152
+    },
+    "event_repetitions_per_trial": 100,
+    "event_trials_per_cell": 9,
+    "extraction": "microbench/metax_c500/operators/fused_moe/grouped_operand_pipeline_extraction.py",
+    "independent_captures_per_cell": 3,
+    "kernel": "frozen production Triton grouped-MoE source",
+    "physical_device": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "reference_group": "onetile_n1664",
+    "runner": "microbench/metax_c500/operators/fused_moe/fused_moe_triton_operand_stream_runner.py",
+    "selection_rule": "Forward keeps the per-K-round service analytic (round bytes at the hardware DRAM capacity plus the pipeline-depth amortized DRAM latency), so the only measured coefficient is the per-CTA fixed span.  Where the free-slope decomposition of this sweep does not reproduce that analytic round, the span is not read off the free intercept.  fixed_span_ns is the mean over the production-density reference group of the launch median minus the measured empty-wave tail and the analytic round service, per resident wave, which makes the Forward expression unbiased over that group.  empty_wave_slot_ns is the slope of the source-exact all-empty early-return prefix launch against its resident wave count.  local_k_round_interval_ns is the reference group's measured per-K-round issue interval, which the sweep shows to be independent of the N extent; it is checked against the architecture-peak BF16 MMA round issue interval for the tile and must not fall below it."
+  },
+  "parameter_fit_from_production_duration": false,
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "branch": "wt-c500-moe-duration",
+    "capture_baseline_commit": "712d214963d4f427d712ac9515c0895f54691e11",
+    "capture_command": "MACA_VISIBLE_DEVICES=3 prefill_driver.sh (bm64_bk64_bn128_gsm1 warps=8: 12 production cells plus 5 empty-CTA grids, three captures each)",
+    "container": "capture-container-1",
+    "owner": "capture-owner-1",
+    "physical_device_id": 3,
+    "remote_snapshot": "/capture-workspace/execution_snapshots/c500-moe-bm16-mechanism-712d21496-20260918",
+    "worktree": "/capture-workspace/wt-c500-moe-duration"
+  },
+  "schema_version": 1,
+  "scope": {
+    "density_groups": {
+      "fourtile_n1664": "128 populated experts, 6097 active CTAs over 59 resident waves, at most 4 M tiles per expert",
+      "onetile_n1664": "128 populated experts, 1664 active CTAs over 16 resident waves, at most 1 M tiles per expert",
+      "onetile_n1920": "128 populated experts, 1920 active CTAs over 19 resident waves, at most 1 M tiles per expert",
+      "sixtile_n1664": "128 populated experts, 9256 active CTAs over 89 resident waves, at most 6 M tiles per expert",
+      "twotile_n1664": "128 populated experts, 4030 active CTAs over 39 resident waves, at most 3 M tiles per expert"
+    },
+    "k_tiles_swept": [
+      9,
+      13,
+      17,
+      25,
+      33,
+      37
+    ],
+    "n_tiles_swept": [
+      13,
+      15
+    ],
+    "nonproduction_geometry_only": true,
+    "route_seed": 20260824,
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "signature_name": "bm64_bk64_bn128_gsm1"
+  },
+  "selected_parameters": {
+    "empty_wave_slot_ns": 465.8174764363534,
+    "fixed_span_ns": 4047.8499406455785,
+    "local_k_round_interval_ns": 1093.5779218956577
+  },
+  "signature": {
+    "dynamic_shared_memory_bytes_per_cta": 49152,
+    "group_size_m": 1,
+    "num_stages": 3,
+    "num_warps": 8,
+    "pipeline_depth": 3,
+    "resident_ctas_per_ap": 1,
+    "threads_per_cta": 512,
+    "tile_k": 64,
+    "tile_m": 64,
+    "tile_n": 128
+  },
+  "software_revision": "maca_3.7.2",
+  "stability": {
+    "capture_spread_note": "three fresh-process captures per cell; medians reported in cells",
+    "conditioned_span_group_spread_ns": [
+      2723.5600629937344,
+      4047.8499406455785,
+      3838.555166847833,
+      2939.8253815449116,
+      2825.404552428999
+    ],
+    "free_slope_fill_group_spread_ns": [
+      6155.885041225599,
+      5452.09145780688,
+      4908.428077044203,
+      6246.116026607915,
+      6411.452409902096
+    ],
+    "free_slope_round_group_spread_ns": [
+      948.5501059140297,
+      1093.5779218956577,
+      1081.840757964176,
+      953.8755002732771,
+      942.0547729883435
+    ],
+    "max_abs_forward_model_relative_residual": 0.08033712236679517,
+    "max_abs_free_slope_relative_residual": 0.007976239000009863
+  },
+  "timer_domain": "torch_cuda_event_gpu_timeline"
+}

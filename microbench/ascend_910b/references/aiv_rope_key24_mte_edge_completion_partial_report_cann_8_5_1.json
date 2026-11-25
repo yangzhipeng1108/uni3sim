@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "campaign": "rope_key24_q_slice_edges",
+  "payload_bytes": 4096,
+  "lookup_policy": "exact_worker_count_and_payload_only",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "service_time_selection": "median_of_independent_run_medians",
+  "pairing_formula": "maximum_worker(request_first_interval(pair_order=1)-control_first_interval(pair_order=0)), matched by run and trial",
+  "source_scope": "ATB BF16 RoPE key-24 full 2048-element Q slice: one plain DataCopy followed by the source-audited MTE2-to-Vector or Vector-to-MTE3 hard edge",
+  "source_tile_evidence": {
+    "tiling_key": 24,
+    "dtype": "BF16",
+    "slice_elements": 2048,
+    "dtype_bytes": 2,
+    "payload_bytes": 4096,
+    "buffer_slots": 2,
+    "buffer_selection": "ping_pong",
+    "exact_worker_counts": [1, 32, 43, 47],
+    "source_hard_edges": ["mte2_to_vector", "vector_to_mte3"],
+    "scope_boundary": "exact 4096-byte full-Q slices at workers 1, 32, 43, or 47 only; tail payloads, other workers, key-22, and the unstable 32-worker Vector-to-MTE3 cell remain outside published evidence"
+  },
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "source_commit": "1e05a5ae250a833939f56c9ca1c5d056cc45c547",
+  "source_snapshot_path": "/capture-workspace/source_snapshots/rope_key24_q_slice_edges_1e05a5ae_20260831_0142",
+  "source_snapshot_files_sha256": {
+    "first_mte_completion_kernel.cpp": "d17d9d992d527f3e2cf5c26ad636f0c5376e429dcb0567e66ac83458212e6318",
+    "first_mte_completion_main.cpp": "f21fbd2029a4a699efa7f0e4b58c3cfccc77732cb5cdbb240a4e153618e38645",
+    "first_mte_completion_runner.py": "b4ed9e144bf42db1c5ab9bed5bf7319587952161ea40b166e6334067b96e34eb",
+    "first_mte_completion_report.py": "cb38c02df1786fae113cb6d8855fca9fc4a4e6aa1a5ca2ab51f9de42f40beab8"
+  },
+  "production_source": {
+    "repository": "ascend-transformer-boost",
+    "commit": "f10dc20391d8af04c3f8024aca0e0dfa94d2a0a5",
+    "files_sha256": {
+      "src/kernels/mixkernels/rope/tiling/rope_tiling.cpp": "a3c0446a86165f90232b1e5810bbc37128d7a6199b817e6a5ae59bdf69ea97f6",
+      "src/kernels/mixkernels/rope/op_kernel/common_val.h": "f835a6211042a838298e968adee43bd697fd34633c210137622165e44d0a13ec",
+      "src/kernels/mixkernels/rope/op_kernel/rotary_pos_emb_base.h": "fc846fb20a541b4a5d77e1f5f519a27a2ec0168b420d219af6326b7b8998e151",
+      "src/kernels/mixkernels/rope/op_kernel/rotary_pos_emb_bf16_align.h": "7883759842684bd828f20b8c89d44f168d76b19bef180857bf1c10a81e1f0a20",
+      "src/kernels/mixkernels/rope/op_kernel/rotary_pos_emb.cpp": "83d7e446975d7bed81830c0a6d97c946ea26ef4a2bdf6ffc9324249fc6c258c2"
+    }
+  },
+  "benchmark_binary_sha256": "b5c9548eab3be362f5a644cc9ea300409b1f1eff5313fa50b2af8c37baeae8c7",
+  "benchmark_binary_identity": {
+    "path": "microbench/ascend_910b/memory/dram/latency/build/first_mte_completion",
+    "sha256": "b5c9548eab3be362f5a644cc9ea300409b1f1eff5313fa50b2af8c37baeae8c7",
+    "size_bytes": 123664,
+    "format": "ELF 64-bit LSB pie executable, ARM aarch64",
+    "stripped": false,
+    "build_id": "2c29808bafe24152c3847c4057916d9646f93e78",
+    "kernel_symbol": "__ascend_kernel_ascend910b2_first_mte_completion_kernel",
+    "kernel_section": ".ascend.kernel.ascend910b2.first_mte_completion_kernel",
+    "host_launch_symbols": [
+      "aclrtlaunch_first_mte_completion",
+      "launch_and_profiling_first_mte_completion"
+    ]
+  },
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/rope_key24_q_slice_edges_1e05a5ae_20260831_d7_r1_retry1/raw.csv",
+      "sha256": "fb42e0d3d379ec82950e4a0f084dd06e36232f3baf3367457b372b2915f283c1",
+      "metadata_path": "profiler_output/microbench/ascend_910b/rope_key24_q_slice_edges_1e05a5ae_20260831_d7_r1_retry1/metadata.txt",
+      "metadata_sha256": "6633003b75c8c25ed9b79021773c05bac5d45d25126be37bd983e87df82e2add",
+      "report_path": "profiler_output/microbench/ascend_910b/rope_key24_q_slice_edges_1e05a5ae_20260831_d7_r1_retry1/report.txt",
+      "report_sha256": "087eda2ae9697c927adbece97289d1cbf2c3ab3bde02426f43f2cadfc7dcd088",
+      "runner_log_sha256": "868246b74c36722d9ff1f92c9ef9353fbb70f8bbcc2c2cc8dbfa1c8046b4d5df",
+      "device_id": 7,
+      "run_id": "rope_key24_q_slice_edges_r1_retry1"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rope_key24_q_slice_edges_1e05a5ae_20260831_d7_r2/raw.csv",
+      "sha256": "81a8b13cc9bef3f3aa3710119f28f6b6bd412bc976acb915dbe376e3601f66d3",
+      "metadata_path": "profiler_output/microbench/ascend_910b/rope_key24_q_slice_edges_1e05a5ae_20260831_d7_r2/metadata.txt",
+      "metadata_sha256": "1889697d4312481bb55c797fca2dd76f9d8fd048197db3a990a5af58266e73ad",
+      "report_path": "profiler_output/microbench/ascend_910b/rope_key24_q_slice_edges_1e05a5ae_20260831_d7_r2/report.txt",
+      "report_sha256": "9834430df4c161fb1e328b72fdad075dba550b177a767267350d9a06f10101eb",
+      "runner_log_sha256": "6093fae53b4ff996b9dbd9a4f791bcb85cf4c658934f5eea96ea6af5ca85c048",
+      "device_id": 7,
+      "run_id": "rope_key24_q_slice_edges_r2"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rope_key24_q_slice_edges_1e05a5ae_20260831_d7_r3_retry1/raw.csv",
+      "sha256": "ee8bc7d9f19f26755d9bbf981888c6399bff191c6fb11f85e5a845040c346832",
+      "metadata_path": "profiler_output/microbench/ascend_910b/rope_key24_q_slice_edges_1e05a5ae_20260831_d7_r3_retry1/metadata.txt",
+      "metadata_sha256": "cfdeafbebadba84ab0de6afc97a015004c54acbdfd67b61ccae5e11e9ea526c0",
+      "report_path": "profiler_output/microbench/ascend_910b/rope_key24_q_slice_edges_1e05a5ae_20260831_d7_r3_retry1/report.txt",
+      "report_sha256": "82a0a28833793a4a01b79a8fa4e4411051f7b5e71e20a902ee9007710ec729b5",
+      "runner_log_sha256": "1dfeb3990da27414e2c4ef5f8f095979206d1f452cd8c4828f3c1bfe1b8085d8",
+      "device_id": 7,
+      "run_id": "rope_key24_q_slice_edges_r3_retry1"
+    }
+  ],
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 32,
+  "replication_basis": "balanced_schedule_cycle_parity",
+  "median_ns_by_run": {
+    "rope_key24_q_slice_edges_r1_retry1": {
+      "1:mte2_to_vector": 360.0,
+      "1:mte3_to_vector": 300.0,
+      "32:mte2_to_vector": 480.0,
+      "32:mte3_to_vector": 150.0,
+      "43:mte2_to_vector": 720.0,
+      "43:mte3_to_vector": 560.0,
+      "47:mte2_to_vector": 860.0,
+      "47:mte3_to_vector": 720.0
+    },
+    "rope_key24_q_slice_edges_r2": {
+      "1:mte2_to_vector": 360.0,
+      "1:mte3_to_vector": 300.0,
+      "32:mte2_to_vector": 450.0,
+      "32:mte3_to_vector": 180.0,
+      "43:mte2_to_vector": 740.0,
+      "43:mte3_to_vector": 580.0,
+      "47:mte2_to_vector": 800.0,
+      "47:mte3_to_vector": 740.0
+    },
+    "rope_key24_q_slice_edges_r3_retry1": {
+      "1:mte2_to_vector": 350.0,
+      "1:mte3_to_vector": 290.0,
+      "32:mte2_to_vector": 530.0,
+      "32:mte3_to_vector": 140.0,
+      "43:mte2_to_vector": 760.0,
+      "43:mte3_to_vector": 580.0,
+      "47:mte2_to_vector": 840.0,
+      "47:mte3_to_vector": 690.0
+    }
+  },
+  "published_cells": {
+    "1:mte2_to_vector:4096": {"service_time_ns": 360.0, "maximum_run_relative_median_spread": 0.027777777777777776},
+    "1:mte3_to_vector:4096": {"service_time_ns": 300.0, "maximum_run_relative_median_spread": 0.03333333333333333},
+    "32:mte2_to_vector:4096": {"service_time_ns": 480.0, "maximum_run_relative_median_spread": 0.1509433962264151},
+    "43:mte2_to_vector:4096": {"service_time_ns": 740.0, "maximum_run_relative_median_spread": 0.05263157894736842},
+    "43:mte3_to_vector:4096": {"service_time_ns": 580.0, "maximum_run_relative_median_spread": 0.034482758620689655},
+    "47:mte2_to_vector:4096": {"service_time_ns": 840.0, "maximum_run_relative_median_spread": 0.06976744186046512},
+    "47:mte3_to_vector:4096": {"service_time_ns": 720.0, "maximum_run_relative_median_spread": 0.06756756756756757}
+  },
+  "excluded_cells": {
+    "32:mte3_to_vector:4096": "cross-run median spread 22.22% exceeds the frozen 20% publication limit"
+  },
+  "partial_boundaries": {
+    "key22_8192_byte_slice": "unmeasured",
+    "key24_tail_payloads": "unmeasured",
+    "worker_counts_other_than_1_32_43_47": "unmeasured",
+    "worker32_mte3_to_vector": "measured_but_not_publishable"
+  },
+  "all_per_run_replication_gates_passed": true,
+  "gates": {
+    "source_identity": "pass",
+    "binary_identity": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "balanced_cell_order": "pass",
+    "within_run_replication": "pass",
+    "cross_run_relative_median_spread_limit": 0.2,
+    "cross_run_stability": "partial_one_excluded_cell"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true,
+  "production_consumption_status": "candidate_only_unwired"
+}

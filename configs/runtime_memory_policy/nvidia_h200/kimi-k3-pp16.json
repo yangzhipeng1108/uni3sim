@@ -1,0 +1,89 @@
+{
+  "schema_version": 2,
+  "scheduler_pools": [
+    {
+      "pool_name": "main",
+      "binding": {
+        "hardware_id": "nvidia_h200",
+        "hardware_config_sha256": "cb5f33773e1332d666267b4b10243331ba6a4acfaebabc638d62fbd35436291e",
+        "model_config_sha256": "9710e121a58d03ac92c8d6da287a19541994319afbbe6d6202af001ffd379213",
+        "deployment": "colocated",
+        "worker_role": "colocated",
+        "tensor_parallel_size": 1,
+        "pipeline_parallel_size": 16,
+        "expert_parallel_size": 1,
+        "max_model_len": 640,
+        "max_batched_tokens": 2048,
+        "max_requests": 2,
+        "kv_block_size_tokens": 640
+      },
+      "gpu_memory_utilization": {
+        "numerator": 9,
+        "denominator": 10,
+        "provenance": {
+          "source_kind": "runtime_configuration",
+          "source_reference": "projected K3 PP16 H200 deployment HBM utilization setting",
+          "source_sha256": null
+        }
+      },
+      "non_kv_reserves": [
+        {
+          "kind": "activation",
+          "bytes": 2147483648,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "vLLM0.30 KDA concurrent q/k,w/u/kg,v_new,chunk_h,final_state,g,Aqk,beta with varlen NT<=33 plus Marlin and PP transient; workspace bounds 1202504400 B and at most 264241152 B per rank, with non-PP graph peaks checked against 2 GiB",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "cuda_graph",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "eager K3 source scope disables CUDA graphs",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "communication",
+          "bytes": 134217728,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "conservative 128 MiB NCCL/P2P runtime allowance; PP persistent and transient buffers are charged separately under framework and activation",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "allocator",
+          "bytes": 268435456,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "conservative 256 MiB native hybrid-arena metadata and alignment allowance for the bound eager CPU0.30 configuration",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "fragmentation",
+          "bytes": 268435456,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "conservative 256 MiB fragmentation allowance, below one percent of the approximately 30.42 GB per-rank native arena",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "framework",
+          "bytes": 1342177280,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "29419654 B known vLLM0.30 worker descriptors plus at most 264241152 B rank-local PP persistent worker.intermediate (293660806 B combined), within the existing 1.25 GiB framework reserve for the bounded eager scope",
+            "source_sha256": null
+          }
+        }
+      ],
+      "reserve_scope": "verified_uniform_across_pool_ranks",
+      "completeness_assertion": "all_non_kv_reserves_for_bound_runtime"
+    }
+  ]
+}

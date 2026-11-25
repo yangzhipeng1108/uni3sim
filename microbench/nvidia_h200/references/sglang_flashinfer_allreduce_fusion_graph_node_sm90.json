@@ -1,0 +1,192 @@
+{
+ "schema_version": 1,
+ "mechanism": "flashinfer_trtllm_allreduce_residual_rmsnorm_graph_node_service",
+ "timer_domain": "cuda_event_around_graph_replay_divided_by_chain",
+ "chain_length": 64,
+ "trials": 30,
+ "warmup_replays": 5,
+ "dtype": "bfloat16",
+ "pattern": "kARResidualRMSNorm",
+ "backend": "trtllm",
+ "max_token_num": 128,
+ "token_counts": [
+  1,
+  2,
+  3,
+  4,
+  6,
+  8,
+  12,
+  16,
+  24,
+  32,
+  48,
+  64,
+  96,
+  128
+ ],
+ "production_or_evaluation_duration_consumed": false,
+ "runner": {
+  "path": "/capture-public/h200_microbench/sglang_dsr1/src/flashinfer_allreduce_fusion_runner_sgl.py",
+  "sha256": "e54374164c2d9d037d16ba8a65970004f123accca0c936305a0b27f838cd210a",
+  "git_commit": "86aaddfb4"
+ },
+ "command": "/capture-public/envs/sglang0512/bin/python /capture-public/h200_microbench/sglang_dsr1/src/flashinfer_allreduce_fusion_runner_sgl.py --world-sizes 8 --output-dir /capture-public/h200_microbench/sglang_dsr1/runs/world8_fusion_r4_20260927_2037/data --source-commit 86aaddfb4",
+ "environment": {
+  "hardware_id": "nvidia_h200",
+  "cuda_visible_devices": "0,1,2,3,4,5,6,7",
+  "torch_version": "2.11.0+cu130",
+  "cuda_runtime": "13.0",
+  "flashinfer_version": "0.6.11.post1",
+  "sglang_version": "0.5.12",
+  "python": "3.12.3"
+ },
+ "world_sizes": {
+  "8": {
+   "per_rank_raw": [
+    "/capture-public/h200_microbench/sglang_dsr1/runs/world8_fusion_r4_20260927_2037/data/ws8_rank0.json",
+    "/capture-public/h200_microbench/sglang_dsr1/runs/world8_fusion_r4_20260927_2037/data/ws8_rank1.json",
+    "/capture-public/h200_microbench/sglang_dsr1/runs/world8_fusion_r4_20260927_2037/data/ws8_rank2.json",
+    "/capture-public/h200_microbench/sglang_dsr1/runs/world8_fusion_r4_20260927_2037/data/ws8_rank3.json",
+    "/capture-public/h200_microbench/sglang_dsr1/runs/world8_fusion_r4_20260927_2037/data/ws8_rank4.json",
+    "/capture-public/h200_microbench/sglang_dsr1/runs/world8_fusion_r4_20260927_2037/data/ws8_rank5.json",
+    "/capture-public/h200_microbench/sglang_dsr1/runs/world8_fusion_r4_20260927_2037/data/ws8_rank6.json",
+    "/capture-public/h200_microbench/sglang_dsr1/runs/world8_fusion_r4_20260927_2037/data/ws8_rank7.json"
+   ],
+   "summary": [
+    {
+     "tokens": 1,
+     "payload_bytes": 14336,
+     "fused_ns": 6848.749937489629
+    },
+    {
+     "tokens": 2,
+     "payload_bytes": 28672,
+     "fused_ns": 6940.749939531088
+    },
+    {
+     "tokens": 3,
+     "payload_bytes": 43008,
+     "fused_ns": 7415.74983112514
+    },
+    {
+     "tokens": 4,
+     "payload_bytes": 57344,
+     "fused_ns": 7836.750242859125
+    },
+    {
+     "tokens": 6,
+     "payload_bytes": 86016,
+     "fused_ns": 8516.250178217888
+    },
+    {
+     "tokens": 8,
+     "payload_bytes": 114688,
+     "fused_ns": 9130.00013679266
+    },
+    {
+     "tokens": 12,
+     "payload_bytes": 172032,
+     "fused_ns": 10562.499985098839
+    },
+    {
+     "tokens": 16,
+     "payload_bytes": 229376,
+     "fused_ns": 11993.000283837318
+    },
+    {
+     "tokens": 24,
+     "payload_bytes": 344064,
+     "fused_ns": 14685.249887406826
+    },
+    {
+     "tokens": 32,
+     "payload_bytes": 458752,
+     "fused_ns": 17606.99972510338
+    },
+    {
+     "tokens": 48,
+     "payload_bytes": 688128,
+     "fused_ns": 23412.750102579594
+    },
+    {
+     "tokens": 64,
+     "payload_bytes": 917504,
+     "fused_ns": 28765.500523149967
+    },
+    {
+     "tokens": 96,
+     "payload_bytes": 1376256,
+     "fused_ns": 44865.24872481823
+    },
+    {
+     "tokens": 128,
+     "payload_bytes": 1835008,
+     "fused_ns": 58842.50067174435
+    }
+   ]
+  }
+ },
+ "schema": "nvidia_h200_sglang_flashinfer_allreduce_fusion_graph_node_reference_v1",
+ "capture": {
+  "device": "H200 GPU 0-7 (main agent, kcampaign ev_world8e.sh)",
+  "window": "2026-09-27 20:38:39-20:41:14 +08:00",
+  "rc": 0,
+  "runner_changes": "copy of the repo runner at 86aaddfb4 with one provenance change (import sglang / sglang_version instead of vllm); measurement code unchanged",
+  "local_raw": "profiler_output/h200_sglang_dsr1/runs/world8_fusion_r4_20260927_2037"
+ },
+ "derivation": {
+  "source_report_sha256": "aac3569a153d48be1e44e0caf5e6a51b1b20b39596248f69aa2e4027fc25df9c",
+  "rule": "runner summary: per payload, fused all-reduce + residual RMSNorm service per chained graph node (64 nodes, 30 replays)",
+  "service_ns_by_participants": {
+   "8": {
+    "14336": 6848.7,
+    "28672": 6940.7,
+    "43008": 7415.7,
+    "57344": 7836.8,
+    "86016": 8516.3,
+    "114688": 9130.0,
+    "172032": 10562.5,
+    "229376": 11993.0,
+    "344064": 14685.2,
+    "458752": 17607.0,
+    "688128": 23412.8,
+    "917504": 28765.5,
+    "1376256": 44865.2,
+    "1835008": 58842.5,
+    "2293760": 74022.0,
+    "2752512": 85172.8,
+    "3670016": 56780.5,
+    "5505024": 74194.5,
+    "7340032": 93381.0,
+    "11010048": 129449.0,
+    "14680064": 154600.2,
+    "22020096": 221281.3,
+    "29360128": 286711.8
+   }
+  }
+ },
+ "extension_capture": {
+  "window": "2026-09-27 21:53:03-21:53:27 +08:00 (GPU 0-7, worker waiter fusion2048.sh, rc=0)",
+  "token_counts": [
+   128,
+   160,
+   192,
+   256,
+   384,
+   512,
+   768,
+   1024,
+   1536,
+   2048
+  ],
+  "runner_git_commit": "89f2dd942",
+  "report_sha256": "0f14c91d3c6ba8f7a0bef8200c9ebb760c65ab829dee71e6be528f58645f188f",
+  "local_raw": "profiler_output/h200_sglang_dsr1/runs/fusion2048_20260927_2138",
+  "rule": "payloads above 128 tokens come from this capture; 1..128 tokens from the 20:38 capture; the 128-token cell of both is reported for consistency",
+  "overlap_128_tokens_ns": {
+   "first": 58842.5,
+   "second": 59233.8
+  }
+ }
+}

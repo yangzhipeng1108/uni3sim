@@ -1,0 +1,54 @@
+{
+  "schema_version": "midlayer.metax_c500.bm16_e128_53_active_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 16,
+    "tile_k": 64,
+    "tile_n": 32,
+    "group_size_m": 1,
+    "routed_rows": 64,
+    "populated_experts": 53,
+    "active_m_tiles": 53,
+    "w1_launch_m_tiles": 64,
+    "w2_launch_m_tiles": 124,
+    "production_k_n_tile_classes": [[32, 48], [12, 64]]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090080,
+    "tokens": 8,
+    "experts": 128,
+    "topk": 8,
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 100,
+    "independent_captures_per_projection": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "cffe88825767f47104baac2a7d4f9f75a1b5c260f821ad63f308e28d530742ac",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "per projection, median capacity across three independent captures using adjacent non-production N geometries"
+  },
+  "captures": {
+    "w1": [
+      {"capture": 1, "source_topk": 8, "k": 2048, "n": 1504, "active_m_tiles": 53, "launch_m_tiles": 64, "raw_sha256": "97f7ad6719910a2073c6ae59f98bc1dc2be017343c17d1994f68146722e7556b", "operand_pipeline_capacity_bytes_per_s": 1619579010866.7063},
+      {"capture": 2, "source_topk": 8, "k": 2048, "n": 1568, "active_m_tiles": 53, "launch_m_tiles": 64, "raw_sha256": "a45926a35a1e86b92e4a77c07a9ccc8fa09f44e7936edaaadb0420d817e869c2", "operand_pipeline_capacity_bytes_per_s": 1616665342456.1943},
+      {"capture": 3, "source_topk": 8, "k": 2048, "n": 1504, "active_m_tiles": 53, "launch_m_tiles": 64, "raw_sha256": "ad2180c447520f56c29878b3a4828106afcdac194c142ebf79e73661a454ab51", "operand_pipeline_capacity_bytes_per_s": 1622040256679.2341}
+    ],
+    "w2": [
+      {"capture": 1, "source_topk": 1, "k": 768, "n": 2016, "active_m_tiles": 53, "launch_m_tiles": 124, "raw_sha256": "ab8978540bf36c465d9dbe51e0c2873bf65fb4223025270d0dbdbbb02984d6b0", "operand_pipeline_capacity_bytes_per_s": 1412634015271.04},
+      {"capture": 2, "source_topk": 1, "k": 768, "n": 2080, "active_m_tiles": 53, "launch_m_tiles": 124, "raw_sha256": "3eaa9b3e7b0637110ab96717ec0cbe5c7dc7e74f1d8350c0bb6e95a650f28ee8", "operand_pipeline_capacity_bytes_per_s": 1396143494130.3799},
+      {"capture": 3, "source_topk": 1, "k": 768, "n": 2016, "active_m_tiles": 53, "launch_m_tiles": 124, "raw_sha256": "39b21f03d03daedc749c6e89b9b8768766dfbf364e6253b9aac359a0852a5eba", "operand_pipeline_capacity_bytes_per_s": 1412604069151.0583}
+    ]
+  },
+  "selected_services": {
+    "w1": {
+      "predicate": "8 source rows, 64 routed rows, 53 populated and active M tiles, 64 launched M tiles, and K/N tile class (32,48)",
+      "logical_byte_capacity_per_s": 1619579010866.7063
+    },
+    "w2": {
+      "predicate": "64 source and routed rows, 53 populated and active M tiles, 124 launched M tiles, and K/N tile class (12,64)",
+      "logical_byte_capacity_per_s": 1412604069151.0583
+    }
+  }
+}

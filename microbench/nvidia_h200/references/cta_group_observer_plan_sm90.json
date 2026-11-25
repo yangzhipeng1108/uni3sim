@@ -1,0 +1,207 @@
+{
+  "kind": "cta_wide_hardware_join_uniform_single_endpoint_observer",
+  "source_sha256": {
+    "cta_group_observer.cu": "ca88af2c8b2c5bac4075fd28b8f1e744458be60a1502f3e05ba0a9052b5caeae",
+    "cta_group_observer_analysis.py": "0a451ec9b2b6b194f3b6d2decc1d20235b8e6d60df6facaec7ef5069bd62fc30",
+    "cta_group_observer_modal_runner.py": "bd2ac1d31414cb4c095706e26c00100a34e08e082669e5cbc9e802d34154aa75"
+  },
+  "control_cells": [
+    [
+      16384,
+      264,
+      1,
+      0
+    ],
+    [
+      16384,
+      264,
+      1,
+      1
+    ],
+    [
+      16384,
+      264,
+      2,
+      0
+    ],
+    [
+      16384,
+      264,
+      2,
+      1
+    ],
+    [
+      16384,
+      264,
+      4,
+      0
+    ],
+    [
+      16384,
+      264,
+      4,
+      1
+    ]
+  ],
+  "physical_cells": [
+    [
+      16384,
+      132,
+      1,
+      0
+    ],
+    [
+      16384,
+      132,
+      1,
+      1
+    ],
+    [
+      16384,
+      132,
+      2,
+      0
+    ],
+    [
+      16384,
+      132,
+      2,
+      1
+    ],
+    [
+      16384,
+      132,
+      4,
+      0
+    ],
+    [
+      16384,
+      132,
+      4,
+      1
+    ],
+    [
+      16384,
+      264,
+      1,
+      0
+    ],
+    [
+      16384,
+      264,
+      1,
+      1
+    ],
+    [
+      16384,
+      264,
+      2,
+      0
+    ],
+    [
+      16384,
+      264,
+      2,
+      1
+    ],
+    [
+      16384,
+      264,
+      4,
+      0
+    ],
+    [
+      16384,
+      264,
+      4,
+      1
+    ],
+    [
+      32768,
+      132,
+      1,
+      0
+    ],
+    [
+      32768,
+      132,
+      1,
+      1
+    ],
+    [
+      32768,
+      132,
+      2,
+      0
+    ],
+    [
+      32768,
+      132,
+      2,
+      1
+    ],
+    [
+      32768,
+      132,
+      4,
+      0
+    ],
+    [
+      32768,
+      132,
+      4,
+      1
+    ]
+  ],
+  "instruction_prerequisite": {
+    "manifest_path": "profiler_output/microbench/nvidia_h200/mbarrier_query_fanin_20261108/attempt_1/manifest.json",
+    "manifest_sha256": "cd258f79c43aa0201ff155d67500135cc24911ceb50de4ec683dc9331ebfb596",
+    "qualified_all48_cells": true
+  },
+  "isa_source": {
+    "path": "profiler_output/microbench/nvidia_h200/cta_group_observer_20261108/isa_semantics/source.json",
+    "metadata_sha256": "ae98db8730bc8295bb35acdcf13e53a43efbe3178fdbc80b5cc1c8a13f224cfe",
+    "url": "https://docs.nvidia.com/cuda/archive/12.9.1/parallel-thread-execution/index.html#parallel-synchronization-and-communication-instructions-cp-async-mbarrier-arrive"
+  },
+  "producer_threads": 256,
+  "observer_threads": 32,
+  "arrivals_per_event": 257,
+  "deferred_per_event_per_phase": 256,
+  "ordinary_per_event_per_phase": 1,
+  "endpoint_semantics": "first marker after group0; all marker after all lookahead groups; exactly two markers/thread in EVERY lookahead including1. PTX all-prior semantics plus noinc account for all256producers. Onlythread0 performs one ordinary arrival/event. Both events drain before phase reuse.",
+  "query_semantics": "same shared target address in all32observer lanes; VOTE.ALL guarantees uniform ready branch. First/all polled in separate identical-body launches; both initial events checked pending before producer release. Timed gap begins BEFORE release; all32stamps must agree. Counter markers, extra warp and separate sampling remain scope limitations.",
+  "trials_per_process": 63,
+  "processes": [
+    0,
+    1
+  ],
+  "rounds": 127,
+  "warm_launches": 6,
+  "warm_rounds": 1024,
+  "gates": [
+    "all-lane checksum/initial-pending/32stamp equality/127phase-reuse;132SM physical placement and1/2resident resources",
+    "all12PTX bodies count257 andtwo deferred/ordinary sites; all12SASS bodies uniform one-query/VOTE.ALL timed loop with one backedge and no memory/helper/CTA barrier; no spill or matrix",
+    "response exactmedian95 CI halfwidth3pct, reverseprocess3pct, first<=all median; allCTA clock64/globaltimer3pct nominal and calibration interval<2**31cycles",
+    "BOTH endpoint poll gaps use97.5pct upper<=10pct of SAME first-endpoint97.5pct lower, joint>=95pct; no query-cost/enqueue subtraction or sample/CTA filtering",
+    "exactCTA/LDGSTS,upstream/TEX logical1pct,DRAM<=1pct,source-unit closure1pct,directSM nominal3pct andallSM/LTSclockstable3pct"
+  ],
+  "selection": "all12control timing and12matched counter cells qualify before remaining24/24 in sameApp. Failure closes this protocol without retry/selection/relaxedgates. Full36/36required. No failed oldobserver reclassified.",
+  "contrasts": "Q=(first_L-first_1)/(all_L-first_1);three98 1/3pct exact median intervals give joint95; ALL12upper<=0.25supportsfirstpriority,ALL12lower>=0.75supportsequalburstslowresponse,otherwiseinconclusive. Never useQorbodyduration as Forward price.",
+  "transfer_limits": [
+    "two hardware counters may contend and markers/extra warp can perturb native behavior",
+    "warm private B panels and missing native A/matrix/CTAphase are explicit; qualifiedinstrument does not certify native policy",
+    "futureForward requires compactrequest/responseconservation and independent source applicability"
+  ],
+  "budget": {
+    "gpu": "H200",
+    "cards": 1,
+    "expected_seconds": 240,
+    "maximum_seconds": 600,
+    "maximum_gpu_hours": 0.16666666666666666,
+    "usd_hold": 1.2,
+    "retries": 0,
+    "volume": false
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "forward_parameter_or_policy_adopted": false
+}

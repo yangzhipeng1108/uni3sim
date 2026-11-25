@@ -1,0 +1,1141 @@
+{
+  "kind": "independent_two_resident_cache_accounted_progress_plan",
+  "panel_bytes": 16384,
+  "threads": 256,
+  "slots": 3,
+  "shared_bytes": 98304,
+  "resident_ctas": 2,
+  "source_census_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/two_resident_cold_source_scope.json",
+  "source_census_sha256": "ed06f7dc7d86088a6f5ae38f0ee7b78c8d8087facee26d94a920df4b3b5ec224",
+  "source_only_endpoint_count": 147,
+  "physical_cells": [
+    [
+      1024,
+      5088,
+      1
+    ],
+    [
+      1024,
+      5088,
+      2
+    ],
+    [
+      1024,
+      5088,
+      8
+    ],
+    [
+      1024,
+      6112,
+      1
+    ],
+    [
+      1024,
+      8160,
+      1
+    ],
+    [
+      1024,
+      8160,
+      2
+    ],
+    [
+      1024,
+      12256,
+      2
+    ],
+    [
+      1024,
+      12256,
+      4
+    ],
+    [
+      1024,
+      20448,
+      4
+    ],
+    [
+      1024,
+      20448,
+      8
+    ],
+    [
+      1024,
+      36832,
+      4
+    ],
+    [
+      1024,
+      36832,
+      8
+    ],
+    [
+      2048,
+      18816,
+      1
+    ],
+    [
+      2048,
+      18816,
+      2
+    ],
+    [
+      2048,
+      18816,
+      4
+    ],
+    [
+      2048,
+      21376,
+      1
+    ],
+    [
+      2048,
+      26496,
+      1
+    ],
+    [
+      2048,
+      36736,
+      1
+    ],
+    [
+      2048,
+      36736,
+      2
+    ],
+    [
+      2048,
+      57216,
+      2
+    ],
+    [
+      2048,
+      57216,
+      4
+    ],
+    [
+      2048,
+      98176,
+      2
+    ],
+    [
+      2048,
+      98176,
+      4
+    ],
+    [
+      3072,
+      6112,
+      1
+    ],
+    [
+      3072,
+      6112,
+      2
+    ],
+    [
+      3072,
+      6112,
+      16
+    ],
+    [
+      3072,
+      8160,
+      1
+    ],
+    [
+      3072,
+      8160,
+      2
+    ],
+    [
+      3072,
+      12256,
+      2
+    ],
+    [
+      3072,
+      12256,
+      4
+    ],
+    [
+      3072,
+      20448,
+      2
+    ],
+    [
+      3072,
+      20448,
+      4
+    ],
+    [
+      3072,
+      36832,
+      4
+    ],
+    [
+      3072,
+      36832,
+      8
+    ],
+    [
+      3072,
+      69600,
+      8
+    ],
+    [
+      3072,
+      69600,
+      16
+    ],
+    [
+      4096,
+      2544,
+      1
+    ],
+    [
+      4096,
+      2544,
+      2
+    ],
+    [
+      4096,
+      2544,
+      8
+    ],
+    [
+      4096,
+      3056,
+      1
+    ],
+    [
+      4096,
+      4080,
+      1
+    ],
+    [
+      4096,
+      4080,
+      2
+    ],
+    [
+      4096,
+      6128,
+      2
+    ],
+    [
+      4096,
+      6128,
+      4
+    ],
+    [
+      4096,
+      10224,
+      4
+    ],
+    [
+      4096,
+      10224,
+      8
+    ],
+    [
+      4096,
+      17808,
+      1
+    ],
+    [
+      4096,
+      18416,
+      4
+    ],
+    [
+      4096,
+      18416,
+      8
+    ],
+    [
+      4096,
+      21392,
+      1
+    ],
+    [
+      4096,
+      28560,
+      1
+    ],
+    [
+      4096,
+      28560,
+      2
+    ],
+    [
+      4096,
+      42896,
+      2
+    ],
+    [
+      4096,
+      42896,
+      4
+    ],
+    [
+      4096,
+      71568,
+      2
+    ],
+    [
+      4096,
+      71568,
+      4
+    ],
+    [
+      4096,
+      128912,
+      2
+    ],
+    [
+      4096,
+      128912,
+      4
+    ],
+    [
+      5760,
+      1472,
+      1
+    ],
+    [
+      5760,
+      1472,
+      2
+    ],
+    [
+      5760,
+      1472,
+      16
+    ],
+    [
+      5760,
+      2208,
+      2
+    ],
+    [
+      5760,
+      2208,
+      4
+    ],
+    [
+      5760,
+      2880,
+      1
+    ],
+    [
+      5760,
+      2880,
+      2
+    ],
+    [
+      5760,
+      3657,
+      1
+    ],
+    [
+      5760,
+      3680,
+      2
+    ],
+    [
+      5760,
+      3680,
+      4
+    ],
+    [
+      5760,
+      4320,
+      2
+    ],
+    [
+      5760,
+      4320,
+      4
+    ],
+    [
+      5760,
+      4393,
+      1
+    ],
+    [
+      5760,
+      5865,
+      1
+    ],
+    [
+      5760,
+      5865,
+      2
+    ],
+    [
+      5760,
+      6624,
+      4
+    ],
+    [
+      5760,
+      6624,
+      8
+    ],
+    [
+      5760,
+      7155,
+      1
+    ],
+    [
+      5760,
+      7200,
+      2
+    ],
+    [
+      5760,
+      7200,
+      4
+    ],
+    [
+      5760,
+      8595,
+      1
+    ],
+    [
+      5760,
+      8809,
+      2
+    ],
+    [
+      5760,
+      8809,
+      4
+    ],
+    [
+      5760,
+      11475,
+      1
+    ],
+    [
+      5760,
+      11475,
+      2
+    ],
+    [
+      5760,
+      12512,
+      8
+    ],
+    [
+      5760,
+      12512,
+      16
+    ],
+    [
+      5760,
+      12960,
+      4
+    ],
+    [
+      5760,
+      12960,
+      8
+    ],
+    [
+      5760,
+      14697,
+      2
+    ],
+    [
+      5760,
+      14697,
+      4
+    ],
+    [
+      5760,
+      17235,
+      2
+    ],
+    [
+      5760,
+      17235,
+      4
+    ],
+    [
+      5760,
+      24288,
+      8
+    ],
+    [
+      5760,
+      24288,
+      16
+    ],
+    [
+      5760,
+      24480,
+      8
+    ],
+    [
+      5760,
+      24480,
+      16
+    ],
+    [
+      5760,
+      26473,
+      4
+    ],
+    [
+      5760,
+      26473,
+      8
+    ],
+    [
+      5760,
+      28755,
+      2
+    ],
+    [
+      5760,
+      28755,
+      4
+    ],
+    [
+      5760,
+      47520,
+      8
+    ],
+    [
+      5760,
+      47520,
+      16
+    ],
+    [
+      5760,
+      51795,
+      4
+    ],
+    [
+      5760,
+      51795,
+      8
+    ],
+    [
+      8192,
+      4584,
+      1
+    ],
+    [
+      8192,
+      4584,
+      2
+    ],
+    [
+      8192,
+      4584,
+      16
+    ],
+    [
+      8192,
+      6120,
+      1
+    ],
+    [
+      8192,
+      6120,
+      2
+    ],
+    [
+      8192,
+      9192,
+      2
+    ],
+    [
+      8192,
+      9192,
+      4
+    ],
+    [
+      8192,
+      9408,
+      1
+    ],
+    [
+      8192,
+      10688,
+      1
+    ],
+    [
+      8192,
+      13248,
+      1
+    ],
+    [
+      8192,
+      15336,
+      2
+    ],
+    [
+      8192,
+      15336,
+      4
+    ],
+    [
+      8192,
+      18368,
+      1
+    ],
+    [
+      8192,
+      18368,
+      2
+    ],
+    [
+      8192,
+      27624,
+      4
+    ],
+    [
+      8192,
+      27624,
+      8
+    ],
+    [
+      8192,
+      28608,
+      2
+    ],
+    [
+      8192,
+      28608,
+      4
+    ],
+    [
+      8192,
+      49088,
+      4
+    ],
+    [
+      8192,
+      49088,
+      8
+    ],
+    [
+      8192,
+      52200,
+      8
+    ],
+    [
+      8192,
+      52200,
+      16
+    ],
+    [
+      12288,
+      6144,
+      1
+    ],
+    [
+      12288,
+      6144,
+      2
+    ],
+    [
+      12288,
+      6144,
+      16
+    ],
+    [
+      12288,
+      10240,
+      2
+    ],
+    [
+      12288,
+      10240,
+      4
+    ],
+    [
+      12288,
+      18432,
+      4
+    ],
+    [
+      12288,
+      18432,
+      8
+    ],
+    [
+      12288,
+      34816,
+      8
+    ],
+    [
+      12288,
+      34816,
+      16
+    ],
+    [
+      12288,
+      67584,
+      8
+    ],
+    [
+      12288,
+      67584,
+      16
+    ],
+    [
+      12288,
+      133120,
+      8
+    ],
+    [
+      12288,
+      133120,
+      16
+    ],
+    [
+      14336,
+      10176,
+      1
+    ],
+    [
+      14336,
+      10176,
+      2
+    ],
+    [
+      14336,
+      10176,
+      8
+    ],
+    [
+      14336,
+      12224,
+      1
+    ],
+    [
+      14336,
+      16320,
+      1
+    ],
+    [
+      14336,
+      16320,
+      2
+    ],
+    [
+      14336,
+      24512,
+      2
+    ],
+    [
+      14336,
+      24512,
+      4
+    ],
+    [
+      14336,
+      40896,
+      2
+    ],
+    [
+      14336,
+      40896,
+      4
+    ],
+    [
+      14336,
+      73664,
+      4
+    ],
+    [
+      14336,
+      73664,
+      8
+    ],
+    [
+      32768,
+      1152,
+      1
+    ],
+    [
+      32768,
+      1152,
+      2
+    ],
+    [
+      32768,
+      1152,
+      16
+    ],
+    [
+      32768,
+      1920,
+      2
+    ],
+    [
+      32768,
+      1920,
+      4
+    ],
+    [
+      32768,
+      3456,
+      4
+    ],
+    [
+      32768,
+      3456,
+      8
+    ],
+    [
+      32768,
+      6528,
+      8
+    ],
+    [
+      32768,
+      6528,
+      16
+    ],
+    [
+      32768,
+      12672,
+      8
+    ],
+    [
+      32768,
+      12672,
+      16
+    ],
+    [
+      32768,
+      24960,
+      8
+    ],
+    [
+      32768,
+      24960,
+      16
+    ]
+  ],
+  "counter_cells": [
+    [
+      1024,
+      5088,
+      1
+    ],
+    [
+      1024,
+      5088,
+      2
+    ],
+    [
+      1024,
+      5088,
+      8
+    ],
+    [
+      2048,
+      18816,
+      1
+    ],
+    [
+      2048,
+      18816,
+      2
+    ],
+    [
+      2048,
+      18816,
+      4
+    ],
+    [
+      3072,
+      6112,
+      1
+    ],
+    [
+      3072,
+      6112,
+      2
+    ],
+    [
+      3072,
+      6112,
+      16
+    ],
+    [
+      4096,
+      2544,
+      1
+    ],
+    [
+      4096,
+      2544,
+      2
+    ],
+    [
+      4096,
+      2544,
+      8
+    ],
+    [
+      5760,
+      1472,
+      1
+    ],
+    [
+      5760,
+      1472,
+      2
+    ],
+    [
+      5760,
+      1472,
+      16
+    ],
+    [
+      8192,
+      4584,
+      1
+    ],
+    [
+      8192,
+      4584,
+      2
+    ],
+    [
+      8192,
+      4584,
+      16
+    ],
+    [
+      12288,
+      6144,
+      1
+    ],
+    [
+      12288,
+      6144,
+      2
+    ],
+    [
+      12288,
+      6144,
+      16
+    ],
+    [
+      14336,
+      10176,
+      1
+    ],
+    [
+      14336,
+      10176,
+      2
+    ],
+    [
+      14336,
+      10176,
+      8
+    ],
+    [
+      32768,
+      1152,
+      1
+    ],
+    [
+      32768,
+      1152,
+      2
+    ],
+    [
+      32768,
+      1152,
+      16
+    ]
+  ],
+  "selection": "Protocol2 SOURCE-CACHE READ ACCOUNTING,explicitly distinct from failed unique-byte protocol1. Same163physicalpoints/27controls/two63sampleprocesses,unchangedbytekernel/copybody and all numeric/resource/132SM/instruction/upstream/downstream/source-unit/precision/process/clock/pendingratio>0.60 gates. DRAMreadcounts must match frozen unchanged60MiB/264resident/source-cache predictions within1%,including legitimateB replays;originalunique-read checks are separately reported and may remain false. Independent eight-counter check with six novel cells passed before this plan:allreaderrors<=0.593%,no hardware/phase/rate fit. Stage1all27controls/countersmustpass this NEW protocol before remaining136points are measured. Failed or missing cells stop publication. Only full163point qualification permits slower-process-median logicalB capacity for exact measured keys as a competingbyteprogressbound,never an additiveoperator price,new generic bandwidth,selectedcasepolicy or empiricalcounterratio. Source maximumfanin17 remains outside<=16scope. Production/evaluation duration never enters a parameter.",
+  "mechanism_min_ratio": 0.6,
+  "previous_protocol_path": "microbench/nvidia_h200/references/two_resident_cold_copy_plan_sm90.json",
+  "previous_protocol_sha256": "4fada572b991c42af84250cf2391a740faac98623970eb3b762ada86b780c2e9",
+  "counter_read_forecasts": [
+    {
+      "stride": 1024,
+      "grid": 5088,
+      "fanout": 1,
+      "predicted_read_bytes": 666895360
+    },
+    {
+      "stride": 1024,
+      "grid": 5088,
+      "fanout": 2,
+      "predicted_read_bytes": 333448192
+    },
+    {
+      "stride": 1024,
+      "grid": 5088,
+      "fanout": 8,
+      "predicted_read_bytes": 83362816
+    },
+    {
+      "stride": 2048,
+      "grid": 18816,
+      "fanout": 1,
+      "predicted_read_bytes": 4932647040
+    },
+    {
+      "stride": 2048,
+      "grid": 18816,
+      "fanout": 2,
+      "predicted_read_bytes": 2466252800
+    },
+    {
+      "stride": 2048,
+      "grid": 18816,
+      "fanout": 4,
+      "predicted_read_bytes": 1233127424
+    },
+    {
+      "stride": 3072,
+      "grid": 6112,
+      "fanout": 1,
+      "predicted_read_bytes": 2403408128
+    },
+    {
+      "stride": 3072,
+      "grid": 6112,
+      "fanout": 2,
+      "predicted_read_bytes": 1201671168
+    },
+    {
+      "stride": 3072,
+      "grid": 6112,
+      "fanout": 16,
+      "predicted_read_bytes": 150211584
+    },
+    {
+      "stride": 4096,
+      "grid": 2544,
+      "fanout": 1,
+      "predicted_read_bytes": 1333829632
+    },
+    {
+      "stride": 4096,
+      "grid": 2544,
+      "fanout": 2,
+      "predicted_read_bytes": 666931968
+    },
+    {
+      "stride": 4096,
+      "grid": 2544,
+      "fanout": 8,
+      "predicted_read_bytes": 166727680
+    },
+    {
+      "stride": 5760,
+      "grid": 1472,
+      "fanout": 1,
+      "predicted_read_bytes": 1085310720
+    },
+    {
+      "stride": 5760,
+      "grid": 1472,
+      "fanout": 2,
+      "predicted_read_bytes": 542671488
+    },
+    {
+      "stride": 5760,
+      "grid": 1472,
+      "fanout": 16,
+      "predicted_read_bytes": 67835520
+    },
+    {
+      "stride": 8192,
+      "grid": 4584,
+      "fanout": 1,
+      "predicted_read_bytes": 4806819840
+    },
+    {
+      "stride": 8192,
+      "grid": 4584,
+      "fanout": 2,
+      "predicted_read_bytes": 2403482368
+    },
+    {
+      "stride": 8192,
+      "grid": 4584,
+      "fanout": 16,
+      "predicted_read_bytes": 300949504
+    },
+    {
+      "stride": 12288,
+      "grid": 6144,
+      "fanout": 1,
+      "predicted_read_bytes": 9663971328
+    },
+    {
+      "stride": 12288,
+      "grid": 6144,
+      "fanout": 2,
+      "predicted_read_bytes": 4832132480
+    },
+    {
+      "stride": 12288,
+      "grid": 6144,
+      "fanout": 16,
+      "predicted_read_bytes": 603992064
+    },
+    {
+      "stride": 14336,
+      "grid": 10176,
+      "fanout": 1,
+      "predicted_read_bytes": 18673600512
+    },
+    {
+      "stride": 14336,
+      "grid": 10176,
+      "fanout": 2,
+      "predicted_read_bytes": 9337079808
+    },
+    {
+      "stride": 14336,
+      "grid": 10176,
+      "fanout": 8,
+      "predicted_read_bytes": 2334144512
+    },
+    {
+      "stride": 32768,
+      "grid": 1152,
+      "fanout": 1,
+      "predicted_read_bytes": 4832002048
+    },
+    {
+      "stride": 32768,
+      "grid": 1152,
+      "fanout": 2,
+      "predicted_read_bytes": 2416082944
+    },
+    {
+      "stride": 32768,
+      "grid": 1152,
+      "fanout": 16,
+      "predicted_read_bytes": 310515456
+    }
+  ],
+  "independent_cache_check": {
+    "path": "profiler_output/microbench/nvidia_h200/two_resident_cache_check_20261108/attempt_1/summary.json",
+    "sha256": "607a8d5c938aec43d9e5e00873f413123f1a79afb626a4dab6740029b800d833",
+    "manifest_path": "profiler_output/microbench/nvidia_h200/two_resident_cache_check_20261108/attempt_1/manifest.json",
+    "manifest_sha256": "5c07f54bfea8d99923c43eee384898f0e239745dc4d69f26f75a2cdf1cf439bb",
+    "novel_cells": 6,
+    "repeat_controls": 2
+  }
+}

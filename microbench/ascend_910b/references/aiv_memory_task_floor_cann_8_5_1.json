@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "model": "isolated_aiv_memory_task_floor_v1",
+  "mechanism": "complete 64-byte MTE2 to Vector Mul to 64-byte MTE3 AIV memory task",
+  "application_scope": "hardware_wide_minimum_mte2_vector_mte3_aiv_task_floor",
+  "composition": "max_floor_not_additive",
+  "formula": "submit_ns + descriptor_ns_per_aiv * aiv_block_dim",
+  "duration_unit": "ns_per_complete_nonempty_aiv_task",
+  "timer_domain": "msprof_task_time_complete_task",
+  "minimum_aiv_block_dim": 1,
+  "maximum_aiv_block_dim": 48,
+  "launches_per_point": 200,
+  "training_runs": [1, 2],
+  "validation_runs": [3, 4],
+  "parameters": {
+    "submit_ns": 895.9751773049647,
+    "descriptor_ns_per_aiv": 91.4567954841511
+  },
+  "training_metrics": {
+    "mape_percent": 4.274801337269501,
+    "wmae_percent": 4.705675498883386,
+    "max_ape_percent": 11.434061436325976
+  },
+  "validation_metrics": {
+    "mape_percent": 3.4318189575861857,
+    "wmae_percent": 3.698731723197829,
+    "max_ape_percent": 10.965824446021273
+  },
+  "parameter_stability": {
+    "submit_relative_span": 0.03294876615281089,
+    "descriptor_relative_span": 0.023774480712166098
+  },
+  "source_baseline_commit": "11db977207dcce86d6ff2731b5a3f2033f9910de",
+  "source_capture_path": "profiler_output/microbench/ascend_910b/aiv_memory_task_floor_64b_23e48524_20260828_r1",
+  "source_archive_sha256": "9df7ef6da2ee777e888e17b0444f3d4e162c3ab6ded75f255260913e596cb56c",
+  "deployed_source_archive_sha256": "ac6e43f3dc177e999250dd289fd38821f982f33fa68eb8fbdd68560470d76d4b",
+  "source_manifest_sha256": "d34778d7181162c17f4d1374e25d19435454545cf36500c6253f3e6a07d75d9d",
+  "raw_task_time_sha256": "fda59b6e5d4e1f13c1fd6022fe0abaf3475395eee47622396798ef19bcc3aa07",
+  "report_sha256": "60a375aba52ee89541bb9ece915321cbf517a23a6dfaa807babd4159f3a92d3a",
+  "production_or_evaluation_duration_consumed": false,
+  "microbenchmark_task_duration_consumed": true,
+  "mechanism_publishable": true
+}

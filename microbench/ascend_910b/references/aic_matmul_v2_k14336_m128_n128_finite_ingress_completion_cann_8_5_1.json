@@ -1,0 +1,54 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_matmul_v2_finite_ingress_completion.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_source_pair_finite_completion_v1",
+  "duration_unit": "ns_per_source_program_per_aic",
+  "source_program": {
+    "dtype": "bf16",
+    "active_aic_groups": [22],
+    "operand_buffer_depth": 2,
+    "base_tile_m": 128,
+    "base_tile_n": 128,
+    "base_tile_k": 128,
+    "mte1_base_k": 64,
+    "a_rows": 128,
+    "a_columns": 256,
+    "b_rows": 128,
+    "b_columns": 256,
+    "minimum_completion_pairs_per_worker": 28,
+    "maximum_completion_pairs_per_worker": 672
+  },
+  "affine_service": {
+    "startup_ns": 3073.6046511627937,
+    "ns_per_completion_pair": 427.9194352159468,
+    "fit_cells": [
+      {"output_tiles_per_worker": 1, "k_slabs": 7, "completion_pairs_per_worker": 28, "completion_ns": 14350.0},
+      {"output_tiles_per_worker": 1, "k_slabs": 14, "completion_pairs_per_worker": 56, "completion_ns": 27860.0},
+      {"output_tiles_per_worker": 2, "k_slabs": 28, "completion_pairs_per_worker": 224, "completion_ns": 98810.0}
+    ]
+  },
+  "validation_cells": [
+    {"output_tiles_per_worker": 1, "k_slabs": 7, "completion_pairs_per_worker": 28, "completion_ns": 14350.0},
+    {"output_tiles_per_worker": 1, "k_slabs": 14, "completion_pairs_per_worker": 56, "completion_ns": 27860.0},
+    {"output_tiles_per_worker": 2, "k_slabs": 28, "completion_pairs_per_worker": 224, "completion_ns": 98810.0}
+  ],
+  "holdout": {
+    "output_tiles_per_worker": 3,
+    "k_slabs": 56,
+    "completion_pairs_per_worker": 672,
+    "completion_run_medians_ns": [284600.0, 286280.0, 284250.0],
+    "completion_median_of_run_medians_ns": 284600.0,
+    "predicted_completion_ns": 290635.465116279
+  },
+  "capture": {
+    "measurement_baseline_commit": "985f73a47aba8d72c147aaa7708d714aade45dbb",
+    "source_snapshot_sha256": "ceb69fafe785d26062fcff262bcfaa146300fb4099a91fdc850fec562847a348",
+    "binary_sha256": "435735bac2083420526ac2f96ec7d56a055bda3d69aa243856104147c86c7061",
+    "sweep_raw_path": "profiler_output/microbench/ascend_910b/gemm_k14336_m128_n128_985f73a4_20260909_d4_r2/results.csv",
+    "sweep_raw_sha256": "48ecc9aceb9d19c652bbdfb5bfce62274d7e056d13a2b7bcf907ab84ac225ea1",
+    "holdout_raw_path": "profiler_output/microbench/ascend_910b/gemm_k14336_m128_n128_985f73a4_20260909_d4_r2/results.csv",
+    "holdout_raw_sha256": "48ecc9aceb9d19c652bbdfb5bfce62274d7e056d13a2b7bcf907ab84ac225ea1"
+  },
+  "production_or_evaluation_duration_consumed": false
+}

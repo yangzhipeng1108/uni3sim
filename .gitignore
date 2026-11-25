@@ -1,0 +1,44 @@
+profiler_output/
+# Serving datasets excluded from the public distribution are supplied separately.
+/serving_dataset/production/
+/serving_dataset/sharegpt_pd_disaggregated/
+/serving_dataset/synthetic/
+/serving_dataset/moe_expert_freq/
+# Accelerator datasets and presets excluded from the public distribution.
+/kernel_dataset/groq_lpu/
+/kernel_dataset/samsung_hbm_pim/
+/kernel_dataset/ucb_gemmini/
+/microbench/samsung_hbm_pim/
+/configs/dataset/groq_lpu.yaml
+/configs/dataset/samsung_hbm_pim.yaml
+/configs/dataset/ucb_gemmini.yaml
+/configs/hardware/groq_lpu.yaml
+/configs/hardware/samsung_hbm_pim.yaml
+/configs/hardware/ucb_gemmini.yaml
+/configs/baselines/pipeweave/groq_lpu.json
+/configs/baselines/pipeweave/samsung_hbm_pim.json
+/configs/baselines/pipeweave/ucb_gemmini.json
+# The maintained test suite stays in the internal repository.
+/tests/
+.vscode/
+.claude/
+__pycache__/
+# NVIDIA Profiler reports
+*.ncu-rep
+*.sqlite
+*.nsys-rep
+# MetaX mcProfiler per-run scratch (sqlite dbs written to repo root each run)
+*.db
+profiler.log
+# Compiled artifacts
+*.so
+build/
+experiment_logs/
+# User-created isolated Python environment for local installation.
+.venv/
+# PipeWeave upstream code, datasets, and trained models (too large for git).
+# NOTE: pipeweave/ is currently a NESTED git repo (has its own .git), so its
+# hardware/*.json specs can't be tracked from here until it's de-nested.
+pipeweave/
+# Task-local isolated vLLM control-plane dependencies.
+.venv-vllm030/

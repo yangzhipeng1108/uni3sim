@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/casys-kaist/LLMServingSim.git",
+  "commit": "b09c7aaab4b072d73136641841cc2688616c49eb",
+  "astra_sim_commit": "d3d068f4050a2fb9a7538cc671a982152c2ba9b7",
+  "chakra_commit": "5e6e9b28438bc1899105dbdd68eed4cf61bee6fd",
+  "bundled_cases": [
+    "RTX4090/Llama-3.1-8B",
+    "RTXPRO6000/DeepSeek-V3.2-Exp-16L64E",
+    "RTXPRO6000/Llama-3.1-8B",
+    "RTXPRO6000/Qwen3-30B-A3B-Instruct-2507",
+    "RTXPRO6000/Qwen3-32B"
+  ]
+}

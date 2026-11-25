@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "evidence_kind": "independent_l1_residency_mechanism_microbenchmark",
+  "production_or_evaluation_duration_consumed": false,
+  "production_parameter_published": true,
+  "capture": {
+    "owner": "vector-worker",
+    "physical_device_index": 7,
+    "device_uuid": "capture-device-ceb3fcab78ae",
+    "baseline_commit": "82279e9d",
+    "raw_output": "profiler_output/microbench/nvidia_a800/rmsnorm_gamma_residency/gamma_multisize_82279e9d_20260908_d7/result.json",
+    "raw_output_sha256": "daa4b03d6b3cbfbd608893628588f478902e7c94d8d809dd6abac597ecc0e0d5"
+  },
+  "source_identity": {
+    "probe_source": "microbench/nvidia_a800/memory/l1/rmsnorm_gamma_residency.cu",
+    "probe_source_sha256": "ed73436eca920c57055f5e93d83a7185338b7aac33412878a62477d9770b7678",
+    "runner": "microbench/nvidia_a800/memory/l1/rmsnorm_gamma_residency_runner.py",
+    "runner_sha256": "a36c72eb3755d738d56f4d62201cd8f3ad7975a6e9896b72f0eea4fe91496d3d",
+    "upstream_source_path": "csrc/layernorm_kernels.cu",
+    "upstream_source_sha256": "fb3b6102d6c0efdf66ed7a2030d0bebf6a25aa46e07fe7274ec545f39e200409"
+  },
+  "static_contract": {
+    "grid": 1024,
+    "block_threads": 1024,
+    "registers_per_thread": 24,
+    "static_shared_memory_bytes_per_cta": 168,
+    "resident_ctas_per_sm": 2,
+    "sm_count": 108,
+    "cached_bf16_load_opcode": "LDG.E.U16.STRONG.SM",
+    "stream_order": "private_input_a->private_input_b->barrier->private_input_a_plus_gamma->store",
+    "rms_reduction_implemented": false
+  },
+  "h2048_shared_private_control": {
+    "gamma_bytes_per_cta": 4096,
+    "logical_gamma_bytes": 4194304,
+    "shared_gamma_l2_read_bytes": 8830976,
+    "private_gamma_l2_read_bytes": 12582912,
+    "l2_read_bytes_saved": 3751936,
+    "inferred_shared_gamma_l2_bytes": 442368,
+    "inferred_shared_gamma_l2_copies": 108,
+    "maximum_shared_counter_relative_spread": 0.01035302784027672,
+    "maximum_private_counter_relative_spread": 0.000489122580788599
+  },
+  "scope": {
+    "model": "source_shared_gamma_residency_tier_v2",
+    "dtype": "bf16",
+    "threads_per_cta": 1024,
+    "launch_lifetime_maximum_gamma_bytes": 4096,
+    "maximum_evidenced_gamma_bytes": 32768,
+    "launch_lifetime_copy_rule": "min(grid_ctas, active_sms)",
+    "larger_gamma_copy_rule": "one_fill_per_active_sm_per_resident_cta_group"
+  },
+  "limitations": [
+    "The probe preserves source-equivalent cached gamma access and production occupancy but omits the RMS reduction and never calls the production operator.",
+    "Only the exact 4096-byte gamma control infers one fill per active SM; 16384-byte and 32768-byte gamma vectors retain the earlier conservative resident-group rule.",
+    "The paired shared/private controls use aggregate L1/L2 counters and do not consume a duration."
+  ]
+}

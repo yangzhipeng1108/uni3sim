@@ -1,0 +1,66 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_grouped_matmul_mte1_pair_geometry.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_l1_to_l0_grouped_matmul_pair_geometry_v1",
+  "duration_unit": "ns_per_completed_load_pair_per_aic",
+  "fixed_geometry": {
+    "m_rows": 128,
+    "k_columns": 64,
+    "b_l1_k_extent": 256,
+    "active_aic_groups": 24
+  },
+  "measurements": [
+    {
+      "n_columns": 112,
+      "run_ns_per_pair": [104.431966146, 104.469401042, 104.443359375],
+      "median_ns_per_pair": 104.443359375
+    },
+    {
+      "n_columns": 128,
+      "run_ns_per_pair": [113.325195312, 113.312174479, 113.341471354],
+      "median_ns_per_pair": 113.325195312
+    },
+    {
+      "n_columns": 256,
+      "run_ns_per_pair": [184.47265625, 184.466145833, 184.436848958],
+      "median_ns_per_pair": 184.466145833
+    }
+  ],
+  "affine_n_service": {
+    "fit_n_columns": [112, 256],
+    "reference_n_columns": 256,
+    "ns_per_n_column": 0.555713794847222,
+    "holdout_n_columns": 128,
+    "holdout_predicted_ns_per_pair": 113.334780092556,
+    "holdout_measured_ns_per_pair": 113.325195312,
+    "holdout_ape_pct": 0.008457766633
+  },
+  "validation": {
+    "trials_per_cell": 3,
+    "iterations_per_short_interval": 4096,
+    "long_to_short_iteration_ratio": 4,
+    "maximum_sample_span_over_median": 0.000358414943,
+    "all_rows_validated": true,
+    "all_stderr_empty": true
+  },
+  "provenance": {
+    "measurement_baseline_commit": "e4c74b4cd36738e5ae9bc762bb92f57782cf119d",
+    "source_dir": "microbench/ascend_910b/memory/l1_to_l0/grouped_matmul_pair",
+    "source_aggregate_sha256": "e948aa8e892a54955f5df0096fa175f4c99ad8078e13949bc7b0fdaa73b5e144",
+    "binary_sha256": "b125680e50e3551fdb9f11263de9e3721cd217f79e0532a787d42653c0f7be56",
+    "raw_paths": [
+      "profiler_output/microbench/ascend_910b/grouped_matmul_mte1_geometry_e4c74b4c_20260910_d4/run_1.csv",
+      "profiler_output/microbench/ascend_910b/grouped_matmul_mte1_geometry_e4c74b4c_20260910_d4/run_2.csv",
+      "profiler_output/microbench/ascend_910b/grouped_matmul_mte1_geometry_e4c74b4c_20260910_d4/run_3.csv"
+    ],
+    "raw_sha256": [
+      "afa42866e30c05563a9b0710f3a81055352743cab6231b576a508a329fe9141c",
+      "276763322d801ddd1f84aebe751ed200f3699021b8d6ed1d05a6c6b0862e02e5",
+      "a2de197dccccde1de27371f011dda93bacb42477cae869616e861ec32a3e32b9"
+    ],
+    "physical_device_id": 4,
+    "container": "capture-container-2"
+  },
+  "production_or_evaluation_duration_consumed": false
+}

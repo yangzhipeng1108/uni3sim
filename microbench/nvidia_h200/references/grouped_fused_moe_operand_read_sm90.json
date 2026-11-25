@@ -1,0 +1,107 @@
+{
+  "schema": "nvidia_h200_grouped_fused_moe_operand_read_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "a800_evidence": "profiler_output/microbench/nvidia_a800/fused_moe_operand_820defa_20260830/summary.json#operand_bm16_bn32_bk64 (2427259310000.0 B/s; raw not retained locally)",
+  "source": "microbench/nvidia_h200/operators/fused_moe/fused_moe_operand_service.cu",
+  "source_sha256": "4345e86afa957b5d95bb1eb8ea423126f6831ec2f90784107007daf6c6d5cce4",
+  "runner": "microbench/nvidia_h200/operators/fused_moe/fused_moe_operand_service_runner.py",
+  "runner_sha256": "530eea799e16bb439cf448df033513f337987cfe34da9d79121648f2c9e143dd",
+  "runner_procedure_origin": "A800 fused_moe_operand_service_runner.py at commit f4476b33b, the version that produced the A800 summary; the current A800 runner is fixed to CASE_ID=1 with an active-row sweep",
+  "source_baseline_commit": "48abf63b1baff96101be2f06194dc27a1d246932",
+  "build": {
+    "binary": "/capture-public/h200_microbench/wp1_moe_triton/repo/profiler_output/microbench/nvidia_h200/wp1_fused_moe_operand_service_f31e5412_20260925/fused_moe_operand_service",
+    "binary_sha256": "e8db1fcf59a819e08b6957a1e5c103a161382da07573f2a7ac77352effb80e96",
+    "compile_command": "/capture-public/tools/cuda-12.9/bin/nvcc -O3 -std=c++17 -arch=sm_90 -lineinfo -Xptxas=-v /capture-public/h200_microbench/wp1_moe_triton/repo/microbench/nvidia_h200/operators/fused_moe/fused_moe_operand_service.cu -o /capture-public/h200_microbench/wp1_moe_triton/repo/profiler_output/microbench/nvidia_h200/wp1_fused_moe_operand_service_f31e5412_20260925/fused_moe_operand_service",
+    "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86",
+    "source": "/capture-public/h200_microbench/wp1_moe_triton/repo/microbench/nvidia_h200/operators/fused_moe/fused_moe_operand_service.cu",
+    "source_sha256": "4345e86afa957b5d95bb1eb8ea423126f6831ec2f90784107007daf6c6d5cce4"
+  },
+  "device": {
+    "driver_version": "575.57.08",
+    "index": 3,
+    "memory_used_mib": 4,
+    "name": "NVIDIA H200",
+    "pci_bus_id": "00000000:AA:00.0",
+    "uuid": "capture-device-462006ac8ee4"
+  },
+  "summaries": [
+    {
+      "case_id": 0,
+      "case_name": "operand_bm16_bn32_bk64",
+      "group_size_m": 1,
+      "logical_tile_bytes": 6144,
+      "maximum_logical_bandwidth_gb_s": 5921.37003,
+      "median_logical_bandwidth_gb_s": 5875.7472,
+      "minimum_logical_bandwidth_gb_s": 5785.24682,
+      "relative_range_pct": 2.3166961641916752,
+      "sample_count": 15,
+      "tile_k": 64,
+      "tile_m": 16,
+      "tile_n": 32
+    },
+    {
+      "case_id": 1,
+      "case_name": "operand_bm64_bn64_bk32",
+      "group_size_m": 8,
+      "logical_tile_bytes": 8192,
+      "maximum_logical_bandwidth_gb_s": 5850.81626,
+      "median_logical_bandwidth_gb_s": 5800.24749,
+      "minimum_logical_bandwidth_gb_s": 5752.02394,
+      "relative_range_pct": 1.7032431835076671,
+      "sample_count": 15,
+      "tile_k": 32,
+      "tile_m": 64,
+      "tile_n": 64
+    }
+  ],
+  "selected_services": {
+    "operand_bm16_bn32_bk64": {
+      "logical_byte_capacity_per_s": 5875747200000.0,
+      "selection_rule": "median of 3 fresh-process trials x 5 CUDA-event samples of logical_bandwidth_gb_s (the A800 summary statistic), x 1e9",
+      "tile_m": 16,
+      "tile_n": 32,
+      "tile_k": 64,
+      "group_size_m": 1,
+      "relative_range_pct": 2.3166961641916752
+    },
+    "operand_bm64_bn64_bk32": {
+      "logical_byte_capacity_per_s": 5800247490000.0,
+      "selection_rule": "median of 3 fresh-process trials x 5 CUDA-event samples of logical_bandwidth_gb_s (the A800 summary statistic), x 1e9",
+      "tile_m": 64,
+      "tile_n": 64,
+      "tile_k": 32,
+      "group_size_m": 8,
+      "relative_range_pct": 1.7032431835076671
+    }
+  },
+  "clock": {
+    "accepted_captures": 6,
+    "busy_clock_mhz_max": 1980,
+    "busy_clock_mhz_min": 1980,
+    "busy_samples_total": 33,
+    "captures_without_busy_sample": 0,
+    "gate": "every busy nvidia-smi sample (50 ms) >= 1980 MHz; a window without busy samples requires every sample >= boost",
+    "measured_sm_clock_mhz": 1980,
+    "rejected_captures": 0
+  },
+  "captures": {
+    "raw": {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_fused_moe_operand_service_f31e5412_20260925/raw.csv",
+      "sha256": "c58e606f6473a1ddfce74e1b60e91a79a8d8e9eb30d10dabba62c23fcdfa78b0"
+    },
+    "summary": {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_fused_moe_operand_service_f31e5412_20260925/summary.json",
+      "sha256": "637abfe97c67639b91cb198b8ff9366c97d2dab3bffcca36f7f020c6d46d9ee1"
+    },
+    "manifest": {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_fused_moe_operand_service_f31e5412_20260925/manifest.json",
+      "sha256": "22c72f51739227e2de0c24916aebdd5e3273aed045193a2f19bba6bd7aa12701"
+    }
+  },
+  "remote_raw_dir": "/capture-public/h200_microbench/wp1_moe_triton/repo/profiler_output/microbench/nvidia_h200/wp1_fused_moe_operand_service_f31e5412_20260925",
+  "mechanism": "exact BF16 A/B grouped-MoE tile transfer into shared memory with a checksum consumer; no tensor-core operation, output matrix, routing pipeline, or production operator timing",
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false
+}

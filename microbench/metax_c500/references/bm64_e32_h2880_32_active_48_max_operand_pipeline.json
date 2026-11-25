@@ -1,0 +1,69 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_e32_h2880_32_active_48_max_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "tokens": 256,
+    "populated_experts": 32,
+    "active_m_tiles": 32,
+    "maximum_m_tiles": 48,
+    "projection_k": 2880,
+    "production_w1_n": 5760,
+    "production_w2_n": 2880,
+    "adjacent_nonproduction_w1_n": [5696, 5824],
+    "adjacent_nonproduction_w2_n": [2816, 2944]
+  },
+  "method": {
+    "kernel": "frozen production Triton grouped-MoE source",
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026091008,
+    "event_trials_per_cell": 9,
+    "event_repetitions_per_trial": 3,
+    "physical_devices": [0, 2],
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "6830b3e020abdb010b161876e983cb01071c1d6fc02903fbf9df1cbac1da0f88",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "for each physical device and source role, linearly interpolate the two adjacent non-production N mechanism capacities to the midpoint production N, then select the lower interpolated capacity across the two devices"
+  },
+  "interpolated_capacity_per_s_by_device": {
+    "w1": {
+      "0": 3639649767346.0957,
+      "2": 3658765784911.2124
+    },
+    "w2": {
+      "0": 2008955123356.4958,
+      "2": 1745590172592.3005
+    }
+  },
+  "selected_services": {
+    "w1": {"logical_byte_capacity_per_s": 3639649767346.0957},
+    "w2": {"logical_byte_capacity_per_s": 1745590172592.3005}
+  },
+  "raw": {
+    "root": "profiler_output/microbench/metax_c500/bm64_e32_h2880_32_active_48_max_1569f982_20260908_r3",
+    "sha256_by_device_role": {
+      "device0/w1": [
+        "8bd0c62689f68533d5c070df3fbab3323fc011a8a1e453c44a97ae25c04b7236",
+        "2d95d58474f455a21e0cfdebc4c6d8bae07e85def4ab5583a76ac6777a0bcbcc"
+      ],
+      "device0/w2": [
+        "858520c265187d728501aead2f3f0383427c79c5b7dcdb20cc78b705df26578c",
+        "bac15a0169772e4d22b6034f19300304c205e41d4fa5f80d08f7dee9271256fc"
+      ],
+      "device2/w1": [
+        "27108b071a50213a808d059229abed5937fcf382404e5355e1365592c69b3c61",
+        "8d521a448c0fc9928a37abf697e0103971171a896f042db0a2e1f9800895a68c"
+      ],
+      "device2/w2": [
+        "c1d81073d2830c6d207f59cfcde9f0831ac4b1e81c4f0254a2a85245178bd8c0",
+        "2821fc4fe22519d629242f05e87c2134cee3157bd676d6a715e0fc16237d977b"
+      ]
+    }
+  },
+  "allowed_conclusion": "The exact E32/H2880 BM64 32-active/48-maximum source-depth class uses role-specific full-source operand completion services."
+}

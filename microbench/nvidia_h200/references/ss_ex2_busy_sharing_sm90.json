@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_h200",
+  "mechanism": "asymmetric_ss_ex2_busy_capacity",
+  "instruction": "bf16_ss_m64n128k16",
+  "matrix_per_repeat": 8,
+  "tensor_busy_cycles_per_instruction": 64,
+  "ex2_lane_ops_per_cycle": 16,
+  "selection": "grid132_queue4_width128_integrated_ex2_loss_over_tensor_busy",
+  "validation_fraction": 0.05,
+  "measurements": [
+    {
+      "queue": 1,
+      "width": 32,
+      "grid": 1,
+      "tensor_alone": 633.0,
+      "ex2_alone": 283.0,
+      "tensor_mixed": 634.1354166666666,
+      "ex2_mixed": 349.1510416666667,
+      "join_mixed": 634.1354166666666
+    },
+    {
+      "queue": 1,
+      "width": 32,
+      "grid": 132,
+      "tensor_alone": 632.9869791666666,
+      "ex2_alone": 283.0,
+      "tensor_mixed": 634.0807291666666,
+      "ex2_mixed": 349.2291666666667,
+      "join_mixed": 634.0807291666666
+    },
+    {
+      "queue": 1,
+      "width": 64,
+      "grid": 1,
+      "tensor_alone": 633.0,
+      "ex2_alone": 539.0,
+      "tensor_mixed": 634.765625,
+      "ex2_mixed": 660.3958333333334,
+      "join_mixed": 660.4166666666666
+    },
+    {
+      "queue": 1,
+      "width": 64,
+      "grid": 132,
+      "tensor_alone": 632.9739583333334,
+      "ex2_alone": 539.0,
+      "tensor_mixed": 634.7760416666666,
+      "ex2_mixed": 660.3697916666666,
+      "join_mixed": 660.3802083333334
+    },
+    {
+      "queue": 1,
+      "width": 128,
+      "grid": 1,
+      "tensor_alone": 632.9635416666666,
+      "ex2_alone": 1051.0,
+      "tensor_mixed": 634.703125,
+      "ex2_mixed": 1172.5989583333333,
+      "join_mixed": 1172.71875
+    },
+    {
+      "queue": 1,
+      "width": 128,
+      "grid": 132,
+      "tensor_alone": 632.9635416666666,
+      "ex2_alone": 1051.0,
+      "tensor_mixed": 634.5416666666666,
+      "ex2_mixed": 1172.3541666666667,
+      "join_mixed": 1172.328125
+    },
+    {
+      "queue": 4,
+      "width": 32,
+      "grid": 1,
+      "tensor_alone": 512.0,
+      "ex2_alone": 283.0,
+      "tensor_mixed": 512.0,
+      "ex2_mixed": 374.1875,
+      "join_mixed": 512.0
+    },
+    {
+      "queue": 4,
+      "width": 32,
+      "grid": 132,
+      "tensor_alone": 512.0182291666666,
+      "ex2_alone": 283.0,
+      "tensor_mixed": 511.9817708333333,
+      "ex2_mixed": 374.140625,
+      "join_mixed": 511.9817708333333
+    },
+    {
+      "queue": 4,
+      "width": 64,
+      "grid": 1,
+      "tensor_alone": 512.015625,
+      "ex2_alone": 539.0,
+      "tensor_mixed": 512.078125,
+      "ex2_mixed": 665.9739583333334,
+      "join_mixed": 665.9739583333334
+    },
+    {
+      "queue": 4,
+      "width": 64,
+      "grid": 132,
+      "tensor_alone": 512.0598958333334,
+      "ex2_alone": 539.0,
+      "tensor_mixed": 512.0546875,
+      "ex2_mixed": 666.0390625,
+      "join_mixed": 666.0
+    },
+    {
+      "queue": 4,
+      "width": 128,
+      "grid": 1,
+      "tensor_alone": 512.0052083333334,
+      "ex2_alone": 1051.0,
+      "tensor_mixed": 511.703125,
+      "ex2_mixed": 1178.0833333333333,
+      "join_mixed": 1178.0104166666667
+    },
+    {
+      "queue": 4,
+      "width": 128,
+      "grid": 132,
+      "tensor_alone": 512.0026041666666,
+      "ex2_alone": 1051.0,
+      "tensor_mixed": 511.8307291666667,
+      "ex2_mixed": 1178.1484375,
+      "join_mixed": 1178.1171875
+    }
+  ],
+  "evidence": {
+    "raw": {
+      "path": "profiler_output/microbench/nvidia_h200/queued_tensor_sfu_20261107/attempt_01/raw.json",
+      "sha256": "8d7480f045758d98da888a76d5408137153cec79cdb28de79b62ad964f67b05a",
+      "size": 13443905
+    },
+    "source": {
+      "path": "profiler_output/microbench/nvidia_h200/queued_tensor_sfu_20261107/attempt_01/queued_tensor_sfu.cu",
+      "sha256": "952f2175c0d02774260eee4dc0ee4b7ef4b7c25707a2d37916c68495dc0c4998",
+      "size": 6194
+    },
+    "runner": {
+      "path": "profiler_output/microbench/nvidia_h200/queued_tensor_sfu_20261107/attempt_01/queued_tensor_sfu_modal_runner.py",
+      "sha256": "04ccd4b5ea496d57ff92895e996360b78893e896fd90e8961aa9fed546404f49",
+      "size": 7284
+    },
+    "plan": {
+      "path": "profiler_output/microbench/nvidia_h200/queued_tensor_sfu_20261107/plan.json",
+      "sha256": "9b877f2a7e292b6318024f6d2d26de400c35d3efacc2a727d4338dc4ccad2fdc",
+      "size": 4765
+    },
+    "analysis": {
+      "path": "profiler_output/microbench/nvidia_h200/queued_tensor_sfu_20261107/analysis.json",
+      "sha256": "d819eca813d4c0049de1dc847c92635e1719e6543e6f1ffa4e1796d5b416b298",
+      "size": 53001
+    },
+    "busy_analysis": {
+      "path": "profiler_output/microbench/nvidia_h200/queued_tensor_sfu_20261107/busy_duty_analysis.json",
+      "sha256": "081d56fc30465b9ac6cb8121a049050314af45903656b73d64db842457a5661c",
+      "size": 12293
+    },
+    "derivation": {
+      "path": "profiler_output/microbench/nvidia_h200/queued_tensor_sfu_20261107/busy_duty_analysis.py",
+      "sha256": "0321f8f11360c3a5c05bab1bcf441225551625482dba9e5a049a7565cc5ebbac",
+      "size": 4833
+    }
+  },
+  "scope_limitations": [
+    "SS N128 only;RS and other opcodes are unbound.",
+    "Tensor keeps its independently derived finite-feed completion;only pure EX2 loses capacity.",
+    "Matched standalone scalar loop overhead validates the primitive;it is never a Forward LUT.",
+    "Busy service is placed within the existing aggregate source schedule;native instruction interleaving and delayed-arrival transfer remain approximate.",
+    "No RF topology inference,no whole-scalar multiplier,no restoration of rejected symmetric prefix/tail/fluid coefficients."
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

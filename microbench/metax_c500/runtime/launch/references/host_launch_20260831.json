@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "measurement_boundary": "host_submit_only_no_device_sync",
+  "selection": {
+    "eager_enqueue_s": 5.1802998046875e-06,
+    "eager_source": "eager:512 host_submit_ns_per_dispatch median",
+    "graph_replay_enqueue_s": 0.000157619,
+    "graph_source": "graph_replay:512 host_submit_ns median"
+  },
+  "raw": {
+    "path": "/capture-workspace/midlayer_hw_model/execution_snapshots/host-launch-73141598-20260831/profiler_output/microbench/metax_c500/host_launch_20260831_r2/manifest.json",
+    "sha256": "2af082467ee83129638b61a79b7efb9db5ac8abb94f8d9ab298164ad42959793",
+    "retention": "remote_raw_not_committed"
+  },
+  "repeat": {
+    "path": "/capture-workspace/midlayer_hw_model/execution_snapshots/host-launch-73141598-20260831/profiler_output/microbench/metax_c500/host_launch_20260831_r1/manifest.json",
+    "sha256": "40eef7722d12cf13d63601078ca997f45c6e89baaf9eb334d8c17213584cc739",
+    "eager_enqueue_s": 5.21221875e-06,
+    "graph_replay_enqueue_s": 0.000159408
+  },
+  "sample_contract": {
+    "chain_length": 512,
+    "trials": 30,
+    "operation": "torch.add_out",
+    "production_or_evaluation_duration_consumed": false,
+    "fixed_service_time_model": true
+  }
+}

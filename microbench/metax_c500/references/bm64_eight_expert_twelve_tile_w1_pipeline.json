@@ -1,0 +1,69 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_eight_expert_twelve_tile_w1_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "tokens": 256,
+    "experts": 8,
+    "topk": 2,
+    "source_rows": 256,
+    "routed_rows": 512,
+    "active_m_tiles": 12,
+    "maximum_m_tiles": 16,
+    "production_k_n_tile_classes": [[128, 448], [192, 512]]
+  },
+  "method": {
+    "kernel": "frozen production Triton grouped-MoE source",
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090608,
+    "route_sha256": "1430ea6513b910bdeecfa5cbaf44e3b554f520789beba36793326fa7dce1b10f",
+    "event_trials_per_cell": 9,
+    "event_repetitions_per_trial": 3,
+    "physical_devices": [0, 2],
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "6830b3e020abdb010b161876e983cb01071c1d6fc02903fbf9df1cbac1da0f88",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "linearly interpolate adjacent non-production N capacities per device and projection class, then select the lower interpolated capacity across devices"
+  },
+  "interpolated_capacity_per_s_by_device": {
+    "k128_n448": {
+      "0": 2059739435454.1362,
+      "2": 2059442115031.219
+    },
+    "k192_n512": {
+      "0": 1885323662283.965,
+      "2": 1856470554518.9795
+    }
+  },
+  "selected_services": {
+    "k128_n448": {"logical_byte_capacity_per_s": 2059442115031.219},
+    "k192_n512": {"logical_byte_capacity_per_s": 1856470554518.9795}
+  },
+  "raw": {
+    "root": "profiler_output/microbench/metax_c500/bm64_e8_12_active_16_max_w1_539127d4_20260908_r1",
+    "sha256_by_device_projection": {
+      "device0/k128_n448": [
+        "0ad7cd67be163b00f209b035419e2b870f0ee6fe71ba4e600f850f085c24a687",
+        "31c947f6885f42a3e0296508237537354b421413c213e98bf11ff2d3ff34ca1e"
+      ],
+      "device0/k192_n512": [
+        "88b3f01092a5555c9eefbd40cb169e45ad3b3452648b3896a7a4dbbd7f96a5e6",
+        "a7b8e90d7e9931a79ae14cbd2bc7f2d663f2340846cb43cc212a914cd115a181"
+      ],
+      "device2/k128_n448": [
+        "fa917f0dee69b64bff1ee4430f7fe69f97ba2f9d8dcec792eec88f7ced33272e",
+        "0e5cde3b83bbb79da5b531a4188cc7f2bc15a33f21050492c35f54d1d4ddda12"
+      ],
+      "device2/k192_n512": [
+        "9008e7cc0cde51ed8b9d9c991f11e3bdfa74e05c5c6022ec6dfed4a98f20c4fa",
+        "dac8fb7636f08700ced92b6c02104607e0194e2554b0057a0c8addc1fe3ba8ff"
+      ]
+    }
+  },
+  "allowed_conclusion": "The exact eight-expert 12-active/16-maximum BM64 W1 source-depth class uses projection-class-specific full-source operand completion services."
+}

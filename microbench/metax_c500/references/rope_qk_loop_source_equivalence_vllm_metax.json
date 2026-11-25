@@ -1,0 +1,53 @@
+{
+  "evidence_kind": "versioned_public_operator_source_equivalence",
+  "forward_contract": {
+    "duration_fit": false,
+    "shared_model": "source_qk_rope_loop",
+    "unsupported_programs": [
+      "none for the deployed stack; ABI13 is audited above. A future program that changes loop ownership, the per-pair load set or the index dependency chain is out of scope until it is audited the same way."
+    ],
+    "version_identity_required": true
+  },
+  "hardware_id": "metax_c500",
+  "production_or_evaluation_duration_consumed": false,
+  "programs": [
+    {
+      "binary_sha256": "a8715e7f7fe1790b46586fd8780036177c083504b24556ae1d661d0f0b569955",
+      "commit": "11b156053ec0344b8637c621c49b25c45f0a2331",
+      "kernel_abi": "positions,q,k,cache,rot_dim,query_stride,key_stride,num_heads,num_kv_heads,head_size",
+      "program_id": "vllm_metax_0_8_5_rotary_abi10",
+      "source_path": "csrc/pos_encoding_kernels.cu",
+      "source_sha256": "ab51beecb464cb8cef084fca81ff613af19903d072c25c8b950f859e5fc24eee"
+    },
+    {
+      "binary_sha256": null,
+      "commit": "9b0ed3a6de5532008c70cdeab3fa55ac1f15abbc",
+      "kernel_abi": "positions,q,k,cache,rot_dim,query_stride,key_stride,head_stride,num_heads,num_kv_heads,head_size",
+      "observed_symbol": "void vllm::rotary_embedding_kernel<c10::BFloat16, true>(long const*, c10::BFloat16*, c10::BFloat16*, c10::BFloat16 const*, int, long, long, long, int, int, int)",
+      "program_id": "vllm_metax_0_9_1_rotary_abi11",
+      "source_path": "csrc/pos_encoding_kernels.cu",
+      "source_sha256": "0fcdf77a06c896a6fdea50daec5558ca715dbd716303131c4304c1731faa9252"
+    },
+    {
+      "abi13_delta": "adds rope_dim_offset, a constant added into the per-head base address, and inverse, a uniform bool that negates the already loaded sine; neither adds a load, a loop iteration nor an index dependency, so the lowered program is unchanged",
+      "commit": "g436274",
+      "deployed": "Present in the vendored vLLM 0.24.0 sdist, but NOT the program the retained C500 ShareGPT capture runs: that capture's launch signature has two template arguments and eleven runtime arguments (ABI11), while ABI13 has three and thirteen.",
+      "program_id": "vllm_metax_0_24_0_rotary_abi13",
+      "source_path": "csrc/libtorch_stable/pos_encoding_kernels.cu",
+      "source_sha256": "baed8e314eef6b1c9e8e8c4fa72428dc6c0fc4c885d021025250c101ae192f7b"
+    }
+  ],
+  "repository": "https://github.com/MetaX-MACA/vLLM-metax.git",
+  "schema_version": 1,
+  "shared_source_facts": {
+    "abi11_delta": "adds a uniform nullable-key guard and replaces the compile-time semantic head_size stride operand with the runtime head_stride operand; for the scoped contiguous-head call head_stride equals head_size",
+    "block": "min(query_heads * rotary_dim / 2, 512)",
+    "dtype": "bf16",
+    "grid": "one CTA per token",
+    "index_dependency": "head_idx=i/embed_dim and rot_offset=i%embed_dim precede the pair address and loads",
+    "key_loop": "after the query loop, for i=threadIdx.x; i<num_kv_heads*rotary_dim/2; i+=blockDim.x",
+    "layout_scope": "K-present NeoX full-dimension contiguous-head",
+    "pair_work": "load x,y,cos,sin; produce x*cos-y*sin and y*cos+x*sin; store both outputs",
+    "query_loop": "for i=threadIdx.x; i<num_query_heads*rotary_dim/2; i+=blockDim.x"
+  }
+}

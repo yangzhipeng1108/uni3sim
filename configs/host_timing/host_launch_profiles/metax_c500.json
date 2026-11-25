@@ -1,0 +1,44 @@
+{
+  "schema_version": 2,
+  "hardware_id": "metax_c500",
+  "host_cpu": "Intel(R) Xeon(R) Gold 6430",
+  "operating_system": "Ubuntu 22.04.3 LTS; Linux 5.15.0-119-generic x86_64",
+  "driver_version": "3.8.23",
+  "runtime": {
+    "name": "MACA",
+    "version": "3.8.2.2"
+  },
+  "framework": {
+    "name": "MetaX PyTorch",
+    "version": "2.10.0+metax3.8.2.2"
+  },
+  "service_time_s": {
+    "eager_enqueue": 6.47534765625e-06,
+    "graph_replay_enqueue": 1.77365e-05
+  },
+  "measurement": {
+    "artifact": "microbench/metax_c500/runtime/launch/references/host_launch_servingstack_20260927.json",
+    "sha256": "eddbfd8dde48d552a4e7819a0ca0c091d038b37776d7bfd1777c892677b2dbd5",
+    "boundary": "host_submit_only_no_device_sync"
+  },
+  "source": {
+    "commit": "5a009d4bebc5728df3349af53a94242104d7a4f3",
+    "path": "microbench/metax_c500/runtime/launch/torch_eager_graph_runner.py",
+    "sha256": "35a200fc8e9e8e6bcd1d185f5ffa0c82c9d04f9e34fe16934a1ab4a5fa6ca2f3"
+  },
+  "device_launch_gap": {
+    "gap_s": {
+      "graph_node": 7.299999999813735e-07,
+      "graph_entry": 1.1712999999988824e-05,
+      "graph_exit": 1.0694499999997788e-05,
+      "eager": 2.815999999991618e-06
+    },
+    "runtime_version": "MACA 3.8.2.2",
+    "framework_version": "2.10.0+metax3.8.2.2",
+    "measurement": {
+      "artifact": "microbench/metax_c500/references/device_launch_gap_maca_3_8_2_2.json",
+      "sha256": "cbeaecb20c5f8b0755cfa3026c6af7583cdaf28372fa3a0c1a2cdf4bb38a4b97",
+      "boundary": "device_side_host_ahead"
+    }
+  }
+}

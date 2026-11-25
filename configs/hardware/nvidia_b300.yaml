@@ -1,0 +1,80 @@
+# NVIDIA B300 (Blackwell Ultra, DGX B300 单卡) —— aggregate roofline 级配置。
+#
+# 与 B200 同一代 Tensor Core 架构，增强两项：FP4 dense +50%、显存 +50%
+# FP8 / FP16 / BF16 与 B200 基本相同
+#
+# 规格来源：NVIDIA DGX B300 官方规格（2026-11 访问）
+#   官方：BF16 2250 / FP8 4500 / FP4 13500 TFLOPS dense；显存 288 GB
+#   8 卡整机口径：1.4→2.1 TB，8 卡 FP4 稠密 108 PF → 单卡 13.5 PF
+#
+# 【显存口径修正 2026-11-25】
+#   旧值 262 GB 属「可用显存」口径，与官方物理容量混用。
+#   现统一采用官方物理容量 288 GB = 288e9 B（十进制 SI）。
+#
+# 【FP16 口径说明 2026-11-25】
+#   官方规格页 B300 BF16/FP16 与 B200 同为 2250 TF；第三方汇总有标 ~2500 TF 者，
+#   属不同测量/口径。本配置取官方 2250，与 B200 严格同值——因为两者 Tensor Core
+#   架构相同，差异只在 FP4。若后续确认官方为 2500，改本文件一处即可。
+#
+# 可信度：
+#   算力 / 显存 = 官方 🟢
+#   带宽 8 TB/s = 与 B200 同代同带宽 🟢（官方未单列，按同代取）
+#
+# 【未解释的一项】
+#   B300 的 FP4 +50% 官方未说明成因。本配置按「同 SM 时钟 + FP4 每 clk
+#   吞吐提升」建模为整卡总量，与官方数值一致；若实际成因是抖动，无法从公开数据分辨。
+#
+# 建模边界：aggregate roofline，本卡 roofline_only = True
+#   ✗ 无 launch_config/nvidia_b300/
+#   ✗ 双 die 跨 die 流量未建模
+#   ✗ SFU EX2 翻倍（长上下文 Attention 收益）未建模
+#   ✗ INT8 削减至 3 POPS / FP64 削减至 10 TF 未建模
+#   ✗ TDP / NVLink 未建模（B300 TDP ~1400W；NVLink 5 双向 1.8 TB/s）
+hardware_id: nvidia_b300
+clock_domains: {}
+components:
+  - name: tensor_bf16
+    count: 1
+    type: compute
+    role: compute_tensor
+    scope: shared
+    capacity_per_second: 2250000000000000       # 2250 TFLOPS dense
+  - name: tensor_fp16
+    count: 1
+    type: compute
+    role: compute_tensor_fp16
+    scope: shared
+    capacity_per_second: 2250000000000000       # 2250 TFLOPS dense
+  - name: tensor_fp8
+    count: 1
+    type: compute
+    role: compute_tensor_fp8
+    scope: shared
+    capacity_per_second: 4500000000000000       # 4500 TFLOPS dense
+  - name: tensor_fp4
+    count: 1
+    type: compute
+    role: compute_tensor_fp4
+    scope: shared
+    capacity_per_second: 13500000000000000      # 13500 TFLOPS dense (B200 × 1.5)
+  - name: dram
+    count: 1
+    type: memory
+    role: dram
+    scope: shared
+    capacity_per_second: 8000000000000          # 8.0 TB/s HBM3e
+    size_bytes: 288000000000                    # 288 GB 官方物理容量（8 卡 2.3 TB）
+resource_groups: []
+memory_subsystem: {}
+scheduling: {}
+interconnect:
+  roce_unidir_bw_GB_s: 50
+  roce_devices_per_nic: 2
+  roce_switch_topology: fully_connected
+  roce_signal_latency_ns: null
+  roce_collective_startup_ns: null
+  parameter_source: user_supplied_2026_11_25_b300_two_cards_per_400Gbps_roce
+features:
+  kernel_memory_model: roofline
+  kernel_dtype: bf16
+  parameter_source: user_supplied_2026_11_25_b300_official_dgx_dense

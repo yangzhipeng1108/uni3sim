@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "evidence_kind": "installed_binary_static_sass",
+  "production_or_evaluation_duration_consumed": false,
+  "hardware_execution_performed": false,
+  "software": {
+    "cuda_package_version": "12.8",
+    "cuobjdump_version": "12.2.140",
+    "library_path_scope": "capture-python_site_packages",
+    "library_relative_path": "nvidia/cublas/lib/libcublasLt.so.12",
+    "library_sha256": "10b5e6631cf8115c661eb895ed1533826308b58f7956466f53d236a40c9b622c"
+  },
+  "functions": [
+    {
+      "partial_dtype": "fp16",
+      "output_dtype": "fp16",
+      "template_shape": [32, 16],
+      "sass_sha256": "36ec8892bfb560b8ea9fa5973a2cfee847603a7a30e2894f10511b9f1e946504",
+      "registers_per_thread": 32,
+      "static_shared_memory_bytes": 0,
+      "local_memory_bytes": 0,
+      "stack_bytes": 0
+    },
+    {
+      "partial_dtype": "bf16",
+      "output_dtype": "bf16",
+      "template_shape": [32, 16],
+      "sass_sha256": "cd94afb37823a54a879feb319c9659745e98b2afac7f6dbe9f516182297d0306",
+      "registers_per_thread": 32,
+      "static_shared_memory_bytes": 0,
+      "local_memory_bytes": 0,
+      "stack_bytes": 0
+    }
+  ],
+  "source_facts": {
+    "threads_per_output_segment": 32,
+    "output_segments_per_cta": 16,
+    "output_elements_per_segment": 32,
+    "partial_element_bytes": 2,
+    "l2_sector_bytes": 32,
+    "l2_sectors_per_partial_segment": 2,
+    "partial_read_group_widths": [16, 8, 4, 1],
+    "minimum_warp_instructions_per_partial": 3,
+    "minimum_fixed_warp_instructions_per_output_segment": 64,
+    "minimum_fixed_warp_instruction_breakdown": {
+      "entry_and_reduction_setup": 35,
+      "reduction_dispatch": 3,
+      "output_and_exit": 26
+    },
+    "split_k_three_executed_warp_instructions_per_output_segment": 82,
+    "split_k_three_executed_warp_instruction_breakdown": {
+      "entry_and_guard": 18,
+      "reduction_setup_and_tail_dispatch": 44,
+      "three_partial_load_convert_accumulate": 9,
+      "output_and_exit": 11
+    },
+    "split_k_three_control_path": {
+      "scalar_pointer_mode": "host",
+      "alpha_nonzero": true,
+      "beta_zero": true,
+      "partial_group_path": "three_partial_tail"
+    },
+    "program_order": ["partial_load", "convert_accumulate", "pack_store"]
+  },
+  "forward_scope": {
+    "architecture": "sm80",
+    "launch_block": [32, 16, 1],
+    "partial_dram_residency": false,
+    "runtime_symbol_must_match_exact_template": true
+  }
+}

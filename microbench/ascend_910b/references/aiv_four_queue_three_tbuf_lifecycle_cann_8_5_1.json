@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "628372f3f843b725fc5b8aedb99e6f142f24082a",
+  "capture_source_snapshot": "rmsnorm_queue_control_628372f3_e5c2f3e9_20260829_d3",
+  "service": "aiv_four_queue_three_tbuf_lifecycle",
+  "request_size_unit": "queue_depth",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"1": 130.0},
+  "benchmark_binary_sha256": "cbb6b606d3ad0420db0a722695b63be513feb3a134bd98fc5a49e6480a138fe4",
+  "benchmark_source_sha256": {
+    "vector_opcode_kernel.cpp": "4010e8cc48849d6e397a31437798cb004a1ea02e15caa7cd2de66094bce67846",
+    "vector_opcode_main.cpp": "f6ad1fe4cef937ac645f06c7dca56aebf0faaaa0cc98ef6f6664f4c624867460",
+    "vector_opcode_report.py": "826250f08e18fbbf68d16b058206edf00677ffca5f88d48aa592b5e37c29346e",
+    "vector_opcode_runner.py": "73d3aabaeced15109a744386e796ee05639ae2f0915e4d812123dcec4fb5dd96"
+  },
+  "production_source_sha256": {
+    "add_rms_norm.h": "655b84f7fbe5c911cc83daa6a3e77d1b219ac8206965a1e3065af6fa835ac817",
+    "rms_norm.h": "d6f83f716070a583367c95c6f215cf1a4f94631953730aa50268e446b45f28f8"
+  },
+  "device_id": 3,
+  "independent_runs": 3,
+  "block_dims": [1, 24, 48],
+  "payload_elements": [2048, 8192, 12288],
+  "tick_ns": 20.0,
+  "maximum_quantized_spread_ns": 10.0,
+  "mechanism": "one TPipe lifetime containing the four TQue and three TBuf initializations in the CANN RMSNorm source",
+  "composition": "one exact source-proven lifecycle request per active RMSNorm AIV worker",
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_queue_control_628372f3_e5c2f3e9_20260829_d3/run1.csv", "sha256": "75f06952da44064b8b403e99bd65023e6746711b942db44e5e03e183299aa822"},
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_queue_control_628372f3_e5c2f3e9_20260829_d3/run2.csv", "sha256": "7f9bf431c82992e9035e926eef5796e1843ff8e1b102d9429a91d935efb710c7"},
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_queue_control_628372f3_e5c2f3e9_20260829_d3/run3.csv", "sha256": "ba23c2e9dba7e99247878ce42a40be3e0a979c53931a91ca9fa9f4a06fe19eab"},
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_queue_control_628372f3_e5c2f3e9_20260829_d3/report.txt", "sha256": "d4bd3d169323880d2ad442ae7f683fa9b355c555de7b550d3bdc998870d98c4a"}
+  ],
+  "measurement_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

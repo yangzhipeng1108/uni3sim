@@ -1,0 +1,176 @@
+{
+  "duration_unit": "ns_per_completed_output_tile_N256_K64_operand_stream_per_aic",
+  "forward_eligibility_constraint": "use only as a per-output-tile lower bound for 24-AIC BF16 M16/M32/M48 tails under source-selected base-M128, projection-K2880/N256/K64, 45 K steps per IterateAll call, four-pair drain semantics, resident-or-slower A, and DRAM-cold B",
+  "forward_eligible": true,
+  "hardware_id": "ascend_910b",
+  "measurement": {
+    "campaigns": {
+      "m128_tail16": {
+        "active_m": 16,
+        "base_m": 128,
+        "median_completion_span_ns": {
+          "32": 23540.0,
+          "44": 33060.0,
+          "48": 35160.0,
+          "64": 47500.0
+        },
+        "output_tile_completion_span_ns": 33585.0,
+        "stability_gate": true,
+        "within_count_relative_spans": {
+          "32": 0.028037383177570093,
+          "44": 0.03871748336358137,
+          "48": 0.034129692832764506,
+          "64": 0.005894736842105263
+        }
+      },
+      "m128_tail32": {
+        "active_m": 32,
+        "base_m": 128,
+        "median_completion_span_ns": {
+          "32": 25080.0,
+          "44": 33440.0,
+          "48": 35700.0,
+          "64": 46520.0
+        },
+        "output_tile_completion_span_ns": 34005.0,
+        "stability_gate": true,
+        "within_count_relative_spans": {
+          "32": 0.006379585326953748,
+          "44": 0.05382775119617225,
+          "48": 0.021848739495798318,
+          "64": 0.014617368873602751
+        }
+      },
+      "m128_tail48": {
+        "active_m": 48,
+        "base_m": 128,
+        "median_completion_span_ns": {
+          "32": 23900.0,
+          "44": 32300.0,
+          "48": 36020.0,
+          "64": 47140.0
+        },
+        "output_tile_completion_span_ns": 33230.0,
+        "stability_gate": true,
+        "within_count_relative_spans": {
+          "32": 0.06276150627615062,
+          "44": 0.009287925696594427,
+          "48": 0.046640755136035536,
+          "64": 0.005939753924480272
+        }
+      }
+    },
+    "cross_active_m_relative_span": 0.023075777877028435,
+    "maximum_allowed_cross_active_m_relative_span": 0.1,
+    "maximum_allowed_within_count_relative_span": 0.1,
+    "mechanism_gate_passed": true
+  },
+  "mechanism_id": "aic_grouped_matmul_k2880_output_tile_completion_v1",
+  "mechanism_publishable": true,
+  "parameter_fit_from_production_duration": false,
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "build_command": "cmake -S <source> -B build_<campaign> -DSOC_VERSION=Ascend910B2 -DGROUPED_PAIR_BASE_M=128 -DGROUPED_PAIR_ACTIVE_M=<16|32|48> -DGROUPED_PAIR_B_ROW_STRIDE=2880 && cmake --build build_<campaign> -j 8",
+    "campaigns": {
+      "m128_tail16": {
+        "binary_sha256": "8ba6b712cd0ed1bd6952be7c96a700c370165324368fc1f6c551cf941fc46338",
+        "cmake_cache_sha256": "373405d68944e3a5e17bf5855b520d95bce60989ce7b5cc6c7b7306d54667bef",
+        "physical_device_id": 2,
+        "raw_sha256": [
+          "1b767a21ef5b7cd39901233b613a087012d1fe735c214497207ce0f5929422ef",
+          "ffca67d3ae567b5cef108f6b53b4526a10b3dd22764dd37c44fecdefe0da6f83",
+          "799ce1baf7772757b54e67d74fde5d7ab0aefc481c2c373376d4fa49fcb82206"
+        ],
+        "stderr_sha256": [
+          "4297cac936c6b784fc1070d4889e35fb897dd889b4dbcb3f1084cc24166c9a84",
+          "6c4d53f7c54d33b59f16b7aad08e4b83c93afa3cfff19f041159ab99ecb17994",
+          "c438bb551a2bf8014e7222bc02bcc423f255349526667f1713119d186bdeff31"
+        ]
+      },
+      "m128_tail32": {
+        "binary_sha256": "539768930b799d8e0bc6289bc68e95e01539023ce1cd05f0e78c4d4b42b1d967",
+        "cmake_cache_sha256": "87ff86977d03a4928c9687e255d1fbdbcc95a5b313fcf4d64277ea24c0cdb908",
+        "physical_device_id": 2,
+        "raw_sha256": [
+          "62f0a8df50815ab5dd9feefe4ea0ded0728d440eead0433e4d168b6130e22f64",
+          "191c17f9d06c29ae704693f81377270876d54ae3c6360e9d64ad886f5b639964",
+          "3ca4b2b062ed75932d98ade33650bea4dbf1fcc9275626e1d9fdb7aa644cf9cc"
+        ],
+        "stderr_sha256": [
+          "5ae9701a8a5ba854cac4bc4537978e237b90be2901ce4f0083e22ba731df5609",
+          "067dd56154897852d698fb5fc2d2582c85db1e10afee95633b8186ff6f3a9401",
+          "3161023d2894e98fe37124d6928d970045c863e57feec57358d3014214da8423"
+        ]
+      },
+      "m128_tail48": {
+        "binary_sha256": "ae1c3b86698bf79cd967055d4af88d9f6e159f1edadd51bfd68cb18eef8e2cc3",
+        "cmake_cache_sha256": "6263debce1da42ece7945bc2285425a380dd7a9818587410b7b887c1faa128e9",
+        "physical_device_id": 2,
+        "raw_sha256": [
+          "2315ffa9d7d09044388b9f28e59105ff83737fbc5ac3f9dae9078bcf0c3fec93",
+          "57be84562b1b9a30fb1a89590f5780198c33e258807cf7d486dac32b6ca3e700",
+          "0d1436a7fc1bff156e238fcd9c7400e9f71e685569b69b05a083f2bc0c1ebbfa"
+        ],
+        "stderr_sha256": [
+          "0630bdd0d304e2b34968b094f291c7bbcfc632c26395db9c62c407685d3491b1",
+          "bbb658a199e91e3146413739792cd077482f87bd2d1cfa457501733bae5d2e31",
+          "06b393195cb2d0196ab89b3bd37509d827cfdc2dc74de8e2db5746aeb32dca3c"
+        ]
+      }
+    },
+    "cann_source_boundary": "MMCompute calls SetSingleShape then IterateAll once for each output tile",
+    "cann_source_path": "vllm_src_3ver/910b_ascend/vllm_ascend/_cann_ops_custom/vendors/vllm-ascend/op_impl/ai_core/tbe/vllm-ascend_impl/ascendc/moe_grouped_matmul/moe_grouped_matmul.h",
+    "cann_source_sha256": "622409b7f5ce03b0c23c018eb6e3a360018867eb764fa261ab83a25d39456c32",
+    "container": "capture-container-2",
+    "host": "capture-host-1",
+    "logical_device_id": 0,
+    "measurement_baseline_commit": "8496d80eb0a48c9e7bee527c0904749f1bda0560",
+    "owner": "kernel-accuracy-fusedmoe",
+    "physical_device_ids": [
+      2
+    ],
+    "raw_root": "profiler_output/microbench/ascend_910b/shape_transition_k2880_output_tiles_7c9efef9_20260912_r2/execution_records",
+    "run_command": "python grouped_pair_completion_runner.py --binary build_<campaign>/grouped_pair_completion --device-id 2 --owner kernel-accuracy-fusedmoe --baseline 8496d80eb0a48c9e7bee527c0904749f1bda0560 --run-id k2880-tile-tail<16|32|48>-r2-<index> --run-index <index> --campaign m128_tail<16|32|48>_k2880_tile",
+    "source_sha256": {
+      "CMakeLists.txt": "0554663858fc8f465256a18aaac006f1db094f1209895f22a29e642c82530a0c",
+      "README.md": "13204215cfd23982894a6bd75edcbbabe42fec38302a99d4968b2a51fab8fb3e",
+      "grouped_pair_completion_kernel.cpp": "c99251fc4975380da7b8227265f4900c66c63b011b65d01273f2474c45fe4d7f",
+      "grouped_pair_completion_main.cpp": "8480654f08887b13aad62cd4dcc2906d72bce8c67e6329a777956ac5c3105cb6",
+      "grouped_pair_completion_runner.py": "66ad64ccd94314045ec5721c0ff0ecfde745ee93451bb05b717d3d2a3540c21c"
+    },
+    "source_snapshot_sha256": "a781b8bc44d1d50ea60e3d8323633fe04c0aaf8c6e35a6b6c583b5e2b66f2623"
+  },
+  "publication_scope": {
+    "a_columns": 64,
+    "a_residency": "l2_resident",
+    "active_aic_groups": 24,
+    "active_m_values": [
+      16,
+      32,
+      48
+    ],
+    "b_columns": 256,
+    "b_residency": "dram_cold",
+    "b_rows": 64,
+    "b_source_row_stride": 2880,
+    "b_source_tiles_per_worker_matches_pair_count": true,
+    "base_m_values": [
+      128
+    ],
+    "drain_interval_pairs": 4,
+    "maximum_copied_ring_bytes": 50331648,
+    "maximum_measured_pairs_per_worker": 64,
+    "measured_pairs_per_worker": [
+      32,
+      44,
+      48,
+      64
+    ],
+    "minimum_measured_pairs_per_worker": 32,
+    "output_tile_pairs": 45,
+    "projection_k": 2880,
+    "source_allocation_bytes": 4465360896
+  },
+  "schema_version": 1,
+  "software_revision": "cann_8.5.1"
+}

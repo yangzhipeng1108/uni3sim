@@ -1,0 +1,22 @@
+{
+ "schema_version": 1,
+ "hardware_id": "ascend_910b",
+ "software_revision": "CANN 8.5.1",
+ "mechanism": "AIV instruction-cache cold start: the first launch of a kernel binary in a process fetches its text, later launches of the same binary do not",
+ "harness": "microbench/ascend_910b/compute/vector_pipe vector_opcode_bench, opcode 21 single_tbuf_init, 1024 elements, block_dim 48, iterations 1",
+ "measurement": "msprof task duration and aiv_icache_miss_rate per launch; cold = the process's first launch, warm = the following launches of the identical cell",
+ "request_size_unit": "aiv_launch",
+ "service_time_unit": "us_per_cold_aiv_launch",
+ "production_or_evaluation_duration_consumed": false,
+ "independent_processes": 4,
+ "samples": [
+  {"cold_task_ns": 16660.0, "cold_icache_miss_rate": 0.237277, "warm_task_ns": 5610.0, "warm_icache_miss_rate": 0.0, "penalty_us": 11.05},
+  {"cold_task_ns": 18136.0, "cold_icache_miss_rate": 0.347173, "warm_task_ns": 5664.0, "warm_icache_miss_rate": 0.0, "penalty_us": 12.472},
+  {"cold_task_ns": 15840.0, "cold_icache_miss_rate": 0.346705, "warm_task_ns": 5100.0, "warm_icache_miss_rate": 0.0, "penalty_us": 10.74},
+  {"cold_task_ns": 14780.0, "cold_icache_miss_rate": 0.348804, "warm_task_ns": 5140.0, "warm_icache_miss_rate": 0.0, "penalty_us": 9.64}
+ ],
+ "penalty_us_median": 10.895,
+ "penalty_us_range": [9.64, 12.472],
+ "falsified_control": "interleaving two opcodes of the same binary does not evict the cache (aiv_icache_miss_rate stays 0.000000 and the launch is not slower), so both bodies stay resident; a genuine eviction control needs two separate kernel binaries",
+ "cross_check": "serving q-norm exceeds the identical isolated launch by 9.72 us at 121 tokens and 10.42 us at 2442 tokens, with per-pipe times equal to within 2 percent"
+}

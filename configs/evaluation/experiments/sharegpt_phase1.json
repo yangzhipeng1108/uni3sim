@@ -1,0 +1,284 @@
+{
+  "schema_version": 4,
+  "suite_id": "sharegpt_phase1",
+  "dataset_root": "serving_dataset/sharegpt",
+  "models": [
+    {
+      "dataset_model_id": "qwen3-4b",
+      "simulation_model_path": "configs/model/qwen3-4b.json",
+      "model_config_sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a"
+    },
+    {
+      "dataset_model_id": "qwen3-8b",
+      "simulation_model_path": "configs/model/qwen3-8b.json",
+      "model_config_sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    {
+      "dataset_model_id": "llama-3.1-8b",
+      "simulation_model_path": "configs/model/llama-3.1-8b-instruct.json",
+      "model_config_sha256": "29e4c210b0d6ac178b16b2a255a568bdb23b581e50ca1ef6a6d071dd85704e6e"
+    }
+  ],
+  "hardware": [
+    {
+      "hardware_id": "nvidia_a800",
+      "hardware_config_path": "configs/hardware/nvidia_a800.yaml",
+      "hardware_config_sha256": "4fd8c3cbed54268219dc8dac76ed51d747f53b5d0c7d0fdb2033454979f2bf0c",
+      "graph_execution": {
+        "configured_mode": "FULL_AND_PIECEWISE",
+        "piecewise_eager_workload_kinds": ["flash_attn", "kv_update"],
+        "uniform_decode_query_len": 1,
+        "capture_sizes": [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 264, 272, 280, 288, 296, 304, 312, 320, 328, 336, 344, 352, 360, 368, 376, 384, 392, 400, 408, 416, 424, 432, 440, 448, 456, 464, 472, 480, 488, 496, 504, 512]
+      }
+    },
+    {
+      "hardware_id": "metax_c500",
+      "hardware_config_path": "configs/hardware/metax_c500.yaml",
+      "hardware_config_sha256": "cfff8447901304346252fa00f4c36d6a8a54fb6e6687ebebff454961b18917f7",
+      "graph_execution": {
+        "configured_mode": "FULL_AND_PIECEWISE",
+        "piecewise_eager_workload_kinds": ["flash_attn", "kv_update"],
+        "uniform_decode_query_len": 1,
+        "capture_sizes": [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512]
+      }
+    },
+    {
+      "hardware_id": "ascend_910b",
+      "hardware_config_path": "configs/hardware/ascend_910b.yaml",
+      "hardware_config_sha256": "e0fe91381d31955cecc29c97484c959f5a4bf8ce941de4f38c47c0c42b48eff0",
+      "graph_execution": {
+        "configured_mode": "FULL",
+        "piecewise_eager_workload_kinds": [],
+        "uniform_decode_query_len": 1,
+        "capture_sizes": [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512]
+      }
+    }
+  ],
+  "qps_values": [
+    4,
+    16,
+    64
+  ],
+  "cells": [
+    {
+      "hardware_id": "nvidia_a800",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "2c02237b38e5c3293cbca801596d394b7219fe0ea29c3e7efad7cfd7bd2977bd",
+      "requests_sha256": "639df2b6aa0675df84a61f787fc2757506d5525eb2f7dc4d7e0badedca475d0f"
+    },
+    {
+      "hardware_id": "nvidia_a800",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "897e2ab4df15ce58c3004f4053435f0ca378b54178627fa33cf3d681e4ad7064",
+      "requests_sha256": "ab02b9d540e9fd6d35d8fb612a2df32a5868f4bbe19696c103b32ec3139b78a4"
+    },
+    {
+      "hardware_id": "nvidia_a800",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "3bd54143711b552b3f2064fd7bbfa19e512f37e92fb070d0d32ae0ca3e86ae99",
+      "requests_sha256": "e169977d6b55bc410d2be544f028b99d767fd5980c72f708954e53903747a563"
+    },
+    {
+      "hardware_id": "nvidia_a800",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "4a636a2f3d3bfc2726b6bf1bb1bcabb353d51555b139c03388181b8e28bac2b2",
+      "requests_sha256": "a42ae9abb7cc196040213b27636eb480214cd9bc8a3361fbc1ac5f825193d47d"
+    },
+    {
+      "hardware_id": "nvidia_a800",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "4fcfe2df71377cf62d2852a0cceb836023370351aec2e865861514b6f789b317",
+      "requests_sha256": "aefc90b259581b642ef1ff8f692c0dae11e6c82dd2f394b12bff7585771d7cc8"
+    },
+    {
+      "hardware_id": "nvidia_a800",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "3b3a128b2ac0b8cad681fe1124404965b048d3187be336fdcca65e45506dd104",
+      "requests_sha256": "cb36b79edf5b2ff22c8c91f3eaf2557b9c66dc680a3c7f63edba7f769731b780"
+    },
+    {
+      "hardware_id": "nvidia_a800",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "e989ce85781e29e8936210d3bd344dc5e3a0f93e55f21f7437b2452b8e3fec81",
+      "requests_sha256": "11bec2ddf6f24cc9cf62ab937fafde1973029998d8e19c303ea0e8490403a727"
+    },
+    {
+      "hardware_id": "nvidia_a800",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "1686d478121c659619589a5be317f2612913f1164782f91b07a7402a2be9e267",
+      "requests_sha256": "f85c5db9b6e568906fd119d406f1be91c135afed551b4b0c00d5fdb1932a04eb"
+    },
+    {
+      "hardware_id": "nvidia_a800",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "04aea1c0dd274a1a1c2e7b1b4c5e094fa87187f98a03bcc2b57f5b9d411a6d74",
+      "requests_sha256": "6e626cda89cc4a59ad75291d345354085089f97680873c9150947dc5acc26d3a"
+    },
+    {
+      "hardware_id": "metax_c500",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "5c44b0a768cc6ad605fca8032cd0f562d0a23538676a08425e71136de0e1364f",
+      "requests_sha256": "9dfd5e3e38820ab8c85c7af8c31da5e98279ea6f51be99322c40e2429c2f0121"
+    },
+    {
+      "hardware_id": "metax_c500",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "28b3d105f235d6041b37f26b83a95884e26e919f1bbbbfabbd822ecdc06918e0",
+      "requests_sha256": "b46c43c9b4ed46094c58b0287840d0c8ecc5dcda1f5467ef58d5f45f99a74c1c"
+    },
+    {
+      "hardware_id": "metax_c500",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "0a190b89904c90bc60c6214b0bd73c4a071215d16be603c582e964cc447aca9c",
+      "requests_sha256": "30813fb171f16fee141941ef6b5b0a4faaa10da4b92ee857b92cdca0e0966308"
+    },
+    {
+      "hardware_id": "metax_c500",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "d2d488924a09615fc9bfa9d3bd7bb3155cdc3875d18bd2ddacbb288d73a39a25",
+      "requests_sha256": "a149f8658ae6849fc5656a6978d2448a41300cbfa3659ddeab12f03fe760ec4e"
+    },
+    {
+      "hardware_id": "metax_c500",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "0fe521084248bfc43b1f8449cdae4e42c221b06accd86c9d5cb1004f1a74805f",
+      "requests_sha256": "274a5847c3acad60db631146d4b14c4b4de225d2890ba5938aefa3892d0bff71"
+    },
+    {
+      "hardware_id": "metax_c500",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "17a78a73b34bbf278e89b8cfb07a07b1e10baefbdd6e67b7c9f53e5628f115b5",
+      "requests_sha256": "b120160c69cbc358cb1003b6fb80fdf00485830fa04712b6e991a2e9e8cdffb5"
+    },
+    {
+      "hardware_id": "metax_c500",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "d14261ebaf953de92bedbe0c6a8ec4a4c3c73effc7f19c4eec2f628c6d3dd92f",
+      "requests_sha256": "97179945527a1c0b844e0cf5fbf5f5ea013e8d83ec5c5cc5e6de88e6a0894c79"
+    },
+    {
+      "hardware_id": "metax_c500",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "c94928c318755953eda71ab9fda3339c71339f834be90e64f6e320b46690e398",
+      "requests_sha256": "b8ee108bee796bbcb85848478c26b1848af12312ca8adf68f326463a08e35358"
+    },
+    {
+      "hardware_id": "metax_c500",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "a002f7f57fc59bfabff31ef887b9d55fbd8828ca2f08c2d4a925fe49729c2daf",
+      "requests_sha256": "347003764edb947d4d3ae8c9f68e020ae352634c30bac54d32b0f9c805068021"
+    },
+    {
+      "hardware_id": "ascend_910b",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "fd9cc7ae7b852f6864abe8b5c7771b54f5629cf0795c65b517004bef4aa2515a",
+      "requests_sha256": "824776cc47ebd607ea29f8617aa3c6d5042159b958ed6212b5655f9ff4886ded"
+    },
+    {
+      "hardware_id": "ascend_910b",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "b3018e3e51810554b21d697453e90e9119956445735031f471eb09528ed1e1e1",
+      "requests_sha256": "fcd3a78294381b34d0d4fe4f8ef5940c6728c2a9c02b70aa5db1f3c7b95c3286"
+    },
+    {
+      "hardware_id": "ascend_910b",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "0e8ecf14da358649863dfe68b0c7f46a79cd9320f1763df9ae7283b8ecd8ef7c",
+      "requests_sha256": "55263c04da46f3d1db8ab4b254684d9f137166d0cfc63816006f7052ba7b029b"
+    },
+    {
+      "hardware_id": "ascend_910b",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "7dc19b1974d42da0ca322bc29d6dbcda28bd5c05a391d73236849716068b36b1",
+      "requests_sha256": "c8435b5c1194470e7a27b667cb80a8566f455c2bf6b905c00a5e76dd88204acf"
+    },
+    {
+      "hardware_id": "ascend_910b",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "1c8fa39d14d2767827859b384c18fb0a41d0b46d19e58195025d90cd98ad5832",
+      "requests_sha256": "6bb4fd4e9273afafa5c1ba9092afc76aa9502b1f97701b81b2f0490cb015047a"
+    },
+    {
+      "hardware_id": "ascend_910b",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "0961f18bd40eb6592e60f661aa8d053fa9a9868a97198128bae9b3343c10ebec",
+      "requests_sha256": "eec8a6c221a85a10dd465f148eae1e608216a9145cae924b2448f59532b402dc"
+    },
+    {
+      "hardware_id": "ascend_910b",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "06e4f3179fbb8e2afeaa0552ffb082d47fe5d3578a879f69809b5d1d68e66d02",
+      "requests_sha256": "0d04743be5067e3f94175de9b035810e120f00996e7c8d0fe3400d63381a7dd6"
+    },
+    {
+      "hardware_id": "ascend_910b",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "6bfe834fb73f346460b40fa517694a2fd00c1d477118c0d9ac0d39d40f7b0f7d",
+      "requests_sha256": "e1a9567180b68b087d8ecd6ef736a80573e1d88fa55f7155b46acbf09bd0a699"
+    },
+    {
+      "hardware_id": "ascend_910b",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "c6a98f527abea02f596178d12106eb2e0e0d13f3f95cc1d2163f88882791d7cc",
+      "requests_sha256": "0dff5120f50c920dde9007adfd17911a3cbc6e892e52db4f695173bcad6961b6"
+    }
+  ],
+  "prediction_contract": {
+    "semantics": "current_pinned_vllm_not_capture_replay",
+    "backend": "vllm",
+    "scheduler_version": "0.11.0",
+    "scheduler_source_commit": "b8b302cde434df8c9289a2b465406b47ebab1c2d",
+    "deployment": "colocated",
+    "compute_dtype": "bf16",
+    "prediction_method": "midlayer",
+    "tensor_collective_backend": "protobridge",
+    "tensor_all_reduce_profile_sha256": null,
+    "tensor_all_gather_profile_sha256": null,
+    "launch_policy": "injected_launch",
+    "tensor_parallel_size": 1,
+    "pipeline_parallel_size": 1,
+    "expert_parallel_size": 1,
+    "max_model_len": 8192,
+    "max_batched_tokens": 8192,
+    "max_requests": 256,
+    "runtime_memory_policy_path": "configs/runtime_memory_policy/{hardware_id}/{model_id}.json",
+    "kv_block_size_tokens": 16,
+    "attention_kv_layout": "paged_varlen",
+    "attention_kv_distribution": "uniform",
+    "enable_chunked_prefill": true,
+    "enable_prefix_caching": true,
+    "router_resource_id": "router_cpu",
+    "router_dispatch_service_time_s": 0.0,
+    "mtp_num_speculative_tokens": 0,
+    "mtp_acceptance_policy": "disabled",
+    "mtp_fixed_accepted_tokens": 0,
+    "mtp_acceptance_source_id": "disabled"
+  }
+}

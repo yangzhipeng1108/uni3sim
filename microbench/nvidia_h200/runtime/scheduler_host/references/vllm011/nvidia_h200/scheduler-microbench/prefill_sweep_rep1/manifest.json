@@ -1,0 +1,41 @@
+{
+  "identity": {
+    "case_id": "prefill_sweep_rep1",
+    "hardware_id": "nvidia_h200",
+    "model_id": "scheduler-microbench",
+    "source_kind": "scheduler_host_microbenchmark"
+  },
+  "measurement": {
+    "boundary": "native_scheduler_schedule_and_output_update_only",
+    "control_workload": {
+      "admission_batch_sizes": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "enable_prefix_caching": true,
+      "kv_block_size_tokens": 16,
+      "log_stats": true,
+      "max_batched_tokens": 8192,
+      "max_model_len": 8192,
+      "max_requests": 8,
+      "num_kv_blocks": 16384,
+      "output_tokens": 6,
+      "platform": "native",
+      "prompt_tokens": 729
+    },
+    "emitted_phases": [
+      "prefill"
+    ],
+    "emitted_step_count": 1000,
+    "measured_step_count": 6000,
+    "scheduler_constructor": "(self, vllm_config: 'VllmConfig', kv_cache_config: 'KVCacheConfig', structured_output_manager: 'StructuredOutputManager', mm_registry: 'MultiModalRegistry' = <vllm.multimodal.registry.MultiModalRegistry object at 0x7f452fdc6f90>, include_finished_set: 'bool' = False, log_stats: 'bool' = False) -> 'None'"
+  },
+  "runtime": {
+    "runtime_version": "0.11.0",
+    "source_commit": null,
+    "target_qps": 4.0
+  },
+  "schema_version": 1
+}

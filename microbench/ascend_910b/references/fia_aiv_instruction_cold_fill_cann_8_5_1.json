@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism_id": "cann_fia_aiv_instruction_cold_fill_v1",
+  "scope": "first source-exact AIV Vec1 instruction-cache fill before steady resident execution",
+  "production_or_evaluation_duration_consumed": false,
+  "regular_points": [
+    {"active_aic_groups": 8, "source_s2": 512, "head_dims": [64, 128], "duration_ns": 2440.0},
+    {"active_aic_groups": 11, "source_s2": 2048, "head_dims": [128], "duration_ns": 2480.0},
+    {"active_aic_groups": 16, "source_s2": 512, "head_dims": [64, 128], "duration_ns": 3720.0},
+    {"active_aic_groups": 16, "source_s2": 2048, "head_dims": [64, 128], "duration_ns": 3720.0},
+    {"active_aic_groups": 18, "source_s2": 128, "head_dims": [64, 128], "duration_ns": 4980.0},
+    {"active_aic_groups": 18, "source_s2": 256, "head_dims": [64, 128], "duration_ns": 6040.0},
+    {"active_aic_groups": 18, "source_s2": 512, "head_dims": [64, 128], "duration_ns": 5080.0},
+    {"active_aic_groups": 22, "source_s2": 512, "head_dims": [64], "duration_ns": 7520.0}
+  ],
+  "split_fuse": {"active_aic_groups": 24, "aiv_per_group": 2, "duration_ns_per_aiv": 8600.0},
+  "provenance": {
+    "source_commit": "c601348b57229e7654d807681793f9b4d31a9bc6",
+    "regular_source_dir": "profiler_output/microbench/ascend_910b/fia_vector_stage_geometry_c601348b_20260907_r1",
+    "regular_kernel_sha256": "e43ba0e4e17937904e3d4e942faaa1d3cf3dac25e5e7c48b45b915a85791d11a",
+    "regular_host_sha256": "87fbdfb0740c9c2a60e49017ce2664ddd04ab7608167bf544039e3d9037d76a1",
+    "regular_supplement_commit": "b02b1670d31bd6c02411c7ed9bbb3a56bbc5e59d",
+    "regular_supplement_source_dir": "profiler_output/microbench/ascend_910b/fia_aiv_instruction_cold_fill_g11_s2048_b02b1670_device2_r1",
+    "regular_supplement_kernel_sha256": "e43ba0e4e17937904e3d4e942faaa1d3cf3dac25e5e7c48b45b915a85791d11a",
+    "regular_supplement_host_sha256": "561e9288142a1da70f2339160e3ecf2402719883b22d8927ddfd5ace7ada8e25",
+    "regular_supplement_raw_files": [
+      {"path": "profiler_output/microbench/ascend_910b/fia_aiv_instruction_cold_fill_g11_s2048_b02b1670_device2_r1/results/device2_fresh_1.csv", "sha256": "0954c50fd68aa15acd6abf64b832875d6204c092a492e76617902303b7e2d69d"},
+      {"path": "profiler_output/microbench/ascend_910b/fia_aiv_instruction_cold_fill_g11_s2048_b02b1670_device2_r1/results/device2_fresh_2.csv", "sha256": "a6b58613622ae85592bad02d1b972a4aae1a8356540f26d8f5e95cd368bd0c28"},
+      {"path": "profiler_output/microbench/ascend_910b/fia_aiv_instruction_cold_fill_g11_s2048_b02b1670_device2_r1/results/device2_fresh_3.csv", "sha256": "aeb350f555120fac2af9c8a7d484857724d0e11eecdb242e1b38efbcd6654315"},
+      {"path": "profiler_output/microbench/ascend_910b/fia_aiv_instruction_cold_fill_g11_s2048_b02b1670_device2_r1/results/device2_fresh_4.csv", "sha256": "fb4f877820fbb0598ced7383e7fa47324245f0e288f22da84bedd4cfad4f0d63"},
+      {"path": "profiler_output/microbench/ascend_910b/fia_aiv_instruction_cold_fill_g11_s2048_b02b1670_device2_r1/results/device2_fresh_5.csv", "sha256": "e4265ccaa4c90add493463721d60aa5ebaed0492241144aa4f3ca29c4515860b"}
+    ],
+    "split_fuse_source_dir": "profiler_output/microbench/ascend_910b/fia_icache_splitfuse_footprint_c601348b_20260907_r1",
+    "split_fuse_kernel_sha256": "aced5f4244a4789255d863c5df45f1f2c025facd7a1c3fb536c2c693efc0ff52",
+    "split_fuse_host_sha256": "98bd43a5fae0d0004d57f0e3a55bcbc2371d4371c24d7166c46a8d4e18842662"
+  }
+}

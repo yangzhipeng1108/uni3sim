@@ -1,0 +1,45 @@
+{
+  "hardware_id": "metax_c500",
+  "host": {
+    "cpu": "Intel(R) Xeon(R) Gold 6430",
+    "cpu_count": 128,
+    "load_average_1min_at_capture": 0.57,
+    "vllm_version": "0.24.0"
+  },
+  "measurement_boundary": "host_only_no_device_no_model",
+  "mechanism": "Two regions the serving trace bounds directly. admission_enqueue runs from output_processor_add_request to the end of engine_core_ipc_enqueue: the API server registers the request with OutputProcessor.add_request, which builds that request's state, incremental detokenizer and logprobs processor, and then serialises the EngineCoreRequest for the socket. engine_core_ipc runs from that enqueue ending to engine_core_preprocess ending: the cross-process wake and the receiving side's msgpack decode. The terms these replace measured proxies -- an EngineCoreRequest construction, and a fixed opaque payload over ZeroMQ that was never decoded.",
+  "production_or_evaluation_duration_consumed": false,
+  "runner": {
+    "entry_points": [
+      "measure_admission_enqueue_region",
+      "measure_engine_core_ipc_region"
+    ],
+    "path": "microbench/nvidia_a800/runtime/host_request_path/vllm_host_request_path_runner.py",
+    "prompt_tokens": 86,
+    "sha256": "574450812f701af7c95e3e2990172039c2ab3cdfe25270407e9b0b14c8975c0e",
+    "trials": 200,
+    "warmup": 20
+  },
+  "runs": [
+    {
+      "admission_enqueue_s": 1.27e-05,
+      "engine_core_ipc_s": 0.0001056
+    },
+    {
+      "admission_enqueue_s": 1.2e-05,
+      "engine_core_ipc_s": 0.0001091
+    },
+    {
+      "admission_enqueue_s": 1.13e-05,
+      "engine_core_ipc_s": 0.0001131
+    }
+  ],
+  "schema_version": 1,
+  "selection": {
+    "admission_enqueue_s": 1.2e-05,
+    "engine_core_ipc_s": 0.0001091,
+    "run_count": 3,
+    "statistic": "median_across_independent_runs"
+  },
+  "tokenizer_path": "/capture-workspace/Qwen3-30B-A3B"
+}

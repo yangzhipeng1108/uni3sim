@@ -1,0 +1,193 @@
+{
+  "schema": "dram_finite_read_stream_ramp_reference_v3_tma_quiescent",
+  "hardware_id": "nvidia_h200",
+  "mechanism": "dram_finite_read_stream_ramp",
+  "production_or_evaluation_duration_consumed": false,
+  "selection_rule": "balanced_quiescent_all_trial_calibration_capacity_upper_envelope",
+  "scope": {
+    "transport": "tma",
+    "threads_per_cta": [
+      256,
+      384
+    ],
+    "balanced_operand_bytes": [
+      16384,
+      24576,
+      32768,
+      40960,
+      45056
+    ],
+    "native_slots_per_operand": 2,
+    "maximum_shared_bytes": 212992,
+    "memory_start_state": "quiescent_after_3ms_ALU",
+    "minimum_producers": 32,
+    "maximum_producers": 132
+  },
+  "evidence": {
+    "capture": {
+      "path": "profiler_output/microbench/nvidia_h200/fa_balanced_tma_finite_20261108/attempt_01/raw.json",
+      "sha256": "c77434868ada103f5566402b095a2b3a124c496f08a733c245f5c4647d050db7"
+    },
+    "source": {
+      "path": "profiler_output/microbench/nvidia_h200/fa_balanced_tma_finite_20261108/executed_source.cu",
+      "sha256": "47e38d4a2461cab2f36a54c09f70ba4aab7f0e04ce3577b805d80fdf4fb31cf1"
+    },
+    "runner": {
+      "path": "profiler_output/microbench/nvidia_h200/fa_balanced_tma_finite_20261108/executed_runner.py",
+      "sha256": "b83d03ccd5d459d7e29fe63f831c66367b8aedcdaf9eeecfd417e7a887e18d79"
+    },
+    "plan": {
+      "path": "profiler_output/microbench/nvidia_h200/fa_balanced_tma_finite_20261108/plan.json",
+      "sha256": "c73ebf97f87f5af8f030b89dc8d7414f520a3b3e7eb965b0e991edb7b5408851"
+    }
+  },
+  "derived_model": {
+    "dram_read_capacity_bytes_per_s": 4621128079772.083,
+    "grids": [
+      32,
+      132
+    ],
+    "lengths_bytes_per_cta": [
+      32768,
+      65536,
+      90112,
+      262144,
+      524288,
+      720896,
+      2097152,
+      4194304,
+      5767168,
+      8388608,
+      16777216,
+      23068672
+    ],
+    "ramp": [
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 32768,
+        "achieved_fraction_of_dram_read_capacity": 0.13636364006273677
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 65536,
+        "achieved_fraction_of_dram_read_capacity": 0.27272728012547354
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 90112,
+        "achieved_fraction_of_dram_read_capacity": 0.31967213981920256
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 262144,
+        "achieved_fraction_of_dram_read_capacity": 0.4051948161864178
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 524288,
+        "achieved_fraction_of_dram_read_capacity": 0.5064935202330222
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 720896,
+        "achieved_fraction_of_dram_read_capacity": 0.5416666813603155
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 2097152,
+        "achieved_fraction_of_dram_read_capacity": 0.6347107610192838
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 4194304,
+        "achieved_fraction_of_dram_read_capacity": 0.7129900928967603
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 5767168,
+        "achieved_fraction_of_dram_read_capacity": 0.7129900928967603
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 8388608,
+        "achieved_fraction_of_dram_read_capacity": 0.7510437635561239
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 16777216,
+        "achieved_fraction_of_dram_read_capacity": 0.7742686186884843
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 23068672,
+        "achieved_fraction_of_dram_read_capacity": 0.7742686186884843
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 32768,
+        "achieved_fraction_of_dram_read_capacity": 0.32865169430850594
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 65536,
+        "achieved_fraction_of_dram_read_capacity": 0.42391305497763815
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 90112,
+        "achieved_fraction_of_dram_read_capacity": 0.47879465584527886
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 262144,
+        "achieved_fraction_of_dram_read_capacity": 0.5969387917032047
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 524288,
+        "achieved_fraction_of_dram_read_capacity": 0.6619519274332568
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 720896,
+        "achieved_fraction_of_dram_read_capacity": 0.7009804111721729
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 2097152,
+        "achieved_fraction_of_dram_read_capacity": 0.8610855799361776
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 4194304,
+        "achieved_fraction_of_dram_read_capacity": 0.9253584037475284
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 5767168,
+        "achieved_fraction_of_dram_read_capacity": 0.9433755066242326
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 8388608,
+        "achieved_fraction_of_dram_read_capacity": 0.9604925863423551
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 16777216,
+        "achieved_fraction_of_dram_read_capacity": 0.9814535950095027
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 23068672,
+        "achieved_fraction_of_dram_read_capacity": 0.9866794709436393
+      }
+    ]
+  },
+  "limits": [
+    "Finite-copy completion lower bound includes its own fill/drain;compose by max,not an extra serial startup.",
+    "Quiescent state remains a declared approximation,not observed cache residency or native kernel clock.",
+    "A byte-level4D mechanism does not certify native descriptors,address ordering,bank mapping or source credits.",
+    "If identity,numeric,prelude-clock or heldout lower-bound checks fail,no parameter admitted and no passing subset selected."
+  ]
+}

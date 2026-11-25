@@ -1,0 +1,168 @@
+{
+  "schema": "nvidia_h200_bm16_grouped_gemm_empty_tail_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "software_revision": "vllm_0.24.0_triton_3.6_sm90",
+  "source_baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+  "source": "microbench/nvidia_h200/runtime/launch/grouped_gemm_empty_tail.cu",
+  "source_sha256": "5c0246668548b34692e50a174e85b6369dec5285a8c4393d488de04af5095520",
+  "production_source": "/capture-public/envs/vllm024/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/fused_moe.py",
+  "production_source_sha256": "57a3f7efc9624f5c437908892ed5109a81ba0dbf45e1c6ac8a1438a23131f207",
+  "admission_order_reference": null,
+  "admission_order_reference_sha256": null,
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp2_empty_tail_r1/capture0.raw.csv",
+      "remote_path": "/capture-public/h200_microbench/wp2_moe_cuda/runs/empty_tail_r1/capture0.raw.csv",
+      "capture": 0,
+      "device_index": 1,
+      "device_name": "NVIDIA H200",
+      "raw_sha256": "b02339e2ec8b56fabe76eb5139189a84205528a48e934df65ddab788b39694a0",
+      "binary_sha256": "09b8aa5593defda13d17ee9bce074b90d61b384c090b8b1176b8be934056c013",
+      "clock": {
+        "samples": 15,
+        "busy_samples": 2,
+        "busy_min_mhz": 1980,
+        "busy_median_mhz": 1980.0,
+        "busy_max_mhz": 1980,
+        "accepted": true
+      },
+      "zero_work_median_ns": {
+        "1280": 5760.0,
+        "8192": 9920.0,
+        "32768": 24640.0
+      }
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp2_empty_tail_r1/capture1.raw.csv",
+      "remote_path": "/capture-public/h200_microbench/wp2_moe_cuda/runs/empty_tail_r1/capture1.raw.csv",
+      "capture": 1,
+      "device_index": 1,
+      "device_name": "NVIDIA H200",
+      "raw_sha256": "964e26e4b5c0129555a4035d47ca20d85884005919f177e16981d3f3d81a1202",
+      "binary_sha256": "09b8aa5593defda13d17ee9bce074b90d61b384c090b8b1176b8be934056c013",
+      "clock": {
+        "samples": 16,
+        "busy_samples": 4,
+        "busy_min_mhz": 1980,
+        "busy_median_mhz": 1980.0,
+        "busy_max_mhz": 1980,
+        "accepted": true
+      },
+      "zero_work_median_ns": {
+        "1280": 5792.0,
+        "8192": 9952.0,
+        "32768": 24688.0
+      }
+    }
+  ],
+  "probe_contract": {
+    "threads_per_cta": 128,
+    "resident_ctas_per_sm": 10,
+    "physical_sm_count": 132,
+    "active_prefix_rows": 320,
+    "tile_m": 16,
+    "num_pid_n": 64,
+    "training_grid_ctas": [
+      1280,
+      32768
+    ],
+    "validation_grid_ctas": [
+      8192
+    ],
+    "hold_cycles": [
+      0,
+      7000,
+      14000,
+      28000
+    ],
+    "production_routing_sort_reduce_absent": true,
+    "production_or_evaluation_duration_consumed": false
+  },
+  "zero_work_cross_device_upper_envelope_ns": {
+    "1280": 5792.0,
+    "8192": 9952.0,
+    "32768": 24688.0
+  },
+  "service_parameters": {
+    "empty_tail_round_ns": 79.06276150627615,
+    "round_width_ctas": 132,
+    "derivation": "Slope of the cross-capture maximum zero-work completion envelope between the frozen 1280-CTA and 32768-CTA training endpoints per 132-CTA round: (E[32768]-E[1280]) / (ceil(32768/132)-ceil(1280/132)); zero-work cell = median over trials and hold settings of the active_rows=0 launch; the 8192-CTA cell is held out."
+  },
+  "validation": {
+    "grid_ctas": 8192,
+    "observed_cross_device_upper_envelope_ns": 9952.0,
+    "predicted_ns": 9982.326359832636,
+    "absolute_relative_error": 0.003047262844919184,
+    "mixed_prefix_sweep_confirms_partial_overlap": true
+  },
+  "decision": {
+    "status": "accepted_independent_scheduler_mechanism",
+    "forward_eligible": true,
+    "allowed_use": "Price only the source-ordered early-return CTA tail of the exact BF16 BM16/BN32/BK64/GSM1 grouped-GEMM pipeline after one full resident cohort has entered the active K loop.",
+    "excluded_conclusions": [
+      "a complete FusedMoE operator duration",
+      "a production-shape latency lookup",
+      "a residual correction",
+      "tile signatures other than BF16 BM16/BN32/BK64/GSM1",
+      "resources or devices outside the recorded H200 contract"
+    ]
+  },
+  "h200_capture_provenance": {
+    "git_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+    "runner": "microbench/nvidia_h200/runtime/launch/grouped_gemm_empty_tail_runner.py",
+    "runner_sha256": "6ea818e2ab0a2ac43126f4eca9d1d6e4786e33452c6b16e880515f3bc8e39608",
+    "compile_command": [
+      "/capture-public/tools/cuda-12.9/bin/nvcc",
+      "-O3",
+      "-std=c++17",
+      "-arch=sm_90",
+      "/capture-public/h200_microbench/wp2_moe_cuda/src/microbench/nvidia_h200/runtime/launch/grouped_gemm_empty_tail.cu",
+      "-o",
+      "/capture-public/h200_microbench/wp2_moe_cuda/runs/empty_tail_r1/grouped_gemm_empty_tail"
+    ],
+    "command": [
+      "/capture-public/h200_microbench/wp2_moe_cuda/runs/empty_tail_r1/grouped_gemm_empty_tail",
+      "0",
+      "9",
+      "wp2_moe_cuda",
+      "8e7ae7db16ecc531a87f394a6a229514f2a3f919"
+    ],
+    "raw_dir": "profiler_output/microbench/nvidia_h200/wp2_empty_tail_r1",
+    "remote_raw_dir": "/capture-public/h200_microbench/wp2_moe_cuda/runs/empty_tail_r1",
+    "clock_gate": "nvidia-smi clocks.sm/utilization.gpu every 50 ms; capture rejected when any busy sample < 1980 MHz",
+    "captures": [
+      {
+        "capture": 0,
+        "status": "accepted",
+        "clock": {
+          "samples": 15,
+          "busy_samples": 2,
+          "busy_min_mhz": 1980,
+          "busy_median_mhz": 1980.0,
+          "busy_max_mhz": 1980,
+          "accepted": true
+        },
+        "raw_sha256": "b02339e2ec8b56fabe76eb5139189a84205528a48e934df65ddab788b39694a0"
+      },
+      {
+        "capture": 1,
+        "status": "accepted",
+        "clock": {
+          "samples": 16,
+          "busy_samples": 4,
+          "busy_min_mhz": 1980,
+          "busy_median_mhz": 1980.0,
+          "busy_max_mhz": 1980,
+          "accepted": true
+        },
+        "raw_sha256": "964e26e4b5c0129555a4035d47ca20d85884005919f177e16981d3f3d81a1202"
+      }
+    ],
+    "accepted_captures": 2,
+    "rejected_captures": 0,
+    "admission_order_reference_note": "the A800 heterogeneous CTA admission reference has no H200 counterpart in this work package; recorded as null",
+    "occupancy_note": "dynamic shared memory 15 KiB -> 21 KiB keeps 10 resident CTAs/SM on the 228-KiB H200 SM, matching the H200 Triton 3.6 W2 BM16 compile facts (45 registers -> 10 CTAs/SM)"
+  }
+}

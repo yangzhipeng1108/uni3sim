@@ -1,0 +1,75 @@
+{
+ "allowed_use": "Evidence that paged block-table indirection does not explain the difference between the paged and contiguous production prefill variants on either target.",
+ "counters": [
+  "dram__bytes_read.sum"
+ ],
+ "finding": "Block-table indirection does not change realised K/V reuse. Holding the geometry, the footprint and the reference order fixed and moving only the addressing, A800 reads exactly the 64 MiB unique footprint in all four configurations (64.0-64.1 MiB, paged against contiguous indistinguishable), and C500 reads 182.7 against 177.5 MiB at Q tile 128 and 240.9 against 227.4 at Q tile 64, against a 2.5 percent repeatability measured by repeating the tile-128 pair. The production variants differ by 1.78x on C500 and 1.21x on A800 at this exact geometry, so paging is falsified as the mechanism. The Q tile axis here also runs opposite to production: this probe reads 1.30x more at tile 64 than at tile 128, while production reads 0.56x as much.",
+ "forbidden_use": "Any duration. Also not an L2 capacity, a DRAM bandwidth, a replacement policy, or a per-shape traffic correction.",
+ "geometry": {
+  "batch": 8,
+  "block_kv": 64,
+  "block_table": "(i*2654435761)%blocks, a permutation so the footprint is unchanged and only addresses move",
+  "causal": true,
+  "head_dim": 128,
+  "kv_heads": 8,
+  "kv_unique_mib": 64.0,
+  "query_heads": 32,
+  "seq": 2048
+ },
+ "hardware_id": "nvidia_a800",
+ "instrument": "ncu --metrics dram__bytes_read.sum --csv",
+ "measurements": [
+  {
+   "axis": "production_pair",
+   "kv_logical_mib": 2176.0,
+   "measured_downstream_read_mib": 64.064,
+   "ordinal": 0,
+   "paged": false,
+   "tile_q": 128
+  },
+  {
+   "axis": "production_pair",
+   "kv_logical_mib": 2176.0,
+   "measured_downstream_read_mib": 64.054,
+   "ordinal": 1,
+   "paged": true,
+   "tile_q": 128
+  },
+  {
+   "axis": "production_pair",
+   "kv_logical_mib": 4224.0,
+   "measured_downstream_read_mib": 64.012,
+   "ordinal": 2,
+   "paged": false,
+   "tile_q": 64
+  },
+  {
+   "axis": "production_pair",
+   "kv_logical_mib": 4224.0,
+   "measured_downstream_read_mib": 64.01,
+   "ordinal": 3,
+   "paged": true,
+   "tile_q": 64
+  },
+  {
+   "axis": "repeat",
+   "kv_logical_mib": 2176.0,
+   "measured_downstream_read_mib": 64.027,
+   "ordinal": 4,
+   "paged": false,
+   "tile_q": 128
+  },
+  {
+   "axis": "repeat",
+   "kv_logical_mib": 2176.0,
+   "measured_downstream_read_mib": 64.048,
+   "ordinal": 5,
+   "paged": true,
+   "tile_q": 128
+  }
+ ],
+ "mechanism": "attention_kv_paging_residency",
+ "production_or_evaluation_duration_consumed": false,
+ "schema": "attention_kv_paging_residency_reference_v1",
+ "why_independent_axes": "Two production prefill variants of one identical shape differ only in kv_layout and measure 1.78x apart on C500. The Q tile and the CTA concurrency were already falsified by attention_q_tile_kv_residency. This probe moves only the block-table indirection, crossed with the two production Q tiles, and repeats one pair to bound repeatability."
+}

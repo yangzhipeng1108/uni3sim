@@ -1,0 +1,10 @@
+# CPU analytical prediction. Run from the repository root with Python >=3.10.
+# The synthetic conformance demo also uses only these dependencies. Native
+# Scheduler modes require their separately installed, source-pinned SDK.
+# Build the C helper before importing GEMM/MoE predictors:
+#   mkdir -p build
+#   cc -O3 -shared -fPIC -o build/lru_sim.so src/kernel/csrc/lru_sim.c
+numpy>=1.23.5,<3
+PyYAML>=6.0,<7
+# Canonical compressed launch serialization requires this exact version.
+zstandard==0.25.0

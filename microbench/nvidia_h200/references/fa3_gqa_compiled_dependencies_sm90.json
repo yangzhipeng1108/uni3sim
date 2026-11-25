@@ -1,0 +1,896 @@
+{
+  "schema_version": 2,
+  "hardware_id": "nvidia_h200",
+  "model": "fa3_gqa_compiled_wait_order_v2",
+  "source_program": "vllm_0_30_fa3_sm90_gqa_bf16",
+  "selection": "all_retained_recurrent_regions_wait_before_first_EX2",
+  "entries": [
+    {
+      "physical_key": [
+        64,
+        128,
+        128,
+        false,
+        false,
+        false,
+        true
+      ],
+      "wait_before_exp": true,
+      "source_variants": [
+        {
+          "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)64>, cute::C<(int)128>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)64>, cute::C<(int)128>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)128, (bool)1, (bool)1, (bool)0, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)64, (int)128, (int)128, (int)128, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1>>>>(T1::Params)",
+          "export_path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/variant_06.sass.txt",
+          "export_sha256": "e93b09c96c3f9ebaac5e7c85b9971a2eef44d7524be7c2b776603c396be930c5",
+          "regions": [
+            {
+              "wait1_pc": "0x2b770d7f3300",
+              "wait0_pc": "0x2b770d7f3550",
+              "first_exp_pc": "0x2b770d7f3680",
+              "wait_before_exp": true,
+              "online_before_wait0": {
+                "FMNMX": 32,
+                "EX2": 0,
+                "FFMA": 0,
+                "FADD": 0
+              },
+              "online_totals": {
+                "FMNMX": 68,
+                "EX2": 66,
+                "FFMA": 66,
+                "FADD": 64
+              },
+              "next_mma_pc": "0x2b770d7f4bd0"
+            }
+          ]
+        }
+      ],
+      "online_prefix_work": {
+        "FMNMX": {
+          "before": 32,
+          "total": 68
+        },
+        "EX2": {
+          "before": 0,
+          "total": 66
+        },
+        "FFMA": {
+          "before": 0,
+          "total": 66
+        },
+        "FADD": {
+          "before": 0,
+          "total": 64
+        }
+      }
+    },
+    {
+      "physical_key": [
+        64,
+        128,
+        128,
+        false,
+        true,
+        false,
+        true
+      ],
+      "wait_before_exp": true,
+      "source_variants": [
+        {
+          "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)64>, cute::C<(int)128>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)1, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)64>, cute::C<(int)128>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)128, (bool)1, (bool)1, (bool)1, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)64, (int)128, (int)128, (int)128, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1>>>>(T1::Params)",
+          "export_path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/variant_07.sass.txt",
+          "export_sha256": "16041a8a2e28c5dad8708bf18cf297a40ff09f2b5f7a4f1f7646d3f6fca8bca7",
+          "regions": [
+            {
+              "wait1_pc": "0x2b7bff7f36e0",
+              "wait0_pc": "0x2b7bff7f3930",
+              "first_exp_pc": "0x2b7bff7f3a70",
+              "wait_before_exp": true,
+              "online_before_wait0": {
+                "FMNMX": 32,
+                "EX2": 0,
+                "FFMA": 0,
+                "FADD": 0
+              },
+              "online_totals": {
+                "FMNMX": 68,
+                "EX2": 66,
+                "FFMA": 66,
+                "FADD": 64
+              },
+              "next_mma_pc": "0x2b7bff7f4fc0"
+            }
+          ]
+        }
+      ],
+      "online_prefix_work": {
+        "FMNMX": {
+          "before": 32,
+          "total": 68
+        },
+        "EX2": {
+          "before": 0,
+          "total": 66
+        },
+        "FFMA": {
+          "before": 0,
+          "total": 66
+        },
+        "FADD": {
+          "before": 0,
+          "total": 64
+        }
+      }
+    },
+    {
+      "physical_key": [
+        64,
+        176,
+        128,
+        false,
+        false,
+        true,
+        false
+      ],
+      "wait_before_exp": false,
+      "source_variants": [
+        {
+          "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)64>, cute::C<(int)176>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)0, (bool)0, (bool)0, (bool)1, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)64>, cute::C<(int)128>, cute::C<(int)176>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)128, (bool)1, (bool)1, (bool)0, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)64, (int)176, (int)128, (int)128, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1>>>>(T1::Params)",
+          "export_path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/variant_08.sass.txt",
+          "export_sha256": "c8659cc0f235797d5ad9f56b2873152545b71d9c2ef3f4e28dab7b545104c5d0",
+          "regions": [
+            {
+              "wait1_pc": "0x2b4d917e03b0",
+              "wait0_pc": "0x2b4d917e0e00",
+              "first_exp_pc": "0x2b4d917e0750",
+              "wait_before_exp": false,
+              "online_before_wait0": {
+                "FMNMX": 90,
+                "EX2": 19,
+                "FFMA": 45,
+                "FADD": 1
+              },
+              "online_totals": {
+                "FMNMX": 92,
+                "EX2": 90,
+                "FFMA": 90,
+                "FADD": 88
+              },
+              "next_mma_pc": "0x2b4d917e2360"
+            }
+          ]
+        }
+      ],
+      "online_prefix_work": {
+        "FMNMX": {
+          "before": 90,
+          "total": 92
+        },
+        "EX2": {
+          "before": 19,
+          "total": 90
+        },
+        "FFMA": {
+          "before": 45,
+          "total": 90
+        },
+        "FADD": {
+          "before": 1,
+          "total": 88
+        }
+      }
+    },
+    {
+      "physical_key": [
+        64,
+        176,
+        128,
+        false,
+        false,
+        true,
+        true
+      ],
+      "wait_before_exp": false,
+      "source_variants": [
+        {
+          "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)64>, cute::C<(int)176>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)0, (bool)0, (bool)0, (bool)1, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)64>, cute::C<(int)128>, cute::C<(int)176>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)128, (bool)1, (bool)1, (bool)0, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)64, (int)176, (int)128, (int)128, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1>>>>(T1::Params)",
+          "export_path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/variant_08.sass.txt",
+          "export_sha256": "c8659cc0f235797d5ad9f56b2873152545b71d9c2ef3f4e28dab7b545104c5d0",
+          "regions": [
+            {
+              "wait1_pc": "0x2b4d917e03b0",
+              "wait0_pc": "0x2b4d917e0e00",
+              "first_exp_pc": "0x2b4d917e0750",
+              "wait_before_exp": false,
+              "online_before_wait0": {
+                "FMNMX": 90,
+                "EX2": 19,
+                "FFMA": 45,
+                "FADD": 1
+              },
+              "online_totals": {
+                "FMNMX": 92,
+                "EX2": 90,
+                "FFMA": 90,
+                "FADD": 88
+              },
+              "next_mma_pc": "0x2b4d917e2360"
+            }
+          ]
+        }
+      ],
+      "online_prefix_work": {
+        "FMNMX": {
+          "before": 90,
+          "total": 92
+        },
+        "EX2": {
+          "before": 19,
+          "total": 90
+        },
+        "FFMA": {
+          "before": 45,
+          "total": 90
+        },
+        "FADD": {
+          "before": 1,
+          "total": 88
+        }
+      }
+    },
+    {
+      "physical_key": [
+        64,
+        176,
+        128,
+        false,
+        true,
+        true,
+        false
+      ],
+      "wait_before_exp": true,
+      "source_variants": [
+        {
+          "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)64>, cute::C<(int)176>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)0, (bool)0, (bool)0, (bool)1, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)1, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)64>, cute::C<(int)128>, cute::C<(int)176>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)128, (bool)1, (bool)1, (bool)1, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)64, (int)176, (int)128, (int)128, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1>>>>(T1::Params)",
+          "export_path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/variant_09.sass.txt",
+          "export_sha256": "f1f08e98f7bd1a52f24515a7a699276c4e7540b7e4866d8963b1112a440b46e5",
+          "regions": [
+            {
+              "wait1_pc": "0x2bab957e0800",
+              "wait0_pc": "0x2bab957e0820",
+              "first_exp_pc": "0x2bab957e0c20",
+              "wait_before_exp": true,
+              "online_before_wait0": {
+                "FMNMX": 0,
+                "EX2": 0,
+                "FFMA": 0,
+                "FADD": 0
+              },
+              "online_totals": {
+                "FMNMX": 92,
+                "EX2": 90,
+                "FFMA": 90,
+                "FADD": 88
+              },
+              "next_mma_pc": "0x2bab957e27b0"
+            }
+          ]
+        }
+      ],
+      "online_prefix_work": {
+        "FMNMX": {
+          "before": 0,
+          "total": 92
+        },
+        "EX2": {
+          "before": 0,
+          "total": 90
+        },
+        "FFMA": {
+          "before": 0,
+          "total": 90
+        },
+        "FADD": {
+          "before": 0,
+          "total": 88
+        }
+      }
+    },
+    {
+      "physical_key": [
+        64,
+        176,
+        128,
+        false,
+        true,
+        true,
+        true
+      ],
+      "wait_before_exp": true,
+      "source_variants": [
+        {
+          "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)64>, cute::C<(int)176>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)0, (bool)0, (bool)0, (bool)1, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)1, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)64>, cute::C<(int)128>, cute::C<(int)176>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)128, (bool)1, (bool)1, (bool)1, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)64, (int)176, (int)128, (int)128, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1>>>>(T1::Params)",
+          "export_path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/variant_09.sass.txt",
+          "export_sha256": "f1f08e98f7bd1a52f24515a7a699276c4e7540b7e4866d8963b1112a440b46e5",
+          "regions": [
+            {
+              "wait1_pc": "0x2bab957e0800",
+              "wait0_pc": "0x2bab957e0820",
+              "first_exp_pc": "0x2bab957e0c20",
+              "wait_before_exp": true,
+              "online_before_wait0": {
+                "FMNMX": 0,
+                "EX2": 0,
+                "FFMA": 0,
+                "FADD": 0
+              },
+              "online_totals": {
+                "FMNMX": 92,
+                "EX2": 90,
+                "FFMA": 90,
+                "FADD": 88
+              },
+              "next_mma_pc": "0x2bab957e27b0"
+            }
+          ]
+        }
+      ],
+      "online_prefix_work": {
+        "FMNMX": {
+          "before": 0,
+          "total": 92
+        },
+        "EX2": {
+          "before": 0,
+          "total": 90
+        },
+        "FFMA": {
+          "before": 0,
+          "total": 90
+        },
+        "FADD": {
+          "before": 0,
+          "total": 88
+        }
+      }
+    },
+    {
+      "physical_key": [
+        64,
+        192,
+        64,
+        false,
+        false,
+        true,
+        true
+      ],
+      "wait_before_exp": false,
+      "source_variants": [
+        {
+          "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)64>, cute::C<(int)192>, cute::C<(int)64>>, (int)64, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)0, (bool)0, (bool)0, (bool)1, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)64>, cute::C<(int)64>, cute::C<(int)192>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)128, (bool)1, (bool)1, (bool)0, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)64, (int)192, (int)128, (int)128, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1>>>>(T1::Params)",
+          "export_path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/variant_10.sass.txt",
+          "export_sha256": "dd2d444c1b76b9ce5e3d966edfc6b7b2a02b759652d788f9df2170b1268ba5a0",
+          "regions": [
+            {
+              "wait1_pc": "0x2b884d7e0090",
+              "wait0_pc": "0x2b884d7e0d40",
+              "first_exp_pc": "0x2b884d7e0530",
+              "wait_before_exp": false,
+              "online_before_wait0": {
+                "FMNMX": 100,
+                "EX2": 31,
+                "FFMA": 57,
+                "FADD": 2
+              },
+              "online_totals": {
+                "FMNMX": 100,
+                "EX2": 98,
+                "FFMA": 98,
+                "FADD": 96
+              },
+              "next_mma_pc": "0x2b884d7e2090"
+            }
+          ]
+        }
+      ],
+      "online_prefix_work": {
+        "FMNMX": {
+          "before": 100,
+          "total": 100
+        },
+        "EX2": {
+          "before": 31,
+          "total": 98
+        },
+        "FFMA": {
+          "before": 57,
+          "total": 98
+        },
+        "FADD": {
+          "before": 2,
+          "total": 96
+        }
+      }
+    },
+    {
+      "physical_key": [
+        64,
+        192,
+        64,
+        false,
+        true,
+        true,
+        true
+      ],
+      "wait_before_exp": false,
+      "source_variants": [
+        {
+          "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)64>, cute::C<(int)192>, cute::C<(int)64>>, (int)64, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)0, (bool)0, (bool)0, (bool)1, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)1, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)64>, cute::C<(int)64>, cute::C<(int)192>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)128, (bool)1, (bool)1, (bool)1, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)64, (int)192, (int)128, (int)128, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1>>>>(T1::Params)",
+          "export_path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/variant_11.sass.txt",
+          "export_sha256": "cac75315eecfae67b872873fa452db0844e6051e6985e0971dd98c7138f33801",
+          "regions": [
+            {
+              "wait1_pc": "0x2ae3bd7e0430",
+              "wait0_pc": "0x2ae3bd7e1280",
+              "first_exp_pc": "0x2ae3bd7e08c0",
+              "wait_before_exp": false,
+              "online_before_wait0": {
+                "FMNMX": 100,
+                "EX2": 32,
+                "FFMA": 81,
+                "FADD": 2
+              },
+              "online_totals": {
+                "FMNMX": 100,
+                "EX2": 98,
+                "FFMA": 98,
+                "FADD": 96
+              },
+              "next_mma_pc": "0x2ae3bd7e2440"
+            }
+          ]
+        }
+      ],
+      "online_prefix_work": {
+        "FMNMX": {
+          "before": 100,
+          "total": 100
+        },
+        "EX2": {
+          "before": 32,
+          "total": 98
+        },
+        "FFMA": {
+          "before": 81,
+          "total": 98
+        },
+        "FADD": {
+          "before": 2,
+          "total": 96
+        }
+      }
+    },
+    {
+      "physical_key": [
+        128,
+        128,
+        128,
+        true,
+        false,
+        false,
+        true
+      ],
+      "wait_before_exp": true,
+      "source_variants": [
+        {
+          "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)4>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)256, (bool)1, (bool)1, (bool)0, (bool)0, (int)4>, flash::VarlenDynamicPersistentTileScheduler<(int)128, (int)128, (int)256, (int)128, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)1>>>>(T1::Params)",
+          "export_path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/variant_02.sass.txt",
+          "export_sha256": "651081528a294f4d27a22ae2dc597c0a539b1db809227d2a8e38139575e0dbed",
+          "regions": [
+            {
+              "wait1_pc": "0x2ace0b4070f0",
+              "wait0_pc": "0x2ace0b40a0c0",
+              "first_exp_pc": "0x2ace0b40a400",
+              "wait_before_exp": true,
+              "online_before_wait0": {
+                "FMNMX": 1,
+                "EX2": 0,
+                "FFMA": 0,
+                "FADD": 0
+              },
+              "online_totals": {
+                "FMNMX": 68,
+                "EX2": 66,
+                "FFMA": 66,
+                "FADD": 64
+              },
+              "next_mma_pc": "0x2ace0b40bb30"
+            },
+            {
+              "wait1_pc": "0x2ace0b40bfa0",
+              "wait0_pc": "0x2ace0b40c1f0",
+              "first_exp_pc": "0x2ace0b40c320",
+              "wait_before_exp": true,
+              "online_before_wait0": {
+                "FMNMX": 32,
+                "EX2": 0,
+                "FFMA": 0,
+                "FADD": 0
+              },
+              "online_totals": {
+                "FMNMX": 68,
+                "EX2": 66,
+                "FFMA": 66,
+                "FADD": 64
+              },
+              "next_mma_pc": "0x2ace0b40d850"
+            }
+          ]
+        },
+        {
+          "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)8>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)256, (bool)1, (bool)1, (bool)0, (bool)0, (int)8>, flash::VarlenDynamicPersistentTileScheduler<(int)128, (int)128, (int)256, (int)128, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)1>>>>(T1::Params)",
+          "export_path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/variant_03.sass.txt",
+          "export_sha256": "fd6f89b18737174d9634bd10e38cfbad523936a1382c52ad5d3a6dbe3d0aa7e5",
+          "regions": [
+            {
+              "wait1_pc": "0x2b30df6070f0",
+              "wait0_pc": "0x2b30df60a0c0",
+              "first_exp_pc": "0x2b30df60a400",
+              "wait_before_exp": true,
+              "online_before_wait0": {
+                "FMNMX": 1,
+                "EX2": 0,
+                "FFMA": 0,
+                "FADD": 0
+              },
+              "online_totals": {
+                "FMNMX": 68,
+                "EX2": 66,
+                "FFMA": 66,
+                "FADD": 64
+              },
+              "next_mma_pc": "0x2b30df60bb30"
+            },
+            {
+              "wait1_pc": "0x2b30df60bfa0",
+              "wait0_pc": "0x2b30df60c1f0",
+              "first_exp_pc": "0x2b30df60c320",
+              "wait_before_exp": true,
+              "online_before_wait0": {
+                "FMNMX": 32,
+                "EX2": 0,
+                "FFMA": 0,
+                "FADD": 0
+              },
+              "online_totals": {
+                "FMNMX": 68,
+                "EX2": 66,
+                "FFMA": 66,
+                "FADD": 64
+              },
+              "next_mma_pc": "0x2b30df60d850"
+            }
+          ]
+        }
+      ],
+      "online_prefix_work": {
+        "FMNMX": {
+          "before": 1,
+          "total": 68
+        },
+        "EX2": {
+          "before": 0,
+          "total": 66
+        },
+        "FFMA": {
+          "before": 0,
+          "total": 66
+        },
+        "FADD": {
+          "before": 0,
+          "total": 64
+        }
+      }
+    },
+    {
+      "physical_key": [
+        128,
+        128,
+        128,
+        true,
+        false,
+        true,
+        true
+      ],
+      "wait_before_exp": false,
+      "source_variants": [
+        {
+          "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)1, (bool)0, (bool)0, (bool)1, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)4>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)256, (bool)1, (bool)1, (bool)0, (bool)0, (int)4>, flash::VarlenDynamicPersistentTileScheduler<(int)128, (int)128, (int)256, (int)32, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)1>>>>(T1::Params)",
+          "export_path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/variant_00.sass.txt",
+          "export_sha256": "801005d5a5e4374821576a50404560c29e2347acdf58514f02a2ed44f5fe2dc0",
+          "regions": [
+            {
+              "wait1_pc": "0x2b33757e3110",
+              "wait0_pc": "0x2b33757e6100",
+              "first_exp_pc": "0x2b33757e66e0",
+              "wait_before_exp": true,
+              "online_before_wait0": {
+                "FMNMX": 2,
+                "EX2": 0,
+                "FFMA": 0,
+                "FADD": 0
+              },
+              "online_totals": {
+                "FMNMX": 68,
+                "EX2": 66,
+                "FFMA": 66,
+                "FADD": 64
+              },
+              "next_mma_pc": "0x2b33757e7b10"
+            },
+            {
+              "wait1_pc": "0x2b33757e7fd0",
+              "wait0_pc": "0x2b33757e87d0",
+              "first_exp_pc": "0x2b33757e82c0",
+              "wait_before_exp": false,
+              "online_before_wait0": {
+                "FMNMX": 66,
+                "EX2": 17,
+                "FFMA": 33,
+                "FADD": 1
+              },
+              "online_totals": {
+                "FMNMX": 68,
+                "EX2": 66,
+                "FFMA": 66,
+                "FADD": 64
+              },
+              "next_mma_pc": "0x2b33757e9920"
+            }
+          ]
+        },
+        {
+          "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)1, (bool)0, (bool)0, (bool)1, (bool)0, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)8>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)256, (bool)1, (bool)1, (bool)0, (bool)0, (int)8>, flash::VarlenDynamicPersistentTileScheduler<(int)128, (int)128, (int)256, (int)32, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)1>>>>(T1::Params)",
+          "export_path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/variant_01.sass.txt",
+          "export_sha256": "d90f9e478a4cfa29f37a906c4a5369e754ce36ef63d05a9495c2a5f3d08fcdd2",
+          "regions": [
+            {
+              "wait1_pc": "0x2b0a057e3110",
+              "wait0_pc": "0x2b0a057e6100",
+              "first_exp_pc": "0x2b0a057e66e0",
+              "wait_before_exp": true,
+              "online_before_wait0": {
+                "FMNMX": 2,
+                "EX2": 0,
+                "FFMA": 0,
+                "FADD": 0
+              },
+              "online_totals": {
+                "FMNMX": 68,
+                "EX2": 66,
+                "FFMA": 66,
+                "FADD": 64
+              },
+              "next_mma_pc": "0x2b0a057e7b10"
+            },
+            {
+              "wait1_pc": "0x2b0a057e7fd0",
+              "wait0_pc": "0x2b0a057e87d0",
+              "first_exp_pc": "0x2b0a057e82c0",
+              "wait_before_exp": false,
+              "online_before_wait0": {
+                "FMNMX": 66,
+                "EX2": 17,
+                "FFMA": 33,
+                "FADD": 1
+              },
+              "online_totals": {
+                "FMNMX": 68,
+                "EX2": 66,
+                "FFMA": 66,
+                "FADD": 64
+              },
+              "next_mma_pc": "0x2b0a057e9920"
+            }
+          ]
+        }
+      ],
+      "online_prefix_work": {
+        "FMNMX": {
+          "before": 2,
+          "total": 68
+        },
+        "EX2": {
+          "before": 0,
+          "total": 66
+        },
+        "FFMA": {
+          "before": 0,
+          "total": 66
+        },
+        "FADD": {
+          "before": 0,
+          "total": 64
+        }
+      }
+    },
+    {
+      "physical_key": [
+        128,
+        128,
+        128,
+        true,
+        true,
+        false,
+        true
+      ],
+      "wait_before_exp": true,
+      "source_variants": [
+        {
+          "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, (int)128, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)1, (bool)0, cutlass::bfloat16_t, (int)1>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)128>, cute::C<(int)128>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)256, (bool)1, (bool)1, (bool)1, (bool)0, (int)1>, flash::VarlenDynamicPersistentTileScheduler<(int)128, (int)128, (int)256, (int)128, (bool)1, (bool)1, (bool)1, (bool)1, (bool)0, (bool)1>>>>(T1::Params)",
+          "export_path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/variant_04.sass.txt",
+          "export_sha256": "533fedfb8a9a5497f263f024d4cedb092d4705a21829ff95b7e1ebb7937a70c2",
+          "regions": [
+            {
+              "wait1_pc": "0x2ac3eb6075f0",
+              "wait0_pc": "0x2ac3eb60a620",
+              "first_exp_pc": "0x2ac3eb60a980",
+              "wait_before_exp": true,
+              "online_before_wait0": {
+                "FMNMX": 1,
+                "EX2": 0,
+                "FFMA": 0,
+                "FADD": 0
+              },
+              "online_totals": {
+                "FMNMX": 68,
+                "EX2": 66,
+                "FFMA": 66,
+                "FADD": 64
+              },
+              "next_mma_pc": "0x2ac3eb60c080"
+            },
+            {
+              "wait1_pc": "0x2ac3eb60c500",
+              "wait0_pc": "0x2ac3eb60c790",
+              "first_exp_pc": "0x2ac3eb60caf0",
+              "wait_before_exp": true,
+              "online_before_wait0": {
+                "FMNMX": 32,
+                "EX2": 0,
+                "FFMA": 0,
+                "FADD": 0
+              },
+              "online_totals": {
+                "FMNMX": 68,
+                "EX2": 66,
+                "FFMA": 66,
+                "FADD": 64
+              },
+              "next_mma_pc": "0x2ac3eb60de00"
+            }
+          ]
+        }
+      ],
+      "online_prefix_work": {
+        "FMNMX": {
+          "before": 1,
+          "total": 68
+        },
+        "EX2": {
+          "before": 0,
+          "total": 66
+        },
+        "FFMA": {
+          "before": 0,
+          "total": 66
+        },
+        "FADD": {
+          "before": 0,
+          "total": 64
+        }
+      }
+    },
+    {
+      "physical_key": [
+        192,
+        128,
+        64,
+        true,
+        false,
+        false,
+        true
+      ],
+      "wait_before_exp": true,
+      "source_variants": [
+        {
+          "source_symbol": "void cutlass::device_kernel<flash::enable_sm90_or_later<flash::FlashAttnFwdSm90<flash::CollectiveMainloopFwdSm90<(int)2, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cute::tuple<cute::C<(int)192>, cute::C<(int)128>, cute::C<(int)64>>, (int)64, cutlass::bfloat16_t, float, cutlass::arch::Sm90, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)0, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)0, cutlass::bfloat16_t, (int)4>, flash::CollectiveEpilogueFwd<cute::tuple<cute::C<(int)192>, cute::C<(int)64>, cute::C<(int)128>>, cute::tuple<cute::C<(int)1>, cute::C<(int)1>, cute::C<(int)1>>, cutlass::bfloat16_t, cutlass::arch::Sm90, (int)384, (bool)1, (bool)1, (bool)0, (bool)0, (int)4>, flash::VarlenDynamicPersistentTileScheduler<(int)192, (int)128, (int)384, (int)128, (bool)0, (bool)1, (bool)1, (bool)1, (bool)0, (bool)1>>>>(T1::Params)",
+          "export_path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/variant_05.sass.txt",
+          "export_sha256": "e40ddd6da2c80fc7dc3c08d4248247ff02c53b8c0d18e4cf9b511852b8f63260",
+          "regions": [
+            {
+              "wait1_pc": "0x2b389d606d70",
+              "wait0_pc": "0x2b389d609cd0",
+              "first_exp_pc": "0x2b389d60a2d0",
+              "wait_before_exp": true,
+              "online_before_wait0": {
+                "FMNMX": 1,
+                "EX2": 0,
+                "FFMA": 0,
+                "FADD": 0
+              },
+              "online_totals": {
+                "FMNMX": 68,
+                "EX2": 66,
+                "FFMA": 66,
+                "FADD": 64
+              },
+              "next_mma_pc": "0x2b389d60b500"
+            },
+            {
+              "wait1_pc": "0x2b389d60b860",
+              "wait0_pc": "0x2b389d60b9c0",
+              "first_exp_pc": "0x2b389d60bb90",
+              "wait_before_exp": true,
+              "online_before_wait0": {
+                "FMNMX": 18,
+                "EX2": 0,
+                "FFMA": 0,
+                "FADD": 0
+              },
+              "online_totals": {
+                "FMNMX": 68,
+                "EX2": 66,
+                "FFMA": 66,
+                "FADD": 64
+              },
+              "next_mma_pc": "0x2b389d60cef0"
+            }
+          ]
+        }
+      ],
+      "online_prefix_work": {
+        "FMNMX": {
+          "before": 1,
+          "total": 68
+        },
+        "EX2": {
+          "before": 0,
+          "total": 66
+        },
+        "FFMA": {
+          "before": 0,
+          "total": 66
+        },
+        "FADD": {
+          "before": 0,
+          "total": 64
+        }
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/static_manifest.json",
+      "sha256": "0df2a166016ff770b137178cda1e0e50d8420a790d82ad0f92a055fbbb31fd75",
+      "size": 49020
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/compiled_dependencies.json",
+      "sha256": "802482e587ab76875075b4b58ef947f727cb8d01d11c3593ac97c2f0189781c8",
+      "size": 18957
+    },
+    {
+      "path": "profiler_output/kernel_dataset/nvidia_h200/fa_static_dependency_20261107/parameter_reads/online_phases.json",
+      "sha256": "df48f2a736c427a8fca02ac65c3f7b6c45630bc5e8c8c9abd23019c31fa5f0ab",
+      "size": 15710
+    }
+  ],
+  "scope_limitations": [
+    "Discrete native instruction order and integer work counts only;no production duration consumed.",
+    "The per-class guaranteed prefix is the minimum over every retained recurrent region;extra overlap on other paths remains uncredited.",
+    "Max and local-sum cycle services are apportioned by static FMNMX/FADD work;standalone row-state FMA work follows the FFMA share as a coarse approximation.",
+    "Physical keys use tile,causal,compiled split,effective KV TMA and PackGQA;no case/kernel-name price.",
+    "Native work/order is projected onto existing source stages;register scheduling,branch mixtures and cross-compiler transfer remain partial."
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

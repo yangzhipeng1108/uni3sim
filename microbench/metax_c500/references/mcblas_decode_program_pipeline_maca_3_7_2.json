@@ -1,0 +1,98 @@
+{
+  "allowed_use": "Fixed span plus per-256-wide-K-round service of the one deployed mcBLAS decode program named above. It describes that compiled program only; the vendor selector moves to a different program with N and with K, and the identity was confirmed by mcTracer at every swept point.",
+  "dtype": "bf16",
+  "forbidden_use": "Any other mcBLAS program, in particular tn_64x32x256_2m1n8k_256t and tn_128x128x128_4m1n8k_4stage, which share tile extents or suffix but are distinct compiled programs; also not a per-shape correction.",
+  "hardware_id": "metax_c500",
+  "independent_cross_check": {
+    "independent_read_sweep_gb_s": 605.5,
+    "mechanism_gb_s": 564.0,
+    "statement": "At the deployed grid 80 x block 256 the mechanism implies 564.0 GB/s of weight read, against 605.5 GB/s measured for a plain coalesced read at that identical geometry by thread_parallel_stream_bandwidth's companion read sweep."
+  },
+  "measured": {
+    "cells": [
+      {
+        "fit_us": 18.5918,
+        "k": 2048,
+        "k_rounds": 8,
+        "measured_us": 18.726,
+        "signed_pct": -0.717
+      },
+      {
+        "fit_us": 20.1525,
+        "k": 2304,
+        "k_rounds": 9,
+        "measured_us": 20.147,
+        "signed_pct": 0.027
+      },
+      {
+        "fit_us": 21.7132,
+        "k": 2560,
+        "k_rounds": 10,
+        "measured_us": 21.747,
+        "signed_pct": -0.156
+      },
+      {
+        "fit_us": 23.2739,
+        "k": 2816,
+        "k_rounds": 11,
+        "measured_us": 22.989,
+        "signed_pct": 1.239
+      },
+      {
+        "fit_us": 24.8345,
+        "k": 3072,
+        "k_rounds": 12,
+        "measured_us": 24.704,
+        "signed_pct": 0.528
+      },
+      {
+        "fit_us": 26.3952,
+        "k": 3328,
+        "k_rounds": 13,
+        "measured_us": 26.598,
+        "signed_pct": -0.762
+      },
+      {
+        "fit_us": 27.9559,
+        "k": 3584,
+        "k_rounds": 14,
+        "measured_us": 28.006,
+        "signed_pct": -0.179
+      }
+    ],
+    "fixed_span_us": 6.1064,
+    "k_round_service_us": 1.5607,
+    "k_round_width_elements": 256,
+    "swept_geometry": {
+      "k_max": 3584,
+      "k_min": 2048,
+      "k_step": 256,
+      "m": 48,
+      "n": 2560
+    },
+    "worst_cell_signed_pct": 1.24
+  },
+  "mechanism": "mcblas_decode_program_pipeline",
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "capture": "profiler_output/microbench/metax_c500/mcblas_decode_program_20260919_r1",
+    "device_index": 0,
+    "identity_tool": "mcTracer, one invocation per swept point",
+    "source": "microbench/metax_c500/operators/gemm/mcblas_decode_program_probe.py",
+    "source_sha256": "c2019ae024c79e0ccb146c13f42b554cf452355b6bfa0c3f8d43b8f6855e2ec0"
+  },
+  "schema": "mcblas_decode_program_pipeline_reference_v1",
+  "score_against_deployment": {
+    "note": "evaluation only; selects nothing",
+    "qkv_m35_n2560_k2048": {
+      "mechanism_us": 18.592,
+      "model_today_ratio": 0.667,
+      "model_today_us": 11.92,
+      "ratio": 1.04,
+      "serving_trace_us": 17.88
+    }
+  },
+  "software_revision": "maca_3.7.2",
+  "timer_domain": "maca_graph_replay_event",
+  "vendor_kernel": "mcblas__Mck_bf16gemm_tn_64x32x256_4m1n8k_256t_bf16_bf16_fp32"
+}

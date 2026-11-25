@@ -1,0 +1,196 @@
+{
+  "duration_unit": "ns_per_completed_tail_N256_K64_operand_stream_per_aic",
+  "forward_eligibility_constraint": "use only as a lower bound for 24-AIC BF16 M16/M32 tail operand streams under source-selected base-M64/base-M128, projection-K2880/N256/K64, 512--6144 pairs per worker, four-pair drain semantics, resident-or-slower A, and DRAM-cold B",
+  "forward_eligible": true,
+  "hardware_id": "ascend_910b",
+  "measurement": {
+    "campaigns": {
+      "m128_tail16": {
+        "active_m": 16,
+        "base_m": 128,
+        "median_completion_span_ns": {
+          "1024": 667000.0,
+          "3072": 1765060.0,
+          "512": 359320.0,
+          "6144": 3422120.0
+        },
+        "stability_gate": true,
+        "within_count_relative_spans": {
+          "1024": 0.010374812593703148,
+          "3072": 0.0010764506589011139,
+          "512": 0.00768117555382389,
+          "6144": 0.006493051091136489
+        }
+      },
+      "m128_tail32": {
+        "active_m": 32,
+        "base_m": 128,
+        "median_completion_span_ns": {
+          "1024": 671240.0,
+          "3072": 1768280.0,
+          "512": 361200.0,
+          "6144": 3418300.0
+        },
+        "stability_gate": true,
+        "within_count_relative_spans": {
+          "1024": 0.020588761098861808,
+          "3072": 0.009625172483995748,
+          "512": 0.013289036544850499,
+          "6144": 0.006939121785682942
+        }
+      },
+      "m64_tail16": {
+        "active_m": 16,
+        "base_m": 64,
+        "median_completion_span_ns": {
+          "1024": 673980.0,
+          "3072": 1782040.0,
+          "512": 362060.0,
+          "6144": 3419340.0
+        },
+        "stability_gate": true,
+        "within_count_relative_spans": {
+          "1024": 0.009911273331552865,
+          "3072": 0.037361675383268615,
+          "512": 0.024194884825719493,
+          "6144": 0.00283680476349237
+        }
+      },
+      "m64_tail32": {
+        "active_m": 32,
+        "base_m": 64,
+        "median_completion_span_ns": {
+          "1024": 661680.0,
+          "3072": 1769760.0,
+          "512": 363220.0,
+          "6144": 3415340.0
+        },
+        "stability_gate": true,
+        "within_count_relative_spans": {
+          "1024": 0.026719864587111595,
+          "3072": 0.010464695777958593,
+          "512": 0.015197401024172677,
+          "6144": 0.0007729830704995696
+        }
+      }
+    },
+    "conservative_completion_span_ns": {
+      "1024": 661680.0,
+      "3072": 1765060.0,
+      "512": 359320.0,
+      "6144": 3415340.0
+    },
+    "maximum_allowed_within_count_relative_span": 0.1,
+    "mechanism_gate_passed": true
+  },
+  "mechanism_id": "aic_grouped_matmul_k2880_wide_base_tail_completion_v1",
+  "mechanism_publishable": true,
+  "parameter_fit_from_production_duration": false,
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "build_command": "cmake -S <source> -B build_<campaign> -DSOC_VERSION=Ascend910B2 -DGROUPED_PAIR_BASE_M=<64|128> -DGROUPED_PAIR_ACTIVE_M=<16|32> -DGROUPED_PAIR_B_ROW_STRIDE=2880 && cmake --build build_<campaign> -j 8",
+    "campaigns": {
+      "m128_tail16": {
+        "binary_sha256": "c9a34d4d14b2d73b76cfad8eae9e08ff3b222b71b27b0c6ad90062815688df94",
+        "raw_sha256": [
+          "4f93dfc6dac9175a624c4f1cc0d58c8aaad11db4f8fb3181cc885d4275162266",
+          "fd7d148e91597137cb0753665a41bbe156aaf569e3cebd4a3637e46a0ce17c2c",
+          "c4066902a1bafc0867a0b4be72c8ef0dfb285f493e92bc87fdfc3ae3631c6bce"
+        ],
+        "stderr_sha256": [
+          "38b8ec65a7151b5d5fda3e578c76b6f8ef57c07f812cef4959f90cd3dc32cf6e",
+          "b9617262ce38771b93527098a2e5f92ab00dafb66f8ed274d25b6aa87d58a9d4",
+          "20419db4329993d6b70450e3a724000cd1318c043458f24a28006586ca26e97c"
+        ]
+      },
+      "m128_tail32": {
+        "binary_sha256": "1f7a1902a479ed77ed434ba23e4811de50b09ff4ada7dd8bb27ea69f3536bc35",
+        "raw_sha256": [
+          "b0ec1cb94ae401a51a625e9a14a07977924747b5c8ff1db0932ba9e653fe0d4e",
+          "22eee0fa8b18392c504b8a1fe027db1df9c1c67d2fb067b7f58fbe4a7cdf9fc7",
+          "91f88beb4369f967edd1dc638d27dedb291f8bbec9fface8520704a95356042b"
+        ],
+        "stderr_sha256": [
+          "c89083225cad2901305f057cfd3007227f32effaef684db99a437e4d8793810d",
+          "dbfddddd39d5eb02045e01ff9ce79ee8be6e693945d078943565204e58a35f00",
+          "93ecc4739c36bacef10758345d3b8924cd951ba2c9daaac81218638f2418d2e2"
+        ]
+      },
+      "m64_tail16": {
+        "binary_sha256": "6307d2c1d4cb47735eb1eb34c3c45147b9767a5154e5e55c707add2bd3b3617d",
+        "raw_sha256": [
+          "ae36fa90d82c368d2c9ee2dfc6f51a28f5c3c7ee4851d7efe8b640ca85d5b418",
+          "78f194c8caf6d74e5fd3bb3f6af207e3914db597a497b8e20a43f94d7f955e4a",
+          "b75ee0817d8cb7bf79f274a1e09845c8c4d7a6c4e0305ab2c48f8a2a049ef14a"
+        ],
+        "stderr_sha256": [
+          "eddc10cee90d352a71b4a50dda75c028ea60d5cdd0033f060690249cc4a8ddfc",
+          "d5fd7fc126c800df6c37a5f8806281eaa521ee893e1f23d49679a4289487653e",
+          "bf1d1c1e00c373740d2b8784717ab4f7599ba410f7ca85111916136eed53a915"
+        ]
+      },
+      "m64_tail32": {
+        "binary_sha256": "23ea9bf54338bfac65a814db28ef13de0d81165f295be6ae7c395faf570093b7",
+        "raw_sha256": [
+          "860e61022e14857768da1a14f512171b0134c4ee01ff7aab9dd075ee31b1c6cc",
+          "21ff11cbcd30b22983737f122ec07935fe982105d655457fb8aaaa07abe2e435",
+          "a208e14d43a7684c9129a2d73656a7215f8eb7d12b83d87fe4be089171ba0a88"
+        ],
+        "stderr_sha256": [
+          "52fecd7b57a987f280ba488be74a8c5c75d8e1dc4735453cedf28b8bb2474fbc",
+          "0439dfd967a60e13914ea8a18afa2544c9befe77268f33c3d11e7189557a1869",
+          "1f29289893363129e276a5fe355b185c86a948ed588ed210355f8dfb2cffdbc5"
+        ]
+      }
+    },
+    "container": "capture-container-2",
+    "host": "capture-host-1",
+    "logical_device_id": 0,
+    "measurement_baseline_commit": "9889e8c4e72c3d4220d97b77aa07f682496d26ae",
+    "owner": "kernel-accuracy-fusedmoe",
+    "physical_device_id": 2,
+    "raw_root": "profiler_output/microbench/ascend_910b/grouped_pair_k2880_stride_9889e8c4_20260908_r1",
+    "run_command": "python grouped_pair_completion_runner.py --binary build_<campaign>/grouped_pair_completion --device-id 2 --owner kernel-accuracy-fusedmoe --baseline 9889e8c4e72c3d4220d97b77aa07f682496d26ae --run-id <campaign>-k2880-r<run> --run-index <index> --campaign <campaign>_k2880_stride",
+    "snapshot_path": "/capture-workspace/execution_snapshots/fused_moe_k2880_pair_9889e8c4/source",
+    "source_sha256": {
+      "CMakeLists.txt": "0554663858fc8f465256a18aaac006f1db094f1209895f22a29e642c82530a0c",
+      "README.md": "339cd869f938ad4f5d09ed2cd3d7747089506be2814c43c15b1f3d9cffafcb85",
+      "grouped_pair_completion_kernel.cpp": "10dc044622541614cb1b61044cc5f01bd7fb5dc3b9e507ca711cee3397c0040b",
+      "grouped_pair_completion_main.cpp": "0f2956ca05745a92d8ca0e7eb669aba6e709a96507ed9b26595d830b9b0cd8b8",
+      "grouped_pair_completion_runner.py": "ec9cd0651e4187c7faa8c8a431572948e0a9ffa93403e0eed5bb55f1d671b3b1"
+    },
+    "source_snapshot_sha256": "baed1f900964adbce74146f16f19582f725c479ef0d23c546e1aba7934460e6d"
+  },
+  "publication_scope": {
+    "a_columns": 64,
+    "a_residency": "l2_resident",
+    "active_aic_groups": 24,
+    "active_m_values": [
+      16,
+      32
+    ],
+    "b_columns": 256,
+    "b_residency": "dram_cold",
+    "b_rows": 64,
+    "b_source_row_stride": 2880,
+    "b_source_tiles_per_worker": 512,
+    "base_m_values": [
+      64,
+      128
+    ],
+    "copied_ring_bytes": 402653184,
+    "drain_interval_pairs": 4,
+    "maximum_pairs_per_worker": 6144,
+    "measured_pairs_per_worker": [
+      512,
+      1024,
+      3072,
+      6144
+    ],
+    "minimum_pairs_per_worker": 512,
+    "projection_k": 2880,
+    "source_allocation_bytes": 4465360896
+  },
+  "schema_version": 1,
+  "software_revision": "cann_8.5.1"
+}

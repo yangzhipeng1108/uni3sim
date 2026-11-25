@@ -1,0 +1,548 @@
+{
+  "schema_version": 1,
+  "kind": "metax_c500_mccl_collective_protocol_policy",
+  "hardware_id": "metax_c500",
+  "communication_library": "MCCL",
+  "library_version": "2.16.5",
+  "software_revision": "maca_3.7.2",
+  "algorithm": "fc2",
+  "topology": "single_node_metaxlink",
+  "world_size": 2,
+  "dtype": "bfloat16",
+  "timer_domain": "mctracer_uninstrumented_kernel_duration",
+  "unit": "microseconds",
+  "allowed_use": "Collective startup of one MCCL protocol band on a two-rank MetaXLink C500, for the ProtoBridge development profile's protocol policy. It is the span of the collective kernel itself on the rank that reached the collective last; the wait the earlier rank absorbs is rank skew, which the execution timeline represents separately by serialising ranks, and must not be folded into this constant.",
+  "production_or_evaluation_duration_consumed": false,
+  "derivation": "one unknown per protocol band, the band's collective startup, solved by bisection so the published ProtoBridge development model reproduces the measured per-collective duration at that band's smallest swept message; every other model input is the hardware record's own declared value",
+  "rank_selection": "per size, the minimum across ranks of that rank's median kernel span, which is the rank that reached the collective last and therefore did not wait",
+  "published": {
+    "small_startup_us": 6.392,
+    "ll128_startup_us": 10.52,
+    "simple_startup_us": null
+  },
+  "published_from": "all_reduce",
+  "not_resolved": {
+    "simple_startup_us": "The sweep reaches one simple-band cell, 8,388,608 B, and the model over-predicts it by 34.2% with the startup driven to zero, so no non-negative startup reproduces it. The residual is in the band's bandwidth term, which this extraction holds fixed at the hardware record's declared value, so the constant is left unmeasured and the residual is reported rather than absorbed.",
+    "phase_fixed_us": "A two-rank FC2 collective carries one phase, so this sweep constrains startup and the per-phase term only as their sum. The per-phase terms are therefore held at the hardware record's declared values and the startup carries the measured difference; separating them needs a four-rank sweep."
+  },
+  "independent_cross_check": {
+    "operation": "all_gather",
+    "small_startup_us": 6.636,
+    "ll128_startup_us": 12.556,
+    "note": "An independent all_gather sweep of the same deployment reproduces the small band within 3.8% and the LL128 band within 19.4%; the published values come from all_reduce, which is the operation the deployment issues 97 times per decode step."
+  },
+  "all_reduce": {
+    "schema_version": 1,
+    "kind": "metax_c500_collective_protocol_policy_extraction",
+    "hardware_id": "metax_c500",
+    "algorithm": "fc2",
+    "statistic": "kernel_span_us_median",
+    "rank_selection": "per size, the minimum across ranks of that rank's median kernel span, which is the rank that reached the collective last and therefore did not wait",
+    "unit": "microseconds",
+    "derivation": "one unknown per protocol band, the band's collective startup, solved by bisection so the published ProtoBridge development model reproduces the measured per-collective duration at that band's smallest swept message; every other model input is the hardware record's own declared value",
+    "production_or_evaluation_duration_consumed": false,
+    "sweeps": [
+      {
+        "path": "profiler_output/collective/metax_c500/mccl_span_all_reduce_20260919_r1/reduced/span-rank-0.json",
+        "run_id": "mccl_span_all_reduce_20260919_r1",
+        "source_commit": "d286e4b8a06bb762ef0672d352e912aeaa8e916b",
+        "rank": 0,
+        "world_size": 2,
+        "operation": "all_reduce",
+        "timer_domain": "mctracer_uninstrumented_kernel_duration"
+      },
+      {
+        "path": "profiler_output/collective/metax_c500/mccl_span_all_reduce_20260919_r1/reduced/span-rank-1.json",
+        "run_id": "mccl_span_all_reduce_20260919_r1",
+        "source_commit": "d286e4b8a06bb762ef0672d352e912aeaa8e916b",
+        "rank": 1,
+        "world_size": 2,
+        "operation": "all_reduce",
+        "timer_domain": "mctracer_uninstrumented_kernel_duration"
+      }
+    ],
+    "bands": {
+      "small": {
+        "measured_cells": [
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 2048,
+            "per_collective_us": 7.424
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 4096,
+            "per_collective_us": 7.168
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 8192,
+            "per_collective_us": 7.424
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 16384,
+            "per_collective_us": 7.424
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 32768,
+            "per_collective_us": 7.936
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 65536,
+            "per_collective_us": 8.96
+          }
+        ],
+        "anchor": {
+          "operation": "all_reduce",
+          "world_size": 2,
+          "message_bytes": 2048,
+          "per_collective_us": 7.424
+        },
+        "startup_us": 6.392,
+        "residuals": [
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 2048,
+            "per_collective_us": 7.424,
+            "predicted_us": 7.424,
+            "signed_pct": -0.0
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 4096,
+            "per_collective_us": 7.168,
+            "predicted_us": 7.456,
+            "signed_pct": 4.018
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 8192,
+            "per_collective_us": 7.424,
+            "predicted_us": 7.52,
+            "signed_pct": 1.293
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 16384,
+            "per_collective_us": 7.424,
+            "predicted_us": 7.648,
+            "signed_pct": 3.017
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 32768,
+            "per_collective_us": 7.936,
+            "predicted_us": 7.904,
+            "signed_pct": -0.403
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 65536,
+            "per_collective_us": 8.96,
+            "predicted_us": 8.416,
+            "signed_pct": -6.071
+          }
+        ],
+        "worst_abs_signed_pct": 6.071
+      },
+      "ll128": {
+        "measured_cells": [
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 131072,
+            "per_collective_us": 13.568
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 262144,
+            "per_collective_us": 15.744
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 524288,
+            "per_collective_us": 18.176
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 1048576,
+            "per_collective_us": 23.552
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 2097152,
+            "per_collective_us": 34.688
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 4194304,
+            "per_collective_us": 57.216
+          }
+        ],
+        "anchor": {
+          "operation": "all_reduce",
+          "world_size": 2,
+          "message_bytes": 131072,
+          "per_collective_us": 13.568
+        },
+        "startup_us": 10.52,
+        "residuals": [
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 131072,
+            "per_collective_us": 13.568,
+            "predicted_us": 13.568,
+            "signed_pct": 0.0
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 262144,
+            "per_collective_us": 15.744,
+            "predicted_us": 15.616,
+            "signed_pct": -0.813
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 524288,
+            "per_collective_us": 18.176,
+            "predicted_us": 19.712,
+            "signed_pct": 8.451
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 1048576,
+            "per_collective_us": 23.552,
+            "predicted_us": 27.904,
+            "signed_pct": 18.478
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 2097152,
+            "per_collective_us": 34.688,
+            "predicted_us": 44.288,
+            "signed_pct": 27.675
+          },
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 4194304,
+            "per_collective_us": 57.216,
+            "predicted_us": 77.056,
+            "signed_pct": 34.676
+          }
+        ],
+        "worst_abs_signed_pct": 34.676
+      },
+      "simple": {
+        "measured_cells": [
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 8388608,
+            "per_collective_us": 98.432
+          }
+        ],
+        "anchor": {
+          "operation": "all_reduce",
+          "world_size": 2,
+          "message_bytes": 8388608,
+          "per_collective_us": 98.432
+        },
+        "startup_us": 0.0,
+        "residuals": [
+          {
+            "operation": "all_reduce",
+            "world_size": 2,
+            "message_bytes": 8388608,
+            "per_collective_us": 98.432,
+            "predicted_us": 132.072,
+            "signed_pct": 34.176
+          }
+        ],
+        "worst_abs_signed_pct": 34.176
+      }
+    }
+  },
+  "all_gather": {
+    "schema_version": 1,
+    "kind": "metax_c500_collective_protocol_policy_extraction",
+    "hardware_id": "metax_c500",
+    "algorithm": "fc2",
+    "statistic": "kernel_span_us_median",
+    "rank_selection": "per size, the minimum across ranks of that rank's median kernel span, which is the rank that reached the collective last and therefore did not wait",
+    "unit": "microseconds",
+    "derivation": "one unknown per protocol band, the band's collective startup, solved by bisection so the published ProtoBridge development model reproduces the measured per-collective duration at that band's smallest swept message; every other model input is the hardware record's own declared value",
+    "production_or_evaluation_duration_consumed": false,
+    "sweeps": [
+      {
+        "path": "profiler_output/collective/metax_c500/mccl_span_all_gather_20260919_r1/reduced/span-rank-0.json",
+        "run_id": "mccl_span_all_gather_20260919_r1",
+        "source_commit": "d286e4b8a06bb762ef0672d352e912aeaa8e916b",
+        "rank": 0,
+        "world_size": 2,
+        "operation": "all_gather",
+        "timer_domain": "mctracer_uninstrumented_kernel_duration"
+      },
+      {
+        "path": "profiler_output/collective/metax_c500/mccl_span_all_gather_20260919_r1/reduced/span-rank-1.json",
+        "run_id": "mccl_span_all_gather_20260919_r1",
+        "source_commit": "d286e4b8a06bb762ef0672d352e912aeaa8e916b",
+        "rank": 1,
+        "world_size": 2,
+        "operation": "all_gather",
+        "timer_domain": "mctracer_uninstrumented_kernel_duration"
+      }
+    ],
+    "bands": {
+      "small": {
+        "measured_cells": [
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 2048,
+            "per_collective_us": 7.168
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 4096,
+            "per_collective_us": 7.552
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 8192,
+            "per_collective_us": 7.168
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 16384,
+            "per_collective_us": 7.168
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 32768,
+            "per_collective_us": 7.68
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 65536,
+            "per_collective_us": 8.832
+          }
+        ],
+        "anchor": {
+          "operation": "all_gather",
+          "world_size": 2,
+          "message_bytes": 2048,
+          "per_collective_us": 7.168
+        },
+        "startup_us": 6.636,
+        "residuals": [
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 2048,
+            "per_collective_us": 7.168,
+            "predicted_us": 7.168,
+            "signed_pct": -0.0
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 4096,
+            "per_collective_us": 7.552,
+            "predicted_us": 7.2,
+            "signed_pct": -4.661
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 8192,
+            "per_collective_us": 7.168,
+            "predicted_us": 7.264,
+            "signed_pct": 1.339
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 16384,
+            "per_collective_us": 7.168,
+            "predicted_us": 7.392,
+            "signed_pct": 3.125
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 32768,
+            "per_collective_us": 7.68,
+            "predicted_us": 7.648,
+            "signed_pct": -0.417
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 65536,
+            "per_collective_us": 8.832,
+            "predicted_us": 8.16,
+            "signed_pct": -7.609
+          }
+        ],
+        "worst_abs_signed_pct": 7.609
+      },
+      "ll128": {
+        "measured_cells": [
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 131072,
+            "per_collective_us": 15.104
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 262144,
+            "per_collective_us": 16.896
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 524288,
+            "per_collective_us": 18.944
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 1048576,
+            "per_collective_us": 26.24
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 2097152,
+            "per_collective_us": 40.192
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 4194304,
+            "per_collective_us": 61.568
+          }
+        ],
+        "anchor": {
+          "operation": "all_gather",
+          "world_size": 2,
+          "message_bytes": 131072,
+          "per_collective_us": 15.104
+        },
+        "startup_us": 12.556,
+        "residuals": [
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 131072,
+            "per_collective_us": 15.104,
+            "predicted_us": 15.104,
+            "signed_pct": -0.0
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 262144,
+            "per_collective_us": 16.896,
+            "predicted_us": 17.152,
+            "signed_pct": 1.515
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 524288,
+            "per_collective_us": 18.944,
+            "predicted_us": 21.248,
+            "signed_pct": 12.162
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 1048576,
+            "per_collective_us": 26.24,
+            "predicted_us": 29.44,
+            "signed_pct": 12.195
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 2097152,
+            "per_collective_us": 40.192,
+            "predicted_us": 45.824,
+            "signed_pct": 14.013
+          },
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 4194304,
+            "per_collective_us": 61.568,
+            "predicted_us": 78.592,
+            "signed_pct": 27.651
+          }
+        ],
+        "worst_abs_signed_pct": 27.651
+      },
+      "simple": {
+        "measured_cells": [
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 8388608,
+            "per_collective_us": 103.296
+          }
+        ],
+        "anchor": {
+          "operation": "all_gather",
+          "world_size": 2,
+          "message_bytes": 8388608,
+          "per_collective_us": 103.296
+        },
+        "startup_us": 0.0,
+        "residuals": [
+          {
+            "operation": "all_gather",
+            "world_size": 2,
+            "message_bytes": 8388608,
+            "per_collective_us": 103.296,
+            "predicted_us": 131.572,
+            "signed_pct": 27.374
+          }
+        ],
+        "worst_abs_signed_pct": 27.374
+      }
+    }
+  }
+}

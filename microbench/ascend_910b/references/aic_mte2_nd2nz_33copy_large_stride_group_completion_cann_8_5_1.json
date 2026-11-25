@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "service": "aic_mte2_nd2nz_33copy_large_stride_group_completion_24_workers",
+  "request_size_unit": "source_k_columns",
+  "service_time_unit": "ns_per_request_per_aic",
+  "lookup_policy": "exact_only",
+  "production_or_evaluation_duration_consumed": false,
+  "service_time_ns_by_request_size": {
+    "256": 35614.0616666775,
+    "384": 87064.120000011
+  },
+  "mechanism": {
+    "dtype": "bf16",
+    "rows": 128,
+    "copies_per_group": 33,
+    "serial_copies_per_group": 1,
+    "stream_copies_per_group": 32,
+    "active_aic_groups": 24,
+    "source_row_stride_elements": 28672,
+    "source_row_stride_control_elements": 4096,
+    "footprint_bytes": 34359738368,
+    "minimum_touched_bytes": 308281344,
+    "shared_l2_bytes": 201326592,
+    "estimator": "median(serial_ns_per_copy) + 32 * median(stream_ns_per_copy)"
+  },
+  "published_cells": {
+    "256": {
+      "serial_ns_per_copy": 1186.3283333335,
+      "stream_ns_per_copy": 1075.866666667,
+      "service_time_ns": 35614.0616666775
+    },
+    "384": {
+      "serial_ns_per_copy": 2704.386666667,
+      "stream_ns_per_copy": 2636.241666667,
+      "service_time_ns": 87064.120000011
+    }
+  },
+  "provenance": {
+    "hardware_id": "ascend_910b",
+    "physical_device_id": 7,
+    "software_revision": "cann_8.5.1",
+    "source_commit": "a72f169ee023470e8d70f683df12e5c23a102c39",
+    "source_snapshot_sha256": "3cd5b243744d7f8c6329ec943474b898947611841f282b1f718a4303e3041bc8",
+    "binary_sha256": "b3760ad1bafbe62db500c237d55440c0810d642e8da5d5fb6cc907dc07432f22",
+    "raw_path": "profiler_output/microbench/ascend_910b/split_k_mte2_cold_a72f169e_20260902_r1/raw_cold.csv",
+    "raw_sha256": "c1bc527412d8723ce22d00186c2003bc4571654f5b6d103c9e28ac48cc6fa1ca",
+    "runner_stderr_path": "profiler_output/microbench/ascend_910b/split_k_mte2_cold_a72f169e_20260902_r1/runner_cold.stderr",
+    "runner_stderr_sha256": "1798a658f3140536aac08832b8efa0486bf70c5b134a4e5ca82310b954f713ca",
+    "trial_count": 4,
+    "iterations": 2000,
+    "order": "alternating_forward_reverse"
+  }
+}

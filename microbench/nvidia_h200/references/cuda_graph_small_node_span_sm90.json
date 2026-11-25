@@ -1,0 +1,172 @@
+{
+  "allowed_use": "A lower bound on the span of a small memory-touching kernel that executes as a node of a replayed CUDA graph, given its CTA grid. It composes with an execution time by maximum and never adds. It replaces the standalone small_kernel_span_floor only for graph-replayed launches; a launch issued singly into a stream keeps that floor.",
+  "captures": [
+    {
+      "device_index": 0,
+      "path": "profiler_output/microbench/nvidia_h200/graph_span_wp7_20260925/raw/rotation_0.csv",
+      "raw_sha256": "3e1aaff67d6ca259e90b0b5171dba5d5e15c4fa0f9bac35c1b0550e11c9645d6",
+      "rotation": 0
+    },
+    {
+      "device_index": 0,
+      "path": "profiler_output/microbench/nvidia_h200/graph_span_wp7_20260925/raw/rotation_1.csv",
+      "raw_sha256": "2d6a60baa1f11fa7f2f56f7500d03be6e055fc5cad3a00b995df8a8b1f304fe1",
+      "rotation": 1
+    },
+    {
+      "device_index": 0,
+      "path": "profiler_output/microbench/nvidia_h200/graph_span_wp7_20260925/raw/rotation_2.csv",
+      "raw_sha256": "8f27d7c6196f60be47e1a89744b268e5c6b4260e2dc71bf081f7d07bb4d78947",
+      "rotation": 2
+    }
+  ],
+  "compute_capability": "sm_90",
+  "derived_model": {
+    "note": "On H200 the minimum graph-node span is 0.92-1.30 times the standalone nsys small_kernel_span_floor_sm90 minimum at the grids both references measure (the two use different timers: CUDA-event batch / 64 here, nsys kernel duration there).",
+    "span_ns_by_grid_ctas": [
+      {
+        "grid_ctas": 1,
+        "median_graph_node_span_ns": 963.0,
+        "median_standalone_span_ns": 2165.0,
+        "minimum_graph_node_span_ns": 959.0
+      },
+      {
+        "grid_ctas": 2,
+        "median_graph_node_span_ns": 974.5,
+        "median_standalone_span_ns": 2176.0,
+        "minimum_graph_node_span_ns": 972.0
+      },
+      {
+        "grid_ctas": 4,
+        "median_graph_node_span_ns": 969.0,
+        "median_standalone_span_ns": 2174.5,
+        "minimum_graph_node_span_ns": 967.0
+      },
+      {
+        "grid_ctas": 8,
+        "median_graph_node_span_ns": 997.0,
+        "median_standalone_span_ns": 2192.5,
+        "minimum_graph_node_span_ns": 995.9999999999999
+      },
+      {
+        "grid_ctas": 16,
+        "median_graph_node_span_ns": 1015.0000000000001,
+        "median_standalone_span_ns": 2303.5,
+        "minimum_graph_node_span_ns": 1011.5
+      },
+      {
+        "grid_ctas": 32,
+        "median_graph_node_span_ns": 1044.5,
+        "median_standalone_span_ns": 2310.0,
+        "minimum_graph_node_span_ns": 1042.0
+      },
+      {
+        "grid_ctas": 48,
+        "median_graph_node_span_ns": 1045.5,
+        "median_standalone_span_ns": 2311.0,
+        "minimum_graph_node_span_ns": 1043.5
+      },
+      {
+        "grid_ctas": 80,
+        "median_graph_node_span_ns": 1054.5,
+        "median_standalone_span_ns": 2322.5,
+        "minimum_graph_node_span_ns": 1052.5
+      },
+      {
+        "grid_ctas": 108,
+        "median_graph_node_span_ns": 1084.5,
+        "median_standalone_span_ns": 2331.0,
+        "minimum_graph_node_span_ns": 1081.5
+      },
+      {
+        "grid_ctas": 132,
+        "median_graph_node_span_ns": 1074.0,
+        "median_standalone_span_ns": 2330.0,
+        "minimum_graph_node_span_ns": 1072.0
+      },
+      {
+        "grid_ctas": 216,
+        "median_graph_node_span_ns": 1094.0,
+        "median_standalone_span_ns": 2353.0,
+        "minimum_graph_node_span_ns": 1090.5
+      },
+      {
+        "grid_ctas": 264,
+        "median_graph_node_span_ns": 1116.5,
+        "median_standalone_span_ns": 2390.0,
+        "minimum_graph_node_span_ns": 1114.0
+      }
+    ]
+  },
+  "device_name": "NVIDIA H200",
+  "forbidden_use": "An additive launch cost, a typical or median duration, a host launch latency, a floor for a standalone launch, or a floor for a launch with no global memory access.",
+  "hardware_id": "nvidia_h200",
+  "measurement": {
+    "devices": [
+      0
+    ],
+    "grids_measured": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      48,
+      80,
+      108,
+      132,
+      216,
+      264
+    ],
+    "nodes_per_batch": 64,
+    "rotations": 3,
+    "threads_per_cta": 128,
+    "trials_per_cell": 9,
+    "warmup_rounds": 200
+  },
+  "mechanism": "cuda_graph_small_node_span",
+  "method": "One identical trivial memory-touching kernel (one aligned 16-byte load, one dependent integer op, one aligned 16-byte store per active thread) is timed two ways at the same grid and block: 64 separate launches into a stream, and the same 64 launches captured once into a CUDA graph and replayed. Both are warmed 200 rounds and the two modes alternate inside every trial so they see the same clock state. The published value is the minimum graph span across trials and rotations, so it is a floor rather than a typical duration, which is what composing by maximum requires. The A800 two-device rotation becomes three independent processes on the single owned H200 GPU.",
+  "production_or_evaluation_duration_consumed": false,
+  "production_predictor_consumption_allowed": true,
+  "provenance": {
+    "accepted_rotations": 3,
+    "capture_note": "Captured by the scripted runner from the owner-copy source on GPU 0 on 2026-09-25. The earlier capture of the same kernel (A800 source built for sm_90) in profiler_output/microbench/nvidia_h200/graph_span_20260925_021652 agrees within 2.5 ns on every minimum_graph_node_span_ns and is not used.",
+    "clock_gate": "nvidia-smi -lms 50 per rotation; reject a rotation with no busy sample or a busy sample below 1980 MHz",
+    "derivation": "microbench/nvidia_h200/runtime/cuda_graph_small_node_span_reference.py",
+    "derivation_sha256": "2fab618987dfef10054785ea823d471f44683693493ddca4923371401cd1cdcd",
+    "git_commit": "dee07904c5cc3f298ad6486a617b54bfaae9fcfc",
+    "host_contention": "GPUs 1-3 of the same host were used concurrently by other workers; the published value is a minimum",
+    "nvcc": "CUDA 12.2, -O3 -arch=sm_90 -cudart static",
+    "rejected_rotations": 0,
+    "remote_path": "h200-capture-host:/capture-public/h200_microbench/wp7_launch/runs/graph_span_wp7",
+    "rotation_clock": [
+      {
+        "accepted": true,
+        "busy_clock_mhz_max": 1980,
+        "busy_clock_mhz_min": 1980,
+        "busy_samples": 12,
+        "rotation": 0
+      },
+      {
+        "accepted": true,
+        "busy_clock_mhz_max": 1980,
+        "busy_clock_mhz_min": 1980,
+        "busy_samples": 15,
+        "rotation": 1
+      },
+      {
+        "accepted": true,
+        "busy_clock_mhz_max": 1980,
+        "busy_clock_mhz_min": 1980,
+        "busy_samples": 13,
+        "rotation": 2
+      }
+    ],
+    "runner": "microbench/nvidia_h200/runtime/cuda_graph_small_node_span_runner.py",
+    "runner_sha256": "073351b21845e6a0a4c11c233d4c2bc6ab6aa766dfdee60a664c62fea4cc888a",
+    "source": "microbench/nvidia_h200/runtime/cuda_graph_small_node_span.cu",
+    "source_sha256": "7647cdea18dd8331a8c729eb6dc7c5cd0c13ff205c259869c19602def39c3f3a"
+  },
+  "schema": "nvidia_h200_cuda_graph_small_node_span_reference_v1"
+}

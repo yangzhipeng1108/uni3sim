@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "campaign": "rmsnorm_key0_h2048_mte_edges",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "service_time_selection": "median_of_independent_run_medians",
+  "lookup_policy": "exact_cann_rmsnorm_key0_h2048_worker_count_direction_and_payload_only",
+  "pairing_formula": "maximum_worker(request_first_interval(pair_order=1)-control_first_interval(pair_order=0)), matched by run and trial",
+  "source_scope": "CANN BF16 RMSNorm key-0 single-row source form at H=2048: one depth-one TQue GM-to-UB DataCopyPad followed by its MTE2-to-Vector hard completion edge, and one source-corresponding UB-to-GM DataCopyPad followed by its Vector-to-MTE3 hard completion edge",
+  "source_tile_evidence": {
+    "hidden_elements": 2048,
+    "dtype_bytes": 2,
+    "payload_bytes": 4096,
+    "production_worker_counts": [4, 8],
+    "scope_boundary": "exactly CANN RMSNorm key-0 single-row H2048 workers 4 or 8; other hidden sizes, worker counts, variants, later row-group requests, and terminal rstd stores remain outside this evidence"
+  },
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "source_commit": "fe33c47135847caa1e52a41f79e394ede6b65afa",
+  "source_snapshot_path": "/capture-workspace/midlayer_capture/source_snapshots/rmsnorm_key0_h2048_mte_edges_fe33c471",
+  "source_snapshot_files_sha256": {
+    "first_mte_completion_kernel.cpp": "d17d9d992d527f3e2cf5c26ad636f0c5376e429dcb0567e66ac83458212e6318",
+    "first_mte_completion_main.cpp": "f21fbd2029a4a699efa7f0e4b58c3cfccc77732cb5cdbb240a4e153618e38645",
+    "first_mte_completion_runner.py": "0e88ab109874e8a53fadd8f287606826654f17ee0b50f25a591c24757c42dde8",
+    "first_mte_completion_report.py": "51cd691114618b89d50de520004dd409556412e179cd529301c8a43ea78ffe5c"
+  },
+  "benchmark_binary_sha256": "969255280838bc6a360723bcf266a9949f0ee3a92f6eeafad759b5aab5cc8ed0",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_h2048_mte_edges_fe33c471_d6/r1/raw.csv",
+      "sha256": "aadbba8c11c8a301f5907b44c2a148dfdb11ecfc7f0297ea04940ea3adb1be05",
+      "metadata_sha256": "f15f8a5b288e7a1da72161c23c5070a11d9faad6d32b4bbade6083738cc83221",
+      "runner_log_sha256": "1b76a5ffe35cfe14461caff3b0a417546fd19ace3b5b8277d3629ed2016b104e",
+      "device_id": 6,
+      "run_id": "rmsnorm-key0-h2048-fe33c471-r1"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_h2048_mte_edges_fe33c471_d6/r2/raw.csv",
+      "sha256": "86b45f64338cdaefb2f722cd43085a138ae817c5e9727f734f13496d4004d1c4",
+      "metadata_sha256": "f15f8a5b288e7a1da72161c23c5070a11d9faad6d32b4bbade6083738cc83221",
+      "runner_log_sha256": "80f173c9be22c96ae92f082c5200a15fd8f4bb7fcb7e42125df2586306480c90",
+      "device_id": 6,
+      "run_id": "rmsnorm-key0-h2048-fe33c471-r2"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_h2048_mte_edges_fe33c471_d6/r3/raw.csv",
+      "sha256": "39bb8f67faea2bb00c69ac1ed396e19036025044ade916b1174d29e750c5c1fa",
+      "metadata_sha256": "f15f8a5b288e7a1da72161c23c5070a11d9faad6d32b4bbade6083738cc83221",
+      "runner_log_sha256": "aa5c2d2dceb16c75ae7f1e39c82c6b59ba1095538d3cef5041ccb7d5f0c23c8f",
+      "device_id": 6,
+      "run_id": "rmsnorm-key0-h2048-fe33c471-r3"
+    }
+  ],
+  "audit_report": {
+    "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_h2048_mte_edges_fe33c471_d6/combined_report.txt",
+    "sha256": "42fe211f57eb31a97fe0d8d0f11d95e3ac7dd039b054b29ce701e352012ca34a"
+  },
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 32,
+  "replication_basis": "balanced_schedule_cycle_parity",
+  "median_ns_by_run": {
+    "rmsnorm-key0-h2048-fe33c471-r1": {"4:mte2_to_vector:4096": 650.0, "4:mte3_to_vector:4096": 640.0, "8:mte2_to_vector:4096": 870.0, "8:mte3_to_vector:4096": 790.0},
+    "rmsnorm-key0-h2048-fe33c471-r2": {"4:mte2_to_vector:4096": 610.0, "4:mte3_to_vector:4096": 560.0, "8:mte2_to_vector:4096": 800.0, "8:mte3_to_vector:4096": 720.0},
+    "rmsnorm-key0-h2048-fe33c471-r3": {"4:mte2_to_vector:4096": 680.0, "4:mte3_to_vector:4096": 560.0, "8:mte2_to_vector:4096": 840.0, "8:mte3_to_vector:4096": 720.0}
+  },
+  "published_cells": {
+    "4:mte2_to_vector:4096": {"service_time_ns": 650.0, "maximum_run_relative_median_spread": 0.10294117647058823},
+    "4:mte3_to_vector:4096": {"service_time_ns": 560.0, "maximum_run_relative_median_spread": 0.125},
+    "8:mte2_to_vector:4096": {"service_time_ns": 840.0, "maximum_run_relative_median_spread": 0.08045977011494253},
+    "8:mte3_to_vector:4096": {"service_time_ns": 720.0, "maximum_run_relative_median_spread": 0.08860759493670886}
+  },
+  "gates": {
+    "source_identity": "pass",
+    "binary_identity": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "balanced_cell_order": "pass",
+    "within_run_replication": "pass",
+    "cross_run_relative_median_spread_limit": 0.2,
+    "cross_run_stability": "pass"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true,
+  "production_consumption_status": "candidate_only_unwired"
+}

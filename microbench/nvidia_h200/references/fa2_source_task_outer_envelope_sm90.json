@@ -1,0 +1,549 @@
+{
+ "schema": "nvidia_h200_fa2_source_task_outer_envelope_reference_v1",
+ "hardware_id": "nvidia_h200",
+ "model": "nsys_source_task_outer_envelope_v1",
+ "duration_unit": "ns_per_launch",
+ "timer_domain": "nsys_gpu_kernel_and_globaltimer_cta_envelope",
+ "software_revision": "cuda_12_2_sm90",
+ "threads_per_cta": 128,
+ "minimum_grid_size": 8,
+ "maximum_grid_size": 64,
+ "maximum_outer_envelope_ns": 1120.0,
+ "source_sha256": "733b5b8e081f92dd1297af82c59d542ca001fd670448974c123d914e5a59154a",
+ "binary_sha256": "f41951d0aaef33c69c15d71888eeffe9446ecb79081134e52851d9018c25dfe5",
+ "production_or_evaluation_duration_consumed": false,
+ "derivation_rule": "per launch: nsys kernel duration minus max over CTAs of (globaltimer end - begin); per (geometry, grid, spin length): median over accepted launches of both rotations; published: maximum over grids 8..64, both geometries and both spin lengths",
+ "cells": [
+  {
+   "geometry": "combine_static_smem",
+   "grid": 8,
+   "body_cycles": 4096,
+   "launches": 100,
+   "median_outer_envelope_ns": 928.0,
+   "minimum_outer_envelope_ns": 736.0,
+   "maximum_outer_envelope_ns": 1024.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 928.0
+  },
+  {
+   "geometry": "combine_static_smem",
+   "grid": 8,
+   "body_cycles": 32768,
+   "launches": 100,
+   "median_outer_envelope_ns": 944.0,
+   "minimum_outer_envelope_ns": 768.0,
+   "maximum_outer_envelope_ns": 993.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 928.0
+  },
+  {
+   "geometry": "combine_static_smem",
+   "grid": 16,
+   "body_cycles": 4096,
+   "launches": 100,
+   "median_outer_envelope_ns": 1088.0,
+   "minimum_outer_envelope_ns": 1056.0,
+   "maximum_outer_envelope_ns": 1120.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 896.0
+  },
+  {
+   "geometry": "combine_static_smem",
+   "grid": 16,
+   "body_cycles": 32768,
+   "launches": 100,
+   "median_outer_envelope_ns": 1088.0,
+   "minimum_outer_envelope_ns": 1056.0,
+   "maximum_outer_envelope_ns": 1121.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 896.0
+  },
+  {
+   "geometry": "combine_static_smem",
+   "grid": 32,
+   "body_cycles": 4096,
+   "launches": 100,
+   "median_outer_envelope_ns": 1088.0,
+   "minimum_outer_envelope_ns": 1088.0,
+   "maximum_outer_envelope_ns": 1152.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 928.0
+  },
+  {
+   "geometry": "combine_static_smem",
+   "grid": 32,
+   "body_cycles": 32768,
+   "launches": 100,
+   "median_outer_envelope_ns": 1120.0,
+   "minimum_outer_envelope_ns": 1088.0,
+   "maximum_outer_envelope_ns": 1153.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 928.0
+  },
+  {
+   "geometry": "combine_static_smem",
+   "grid": 48,
+   "body_cycles": 4096,
+   "launches": 100,
+   "median_outer_envelope_ns": 1120.0,
+   "minimum_outer_envelope_ns": 1088.0,
+   "maximum_outer_envelope_ns": 1152.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 928.0
+  },
+  {
+   "geometry": "combine_static_smem",
+   "grid": 48,
+   "body_cycles": 32768,
+   "launches": 100,
+   "median_outer_envelope_ns": 1120.0,
+   "minimum_outer_envelope_ns": 1088.0,
+   "maximum_outer_envelope_ns": 1153.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 928.0
+  },
+  {
+   "geometry": "combine_static_smem",
+   "grid": 64,
+   "body_cycles": 4096,
+   "launches": 100,
+   "median_outer_envelope_ns": 1120.0,
+   "minimum_outer_envelope_ns": 1088.0,
+   "maximum_outer_envelope_ns": 1152.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 928.0
+  },
+  {
+   "geometry": "combine_static_smem",
+   "grid": 64,
+   "body_cycles": 32768,
+   "launches": 100,
+   "median_outer_envelope_ns": 1120.0,
+   "minimum_outer_envelope_ns": 1056.0,
+   "maximum_outer_envelope_ns": 1153.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 928.0
+  },
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 8,
+   "body_cycles": 4096,
+   "launches": 50,
+   "median_outer_envelope_ns": 928.0,
+   "minimum_outer_envelope_ns": 736.0,
+   "maximum_outer_envelope_ns": 992.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 896.0
+  },
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 8,
+   "body_cycles": 32768,
+   "launches": 100,
+   "median_outer_envelope_ns": 928.0,
+   "minimum_outer_envelope_ns": 736.0,
+   "maximum_outer_envelope_ns": 992.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 912.0
+  },
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 16,
+   "body_cycles": 4096,
+   "launches": 100,
+   "median_outer_envelope_ns": 1088.0,
+   "minimum_outer_envelope_ns": 1056.0,
+   "maximum_outer_envelope_ns": 1088.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 896.0
+  },
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 16,
+   "body_cycles": 32768,
+   "launches": 100,
+   "median_outer_envelope_ns": 1088.0,
+   "minimum_outer_envelope_ns": 992.0,
+   "maximum_outer_envelope_ns": 1121.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 896.0
+  },
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 32,
+   "body_cycles": 4096,
+   "launches": 100,
+   "median_outer_envelope_ns": 1088.0,
+   "minimum_outer_envelope_ns": 1088.0,
+   "maximum_outer_envelope_ns": 1121.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 896.0
+  },
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 32,
+   "body_cycles": 32768,
+   "launches": 100,
+   "median_outer_envelope_ns": 1088.0,
+   "minimum_outer_envelope_ns": 1056.0,
+   "maximum_outer_envelope_ns": 1152.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 896.0
+  },
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 48,
+   "body_cycles": 4096,
+   "launches": 100,
+   "median_outer_envelope_ns": 1120.0,
+   "minimum_outer_envelope_ns": 1088.0,
+   "maximum_outer_envelope_ns": 1152.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 896.0
+  },
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 48,
+   "body_cycles": 32768,
+   "launches": 100,
+   "median_outer_envelope_ns": 1088.0,
+   "minimum_outer_envelope_ns": 1056.0,
+   "maximum_outer_envelope_ns": 1152.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 896.0
+  },
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 64,
+   "body_cycles": 4096,
+   "launches": 50,
+   "median_outer_envelope_ns": 1120.0,
+   "minimum_outer_envelope_ns": 1088.0,
+   "maximum_outer_envelope_ns": 1152.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 896.0
+  },
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 64,
+   "body_cycles": 32768,
+   "launches": 100,
+   "median_outer_envelope_ns": 1088.0,
+   "minimum_outer_envelope_ns": 1056.0,
+   "maximum_outer_envelope_ns": 1152.0,
+   "median_nsys_minus_union_globaltimer_envelope_ns": 896.0
+  }
+ ],
+ "spin_length_invariance": [
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 8,
+   "spin_length_spread_ns": 0.0
+  },
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 16,
+   "spin_length_spread_ns": 0.0
+  },
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 32,
+   "spin_length_spread_ns": 0.0
+  },
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 48,
+   "spin_length_spread_ns": 32.0
+  },
+  {
+   "geometry": "main_80KiB_dynamic_smem",
+   "grid": 64,
+   "spin_length_spread_ns": 32.0
+  },
+  {
+   "geometry": "combine_static_smem",
+   "grid": 8,
+   "spin_length_spread_ns": 16.0
+  },
+  {
+   "geometry": "combine_static_smem",
+   "grid": 16,
+   "spin_length_spread_ns": 0.0
+  },
+  {
+   "geometry": "combine_static_smem",
+   "grid": 32,
+   "spin_length_spread_ns": 32.0
+  },
+  {
+   "geometry": "combine_static_smem",
+   "grid": 48,
+   "spin_length_spread_ns": 0.0
+  },
+  {
+   "geometry": "combine_static_smem",
+   "grid": 64,
+   "spin_length_spread_ns": 0.0
+  }
+ ],
+ "provenance": {
+  "capture": {
+   "device_index": 0,
+   "grids": [
+    8,
+    16,
+    32,
+    48,
+    64
+   ],
+   "body_cycles": [
+    4096,
+    32768
+   ],
+   "samples": 50,
+   "rotations": 2,
+   "captures": [
+    {
+     "tag": "r0_m1_g8_b4096",
+     "busy_samples": 0,
+     "busy_clock_mhz_min": null,
+     "accepted": false
+    },
+    {
+     "tag": "r0_m1_g8_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m1_g16_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m1_g16_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m1_g32_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m1_g32_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m1_g48_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m1_g48_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m1_g64_b4096",
+     "busy_samples": 8,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m1_g64_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m0_g8_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m0_g8_b32768",
+     "busy_samples": 8,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m0_g16_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m0_g16_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m0_g32_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m0_g32_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m0_g48_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m0_g48_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m0_g64_b4096",
+     "busy_samples": 8,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r0_m0_g64_b32768",
+     "busy_samples": 8,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m1_g8_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m1_g8_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m1_g16_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m1_g16_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m1_g32_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m1_g32_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m1_g48_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m1_g48_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m1_g64_b4096",
+     "busy_samples": 0,
+     "busy_clock_mhz_min": null,
+     "accepted": false
+    },
+    {
+     "tag": "r1_m1_g64_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m0_g8_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m0_g8_b32768",
+     "busy_samples": 8,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m0_g16_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m0_g16_b32768",
+     "busy_samples": 8,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m0_g32_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m0_g32_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m0_g48_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m0_g48_b32768",
+     "busy_samples": 8,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m0_g64_b4096",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    },
+    {
+     "tag": "r1_m0_g64_b32768",
+     "busy_samples": 4,
+     "busy_clock_mhz_min": 1980,
+     "accepted": true
+    }
+   ],
+   "host_loadavg_after": [
+    "3.01",
+    "2.96",
+    "2.65"
+   ]
+  },
+  "accepted_captures": 38,
+  "rejected_captures": 2,
+  "clock_gate": "nvidia-smi -lms 50 per capture; reject a capture with no busy sample or a busy sample below 1980 MHz",
+  "derivation": "microbench/nvidia_h200/runtime/launch/fa_task_gap_geometry_report.py",
+  "derivation_sha256": "5a17f6d58cd41539bd722a27f18a99b0f74146148234d7ea10884bb033c85b38",
+  "git_commit": "dee07904c5cc3f298ad6486a617b54bfaae9fcfc",
+  "host_contention": "GPUs 1-3 of the same host were used concurrently by other workers",
+  "nvcc": "CUDA 12.2, -O3 -std=c++17 -arch=sm_90 -cudart static",
+  "raw_path": "profiler_output/microbench/nvidia_h200/fa_task_gap_wp7_20260925",
+  "remote_path": "h200-capture-host:/capture-public/h200_microbench/wp7_launch/runs/fa_task_gap_wp7",
+  "runner": "microbench/nvidia_h200/runtime/launch/fa_task_gap_geometry_runner.py",
+  "runner_sha256": "215081d38c6b2dfa608b74de798c9ed0df2e3f60cbb128195dfe608ac71e3a98",
+  "samples_sha256": "5b1789989aa74fc396b838ef3bfb5ca44fb436b3c8a8eef83a8b02bffece1337",
+  "a800_procedure_note": "The A800 probe has no runner or report and its grid list, spin lengths and sample counts are not recorded; the grids 8..64, the two spin lengths and the median-per-cell / maximum-over-cells rule are this worker's scripted reading of the yaml comment and probe header."
+ }
+}

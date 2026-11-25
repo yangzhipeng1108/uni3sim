@@ -1,0 +1,152 @@
+{
+ "schema": "cyclic_reuse_replacement_residency_reference_v1",
+ "mechanism": "cyclic_reuse_replacement_residency",
+ "hardware_id": "metax_c500",
+ "allowed_use": "Evidence for this target's L2 replacement residency against footprint: where a cyclically re-read working set stops being retained, and how sharply.  Supports the l2_replacement_capacity_bytes value, which is currently a fallback to the nominal L2 size with no measurement behind it.",
+ "forbidden_use": "Any duration.  Not a DRAM bandwidth, not an associativity value, and not a per-shape traffic correction.  The curve must not be fitted or interpolated into a predictor.",
+ "production_or_evaluation_duration_consumed": false,
+ "instrument": "mcProfiler perf_exec --custom --per-kernel, one marker window, one numbered per-invocation file per ordinal",
+ "counters": [
+  "Global Memory Read bytes",
+  "L2C Hit Rate"
+ ],
+ "geometry": {
+  "workers": 104,
+  "passes": 4,
+  "block_threads": 256,
+  "addressing": "disjoint contiguous per-worker partitions, read in address order",
+  "nominal_l2_mib": 8.0
+ },
+ "why_independent_axes": "Under a fully associative LRU the answer is a step: a footprint at or below the replacement capacity costs one compulsory pass, anything above costs every pass.  Sweeping only the footprint, at a fixed worker count, pass count and addressing, therefore locates the capacity and exposes how far the real cache departs from that ideal.",
+ "finding": "The realised pass count is 1.00 to 1.01 from 0.5 through 4 MiB, 1.33 at 6 MiB, 2.43 at 8 MiB, 3.45 at 10 MiB, 3.87 at 12 MiB and 4.00 from 16 MiB upward, against 4 passes issued. The 50 percent degradation point sits at about 8 MiB, so the nominal size is the right replacement capacity to within this sweep's resolution.  The transition is not the ideal step: retention already costs 33 percent extra at 6 MiB and is not fully lost until 12 to 16 MiB. Below 4 MiB retention is complete, so reuse at short distances is not degraded at all.",
+ "build": {
+  "compiler": "/opt/maca/mxgpu_llvm/bin/mxcc",
+  "flags": "-x maca -offload-arch native --maca-path=/opt/maca -O3",
+  "source": "microbench/metax_c500/memory/l2/cyclic_reuse_replacement_residency.cpp",
+  "binary_sha256": "4b9826358a16bca665a7aee74836e901871fa68917272107dcaaa95c7504815d"
+ },
+ "status": "candidate_pending_main_agent_review",
+ "measurements": [
+  {
+   "ordinal": 0,
+   "footprint_mib": 0.5,
+   "vectors_per_worker": 315,
+   "logical_read_mib": 2.0,
+   "measured_downstream_read_mib": 0.502,
+   "realised_passes": 1.004,
+   "measured_l2c_hit_rate_pct": 79.52,
+   "raw_path": "profiler_output/microbench/metax_c500/cyclic_reuse_residency_20260921/out/_allk/1__Z12cyclic_reusePK5uint4Pji.txt.json",
+   "raw_sha256": "a26c911a9efa8ec29eaa0834a50f40799ff89a0b77d431e033cd8b5139c89402"
+  },
+  {
+   "ordinal": 1,
+   "footprint_mib": 1.0,
+   "vectors_per_worker": 630,
+   "logical_read_mib": 4.0,
+   "measured_downstream_read_mib": 1.002,
+   "realised_passes": 1.002,
+   "measured_l2c_hit_rate_pct": 78.28,
+   "raw_path": "profiler_output/microbench/metax_c500/cyclic_reuse_residency_20260921/out/_allk/2__Z12cyclic_reusePK5uint4Pji.txt.json",
+   "raw_sha256": "28d3afb1b13700b64289bf9eb811e7f368dbc94560358fc4a2bcb72f64b20baf"
+  },
+  {
+   "ordinal": 2,
+   "footprint_mib": 2.0,
+   "vectors_per_worker": 1260,
+   "logical_read_mib": 8.0,
+   "measured_downstream_read_mib": 2.002,
+   "realised_passes": 1.001,
+   "measured_l2c_hit_rate_pct": 77.06,
+   "raw_path": "profiler_output/microbench/metax_c500/cyclic_reuse_residency_20260921/out/_allk/3__Z12cyclic_reusePK5uint4Pji.txt.json",
+   "raw_sha256": "139828fe297a027537314e783f3ca571ea052759e7da28de30caed5b06063ef0"
+  },
+  {
+   "ordinal": 3,
+   "footprint_mib": 2.999,
+   "vectors_per_worker": 1890,
+   "logical_read_mib": 12.0,
+   "measured_downstream_read_mib": 3.001,
+   "realised_passes": 1.001,
+   "measured_l2c_hit_rate_pct": 77.55,
+   "raw_path": "profiler_output/microbench/metax_c500/cyclic_reuse_residency_20260921/out/_allk/4__Z12cyclic_reusePK5uint4Pji.txt.json",
+   "raw_sha256": "47c13f88fbd76663ff99e65747e25fd6f165821ca479e8fcc1cd92148c59dfc9"
+  },
+  {
+   "ordinal": 4,
+   "footprint_mib": 3.999,
+   "vectors_per_worker": 2520,
+   "logical_read_mib": 16.0,
+   "measured_downstream_read_mib": 4.041,
+   "realised_passes": 1.01,
+   "measured_l2c_hit_rate_pct": 75.07,
+   "raw_path": "profiler_output/microbench/metax_c500/cyclic_reuse_residency_20260921/out/_allk/5__Z12cyclic_reusePK5uint4Pji.txt.json",
+   "raw_sha256": "e7e6fd936b7204c8348371943cdb9160ea8151b21ea23a29b7f5fbd6f33ac151"
+  },
+  {
+   "ordinal": 5,
+   "footprint_mib": 5.999,
+   "vectors_per_worker": 3780,
+   "logical_read_mib": 24.0,
+   "measured_downstream_read_mib": 7.976,
+   "realised_passes": 1.33,
+   "measured_l2c_hit_rate_pct": 69.26,
+   "raw_path": "profiler_output/microbench/metax_c500/cyclic_reuse_residency_20260921/out/_allk/6__Z12cyclic_reusePK5uint4Pji.txt.json",
+   "raw_sha256": "5b167ea02ed18f9a1bde0595dfc94ec4db5e5bdc80ee1c5bfd6604d582546352"
+  },
+  {
+   "ordinal": 6,
+   "footprint_mib": 8.0,
+   "vectors_per_worker": 5041,
+   "logical_read_mib": 32.0,
+   "measured_downstream_read_mib": 19.447,
+   "realised_passes": 2.431,
+   "measured_l2c_hit_rate_pct": 45.53,
+   "raw_path": "profiler_output/microbench/metax_c500/cyclic_reuse_residency_20260921/out/_allk/7__Z12cyclic_reusePK5uint4Pji.txt.json",
+   "raw_sha256": "0e705284b17e084de0563dacecb22494242eb3042cd135ee7349ec67cbfceb7c"
+  },
+  {
+   "ordinal": 7,
+   "footprint_mib": 9.999,
+   "vectors_per_worker": 6301,
+   "logical_read_mib": 40.0,
+   "measured_downstream_read_mib": 34.451,
+   "realised_passes": 3.445,
+   "measured_l2c_hit_rate_pct": 22.75,
+   "raw_path": "profiler_output/microbench/metax_c500/cyclic_reuse_residency_20260921/out/_allk/8__Z12cyclic_reusePK5uint4Pji.txt.json",
+   "raw_sha256": "349f2c90a8673b9afae5cd215cd438ef4bb5f9703fcf1ca936fe70cba7864a7a"
+  },
+  {
+   "ordinal": 8,
+   "footprint_mib": 11.999,
+   "vectors_per_worker": 7561,
+   "logical_read_mib": 48.0,
+   "measured_downstream_read_mib": 46.442,
+   "realised_passes": 3.871,
+   "measured_l2c_hit_rate_pct": 13.22,
+   "raw_path": "profiler_output/microbench/metax_c500/cyclic_reuse_residency_20260921/out/_allk/9__Z12cyclic_reusePK5uint4Pji.txt.json",
+   "raw_sha256": "24b5dba5c6988d6caab99f4e12e82655b668d0acc4fb830fabe25f36302d479d"
+  },
+  {
+   "ordinal": 9,
+   "footprint_mib": 15.999,
+   "vectors_per_worker": 10082,
+   "logical_read_mib": 64.0,
+   "measured_downstream_read_mib": 63.95,
+   "realised_passes": 3.997,
+   "measured_l2c_hit_rate_pct": 8.95,
+   "raw_path": "profiler_output/microbench/metax_c500/cyclic_reuse_residency_20260921/out/_allk/10__Z12cyclic_reusePK5uint4Pji.txt.json",
+   "raw_sha256": "4595233edf98ec51fc859a64660d12c1ac50ed7708ef1d3555d2381ab5479db2"
+  },
+  {
+   "ordinal": 10,
+   "footprint_mib": 31.999,
+   "vectors_per_worker": 20164,
+   "logical_read_mib": 128.0,
+   "measured_downstream_read_mib": 128.003,
+   "realised_passes": 4.0,
+   "measured_l2c_hit_rate_pct": 6.04,
+   "raw_path": "profiler_output/microbench/metax_c500/cyclic_reuse_residency_20260921/out/_allk/11__Z12cyclic_reusePK5uint4Pji.txt.json",
+   "raw_sha256": "56d36e42fb539d2787216b07944f6924cbabca7ebbd60ed8cf47047102dadba9"
+  }
+ ]
+}

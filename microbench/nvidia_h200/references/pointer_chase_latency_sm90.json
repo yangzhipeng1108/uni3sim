@@ -1,0 +1,80 @@
+{
+  "schema": "nvidia_h200_pointer_chase_latency_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "production_or_evaluation_duration_consumed": false,
+  "selection_rule": "median of all %globaltimer trials pooled over two independent clock-gated processes (DRAM 3 and L2 5 trials per process)",
+  "probe_contract": {
+    "dram_stride_bytes": 128,
+    "dram_touched_bytes": 268435456,
+    "l2_stride_bytes": 32,
+    "l2_touched_bytes": 16777216,
+    "load": "ld.global.cg.s32 single dependent chain, 1x1 launch",
+    "processes": 2,
+    "timer_domain": "globaltimer_ns"
+  },
+  "l2_capacity_bytes": 62914560,
+  "summary": {
+    "dram": {
+      "maximum_latency_ns": 352.67105865478516,
+      "median_latency_ns": 352.61976432800293,
+      "minimum_latency_ns": 352.40052032470703,
+      "per_process_median_latency_ns": {
+        "0": 352.6442565917969,
+        "1": 352.60044860839844
+      },
+      "trials": 6
+    },
+    "l2": {
+      "maximum_latency_ns": 145.35064697265625,
+      "median_latency_ns": 145.341064453125,
+      "minimum_latency_ns": 145.3336181640625,
+      "per_process_median_latency_ns": {
+        "0": 145.3450927734375,
+        "1": 145.3394775390625
+      },
+      "trials": 10
+    }
+  },
+  "dram_latency_ns": 352.61976432800293,
+  "l2_latency_ns": 145.341064453125,
+  "derived": {
+    "sm_clock_hz": 1980000000.0,
+    "l2_hit_latency_local_cycles": 287.77530761718754,
+    "l2_hit_latency_remote_cycles": 287.77530761718754,
+    "dram_miss_extra_cycles": 410.4118257522583,
+    "formula": "l2_hit_latency_*_cycles = l2_latency_ns * 1.98 GHz; dram_miss_extra_cycles = (dram_latency_ns - l2_latency_ns) * 1.98 GHz"
+  },
+  "provenance": {
+    "sources": {
+      "dram": "microbench/nvidia_h200/memory/dram/dram_latency.cu",
+      "l2": "microbench/nvidia_h200/memory/l2/l2_latency.cu"
+    },
+    "source_sha256": {
+      "dram": "6ccb34f3a87083cfb4dede0888f2a73daa6be6c6457a054fdf99375052c78f53",
+      "l2": "d6b192835b772df148debb22aea177825cfa37d4af04edb021e6b9f5e92caf83"
+    },
+    "runner": "microbench/nvidia_h200/memory/dram/pointer_chase_latency_runner.py",
+    "runner_sha256": "fe41d34823c6e61b828fec5d446be93433cf5b2c6bbe4b2ba568f18f86e1794b",
+    "binary_sha256": {
+      "dram": "995fc488dadf0188c37950bb1d00372a0e5def3cfb5f7085615bffb3129cf1a3",
+      "l2": "5a35f773ee379219774066b4eb22177a0342e63468bd85f5b40d903e8f1fc68e"
+    },
+    "raw": "profiler_output/microbench/nvidia_h200/pointer_chase_latency_20260925",
+    "measurements_sha256": "7e7b79d017bfbcf9ecb6339e77ca757b181dca2f23a57740df685832b1807769",
+    "clock": {
+      "gate": "every busy nvidia-smi sample (utilization.gpu > 0, 50 ms period) must report at least boost_mhz; otherwise the process is rejected and re-run",
+      "boost_mhz": 1980,
+      "accepted_captures": 4,
+      "rejected_captures": 0,
+      "busy_sm_clock_mhz_min": 1980,
+      "busy_sm_clock_mhz_max": 1980,
+      "busy_samples": 403,
+      "rejected": []
+    },
+    "device_index": 1,
+    "device_uuid": "capture-device-31adbc24ad46",
+    "git_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919"
+  }
+}

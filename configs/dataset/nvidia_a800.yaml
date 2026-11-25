@@ -1,0 +1,17 @@
+schema_version: 1
+hardware_id: nvidia_a800
+
+kernel:
+  pipeline:
+    workloads: [gemm, flash_attn, fused_moe, vector]
+    settings:
+      gpu_device_id: null  # Controlled by CUDA_VISIBLE_DEVICES
+      nvtx_range_name: profile_region
+      ncu_rep_output_dir: ncu_rep_output
+      ncu_csv_output_dir: ncu_csv_output
+      vector_timing_csv: profiler_output/microbench/nvidia_a800/nsys_vector_all_20260807_nvtx_kern_sum.csv
+
+serving:
+  suites:
+    sharegpt:
+      historical_alignment_root: profiler_output/serving/nvidia_a800/sharegpt_raw

@@ -1,0 +1,109 @@
+{
+  "schema": "ascend_910b_aiv_two_read_one_write_mul_q4q1_gm_service_v1",
+  "mechanism_id": "aiv_two_read_one_write_mul_q4q1_gm_service",
+  "hardware_id": "ascend_910b",
+  "device": 7,
+  "software_revision": "cann_8.5.1",
+  "baseline_commit": "a41bef4ed51aa87016e73ea466a37c185b0feadb",
+  "source_snapshot_sha256": "7035fcfefc92c10d9c124ccf3405459c1fad21a13b0197f76ef9ae088a4a6884",
+  "source_files_sha256": {
+    "CMakeLists.txt": "e2900f2fe45b82a2f2ea6266d0641427cb5362ccd56e74da1fb1e488f633f757",
+    "aiv_two_read_one_write_mul_q4q1_contract.h": "8e67f3a3e50de8cf19af4e4b374cf65945d3cf6a6ee5fd56093fc4f07020330c",
+    "aiv_two_read_one_write_mul_q4q1_kernel.cpp": "0ea808a91c98e2f51f0c71f146f303c3559bc5a5f4d4a57b38bf3d07aedead18",
+    "aiv_two_read_one_write_mul_q4q1_main.cpp": "5718c0a7f8acd4d36db19123bc1f563b699f558726966f27ae66ac46fea49518"
+  },
+  "binary_sha256": "0ad09e548d1d974adf0314bf093792407a31a45fbb26f61259eec447688dc542",
+  "production_or_evaluation_duration_consumed": false,
+  "composition": "max(existing analytical resource and pipeline bounds, exact source-tile steady 2R+1W GM service after the four-slot input queue is filled)",
+  "source_contract": {
+    "active_aiv_workers": 48,
+    "input_streams": 2,
+    "output_streams": 1,
+    "input_queue_depth": 4,
+    "output_queue_depth": 1,
+    "minimum_source_tiles_per_worker": 4,
+    "tiles_per_probe_worker": 512,
+    "production_mul_payload": false,
+    "each_stream_exceeds_l2_bytes": 270532608
+  },
+  "publication_gate": {
+    "required_independent_runs": 3,
+    "maximum_cross_run_median_spread_pct": 5.0,
+    "all_validations_pass": true,
+    "mechanism_publishable": true
+  },
+  "services": {
+    "tile_11008": {
+      "tile_bytes": 11008,
+      "tile_elements_bf16": 5504,
+      "run_bandwidth_gbs": [1205.868680645, 1207.968553741, 1203.887635907],
+      "median_total_2r1w_bandwidth_gbs": 1205.868680645,
+      "cross_run_median_spread_pct": 0.338421413501,
+      "read_share_capacity_bytes_per_s": 803912453763.3334,
+      "write_share_capacity_bytes_per_s": 401956226881.6667
+    },
+    "tile_13824": {
+      "tile_bytes": 13824,
+      "tile_elements_bf16": 6912,
+      "run_bandwidth_gbs": [1219.248893607, 1220.665330460, 1218.425385729],
+      "median_total_2r1w_bandwidth_gbs": 1219.248893607,
+      "cross_run_median_spread_pct": 0.183715133370,
+      "read_share_capacity_bytes_per_s": 812832595738.0,
+      "write_share_capacity_bytes_per_s": 406416297869.0
+    },
+    "tile_14592": {
+      "tile_bytes": 14592,
+      "tile_elements_bf16": 7296,
+      "run_bandwidth_gbs": [1211.335956025, 1214.700468574, 1209.874985292],
+      "median_total_2r1w_bandwidth_gbs": 1211.335956025,
+      "cross_run_median_spread_pct": 0.398360443112,
+      "read_share_capacity_bytes_per_s": 807557304016.6666,
+      "write_share_capacity_bytes_per_s": 403778652008.3333
+    },
+    "tile_17664": {
+      "tile_bytes": 17664,
+      "tile_elements_bf16": 8832,
+      "run_bandwidth_gbs": [1213.435190965, 1214.091244603, 1213.791381225],
+      "median_total_2r1w_bandwidth_gbs": 1213.791381225,
+      "cross_run_median_spread_pct": 0.054049950275,
+      "read_share_capacity_bytes_per_s": 809194254150.0,
+      "write_share_capacity_bytes_per_s": 404597127075.0
+    },
+    "tile_18432": {
+      "tile_bytes": 18432,
+      "tile_elements_bf16": 9216,
+      "run_bandwidth_gbs": [1225.323700574, 1223.024478197, 1223.142843401],
+      "median_total_2r1w_bandwidth_gbs": 1223.142843401,
+      "cross_run_median_spread_pct": 0.187976603829,
+      "read_share_capacity_bytes_per_s": 815428562267.3334,
+      "write_share_capacity_bytes_per_s": 407714281133.6667
+    },
+    "tile_19456": {
+      "tile_bytes": 19456,
+      "tile_elements_bf16": 9728,
+      "run_bandwidth_gbs": [1221.876086958, 1223.619319204, 1222.071285476],
+      "median_total_2r1w_bandwidth_gbs": 1222.071285476,
+      "cross_run_median_spread_pct": 0.142645708701,
+      "read_share_capacity_bytes_per_s": 814714190317.3334,
+      "write_share_capacity_bytes_per_s": 407357095158.6667
+    }
+  },
+  "production_applicable_tiles": [17664, 18432, 19456],
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/aiv_two_read_one_write_mul_q4q1_a41bef4e_20260906_d7_v2/raw_run1.csv",
+      "sha256": "a8a44732ff16c311c10d1b924a1fc428e10cda8ec78535813aab105c739f76fb",
+      "execution_log_sha256": "454e309c88bbeb13c50bddb4bd5220fb6197390661082cd3231b9a95ea9871aa"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/aiv_two_read_one_write_mul_q4q1_a41bef4e_20260906_d7_v2/raw_run2.csv",
+      "sha256": "113449bc6271f630d760b005c307a3f8d07ae1f40007a8de4c2d1dcd58574f8f",
+      "execution_log_sha256": "b5ff1a79a2b2cd4eedfcfc64453b66d788a27cb1c1a1951e57ab755cd67dae63"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/aiv_two_read_one_write_mul_q4q1_a41bef4e_20260906_d7_v2/raw_run3.csv",
+      "sha256": "1e2691c4b63143eff8229fec1f76f2feeb5f3f625093a20409fdd1dda0cf4a20",
+      "execution_log_sha256": "36a836b25e6e9f92c95716b804c4447e998a7e6b86bcdec3a21bd39e404998ce"
+    }
+  ]
+}

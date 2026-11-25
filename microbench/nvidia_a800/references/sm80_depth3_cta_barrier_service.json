@@ -1,0 +1,61 @@
+{
+  "schema": "nvidia_a800_sm80_depth3_cta_barrier_service_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "software": {
+    "cuda_version": "12.2",
+    "library": "/usr/local/cuda-12.2/targets/x86_64-linux/lib/libcublasLt.so.12.2.5.6",
+    "library_sha256": "fbfbc8a1faf681fa5f3ed3ab86d456e196058e9a6b601c930d200dcd2822b1ae",
+    "cubin": "libcublasLt.so.12.2.5.1906.sm_80.cubin",
+    "cubin_sha256": "06008e27431fd0cef94019bd3a00b552eedd883a689a619310e8ddae706cb226"
+  },
+  "production_source": {
+    "function": "ampere_fp16_s16816gemm_fp16_256x128_ldg8_f2f_stages_64x3_tn",
+    "normalized_tile_shape": [128, 256, 64],
+    "threads_per_cta": 256,
+    "warps_per_cta": 8,
+    "static_shared_memory_bytes": 49152,
+    "dynamic_shared_memory_bytes": 98304,
+    "total_shared_memory_bytes": 147456,
+    "resident_ctas_per_sm": 1,
+    "k64_loop": {
+      "source_range": "0x1a20-0x2770",
+      "barrier_instruction": "BAR.SYNC.DEFER_BLOCKING 0x0",
+      "barrier_offset": "0x2380",
+      "barriers_per_complete_k64_tile": 1
+    }
+  },
+  "microbenchmark": {
+    "source": "microbench/nvidia_a800/runtime/synchronization/cta_barrier_service.cu",
+    "runner": "microbench/nvidia_a800/runtime/synchronization/cta_barrier_service_runner.py",
+    "source_sha256": "0b01a9dc2a6ae14b2a2b0048b09114973998cde6d2afe9d2214d23a0777cc228",
+    "runner_sha256": "e75e49a82804d5f51842bce2c89251fac03144f580cdfabb99614b7df4f7ffb5",
+    "capture": "profiler_output/microbench/nvidia_a800/cta_barrier_256t_147456b_20260915_r4",
+    "capture_manifest_sha256": "440e93ad35c2dfc5dd8a35d6da2a8a1348b68faf3d4e1e2848387cb237d2cab7",
+    "raw_sha256": "6c952cfcfa5485fd82d48ff6bf59961527f70920d1b9f3a81e316ee0c13eb13a",
+    "report_sha256": "4752f6944bbedc6a7ddb13ec924f62e07bcb9622f8a6c5095cde0433e299429b",
+    "sass_sha256": "131784b5fb65e4a5d0bad0d77a093691ef40caef548f12cb18d823d507195903",
+    "timer_domain": "clock64_same_cta_envelope_cycles",
+    "threads_per_cta": 256,
+    "total_shared_memory_bytes": 147456,
+    "dynamic_shared_memory_bytes": 143360,
+    "resident_ctas_per_sm": 1,
+    "grid_ctas": 108,
+    "repetitions": 1024,
+    "samples_per_trial": 32,
+    "trials": 3,
+    "barrier_cycles": 61.2802734375,
+    "trial_relative_spread": 7.968063999490045e-06
+  },
+  "decision": {
+    "status": "accepted_mechanism_service",
+    "forward_eligible": true,
+    "reason": "The probe has no global-memory traffic or matrix operation, exactly preserves the 256-thread one-CTA/SM shared-memory envelope, and measures the source-visible one-barrier-per-K64 service independently of every production duration."
+  },
+  "excluded_conclusions": [
+    "a complete production GEMM duration",
+    "a Tensor Core utilization factor",
+    "a per-shape timing correction",
+    "a generic CTA-barrier service outside the pinned depth-three source envelope"
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

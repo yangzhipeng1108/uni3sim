@@ -1,0 +1,89 @@
+{
+  "duration_unit": "ns_per_completed_M16_N256_K64_operand_pair_per_aic",
+  "forward_eligibility_constraint": "use only as a lower bound for 24-AIC BF16 M16/N256/K64 operand streams with 256--8192 pairs per worker, four-pair drain semantics, resident-or-slower A, and DRAM-cold B",
+  "forward_eligible": true,
+  "hardware_id": "ascend_910b",
+  "measurement": {
+    "constant_rate_gate": true,
+    "maximum_allowed_rate_relative_span": 0.1,
+    "maximum_allowed_within_count_relative_span": 0.1,
+    "mechanism_gate_passed": true,
+    "median_completion_span_ns": {
+      "1024": 705420.0,
+      "256": 178440.0,
+      "4096": 2786520.0,
+      "8192": 5368820.0
+    },
+    "median_ns_per_pair": {
+      "1024": 688.88671875,
+      "256": 697.03125,
+      "4096": 680.302734375,
+      "8192": 655.37353515625
+    },
+    "published_completion_ns_per_pair": 697.03125,
+    "rate_relative_span": 0.06085018365964124,
+    "stability_gate": true,
+    "within_count_relative_spans": {
+      "1024": 0.005868844092880837,
+      "256": 0.016364043936337145,
+      "4096": 0.007536281813875371,
+      "8192": 0.015012609847229
+    }
+  },
+  "mechanism_id": "aic_grouped_matmul_long_stream_completion_v1",
+  "mechanism_publishable": true,
+  "parameter_fit_from_production_duration": false,
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "binary_sha256": "9839812f84b59db3ac52f3087e7fbdb138cdfeb1c8fd9fb8de73e0570f2dc56e",
+    "command": "python grouped_pair_completion_runner.py --binary build/grouped_pair_completion --device-id 2 --owner fused_moe_worker --baseline f1f021d3aac254992b16fd92b35534e016b196f5 --run-id completion-long-r1-${run_index} --run-index ${run_index}",
+    "container": "capture-container-2",
+    "host": "capture-host-1",
+    "logical_device_id": 0,
+    "measurement_baseline_commit": "f1f021d3aac254992b16fd92b35534e016b196f5",
+    "owner": "fused_moe_worker",
+    "physical_device_id": 2,
+    "raw_root": "profiler_output/microbench/ascend_910b/grouped_pair_completion_c39cc350_20260906_long_r1",
+    "raw_sha256": [
+      "51d3ca3a724547064b76ab86f7d25c1686cce02926495da8e658c4257a0494ce",
+      "344f80bcbf6e3b3dd6ac23225ffdda9ae746cf85d73723cdfd385257a15f048d",
+      "60b43b7b3bc865fae94cabccf659a050e5317bceaca2d035ee5c891f06062377"
+    ],
+    "snapshot_path": "/capture-workspace/execution_snapshots/grouped_pair_completion_c39cc350_20260906_long_r1",
+    "source_sha256": {
+      "CMakeLists.txt": "5506922061354af790e1e4af44dff629f25e384077eee3b19d0df70c37470a54",
+      "README.md": "308e19d81e9ccf499638f305f6a4427496abcd2c6ae369b653c4822a0c22631e",
+      "grouped_pair_completion_kernel.cpp": "d299b8fc21fd2848619c684251794204844f50851b87beeacc28745336894495",
+      "grouped_pair_completion_main.cpp": "7015ac5b457eede65fe79d59f76ac98e3006fa21a2effc9cd0f770e6bbf11578",
+      "grouped_pair_completion_runner.py": "9d634baaabcd11234cc0be0c4c9206b83a924487a93c8cc82fee7b65c51e1c68"
+    },
+    "source_snapshot_sha256": "0d2c2abb4d950a61e57c733ff3efa9d508edff91f3351f67d0a929806485a57f",
+    "stderr_sha256": [
+      "f517200aa8c3677043d32feccb2422c251e51685e141522a7368b14a2c7e3bf3",
+      "5478020c69721b60b820886de71d464c8fa71eee15f5e6320743767e0940386a",
+      "6fdc41efcf0f84b97e03965c9b88e4db426e0cae55d8d4cba38017bcd3978332"
+    ]
+  },
+  "publication_scope": {
+    "a_columns": 64,
+    "a_residency": "l2_resident",
+    "a_rows": 16,
+    "active_aic_groups": 24,
+    "b_columns": 256,
+    "b_residency": "dram_cold",
+    "b_rows": 64,
+    "drain_interval_pairs": 4,
+    "eviction_bytes": 537919488,
+    "maximum_pairs_per_worker": 8192,
+    "measured_pairs_per_worker": [
+      256,
+      1024,
+      4096,
+      8192
+    ],
+    "minimum_pairs_per_worker": 256,
+    "pair_bytes": 34816
+  },
+  "schema_version": 1,
+  "software_revision": "cann_8.5.1"
+}

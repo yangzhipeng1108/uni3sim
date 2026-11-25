@@ -1,0 +1,3 @@
+# GEMM source-order MTE2 probes
+
+`aic_mte2_matmul_v2_full_a_k4096_n96_*` isolates the CANN MatMulV2 full-A source queue for the 23-AIC `16×96×128`, `K=4096` program: one `16×4096` A1 ingress and five local N tiles, each with eight `96×512` B1 ingresses. A disjoint clean 276 MiB MTE2 prelude precedes the timed interval so the 90 MiB target B stream begins cold, matching the source program's first-pass L2 state; the prelude itself has no timing contribution. After each pair of B1 descriptors, a zero-work MTE2→MTE1 handoff returns the two local credits exactly as the production MTE1 consumer would; it is not interpreted as a production duration term. The kernel has no MTE1, Cube, FixPipe, or output stage and is eligible only as an independent MTE2 mechanism measurement.

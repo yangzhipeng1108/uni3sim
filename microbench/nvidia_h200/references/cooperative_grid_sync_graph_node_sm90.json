@@ -1,0 +1,57 @@
+{
+ "schema": "nvidia_h200_cooperative_grid_sync_graph_node_reference_v1",
+ "hardware_id": "nvidia_h200",
+ "mechanism": "cooperative_grid_sync_in_cuda_graph",
+ "timer_domain": "cuda_event_around_graph_replay_divided_by_chain",
+ "production_or_evaluation_duration_consumed": false,
+ "method": "64 chained nodes per CUDA graph, 30 replays, median ns/node; grid.sync service = cooperative node with one cg::this_grid().sync() minus the same cooperative node without it (same grid, 256 threads, dynamic shared memory 232448 B = the flashinfer Hopper MLA envelope)",
+ "runner": {
+  "source": "microbench/nvidia_h200/runtime/synchronization/cooperative_graph_node_span.cu",
+  "git_commit": "4aad6df4e"
+ },
+ "capture": {
+  "device": "H200 GPU 4 alone (yield_gpus.sh)",
+  "date": "2026-09-27 15:31",
+  "busy_sm_clock_mhz": 1980
+ },
+ "raw": {
+  "g1_s232448.csv": {
+   "sha256": "4858b9e1733692ad51fdd3f9106ccb15e197d5562887b5262faf8cd754637a33",
+   "median_ns_per_node": {
+    "regular": 775.0,
+    "coop": 779.0,
+    "coop_sync": 1740.0
+   }
+  },
+  "g66_s232448.csv": {
+   "sha256": "f7b7498ae1a791b3d6e33598cfd75a630268d6003e2931f9b049c0b5683eb589",
+   "median_ns_per_node": {
+    "regular": 1067.0,
+    "coop": 1072.0,
+    "coop_sync": 1843.25
+   }
+  },
+  "g132_s232448.csv": {
+   "sha256": "ff04eb80ece80b3374fdc4987f1e0fd66506bfc81befd366622381af50e5d0cb",
+   "median_ns_per_node": {
+    "regular": 1032.5,
+    "coop": 1037.5,
+    "coop_sync": 1929.5
+   }
+  },
+  "g132_s0.csv": {
+   "sha256": "94328fd9c5b36b0bea7d61fdcc84d959f3fd1985e63a39a96046f6423de8c1f9",
+   "median_ns_per_node": {
+    "regular": 1040.75,
+    "coop": 1247.0,
+    "coop_sync": 2102.75
+   }
+  }
+ },
+ "grid_sync_ns_by_grid": {
+  "1": 961.0,
+  "66": 771.2,
+  "132": 892.0
+ },
+ "production_predictor_consumption_allowed": true
+}

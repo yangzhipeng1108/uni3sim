@@ -1,0 +1,1693 @@
+{
+ "schema": "stream_sharing_interference_reference_v1",
+ "mechanism": "grouped_weight_sharing_phase_lock",
+ "hardware_id": "metax_c500",
+ "baseline_commit": "6e26ef05c",
+ "allowed_use": "Evidence that (1) the L2 replacement decision of the shared miss core (byte-capacity recency replacement at the 8 MiB nominal size) is correct for the grouped-MoE operand streams once the hardware execution order is known: replaying each configuration in its own measured per-CTA order reproduces the DRAM counters; (2) the co-resident weight-sharing loss is carried by execution order, specifically by a phase-locked versus desynchronised regime of CTA progress, and not by L2 request traffic, outstanding-miss pressure or reuse-protecting replacement; (3) in the phase-locked regime the co-progressing group is one CTA per AP (104), which is what the lock-step core replays.",
+ "forbidden_use": "Any duration.  The per-CTA stamps are execution-order evidence inside this microbenchmark and must not price a Forward path.  No phase-spread statistic, sharer spread, offset range or regime label may be copied, fitted or interpolated into a predictor or the miss core: the regime is a dynamical outcome that the stamps observe and no launch-physical variable determines here.",
+ "production_or_evaluation_duration_consumed": false,
+ "instrument": {
+  "counters": "mcProfiler perf_exec --custom --per-kernel, host-global serial, one marker window per part",
+  "stamps": "__builtin_mxc_get_realtime at k steps 0, S/4, S/2, 3S/4, S per CTA (twin binary, no profiler)"
+ },
+ "geometry": {
+  "controlled_shape": "FUSEDMOE_TOK8192_E32_TOPK4_H2880_INT2880 w1 structure",
+  "bm": 64,
+  "bn": 64,
+  "bk": 32,
+  "k": 2880,
+  "steps": 90,
+  "experts": 32,
+  "m_tiles_per_expert": 16,
+  "n_tiles": 90,
+  "gsm": 8,
+  "workers": 46080,
+  "stages": 2,
+  "resident_ctas": 416,
+  "weight_layout": "[E, K, N] column block, rows N*2 B apart"
+ },
+ "build": {
+  "compiler": "/opt/maca/mxgpu_llvm/bin/mxcc -x maca -offload-arch native --maca-path=/opt/maca -O3",
+  "sources": {
+   "cta_dispatch_order.cpp": "de36493ba2a945f0397d7162a80286d3e613b3d48d4d5b4d2b1c90544ec97805",
+   "l2_random_pool_eviction.cpp": "a8d3fecd15ea2a6dc19c52059c2a7f89099d1a48920685421248f75b512cb7c7",
+   "l2_recency_protection.cpp": "4ee1d13a300b9b62ff6f1eef712f86a30d395de0743bb2d09fd67aadb0974bff",
+   "stream_sharing_interference.cpp": "632e1cae72b05962fc2ab3eee2292214c1be7f2f2574aa652f699a05aae5228b",
+   "stream_sharing_phase_stamps.cpp": "288bb0326e7253692cd603858b4d68ec79c666fe73daa0549dbd0fbf53a46611"
+  },
+  "binaries": {
+   "cta_dispatch_order": "b0cf0fea059d4950228a2f50b71f3dbf80a4e1910f3b08c746b7014ec829e1a1",
+   "l2_random_pool_eviction": "3e78fc2ab5d7a63d9cf6ddebcccb59fd5ec3ef95a342134e3fd4b118af59ebcb",
+   "l2_recency_protection": "efd06a24f1032bb44c1a489f3495890a16230bbd2db997f5205a8f2761217e2d",
+   "stream_sharing_interference": "cc997898d779c290d09e84784f463ecf03108520abb8765be7083b4c81311692",
+   "stream_sharing_phase_stamps": "749a8cca43188a183147d62ea5c44ef2b34df91a672d71bb43246ce75ceb9cef"
+  }
+ },
+ "rerun": {
+  "collect": "microbench run script: see experiment_logs/kernel/l2_set_miss_model/report.md (run_final.sh)",
+  "replay": "experiment_logs/kernel/l2_set_miss_model/tools/stamp_replay <stamps.bin> 16 <a_mode> <map_sel> <a_skip> <b_skip> 0 [104 for lock-step]"
+ },
+ "status": "candidate_pending_main_agent_review",
+ "measurements": [
+  {
+   "part": 0,
+   "ordinal": 0,
+   "axis": "base",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 0,
+   "a_skip": 0,
+   "b_skip": 0,
+   "c_write": 1,
+   "a_requests": 265420800,
+   "b_requests": 132710400,
+   "measured_dram_read_bytes": 14542819072.0,
+   "measured_dram_read_gib": 13.5441,
+   "l2c_read_instructions": 414561029.0,
+   "l2c_hit_rate_pct": 72.06,
+   "dnoc_read_requests": 114700021.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p0/1__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "b12c895e8aa90fbfc2ef54eeebad88fa9788b8e446cf7698e6ff24b7b777eeed",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p0/stamps_base.bin",
+    "raw_sha256": "2586ac2c04951c5f1ddff1676e5fb44052e15ebadf0092e4b8677a94f52794e3",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     69413.9,
+     75115.0,
+     118919.1
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     32.82,
+     56.71,
+     81.43
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     79,
+     37,
+     54,
+     21,
+     17,
+     47,
+     37,
+     25,
+     66,
+     26
+    ]
+   }
+  },
+  {
+   "part": 0,
+   "ordinal": 1,
+   "axis": "b_only",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 0,
+   "a_skip": 1,
+   "b_skip": 0,
+   "c_write": 0,
+   "a_requests": 0,
+   "b_requests": 132710400,
+   "measured_dram_read_bytes": 2123370112.0,
+   "measured_dram_read_gib": 1.9775,
+   "l2c_read_instructions": 132713429.0,
+   "l2c_hit_rate_pct": 87.5,
+   "dnoc_read_requests": 16588859.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p0/2__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "656a22731fb38b0f2f4600cb38905b215cb4c8f6b550ce753cb989cf10d7dd35",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p0/stamps_b_only.bin",
+    "raw_sha256": "36c091fade5b4499c1740dc4e46330b707d3150cc5a74b5fbea5ff16904d664b",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     69321.0,
+     70111.0,
+     70758.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     2.6,
+     4.7,
+     6.76
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     0,
+     103,
+     1,
+     11,
+     93,
+     0,
+     96,
+     8,
+     1,
+     103
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 1.978,
+    "lockstep_wave104_lru_8mib_w16": 1.978
+   }
+  },
+  {
+   "part": 0,
+   "ordinal": 2,
+   "axis": "hot_a_with_b",
+   "gsm": 8,
+   "a_mode": 1,
+   "map_sel": 0,
+   "a_skip": 0,
+   "b_skip": 0,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 132710400,
+   "measured_dram_read_bytes": 2156572800.0,
+   "measured_dram_read_gib": 2.0085,
+   "l2c_read_instructions": 398134229.0,
+   "l2c_hit_rate_pct": 95.77,
+   "dnoc_read_requests": 16848483.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p0/3__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "7a92aff5cb61aee6e0800b259592723392b254b7f4e9b12dbbfbf60bf76dd3de",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p0/stamps_hot_a_with_b.bin",
+    "raw_sha256": "13e89869be9bb038e9b212fc0fa9c9ec64c3fcb495efb6a43ef230c1c5fb92ad",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     72333.0,
+     73020.0,
+     73928.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     1.54,
+     2.02,
+     2.68
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     4,
+     100,
+     0,
+     64,
+     40,
+     0,
+     104,
+     0,
+     51,
+     53
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 1.99,
+    "lockstep_wave104_lru_8mib_w16": 2.017
+   }
+  },
+  {
+   "part": 0,
+   "ordinal": 3,
+   "axis": "hot_a_only",
+   "gsm": 8,
+   "a_mode": 1,
+   "map_sel": 0,
+   "a_skip": 0,
+   "b_skip": 1,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 0,
+   "measured_dram_read_bytes": 1052032.0,
+   "measured_dram_read_gib": 0.001,
+   "l2c_read_instructions": 265423829.0,
+   "l2c_hit_rate_pct": 100.0,
+   "dnoc_read_requests": 8249.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p0/4__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "15083e1d57af7e1b82cae5d90ef13fd94f5cd245102aba24f00b2a6ea1a17a25",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p0/stamps_hot_a_only.bin",
+    "raw_sha256": "31bfa2fbd852ba0c5aaa27af56b762183f52b7df2cb20b4b3681d3ae69fab377",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     68402.0,
+     69186.0,
+     71130.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     1.32,
+     3.19,
+     4.55
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     5,
+     99,
+     0,
+     56,
+     48,
+     0,
+     104,
+     0,
+     28,
+     76
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 0.001,
+    "lockstep_wave104_lru_8mib_w16": 0.001
+   }
+  },
+  {
+   "part": 0,
+   "ordinal": 4,
+   "axis": "cold_a_with_b",
+   "gsm": 8,
+   "a_mode": 2,
+   "map_sel": 0,
+   "a_skip": 0,
+   "b_skip": 0,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 132710400,
+   "measured_dram_read_bytes": 36115910144.0,
+   "measured_dram_read_gib": 33.6356,
+   "l2c_read_instructions": 398134229.0,
+   "l2c_hit_rate_pct": 29.13,
+   "dnoc_read_requests": 282148747.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p0/5__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "2f453931131a5a794b9fa5996d5fec2514f3e06940dc3b801a5b8ad1ca328d32",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p0/stamps_cold_a_with_b.bin",
+    "raw_sha256": "93c486d073348c5998a6ce90ab8b2052e045b2d30cb0b7f098b02c1d8abb5a20",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     73924.0,
+     74723.0,
+     75605.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     3.51,
+     8.35,
+     11.2
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     33,
+     71,
+     8,
+     82,
+     14,
+     28,
+     76,
+     2,
+     73,
+     29
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 34.645,
+    "lockstep_wave104_lru_8mib_w16": 33.618
+   }
+  },
+  {
+   "part": 0,
+   "ordinal": 5,
+   "axis": "cold_a_only",
+   "gsm": 8,
+   "a_mode": 2,
+   "map_sel": 0,
+   "a_skip": 0,
+   "b_skip": 1,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 0,
+   "measured_dram_read_bytes": 33973866112.0,
+   "measured_dram_read_gib": 31.6406,
+   "l2c_read_instructions": 265423829.0,
+   "l2c_hit_rate_pct": 0.0,
+   "dnoc_read_requests": 265420859.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p0/6__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "4f27beed2e2f89be2cc359271c5fd5072515fcd15cf7d894ecd96b19cc47aa6c",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p0/stamps_cold_a_only.bin",
+    "raw_sha256": "bc901a6a25dd3ef4e6c9f9a5551e4fd13a28fa8ef0e7e7556eec63fe1d3297e6",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     70157.0,
+     70947.0,
+     71624.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     1.27,
+     1.95,
+     2.45
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     0,
+     104,
+     0,
+     37,
+     67,
+     0,
+     104,
+     0,
+     9,
+     95
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 31.641,
+    "lockstep_wave104_lru_8mib_w16": 31.641
+   }
+  },
+  {
+   "part": 0,
+   "ordinal": 6,
+   "axis": "cold_q_with_b",
+   "gsm": 8,
+   "a_mode": 3,
+   "map_sel": 0,
+   "a_skip": 0,
+   "b_skip": 0,
+   "c_write": 0,
+   "a_requests": 66355200,
+   "b_requests": 132710400,
+   "measured_dram_read_bytes": 10617170304.0,
+   "measured_dram_read_gib": 9.888,
+   "l2c_read_instructions": 199068629.0,
+   "l2c_hit_rate_pct": 58.33,
+   "dnoc_read_requests": 82945466.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p0/7__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "3a093fecbca8f61abcc663f87304ded26436ca5aa255cb69a65d8246e5a1eee9",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p0/stamps_cold_q_with_b.bin",
+    "raw_sha256": "37bfd9c93b501a251f32dd5343502aa69670014335a75887c1ee446918255a10",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     73623.0,
+     74208.0,
+     74852.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     0.77,
+     1.13,
+     1.43
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     0,
+     104,
+     0,
+     83,
+     21,
+     0,
+     104,
+     0,
+     18,
+     86
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 9.888,
+    "lockstep_wave104_lru_8mib_w16": 9.888
+   }
+  },
+  {
+   "part": 0,
+   "ordinal": 7,
+   "axis": "cold_q_only",
+   "gsm": 8,
+   "a_mode": 3,
+   "map_sel": 0,
+   "a_skip": 0,
+   "b_skip": 1,
+   "c_write": 0,
+   "a_requests": 66355200,
+   "b_requests": 0,
+   "measured_dram_read_bytes": 8493469312.0,
+   "measured_dram_read_gib": 7.9102,
+   "l2c_read_instructions": 66358229.0,
+   "l2c_hit_rate_pct": 0.0,
+   "dnoc_read_requests": 66355259.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p0/8__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "af1555e2e5fe924dd11f8186e5884cde7e5dc2a97e29971fe20f07d89ab0a0a5",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p0/stamps_cold_q_only.bin",
+    "raw_sha256": "4aaa7a2d70c8167f13b3ea91860ec5fdff264ee1ddea8e5153a011ff145ea630",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     69732.0,
+     70387.0,
+     71332.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     1.26,
+     2.77,
+     3.72
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     5,
+     99,
+     0,
+     89,
+     15,
+     0,
+     104,
+     0,
+     74,
+     30
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 7.91,
+    "lockstep_wave104_lru_8mib_w16": 7.91
+   }
+  },
+  {
+   "part": 0,
+   "ordinal": 8,
+   "axis": "gather_with_b",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 0,
+   "a_skip": 0,
+   "b_skip": 0,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 132710400,
+   "measured_dram_read_bytes": 8497220352.0,
+   "measured_dram_read_gib": 7.9137,
+   "l2c_read_instructions": 414561029.0,
+   "l2c_hit_rate_pct": 84.51,
+   "dnoc_read_requests": 64121742.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p0/9__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "8ab1021d18f54c55bce8fd5f09a547593b2c1eff712532156d32c28024b09338",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p0/stamps_gather_with_b.bin",
+    "raw_sha256": "a4465bc7bd56b87695fe1487d8933db8c2a0e87de6c2fc15421175ac21b1f329",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     69186.9,
+     74965.0,
+     119876.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     32.95,
+     57.74,
+     86.25
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     89,
+     30,
+     64,
+     19,
+     10,
+     27,
+     66,
+     17,
+     55,
+     36
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 7.823,
+    "lockstep_wave104_lru_8mib_w16": 2.658
+   }
+  },
+  {
+   "part": 0,
+   "ordinal": 9,
+   "axis": "gather_only",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 0,
+   "a_skip": 0,
+   "b_skip": 1,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 0,
+   "measured_dram_read_bytes": 164591616.0,
+   "measured_dram_read_gib": 0.1533,
+   "l2c_read_instructions": 281850629.0,
+   "l2c_hit_rate_pct": 99.54,
+   "dnoc_read_requests": 1286187.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p0/10__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "89deec9289a1c042f7cd7a2e27f946cdc0707aca88a5fe8b19cbb43df7a52de4",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p0/stamps_gather_only.bin",
+    "raw_sha256": "e923fba87be99f574c773449b2b970754f6afc79211119a73671a81b78fb7f9e",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     69541.0,
+     70350.0,
+     71518.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     4.93,
+     9.94,
+     12.1
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     43,
+     42,
+     39,
+     45,
+     36,
+     43,
+     41,
+     30,
+     52,
+     35
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 0.153,
+    "lockstep_wave104_lru_8mib_w16": 0.158
+   }
+  },
+  {
+   "part": 0,
+   "ordinal": 10,
+   "axis": "base_repeat",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 0,
+   "a_skip": 0,
+   "b_skip": 0,
+   "c_write": 1,
+   "a_requests": 265420800,
+   "b_requests": 132710400,
+   "measured_dram_read_bytes": 14227253632.0,
+   "measured_dram_read_gib": 13.2502,
+   "l2c_read_instructions": 414561029.0,
+   "l2c_hit_rate_pct": 70.66,
+   "dnoc_read_requests": 120659263.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p0/11__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "8a2f860db14bb8405052fa83df5514711f3969a3a9e4802a7b47d630b0da09cc",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p0/stamps_base_repeat.bin",
+    "raw_sha256": "b4492b08a900096e50697dafc6094bfef9b2c7f129a8856ab263686fa42345ca",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     69347.8,
+     75132.0,
+     118495.4
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     32.84,
+     58.26,
+     88.68
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     77,
+     43,
+     47,
+     19,
+     26,
+     37,
+     44,
+     36,
+     54,
+     25
+    ]
+   }
+  },
+  {
+   "part": 1,
+   "ordinal": 0,
+   "axis": "dup4_47m_with_b",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 0,
+   "a_skip": 0,
+   "b_skip": 0,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 132710400,
+   "measured_dram_read_bytes": 8512449152.0,
+   "measured_dram_read_gib": 7.9278,
+   "l2c_read_instructions": 414561029.0,
+   "l2c_hit_rate_pct": 83.72,
+   "dnoc_read_requests": 64431595.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p1/1__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "1711247356286af44026567c2c2d8965ec5e3e4a2643dfe631e7b79d4ee75e38",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p1/stamps_dup4_47m_with_b.bin",
+    "raw_sha256": "c7d5daa8dd97b8b9c557381f2e6b2ab1aac7c3e97e3d0ee7f871deac1c2b9406",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     69822.9,
+     74987.0,
+     121810.5
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     31.81,
+     55.11,
+     80.17
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     71,
+     62,
+     40,
+     21,
+     22,
+     34,
+     42,
+     44,
+     38,
+     30
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 6.883,
+    "lockstep_wave104_lru_8mib_w16": 2.658
+   }
+  },
+  {
+   "part": 1,
+   "ordinal": 1,
+   "axis": "dup4_47m_only",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 0,
+   "a_skip": 0,
+   "b_skip": 1,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 0,
+   "measured_dram_read_bytes": 164623872.0,
+   "measured_dram_read_gib": 0.1533,
+   "l2c_read_instructions": 281850629.0,
+   "l2c_hit_rate_pct": 99.54,
+   "dnoc_read_requests": 1286177.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p1/2__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "c1a9c50a5f0e18d6dea8eef9dc2b29c4c8a5a788331d7891f45cf11eb6dccb87",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p1/stamps_dup4_47m_only.bin",
+    "raw_sha256": "a2fb94213e61c408b633abbfb454998718adb402434af887909347a55c090bce",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     69534.0,
+     70365.0,
+     71514.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     4.76,
+     10.18,
+     12.39
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     43,
+     45,
+     36,
+     51,
+     31,
+     42,
+     42,
+     35,
+     47,
+     38
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 0.153,
+    "lockstep_wave104_lru_8mib_w16": 0.158
+   }
+  },
+  {
+   "part": 1,
+   "ordinal": 2,
+   "axis": "nodup_189m_with_b",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 1,
+   "a_skip": 0,
+   "b_skip": 0,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 132710400,
+   "measured_dram_read_bytes": 7395354240.0,
+   "measured_dram_read_gib": 6.8875,
+   "l2c_read_instructions": 414723029.0,
+   "l2c_hit_rate_pct": 85.73,
+   "dnoc_read_requests": 60803582.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p1/3__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "072671c6fea75af940291ee55fac3e773769c22363a0c45a538636aa80fa99c0",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p1/stamps_nodup_189m_with_b.bin",
+    "raw_sha256": "f34d6935195418e064cdf14a2fc5a1209ed3d31db48f3b50bea7be1fbecd4bd8",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     68833.9,
+     75001.0,
+     90203.5
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     30.65,
+     45.98,
+     64.92
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     34,
+     30,
+     57,
+     29,
+     35,
+     48,
+     33,
+     62,
+     24,
+     35
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 6.716,
+    "lockstep_wave104_lru_8mib_w16": 2.703
+   }
+  },
+  {
+   "part": 1,
+   "ordinal": 3,
+   "axis": "nodup_189m_only",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 1,
+   "a_skip": 0,
+   "b_skip": 1,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 0,
+   "measured_dram_read_bytes": 189627264.0,
+   "measured_dram_read_gib": 0.1766,
+   "l2c_read_instructions": 282012629.0,
+   "l2c_hit_rate_pct": 99.47,
+   "dnoc_read_requests": 1481400.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p1/4__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "2f6fc001e7b0e2161b4cceecfc953b8cbae11105c07498f48f4774a3af0ffe03",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p1/stamps_nodup_189m_only.bin",
+    "raw_sha256": "f654b780f5a1179f52280b0e7a2dbad02ce6e7757ca83669350cc011ce3a2997",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     70182.0,
+     70926.0,
+     71558.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     1.82,
+     4.59,
+     7.42
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     1,
+     103,
+     0,
+     33,
+     71,
+     0,
+     104,
+     0,
+     21,
+     83
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 0.177,
+    "lockstep_wave104_lru_8mib_w16": 0.184
+   }
+  },
+  {
+   "part": 1,
+   "ordinal": 4,
+   "axis": "dup4_189m_with_b",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 2,
+   "a_skip": 0,
+   "b_skip": 0,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 132710400,
+   "measured_dram_read_bytes": 6865443072.0,
+   "measured_dram_read_gib": 6.3939,
+   "l2c_read_instructions": 414625829.0,
+   "l2c_hit_rate_pct": 86.71,
+   "dnoc_read_requests": 52785331.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p1/5__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "e68e7589d115b41edf2ed741878c9d1e5cbf7c893ed08b09352dde47e7c0273e",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p1/stamps_dup4_189m_with_b.bin",
+    "raw_sha256": "301a9b86392d6845f048d525766ddc394a35d98231fd91de4d2c0d778c59641f",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     71212.0,
+     75306.0,
+     92191.69999999998
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     28.13,
+     45.96,
+     66.84
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     67,
+     31,
+     28,
+     53,
+     27,
+     43,
+     55,
+     24,
+     55,
+     31
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 6.497,
+    "lockstep_wave104_lru_8mib_w16": 2.66
+   }
+  },
+  {
+   "part": 1,
+   "ordinal": 5,
+   "axis": "dup4_189m_only",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 2,
+   "a_skip": 0,
+   "b_skip": 1,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 0,
+   "measured_dram_read_bytes": 164296704.0,
+   "measured_dram_read_gib": 0.153,
+   "l2c_read_instructions": 281915429.0,
+   "l2c_hit_rate_pct": 99.54,
+   "dnoc_read_requests": 1283629.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p1/6__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "031cf57fefa48a4d0aaf9a937857b0f42b494514e9fa8233f45233b95c8c6c0e",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p1/stamps_dup4_189m_only.bin",
+    "raw_sha256": "0a297434748713fb2d60c473094cfb24a4b9d51002076def5b371a58abd1fcf1",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     70191.9,
+     70928.0,
+     71552.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     1.69,
+     3.17,
+     5.28
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     0,
+     104,
+     0,
+     46,
+     58,
+     0,
+     104,
+     0,
+     30,
+     74
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 0.153,
+    "lockstep_wave104_lru_8mib_w16": 0.159
+   }
+  },
+  {
+   "part": 1,
+   "ordinal": 6,
+   "axis": "dup2_94m_with_b",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 3,
+   "a_skip": 0,
+   "b_skip": 0,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 132710400,
+   "measured_dram_read_bytes": 8018051456.0,
+   "measured_dram_read_gib": 7.4674,
+   "l2c_read_instructions": 414698729.0,
+   "l2c_hit_rate_pct": 85.64,
+   "dnoc_read_requests": 62312948.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p1/7__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "9cf1d6fc40a598d6275e0cbbbbb049696c7b7edca95b94bffdb433f89bcfed15",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p1/stamps_dup2_94m_with_b.bin",
+    "raw_sha256": "9142ee433c15fd35d95c38ca4ed8d2e29be5caa69f5e735c9f77b1ef951eb055",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     70270.0,
+     75327.0,
+     87549.1
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     30.54,
+     44.63,
+     62.97
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     40,
+     24,
+     51,
+     36,
+     50,
+     34,
+     33,
+     46,
+     39,
+     45
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 7.22,
+    "lockstep_wave104_lru_8mib_w16": 2.69
+   }
+  },
+  {
+   "part": 1,
+   "ordinal": 7,
+   "axis": "dup2_94m_only",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 3,
+   "a_skip": 0,
+   "b_skip": 1,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 0,
+   "measured_dram_read_bytes": 181105664.0,
+   "measured_dram_read_gib": 0.1687,
+   "l2c_read_instructions": 281988329.0,
+   "l2c_hit_rate_pct": 99.5,
+   "dnoc_read_requests": 1415080.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p1/8__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "2f376f9dd65d4c0406aee1c9c8b23fc1d645ba8f1c3bca54698de4b3bbfbdf19",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p1/stamps_dup2_94m_only.bin",
+    "raw_sha256": "2a2bbe254b39fd4de75a5389fdb2e60ad15f3eab2bf5f9e57696fe82b9caf8f8",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     70020.0,
+     70786.0,
+     71433.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     1.38,
+     2.03,
+     2.59
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     0,
+     104,
+     0,
+     52,
+     52,
+     0,
+     104,
+     0,
+     45,
+     59
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 0.169,
+    "lockstep_wave104_lru_8mib_w16": 0.176
+   }
+  },
+  {
+   "part": 1,
+   "ordinal": 8,
+   "axis": "dup16_12m_with_b",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 4,
+   "a_skip": 0,
+   "b_skip": 0,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 132710400,
+   "measured_dram_read_bytes": 2635558144.0,
+   "measured_dram_read_gib": 2.4546,
+   "l2c_read_instructions": 413726729.0,
+   "l2c_hit_rate_pct": 95.02,
+   "dnoc_read_requests": 20593446.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p1/9__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "1d22716e8ec2d920bb133b76dc47cf245a937d388ebca345efb86ded5aaec46c",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p1/stamps_dup16_12m_with_b.bin",
+    "raw_sha256": "fe78ae6fafc334f81a0d47aa0de8136cf24beea5de63eb2bcb989f35204f7526",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     73611.0,
+     74227.0,
+     74969.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     0.83,
+     1.25,
+     1.65
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     0,
+     104,
+     0,
+     0,
+     104,
+     0,
+     104,
+     0,
+     0,
+     104
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 2.462,
+    "lockstep_wave104_lru_8mib_w16": 2.507
+   }
+  },
+  {
+   "part": 1,
+   "ordinal": 9,
+   "axis": "dup16_12m_only",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 4,
+   "a_skip": 0,
+   "b_skip": 1,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 0,
+   "measured_dram_read_bytes": 64850432.0,
+   "measured_dram_read_gib": 0.0604,
+   "l2c_read_instructions": 281016329.0,
+   "l2c_hit_rate_pct": 99.82,
+   "dnoc_read_requests": 506667.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p1/10__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "e3b6a5da39e1c492e4b232b4a950cfd17258eb0b4ea2755225156a73c5aa01cf",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p1/stamps_dup16_12m_only.bin",
+    "raw_sha256": "6af5f2ee9a147e289db8ba64e1cb491bf6b478f5a9950663a951246df227845b",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     69547.0,
+     70355.0,
+     71509.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     4.85,
+     10.07,
+     12.12
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     45,
+     45,
+     39,
+     45,
+     30,
+     44,
+     47,
+     34,
+     48,
+     31
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 0.06,
+    "lockstep_wave104_lru_8mib_w16": 0.062
+   }
+  },
+  {
+   "part": 1,
+   "ordinal": 10,
+   "axis": "b_only",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 0,
+   "a_skip": 1,
+   "b_skip": 0,
+   "c_write": 0,
+   "a_requests": 0,
+   "b_requests": 132710400,
+   "measured_dram_read_bytes": 2123370112.0,
+   "measured_dram_read_gib": 1.9775,
+   "l2c_read_instructions": 132713429.0,
+   "l2c_hit_rate_pct": 87.5,
+   "dnoc_read_requests": 16588859.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p1/11__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "8989b83be10e5af9c3bb581fb47728e8f47df1eac69498b56b18764c9e576f3f",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p1/stamps_b_only.bin",
+    "raw_sha256": "d5145c27953bd6fac0d3e41aaa7c2652961962648a0d88a62a25328952061ff9",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     69347.9,
+     70122.0,
+     70776.0
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     2.13,
+     3.98,
+     5.73
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     0,
+     103,
+     1,
+     5,
+     99,
+     0,
+     99,
+     5,
+     0,
+     104
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 1.978,
+    "lockstep_wave104_lru_8mib_w16": 1.978
+   }
+  },
+  {
+   "part": 1,
+   "ordinal": 11,
+   "axis": "dup4_47m_with_b_r",
+   "gsm": 8,
+   "a_mode": 0,
+   "map_sel": 0,
+   "a_skip": 0,
+   "b_skip": 0,
+   "c_write": 0,
+   "a_requests": 265420800,
+   "b_requests": 132710400,
+   "measured_dram_read_bytes": 8519984256.0,
+   "measured_dram_read_gib": 7.9349,
+   "l2c_read_instructions": 414561029.0,
+   "l2c_hit_rate_pct": 84.62,
+   "dnoc_read_requests": 68846866.0,
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/counters_p1/12__Z20sharing_interferencePK5uint4S1_S1_PS_PKiPjiiiiii.txt.json",
+   "raw_sha256": "4a9f03205a2025b75088ee48beab05548d9c992f08b282eee9cba230c51aa3d4",
+   "phase_stamps": {
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/stamps_p1/stamps_dup4_47m_with_b_r.bin",
+    "raw_sha256": "ab5c30c87431eeca7ac1b8ba54fa39bef741ed5c2fe8159cb05d394adbefc2f0",
+    "cta_duration_realtime_units_p10_p50_p90": [
+     70108.9,
+     75012.5,
+     122363.59999999999
+    ],
+    "gsm_sharer_spread_steps_at_half_p50_p90_p99": [
+     31.62,
+     54.46,
+     82.19
+    ],
+    "active_cta_phase_histogram_at_mid_kernel": [
+     63,
+     51,
+     30,
+     38,
+     20,
+     41,
+     50,
+     31,
+     43,
+     42
+    ]
+   },
+   "order_replay_gib": {
+    "measured_order_lru_8mib_w16": 7.177,
+    "lockstep_wave104_lru_8mib_w16": 2.658
+   }
+  }
+ ],
+ "supporting_timing_probes": {
+  "note": "Timing-classified mechanism probes (reload latency hit/miss, global realtime).  Mechanism evidence only; no value may price a Forward path.",
+  "l2_random_pool_eviction": {
+   "source": "microbench/metax_c500/memory/l2/l2_random_pool_eviction.cpp",
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/random_pool_eviction.txt",
+   "raw_sha256": "648a97bc89bddf98a11bcf8048c9e1b113ee1fb229e61e7ad1aec0c299e62e4a",
+   "finding": "A line one AP brought in hits for other APs (empty-pool reload ~500 ticks vs ~600-650 after eviction): the L2 is chip-shared.  Eviction of one target by N random lines is a smooth ramp, 0/16 up to 4 MiB, then 1, 5, 4, 8, 13, 12, 15 of 16 at 5, 6, 7, 8, 9, 10, 12 MiB (earlier run: 5/7/9/11/15/16 of 16 at 6/7/8/9/10/12 MiB), consistent with a hashed set-associative recency cache of 8 MiB."
+  },
+  "l2_recency_protection": {
+   "source": "microbench/metax_c500/memory/l2/l2_recency_protection.cpp",
+   "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/recency_protection.txt",
+   "raw_sha256": "4f423a1a2ffdefa79864cc5fde16e8322815c05058c7d6d8de12be9621f3d5c0",
+   "finding": "A 2-6 MiB hot set read once or twice before a target does not shrink the target survival against N new lines (at N=6 MiB: 8/24 evicted with no hot set, 2-7/24 with any hot set): replacement is recency-ordered, not reuse-protecting (RRIP-like insertion would evict the target first)."
+  },
+  "cta_dispatch_order": {
+   "source": "microbench/metax_c500/memory/l2/cta_dispatch_order.cpp",
+   "raw_paths": [
+    "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/dispatch_uniform.txt",
+    "profiler_output/microbench/metax_c500/l2_set_miss_20260926/final/dispatch_slow8.txt"
+   ],
+   "raw_sha256": [
+    "4347f5ac611826d356b565b7e420fbe87fafe398dae01c612ab2e72fea8071d9",
+    "86fbfafcca98b7ccb573884940dee70aa7d58978baae0289a5c15592e85123bc"
+   ],
+   "finding": "CTAs start in near pid order (|start rank - pid| p50 14-33, p99 80-99 of 46080).  Doubling the work of the pid%8==0 class leaves that class starting a constant ~900 realtime units later at the 10/50/90% quantiles instead of falling progressively behind: dispatch is one global dynamic queue, not per-cluster queues bound by pid."
+  },
+  "stream_sharing_step_stamps": {
+   "source": "microbench/metax_c500/memory/l2/stream_sharing_step_stamps.cpp",
+   "raw": {
+    "gather_with_b": {
+     "path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/steps_p2/steps_gather_with_b.bin",
+     "sha256": "df03e209436d09689ee60029d361b02da89efff18512ab7e67eb5f5248b023ff"
+    },
+    "hot_a_with_b": {
+     "path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/steps_p2/steps_hot_a_with_b.bin",
+     "sha256": "9267aaa86f8a73762f94b27c8eb7b95b3a468430a9102f5b2b4dee5f47ffeacb"
+    },
+    "dup16_12m_with_b": {
+     "path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/steps_p2/steps_dup16_12m_with_b.bin",
+     "sha256": "e605d03f837ea44ce7e02413215ed2bee3fc32e45a26cd810584a3c49d0ebb14"
+    },
+    "b_only": {
+     "path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/steps_p2/steps_b_only.bin",
+     "sha256": "4f16735d8f53458fefa01eed585081a784f0bcf8215f144622b009a63c81e79d"
+    }
+   },
+   "finding": "Every CTA passes through the same four AP arbitration tiers from youngest to oldest resident in both regimes (median per-step wall in the steady-state middle half: b_only 143/29/7/3.2 us, hot A + B 64-73/17/7.2/3.6 us, gather + B 30/14/8/4.2 us) and the median CTA life is similar (701/727/691 us).  In the phase-locked configurations the tiers are aligned across APs (slot rotation happens chip-wide at once, so consecutive pids land one per AP in the same tier); in gather + B the alignment is lost (CTA life p10/p90 698/1218 us), consecutive pids land on APs in different tiers and are promoted at different times.  The tier rates are a property of this code's instruction mix under the AP arbitration and are not transferable to another binary."
+  },
+  "l2_stride_conflict": {
+   "source": "microbench/metax_c500/memory/l2/l2_stride_conflict.cpp",
+   "raw_sha256": [
+    "6cd0b3e21013f8547fe93d9d40dacacb2af52b82a4f4d0a0d884e68ac5f8da47",
+    "e67313a99f5d014563a8758417dca4a44e73f4d723a295e7c98b6d57792aeec3",
+    "69dc66998c25d4572e54bf3e5809630faf8a1a21f15d93f0ad5a81f20d7904dd",
+    "fa246882cb3eeb3d60240d00144e5deec07f668525ed79d092498debc67d9ede",
+    "55768d7f9ac8478646f208a4c666d3783f881fb9d9da2f6ad64fea7941db75ea",
+    "cf21a7886a534ce0e86a35a6d9a371b90feb1e8e96f25c8710389e963a68f2a6",
+    "b35ab9031f4356f92f0999c24daf9aa726348d3925cde74144bd57c13e5a56fa",
+    "cb5c3208d160d7a78573012822f3e8eb45bc9fac9ab8d6d274673a34df73fd85",
+    "0183280b6af53dfdd988a84b4e546aed2cad7731d5ccf3c93b939718b1b7464b",
+    "065b040ef8b55426d0e6eb5260aecaf6e7a8dc17ee74a93e4324b947913ba699",
+    "b43f70594ee7bf84c6a0d27be4936c38d88d32c5f07e7342debb9ff7875b202e",
+    "369086bf501c7ded32429b964353e877bf23df1af2feb5fa1b70a52749537d3e",
+    "fdbe00d58e4b45900867d6b798528a7cf3f07fa1e5cf6f0a655d97a6dd175459",
+    "e309a6f0faeb32f36d6e7e72f00ad92c3c81014b923f0db05fb5c0b5fa9e9472",
+    "00e231e4729c033268281c2bc212c32c95607ff3d16f5f13888b86960ec5c3d9",
+    "0dde2865ff05857b09011cd38449703eb9a6c071e42f8cf4cad6bc9d54a503a2",
+    "84c7082172510025ec2c4c2300b601f35628bc6c68a8f51d4929b26d253cf147",
+    "04864d55e94b6d10faf90a6a3921a1c046cb9583ca96222d79913e908f5e6bae",
+    "4bf1fb5a854a3e0e8c59061777b78405042d397c00a43d5ab701fd121d83c2a7",
+    "26af8a08a17c0b7df754a8b21554531ac73b5117e2323c36678daea56c380afe",
+    "3fb54435478e50843e14159db301fab72b619eb9c4fbe1eefb333655582555ed",
+    "c531cea36f28a856f43e430f336ffd7bc4317a8b46eafa8ec0e925f68f4bde2f",
+    "30c9c5e85128e24c4014ed67227191df0996dfee1111d1758d564798d4db64fa",
+    "f5fdc48dba3999f4a7bfd2dc7f1fcddb033127e7e9ae3644987f7899688f85c4"
+   ],
+   "build_sha256": "4be68db9ecef74d61b4ac06334681514892fac5bd57f87f21c1e038f2dd1612a  /capture-workspace/l2_set_miss_20260926/l2_stride_conflict\n79744918e41f102dddc72951abdde848edfa6ce490892adc45d19ef2386ca598  /capture-workspace/l2_set_miss_20260926/l2_stride_conflict.cpp\n",
+   "finding": "One workgroup cycling 64-4096 lines at 8, 32, 128 and 45 KiB strides realises 1.00-1.09 passes of 8 (the 1.09 is the constant per-launch read): no set concentration at the power-of-two strides of the E8 W1 streams."
+  }
+ },
+ "routed_production_address_probe": {
+  "source": "microbench/metax_c500/memory/l2/routed_stream_phase.cpp",
+  "routing_generator": "microbench/metax_c500/memory/l2/routed_stream_phase_routing.py",
+  "build_sha256": {
+   "routed_stream_phase": "e5376059db796f8262c658ada813199c4e2dfae33f563990e25d9e9dd045d23a",
+   "routed_stream_phase_stamps": "cfa1ddec952efd0a886963bd280eebfbe5fd825d4f3a1138a35a41b8d253337a",
+   "routed_stream_phase.cpp": "be35fee242ad18554e6ee7296615b5be561705f449946897a69945241cef4154",
+   "case_t4096_e128.bin": "5ac7117b4edf5649bf34d7836215385364e7f913c0567821aa7996d6bdf8e69a",
+   "case_t4096_e8.bin": "a0107b2fedda961d0ab89227a4055f52d2aa06b52a4be32cdd687bb436fe0b25",
+   "case_t8192_e32.bin": "6a2e8805b4133c11f4f269a7a6549e0192059c9b5f07baa2bd7897da2464e50b"
+  },
+  "finding": "With the dataset runner routing reconstructed exactly (deterministic heap top-k over tok_per_expert, moe_align_block_size ascending routes) and [E, N, K] weights read as BN rows of BK*2-byte half lines, all six kernel streams (three cases x W1/W2) are desynchronised (GSM sharer spread p50 27-80 steps).  Replaying each no-C run in its own measured order through the 8-MiB LRU reproduces the counter for four of six streams within 3 percent (E32 W1 10.67/11.06, W2 6.10/6.03, E128 W1 12.72/12.68, W2 4.29/4.42 GiB); E8 W1/W2 replay low (13.96/33.60, 14.54/17.57).  The same exact streams in lock-step wave-104 order give 2.2-7.3 GiB.  The replica magnitudes differ from the production kernels of the same cases (for example E32 W1 11.06 against 7.75 GiB read), consistent with code-shape dependence of the desynchronised phase distribution.",
+  "measurements": [
+   {
+    "case": "FUSEDMOE_TOK8192_E32_TOPK4_H2880_INT2880",
+    "projection": "w1",
+    "axis": "routed_full",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 1,
+    "measured_dram_read_gib": 19.0008,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t8192_e32_w1/1__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "bded806b451b58cd3c14bcad99ac17aa6776a50b5652a7bb5295dd67a2634350"
+   },
+   {
+    "case": "FUSEDMOE_TOK8192_E32_TOPK4_H2880_INT2880",
+    "projection": "w1",
+    "axis": "routed_no_c",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 0,
+    "measured_dram_read_gib": 11.0571,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t8192_e32_w1/2__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "f19a88e4848876141f05eb930f4ec452023b90181ea11988fa2c1a7fc3f359af"
+   },
+   {
+    "case": "FUSEDMOE_TOK8192_E32_TOPK4_H2880_INT2880",
+    "projection": "w1",
+    "axis": "routed_a_only",
+    "a_skip": 0,
+    "b_skip": 1,
+    "c_write": 0,
+    "measured_dram_read_gib": 0.058,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t8192_e32_w1/3__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "3ba596586c77bcbb1457f3eed1d9af1349663b3a8f56564f8234e98049fe8a13"
+   },
+   {
+    "case": "FUSEDMOE_TOK8192_E32_TOPK4_H2880_INT2880",
+    "projection": "w1",
+    "axis": "routed_b_only",
+    "a_skip": 1,
+    "b_skip": 0,
+    "c_write": 0,
+    "measured_dram_read_gib": 3.0563,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t8192_e32_w1/4__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "f985361ecee41668d464abdfba5fc45d1f4c66bc6bead3377d5dae7b0828fac8"
+   },
+   {
+    "case": "FUSEDMOE_TOK8192_E32_TOPK4_H2880_INT2880",
+    "projection": "w1",
+    "axis": "routed_full_repeat",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 1,
+    "measured_dram_read_gib": 18.7455,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t8192_e32_w1/5__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "76b01cc6fe8e2a0d2402d5d9b3f06cb396e530ab46ea8243e00c34e33feacfc2"
+   },
+   {
+    "case": "FUSEDMOE_TOK8192_E32_TOPK4_H2880_INT2880",
+    "projection": "w1",
+    "axis": "routed_no_c_order_replay",
+    "measured_order_replay_lru_8mib_w16_gib": 10.67,
+    "gsm_sharer_spread_steps_at_half_p50_p90": [
+     39.5,
+     55.1
+    ],
+    "stamps_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/stamps_t8192_e32_w1_routed_no_c.bin",
+    "stamps_sha256": "951af524bb365a991b473d8fc7b1def3d2ed6708a73cbc613e3b94e292998e28"
+   },
+   {
+    "case": "FUSEDMOE_TOK8192_E32_TOPK4_H2880_INT2880",
+    "projection": "w2",
+    "axis": "routed_full",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 1,
+    "measured_dram_read_gib": 10.159,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t8192_e32_w2/1__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "4d8df16d17ccd8a48c7d66aa3e87c316c7bc3081b7b8b55c41ecdd2f8f05cbe8"
+   },
+   {
+    "case": "FUSEDMOE_TOK8192_E32_TOPK4_H2880_INT2880",
+    "projection": "w2",
+    "axis": "routed_no_c",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 0,
+    "measured_dram_read_gib": 6.0268,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t8192_e32_w2/2__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "9dc6d14e42e226b80ae3843d4d9bdcb689d5dbe6e3248bbccdeea1d97a615df6"
+   },
+   {
+    "case": "FUSEDMOE_TOK8192_E32_TOPK4_H2880_INT2880",
+    "projection": "w2",
+    "axis": "routed_a_only",
+    "a_skip": 0,
+    "b_skip": 1,
+    "c_write": 0,
+    "measured_dram_read_gib": 0.1775,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t8192_e32_w2/3__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "c9c61894a9ed61e915c4052b8a06931b9fa521f36ed0d4a1245a58f31ab5eee1"
+   },
+   {
+    "case": "FUSEDMOE_TOK8192_E32_TOPK4_H2880_INT2880",
+    "projection": "w2",
+    "axis": "routed_b_only",
+    "a_skip": 1,
+    "b_skip": 0,
+    "c_write": 0,
+    "measured_dram_read_gib": 1.4244,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t8192_e32_w2/4__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "989107734892459b30497567a7b1551175f218d184fa9ba19746d4ab769c1034"
+   },
+   {
+    "case": "FUSEDMOE_TOK8192_E32_TOPK4_H2880_INT2880",
+    "projection": "w2",
+    "axis": "routed_full_repeat",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 1,
+    "measured_dram_read_gib": 10.2376,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t8192_e32_w2/5__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "ab8f46ae030066978607f642c2991bea3e010d96d67dc5dc336f75b15c85467b"
+   },
+   {
+    "case": "FUSEDMOE_TOK8192_E32_TOPK4_H2880_INT2880",
+    "projection": "w2",
+    "axis": "routed_no_c_order_replay",
+    "measured_order_replay_lru_8mib_w16_gib": 6.1,
+    "gsm_sharer_spread_steps_at_half_p50_p90": [
+     63.8,
+     96.1
+    ],
+    "stamps_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/stamps_t8192_e32_w2_routed_no_c.bin",
+    "stamps_sha256": "6a5ce5cc24c799357fd83dc3d01facb9efad1e7886aad4a30032663782ccf4e4"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E8_TOPK2_H4096_INT14336",
+    "projection": "w1",
+    "axis": "routed_full",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 1,
+    "measured_dram_read_gib": 39.8367,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e8_w1/1__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "55bc88071dc3c96776f5f44634cb60fac424dd69d7a4863c0f02818d95bb20dc"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E8_TOPK2_H4096_INT14336",
+    "projection": "w1",
+    "axis": "routed_no_c",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 0,
+    "measured_dram_read_gib": 33.604,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e8_w1/2__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "48f8622b6b68a3ba5759299d0050b2c04e331d825aef0b439f840ce7e919bfd4"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E8_TOPK2_H4096_INT14336",
+    "projection": "w1",
+    "axis": "routed_a_only",
+    "a_skip": 0,
+    "b_skip": 1,
+    "c_write": 0,
+    "measured_dram_read_gib": 2.3701,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e8_w1/3__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "3653efdf9397b6de46c776dc184d7b6f7e3a00e0f2e694820169ccecce8f9fbd"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E8_TOPK2_H4096_INT14336",
+    "projection": "w1",
+    "axis": "routed_b_only",
+    "a_skip": 1,
+    "b_skip": 0,
+    "c_write": 0,
+    "measured_dram_read_gib": 20.234,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e8_w1/4__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "e3a2eeea352fc900d0c0c27f735fa1e64a4841ccb6afcf861c35d0fbb3016970"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E8_TOPK2_H4096_INT14336",
+    "projection": "w1",
+    "axis": "routed_full_repeat",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 1,
+    "measured_dram_read_gib": 38.6609,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e8_w1/5__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "9fc2c2635efe29af2a2a3f86c4db1476d02a5f7b26236d346cfef2b6822cc406"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E8_TOPK2_H4096_INT14336",
+    "projection": "w1",
+    "axis": "routed_no_c_order_replay",
+    "measured_order_replay_lru_8mib_w16_gib": 13.96,
+    "gsm_sharer_spread_steps_at_half_p50_p90": [
+     37.7,
+     48.4
+    ],
+    "stamps_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/stamps_t4096_e8_w1_routed_no_c.bin",
+    "stamps_sha256": "8bf7c88064d3c9b8b7b7581fdb4a60746ac39159dd8832bb7e3a159de2894067"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E8_TOPK2_H4096_INT14336",
+    "projection": "w2",
+    "axis": "routed_full",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 1,
+    "measured_dram_read_gib": 20.4309,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e8_w2/1__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "916d4bca76d1d925121694812732e244f315aaf2042cf1272d618a393473cdf6"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E8_TOPK2_H4096_INT14336",
+    "projection": "w2",
+    "axis": "routed_no_c",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 0,
+    "measured_dram_read_gib": 17.5726,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e8_w2/2__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "455937d81b68e0e2a84483f80fa416606fe7f17cb0655099f8cec8d6cf9494f2"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E8_TOPK2_H4096_INT14336",
+    "projection": "w2",
+    "axis": "routed_a_only",
+    "a_skip": 0,
+    "b_skip": 1,
+    "c_write": 0,
+    "measured_dram_read_gib": 1.2458,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e8_w2/3__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "38bdf64f57b02f64a4b5dfcbf2ed64b723225ad8ba4f411f37d1f6093f0cf4cb"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E8_TOPK2_H4096_INT14336",
+    "projection": "w2",
+    "axis": "routed_b_only",
+    "a_skip": 1,
+    "b_skip": 0,
+    "c_write": 0,
+    "measured_dram_read_gib": 2.4257,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e8_w2/4__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "cc24e3bf1f79ba9f124b609d0e566d94cf81d8d6153561807c1c50c479fab7f1"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E8_TOPK2_H4096_INT14336",
+    "projection": "w2",
+    "axis": "routed_full_repeat",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 1,
+    "measured_dram_read_gib": 20.4094,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e8_w2/5__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "0884cf76ff3597c2ad10b8f16b8ace6c0016df0c161ee1adffdc7b9ba8ac684d"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E8_TOPK2_H4096_INT14336",
+    "projection": "w2",
+    "axis": "routed_no_c_order_replay",
+    "measured_order_replay_lru_8mib_w16_gib": 14.54,
+    "gsm_sharer_spread_steps_at_half_p50_p90": [
+     67.0,
+     79.8
+    ],
+    "stamps_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/stamps_t4096_e8_w2_routed_no_c.bin",
+    "stamps_sha256": "cb5500d76b8f2f10fc7e1be21d799ccda7dbbe9cfc8eb635be8a1c4777513e3d"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E128_TOPK8_H4096_INT1536",
+    "projection": "w1",
+    "axis": "routed_full",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 1,
+    "measured_dram_read_gib": 17.7076,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e128_w1/1__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "7c55fee04623dccf092db282f5c4926bdcd52e5c9b7576bac6e8d0ee377dbb6e"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E128_TOPK8_H4096_INT1536",
+    "projection": "w1",
+    "axis": "routed_no_c",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 0,
+    "measured_dram_read_gib": 12.6846,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e128_w1/2__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "6f9865cf9a58744809f65b05328e604c706027f5534fc1e69f752947c0b3b9fd"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E128_TOPK8_H4096_INT1536",
+    "projection": "w1",
+    "axis": "routed_a_only",
+    "a_skip": 0,
+    "b_skip": 1,
+    "c_write": 0,
+    "measured_dram_read_gib": 0.0324,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e128_w1/3__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "3859ebe1df0d3d95de4c0d92be7b5a98ce9b6779337b7ee9675df13de29f7f7d"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E128_TOPK8_H4096_INT1536",
+    "projection": "w1",
+    "axis": "routed_b_only",
+    "a_skip": 1,
+    "b_skip": 0,
+    "c_write": 0,
+    "measured_dram_read_gib": 4.3547,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e128_w1/4__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "6db42e871130ccec541df03662c6a02db51b1bdf0b6a84408a1071bf61f01141"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E128_TOPK8_H4096_INT1536",
+    "projection": "w1",
+    "axis": "routed_full_repeat",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 1,
+    "measured_dram_read_gib": 17.562,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e128_w1/5__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "5dc769699272ff54b7d8e3b4833416535c107216ca410352a03c9a296d2cf6eb"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E128_TOPK8_H4096_INT1536",
+    "projection": "w1",
+    "axis": "routed_no_c_order_replay",
+    "measured_order_replay_lru_8mib_w16_gib": 12.72,
+    "gsm_sharer_spread_steps_at_half_p50_p90": [
+     80.2,
+     130.6
+    ],
+    "stamps_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/stamps_t4096_e128_w1_routed_no_c.bin",
+    "stamps_sha256": "739cb9df261190d860d7ea9c250958b129759126fd0b24c39bf9d1fcd24da1f2"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E128_TOPK8_H4096_INT1536",
+    "projection": "w2",
+    "axis": "routed_full",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 1,
+    "measured_dram_read_gib": 6.7044,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e128_w2/1__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "62155ff34d687b37fa0253572b3d50ae606a8ce6ab2af8db70e8f55a9d98e6d0"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E128_TOPK8_H4096_INT1536",
+    "projection": "w2",
+    "axis": "routed_no_c",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 0,
+    "measured_dram_read_gib": 4.4179,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e128_w2/2__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "2a6340b58cbcfe184bc4a809dc656b69ec7656b8768f0aba7512807dba657ea9"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E128_TOPK8_H4096_INT1536",
+    "projection": "w2",
+    "axis": "routed_a_only",
+    "a_skip": 0,
+    "b_skip": 1,
+    "c_write": 0,
+    "measured_dram_read_gib": 0.0939,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e128_w2/3__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "6179266028b68a7b177396c6857dd788558da213604c4103eb463cd5e38d9121"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E128_TOPK8_H4096_INT1536",
+    "projection": "w2",
+    "axis": "routed_b_only",
+    "a_skip": 1,
+    "b_skip": 0,
+    "c_write": 0,
+    "measured_dram_read_gib": 2.1331,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e128_w2/4__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "1d231c6a4074572e1e0e4cfd5b14e3fd3ad3990205f2468fc2657f10612ef98f"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E128_TOPK8_H4096_INT1536",
+    "projection": "w2",
+    "axis": "routed_full_repeat",
+    "a_skip": 0,
+    "b_skip": 0,
+    "c_write": 1,
+    "measured_dram_read_gib": 6.6218,
+    "raw_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/counters_t4096_e128_w2/5__Z13routed_streamPK5uint4S1_PS_PKiS4_PjiiiiiiiiiiiPy.txt.json",
+    "raw_sha256": "6bda8891c25d10454a13a5752b19a127ce551fb694b2f99cabc150b6339d4a42"
+   },
+   {
+    "case": "FUSEDMOE_TOK4096_E128_TOPK8_H4096_INT1536",
+    "projection": "w2",
+    "axis": "routed_no_c_order_replay",
+    "measured_order_replay_lru_8mib_w16_gib": 4.29,
+    "gsm_sharer_spread_steps_at_half_p50_p90": [
+     26.9,
+     35.9
+    ],
+    "stamps_path": "profiler_output/microbench/metax_c500/l2_set_miss_20260926/routed/stamps_t4096_e128_w2_routed_no_c.bin",
+    "stamps_sha256": "8f47c700d91104e5bf922910db031abc73743cdf3a39a924e4284de7c8a29cc2"
+   }
+  ],
+  "e8_single_stream_note": "E8 W1 single streams exceed their measured-order replay even alone (B only 20.23 against 4.81 GiB, A only 2.37 against 0.066), while E32/E128 single streams replay within 7 percent.  Ruled out: power-of-two stride set concentration (l2_stride_conflict), DRAM saturation (146 GB/s), pending-miss merge (GSM sharer spread p50 5.2 us against 0.37 us miss latency, same as E32).  Unexplained."
+ }
+}

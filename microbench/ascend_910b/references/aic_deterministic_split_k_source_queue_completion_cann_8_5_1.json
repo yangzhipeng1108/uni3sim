@@ -1,0 +1,82 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_deterministic_split_k_source_queue_completion.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_deterministic_split_k_mte2_mte1_source_queue_completion",
+  "duration_unit": "ns_per_longest_aic_source_program",
+  "production_or_evaluation_duration_consumed": false,
+  "source_program": {
+    "dtype": "bf16",
+    "active_aic_groups": 24,
+    "n_slabs": 2,
+    "n_tiles_per_slab": 32,
+    "k_chunks": 75,
+    "full_chunk_workers": 3,
+    "full_chunks_per_worker": 4,
+    "regular_chunks_per_worker": 3,
+    "k_chunk": 384,
+    "k_tail": 256,
+    "physical_k": 28672,
+    "physical_n": 8192,
+    "a_descriptor_columns": 384,
+    "b_descriptor_rows": 128,
+    "b_descriptor_columns": 384,
+    "b_source_row_stride": 28672,
+    "a1_buffer_slots": 1,
+    "b1_buffer_slots": 2,
+    "l0a_buffer_slots": 2,
+    "l0b_buffer_slots": 2,
+    "preload_commands": 4,
+    "traversal_order": "n_then_m"
+  },
+  "completion_ns_by_aligned_a_rows": {
+    "16": 474620.0,
+    "32": 476810.0,
+    "48": 478350.0,
+    "64": 479690.0,
+    "80": 482340.0,
+    "96": 483980.0,
+    "112": 485780.0,
+    "128": 488970.0
+  },
+  "measurement_quality": {
+    "independent_runs": 3,
+    "trials_per_cell": 8,
+    "statistic": "median",
+    "validated_rows": 192,
+    "failed_rows": 0,
+    "maximum_deviation_from_cell_median_pct": 1.4802836173653438
+  },
+  "exclusions": [
+    "cube",
+    "fixpipe",
+    "workspace",
+    "aiv_reduction",
+    "output"
+  ],
+  "source_binding": {
+    "cann_source_path": "opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/3rd/mat_mul_v3/op_kernel/mat_mul_deterministic_splitk_kernel.h",
+    "cann_source_sha256": "f88f88f9278f55cf2deeb34ea0c2dce0aac0d1f20525b7ab1bc71ad9f5201605",
+    "iterate_order_payload_value": 1,
+    "a1_slot_formula": "depthA1/(stepM*stepKa)",
+    "b1_slot_formula": "depthB1/(stepN*stepKb)"
+  },
+  "provenance": {
+    "measurement_baseline_commit": "de1feff54456efd907234a5c9100bd7e16540853",
+    "source_commit": "edb25e7eb552a78e3193ce88d42c4623fb8ac6ed",
+    "source_snapshot_sha256": "63e4f4306290c8c87ceb523c1f36e949fb2ef0e04a0b3832d4b02bebcc9bea0e",
+    "source_sha256": {
+      "CMakeLists.txt": "0449546f2b7032d0b369ce31f2747383aa58e6a6c46b352fb8964c7a04d53fc7",
+      "aic_mte2_deterministic_split_k_kernel.cpp": "149038c38772c8a8f4c53d17f560666b868b39ec9bc4247fe630b49349bea359",
+      "aic_mte2_deterministic_split_k_main.cpp": "ed78793313349aba1eab4ffc61bddeaef8c6c835e58e4b4363028b7beefa340e",
+      "aic_mte2_deterministic_split_k_runner.py": "71eba91c77bc089628917cd9f90f2885112fd6dd3ffa3a0f729ee447c1de716e"
+    },
+    "binary_sha256": "787e9c7c454373a625df36bcf2fdc7e3b2a934f7741c0bba7f99896d0a075f88",
+    "physical_device_id": 0,
+    "container": "capture-container-2",
+    "raw_path": "profiler_output/microbench/ascend_910b/deterministic_split_k_queue_rows_v2_20260914/raw.csv",
+    "raw_sha256": "0b20e951ed62f410e916593492aec4ba050efd61b9c3aba113dc15d17691bb82",
+    "runner_stderr_path": "profiler_output/microbench/ascend_910b/deterministic_split_k_queue_rows_v2_20260914/run.log",
+    "runner_stderr_sha256": "da7efe7da21827ec406173535119e5fe7bc5c53171ac69aaa7cc8931ef59489e"
+  }
+}

@@ -1,0 +1,179 @@
+{
+    "allowed_use": "Whether concurrently dispatched programs of a grouped matrix launch share an operand tile that they reference at the same K step, and the relative magnitude of that sharing across group widths. The comparison is between group widths at a fixed instruction stream, geometry and logical request volume.",
+    "derived_l2_served_fraction": {
+        "definition": "1 - configured_dram_read_capability / probe_logical_byte_rate, valid while the probe is DRAM bound",
+        "dram_read_capability_bytes_per_s": {
+            "metax_c500": 1653069600000.0,
+            "nvidia_a800": 1790532000000.0
+        },
+        "metax_c500": {
+            "1": 0.26,
+            "16": 0.128,
+            "2": 0.211,
+            "4": 0.151,
+            "8": 0.135
+        },
+        "nvidia_a800": {
+            "1": 0.67,
+            "16": 0.705,
+            "2": 0.656,
+            "4": 0.679,
+            "8": 0.681
+        },
+        "resident_wave_model_prediction": {
+            "1": 0.696,
+            "16": 0.844,
+            "2": 0.734,
+            "4": 0.844,
+            "8": 0.875
+        }
+    },
+    "finding": "Both targets share operands between concurrently dispatched programs, but by very different amounts. Against each target's configured DRAM read capability (metax_c500 918.372 B/clk x 1.8 GHz = 1653 GB/s, nvidia_a800 1124 B/clk x 1.593 GHz = 1791 GB/s), the L2-served fraction of the probe's logical requests is: metax_c500 26.0 / 21.1 / 15.1 / 13.5 / 12.8 percent at group width 1 / 2 / 4 / 8 / 16, and nvidia_a800 67.0 / 65.6 / 67.9 / 68.1 / 70.5 percent. A model in which the resident wave of programs advances through K together predicts 69.6 / 73.4 / 84.4 / 87.5 / 84.4 percent for this geometry. nvidia_a800 matches that model at group width 1 (67.0 measured against 69.6 predicted) and falls short only where the sharing needs many distinct objects co-resident. metax_c500 falls short everywhere, by 2.6x at group width 1. At that width the co-resident working set is about 528 KiB against a documented 8 MiB L2, so the shortfall is not a capacity effect; narrowing the resident-program window cannot reproduce it either, because that window floors the predicted served fraction near 49 percent for this geometry. The metax_c500 shortfall is therefore a property of how its L2 services this access structure, not of how many programs are concurrent.",
+    "forbidden_use": "An absolute DRAM bandwidth, an L2 capacity, a production operator duration, or a per-shape traffic correction. The logical byte rate is a probe rate, not a hardware peak.",
+    "measurements": {
+        "metax_c500": {
+            "by_group_width": [
+                {
+                    "group_width": 1,
+                    "logical_byte_rate_per_s": 2234161274839.1875,
+                    "median_ms": 55.509502,
+                    "relative_spread": 0.048055
+                },
+                {
+                    "group_width": 2,
+                    "logical_byte_rate_per_s": 2094006506361.1597,
+                    "median_ms": 59.224831,
+                    "relative_spread": 0.013867
+                },
+                {
+                    "group_width": 4,
+                    "logical_byte_rate_per_s": 1946308801856.987,
+                    "median_ms": 63.71917,
+                    "relative_spread": 0.007995
+                },
+                {
+                    "group_width": 8,
+                    "logical_byte_rate_per_s": 1911843738529.9917,
+                    "median_ms": 64.867844,
+                    "relative_spread": 0.042298
+                },
+                {
+                    "group_width": 16,
+                    "logical_byte_rate_per_s": 1896173866200.3584,
+                    "median_ms": 65.403908,
+                    "relative_spread": 0.011281
+                }
+            ],
+            "container": "capture-container-1",
+            "device": "MetaX C500",
+            "device_index": 0,
+            "logical_request_bytes": 124017180672,
+            "source": "microbench/metax_c500/memory/l2/grouped_program_operand_sharing.cpp",
+            "toolchain": "/opt/maca/mxgpu_llvm/bin/mxcc -x maca -offload-arch native --maca-path=/opt/maca -O3",
+            "trials": 5
+        },
+        "nvidia_a800": {
+            "by_group_width": [
+                {
+                    "group_width": 1,
+                    "logical_byte_rate_per_s": 5424640679529.386,
+                    "median_ms": 22.861824,
+                    "relative_spread": 0.051733
+                },
+                {
+                    "group_width": 2,
+                    "logical_byte_rate_per_s": 5201672134294.898,
+                    "median_ms": 23.841791,
+                    "relative_spread": 0.016407
+                },
+                {
+                    "group_width": 4,
+                    "logical_byte_rate_per_s": 5572399565950.833,
+                    "median_ms": 22.255615,
+                    "relative_spread": 0.031563
+                },
+                {
+                    "group_width": 8,
+                    "logical_byte_rate_per_s": 5609565905342.732,
+                    "median_ms": 22.10816,
+                    "relative_spread": 0.017971
+                },
+                {
+                    "group_width": 16,
+                    "logical_byte_rate_per_s": 6060981036587.947,
+                    "median_ms": 20.461569,
+                    "relative_spread": 0.013812
+                }
+            ],
+            "device": "NVIDIA A800-SXM4-80GB",
+            "device_index": 0,
+            "logical_request_bytes": 124017180672,
+            "source": "microbench/nvidia_a800/memory/l2/grouped_program_operand_sharing.cu",
+            "toolchain": "/usr/local/cuda-12.2/bin/nvcc -O3 -arch=sm_80",
+            "trials": 5
+        }
+    },
+    "mechanism": "grouped_program_operand_sharing",
+    "nvidia_a800_dram_counter_ground_truth": {
+        "by_group_width": {
+            "1": {
+                "dram_read_bytes": 35120000000.0,
+                "l2_ingress_bytes": 82970000000.0,
+                "l2_served_fraction": 0.577
+            },
+            "16": {
+                "dram_read_bytes": 19700000000.0,
+                "l2_ingress_bytes": 80300000000.0,
+                "l2_served_fraction": 0.755
+            },
+            "2": {
+                "dram_read_bytes": 35520000000.0,
+                "l2_ingress_bytes": 90800000000.0,
+                "l2_served_fraction": 0.609
+            },
+            "4": {
+                "dram_read_bytes": 24300000000.0,
+                "l2_ingress_bytes": 86010000000.0,
+                "l2_served_fraction": 0.717
+            },
+            "8": {
+                "dram_read_bytes": 23080000000.0,
+                "l2_ingress_bytes": 86110000000.0,
+                "l2_served_fraction": 0.732
+            }
+        },
+        "finding": "With real counters the measured served fraction rises with group width, 57.7 to 75.5 percent, so the grouped swizzle does buy sharing on this target. The same-K-step sharing model over-credits it by a roughly uniform 9 to 14 points rather than by the 26 the retracted metric claimed. No metax_c500 counterpart exists yet; wall clock cannot substitute for it.",
+        "geometry": {
+            "k_steps": 448,
+            "m_tiles": 264,
+            "n_tiles": 64,
+            "tile_bytes": 8192
+        },
+        "instrument": "/usr/local/cuda-12.2/bin/ncu --metrics dram__bytes_read.sum,l1tex__m_xbar2l1tex_read_bytes.sum",
+        "same_k_step_sharing_model": {
+            "1": 0.696,
+            "16": 0.844,
+            "2": 0.734,
+            "4": 0.844,
+            "8": 0.875
+        }
+    },
+    "production_or_evaluation_duration_consumed": false,
+    "retraction": "The wall-clock derived l2_served_fraction in this reference and in grouped_program_l2_service_knee.json is RETRACTED. It was computed as 1 - configured_dram_read_capability / logical_byte_rate, which is only valid if the probe is DRAM bound. A direct nvidia_a800 measurement with dram__bytes_read.sum and l1tex__m_xbar2l1tex_read_bytes.sum shows the probe is not DRAM bound: at the same geometry the true served fraction is 57.7 / 60.9 / 71.7 / 73.2 / 75.5 percent at group width 1 / 2 / 4 / 8 / 16, against 67.0 / 65.6 / 67.9 / 68.1 / 70.5 from the wall-clock expression. The wall-clock numbers are wrong in level everywhere and wrong in trend at the low widths. Every conclusion drawn from them is withdrawn, including the reported metax_c500 levels, the claim that the sharing model over-credits by 26 points, and the absence of a knee at 8 MiB. The raw timings are kept because they are correct measurements of the probe's duration; only the served-fraction interpretation fails. A usable version of this probe must either be made genuinely DRAM bound or read DRAM counters directly, which on metax_c500 means mcProfiler.",
+    "schema": "grouped_program_operand_sharing_reference_v1",
+    "scope": {
+        "block_threads": 256,
+        "group_widths": [
+            1,
+            2,
+            4,
+            8,
+            16
+        ],
+        "k_steps": 448,
+        "m_tiles": 264,
+        "n_tiles": 64,
+        "read_instruction": "16-byte vector load",
+        "tile_bytes": 8192
+    }
+}

@@ -1,0 +1,87 @@
+{
+  "schema": "nvidia_a800_cublaslt_fp16_depth3_split_sass_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "software": {
+    "cuda_version": "12.2",
+    "library": "/usr/local/cuda-12.2/targets/x86_64-linux/lib/libcublasLt.so.12.2.5.6",
+    "library_sha256": "fbfbc8a1faf681fa5f3ed3ab86d456e196058e9a6b601c930d200dcd2822b1ae"
+  },
+  "symbols": [
+    {
+      "function": "ampere_fp16_s16816gemm_fp16_128x256_ldg8_f2f_stages_64x3_tn",
+      "normalized_tile_shape": [256, 128, 64],
+      "elf_index": 1905,
+      "elf_name": "libcublasLt.so.12.2.5.1905.sm_80.cubin",
+      "elf_sha256": "b3ca54942b099f2b822873135d8dd32c37079f804ab1ff6e2feff9dd2f48036b",
+      "registers_per_thread": 238,
+      "static_shared_memory_bytes": 49152,
+      "k64_loop": {
+        "source_range": "0x1a20-0x2770",
+        "barrier_instruction": "BAR.SYNC.DEFER_BLOCKING 0x0",
+        "barrier_offset": "0x2380",
+        "barriers_per_complete_k64_tile": 1
+      },
+      "split_two_k64_warp_issue": {
+        "static_warp_instructions_per_warp": 214,
+        "static_hmma_instructions_per_warp": 128,
+        "static_non_hmma_instructions_per_warp": 86,
+        "k64_loop_total_warp_instructions_per_cta": 1712,
+        "k64_loop_hmma_warp_instructions_per_cta": 1024,
+        "k64_loop_non_hmma_warp_instructions_per_cta": 688,
+        "static_k64_mnemonic_sha256": "91e20761ebad463082c32416e94511cd70d0b805e33d45b1d139ae5db8db1a7a",
+        "identical_static_k64_mnemonic_stream_elf_index": 1906,
+        "fixed_path_counter_evidence": "unavailable_for_this_orientation"
+      }
+    },
+    {
+      "function": "ampere_fp16_s16816gemm_fp16_256x128_ldg8_f2f_stages_64x3_tn",
+      "normalized_tile_shape": [128, 256, 64],
+      "elf_index": 1906,
+      "elf_name": "libcublasLt.so.12.2.5.1906.sm_80.cubin",
+      "elf_sha256": "06008e27431fd0cef94019bd3a00b552eedd883a689a619310e8ddae706cb226",
+      "registers_per_thread": 238,
+      "static_shared_memory_bytes": 49152,
+      "k64_loop": {
+        "source_range": "0x1a20-0x2770",
+        "barrier_instruction": "BAR.SYNC.DEFER_BLOCKING 0x0",
+        "barrier_offset": "0x2380",
+        "barriers_per_complete_k64_tile": 1
+      },
+      "split_two_warp_issue": {
+        "static_warp_instructions_per_warp": 214,
+        "static_hmma_instructions_per_warp": 128,
+        "static_non_hmma_instructions_per_warp": 86,
+        "static_k64_mnemonic_sha256": "91e20761ebad463082c32416e94511cd70d0b805e33d45b1d139ae5db8db1a7a",
+        "identical_static_k64_mnemonic_stream_elf_index": 1905,
+        "k64_loop_total_warp_instructions_per_cta": 1712,
+        "k64_loop_hmma_warp_instructions_per_cta": 1024,
+        "k64_loop_non_hmma_warp_instructions_per_cta": 688,
+        "fixed_non_hmma_warp_instructions_per_logical_output": 4744,
+        "non_duration_counter_validation": [
+          {
+            "case_id": "GEMM_B1_M16384_K4096_N14336",
+            "grid": [56, 128, 2],
+            "k64_tiles_per_split": 32,
+            "executed_warp_instructions_per_cta": 65356
+          },
+          {
+            "case_id": "GEMM_B512_M1_K8192_N28672",
+            "grid": [112, 4, 2],
+            "k64_tiles_per_split": 64,
+            "executed_warp_instructions_per_cta": 120140
+          }
+        ]
+      }
+    }
+  ],
+  "ordered_split_epilogue": {
+    "warps_per_cta": 8,
+    "later_slice_warp_instructions": 1032,
+    "first_slice_warp_instruction_saving": 14,
+    "inline_warp_instructions": 208,
+    "store_calls_per_warp": 8,
+    "store_routine_warp_instructions": 103,
+    "source_regions": ["0x3070-0x3090", "0x30a0-0x3d90", "0x3da0-0x4400"]
+  },
+  "production_or_evaluation_duration_consumed": false
+}

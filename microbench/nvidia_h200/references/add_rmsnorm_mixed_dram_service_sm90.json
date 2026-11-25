@@ -1,0 +1,176 @@
+{
+  "schema": "nvidia_h200_add_rmsnorm_mixed_dram_service_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "evidence_kind": "independent_full_chip_mixed_dram_stream_capacity",
+  "production_or_evaluation_duration_consumed": false,
+  "capture": {
+    "owner": "h200-port-wp4_dram",
+    "source_baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+    "output": "profiler_output/microbench/nvidia_h200/dram_directional_3r2_20260925",
+    "physical_device_index": 1,
+    "device_uuid": "capture-device-31adbc24ad46",
+    "pci_bus_id": "00000000:4C:00.0",
+    "preflight_all_devices_idle": false,
+    "preflight_owned_device_idle": true,
+    "capture_pids": null,
+    "postflight_memory_mib": 4,
+    "postflight_utilization_percent": 0,
+    "postflight_compute_processes": 0,
+    "cleanup": "complete",
+    "rotations": 2,
+    "clock_gate": {
+      "gate": "every busy nvidia-smi sample (utilization.gpu > 0, 50 ms period) must report at least boost_mhz; otherwise the process is rejected and re-run",
+      "boost_mhz": 1980,
+      "accepted_captures": 12,
+      "rejected_captures": 0,
+      "busy_sm_clock_mhz_min": 1980,
+      "busy_sm_clock_mhz_max": 1980,
+      "busy_samples": 44,
+      "rejected": []
+    },
+    "note": "Only the owned GPU 1 was checked idle; the other H200 devices were in use by other workers.  capture_pids were not recorded by the runner."
+  },
+  "source_identity": {
+    "probe_source": "microbench/nvidia_h200/memory/dram/directional_bandwidth.cu",
+    "probe_source_sha256": "53b1259917cfc74c9d83b3f2442e97dbbfd3302514194bb4a45b2940d8c2a99e",
+    "runner": "microbench/nvidia_h200/memory/dram/directional_read60_write40_runner.py",
+    "runner_sha256": "1206afc2b99b0dfd54795f49dfea1b6f6efaf7b4514afe48df1d464829672558",
+    "build_flags": [
+      "-DDIRECTIONAL_ENABLE_READ60_WRITE40=1"
+    ],
+    "binary_sha256": "394f40b53671f2f6a3bce66e687577f52177733763fd52e9c704cdbee65771f6",
+    "raw_sha256": "dcfed294f80126b908e4a03fe77a83d7e17bd71b41bdfa144e5457d085429db6",
+    "stderr_sha256": "89318435c1587c02169580122b2db461037c0757ed5e82d53e20b88258e0912b",
+    "counter_sha256": null,
+    "read_split_counter_sha256": null,
+    "resource_dump_sha256": "f0050a1973470869bcb9c16fca7386f41a469d6b27600cf5fb3b1e566a7b8d48",
+    "sass_dump_sha256": null
+  },
+  "tool_identity": {
+    "nvcc_sha256": null,
+    "cuobjdump_sha256": null,
+    "ncu_sha256": null,
+    "nvcc_version": "Cuda compilation tools, release 12.9 (/capture-public/tools/cuda-12.9 on h200-capture-host)",
+    "ncu_version": null,
+    "driver_version": "575.57.08",
+    "note": "cuobjdump and Nsight Compute are not installed on h200-capture-host; no SASS dump or counter capture exists for this reference."
+  },
+  "probe_contract": {
+    "timer_domain": "cuda_event",
+    "block_threads": 256,
+    "vector_bytes_per_lane_operation": 16,
+    "read_operations_per_group": 3,
+    "write_operations_per_group": 2,
+    "read_fraction": 0.6,
+    "write_fraction": 0.4,
+    "allocated_source_buffer_bytes": 2147481600,
+    "allocated_destination_buffer_bytes": 2147481600,
+    "touched_source_bytes_per_iteration": 1288488960,
+    "touched_destination_bytes_per_iteration": 858992640,
+    "combined_working_set_bytes": 2147481600,
+    "hardware_l2_bytes": 62914560,
+    "iterations": 4,
+    "trials_per_grid": 14,
+    "grids": [
+      132,
+      264,
+      528,
+      1056,
+      1024,
+      2112
+    ],
+    "load_cache_operator": "ld.global.cg.v4.u32",
+    "store_cache_operator": "st.global.wb.v4.u32",
+    "kernel_registers_per_thread": 38,
+    "kernel_static_shared_bytes": 0,
+    "kernel_local_bytes": 0,
+    "validation": "pass"
+  },
+  "median_total_capacity_gb_per_s": {
+    "132": 2969.498093,
+    "264": 3891.323752,
+    "528": 4041.178427,
+    "1056": 3927.5343439999997,
+    "1024": 3894.428943,
+    "2112": 4020.8691025
+  },
+  "relative_trial_spread_percent": {
+    "132": 0.5728518243571055,
+    "264": 0.3986577059291671,
+    "528": 0.991154627877565,
+    "1056": 1.5300019741851623,
+    "1024": 1.6198242135958774,
+    "2112": 0.9346662634860003
+  },
+  "counter_validation": {
+    "grid_ctas": null,
+    "profiled_iterations": null,
+    "read_lookup_hit_sectors": null,
+    "read_lookup_miss_sectors": null,
+    "write_sectors_including_sink": null,
+    "checksum_sink_write_sectors": null,
+    "logical_stream_write_sectors": null,
+    "expected_read_sectors": null,
+    "expected_write_sectors": null,
+    "dram_read_bytes": null,
+    "dram_write_bytes_observed_before_completion_drain": null,
+    "interpretation": null,
+    "status": "not_captured",
+    "reason": "Nsight Compute is not installed on the H200 host, so the A800 read-miss/write-sector counter check cannot be repeated.  The working set (2 GiB) is 34 times the 60 MiB L2, and the same source on A800 showed zero read-sector L2 hits at this geometry."
+  },
+  "selected_service": {
+    "selection_rule": "minimum per-grid median across the frozen full-chip grid sweep",
+    "coupled_logical_byte_capacity_per_s": 2969498093000.0,
+    "read_logical_byte_capacity_per_s": 1781698855800.0,
+    "write_logical_byte_capacity_per_s": 1187799237200.0,
+    "composition": "For an exact 3:2 stream, read_bytes/read_capacity equals write_bytes/write_capacity; their maximum is the one coupled service time.",
+    "scope": "full_chip",
+    "minimum_grid_ctas": 132,
+    "maximum_grid_ctas": 2112,
+    "maximum_relative_trial_spread_percent": 1.6198242135958774,
+    "selected_grid_ctas": 132,
+    "read_logical_byte_capacity_per_s_by_grid_ctas": {
+      "132": 1781698855800.0,
+      "264": 2334794251200.0,
+      "528": 2424707056200.0,
+      "1056": 2356520606399.9995,
+      "1024": 2336657365800.0,
+      "2112": 2412521461500.0
+    },
+    "write_logical_byte_capacity_per_s_by_grid_ctas": {
+      "132": 1187799237200.0,
+      "264": 1556529500800.0,
+      "528": 1616471370800.0,
+      "1056": 1571013737600.0,
+      "1024": 1557771577200.0,
+      "2112": 1608347641000.0
+    }
+  },
+  "applicability": {
+    "dtype": "bf16",
+    "vector_width_elements": 8,
+    "logical_bytes_per_lane_operation": 16,
+    "threads_per_cta": 256,
+    "required_read_write_ratio": "3:2",
+    "required_source_evidence": "tail-free vec8 read/write operations with eight active producer warps per CTA",
+    "cache_scope": "compulsory-DRAM capacity endpoint",
+    "resident_footprint_rule": "the two in-place tensors plus shared gamma must strictly exceed the physical L2 capacity"
+  },
+  "decision": {
+    "status": "accepted_mechanism_capacity",
+    "forward_eligible": true,
+    "reason": "The exact workload-independent 3:2 stream has a working set 34 times larger than the H200 L2, is stable across the frozen full-chip sweep, and supplies only a typed byte-service capacity (no NCU counter proof on H200)."
+  },
+  "excluded_conclusions": [
+    "a complete production AddRMSNorm duration",
+    "a replacement for the generic L2 or DRAM capacity",
+    "read/write ratios other than exactly 3:2",
+    "blocks other than 256 threads",
+    "scalar, vec4, or non-BF16 paths",
+    "grids outside 132 through 2112 CTAs",
+    "resident footprints that fit within L2",
+    "any per-shape timing correction"
+  ]
+}

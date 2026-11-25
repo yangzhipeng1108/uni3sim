@@ -1,0 +1,385 @@
+{
+ "schema": "nvidia_h200_fp8_block_grouped_gemm_tile_wave_refill_dram_reference_v2",
+ "hardware_id": "nvidia_h200",
+ "mechanism": "fp8_block_grouped_gemm_dram_fed_wave_refill",
+ "production_or_evaluation_duration_consumed": false,
+ "production_predictor_consumption_allowed": true,
+ "timer_domain": "cuda_event_gpu_timeline",
+ "waves": [
+  1,
+  2,
+  4,
+  8
+ ],
+ "k_values": [
+  256,
+  512,
+  1024
+ ],
+ "provenance": {
+  "git_commit": "001b2ce146560e9b93783ecf02d4375f8dc04841",
+  "runner": {
+   "path": "microbench/nvidia_h200/operators/fused_moe/sm90_fp8_block_tile_wave_refill_runner.py",
+   "sha256": "1b05b14f91e8fdb5fb423e0e9b4fe9f2a300fa7365ccd614100d7e7b7e3fe4cc"
+  },
+  "kernel_runner": {
+   "path": "microbench/nvidia_h200/operators/fused_moe/sm90_fp8_block_tile_pipeline_runner.py",
+   "sha256": "7a0c9325e0223829b53fdf897f5f8258f90f372f6a4aaa93afdfd0de77220d05"
+  },
+  "capture": {
+   "path": "microbench/nvidia_h200/operators/fused_moe/sm90_fp8_block_tile_wave_refill_k256_capture.sh",
+   "sha256": "6ed89eb4fb80e80cc2b63e23a9146abfd10d408a43020c9d268dae62634ccfbc"
+  },
+  "wp11_l2_reference_sha256": "6cceb6921eaa6a140d61ced7920bee2186622a0156069806154e363bad3a9757"
+ },
+ "programs": {
+  "bm16_bn128_bk128_w4_s3": {
+   "remote_raw_dir": "/capture-public/h200_microbench/dsr1_mtpoff/raw/fp8_moe_refill_k256_20260926_035057",
+   "dram": {
+    "captures": [
+     {
+      "path": "profiler_output/microbench/nvidia_h200/fp8_moe_refill_k256/fp8_moe_refill_k256_20260926_035057/gpu0_bm16_bn128_bk128_w4_s3_dram_p1_a1.csv",
+      "remote_path": "/capture-public/h200_microbench/dsr1_mtpoff/raw/fp8_moe_refill_k256_20260926_035057/gpu0_bm16_bn128_bk128_w4_s3_dram_p1_a1.csv",
+      "raw_sha256": "3bedc42563ca17e01150c510a1abbd2bcf17a4eb2160add1457c3a74706e4924",
+      "process": "p1",
+      "attempt": 1,
+      "clock": {
+       "device": 0,
+       "samples": 10,
+       "busy_samples": 4,
+       "window_min_mhz": 1980.0,
+       "accepted": true
+      },
+      "median_duration_ns": {
+       "W1_K256": 11904.0,
+       "W1_K512": 14816.0,
+       "W1_K1024": 22848.001,
+       "W2_K256": 17472.001,
+       "W2_K512": 22464.0,
+       "W2_K1024": 38463.998999999996,
+       "W4_K256": 27456.0,
+       "W4_K512": 38368.002,
+       "W4_K1024": 70239.99799999999,
+       "W8_K256": 45759.998,
+       "W8_K512": 69632.001,
+       "W8_K1024": 130080.0
+      },
+      "per_wave_slope_ns": {
+       "K256": 4801.112686956522,
+       "K512": 7842.504513043479,
+       "K1024": 15313.25212173913
+      },
+      "dram_wave_k_round_interval_ns": 1752.0232391304344,
+      "dram_wave_refill_ns": 1297.0662086956536,
+      "held_out_K512": {
+       "measured_slope_ns": 7842.504513043479,
+       "predicted_slope_ns": 8305.159165217392,
+       "relative_error": 0.058993227406428206
+      }
+     },
+     {
+      "path": "profiler_output/microbench/nvidia_h200/fp8_moe_refill_k256/fp8_moe_refill_k256_20260926_035057/gpu0_bm16_bn128_bk128_w4_s3_dram_p2_a1.csv",
+      "remote_path": "/capture-public/h200_microbench/dsr1_mtpoff/raw/fp8_moe_refill_k256_20260926_035057/gpu0_bm16_bn128_bk128_w4_s3_dram_p2_a1.csv",
+      "raw_sha256": "37e600624b66c2aadab057b96a7f4936b939f342a75a2ef2be73688759bdc494",
+      "process": "p2",
+      "attempt": 1,
+      "clock": {
+       "device": 0,
+       "samples": 10,
+       "busy_samples": 6,
+       "window_min_mhz": 1980.0,
+       "accepted": true
+      },
+      "median_duration_ns": {
+       "W1_K256": 11840.0,
+       "W1_K512": 14880.0,
+       "W1_K1024": 23744.0,
+       "W2_K256": 17312.0,
+       "W2_K512": 23744.0,
+       "W2_K1024": 38495.999,
+       "W4_K256": 27392.0,
+       "W4_K512": 38240.001000000004,
+       "W4_K1024": 70400.0,
+       "W8_K256": 45887.998999999996,
+       "W8_K512": 69568.001,
+       "W8_K1024": 130687.997
+      },
+      "per_wave_slope_ns": {
+       "K256": 4835.338982608695,
+       "K512": 7747.895808695654,
+       "K1024": 15316.869182608694
+      },
+      "dram_wave_k_round_interval_ns": 1746.9216999999999,
+      "dram_wave_refill_ns": 1341.4955826086953,
+      "held_out_K512": {
+       "measured_slope_ns": 7747.895808695654,
+       "predicted_slope_ns": 8329.182382608695,
+       "relative_error": 0.07502508916816475
+      }
+     }
+    ],
+    "rejected_attempts": 0,
+    "service_parameters": {
+     "dram_wave_refill_ns": 1341.4955826086953,
+     "dram_wave_k_round_interval_ns": 1752.0232391304344,
+     "derivation": "per accepted DRAM-mode process: least-squares slope of the cell median over W=1,2,4,8 at K256 and K1024; interval = (slope K1024 - slope K256) / 6, refill = slope K256 - 2 * interval; component-wise maximum over processes; K512 held out"
+    }
+   },
+   "l2": {
+    "captures": [
+     {
+      "path": "profiler_output/microbench/nvidia_h200/fp8_moe_refill_k256/fp8_moe_refill_k256_20260926_035057/gpu0_bm16_bn128_bk128_w4_s3_l2_p1_a1.csv",
+      "remote_path": "/capture-public/h200_microbench/dsr1_mtpoff/raw/fp8_moe_refill_k256_20260926_035057/gpu0_bm16_bn128_bk128_w4_s3_l2_p1_a1.csv",
+      "raw_sha256": "0cd2d6b4d6605743851ce82cf84c6980bf9c083f8e81d79924958f4c688633b2",
+      "process": "p1",
+      "attempt": 1,
+      "clock": {
+       "device": 0,
+       "samples": 4,
+       "busy_samples": 1,
+       "window_min_mhz": 1980.0,
+       "accepted": true
+      },
+      "median_duration_ns": {
+       "W1_K256": 9344.0,
+       "W1_K512": 11424.0,
+       "W1_K1024": 15776.001000000002,
+       "W2_K256": 12992.0,
+       "W2_K512": 17247.999,
+       "W2_K1024": 26048.001,
+       "W4_K256": 20352.0,
+       "W4_K512": 29023.999000000003,
+       "W4_K1024": 45984.0,
+       "W8_K256": 34240.0,
+       "W8_K512": 52288.0,
+       "W8_K1024": 85472.00300000001
+      },
+      "per_wave_slope_ns": {
+       "K256": 3553.9478260869564,
+       "K512": 5839.304400000001,
+       "K1024": 9940.313330434785
+      },
+      "wp11_l2_coefficients_at_K256": {
+       "measured_slope_ns": 3553.9478260869564,
+       "predicted_slope_ns": 3740.057959420291,
+       "relative_error": 0.052367154060966925
+      }
+     },
+     {
+      "path": "profiler_output/microbench/nvidia_h200/fp8_moe_refill_k256/fp8_moe_refill_k256_20260926_035057/gpu0_bm16_bn128_bk128_w4_s3_l2_p2_a1.csv",
+      "remote_path": "/capture-public/h200_microbench/dsr1_mtpoff/raw/fp8_moe_refill_k256_20260926_035057/gpu0_bm16_bn128_bk128_w4_s3_l2_p2_a1.csv",
+      "raw_sha256": "4501c425570e3fc919dd3f61828e71d57a06e479bb412fab33eb440fa9eb783a",
+      "process": "p2",
+      "attempt": 1,
+      "clock": {
+       "device": 0,
+       "samples": 10,
+       "busy_samples": 4,
+       "window_min_mhz": 1980.0,
+       "accepted": true
+      },
+      "median_duration_ns": {
+       "W1_K256": 9312.0,
+       "W1_K512": 11552.0,
+       "W1_K1024": 15840.0,
+       "W2_K256": 13088.0,
+       "W2_K512": 17376.0,
+       "W2_K1024": 26144.0,
+       "W4_K256": 20320.0,
+       "W4_K512": 29120.0,
+       "W4_K1024": 45887.998999999996,
+       "W8_K256": 34400.001,
+       "W8_K512": 52064.002,
+       "W8_K1024": 85727.997
+      },
+      "per_wave_slope_ns": {
+       "K256": 3574.539278260869,
+       "K512": 5786.9916,
+       "K1024": 9965.356069565218
+      },
+      "wp11_l2_coefficients_at_K256": {
+       "measured_slope_ns": 3574.539278260869,
+       "predicted_slope_ns": 3740.057959420291,
+       "relative_error": 0.046304899254024035
+      }
+     }
+    ],
+    "rejected_attempts": 0
+   }
+  },
+  "bm64_bn128_bk128_w4_s3": {
+   "remote_raw_dir": "/capture-public/h200_microbench/dsr1_mtpoff/raw/fp8_moe_refill_k256_bm64_20260926_035919",
+   "dram": {
+    "captures": [
+     {
+      "path": "profiler_output/microbench/nvidia_h200/fp8_moe_refill_k256/fp8_moe_refill_k256_bm64_20260926_035919/gpu0_bm64_bn128_bk128_w4_s3_dram_p1_a1.csv",
+      "remote_path": "/capture-public/h200_microbench/dsr1_mtpoff/raw/fp8_moe_refill_k256_bm64_20260926_035919/gpu0_bm64_bn128_bk128_w4_s3_dram_p1_a1.csv",
+      "raw_sha256": "3aa82f2a87c8d1e4689b4b45e2995f3f5c8ac6012471dad28478cdeb1a57431e",
+      "process": "p1",
+      "attempt": 1,
+      "clock": {
+       "device": 0,
+       "samples": 9,
+       "busy_samples": 4,
+       "window_min_mhz": 1980.0,
+       "accepted": true
+      },
+      "median_duration_ns": {
+       "W1_K256": 10048.0,
+       "W1_K512": 12064.0,
+       "W1_K1024": 16416.0,
+       "W2_K256": 14624.0,
+       "W2_K512": 18464.001,
+       "W2_K1024": 27295.999,
+       "W4_K256": 23903.999,
+       "W4_K512": 31744.0,
+       "W4_K1024": 49311.999,
+       "W8_K256": 43168.001,
+       "W8_K512": 56448.001,
+       "W8_K1024": 91839.99900000001
+      },
+      "per_wave_slope_ns": {
+       "K256": 4737.94796521739,
+       "K512": 6342.678347826087,
+       "K1024": 10773.425991304348
+      },
+      "dram_wave_k_round_interval_ns": 1005.9130043478262,
+      "dram_wave_refill_ns": 2726.121956521738,
+      "held_out_K512": {
+       "measured_slope_ns": 6342.678347826087,
+       "predicted_slope_ns": 6749.773973913043,
+       "relative_error": 0.06418355208355875
+      }
+     },
+     {
+      "path": "profiler_output/microbench/nvidia_h200/fp8_moe_refill_k256/fp8_moe_refill_k256_bm64_20260926_035919/gpu0_bm64_bn128_bk128_w4_s3_dram_p2_a1.csv",
+      "remote_path": "/capture-public/h200_microbench/dsr1_mtpoff/raw/fp8_moe_refill_k256_bm64_20260926_035919/gpu0_bm64_bn128_bk128_w4_s3_dram_p2_a1.csv",
+      "raw_sha256": "b02004ef0186ce62424f399a3ab63156b750d55fd1df43f1bcde8db696c0a283",
+      "process": "p2",
+      "attempt": 1,
+      "clock": {
+       "device": 0,
+       "samples": 9,
+       "busy_samples": 5,
+       "window_min_mhz": 1980.0,
+       "accepted": true
+      },
+      "median_duration_ns": {
+       "W1_K256": 10080.0,
+       "W1_K512": 12160.0,
+       "W1_K1024": 16416.0,
+       "W2_K256": 14752.0,
+       "W2_K512": 18368.0,
+       "W2_K1024": 27168.0,
+       "W4_K256": 24095.999,
+       "W4_K512": 31808.000000000004,
+       "W4_K1024": 49440.0,
+       "W8_K256": 43104.0,
+       "W8_K512": 56159.999,
+       "W8_K1024": 91871.999
+      },
+      "per_wave_slope_ns": {
+       "K256": 4719.3043391304345,
+       "K512": 6297.321591304348,
+       "K1024": 10787.06072173913
+      },
+      "dram_wave_k_round_interval_ns": 1011.2927304347826,
+      "dram_wave_refill_ns": 2696.718878260869,
+      "held_out_K512": {
+       "measured_slope_ns": 6297.321591304348,
+       "predicted_slope_ns": 6741.889799999999,
+       "relative_error": 0.07059639598357714
+      }
+     }
+    ],
+    "rejected_attempts": 0,
+    "service_parameters": {
+     "dram_wave_refill_ns": 2726.121956521738,
+     "dram_wave_k_round_interval_ns": 1011.2927304347826,
+     "derivation": "per accepted DRAM-mode process: least-squares slope of the cell median over W=1,2,4,8 at K256 and K1024; interval = (slope K1024 - slope K256) / 6, refill = slope K256 - 2 * interval; component-wise maximum over processes; K512 held out"
+    }
+   },
+   "l2": {
+    "captures": [
+     {
+      "path": "profiler_output/microbench/nvidia_h200/fp8_moe_refill_k256/fp8_moe_refill_k256_bm64_20260926_035919/gpu0_bm64_bn128_bk128_w4_s3_l2_p1_a1.csv",
+      "remote_path": "/capture-public/h200_microbench/dsr1_mtpoff/raw/fp8_moe_refill_k256_bm64_20260926_035919/gpu0_bm64_bn128_bk128_w4_s3_l2_p1_a1.csv",
+      "raw_sha256": "2d992fdb60cf8ae745f5d0813edb9432e7ecbf163370f80ecc58d855ddc0630f",
+      "process": "p1",
+      "attempt": 1,
+      "clock": {
+       "device": 0,
+       "samples": 8,
+       "busy_samples": 3,
+       "window_min_mhz": 1980.0,
+       "accepted": true
+      },
+      "median_duration_ns": {
+       "W1_K256": 8672.0,
+       "W1_K512": 9856.0,
+       "W1_K1024": 12384.0,
+       "W2_K256": 12320.0,
+       "W2_K512": 14656.0,
+       "W2_K1024": 19776.0,
+       "W4_K256": 19424.001,
+       "W4_K512": 24095.999,
+       "W4_K1024": 33984.002,
+       "W8_K256": 32832.0,
+       "W8_K512": 42592.0,
+       "W8_K1024": 62240.001000000004
+      },
+      "per_wave_slope_ns": {
+       "K256": 3442.9217478260875,
+       "K512": 4670.886947826087,
+       "K1024": 7107.895817391305
+      },
+      "wp11_l2_coefficients_at_K256": {
+       "measured_slope_ns": 3442.9217478260875,
+       "predicted_slope_ns": 3344.5565826086968,
+       "relative_error": -0.028570258757550926
+      }
+     },
+     {
+      "path": "profiler_output/microbench/nvidia_h200/fp8_moe_refill_k256/fp8_moe_refill_k256_bm64_20260926_035919/gpu0_bm64_bn128_bk128_w4_s3_l2_p2_a1.csv",
+      "remote_path": "/capture-public/h200_microbench/dsr1_mtpoff/raw/fp8_moe_refill_k256_bm64_20260926_035919/gpu0_bm64_bn128_bk128_w4_s3_l2_p2_a1.csv",
+      "raw_sha256": "865b04d436117526f2d63fe3bbb097e6f618b8db56942f98474c02179c7cab05",
+      "process": "p2",
+      "attempt": 1,
+      "clock": {
+       "device": 0,
+       "samples": 8,
+       "busy_samples": 3,
+       "window_min_mhz": 1980.0,
+       "accepted": true
+      },
+      "median_duration_ns": {
+       "W1_K256": 8736.0,
+       "W1_K512": 9952.0,
+       "W1_K1024": 12512.0,
+       "W2_K256": 12352.0,
+       "W2_K512": 14688.0,
+       "W2_K1024": 19808.0,
+       "W4_K256": 19360.0,
+       "W4_K512": 24095.999,
+       "W4_K1024": 33952.001000000004,
+       "W8_K256": 32671.999,
+       "W8_K512": 42463.999,
+       "W8_K1024": 62208.001
+      },
+      "per_wave_slope_ns": {
+       "K256": 3410.6433304347825,
+       "K512": 4640.8346260869575,
+       "K1024": 7088.695808695651
+      },
+      "wp11_l2_coefficients_at_K256": {
+       "measured_slope_ns": 3410.6433304347825,
+       "predicted_slope_ns": 3344.5565826086968,
+       "relative_error": -0.019376622362227813
+      }
+     }
+    ],
+    "rejected_attempts": 0
+   }
+  }
+ }
+}

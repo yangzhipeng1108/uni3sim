@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "7c4771c158f4595210bb0929627d8b61daa2e82c",
+  "capture_source_snapshot": "vector_opcode_af07e147",
+  "service": "vector_to_mte2_fence",
+  "request_size_unit": "source_vector_to_mte2_fences",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"1": 6.666666667},
+  "benchmark_binary_sha256": "6281ffc0df2385cacb9cdc81583ed1ae19588ce7f78d49f18bd58df30d39c31a",
+  "benchmark_source_sha256": {
+    "vector_opcode_kernel.cpp": "40e9e019371344b0c54a1b1af3a0f660b1508a51fd8188a9761b78f342cb8bfb",
+    "vector_opcode_main.cpp": "7655d3434ef63fe2be14a3d6f699123ff3bfb0078b61b8cd9f6678949ff028cf",
+    "vector_opcode_report.py": "6aafe941807d8c8bca32c449e23f0f30688142c0cd1fe1154101d7b8d0667d92",
+    "vector_opcode_runner.py": "1728ae08cf55e593816561003e24bddf7cf651e3213728a6dbc44770c5c2c874"
+  },
+  "production_source_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/add_rms_norm",
+  "production_source_symbol": "KernelAddRmsNorm<bfloat16_t>::Compute",
+  "production_source_sha256": {
+    "add_rms_norm.cpp": "cfe1427a7cc10d4731fb122d5763009eda140bc25eaf3db8885fb7044fad3ddf",
+    "add_rms_norm.h": "655b84f7fbe5c911cc83daa6a3e77d1b219ac8206965a1e3065af6fa835ac817"
+  },
+  "device_id": 7,
+  "independent_runs": 3,
+  "samples_per_cell": 18,
+  "block_dims": [1, 24, 48],
+  "tick_intersection_ns": [20.0, 20.0],
+  "maximum_run_relative_median_spread": 0.00030609118382113424,
+  "maximum_concurrency_relative_median_spread": 0.002746582049862739,
+  "mechanism": "one source-level V_MTE2 SetFlag/WaitFlag fence pair with no production operator or GM transfer in the timed region",
+  "composition": "one source-exact fence request per CANN key-30 AddRmsNorm row after final-y Vector computation and before outQueueY EnQue",
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/vector_to_mte2_fence_af07e147_20260829_d7/run1.csv", "sha256": "63eba4d1b69eaa19c0de0deb5e52fd719aa2dfff294d4b873dce2d4f8f601ac8"},
+    {"path": "profiler_output/microbench/ascend_910b/vector_to_mte2_fence_af07e147_20260829_d7/run2.csv", "sha256": "aa28c7be78d11c7e22049c35ecc69adb499bf4962ef0956da2c7791ce7110831"},
+    {"path": "profiler_output/microbench/ascend_910b/vector_to_mte2_fence_af07e147_20260829_d7/run3.csv", "sha256": "e4c9b982f384fb642bf659e144cb846914724431576041cc5780c5cabde14a35"}
+  ],
+  "measurement_gate_passed": true,
+  "provenance_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

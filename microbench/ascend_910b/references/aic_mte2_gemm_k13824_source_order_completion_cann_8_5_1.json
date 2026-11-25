@@ -1,0 +1,61 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_mte2_gemm_source_order_completion.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_mte2_to_mte1_source_order_completion_v1",
+  "duration_unit": "ns_per_completed_source_program_per_aic",
+  "source_program": {
+    "dtype": "bf16",
+    "active_aic_groups": 24,
+    "operand_buffer_depth": 2,
+    "base_tile_m": 128,
+    "base_tile_n": 224,
+    "base_tile_k": 64,
+    "mte1_base_k": 64,
+    "a_rows": 128,
+    "a_columns": 512,
+    "a_source_row_stride_elements": 13824,
+    "b_rows": 224,
+    "b_columns": 256,
+    "b_source_row_stride_elements": 13824,
+    "m_groups": 4,
+    "n_groups": 6,
+    "output_tiles_per_worker": 4,
+    "k_slabs": 27,
+    "mte2_programs_per_worker": 108,
+    "mte1_pairs_per_worker": 864
+  },
+  "capture": {
+    "source_commit": "8734778bd178d5898b2596aa646c7965801377b0",
+    "source_snapshot_sha256": "d647454956fd240bca652284404608b5428ecf81fda8823454e8336ca30be961",
+    "source_mte2_kernel_sha256": "0d9534c63c44843c2734e2ff72fc39a132ede20707dbd0c6eaa4c65cb088d35a",
+    "source_ingress_kernel_sha256": "b36e17cc565d8b10bb1ff8b3fc0de9ae9e7215d4226d89a98e3748053ff7abe6",
+    "source_main_sha256": "04154e10abbf5684a6cc7d07cabea4a377d20c5478216d1ff7f51a67ac5295b4",
+    "source_runner_sha256": "7b576f80371545b2c0d7e9d2d0cbdb78345d366884967fa4d8b49536648a3e7a",
+    "binary_sha256": "6f5b8d02c7bfb5f69f151dc254a6f8f214535933e0eeabc931b906c63167a881",
+    "physical_device_id": 4,
+    "run_count": 3,
+    "trials_per_run": 8,
+    "raw_paths": [
+      "profiler_output/microbench/ascend_910b/gemm_k13824_source_order_8734778b_20260909_d4_r1/raw.csv"
+    ],
+    "raw_sha256": [
+      "d3627cd167b635d0c9401c580848cd7589a91388809e63754d06e78f2832ba9c"
+    ]
+  },
+  "measurements": {
+    "mte2_only_run_medians_ns": [
+      321390.0,
+      321120.0,
+      320750.0
+    ],
+    "mte2_mte1_completion_run_medians_ns": [
+      474710.0,
+      475330.0,
+      475730.0
+    ],
+    "mte2_only_median_of_run_medians_ns": 321120.0,
+    "mte2_mte1_completion_median_of_run_medians_ns": 475330.0
+  },
+  "production_or_evaluation_duration_consumed": false
+}

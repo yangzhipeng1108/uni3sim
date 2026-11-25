@@ -1,0 +1,89 @@
+{
+  "scheduler_pools": [
+    {
+      "binding": {
+        "deployment": "colocated",
+        "expert_parallel_size": 1,
+        "hardware_config_sha256": "685154af9104a6b18cd7403c49fb95973595ecda50d56317376f082e04d70219",
+        "hardware_id": "nvidia_h200",
+        "kv_block_size_tokens": 16,
+        "max_batched_tokens": 32768,
+        "max_model_len": 9216,
+        "max_requests": 4,
+        "model_config_sha256": "d0d3a3a2583fc419d18dd314c928524733aaaf227ad045f592c5e8e9b09375d1",
+        "pipeline_parallel_size": 1,
+        "tensor_parallel_size": 4,
+        "worker_role": "colocated"
+      },
+      "completeness_assertion": "all_non_kv_reserves_for_bound_runtime",
+      "gpu_memory_utilization": {
+        "denominator": 100,
+        "numerator": 85,
+        "provenance": {
+          "source_kind": "runtime_configuration",
+          "source_reference": "real vLLM 0.24.0 DeepSeek-V3-L32 TP4 dummy-weight run on 4x H200: --gpu-memory-utilization 0.85 (h200_microbench/bin/serve_dsv3_l32.sh)",
+          "source_sha256": null
+        }
+      },
+      "non_kv_reserves": [
+        {
+          "bytes": 0,
+          "kind": "activation",
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "bytes": 0,
+          "kind": "cuda_graph",
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "bytes": 0,
+          "kind": "communication",
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "bytes": 0,
+          "kind": "allocator",
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "bytes": 0,
+          "kind": "fragmentation",
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "bytes": 16966221824,
+          "kind": "framework",
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "real vLLM 0.24.0 DeepSeek-V3-L32 TP4 startup log on 4x H200 reports GPU KV cache size 719,552 tokens (h200_microbench/logs/serve_dsv3_l32.log); aggregate non-KV reserve set so the simulated KV pool equals it",
+            "source_sha256": null
+          }
+        }
+      ],
+      "pool_name": "main",
+      "reserve_scope": "verified_uniform_across_pool_ranks"
+    }
+  ],
+  "schema_version": 2
+}

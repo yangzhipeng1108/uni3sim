@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "installed_artifact_static_host_dispatch_and_sm80_disassembly",
+  "artifact_identity_reference": "pytorch_moe_reduce_vllm_0_11_0_torch_2_8_0.json",
+  "hardware_execution_performed": false,
+  "duration_consumed": false,
+  "additional_artifacts": [
+    {
+      "relative_path": "torch/lib/libtorch_cpu.so",
+      "sha256": "bfe3acf07f4a1924483a26e615b8c343e163d72ee7d9a2815c2db2b7577ca57f"
+    },
+    {
+      "relative_path": "torch/lib/libtorch_python.so",
+      "sha256": "d6a6132e0bd2256f0f07b4bfd5589de3032a0daa1abf198113b6fc2ebb225676"
+    },
+    {
+      "relative_path": "torch/include/ATen/native/cuda/CUDALoops.cuh",
+      "sha256": "66aa5ea39c044b7a69e61a403fdc8d5bb32ec8062adb9554183353947d7b8cfb"
+    },
+    {
+      "relative_path": "torch/include/ATen/native/TensorAdvancedIndexingUtils.h",
+      "sha256": "f41509b631c3ccdca921bd03f2667982bfdd89130408d5748353db998be18879"
+    },
+    {
+      "relative_path": "torch/include/ATen/native/cuda/IndexKernelUtils.h",
+      "sha256": "24467aa07e92e00f3a33b9db921cd50fe7b43b267cd5a3c745e2a98c9804160e"
+    }
+  ],
+  "host_dispatch": [
+    "vLLM VocabParallelEmbedding.forward_cuda calls forward_native; TP1 passes input_ through, then masked_input.long() to unquantized F.embedding",
+    "libtorch_python THPVariable_long 0x3de230: ScalarType Long=4 at 0x3de3dc; calls THPVariable_to_type at 0x3de3e6; to_dtype::call at 0x3ddfaa",
+    "libtorch_cpu native::to(dtype) 0x1d10970: dtype mismatch at 0x1d109b1, _to_copy::call at 0x1d109df",
+    "native::_to_copy 0x1d114f0: preserves dense strides with new allocation; copy_ calls 0x1d1299c and 0x1d12aae",
+    "native::copy_ 0x1a31182 calls copy_impl 0x1a2f250: builds TensorIterator at 0x1a2f743, copy_stub get_call_ptr at 0x1a2f891, indirect call at 0x1a2f8a1",
+    "libtorch_cuda init_array relocation 0x3a761478 points to constructor 0xa91c90; registers copy_kernel_cuda 0x16a8fd0 in copy_stub CUDA slot at 0xa91c9e",
+    "copy_kernel_cuda same-device branch 0x16a905d/0x16a9066 through 0x16a9538/0x16a9542/0x16a98a0/0x16aa020 tail-jumps copy_device_to_device at 0x16aa03b",
+    "copy_device_to_device 0x16a7fc0: differing dtype at 0x16a7ff4 excludes memcpy; nonconjugated/nonnegative branch calls direct_copy_kernel_cuda at 0x16a8998",
+    "direct_copy_kernel_cuda 0x16a7b60: long identity functor at 0x16a7e8e; gpu_kernel at 0x16a7ea6 to 0x16a2530 uses dynamic input cast"
+  ],
+  "device_entry": "_ZN2at6native27unrolled_elementwise_kernelIZZZNS0_23direct_copy_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE1_clEvENKUlvE2_clEvEUllE_St5arrayIPcLm2EELi4E23TrivialOffsetCalculatorILi1EjESB_NS0_6memory12LoadWithCastILi1EEENSC_13StoreWithCastILi1EEEEEviT_T0_T2_T3_T4_T5_",
+  "sm80_facts": {
+    "threads": 128,
+    "values_per_thread": 4,
+    "grid": "ceil(N/512)",
+    "registers_per_thread": 32,
+    "shared_bytes": 0,
+    "local_bytes": 0,
+    "stack_bytes": 0,
+    "input_dtype_tag": 3,
+    "output_dtype_tag": 4,
+    "per_element": "LDG.E 4B at 0x290; SHF.R.S32.HI sign extension at 0x2a0; Long store STG.E.64 8B at 0x3e90 (other unroll stores 0x4d70/0x5c40/0x6b10)",
+    "tail": "each of four slots is predicated against numel",
+    "iterator_domain": "can_use_32bit_indexing 0x167a880 checks numel<=INT32_MAX and 1+sum((size-1)*byte_stride)<2^31; contiguous Long output admits 1<=N<=2^28"
+  },
+  "embedding_index_select": {
+    "source_chain": [
+      "torch.nn.functional.embedding functional.py:2546 -> torch.embedding",
+      "libtorch_cpu embedding_symint 0x1a66720: rank1 IDs path 0x1a667d1 -> 0x1a66ae8 -> index_select(dim0) call at 0x1a66af8",
+      "libtorch_cuda BF16 index_select_out_cuda_impl 0x1f8f0f0: <=16 IDs AND 32-bit-indexable operands choose small-index (threshold at 0x1f8f9cf)",
+      "larger ID count: IDs view(N,1) at 0x1f8f5fc, expand(N,H) at 0x1f8f650, gather_out at 0x1f8f66b",
+      "gather_cuda_kernel 0x2636150 -> cuda_scatter_gather_base_kernel<false,true> 0x2634d60 via 0x263619d; lambda2 0x261a790 loads output dtype at 0x261a7ba",
+      "dtype switch table 0x3c74194: BF16 enum15 entry 0x3c741d0 has signed offset -0x1659694 to 0x261ab00; INT64 index enum4 at 0x261ab2f -> 0x261ab39 -> tailjump 0x261ab6e to internal OpaqueType<2>,long kernel 0x2617cc0"
+    ],
+    "small": {
+      "host_geometry": "0x1f8f3d6..0x1f8f427: grid=min(ceil(H/128),SMcount*8), block=min(H,128)",
+      "registers_per_thread": 24,
+      "index_load": "low32 index once per row per thread before inner payload loop; valid IDs<V<2^31 are lossless",
+      "bounded_domain": "H positive multiple128 and H<=108*8*128 gives one payload per thread per row, hence 4*E index bytes plus 2*E weight bytes and 2*E output bytes"
+    },
+    "large_generic_fallback_excluded_from_aligned_forward": {
+      "device_entry": "_ZN2at6native34_scatter_gather_elementwise_kernelILi128ELi8EZNS0_36_cuda_scatter_gather_internal_kernelILb0ENS0_10OpaqueTypeILi2EEElEclINS0_12TensorAssignEEEvRNS_14TensorIteratorElllRKT_EUliE_EEviT1_",
+      "host_geometry": "0x2617e68 adds1023 then 0x2617e7b shifts10: grid=ceil(E/1024), block128 at 0x2617ebb, vt8; no SM cap",
+      "registers_per_thread": 28,
+      "shared_local_stack_bytes": [
+        0,
+        0,
+        0
+      ],
+      "per_element": "eight predicated sites each LDG.E.64(index), LDG.E.U16(weight), STG.E.U16(output): 8E+2E read bytes,2E write bytes before broadcast/coalescing/cache effects",
+      "strides_bytes": {
+        "expanded_index": [
+          8,
+          0
+        ],
+        "output": "[2H,2]",
+        "restrided_input": "[0,2]"
+      },
+      "recursive_iterator_split": "0x2617cdd tests can_use_32bit_indexing, 0x2617cfd recursively partitions when false"
+    },
+    "large_aligned": "internal kernel 0x2617cc0 tests actual IndexKernelUtils.h fast-gather eligibility at 0x2617f20; at 0x2617fe5 calls shared vectorized_gather_kernel_launch<16,long> with allow_neg_indices=false (push0 at 0x2617fc9). Aligned forward MUST select this fastpath, not the generic fallback above.",
+    "forward_scope": "A800 vLLM0.11 BF16 contiguous16B-aligned weight[V,H], valid INT64 IDs[N], fresh contiguous16B-aligned output[N,H]; H multiple128 <=108*8*128; 2VH,2NH,8N strictly less than2^31",
+    "limitations": [
+      "generic aggregate integer selection work is not a complete compiler issue census",
+      "repeated index accesses receive no inferred broadcast or cache-hit credit",
+      "logical Roofline retains4NH+8N materialization bytes separately from the source load program",
+      "not historical capture, GPU correctness, performance accuracy or provider validation"
+    ],
+    "sharded_embedding_extent": "Unquantized vLLM0.11/no-added-vocabulary uses the actual padded rank-local table: pad(global_vocab,64)/TP, not pad(local_rows,64). The mask helper already returns Long indices, so its subsequent long() is an alias; the TP1 cast is not inserted."
+  },
+  "shared_vectorized_row_gather": {
+    "device_entry": "_ZN2at6native24vectorized_gather_kernelILi16ElEEvPcS2_PT0_illllb",
+    "host_entry": "vectorized_gather_kernel_launch<16,long> at 0x1d2be10",
+    "geometry": "grid=(N,ceil(sliceBytes/4096),1) from 0x1d2be40/0x1d2be6b/0x1d2be7d; block=(min(256,32*ceil(ceil(sliceBytes/16)/32)),1,1) from 0x1d2beca and roundup/cap; sliceBytes=2H",
+    "registers_per_thread": 24,
+    "shared_local_stack_bytes": [
+      0,
+      0,
+      0
+    ],
+    "index_read_program_bytes": "8*N*gridY*blockX: LDG.E.64 at0x0050 occurs before payload-tail tests at0x02a0..0x02d0, including inactive payload threads",
+    "payload_read_write_program_bytes": "LDG.E.128 at0x0330 and STG.E.128 at0x0370 per active 16B chunk; each direction2NH bytes for H multiple128; one chunk/thread and no loop",
+    "logical_index_payload_bytes": "8N; distinct from repeated instruction arguments and downstream coalesced/cache/DRAM transactions",
+    "eligibility": "IndexKernelUtils.h: 2D iterator, index strides(0,8), contiguous source/output fastest-axis stride2, source outer stride0 after restriding, base/rowstride/slice/index_stride alignment16; bounded Forward declares fresh CUDA allocations and contiguous row slices",
+    "correction": "candidate91aa3078 unconditionally used generic large-gather fallback for aligned embedding; that geometry claim is superseded by this fastpath proof"
+  },
+  "advanced_row_selection": {
+    "source_chain": [
+      "vLLM0.11 gpu_model_runner.py:2330/2348 hidden_states[logits_indices]; ordinary query_start_loc yields public INT32 indices",
+      "libtorch_python getitem 0x6eb325 -> dispatch_index; TensorIndexing.h:560..563 self.index",
+      "libtorch_cpu structured_index_Tensor::meta 0x1ce7da0 -> native::make_info 0x1cf1900 at0x1ce814b; TensorAdvancedIndexingUtils.h converts Int indices to fresh Long",
+      "native structured_index_out::impl 0x1cc00c0 -> index_stub device dispatch at0x1cc0107, tailjmp0x1cc0124",
+      "CUDA index_kernel 0x1cd11b0 -> lambda0x1cd10a0; BF16 enum15 jump entry0x3b3ae14 offset-0x1e69cc8 ->0x1cd1110 ->gpu_index_kernel<Opaque2>0x1cce6a0",
+      "gpu_index_kernel fastpath calls same vectorized gather launch at0x1ccf071; push1 at0x1ccf057 means allow_neg_indices=true"
+    ],
+    "internal_index_conversion": "reuse the same contiguous Int32-to-Int64 TensorIterator program as input-ID widening, with a generic typed cast caller; public INT32 input, fresh INT64 temporary and final gathered output remain separate storage objects",
+    "forward_scope": "A800 vLLM0.11 BF16 contiguous16B-aligned hidden[sourceRows,H], increasing explicit valid public INT32 indices[N], materialized Long indices[N]; H multiple128; 2*sourceRows*H,2NH,8N<2^31",
+    "not_validated": [
+      "actual dispatcher/runtime/provider identity",
+      "GPU correctness or timing accuracy",
+      "complete allocator or library workspace capacity"
+    ]
+  },
+  "bf16_fp32_cast_static_evidence_only": {
+    "host_dispatch": "direct_copy_kernel_cuda Float enum6 table0x3a6e8d0 (-0x23c6a64) ->float functor0x16a7e54 ->gpu_kernel0x16a1bb0 ->impl0x167ff50",
+    "launch": "128 threads,vt4,ceil(N/512),REG30,zero shared/local/stack",
+    "program": "input BF16 enum15: LDG.E.U16 at0x810 then PRMT R18,RZ,0x5410,R4 at0x820 (bits<<16); Float output enum6 uses4B STG.E; 2N read+4N write, no F2F/SFU",
+    "scope": "same-device contiguous BF16 input and fresh contiguous FP32 output, 1<=N<=2^29; padded-vocabulary slices with row gaps excluded",
+    "unresolved": "no independent PRMT issue/pipe service binding found in existing source/compute evidence; do not borrow INT32 SHF throughput or FP32-to-BF16 round; remains unpriced in Midlayer"
+  },
+  "reproduction": {
+    "artifact_root": "/capture-home/miniconda3/envs/capture-python/lib/python3.10/site-packages",
+    "host": "objdump -d -C --start-address=<address> --stop-address=<end> <library>",
+    "device": "/usr/local/cuda-12.2/bin/cuobjdump -arch sm_80 -fun <device_entry> -sass -res-usage <artifact_root>/torch/lib/libtorch_cuda.so"
+  },
+  "scope": {
+    "hardware_id": "nvidia_a800",
+    "embedding_source": "vllm_0_11_unquantized_tp1",
+    "input": "contiguous non-conjugated non-negative-bit CUDA INT32 vector",
+    "output": "fresh contiguous CUDA INT64 vector on same device",
+    "excluded": [
+      "split iterators",
+      "other runtime versions/hardware",
+      "historical capture identity",
+      "actual GPU or provider validation"
+    ],
+    "model_limitations": [
+      "integer work counts the sign extension, excludes iterator addressing and uniform dispatch instructions",
+      "uses existing generic GPU memory/cache/launch services; no same-dtype copy task duration floor",
+      "not a measured execution or performance accuracy acceptance"
+    ]
+  }
+}

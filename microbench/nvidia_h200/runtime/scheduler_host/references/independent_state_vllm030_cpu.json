@@ -1,0 +1,377 @@
+{
+  "kind": "independent_native_vllm030_cpu_scheduler_state_proxy",
+  "source_identity": {
+    "source_commit": "ced6857afa0ea7b2e3f0846a62e1394e90f15607",
+    "source_root": "/capture-workspace/upstream/vllm/v0.30.0",
+    "source_tag": "v0.30.0",
+    "version": "0.30.0"
+  },
+  "host": {
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127
+    ],
+    "cpu_model": "Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz",
+    "machine": "x86_64",
+    "platform": "Linux-5.15.0-88-generic-x86_64-with-glibc2.35",
+    "processor": "x86_64"
+  },
+  "production_duration_consumed": false,
+  "parameter_rule": "equal_length_outcome_cell_medians_then_count_medians_then_Theil_Sen",
+  "manifest": {
+    "path": "profiler_output/microbench/nvidia_a800/serving_accuracy_scheduler_v030_20261107/sdk_grid_manifest.json",
+    "sha256": "df995bf8d2d436677bdc75a156f58d6ce2860a5b8ed73f386fbab7a33e6397d2"
+  },
+  "producer": {
+    "path": "microbench/nvidia_h200/runtime/scheduler_host/vllm030_state_reference.py",
+    "sha256": "133c7dadab5536933daa1cb5c97e94a04171745bc1774b2774d08f83bd655a3c"
+  },
+  "cell_medians_ns": [
+    {
+      "phase": "decode",
+      "outcome": "continue",
+      "prompt_tokens": 64,
+      "count": 1,
+      "plan": 36093.0,
+      "update": 13184.0
+    },
+    {
+      "phase": "decode",
+      "outcome": "continue",
+      "prompt_tokens": 64,
+      "count": 8,
+      "plan": 113772.0,
+      "update": 45211.5
+    },
+    {
+      "phase": "decode",
+      "outcome": "continue",
+      "prompt_tokens": 64,
+      "count": 32,
+      "plan": 328568.0,
+      "update": 133733.0
+    },
+    {
+      "phase": "decode",
+      "outcome": "continue",
+      "prompt_tokens": 256,
+      "count": 1,
+      "plan": 38045.0,
+      "update": 13375.5
+    },
+    {
+      "phase": "decode",
+      "outcome": "continue",
+      "prompt_tokens": 256,
+      "count": 8,
+      "plan": 124387.5,
+      "update": 46878.5
+    },
+    {
+      "phase": "decode",
+      "outcome": "continue",
+      "prompt_tokens": 256,
+      "count": 32,
+      "plan": 346200.0,
+      "update": 132977.5
+    },
+    {
+      "phase": "decode",
+      "outcome": "finish",
+      "prompt_tokens": 64,
+      "count": 1,
+      "plan": 35660.0,
+      "update": 23210.5
+    },
+    {
+      "phase": "decode",
+      "outcome": "finish",
+      "prompt_tokens": 64,
+      "count": 8,
+      "plan": 112609.5,
+      "update": 100523.0
+    },
+    {
+      "phase": "decode",
+      "outcome": "finish",
+      "prompt_tokens": 64,
+      "count": 32,
+      "plan": 317677.5,
+      "update": 302703.0
+    },
+    {
+      "phase": "decode",
+      "outcome": "finish",
+      "prompt_tokens": 256,
+      "count": 1,
+      "plan": 70120.5,
+      "update": 48459.0
+    },
+    {
+      "phase": "decode",
+      "outcome": "finish",
+      "prompt_tokens": 256,
+      "count": 8,
+      "plan": 122015.5,
+      "update": 122924.0
+    },
+    {
+      "phase": "decode",
+      "outcome": "finish",
+      "prompt_tokens": 256,
+      "count": 32,
+      "plan": 347695.0,
+      "update": 390530.0
+    },
+    {
+      "phase": "prefill",
+      "outcome": "continue",
+      "prompt_tokens": 64,
+      "count": 1,
+      "plan": 63822.0,
+      "update": 18725.0
+    },
+    {
+      "phase": "prefill",
+      "outcome": "continue",
+      "prompt_tokens": 64,
+      "count": 8,
+      "plan": 305877.5,
+      "update": 77509.0
+    },
+    {
+      "phase": "prefill",
+      "outcome": "continue",
+      "prompt_tokens": 64,
+      "count": 32,
+      "plan": 1176158.5,
+      "update": 224663.5
+    },
+    {
+      "phase": "prefill",
+      "outcome": "continue",
+      "prompt_tokens": 256,
+      "count": 1,
+      "plan": 153769.0,
+      "update": 39194.5
+    },
+    {
+      "phase": "prefill",
+      "outcome": "continue",
+      "prompt_tokens": 256,
+      "count": 8,
+      "plan": 463133.0,
+      "update": 91771.0
+    },
+    {
+      "phase": "prefill",
+      "outcome": "continue",
+      "prompt_tokens": 256,
+      "count": 32,
+      "plan": 1807564.0,
+      "update": 280115.5
+    },
+    {
+      "phase": "prefill",
+      "outcome": "finish",
+      "prompt_tokens": 64,
+      "count": 1,
+      "plan": 60398.0,
+      "update": 26801.5
+    },
+    {
+      "phase": "prefill",
+      "outcome": "finish",
+      "prompt_tokens": 64,
+      "count": 8,
+      "plan": 309257.5,
+      "update": 130698.0
+    },
+    {
+      "phase": "prefill",
+      "outcome": "finish",
+      "prompt_tokens": 64,
+      "count": 32,
+      "plan": 1198892.0,
+      "update": 433932.5
+    },
+    {
+      "phase": "prefill",
+      "outcome": "finish",
+      "prompt_tokens": 256,
+      "count": 1,
+      "plan": 75271.0,
+      "update": 31521.0
+    },
+    {
+      "phase": "prefill",
+      "outcome": "finish",
+      "prompt_tokens": 256,
+      "count": 8,
+      "plan": 451431.5,
+      "update": 160152.0
+    },
+    {
+      "phase": "prefill",
+      "outcome": "finish",
+      "prompt_tokens": 256,
+      "count": 32,
+      "plan": 1772632.0,
+      "update": 528169.5
+    }
+  ],
+  "service_time_s": {
+    "prefill": {
+      "plan": {
+        "intercept": 2.386212903225807e-05,
+        "per_request": 4.5684370967741936e-05
+      },
+      "update": {
+        "intercept": 1.8585032258064545e-05,
+        "per_request": 1.0576217741935483e-05
+      }
+    },
+    "decode": {
+      "plan": {
+        "intercept": 2.7381419354838728e-05,
+        "per_request": 9.68758064516129e-06
+      },
+      "update": {
+        "intercept": 1.184380645161291e-05,
+        "per_request": 6.449193548387097e-06
+      }
+    }
+  },
+  "limitations": [
+    "8358 CPU proxy, not target8558 measurement",
+    "native0.30 CPU platform uses legacy worker flag; no GPU/runner certification",
+    "mixed service uses independently measured decode count-affine proxy; mixed not observed",
+    "count>32 extrapolates existing affine form; fixed two prompt lengths and finish/continue states"
+  ]
+}

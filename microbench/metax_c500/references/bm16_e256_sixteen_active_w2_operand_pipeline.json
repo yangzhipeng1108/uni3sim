@@ -1,0 +1,46 @@
+{
+  "schema_version": "midlayer.metax_c500.bm16_e256_sixteen_active_w2_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 16,
+    "tile_k": 64,
+    "tile_n": 32,
+    "group_size_m": 1,
+    "routed_rows": 16,
+    "populated_experts": 16,
+    "active_m_tiles": 16,
+    "maximum_m_tiles": 241,
+    "source_rows": 16,
+    "production_k_n_tile_class": [8, 64]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026091202,
+    "tokens": 2,
+    "experts": 256,
+    "topk": 8,
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 100,
+    "independent_captures_per_cell": 3,
+    "adjacent_nonproduction_n_cells": [2016, 2080],
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "01f83fecf7fb57f932afd57ee42210e97981ec712237ce3b0af81a6b9fda94e1",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "median capacity across three independent captures per cell, then conservative minimum across the two adjacent non-production N cells"
+  },
+  "captures": [
+    {"n": 2016, "raw_sha256": "e409960655a3588fd30e19409c790f644a8b5fcc861511530d9ea45f5574afd5", "operand_pipeline_capacity_bytes_per_s": 449908713550.8917},
+    {"n": 2016, "raw_sha256": "29c5b96cbc099a8dfd5d30cb47ef2c4f7d8631783ffc39d2fd8c874ae9ff38a6", "operand_pipeline_capacity_bytes_per_s": 450457038353.0479},
+    {"n": 2016, "raw_sha256": "6f82f41ef9b66f29ad351a12d64f96e0a455ce8d0b8eca78aa76b84b2b6b5958", "operand_pipeline_capacity_bytes_per_s": 449665435607.00256},
+    {"n": 2080, "raw_sha256": "703c9689c064f79072344adac6520946b07eba1d5eee61320be3d8c8723c79ae", "operand_pipeline_capacity_bytes_per_s": 455852551488.9162},
+    {"n": 2080, "raw_sha256": "155823486e063413909a76eb7c0468fa7f10b362cfd3f86189a782a67163507f", "operand_pipeline_capacity_bytes_per_s": 451638380144.33484},
+    {"n": 2080, "raw_sha256": "ed88a8fea44966115f1433f4b8665687d33364a4a4784597b713507ce7373851", "operand_pipeline_capacity_bytes_per_s": 453668203191.06934}
+  ],
+  "selected_service": {
+    "predicate": "16 routed rows in 16 populated experts, 16 active M tiles, 241 maximum M tiles, 16 source rows, and K/N tile class (8,64)",
+    "logical_byte_capacity_per_s": 449908713550.8917
+  },
+  "raw_path": "profiler_output/microbench/metax_c500/bm16_e256_sixteen_active_69cce270_20260907_r1"
+}

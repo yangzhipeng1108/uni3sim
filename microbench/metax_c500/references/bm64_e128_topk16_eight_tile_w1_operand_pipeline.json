@@ -1,0 +1,41 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_e128_topk16_eight_tile_w1_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "populated_experts": 128,
+    "source_topk": 16,
+    "minimum_m_tiles_per_populated_expert_exclusive": 5,
+    "maximum_m_tiles_per_populated_expert": 11,
+    "production_k_n_tile_class": [64, 24]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090710,
+    "tokens": 4096,
+    "experts": 128,
+    "topk": 16,
+    "event_trials_per_capture": 7,
+    "independent_captures_per_geometry": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "01f83fecf7fb57f932afd57ee42210e97981ec712237ce3b0af81a6b9fda94e1",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "minimum of the two adjacent-N geometry medians"
+  },
+  "captures": [
+    {"n": 1472, "n_tiles": 23, "active_m_tiles": 1088, "maximum_m_tiles": 1150, "run_capacities_bytes_per_s": [2979711960374.2017, 3015295608093.938, 2978819868760.232], "median_capacity_bytes_per_s": 2979711960374.2017, "raw_sha256": ["6013294db7fdea124fe019b53b685ce9ba3df677704a044f057159ba593be284", "73b84a80dcca56e2b1e4252e4751142e00429ffa7ad0d291b3e682475fb0da84", "421480a620025a0d461b046281baaa3a39634388950c34d07518514978084ecd"]},
+    {"n": 1600, "n_tiles": 25, "active_m_tiles": 1088, "maximum_m_tiles": 1150, "run_capacities_bytes_per_s": [2888359306442.7183, 2902547283916.5557, 3001315620596.144], "median_capacity_bytes_per_s": 2902547283916.5557, "raw_sha256": ["e5df0b39b1c04860d309d1e03bf35303bda557beb6272e90fd8842eddec37acd", "0308118956b01435eb1221cf6e7bad77ad86b406c2b5ea24aee93643a56ec69a", "dc350afd7b320301217707b13614bec3f3e1ede06842f2815cd7af487d37f28b"]}
+  ],
+  "selected_service": {
+    "predicate": "128 populated experts, source top-k 16, more than five and at most eleven active M tiles per expert, and K/N tile class (64,24)",
+    "logical_byte_capacity_per_s": 2902547283916.5557
+  },
+  "raw_path": "profiler_output/microbench/metax_c500/e128_eight_tile_h2048_de2fcec0_20260907_r1",
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

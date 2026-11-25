@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "aic_mte2_operand_pair_overlap_domain_expansion",
+  "production_or_evaluation_duration_consumed": false,
+  "forward_change": {
+    "parameter_fit_from_this_validation": false,
+    "duration_parameter_published": false,
+    "overlap_active_aic_group_range": [22, 24],
+    "overlap_pair_count_range": [512, 4096],
+    "interpretation": "The exact 22-AIC, 512-pair endpoint closes the gap to the previously published 24-AIC, 1024--4096-pair stream. Forward continues to derive duration from the common analytical A/B channel model and consumes this evidence only to permit the same independent-bank overlap composition in the closed interval."
+  },
+  "mechanism_validation": {
+    "dtype": "bf16",
+    "source_residency": "l2_resident",
+    "a_rows": 128,
+    "a_columns": 64,
+    "b_rows": 64,
+    "b_columns": 256,
+    "drain_interval": 4,
+    "iterations_per_worker": 512,
+    "active_aic_groups": [22, 24],
+    "medians_ns_per_pair": {
+      "device_6": {
+        "22": 321.09375,
+        "24": 320.677083333
+      },
+      "device_7": {
+        "22": 320.807291667,
+        "24": 321.067708333
+      }
+    },
+    "maximum_within_device_relative_span": 0.05194647201946472,
+    "maximum_cross_device_relative_median_delta": 0.001217384247049108,
+    "maximum_program_span_residual": 0.03570228494516124,
+    "mechanism_gate_passed": true
+  },
+  "provenance": {
+    "capture_commit": "eb60ff721afe629741703e3a28c50bb1b16d3264",
+    "snapshot_path": "/capture-workspace/execution_snapshots/grouped_pair_22aic_eb60ff72_20260904",
+    "raw_root": "profiler_output/microbench/ascend_910b/grouped_pair_22aic_eb60ff72_20260904",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_ids": [6, 7],
+    "source_snapshot_sha256": "daba1092882ec16ea1ea09a1d8a7448afed884f42b90c1226166a665e5b444c7",
+    "source_sha256": {
+      "CMakeLists.txt": "9530d6d29390cdb8a9b3d5975207aa5887bf2915e6922c54ea0831f3854542b9",
+      "aic_mte2_grouped_pair_kernel.cpp": "c5d6501e355feec364e2b9d3c25cc402b594502caf602871d3f34c77c11f5e29",
+      "aic_mte2_grouped_pair_main.cpp": "003fc739e2fab57c0607916e38bf9dc1c6c6a98ad4fdfeeedef61c38fe74be31",
+      "aic_mte2_grouped_pair_runner.py": "25e6a0b3d6177ebbc6cee6c2d15800c0a6d8529062e221a73da1d195e43ed668",
+      "aic_mte2_grouped_pair_expansion_report.py": "a82ca2cf29869057393c0b87e8303fbd0db5065ee1c5ac438c2a810b694e1e02"
+    },
+    "binary_sha256": "5fbbc974cc32f594d900eb1516b1da2c3185584b015a1162dab3199c64737093",
+    "report_sha256": "961227c39fb6e35290c01a1fd55768fe20588a9cfc67253a58542c3b1c89db04",
+    "raw_files": [
+      {
+        "device_id": 6,
+        "run_index": 0,
+        "path": "d6_r0.csv",
+        "sha256": "6d37c7b7612ad506ae1707925a3501eb27c85c002918e30af0ccd7c7485a2613"
+      },
+      {
+        "device_id": 6,
+        "run_index": 1,
+        "path": "d6_r1.csv",
+        "sha256": "19fd815ea689abefd7ac5315d9a2a16309046e8ef2e55c3ce96e03ee67df065c"
+      },
+      {
+        "device_id": 6,
+        "run_index": 2,
+        "path": "d6_r2.csv",
+        "sha256": "d37cf300e3b5e53cacbfe48bedfa711a60cc3acfab3793cf965086046ab10047"
+      },
+      {
+        "device_id": 7,
+        "run_index": 0,
+        "path": "d7_r0.csv",
+        "sha256": "5e85e4d26abd4922d26cf6dc18cf720e95d0733d4d1d9a32841fc6a1f296b3c6"
+      },
+      {
+        "device_id": 7,
+        "run_index": 1,
+        "path": "d7_r1.csv",
+        "sha256": "dfb6f8fcfaae2fe454be5a39443fc6968416f62ba811a4e80e2d9dfee1285f30"
+      },
+      {
+        "device_id": 7,
+        "run_index": 2,
+        "path": "d7_r2.csv",
+        "sha256": "7c15764c36b0f6946bacdbb6c4d134604cb8aa412621c3ddc722df383509b3ce"
+      }
+    ]
+  }
+}

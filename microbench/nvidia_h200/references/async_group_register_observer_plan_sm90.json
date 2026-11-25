@@ -1,0 +1,87 @@
+{
+  "kind": "independent_register_only_async_group_observer_plan",
+  "physical_cells": [
+    [
+      16384,
+      132,
+      1
+    ],
+    [
+      16384,
+      132,
+      2
+    ],
+    [
+      16384,
+      132,
+      4
+    ],
+    [
+      16384,
+      264,
+      1
+    ],
+    [
+      16384,
+      264,
+      2
+    ],
+    [
+      16384,
+      264,
+      4
+    ],
+    [
+      32768,
+      132,
+      1
+    ],
+    [
+      32768,
+      132,
+      2
+    ],
+    [
+      32768,
+      132,
+      4
+    ]
+  ],
+  "control_cells": [
+    [
+      16384,
+      264,
+      1
+    ],
+    [
+      16384,
+      264,
+      2
+    ],
+    [
+      16384,
+      264,
+      4
+    ]
+  ],
+  "selection": "All original private byte geometry and full qualification are retained: B16KiB/grid132or264/shared98304B or B32KiB/grid132/shared196608B; 256producer+32observer threads,lookahead1/2/4,127rounds,six1024-roundwarmkernels,twoindependent63-sampleprocesses(secondreverse),18matchedcountercells. New polling is a closed16-instruction register-only uniform loop using 32bit SM clock stamps; reconstruct the64bit current epoch after the join. No shared stores,globaltimer or divergent branches occur inside polling. Every active event must be observed PENDING at the initial poll in EVERY CTA/round; late-start events fail, never dropped. Per-CTA clock64/globaltimer whole-window calibration converts ticks to ns; EVERY measured CTA/sample calibration plus directSM must be nominal3pct; all directSM/LTS stable3pct. All numerical/resource/132SM/CTA/LDGSTS/upstream/TEXlogical1pct/DRAM<=1pct/source-unit closure1pct gates remain. All first/all nonparametric95pctmedianintervals have maximumendpointdistance<=3pct and process medians agree3pct. Retain the original maxpoll95pctupper<=10pctfirstresponse95pctlower in EVERY cell. First screen ONLY the source-independent highest-residency-pressure B16KiB/grid264 lookahead1/2/4(all6timingand6countercells); if ANY quality gate fails, stop before all other cells and publish no parameter. Only if the entire screen qualifies may the same call fill the other12timing/12countercells. Full qualification requires all18/18,never a subset. Q=(first_L-first_1)/(all_L-first_1), conservative>=95pctjointinterval from three981/3pct nonparametric median intervals; all12Qupper<=.25supportfirstpriority,all12Qlower>=.75supportequalburstslowresponse,otherwiseinconclusive. No Q,wholebodytime,rate,sourcephase,copy-minus-control or Forward policy adopted. Marker/ninthwarp/CTAbarrier/clock-calibration scope remains independent instrumentation; original two failed observers and gates stay failed. Any production use still requires compact physical conservation and independent source applicability; no FIFO/fluid/order sweep selected by production error.",
+  "source_sha256": {
+    "async_group_register_observer.cu": "73a1544e7af40644af11f3caa1fa2f323cf4cf047659252bc86d220acabbd846",
+    "async_group_register_observer_analysis.py": "ee2d871b29ffbe1bee6dc9ba432c7eb185d169d10a6a6498227c6855889a98d9",
+    "async_group_register_observer_modal_runner.py": "bf46fb73427f30ec6584fc0911e3c4a66f6c29540a52cc01077e8f0cb1341da4"
+  },
+  "local_poll_preflight": {
+    "path": "experiment_logs/h200_moe_accuracy_20261107/async_group_register_observer_local_poll_proof.json",
+    "sha256": "1a69a1aeda5364a6e2ebc3f3e0a2a0236c40519283cad2b206231623c113440a"
+  },
+  "resources": {
+    "gpu": "H200",
+    "cards": 1,
+    "expected_seconds": 180,
+    "maximum_seconds": 480,
+    "maximum_gpu_hours": "0.1333333333333333333333333333",
+    "reserved_usd": "1.00",
+    "automatic_retries": 0,
+    "volume": false
+  }
+}

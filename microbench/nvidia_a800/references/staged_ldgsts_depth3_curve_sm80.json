@@ -1,0 +1,89 @@
+{
+  "schema": "nvidia_a800_staged_ldgsts_depth3_curve_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "source_baseline_commit": "b93eb0f4e36b3c13997215c4b8bcdaeeafe38bae",
+  "source": "microbench/nvidia_a800/memory/l2/staged_ldgsts_depth3_curve.cu",
+  "runner": "microbench/nvidia_a800/memory/l2/staged_ldgsts_depth3_curve_runner.py",
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_a800/staged_ldgsts_depth3_curve_89a63331_20260908_d0_r2",
+      "device_index": 0,
+      "device_uuid": "capture-device-6f63e60145b9",
+      "candidate_sha256": "c5f19319d26ed2bb41f0c1baa3e5837a4980b8517a4f9f9bc54fe1768612a7af",
+      "raw_sha256": "2eba424874d6c586f9ca2b82c26c9fdb85eb61e707f2ce03b1abf6fabaa6cbc0",
+      "sass_sha256": "9378e3702d239f8bd87f230bc38b4446a23c70ad77401c6be46a7dbe2060c58c",
+      "l2_resident_1024_round_capacity_per_s": 3764833972150.295,
+      "dram_unique_1024_round_capacity_per_s": 1748490079770.033
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_a800/staged_ldgsts_depth3_curve_89a63331_20260908_d4_r1",
+      "device_index": 4,
+      "device_uuid": "capture-device-d611b051419d",
+      "candidate_sha256": "d4f6aff0133a0e845ac98883cfa8768280f0790fdaa66eeccb96a3df8a12fda2",
+      "raw_sha256": "aae744dc4417c68a61ea4ee4a51000c12df28693bc36785507c4af464195eacb",
+      "sass_sha256": "9378e3702d239f8bd87f230bc38b4446a23c70ad77401c6be46a7dbe2060c58c",
+      "l2_resident_1024_round_capacity_per_s": 3780923129520.053,
+      "dram_unique_1024_round_capacity_per_s": 1661996187566.7805
+    }
+  ],
+  "probe_contract": {
+    "dtype": "fp16",
+    "tile_m": 128,
+    "tile_n": 256,
+    "tile_k": 64,
+    "threads_per_cta": 256,
+    "pipeline_slots": 3,
+    "resident_ctas_per_sm": 1,
+    "physical_sm_count": 108,
+    "grid_ctas": 108,
+    "a_panel_bytes": 16384,
+    "b_panel_bytes": 32768,
+    "panel_bytes": 49152,
+    "rounds": [0, 16, 32, 48, 128, 256, 1024],
+    "load_instruction": "LDGSTS.E.BYPASS.128",
+    "commit_instruction": "LDGDEPBAR",
+    "wait_instruction": "DEPBAR.LE SB0, 0x1",
+    "cache_operator": "cg"
+  },
+  "selected_services": {
+    "selection_rule": "minimum complete-capture 1024-round logical-byte capacity across idle devices 0 and 4",
+    "l2_resident": {
+      "logical_byte_capacity_per_s": 3764833972150.295
+    },
+    "dram_unique": {
+      "logical_byte_capacity_per_s": 1661996187566.7805
+    }
+  },
+  "source_order": {
+    "vectors_per_panel": 3072,
+    "vectors_per_thread_per_panel": 12,
+    "initial_committed_groups": 3,
+    "initial_arrival_levels": 36,
+    "additional_dependent_arrivals_per_cta_cohort": 35,
+    "validation": "Across both devices, the launch-subtracted L2 finite-stream intercept is within 2.2 microseconds of 35 times the independently configured 200.758 ns L2 first-request latency."
+  },
+  "applicability": {
+    "dtype": "fp16",
+    "tile_shapes": [[128, 256, 64], [256, 128, 64]],
+    "threads_per_cta": 256,
+    "pipeline_slots": 3,
+    "resident_ctas_per_sm": 1,
+    "required_launch_algorithm": "observed_gemm:gemm",
+    "required_split_k_semantics": "in_place_or_non_split",
+    "orientation_equivalence": "Exchanging the 16-KiB and 32-KiB A/B panel labels leaves the probe's contiguous 49,152-byte issue_panel byte stream, 3,072 16-byte LDGSTS vectors, 256-thread mapping, three slots, and one-CTA residency unchanged."
+  },
+  "decision": {
+    "status": "accepted_mechanism_service",
+    "forward_eligible": true,
+    "reason": "The workload-independent source program separates L2-hit and DRAM-miss service and validates one finite three-group prologue per CTA cohort; the pinned cuBLASLt symbol uses that same prologue for in-place and non-split launches."
+  },
+  "excluded_conclusions": [
+    "a complete production GEMM duration",
+    "a generic L2 or DRAM capacity replacement",
+    "a per-shape timing correction",
+    "a moment approximation"
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

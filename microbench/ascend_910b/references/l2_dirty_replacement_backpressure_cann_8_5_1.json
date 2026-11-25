@@ -1,0 +1,40 @@
+{
+  "schema_version": "midlayer.l2_dirty_replacement_backpressure.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "full_chip_dirty_l2_victim_backpressure",
+  "capacity_bytes_per_s": 913901169183.1204,
+  "derivation": {
+    "initial_dirty_bytes": 167772160,
+    "displaced_predecessor_bytes": 118030336,
+    "clean_mte2_only_ns": 99780.0,
+    "dirty_mte2_only_ns": 228930.0,
+    "clean_mte2_mte1_completion_ns": 120460.0,
+    "dirty_mte2_mte1_completion_ns": 267340.0,
+    "additional_service_ns": 129150.0,
+    "selection_rule": "full-dirty 192-MiB preamble minus clean median for the held-out two-output 56-slab source program"
+  },
+  "source_program": {
+    "dtype": "bf16",
+    "active_aic_groups": 22,
+    "base_tile_m": 16,
+    "base_tile_n": 96,
+    "base_tile_k": 64,
+    "output_tiles_per_worker": 2,
+    "k_slabs": 56,
+    "source_row_stride": 14336,
+    "cache_preamble_kind": "disjoint_aiv_gm_write",
+    "cache_preamble_bytes": 201326592
+  },
+  "capture": {
+    "measurement_baseline_commit": "ddf2c5991ba6145e4f7f39b3415706cf5d039ad9",
+    "source_snapshot_sha256": "6b76560c43184f345df605804c821abb87eb586e83ab36029735973de26caaa1",
+    "binary_sha256": "6261ee130c4e140bf1e24f6f06f25f26a4be42f0fa9c0b86309c9e00852f53a3",
+    "clean_raw_path": "profiler_output/microbench/ascend_910b/gemm_k14336_dirty_preamble_geometryfix_ddf2c599_20260910_d4/k14336_ab256_clean_d4.csv",
+    "clean_raw_sha256": "de63370bf53c3617fb527d5d8dc3ba9d38bf89db1653270d36a6f84e90ae2371",
+    "dirty_raw_path": "profiler_output/microbench/ascend_910b/gemm_k14336_dirty_preamble_geometryfix_ddf2c599_20260910_d4/k14336_ab256_dirty192_d4.csv",
+    "dirty_raw_sha256": "d453ba6c39cb4fe3a3ddf353b5bcd48ad81e9e61713ec7800216f59d8f8b50e0"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism_id": "aiv_sync_all_affine_v1",
+  "scope": "one source-mandatory AIV SyncAll before the FIA main task program",
+  "formula": "startup_ns + active_aiv_workers * per_active_aiv_worker_ns",
+  "bounds": {
+    "task_kind": "mixed",
+    "aiv_per_group": 2,
+    "minimum_active_aiv_workers": 2,
+    "maximum_active_aiv_workers": 48
+  },
+  "parameters_ns": {
+    "startup_ns": 265.32608695652175,
+    "per_active_aiv_worker_ns": 59.38695652173913
+  },
+  "validation": {
+    "trials": 12,
+    "model_mape": 0.02766496939864214,
+    "maximum_model_ape": 0.09320415879017022,
+    "maximum_relative_half_median_delta": 0.07913669064748201
+  },
+  "source_semantics": {
+    "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/common/arch32/fia_kernel_nonquant.h",
+    "sha256": "7cde05730d68bb02a2c45cd6b25605417ee61d42dfd87f21ccf0948c014b7e21",
+    "symbol": "FiaKernelNonQuant::InitOutputSingleCore"
+  },
+  "provenance": {
+    "source_commit": "f74a2635fab6e56e3903ed3f05142e90e67df5d0",
+    "source_snapshot_sha256": "7929be5fed16a3105159cd757af9fbff02e6e1960d33c9ed0e86d46f60705c01",
+    "binary_sha256": "768e8e9439e8c0041bb6247945a77ded6532af6dcf3393019c3ce61bc7674700",
+    "raw_path": "profiler_output/microbench/ascend_910b/sync_all_f74a2635_20260828_r2/raw.csv",
+    "raw_sha256": "1f4c3a8bb3883773f02ae3f7afccc93e148e840323a3c6ece00808004534121e",
+    "report_path": "profiler_output/microbench/ascend_910b/sync_all_f74a2635_20260828_r2/report.json",
+    "report_sha256": "80d19aff2959992263b2065905892f91dc86c7e7ed922d0ee8eff19cec2d5779"
+  },
+  "production_or_evaluation_duration_consumed": false
+}

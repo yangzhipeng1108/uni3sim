@@ -1,0 +1,89 @@
+{
+  "schema_version": 2,
+  "scheduler_pools": [
+    {
+      "pool_name": "main",
+      "binding": {
+        "hardware_id": "metax_c500",
+  "hardware_config_sha256": "cfff8447901304346252fa00f4c36d6a8a54fb6e6687ebebff454961b18917f7",
+        "model_config_sha256": "29e4c210b0d6ac178b16b2a255a568bdb23b581e50ca1ef6a6d071dd85704e6e",
+        "deployment": "colocated",
+        "worker_role": "colocated",
+        "tensor_parallel_size": 1,
+        "pipeline_parallel_size": 1,
+        "expert_parallel_size": 1,
+        "max_model_len": 8192,
+        "max_batched_tokens": 8192,
+        "max_requests": 256,
+        "kv_block_size_tokens": 16
+      },
+      "gpu_memory_utilization": {
+        "numerator": 4,
+        "denominator": 5,
+        "provenance": {
+          "source_kind": "runtime_configuration",
+          "source_reference": "configs/evaluation/experiments/sharegpt_phase1.json prediction_contract gpu_memory_utilization=0.8 runtime binding",
+          "source_sha256": "bc9d93b69a7cd57eb31880ef49d82fd75c5efacbcf8d4d0854bfbd7722a86c4a"
+        }
+      },
+      "non_kv_reserves": [
+        {
+          "kind": "activation",
+          "bytes": 1385126953,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "experiment_logs/serving/production_ground_truth/20260824_c500_v0_graph_matrix_serial_7b5a1fd/Llama-3.1-8B/tp1_qps4/logs/vllm_server.stdout.log: MetaX vLLM 0.8.5 runtime profile; nearest-byte conversions of reported 1.29 GiB activation and 0.35 GiB non-Torch totals; torch peak activation bytes",
+            "source_sha256": "f00ed349a86aaeaa4b07ffa02ac1994d7d28c655d25b45892611c60f1d628052"
+          }
+        },
+        {
+          "kind": "cuda_graph",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "MetaX vLLM 0.8.5 runtime profile; nearest-byte conversions of reported 1.29 GiB activation and 0.35 GiB non-Torch totals; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "f00ed349a86aaeaa4b07ffa02ac1994d7d28c655d25b45892611c60f1d628052"
+          }
+        },
+        {
+          "kind": "communication",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "MetaX vLLM 0.8.5 runtime profile; nearest-byte conversions of reported 1.29 GiB activation and 0.35 GiB non-Torch totals; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "f00ed349a86aaeaa4b07ffa02ac1994d7d28c655d25b45892611c60f1d628052"
+          }
+        },
+        {
+          "kind": "allocator",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "MetaX vLLM 0.8.5 runtime profile; nearest-byte conversions of reported 1.29 GiB activation and 0.35 GiB non-Torch totals; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "f00ed349a86aaeaa4b07ffa02ac1994d7d28c655d25b45892611c60f1d628052"
+          }
+        },
+        {
+          "kind": "fragmentation",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "MetaX vLLM 0.8.5 runtime profile; nearest-byte conversions of reported 1.29 GiB activation and 0.35 GiB non-Torch totals; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "f00ed349a86aaeaa4b07ffa02ac1994d7d28c655d25b45892611c60f1d628052"
+          }
+        },
+        {
+          "kind": "framework",
+          "bytes": 375809638,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "experiment_logs/serving/production_ground_truth/20260824_c500_v0_graph_matrix_serial_7b5a1fd/Llama-3.1-8B/tp1_qps4/logs/vllm_server.stdout.log: MetaX vLLM 0.8.5 runtime profile; nearest-byte conversions of reported 1.29 GiB activation and 0.35 GiB non-Torch totals; non-Torch/framework bytes",
+            "source_sha256": "f00ed349a86aaeaa4b07ffa02ac1994d7d28c655d25b45892611c60f1d628052"
+          }
+        }
+      ],
+      "reserve_scope": "verified_uniform_across_pool_ranks",
+      "completeness_assertion": "all_non_kv_reserves_for_bound_runtime"
+    }
+  ]
+}

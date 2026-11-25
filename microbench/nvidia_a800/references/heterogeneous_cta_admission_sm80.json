@@ -1,0 +1,28 @@
+{
+  "schema": "nvidia_a800_heterogeneous_cta_admission_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "source_capture": "profiler_output/microbench/nvidia_a800/a800_heterogeneous_cta_admission_a5739aab_20260826_v2",
+  "source_baseline_commit": "1bee757995333d55256336047998c3dca2c07bc9",
+  "source_sha256": "8b859207cf254924487bf48a9e338bf6b1e1ad692a6fe7fbead2032d41ae87df",
+  "runner_sha256": "c6ecf207a5c1d1235d1c3f20885a345b84d1533d04a6cd36d4aabbd4e2e80ada",
+  "report_sha256": "ef5433db6f5596439adec5dd56d47442a6c05e3d49695f5234389a2284cbdc15",
+  "raw_sha256": "be8a43686631355cba0a6e42bb0a89ed7737e51cad4dc39951b68bffee3fa789",
+  "candidate_sha256": "e74b7a5f030af3fe60bd30eb6d416f36ddef478b6f398214a634eafa42c9532c",
+  "resident_ctas_per_sm": 2,
+  "threads_per_cta": 128,
+  "physical_sm_count": 108,
+  "launch_grid": [32, 4, 32],
+  "trial_count": 5,
+  "all_initial_linear_pairing_exact": true,
+  "maximum_queued_start_order_displacement": 25,
+  "mechanism": "two_resident_cta_source_ordered_work_conserving_queue",
+  "allowed_conclusion": "For the independent 128-thread, two-resident-CTA SM80 probe, the first 216 linear CTAs fill 108 paired SM slots and queued heterogeneous CTAs are admitted continuously in near-linear launch order as slots complete.",
+  "excluded_conclusions": [
+    "production FlashAttention CTA duration",
+    "a fixed CTA-to-SM identity",
+    "a round-robin assignment of heterogeneous CTAs"
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

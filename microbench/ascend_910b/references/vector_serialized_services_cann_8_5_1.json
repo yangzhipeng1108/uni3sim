@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "28eaa25f",
+  "service_family": "ub_resident_serialized_vector_intrinsic",
+  "calibration_run_ids": ["run1", "run2"],
+  "validation_run_ids": ["run3"],
+  "request_sizes_elements": [32, 2048, 6144],
+  "validation_maximum_ape_percent": 25.0,
+  "source_capture_path": "profiler_output/microbench/ascend_910b/vector_serialized_services_28eaa25f_20260826_r1",
+  "source_manifest_sha256": "63d7468cf22235ef8956466c3c5ebace15749dca135f7eced53e742bfbb93b03",
+  "raw_sha256": {
+    "run1.csv": "32707d79450d067d925e29b646e9fd02ae55263b261dc8af75b80544effdb3ba",
+    "run2.csv": "f82a0b8441d521c14fdfcc8552766a90f16025af263d7aee70e92d690befd151",
+    "run3.csv": "8748309128374480a598dd258bef2080d75d56a8fe3ed31a93cdfa8079c5f0c1"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "services": {
+    "cast_bf16_to_fp32_serialized": {
+      "setup_time_s_per_intrinsic": 1.2687227860448347e-08,
+      "steady_rate_elements_per_s_per_aiv": 91101721475.32834,
+      "maximum_validation_ape_percent": 2.040238518574613,
+      "service_publishable": true
+    },
+    "cast_fp32_to_bf16_serialized": {
+      "setup_time_s_per_intrinsic": 1.505741972886301e-08,
+      "steady_rate_elements_per_s_per_aiv": 118721932766.21454,
+      "maximum_validation_ape_percent": 19.950019619103024,
+      "service_publishable": true
+    },
+    "muls_serialized": {
+      "setup_time_s_per_intrinsic": 1.4162952125347858e-08,
+      "steady_rate_elements_per_s_per_aiv": 113414108344.31622,
+      "maximum_validation_ape_percent": 0.004683335964690555,
+      "service_publishable": true
+    },
+    "adds_serialized": {
+      "setup_time_s_per_intrinsic": 1.3532521423591672e-08,
+      "steady_rate_elements_per_s_per_aiv": 115717449356.68152,
+      "maximum_validation_ape_percent": 0.5749104425653551,
+      "service_publishable": true
+    },
+    "mul_serialized": {
+      "setup_time_s_per_intrinsic": 1.4670910392068116e-08,
+      "steady_rate_elements_per_s_per_aiv": 55487904081.27124,
+      "maximum_validation_ape_percent": 5.56033336851231,
+      "service_publishable": true
+    }
+  }
+}

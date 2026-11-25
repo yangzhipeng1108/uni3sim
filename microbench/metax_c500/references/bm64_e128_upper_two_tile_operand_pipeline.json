@@ -1,0 +1,47 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_e128_upper_two_tile_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "populated_experts": 128,
+    "minimum_m_tiles_per_populated_expert_exclusive": 2,
+    "maximum_m_tiles_per_populated_expert": 2.5,
+    "active_m_tiles": 317,
+    "maximum_m_tiles": 382,
+    "production_k_n_tile_classes": [[128, 48], [48, 64]]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090600,
+    "tokens": 2048,
+    "experts": 128,
+    "topk": 8,
+    "event_trials_per_capture": 7,
+    "independent_captures_per_projection": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "01f83fecf7fb57f932afd57ee42210e97981ec712237ce3b0af81a6b9fda94e1",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "per projection, median capacity across three independent captures of an adjacent non-production N geometry"
+  },
+  "captures": {
+    "w1": [
+      {"capture": 1, "source_topk": 8, "k": 4096, "n": 3008, "active_m_tiles": 317, "maximum_m_tiles": 382, "raw_sha256": "e8544a3fc933c370525c7ef85375a020d50e8773449007c654bd5abb9001dedc", "operand_pipeline_capacity_bytes_per_s": 1287397578762.883},
+      {"capture": 2, "source_topk": 8, "k": 4096, "n": 3008, "active_m_tiles": 317, "maximum_m_tiles": 382, "raw_sha256": "0c312f792d4bd7f0b1c9577a5c51306b33f0dab4628f4285dd6a85a9ada9cf23", "operand_pipeline_capacity_bytes_per_s": 1336953737898.0642},
+      {"capture": 3, "source_topk": 8, "k": 4096, "n": 3008, "active_m_tiles": 317, "maximum_m_tiles": 382, "raw_sha256": "90794c1ef31f8c6d4feb3b7ec9ed638ab1f61fc7c1f7116eda91c72b93f9b01f", "operand_pipeline_capacity_bytes_per_s": 1363476934845.1768}
+    ],
+    "w2": [
+      {"capture": 1, "source_topk": 1, "k": 1536, "n": 4032, "active_m_tiles": 317, "maximum_m_tiles": 382, "raw_sha256": "f763ba6012e079b89f19a253266882664d243cac241f2b23e124c9004f584fa5", "operand_pipeline_capacity_bytes_per_s": 800844389657.9861},
+      {"capture": 2, "source_topk": 1, "k": 1536, "n": 4032, "active_m_tiles": 317, "maximum_m_tiles": 382, "raw_sha256": "b72a533070f52214890da4197f391c66612262a531327ffef9c72125f04efb57", "operand_pipeline_capacity_bytes_per_s": 808752430005.3013},
+      {"capture": 3, "source_topk": 1, "k": 1536, "n": 4032, "active_m_tiles": 317, "maximum_m_tiles": 382, "raw_sha256": "7f8ddc8684ca651a400bc7660f9baf5e4f6d9a1238ad7b4d74328cb8b9f11c1a", "operand_pipeline_capacity_bytes_per_s": 814143562557.8195}
+    ]
+  },
+  "selected_services": {
+    "w1": {"predicate": "128 populated experts, more than two and at most 2.5 active M tiles per expert, 382 maximum M tiles, and K/N tile class (128,48)", "logical_byte_capacity_per_s": 1336953737898.0642},
+    "w2": {"predicate": "128 populated experts, more than two and at most 2.5 active M tiles per expert, 382 maximum M tiles, and K/N tile class (48,64)", "logical_byte_capacity_per_s": 808752430005.3013}
+  }
+}

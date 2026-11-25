@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_identity": {
+    "cann_toolkit_version": "8.5.1",
+    "cann_toolkit_inner_version": "V100R001C25SPC002B220",
+    "cann_toolkit_manifest": "/usr/local/Ascend/ascend-toolkit/latest/aarch64-linux/ascend_toolkit_install.info",
+    "cann_toolkit_manifest_sha256": "c43a7a2e011fdfedaa05dce3e8a194abf47df6133fe83e3656c9a257bda192e2",
+    "ccec_version": "clang 15.0.5 (clang-5c68a1cb1231 flang-5c68a1cb1231)",
+    "npu_smi_version": "25.2.3",
+    "container": "capture-container-2"
+  },
+  "evidence_kind": "independent_equal_head_copy_chain_completion_microbenchmark",
+  "campaign": "reshape_cache_equal_chain_equal_midworkers",
+  "production_or_evaluation_duration_consumed": false,
+  "capture": {
+    "owner": "ascend_kvcache_equal_midworkers",
+    "source_capture": "profiler_output/microbench/ascend_910b/kvcache_equal_midworkers_3cfed36d_20260831T084911",
+    "source_baseline_commit": "3cfed36db9ce468663a4d37334aa269b33cf7b24",
+    "publication_baseline_commit": "91095f37277ca2b95311032f1490d36d9cc06cec",
+    "integrated_probe_commits": [
+      "5956f941f73a080b04757edcff1d56c6cceb5678",
+      "9915c272ec0d558c91436a5ac152d7dcb1f70ab3",
+      "429b40b69a909e0b561697a00df46572da720069"
+    ],
+    "host": "capture-host-1",
+    "physical_device_id": 7,
+    "chip_id": 0,
+    "device_name": "910B2",
+    "pci_bus_id": "0000:42:00.0",
+    "started_at": "2026-08-31T08:50:47+08:00",
+    "completed_at": "2026-08-31T09:06:23+08:00",
+    "preflight_idle": true,
+    "postflight_idle": true,
+    "cleanup": "complete",
+    "build_command": "source /usr/local/Ascend/ascend-toolkit/set_env.sh && cmake -S source_snapshot -B build -DCMAKE_BUILD_TYPE=Release -DASCEND_HOME_PATH=/usr/local/Ascend/ascend-toolkit/latest && cmake --build build -j2",
+    "runner_command_template": "python3 source_snapshot/reshape_cache_equal_chain_runner.py --binary build/reshape_cache_equal_chain --device-id 7 --run-id kvcache-equal-midworkers-{01,02,03} --campaign equal_midworkers",
+    "report_command": "python3 source_snapshot/reshape_cache_equal_chain_report.py --campaign equal_midworkers run/run01.csv run/run02.csv run/run03.csv"
+  },
+  "source_identity": {
+    "source_reference": "microbench/ascend_910b/references/reshape_cache_equal_chain_completion_cann_8_5_1.json",
+    "source_reference_sha256": "a10e93d43570466506666286947c9e5b0fe8bc7de71bfe4a3622bd17cc03e292",
+    "source_scope": "CANN 8.5.1 ReshapeAndCache key 200 equal-head path; one source-shaped K GM-to-UB-to-GM chain followed by one V chain through a shared TBuf, retaining one MTE2_MTE3 and one MTE3_MTE2 hard completion edge per chain",
+    "source_snapshot": "/capture-workspace/profiler_output/microbench/ascend_910b/kvcache_equal_midworkers_3cfed36d_20260831T084911/source_snapshot",
+    "snapshot_files_sha256": {
+      "CMakeLists.txt": "42ea52a2f1dcae64a70166e4590ee109dbf4608142b1a0ff052b157b2b5c3440",
+      "reshape_cache_equal_chain_kernel.cpp": "6ab62105e73e71ea70cedfb3fc57bb5bd3ad62d0e1adb7b27f88751461774e93",
+      "reshape_cache_equal_chain_main.cpp": "64fdfd236f2dfeda0ef97580f668e682ba463bee8662bccca45420c48b5f9e67",
+      "reshape_cache_equal_chain_runner.py": "90d27d35e09231e469ce6166b17c4d7b56238648767fd8e4fe1e4ab89092505b",
+      "reshape_cache_equal_chain_report.py": "5d727f2703f3780cc488d89f6e6644593a4ef11022cf021776bedae7d9008706"
+    },
+    "benchmark_binary_sha256": "77209cdf3af30b8cec0598cd3225d2cab9071ec0119f6236750cc7fc21c2158f"
+  },
+  "artifact_identity": {
+    "capture_manifest_sha256": "f6754b3c205d205bc2721352325816cf6ab9a84229ef1d8d2a4153bb87531b8b",
+    "campaign_metadata_sha256": "92f9bd5522ebdbd22433ccbdbff6972c79641fcff16359ff6f1afc1737681efe",
+    "preflight_npu_smi_sha256": "975e8c7debab1e61db3ecee264a88017af03ec22d5bed01dceee1e7f9922b4a4",
+    "postflight_npu_smi_sha256": "f9108e0fec5c89a3818aaf583cc385bb293cf9ece93ec74d85be6e713d5b6239",
+    "report": {
+      "path": "profiler_output/microbench/ascend_910b/kvcache_equal_midworkers_3cfed36d_20260831T084911/report.txt",
+      "sha256": "0766b08f4f672e20604374c5c4e3a5952ec6b582ef58810b3f7b4e78ef8edf6a"
+    },
+    "runs": [
+      {
+        "run_id": "kvcache-equal-midworkers-01",
+        "runner_pid": 2102590,
+        "raw_path": "profiler_output/microbench/ascend_910b/kvcache_equal_midworkers_3cfed36d_20260831T084911/run/run01.csv",
+        "raw_sha256": "672bf0a86cf580999db79f67384f60e0f10bdb8ed25ffe847b4172ffba397f01",
+        "runner_log_sha256": "298aafebaba5f18dc36301aab807021de6385757de7d85f2dd7ae6ed71195f3b"
+      },
+      {
+        "run_id": "kvcache-equal-midworkers-02",
+        "runner_pid": 2103918,
+        "raw_path": "profiler_output/microbench/ascend_910b/kvcache_equal_midworkers_3cfed36d_20260831T084911/run/run02.csv",
+        "raw_sha256": "36b0fb20624fe63c8eefdc95da3b794049bb7b758dab4df68c1190bb548bb97a",
+        "runner_log_sha256": "11e8f7b3d0d4e2dbcfcf71114d03d0d9895c42c0cc30cf617a84db5d44d42214"
+      },
+      {
+        "run_id": "kvcache-equal-midworkers-03",
+        "runner_pid": 2105246,
+        "raw_path": "profiler_output/microbench/ascend_910b/kvcache_equal_midworkers_3cfed36d_20260831T084911/run/run03.csv",
+        "raw_sha256": "c55c225184e4de6519b5c0ddfc9c4dd5d81c8f30ad4383146d80e02928394ccc",
+        "runner_log_sha256": "f588f0020dbca798b4d006dfa5871153120d1c4d327a4b1ca0266a622e580c11"
+      }
+    ]
+  },
+  "probe_contract": {
+    "timer_domain": "GetSystemCycle converted at 20 ns per tick",
+    "service_time_unit": "ns_per_two_copy_chains_per_aiv",
+    "service_time_selection": "median_of_three_independent_run_medians",
+    "worker_counts": [2, 4, 8, 16],
+    "payload_bytes": [1024, 2048],
+    "pair_orders": [0, 1],
+    "stride_bytes": 4096,
+    "independent_runs": 3,
+    "schedule_cycles_per_run": 8,
+    "trials_per_run": 128,
+    "raw_rows_per_run": 15360,
+    "replication_basis": "balanced_schedule_cycle_parity",
+    "pairing_formula": "maximum_worker(request_first_interval(pair_order=1)-control_first_interval(pair_order=0)), matched by run and trial"
+  },
+  "median_ns_by_run": {
+    "kvcache-equal-midworkers-01": {
+      "2:1024": 1420.0,
+      "2:2048": 1400.0,
+      "4:1024": 1490.0,
+      "4:2048": 1480.0,
+      "8:1024": 2080.0,
+      "8:2048": 1920.0,
+      "16:1024": 3610.0,
+      "16:2048": 1080.0
+    },
+    "kvcache-equal-midworkers-02": {
+      "2:1024": 1440.0,
+      "2:2048": 1360.0,
+      "4:1024": 1540.0,
+      "4:2048": 1540.0,
+      "8:1024": 2090.0,
+      "8:2048": 2030.0,
+      "16:1024": 3540.0,
+      "16:2048": 1080.0
+    },
+    "kvcache-equal-midworkers-03": {
+      "2:1024": 1440.0,
+      "2:2048": 1390.0,
+      "4:1024": 1540.0,
+      "4:2048": 1550.0,
+      "8:1024": 2080.0,
+      "8:2048": 1960.0,
+      "16:1024": 3590.0,
+      "16:2048": 1080.0
+    }
+  },
+  "candidate_cells": {
+    "2:1024": {"service_time_ns": 1440.0, "maximum_run_relative_median_spread": 0.013888888888888888},
+    "2:2048": {"service_time_ns": 1390.0, "maximum_run_relative_median_spread": 0.02857142857142857},
+    "4:1024": {"service_time_ns": 1540.0, "maximum_run_relative_median_spread": 0.032467532467532464},
+    "4:2048": {"service_time_ns": 1540.0, "maximum_run_relative_median_spread": 0.04516129032258064},
+    "8:1024": {"service_time_ns": 2080.0, "maximum_run_relative_median_spread": 0.004784688995215311},
+    "8:2048": {"service_time_ns": 1960.0, "maximum_run_relative_median_spread": 0.054187192118226604},
+    "16:1024": {"service_time_ns": 3590.0, "maximum_run_relative_median_spread": 0.019390581717451522},
+    "16:2048": {"service_time_ns": 1080.0, "maximum_run_relative_median_spread": 0.0}
+  },
+  "gates": {
+    "source_snapshot_identity": "pass",
+    "binary_identity": "pass",
+    "hardware_preflight_and_cleanup": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "three_distinct_run_ids": "pass",
+    "balanced_cell_and_pair_order": "pass",
+    "every_cell_positive_increment": {
+      "minimum_first_quartile_ns": 1000.0,
+      "passed": true
+    },
+    "within_run_replication_relative_spread": {
+      "limit": 0.2,
+      "maximum_by_run": {
+        "kvcache-equal-midworkers-01": 0.04619565217391304,
+        "kvcache-equal-midworkers-02": 0.03636363636363636,
+        "kvcache-equal-midworkers-03": 0.04477611940298507
+      },
+      "passed": true
+    },
+    "cross_run_relative_median_spread": {
+      "limit": 0.2,
+      "observed_maximum": 0.054187192118226604,
+      "passed": true
+    }
+  },
+  "lookup_policy": {
+    "matching": "exact_worker_count_and_payload_only",
+    "interpolation_allowed": false,
+    "extrapolation_allowed": false,
+    "smoothing_allowed": false,
+    "non_monotonic_values_preserved": true
+  },
+  "decision": {
+    "status": "mechanism_candidate_only",
+    "mechanism_publishable": true,
+    "forward_eligible": false,
+    "composition_review_required": true,
+    "reason": "The independent mechanism campaign passes its frozen publication gates, but the non-monotonic 16-worker payload response and its composition with production key-200 work require separate review before any Forward use."
+  },
+  "allowed_conclusion": "For exact worker counts 2, 4, 8, and 16 and exact per-chain payloads 1024 B or 2048 B, the isolated CANN 8.5.1 equal-head two-copy-chain completion candidates are stable across three independent runs.",
+  "excluded_conclusions": [
+    "a complete ReshapeAndCache or production key-200 kernel duration",
+    "interpolation, smoothing, or monotonic adjustment across worker count or payload",
+    "reuse for unequal-head, slot-mapping, token-loop, cache-layout, or other launch paths",
+    "direct production Forward consumption before composition review"
+  ]
+}

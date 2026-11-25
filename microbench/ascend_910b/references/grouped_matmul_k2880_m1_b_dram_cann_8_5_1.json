@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "mechanism": "grouped_matmul_k2880_strided_b_dram_miss_nd2nz",
+  "duration_unit": "ns_per_64x256_b_descriptor_per_aic",
+  "publication_scope": {
+    "source_residency": "dram_miss",
+    "dtype": "bf16",
+    "operator": "GroupedMatmul",
+    "role": "w2",
+    "source_programs": [
+      {
+        "base_m": 16,
+        "base_n": 256,
+        "base_k": 64,
+        "depth_a1": 120,
+        "depth_b1": 8,
+        "step_ka": 60,
+        "step_kb": 4,
+        "step_m": 1,
+        "step_n": 1,
+        "l0a_buffers": 2,
+        "l0b_buffers": 2,
+        "l0c_buffers": 1,
+        "active_aic_groups": 24
+      },
+      {
+        "base_m": 32,
+        "base_n": 256,
+        "base_k": 64,
+        "depth_a1": 56,
+        "depth_b1": 8,
+        "step_ka": 28,
+        "step_kb": 4,
+        "step_m": 1,
+        "step_n": 1,
+        "l0a_buffers": 2,
+        "l0b_buffers": 2,
+        "l0c_buffers": 1,
+        "active_aic_groups": 24
+      },
+      {
+        "base_m": 64,
+        "base_n": 256,
+        "base_k": 64,
+        "depth_a1": 24,
+        "depth_b1": 8,
+        "step_ka": 12,
+        "step_kb": 4,
+        "step_m": 1,
+        "step_n": 1,
+        "l0a_buffers": 2,
+        "l0b_buffers": 2,
+        "l0c_buffers": 1,
+        "active_aic_groups": 24
+      },
+      {
+        "base_m": 128,
+        "base_n": 256,
+        "base_k": 64,
+        "depth_a1": 8,
+        "depth_b1": 8,
+        "step_ka": 4,
+        "step_kb": 4,
+        "step_m": 1,
+        "step_n": 1,
+        "l0a_buffers": 2,
+        "l0b_buffers": 2,
+        "l0c_buffers": 1,
+        "active_aic_groups": 24
+      }
+    ],
+    "descriptor_geometry": "B is a 64x256 ND2NZ descriptor independent of base-M; the L2 source order decides each request's hit or miss status",
+    "projection_k": 2880,
+    "projection_n": 2880,
+    "descriptor_rows": 64,
+    "descriptor_columns": 256,
+    "source_row_stride_elements": 2880,
+    "source_tile_span_bytes": 363392,
+    "copied_bytes_per_descriptor": 32768,
+    "source_lifecycle": "two_buffer_stream",
+    "source_allocation_bytes": 8589934592,
+    "iterations_per_worker": 512,
+    "coldness_constraint": "each timed interval walks more than twice the 192 MiB shared-L2 capacity through disjoint 363392-byte source spans before its first source-ring wrap"
+  },
+  "parameters_ns": {
+    "serial_completion": 1122.760416667,
+    "two_buffer_stream": 989.427083333,
+    "two_buffer_stream_full_chip_logical_byte_capacity_per_s": 794835731957.9452
+  },
+  "measurement": {
+    "fresh_process_trials": {
+      "serial_ns": [1122.760416667, 1121.5234375, 1123.346354167],
+      "two_buffer_stream_ns": [989.427083333, 983.8671875, 991.471354167]
+    },
+    "serial_relative_range_over_median": 0.00162360254,
+    "two_buffer_stream_relative_range_over_median": 0.00768542401,
+    "maximum_allowed_relative_range_over_median": 0.05,
+    "stability_gate": true,
+    "mechanism_gate_passed": true
+  },
+  "provenance": {
+    "capture_commit": "845e09d7",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_id": 6,
+    "owner": "kernel-accuracy-fusedmoe",
+    "raw_root": "profiler_output/microbench/ascend_910b/fusedmoe_k2880_m1_b_cold_845e09d7_20260911_r1",
+    "source_snapshot": "/capture-workspace/execution_snapshots/fusedmoe_m1_nd2nz_845e09d7_20260911_r1/source",
+    "command_template": "ASCEND_RT_VISIBLE_DEVICES=6 ./aic_mte2_nd2nz_stride --batch 8192 64 256 2880 <0|1> 24 512",
+    "source_sha256": {
+      "CMakeLists.txt": "d50d0b908a5aed58a55c5976a95c5f067f6d144b5bda3599b4f40ac8231d1a39",
+      "aic_mte2_nd2nz_stride_kernel.cpp": "3cdee9b19b126143b4351af4f60a0f4aa088dc4c496d0626e754eda65bcbfc72",
+      "aic_mte2_nd2nz_stride_main.cpp": "fe3d48698872b094ec1fd92039e463f3a46e3eb299ee38eb72ffe85101e7aba7",
+      "grouped_matmul.h": "d06679b4a391c032665f11fb3700c7478726c62e4230a0029d4286e086b209ed"
+    },
+    "raw_sha256": {
+      "fusedmoe_k2880_b_cold_trial_1.csv": "7aa99c82b9a0a33f4652930f38a46d565fffffcc9056771c9c265e601386a74c",
+      "fusedmoe_k2880_b_cold_trial_2.csv": "a843552015c15a47f1713c1e19db8c74480ea1b4ebed59c9839184130f4e0e1e",
+      "fusedmoe_k2880_b_cold_trial_3.csv": "3f37e379f15cbc41ade64a7c64e291a97b8a2e0ac5fa0b5498b98cefd97cc1df"
+    }
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "CANN 8.5.1 BF16 GroupedMatmul must be one of the exact W2 K2880/N2880 programs above and emit a 64x256 B descriptor with the physical 2880-element row stride. The source binds B before its blockDimM-dependent L2 cache hint and passes that same descriptor to SetTensorB; therefore the service applies only to descriptor requests independently classified as DRAM misses by the source-order LRU, never to L2 hits."
+}

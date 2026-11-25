@@ -1,0 +1,175 @@
+{
+ "schema_version": "midlayer.fia_workspace_ring_geometry.v1",
+ "hardware_id": "ascend_910b",
+ "software_revision": "cann_8.5.1",
+ "mechanism": "fia_gm_workspace_ring_distinct_extent",
+ "description": "CANN FusedInferAttentionScore routes its intermediate tiles through per-AIC-core GM rings. A ring slot's distinct GM extent is the widest store that lands in it, so a core that runs many tasks reuses the same slots rather than touching new addresses. The write-back residency probe found L0C->GM (Fixpipe) and UB->GM (MTE3) obey one rule, write_hit = 1 - slots/passes, so both engines are charged the same way. This file records only launch geometry read from the kernel sources: buffer names, owning engine, rotation key, slot extent and element width. It carries no duration and no measured traffic.",
+ "paths": {
+  "fixed_decode": {
+   "kernel_source": "fia_kernel_nonquant.h",
+   "ring_depth_constant": "PRELOAD_NUM",
+   "ring_depth": 2,
+   "slot_addressing": "aiCoreIdx * dbWorkspaceRatio * slotElements, indexed by rotation_key % PRELOAD_NUM",
+   "buffers": [
+    {
+     "name": "mm1Res",
+     "engine": "aic_fixpipe",
+     "element": "fp32",
+     "rotation_key": "info.loop",
+     "slot_elements": "group_size * q_len * s2_base_size",
+     "source": "fia_block_cube_nonquant_gqa.h:936"
+    },
+    {
+     "name": "mm2Res",
+     "engine": "aic_fixpipe",
+     "element": "fp32",
+     "rotation_key": "info.loop",
+     "slot_elements": "group_size * q_len * head_dim",
+     "source": "fia_block_cube_nonquant_gqa.h:1066"
+    },
+    {
+     "name": "vec1Res",
+     "engine": "aiv_mte3",
+     "element": "bf16",
+     "rotation_key": "info.loop",
+     "slot_elements": "group_size * q_len * s2_base_size",
+     "source": "fia_kernel_nonquant.h:366-402"
+    },
+    {
+     "name": "vec2Res",
+     "engine": "aiv_mte3",
+     "element": "fp32",
+     "rotation_key": "info.loop",
+     "slot_elements": "group_size * q_len * head_dim",
+     "source": "fia_kernel_nonquant.h:366-402"
+    }
+   ],
+   "flash_decode_buffers": {
+    "names": [
+     "accumOut",
+     "lseSumFd",
+     "lseMaxFd"
+    ],
+    "engine": "aiv_mte3",
+    "ring": false,
+    "note": "bound only inside the ASCEND_IS_AIV branch of InitWorkspace; the ASCEND_IS_AIC branch that follows receives matmulService alone and never sees them, and every reference in fia_block_vec_flashdecode.h copies GM into UB, which is a read. They are not Fixpipe destinations.",
+    "source": "fia_kernel_nonquant_mla.h:409-437, fia_block_vec_flashdecode.h:266,283,285"
+   }
+  },
+  "mla_decode": {
+   "kernel_source": "fia_kernel_nonquant_mla.h",
+   "ring_depth_constant": "PRELOAD_NUM",
+   "ring_depth": 2,
+   "rotation_counters": {
+    "info.loop": "advances once per (task, s2 chunk) pair; CalcParams(loop, bN2Cur, gS1Cur, s2Cur, ...) at fia_kernel_nonquant_mla.h:498-503",
+    "bn2IdxInCurCore": "advances only when isFirstSInnerLoop, i.e. once per (bN2, gS1) head-task; fia_kernel_nonquant_mla.h:557-561"
+   },
+   "buffers": [
+    {
+     "name": "mm1Res",
+     "engine": "aic_fixpipe",
+     "element": "fp32",
+     "rotation_key": "info.loop",
+     "source": "fia_block_cube_nonquant_mla.h:787"
+    },
+    {
+     "name": "mm2Res",
+     "engine": "aic_fixpipe",
+     "element": "fp32",
+     "rotation_key": "info.bn2IdxInCurCore",
+     "source": "fia_block_cube_nonquant_mla.h:999"
+    }
+   ],
+   "kv_operand_aliasing": {
+    "qk_head_dim": 576,
+    "value_head_dim": 512,
+    "distinct_gm_width": 576,
+    "note": "one latent per position; the value operand is that latent's leading value_head_dim channels, so both operands are real at L2 but share a single compulsory GM footprint. Charging qk_head_dim + value_head_dim counts the same bytes twice, (576+512)/576 = 1.889."
+   }
+  },
+  "split_fuse_prefill": {
+   "kernel_source": "flash_attention_regular.h",
+   "ring_depth_constant": "PRE_LAUNCH + 1",
+   "ring_depth": 3,
+   "rotation_counter": "stackSeqCount, declared inside the per-query-block body at flash_attention_regular.h:297 so every task restarts the ring at slot 0",
+   "slot_capacity_elements": 65536,
+   "slot_capacity_note": "WORKSPACE_BLOCK_SIZE_DB = Q_TILE_CEIL * MAX_KV_STACK_LEN is the reserved capacity, not the written width; each store reaches rowNum times its own layout stride",
+   "buffers": [
+    {
+     "name": "gS",
+     "engine": "aic_fixpipe",
+     "element": "fp32",
+     "writer": "blockMmadQK",
+     "extent_elements": "rowNum * stackSeqTilePad",
+     "source": "flash_attention_regular.h:323,329,343"
+    },
+    {
+     "name": "gP",
+     "engine": "aiv_mte3",
+     "element": "bf16",
+     "writer": "epilogueOnlineSoftmax",
+     "extent_elements": "rowNum * stackSeqTilePad",
+     "source": "flash_attention_regular.h:357,372,392,406"
+    },
+    {
+     "name": "gOTmp",
+     "engine": "aic_fixpipe",
+     "element": "fp32",
+     "writer": "blockMmadPV",
+     "extent_elements": "rowNum * embedRoundV",
+     "source": "flash_attention_regular.h:432,441,458"
+    },
+    {
+     "name": "gOUpdate",
+     "engine": "aiv_mte3",
+     "element": "fp32",
+     "writer": "epilogueRescaleO",
+     "extent_elements": "rowNum * embedRound",
+     "ring": false,
+     "source": "flash_attention_regular.h:476,478,485"
+    }
+   ],
+   "strides": {
+    "stackSeqTilePad": "blockStackNum * pagedBlockSize with blockStackNum = MAX_KV_STACK_LEN / pagedBlockSize, so it equals the stack ceiling however the pages divide it (flash_attention_regular.h:293-295)",
+    "embedRound": "RoundUp(embed, BLOCK_SIZE) (flash_attention_regular.h:189-190)",
+    "rowNum": "qSBlockSize * qNBlockSize (flash_attention_regular.h:281)"
+   }
+  }
+ },
+ "inadmissible_columns": {
+  "L1_to_GM_datas(KB)(estimate)": "The FIA cube block has only GM->L1 copies (common/CopyInL1.h:61, fia_block_cube_nonquant_gqa.h:783) and no L1->GM write path, and the column carries an (estimate) suffix because msprof infers it. It must be excluded from the measured side of any diagnostic, not only from the model."
+ },
+ "source_evidence": {
+  "flash_attention_regular.h": "59267576d00a9c40cffb402b1953c3a82956b43eeb570b7464c4ddfc17318393",
+  "fia_kernel_nonquant.h": "7cde05730d68bb02a2c45cd6b25605417ee61d42dfd87f21ccf0948c014b7e21",
+  "fia_kernel_nonquant_mla.h": "18f001420f2bb7fe7a0109e3d0e39787cc56857172754df171a009d577942516",
+  "fia_block_cube_nonquant_mla.h": "c2d054e58a94f72c1a01f6f70bd77c21eba12939f01fabfe263d062a2088212f",
+  "fia_block_cube_nonquant_gqa.h": "acce194dcf01f370d864ba7987f0c5a9d5927f7a69fb47426afa7789a6f856ef",
+  "fia_block_vec_flashdecode.h": "04ebb6eb9dd85da8cf75d57d466be0c6ec8980b4cf366294dca5cb7495faef45"
+ },
+ "framework_per_core_gm_clear": {
+  "writer": "AscendC::ClearWorkspaceImpl",
+  "engine": "aic_l1_to_gm",
+  "copy_intrinsic": "copy_cbuf_to_gm",
+  "scope": "every AscendC MIX kernel entry, emitted by the framework rather than by the operator",
+  "per_core_bytes": 32896,
+  "derivation": "BIDIRECTION_NUM(2) * MAX_MSG_COUNT(64) * AlignTo32(sizeof(KfcMsg)=128) * MIX_NUM(2) = 32768, plus MIX_NUM(2) * AlignTo32(sizeof(MsgUBAvalied)=64) = 128",
+  "addressing": "workspace + (size + msgOffset11) * GetBlockIdxImpl(), so each core clears its own KFC message region; block = size / 2048 = 16 copies of 2048 B",
+  "constants": {
+   "MAX_MSG_COUNT": 64,
+   "BIDIRECTION_NUM": 2,
+   "MIX_NUM": 2,
+   "sizeof_KfcMsg": 128,
+   "sizeof_MsgUBAvalied": 64
+  },
+  "why_it_is_invisible_in_L0C_to_GM": "it is an L1->GM copy (copy_cbuf_to_gm), not a Fixpipe L0C->GM store, so it never appears in L0C_to_GM_datas. This is why the authoritative write counter exceeds L0C_to_GM by about this amount and why the FIA operator sources contain no writer for it.",
+  "agreement": "measured authoritative AIC DRAM write minus the predicted source ring, per AIC core, divided by 32896: 1.024 / 1.024 / 1.020 on the three decode layouts and 1.057 to 1.068 on the four prefill layouts, median 1.033 over 278 non-MLA cases",
+  "not_yet_priced": "recorded but not charged in Forward; see docs/decisions.md §1 for why the attachment point needs its own memory path",
+  "source_evidence": {
+   "impl/dav_c220/kfc/kfc_comm.h": "ClearWorkspaceImpl at :357-380, KfcMsg at :289-302, MsgUBAvalied at :303-307, SysWorkspaceDesc at :346-355",
+   "impl/kernel_macros.h": "MAX_MSG_COUNT 64 at :88",
+   "asc/impl/adv_api/detail/kfc/kfc_register_obj.h": "AscendC::ClearWorkspace call sites at :189, :226, :275, :302, :359",
+   "cann_path": "/usr/local/Ascend/cann-8.5.1/aarch64-linux/tikcpp/tikcfw"
+  }
+ }
+}

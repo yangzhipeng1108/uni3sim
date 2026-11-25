@@ -1,0 +1,147 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_mte2_gemm_source_queue.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_shared_mte2_source_queue_v1",
+  "duration_unit": "ns_per_descriptor_per_aic",
+  "production_or_evaluation_duration_consumed": false,
+  "domain": {
+    "dtype": "bf16",
+    "active_aic_groups": 24,
+    "operand_buffer_depth": 2,
+    "traversal_order": "persistent_n_then_m",
+    "source_residency_states": [
+      "l2_resident",
+      "dram_cold"
+    ]
+  },
+  "descriptor_services": [
+    {
+      "rows": 128,
+      "columns": 512,
+      "source_row_stride_elements": 14336,
+      "resident_serial_samples_ns": [
+        817.232142857,
+        816.517857143,
+        810.208333333,
+        817.767857143
+      ],
+      "resident_stream_samples_ns": [
+        703.333333333,
+        701.726190476,
+        670.476190476,
+        671.726190476
+      ],
+      "cold_serial_samples_ns": [
+        2726.458333333,
+        2731.81547619,
+        2711.785714286,
+        2735.386904762
+      ],
+      "cold_stream_samples_ns": [
+        2644.226190476,
+        2634.583333333,
+        2659.791666667,
+        2629.404761905
+      ],
+      "resident_serial_ns": 816.875,
+      "resident_stream_ns": 686.726190476,
+      "cold_serial_ns": 2729.1369047615,
+      "cold_stream_ns": 2639.4047619045
+    },
+    {
+      "rows": 240,
+      "columns": 256,
+      "source_row_stride_elements": 14336,
+      "resident_serial_samples_ns": [
+        841.160714286,
+        838.601190476,
+        778.779761905,
+        777.708333333
+      ],
+      "resident_stream_samples_ns": [
+        761.160714286,
+        760.625,
+        637.678571429,
+        638.958333333
+      ],
+      "cold_serial_samples_ns": [
+        914.047619048,
+        912.619047619,
+        912.797619048,
+        918.541666667
+      ],
+      "cold_stream_samples_ns": [
+        764.970238095,
+        769.642857143,
+        765.0,
+        768.244047619
+      ],
+      "resident_serial_ns": 808.6904761905,
+      "resident_stream_ns": 699.7916666665001,
+      "cold_serial_ns": 913.422619048,
+      "cold_stream_ns": 766.6220238095
+    }
+  ],
+  "source_program_validation": {
+    "worker_grid_m": 4,
+    "worker_grid_n": 6,
+    "worker_m_tiles": 4,
+    "worker_n_tiles": 3,
+    "output_tiles_per_worker": 12,
+    "k_slabs": 28,
+    "a_descriptors_per_worker": 336,
+    "b_descriptors_per_worker": 672,
+    "a_dram_bytes": 58720256,
+    "b_dram_bytes": 117440512,
+    "dram_capacity_bytes_per_s": 1382400000000.0,
+    "mte2_only_run_medians_ns": [
+      818700.0,
+      815980.0,
+      816600.0
+    ],
+    "mte2_only_median_of_run_medians_ns": 816600.0,
+    "analytical_completion_ns": 828561.2599204591,
+    "analytical_relative_error": 0.01464763644435357,
+    "forward_parameter": false
+  },
+  "provenance": {
+    "measurement_baseline_commit": "dced8714faf8025d43513d59c007710bbd2f850c",
+    "physical_device_id": 6,
+    "container": "capture-container-2",
+    "descriptor_source_snapshot_sha256": "f400870fa7b3999693c8d6ad53c83f159b90e5a07c47addac72b4221739b6465",
+    "descriptor_binary_sha256": "9209dc2f4a5ecd82624399e69975af0abac11d20f84cd8e84fa64b2becc623df",
+    "descriptor_raw_paths": [
+      "profiler_output/microbench/ascend_910b/gemm_b240_descriptor_dced8714_20260914_d6/ab_resident_r1.csv",
+      "profiler_output/microbench/ascend_910b/gemm_b240_descriptor_dced8714_20260914_d6/ab_resident_r2.csv",
+      "profiler_output/microbench/ascend_910b/gemm_b240_descriptor_dced8714_20260914_d6/ab_resident_r3.csv",
+      "profiler_output/microbench/ascend_910b/gemm_b240_descriptor_dced8714_20260914_d6/ab_resident_r4.csv",
+      "profiler_output/microbench/ascend_910b/gemm_b240_descriptor_dced8714_20260914_d6/ab_cold_r1.csv",
+      "profiler_output/microbench/ascend_910b/gemm_b240_descriptor_dced8714_20260914_d6/ab_cold_r2.csv",
+      "profiler_output/microbench/ascend_910b/gemm_b240_descriptor_dced8714_20260914_d6/ab_cold_r3.csv",
+      "profiler_output/microbench/ascend_910b/gemm_b240_descriptor_dced8714_20260914_d6/ab_cold_r4.csv"
+    ],
+    "descriptor_raw_sha256": [
+      "79c8f3dcd700d1e354c7c5407d9a3e0bf5f00b8c956d4dc85dc19f227c8d70a7",
+      "0093921249beb6f5f2537ee15cd4ba1b7da894c5bd9b5341278f35077232c32a",
+      "3eaa2857c39556b4addda1a33660c90bc8bf7a75e729bd31181505deb8c6c504",
+      "b1276eb230f85b0149cc12560c2e6a078eee7f199ba7789faa0dc6595e80975f",
+      "72d2b1eafc1cbf7efd1e0094260f5f5cf75d491aefec8485a2a931c692c8d954",
+      "83c9ab06e2a0c452ff2f52610934486b2811dd36c79ebf490e36dcd723783d52",
+      "85d72f2612d17fedee3740454bfcbe9a79ac7e554392624f041a41f7451f8459",
+      "6e5bb315cd5a167812726d32db22795076afce9350564475bea5e33103023fa3"
+    ],
+    "source_program_source_snapshot_sha256": "23a487ee04ed37063130690e2bf81c3c2f94fd6b9f210cc3ec6c992e35796ac8",
+    "source_program_binary_sha256": "99b9c6a11e4e36c54e8c5a905da1e2e8a5b302becc5aed5a579aaf91ff2b35c1",
+    "source_program_raw_paths": [
+      "profiler_output/microbench/ascend_910b/gemm_m2048_k14336_n4096_source_order_dced8714_20260914_d6/r1.csv",
+      "profiler_output/microbench/ascend_910b/gemm_m2048_k14336_n4096_source_order_dced8714_20260914_d6/r2.csv",
+      "profiler_output/microbench/ascend_910b/gemm_m2048_k14336_n4096_source_order_dced8714_20260914_d6/r3.csv"
+    ],
+    "source_program_raw_sha256": [
+      "7a0a8e9a938053b9ceaf4a6d109fe3ba886170703cab79f50029b91111cc7785",
+      "880dda14f071397ca0e77be68a5c64fa081b8f1f23b65e203ec17fb99a091e5c",
+      "4efdcf037cdf1f9d1df1a68b832829cdb45e77bd592aec91bb6bc9d11667eac4"
+    ]
+  }
+}

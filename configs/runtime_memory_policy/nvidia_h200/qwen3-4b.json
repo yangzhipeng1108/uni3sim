@@ -1,0 +1,89 @@
+{
+  "schema_version": 2,
+  "scheduler_pools": [
+    {
+      "pool_name": "main",
+      "binding": {
+        "hardware_id": "nvidia_h200",
+        "hardware_config_sha256": "1b67bb9e4c555976a9d96386967bf50ca36bf11287ad33aedff5adca8ebf406a",
+        "model_config_sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+        "deployment": "colocated",
+        "worker_role": "colocated",
+        "tensor_parallel_size": 1,
+        "pipeline_parallel_size": 1,
+        "expert_parallel_size": 1,
+        "max_model_len": 8192,
+        "max_batched_tokens": 8192,
+        "max_requests": 256,
+        "kv_block_size_tokens": 16
+      },
+      "gpu_memory_utilization": {
+        "numerator": 4,
+        "denominator": 5,
+        "provenance": {
+          "source_kind": "runtime_configuration",
+          "source_reference": "qwen3-4b/tp1_qps4/trace_off/logs/vllm_server.stdout.log: vLLM 'Desired GPU memory utilization is (0.8, ...)' of the H200 capture",
+          "source_sha256": "25fc7b851461ab4a2c909ef226dc066e2e2ed26327e79ff29ab84528c8935053"
+        }
+      },
+      "non_kv_reserves": [
+        {
+          "kind": "activation",
+          "bytes": 1513975972,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "vLLM H200 startup memory accounting, max over the model's cases and ranks (qwen3-4b/tp1_qps16/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=7.98 A=1.23 G=0.29; qwen3-4b/tp1_qps4/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=8.68 A=1.41 G=0.29; qwen3-4b/tp1_qps64/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=7.98 A=1.23 G=0.29): peak activation 1.41 GiB from qwen3-4b/tp1_qps4/trace_off/logs/vllm_server.stdout.log[EngineCore]",
+            "source_sha256": "25fc7b851461ab4a2c909ef226dc066e2e2ed26327e79ff29ab84528c8935053"
+          }
+        },
+        {
+          "kind": "cuda_graph",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "vLLM H200 startup memory accounting, max over the model's cases and ranks (qwen3-4b/tp1_qps16/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=7.98 A=1.23 G=0.29; qwen3-4b/tp1_qps4/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=8.68 A=1.41 G=0.29; qwen3-4b/tp1_qps64/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=7.98 A=1.23 G=0.29): vLLM sizes the KV cache as utilization*total - consumed - peak activation (checked in every log), so this category adds no independent pre-KV reserve",
+            "source_sha256": "25fc7b851461ab4a2c909ef226dc066e2e2ed26327e79ff29ab84528c8935053"
+          }
+        },
+        {
+          "kind": "communication",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "vLLM H200 startup memory accounting, max over the model's cases and ranks (qwen3-4b/tp1_qps16/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=7.98 A=1.23 G=0.29; qwen3-4b/tp1_qps4/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=8.68 A=1.41 G=0.29; qwen3-4b/tp1_qps64/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=7.98 A=1.23 G=0.29): vLLM sizes the KV cache as utilization*total - consumed - peak activation (checked in every log), so this category adds no independent pre-KV reserve",
+            "source_sha256": "25fc7b851461ab4a2c909ef226dc066e2e2ed26327e79ff29ab84528c8935053"
+          }
+        },
+        {
+          "kind": "allocator",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "vLLM H200 startup memory accounting, max over the model's cases and ranks (qwen3-4b/tp1_qps16/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=7.98 A=1.23 G=0.29; qwen3-4b/tp1_qps4/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=8.68 A=1.41 G=0.29; qwen3-4b/tp1_qps64/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=7.98 A=1.23 G=0.29): vLLM sizes the KV cache as utilization*total - consumed - peak activation (checked in every log), so this category adds no independent pre-KV reserve",
+            "source_sha256": "25fc7b851461ab4a2c909ef226dc066e2e2ed26327e79ff29ab84528c8935053"
+          }
+        },
+        {
+          "kind": "fragmentation",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "vLLM H200 startup memory accounting, max over the model's cases and ranks (qwen3-4b/tp1_qps16/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=7.98 A=1.23 G=0.29; qwen3-4b/tp1_qps4/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=8.68 A=1.41 G=0.29; qwen3-4b/tp1_qps64/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=7.98 A=1.23 G=0.29): vLLM sizes the KV cache as utilization*total - consumed - peak activation (checked in every log), so this category adds no independent pre-KV reserve",
+            "source_sha256": "25fc7b851461ab4a2c909ef226dc066e2e2ed26327e79ff29ab84528c8935053"
+          }
+        },
+        {
+          "kind": "framework",
+          "bytes": 1202590843,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "vLLM H200 startup memory accounting, max over the model's cases and ranks (qwen3-4b/tp1_qps16/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=7.98 A=1.23 G=0.29; qwen3-4b/tp1_qps4/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=8.68 A=1.41 G=0.29; qwen3-4b/tp1_qps64/trace_off/logs/vllm_server.stdout.log[EngineCore]: W=7.56 C=7.98 A=1.23 G=0.29): non-torch = consumed 8.68 GiB - weights 7.56 GiB from qwen3-4b/tp1_qps4/trace_off/logs/vllm_server.stdout.log[EngineCore]",
+            "source_sha256": "25fc7b851461ab4a2c909ef226dc066e2e2ed26327e79ff29ab84528c8935053"
+          }
+        }
+      ],
+      "reserve_scope": "verified_uniform_across_pool_ranks",
+      "completeness_assertion": "all_non_kv_reserves_for_bound_runtime"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "kind": "ascend_fallback_dispatch_metadata_completion",
+  "hardware_id": "ascend_910b",
+  "runtime": {"name": "CANN", "version": "8.5.1"},
+  "framework": {"name": "torch_npu", "version": "2.9.0.post1+gitee7ba04"},
+  "runner": {
+    "path": "microbench/ascend_910b/runtime/launch/compiled_fx_metadata_runner.py",
+    "sha256": "c0c4e413238df8fd936f9f5aee2d86ecb76ed24af17e0935b77c3e94d9db8d15",
+    "operation_source_path": "microbench/ascend_910b/runtime/launch/compiled_fx_metadata_runner.py",
+    "operation_source_sha256": "c0c4e413238df8fd936f9f5aee2d86ecb76ed24af17e0935b77c3e94d9db8d15"
+  },
+  "source_contract": {
+    "path": "src/serving/compiled_fx.py",
+    "dense_contract": {
+      "qwen3_qkv_view_nodes_per_layer": 4,
+      "llama_qkv_view_nodes_per_layer": 0,
+      "attention_view_nodes_per_layer": 5,
+      "attention_empty_nodes_per_layer": 1,
+      "split_children_preserve_total": true
+    },
+    "coverage": "Ascend dense Qwen3/Llama decoder plans with explicit layer-0 and repeated layer-1 template"
+  },
+  "lanes": [
+    {
+      "device_id": 0,
+      "summary_path": "profiler_output/microbench/ascend_910b/fallback_dispatch_metadata_20260919_r1/summary.json",
+      "summary_sha256": "b1cd83b3728de902960b29791d7844c5c6291689ff788774f8362138fdc261a3",
+      "wall_slope_ns_per_view": 10498.989236790607,
+      "wall_slope_ns_per_empty": 22578.50782778865
+    },
+    {
+      "device_id": 1,
+      "summary_path": "profiler_output/microbench/ascend_910b/fallback_dispatch_metadata_20260919_r2/summary.json",
+      "summary_sha256": "795c8e3234de369c17fc2e18221b760d475fa46d74dd94cb2c9be655b8d93538",
+      "wall_slope_ns_per_view": 10433.99119373777,
+      "wall_slope_ns_per_empty": 22130.55821917808
+    }
+  ],
+  "service_time_s": {
+    "compiled_fx_aten_view_metadata": 0.000010466490215264187,
+    "compiled_fx_aten_empty_metadata": 0.000022354533023483366
+  },
+  "measurement": {
+    "boundary": "independent_runtime_mechanism_microbenchmark",
+    "synthetic_shape": [256, 256],
+    "fit_chain_lengths": [1, 8, 64],
+    "holdout_chain_length": 512,
+    "production_or_evaluation_duration_consumed": false,
+    "lane_aggregation": "arithmetic_mean_of_two independent 910B devices"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "601311bac4bc984574dec54aa0ea7cdc928a14ef",
+  "capture_source_snapshot": "/capture-workspace/source_snapshots/vector_gather_two_tque_601311ba_20260908",
+  "service": "aiv_gather_v3_two_tque_lifecycle",
+  "request_size_unit": "source_two_tque_lifecycles",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"1": 50.0},
+  "benchmark_binary_sha256": "fe6a3d0dcd31b79a84170c43832d1284b977cae7c2d422eeaaaff562b9712e72",
+  "benchmark_source_sha256": {
+    "gather_v3_two_tque_lifecycle_kernel.cpp": "58ee46be99fd76747dc554df694ddc67f0cbd7fe7b7bb08ea4a759c1b47d1540",
+    "single_tbuf_lifecycle_CMakeLists.txt": "7c6b6caf9717ae145a02e5d685adc476db150a3e6dc6450612a6c77322e8aa1a",
+    "single_tbuf_lifecycle_main.cpp": "c404f4c69f7359f5f342d8d2a267b55bbb3132eb88eaaeac2d77000fca56a18e",
+    "single_tbuf_lifecycle_runner.py": "f2d0ca56df793a03722ced2c8deb553f9449af463d23d713a7c6ac37914478f8",
+    "single_tbuf_lifecycle_report.py": "fd5e17a8befee9530a007a907d2599761c040853a4065fa1684623d3adc5a9d0"
+  },
+  "production_source_sha256": {
+    "gather_v3_tmpl_0.h": "4fb88909f8f01373f69b9f612acbbf429e2a05539694af8ea9c36d0e798ed5ae"
+  },
+  "source_domain": {
+    "tiling_key": 10330,
+    "data_queue_type": "TQueBind<VECIN,VECOUT,1>",
+    "data_queue_depth": 2,
+    "data_queue_buffer_bytes": 512,
+    "index_queue_type": "TQue<VECIN,1>",
+    "index_queue_depth": 2,
+    "index_queue_buffer_bytes": 8
+  },
+  "device": {
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_id": 7,
+    "model": "910B2",
+    "pci_bus_id": "0000:42:00.0"
+  },
+  "campaign": {
+    "owner": "capture-owner-4c0f2645f650",
+    "independent_runs": 3,
+    "balanced_trials_per_run": 36,
+    "amplification_iterations": 64,
+    "block_dims": [1, 2, 4, 8, 16, 48],
+    "invariance_payload_labels": [1024, 2048, 110080],
+    "runner_pids": [3562594, 3563257, 3563972],
+    "maximum_run_relative_median_spread": 0.0,
+    "maximum_concurrency_relative_median_spread": 0.0,
+    "admission_maximum_relative_spread": 0.2,
+    "run_command": "python3 single_tbuf_lifecycle_runner.py --binary <snapshot>/build/single_tbuf_lifecycle --device-id 7 --run-id <gather_two_tque_r1|gather_two_tque_r2|gather_two_tque_r3>",
+    "report_command": "python3 single_tbuf_lifecycle_report.py <run1.csv> <run2.csv> <run3.csv>"
+  },
+  "mechanism": "one complete TPipe scope containing the source-identical depth-two 512-byte data TQue and depth-two 8-byte index TQue initializations from GatherV3 key 10330",
+  "composition": "one exact lifecycle request per active GatherV3 AIV worker, serialized before its index queue access; the two public RoPE GatherV3 launches each consume one lifecycle",
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/gather_v3_two_tque_lifecycle_601311ba_20260908_d7/run1.csv", "sha256": "186f67d9b05e175c232d2e2523ab3fe9c33fc5bcb673b6fd65892bf2649b2a82", "runner_log_sha256": "e983eb0cc481ca318a9d26497d5ea49f2049809d9d59fdae3491367be22a4b8c"},
+    {"path": "profiler_output/microbench/ascend_910b/gather_v3_two_tque_lifecycle_601311ba_20260908_d7/run2.csv", "sha256": "656f5a5867918c7be8092a47bcd9e04c5941c0ac867f745f9076196f960ecfdb", "runner_log_sha256": "980482a4d1b52b15e184ddd7ee08f14cd897a9d7ebb164b68ac75eda7511894d"},
+    {"path": "profiler_output/microbench/ascend_910b/gather_v3_two_tque_lifecycle_601311ba_20260908_d7/run3.csv", "sha256": "aff79b24b2f7896941169a7e42cf076ccfa3b6e21c022cfacf15ed2560e66242", "runner_log_sha256": "42552d69e0e5106168a3a499cac8f826ecaf0274adc77b9b3e6fdbb9a2d9a9d8"},
+    {"path": "profiler_output/microbench/ascend_910b/gather_v3_two_tque_lifecycle_601311ba_20260908_d7/report.txt", "sha256": "938817a260a03d4c1d0813579344a0edeab6f940102cb69c054f5540219429d7"}
+  ],
+  "excluded_conclusions": [
+    "a queue access, memory transfer, index decode, Gather computation, or complete production operator duration",
+    "interpolation to a different queue type, depth, or allocation size",
+    "addition to a source program that does not declare both matching GatherV3 queues"
+  ],
+  "measurement_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

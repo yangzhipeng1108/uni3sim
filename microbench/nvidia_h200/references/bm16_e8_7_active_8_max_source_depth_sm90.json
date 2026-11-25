@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_h200",
+  "software_revision": "vllm_0.11.0_source_triton_3.6_sm90",
+  "mechanism": "bm16_e8_7_active_8_max_source_depth_operand_pipeline_v1",
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "use only for BF16 BM16/BN32/BK64/GSM1 E8 source launches with 8 routed rows, 7 active M tiles, 8 maximum M tiles, and the exact W1 K/N tile class 64/896 or W2 class 224/128",
+  "source_geometry": {
+    "dtype": "bf16",
+    "experts": 8,
+    "routed_rows": 8,
+    "active_m_tiles": 7,
+    "maximum_m_tiles": 8,
+    "tile_m": 16,
+    "tile_n": 32,
+    "tile_k": 64,
+    "group_size_m": 1,
+    "threads_per_cta": 128,
+    "w1": {
+      "source_tokens": 4,
+      "source_topk": 2,
+      "production_k_tiles": 64,
+      "production_n_tiles": 896,
+      "adjacent_nonproduction_n": [
+        28160,
+        29184
+      ],
+      "mul_routed_weight": false,
+      "activation_refresh_before_timed_launch": false
+    },
+    "w2": {
+      "source_tokens": 8,
+      "source_topk": 1,
+      "production_k_tiles": 224,
+      "production_n_tiles": 128,
+      "adjacent_nonproduction_n": [
+        4064,
+        4128
+      ],
+      "mul_routed_weight": true,
+      "activation_refresh_before_timed_launch": true
+    },
+    "cache_polluter_bytes": 134217728,
+    "synthetic_routing_rule": "eight routes distributed round-robin over seven populated experts"
+  },
+  "selected_services": {
+    "w1": {
+      "logical_byte_capacity_per_s": 4512287853373.589,
+      "selection": "minimum of the per-device/per-geometry median capacities across three fresh processes",
+      "capture_medians_ns": {
+        "device0_n28160": 368800.01425743103,
+        "device0_n29184": 381408.0059528351,
+        "device3_n28160": 370175.9874820709,
+        "device3_n29184": 384128.00431251526
+      }
+    },
+    "w2": {
+      "logical_byte_capacity_per_s": 4396293859605.2593,
+      "selection": "minimum of the per-device/per-geometry median capacities across three fresh processes",
+      "capture_medians_ns": {
+        "device0_n4064": 192159.9954366684,
+        "device0_n4128": 194176.00333690643,
+        "device3_n4064": 192064.00215625763,
+        "device3_n4128": 194240.003824234
+      }
+    }
+  },
+  "capture": {
+    "baseline_commit": "48abf63b1baff96101be2f06194dc27a1d246932",
+    "runner_path": "microbench/nvidia_h200/operators/fused_moe/sm80_bf16_bm16_sparse_w2_source_runner.py",
+    "runner_sha256": "2e5f5fc69181096f376c62e7fec6cb3c572e53f2ee4d4fef749adae58251c1a3",
+    "vllm_source_sha256": "8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e",
+    "physical_devices": [
+      0,
+      3
+    ],
+    "fresh_processes_per_device_role_and_geometry": 3,
+    "trials_per_process": 9,
+    "maximum_capture_capacity_range_over_mean_pct": 0.8108138446717783,
+    "raw_tree_digest_rule": "sha256sum of the concatenated sorted relative-path sha256sum records",
+    "raw_root": {
+      "path": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm16_e8_7_active_8_max_source_depth",
+      "sha256": "8debcf0b953aaa794358c5ddcabccb9737e8e783c5eea810fbd5977dca8d0c56"
+    }
+  },
+  "allowed_conclusion": "The exact BM16 E8 7-active/8-maximum source-depth class uses conservative role-specific full-source logical-operand completion services measured with production source semantics.",
+  "excluded_conclusions": [
+    "complete production MoE operator duration",
+    "exact production K/N duration",
+    "per-case residual correction",
+    "other source depths or projection tile classes"
+  ],
+  "h200_capture_provenance": {
+    "a800_reference": "microbench/nvidia_a800/references/bm16_e8_7_active_8_max_source_depth_sm80.json",
+    "runner": "microbench/nvidia_h200/operators/fused_moe/sm80_bf16_bm16_sparse_w2_source_runner.py",
+    "runner_sha256": "2e5f5fc69181096f376c62e7fec6cb3c572e53f2ee4d4fef749adae58251c1a3",
+    "kernel_module": "microbench/nvidia_h200/operators/fused_moe/vllm_0_11_fused_moe_kernel.py",
+    "kernel_module_sha256": "3524c4403644320c6b3505eff0e0503f763550f04e029eef3091a051f5382adb",
+    "kernel_source": "byte-identical vLLM 0.11 fused_moe_kernel / invoke_fused_moe_kernel / moe_align_block_size segments (vLLM 0.11 fused_moe.py sha256 8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e) compiled by Triton 3.6.0; sort op = vLLM 0.24.0 _moe_C",
+    "software": {
+      "torch": "2.11.0+cu129",
+      "triton": "3.6.0",
+      "vllm_package_for_moe_align_op": "0.24.0"
+    },
+    "campaign": "microbench/nvidia_h200/operators/fused_moe/fused_moe_triton_wp1_campaign.py",
+    "campaign_sha256": "35b90e71354f86bbc199ede0cae7135f3dc16be15158c06520dfec9b093d7762",
+    "derivation": "microbench/nvidia_h200/operators/fused_moe/derive_fused_moe_triton_wp1_references.py",
+    "derivation_sha256": "183dae60d6334ccbb176f5918d156019c1a4bf300c8f2129f4e06e56a07ee1ff",
+    "baseline_commit": "48abf63b1baff96101be2f06194dc27a1d246932",
+    "raw_dir": "profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm16_e8_7_active_8_max_source_depth",
+    "remote_raw_dir": "/capture-public/h200_microbench/wp1_moe_triton/repo/profiler_output/microbench/nvidia_h200/wp1_triton_moe_f31e5412_20260925/bm16_e8_7_active_8_max_source_depth",
+    "raw_tree_sha256": "8debcf0b953aaa794358c5ddcabccb9737e8e783c5eea810fbd5977dca8d0c56",
+    "device_mapping": "A800 device 2 -> H200 GPU 0, A800 device 6 -> H200 GPU 3",
+    "clock": {
+      "gate": "every nvidia-smi 50-ms sample inside [first timed launch - 0.1 s, last timed launch + 0.1 s] reads >= 1980 MHz; a rejected process is repeated in a fresh process",
+      "accepted_captures": 24,
+      "rejected_captures": 0,
+      "window_samples_total": 160,
+      "window_clock_mhz_min": 1980,
+      "window_clock_mhz_max": 1980,
+      "measured_sm_clock_mhz": 1980
+    },
+    "deep_gate_m_tiles": {
+      "a800": 1728,
+      "h200": 2112
+    },
+    "derived_at_utc": "2026-09-24T20:59:40.614394+00:00"
+  }
+}

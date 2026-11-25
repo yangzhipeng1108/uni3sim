@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "ee826c0e7b1184ff7dcf14b8e5a4ca40ead64880",
+  "capture_source_snapshot": "add_rmsnorm_splitd_handoff_ee826c0e_20260831_r2",
+  "service": "add_rmsnorm_split_d_local_scalar_handoff",
+  "request_size_unit": "source_split_d_scalar_handoff_chains",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"1": 17.22249349},
+  "control_service": "add_rmsnorm_local_scalar_handoff",
+  "control_service_time_ns_per_request_per_aiv": 17.77750651,
+  "benchmark_binary_sha256": "7fcbe8395a86dc5c224723746141c5c9a6215cc373abebbde586c70ae9f55e56",
+  "benchmark_source_sha256": {
+    "vector_opcode_kernel.cpp": "749161e4102a9181e96ef8ba17d861a47a506fe23d4de0880dd15d18057421fc",
+    "vector_opcode_main.cpp": "9b07480840b334f5a0957591079b01617f2f5230dc3382e18058d09f20e03558",
+    "vector_opcode_report.py": "133eb0151b657c8ecb592a6dafbe11e2263d05b53de3afb3a560d3cc4c2d4e8b",
+    "vector_opcode_runner.py": "2eac2809ab48736df102b72bffe49795de71c3772b89f9521b63b91539e00a47"
+  },
+  "production_source_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/add_rms_norm/add_rms_norm_split_d.h",
+  "production_source_sha256": "9ff6a5cde40fbaa7948de058a5172ebc80824ab985531af8103eb34ed4b9e64a",
+  "runtime_source_revalidation": {
+    "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/matmul_all_reduce_add_rms_norm/add_rms_norm_split_d.h",
+    "sha256": "6eb79da7428d12f75b80aa2a34f90349e5d4be6993e519287bb6a0789780f8f5",
+    "bf16_compute_y_lines": [265, 291],
+    "equivalent_mechanism": "FetchEventID(V_S), SetFlag/WaitFlag(V_S), rstdLocal.GetValue, FetchEventID(S_V), SetFlag/WaitFlag(S_V), and PipeBarrier(PIPE_V) precede Muls in both source programs"
+  },
+  "launch_reference": "microbench/ascend_910b/references/add_rmsnorm_splitd_launch_cann_8_5_1.json",
+  "launch_reference_sha256": "e2301f4c279ea782255c2e8a4b408eb3a937e6195e838a95bea42414e86d9fa6",
+  "device_id": 0,
+  "independent_runs": 3,
+  "samples_per_cell": 12,
+  "block_dims": [1, 32, 47],
+  "tick_intersection_ns": [20.0, 20.0],
+  "maximum_run_relative_median_spread": 0.00006867345067731281,
+  "maximum_concurrency_relative_median_spread": 0.00011444265250903396,
+  "mechanism": "one V-to-scalar event handoff, one LocalTensor GetValue, one scalar-to-Vector event handoff, and one terminal PIPE_V barrier; no SetValue",
+  "composition": "one source-exact request per CANN key-31 AddRmsNorm row and 8192-element output column tile, after the residual reload cast and before output scaling",
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_splitd_handoff_ee826c0e_20260831_r3/run1.csv", "sha256": "337e2e54f13311f073b54d4343722178d5d5bbf9f0bad9aa95fea5f89af4ac35"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_splitd_handoff_ee826c0e_20260831_r3/run2.csv", "sha256": "c3d3999ea8923d1f789c05e384076bbe7c8e671a25506b0614a1bfc8c42b5470"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_splitd_handoff_ee826c0e_20260831_r3/run3.csv", "sha256": "9a01ac3300b3383b2600bed70e02429c2ceb892654461492f2fedc4fa04e8e6c"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_splitd_handoff_ee826c0e_20260831_r3/audit.txt", "sha256": "b184b2b8b97d3dad878803631b9168a608b49bd238ae61dc53b38d2278d66788"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_splitd_handoff_ee826c0e_20260831_r3/pre_npu_smi.txt", "sha256": "a86b245e89d702b5b9a48b0226cd45787a06c2ce8306248a6cbc5b304346c0f0"},
+    {"path": "profiler_output/microbench/ascend_910b/add_rmsnorm_splitd_handoff_ee826c0e_20260831_r3/post_npu_smi.txt", "sha256": "f15d214c7a6e76c2d35ccff213c11a94c8b501dd3d40293ef50507c9f8030027"}
+  ],
+  "measurement_gate_passed": true,
+  "provenance_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

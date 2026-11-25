@@ -1,0 +1,48 @@
+{
+  "hardware_id": "ascend_910b",
+  "host": {
+    "cpu": "Kunpeng-920 (aarch64)"
+  },
+  "measurement": {
+    "artifacts": [
+      {
+        "path": "microbench/ascend_910b/runtime/host_request_path/references/admission_ipc_region_20260921.json",
+        "sha256": "5658369aedc864ce3b5b9fb7e6910ebdba2fbf4ffdb76e7af9156ac48c996f1d"
+      },
+      {
+        "path": "microbench/ascend_910b/runtime/host_request_path/references/host_request_path_20260920.json",
+        "sha256": "163be9713bb201c1c9be2f77979f7b6e652bdb8d450a57616f2e46a3274b144d"
+      },
+      {
+        "path": "microbench/ascend_910b/runtime/host_request_path/references/input_processor_20260921.json",
+        "sha256": "bf4878780cf20a5ddf510d200010d0adeaef891b1f295800d4e33707cef4777e"
+      },
+      {
+        "path": "microbench/ascend_910b/runtime/host_request_path/references/output_delivery_chain_20260922.json",
+        "sha256": "6ff4608fe4a6f6a38af731b24d56a685e9c94cfa984b55ead89e294de7b3481d"
+      }
+    ],
+    "boundary": "host_only_no_device_no_model",
+    "statistic": "median_of_independent_primitive_samples",
+    "time_unit": "seconds"
+  },
+  "runtime": {
+    "source_identity": "vllm.utils.async_utils.AsyncMicrobatchTokenizer(batch_wait_timeout_s=0.002,max_batch_size=32)",
+    "version": "0.18.0"
+  },
+  "schema_version": 1,
+  "service_time_s": {
+    "admission_enqueue": 3.51e-05,
+    "api_entry": 0.001175316,
+    "engine_core_ipc": 8.52e-05,
+    "first_token_delivery": 0.0005873,
+    "input_processor_intercept": 9.937087301587302e-05,
+    "input_processor_per_token": 2.5382936507936504e-08,
+    "output_delivery_per_output": 9.6249e-05,
+    "tokenizer_async_call": 0.0024440345,
+    "tokenizer_encode_intercept": 8.392395275590552e-05,
+    "tokenizer_encode_per_token": 3.6024404527559056e-06,
+    "tokenizer_render_region_intercept": null,
+    "tokenizer_render_region_per_token": null
+  }
+}

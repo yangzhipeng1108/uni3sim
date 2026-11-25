@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "aic_mte2_nd2nz_cold_stream_parallel_constraint",
+  "composition": "max(resident_descriptor_stream, shared_dram_delivery)",
+  "production_or_evaluation_duration_consumed": false,
+  "forward_parameters": {
+    "source": "scheduling.aic_mte2_nd2nz_service.cold_completion_*",
+    "cold_completion_active_aic_groups": 22,
+    "cold_completion_minimum_extra_ns": 145.285666667,
+    "cold_completion_bandwidth_bytes_per_s_per_aic": 29592640612.76537,
+    "aggregate_bandwidth_bytes_per_s": 651038093480.8381,
+    "parameter_fit_from_this_validation": false
+  },
+  "mechanism_validation": {
+    "dtype": "bf16",
+    "rows": 224,
+    "columns": 64,
+    "source_row_stride_elements": 1536,
+    "descriptor_bytes": 28672,
+    "active_aic_groups": 23,
+    "descriptors_per_worker": 24,
+    "mode": "two_l1_buffers_issue_without_intervening_wait_then_drain",
+    "aggregate_compulsory_operand_bytes": 15753216,
+    "analytical_shared_dram_constraint_ns": 24197.072579538177,
+    "device_6": {
+      "trial_ns_per_descriptor": [
+        1329.166666667,
+        1329.722222222,
+        1298.333333333
+      ],
+      "median_ns_per_descriptor": 1329.166666667,
+      "median_24_descriptor_stream_ns": 31900.000000008004,
+      "relative_range_pct": 2.3615464994853084
+    },
+    "device_7": {
+      "trial_ns_per_descriptor": [
+        1374.722222222,
+        1321.111111111,
+        1316.666666667
+      ],
+      "median_ns_per_descriptor": 1321.111111111,
+      "median_24_descriptor_stream_ns": 31706.666666663998,
+      "relative_range_pct": 4.394449116863276
+    },
+    "cross_device_median_difference_pct": 0.6060606060939049,
+    "analytical_to_measured_stream_ape_pct": {
+      "device_6": 24.147107901153277,
+      "device_7": 23.684590266378635
+    },
+    "interpretation": "The MTE2-only cold stream is materially slower than the resident descriptor schedule on both devices. The validation confirms a separate shared-DRAM constraint; its measured duration is not copied into Forward."
+  },
+  "fia_paged_gqa_finite_program_validation": {
+    "dtype": "bf16",
+    "rows": 128,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "active_aic_groups": 24,
+    "minimum_descriptors_per_worker": 28,
+    "maximum_descriptors_per_worker": 160,
+    "mode": "finite_drained_disjoint_dram_source",
+    "completion_edge": "MTE2_MTE1_after_every_descriptor",
+    "count_results": [
+      {
+        "descriptor_count": 28,
+        "published_median_ns": 33870.0
+      },
+      {
+        "descriptor_count": 40,
+        "published_median_ns": 47580.0,
+        "maximum_run_median_deviation_pct": 0.37831021437578816
+      },
+      {
+        "descriptor_count": 44,
+        "published_median_ns": 52160.0,
+        "maximum_run_median_deviation_pct": 0.4601226993865031
+      },
+      {
+        "descriptor_count": 48,
+        "published_median_ns": 57050.0,
+        "maximum_run_median_deviation_pct": 1.19193689745837
+      },
+      {
+        "descriptor_count": 64,
+        "published_median_ns": 75650.0,
+        "maximum_run_median_deviation_pct": 0.2775941837409121
+      },
+      {
+        "descriptor_count": 80,
+        "published_median_ns": 94780.0,
+        "maximum_run_median_deviation_pct": 0.5591897024688753
+      },
+      {
+        "descriptor_count": 96,
+        "published_median_ns": 113350.0,
+        "maximum_run_median_deviation_pct": 0.070577856197618
+      },
+      {
+        "descriptor_count": 112,
+        "published_median_ns": 132330.0,
+        "maximum_run_median_deviation_pct": 0.43829819390916647
+      },
+      {
+        "descriptor_count": 120,
+        "published_median_ns": 141610.0,
+        "maximum_run_median_deviation_pct": 0.2683426311701151
+      },
+      {
+        "descriptor_count": 128,
+        "published_median_ns": 150960.0,
+        "maximum_run_median_deviation_pct": 0.46369899311075785
+      },
+      {
+        "descriptor_count": 160,
+        "published_median_ns": 187920.0,
+        "maximum_run_median_deviation_pct": 0.1809280544912729
+      }
+    ],
+    "raw_paths": [
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_diag_20d22893_20260905/gqa_d128_group24.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count48_ed37d484_20260905/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count48_ed37d484_20260905/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count48_ed37d484_20260905/run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count120_cd41ef74_20260906/count64_112_run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count120_cd41ef74_20260906/count64_112_run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count120_cd41ef74_20260906/count64_112_run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count120_cd41ef74_20260906/count120_run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count120_cd41ef74_20260906/count120_run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count120_cd41ef74_20260906/count120_run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count128_94050ecf_20260906/count128_run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count128_94050ecf_20260906/count128_run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count128_94050ecf_20260906/count128_run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count160_rerun_c30fb797_20260906/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count160_rerun_c30fb797_20260906/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_count160_rerun_c30fb797_20260906/run3.csv"
+    ],
+    "raw_sha256": [
+      "845f553d30ad99c611643ac2ac9bbf49f42d170c346ff433a24e253a5e2ec7e5",
+      "a4c32f51a6762450bbac9fdf0e3cdbd79e7aa91f7f3c0ce2f6c463bb70e96f89",
+      "df510ee80aae2206dac5d82432cb8566815f50f90d72fe7830f1fafff9848dbe",
+      "c7bd6a2e5a90929d3ffc7534e919449dccf4a2be967a09f1104f6f8a00800243",
+      "307d0482efd502cb6cc4b8d7087a6120e007017ffa3637e58d68097fa41a8a38",
+      "eb40b79222dbd40bf890f650072a804884386a3e377fe3e8024c004c8f9239ba",
+      "a81d3539d74dcb75e14ece72c53659e8d5846fe63f0cdf1f5bf59e0ed2ba3be9",
+      "893bbea4bcd0e787a6452b3c422fdbf5285be37d1566e72cba810fecbd90d7b6",
+      "99a38f4d68d090da250e6c4e7c921a3ff7d29be8a567ec57b3b55cf2513037f9",
+      "7c7e34b6f732f5f63b953e440bfae4310e3e304d099a892b24c087bdeded8b43",
+      "999345cfbc5c45b31a6a787077529fdb12335a731e532a1001277fa88e488ffa",
+      "dce77e3e3d078e9804cb1e0c7473b001a95ba494fc7243fd36bc9c00c10a1794",
+      "12c036950d33066dcbc88e3516200b38c92333dac9ff054969d583ab2d00187a",
+      "07484c8406bce16300e055988bfb86f808a8c74a7cd76806fb59ae677cb5a804",
+      "48eba334ef228446b65504b253911dc35db4457b72bebf42baea3a3fa8ec6efc",
+      "3d84bf387f77de86e9bcaad90cd3a03ceeced3d9e82446c43e71318bf521dddf"
+    ],
+    "production_or_evaluation_duration_consumed": false,
+    "parameter_fit_from_this_validation": false,
+    "mechanism_gate_passed": true,
+    "interpretation": "The finite drained FIA paged-GQA program remains a stable lower bound through 160 descriptors per worker. Forward retains the independently derived shared-DRAM law and only extends its discrete program-length domain; measured durations are not copied into Forward."
+  },
+  "provenance": {
+    "capture_baseline_commit": "249e159e6e7baf5b7afa1b581e81a7ea6dda25c2",
+    "raw_root": "profiler_output/microbench/ascend_910b/gemm_target_b_mte2_249e159e_20260903_candidate",
+    "physical_device_ids": [6, 7],
+    "command_template": "ASCEND_RT_VISIBLE_DEVICES=<6|7> ./build/aic_mte2_nd2nz_stride --batch 512 224 64 1536 0 23 24 224 64 1536 1 23 24",
+    "source_snapshot_sha256": "3cd5b243744d7f8c6329ec943474b898947611841f282b1f718a4303e3041bc8",
+    "source_sha256": {
+      "CMakeLists.txt": "9530d6d29390cdb8a9b3d5975207aa5887bf2915e6922c54ea0831f3854542b9",
+      "aic_mte2_nd2nz_stride_kernel.cpp": "3cdee9b19b126143b4351af4f60a0f4aa088dc4c496d0626e754eda65bcbfc72",
+      "aic_mte2_nd2nz_stride_main.cpp": "e37049647d6c409e8d5bc282c659e367c0ecfb1a728af7339e698b6166510c7d",
+      "aic_mte2_nd2nz_stride_runner.py": "f6bf1aa2ff8b47d856350352f11bfa3f08dd6591e5408cd83c715412a0676a90"
+    },
+    "binary_sha256": "9a132b5bee9b1cd12af4da750890bdfbbc3f1fd0c93c4d09160ed969eb6dcaf1",
+    "raw_files": [
+      {
+        "device_id": 6,
+        "trial": 1,
+        "path": "device6_trial1.csv",
+        "sha256": "80b2cca1afa4b0a690bcb3329d287a9eee9b8820aa735eacf5d4b4108e4eed5f"
+      },
+      {
+        "device_id": 6,
+        "trial": 2,
+        "path": "device6_trial2.csv",
+        "sha256": "f7ed94c2b1a73f16027dba81d90370ce232f36f6b3f86ab65d2736a6b5c43510"
+      },
+      {
+        "device_id": 6,
+        "trial": 3,
+        "path": "device6_trial3.csv",
+        "sha256": "91679210843ba914004599505c626f315689bbd489784901a0c1be61b9cb8fd1"
+      },
+      {
+        "device_id": 7,
+        "trial": 1,
+        "path": "device7_trial1.csv",
+        "sha256": "4511d37077a04d0986c0f160e8dd2a8290395095de0d80027b7ddc71f863a68c"
+      },
+      {
+        "device_id": 7,
+        "trial": 2,
+        "path": "device7_trial2.csv",
+        "sha256": "d596c3612f97f92fbb6cf0ef90e1387f9d3b10bc2add6736323cffe35eb991c0"
+      },
+      {
+        "device_id": 7,
+        "trial": 3,
+        "path": "device7_trial3.csv",
+        "sha256": "6e563c32803d0c6467536fbcb432331b32a5fb2939148bd3c3b4a148b674ba3e"
+      }
+    ]
+  },
+  "excluded_diagnostic": {
+    "geometry": {
+      "rows": 224,
+      "columns": 256,
+      "source_row_stride_elements": 1536,
+      "descriptors_per_worker": 6
+    },
+    "status": "NO_GO",
+    "reason": "The differential interval collapsed to near-zero or failed to increase, so no BL1 aggregate descriptor duration is publishable or consumed."
+  }
+}

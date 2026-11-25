@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "evidence_kind": "deployed_runtime_config_and_compiler_resource",
+  "production_or_evaluation_duration_consumed": false,
+  "hardware_execution_performed": false,
+  "deployment": {
+    "container_name": "capture-container-3",
+    "container_id": "capture-container-697146ab7ebe",
+    "image_digest": "sha256:8f8e02ff704e6c23887ea8963e6a643a8d425151db17d76994da3a5071236399",
+    "vllm_version": "0.24.0",
+    "vllm_metax_version": "0.24.0+g436274.d20260813",
+    "maca_runtime": "3.8.2",
+    "triton_version": "3.6.0"
+  },
+  "source_files": [
+    {
+      "path": "/opt/conda/lib/python3.12/site-packages/vllm_metax/model_executor/layers/fused_moe/fused_moe.py",
+      "sha256": "b7b6804b6882ba6df9bc116dd9c930f6ea032e27ba44175a8256c96dcba27d49"
+    },
+    {
+      "path": "/opt/conda/lib/python3.12/site-packages/vllm_metax/model_executor/layers/fused_moe/experts/triton_moe.py",
+      "sha256": "6227e65b66ce3579676d5ac6b0a36997531c45b73a145607ec29f10f4ce3c255"
+    },
+    {
+      "path": "/opt/conda/lib/python3.12/site-packages/vllm_metax/model_executor/layers/fused_moe/utils.py",
+      "sha256": "1d49f7d65e0b30e797f3b37ba06282fd3f2d5fbf884c4fbfcb0a6f80b4292f6f"
+    },
+    {
+      "path": "/capture-workspace/Qwen3-30B-A3B/config.json",
+      "sha256": "2850ddb3bf7aecad20b611e2d44f3077fc8193f4827c93beddd4c02ad63c2297"
+    }
+  ],
+  "selected_deployment_input": {
+    "model": "qwen3-30b-a3b",
+    "dtype": "bf16",
+    "hidden_size": 2048,
+    "moe_intermediate_size": 768,
+    "global_experts": 128,
+    "topk": 8,
+    "expert_parallel_size": 2,
+    "local_experts": 64,
+    "logical_tokens": 36,
+    "graph_physical_tokens": 40
+  },
+  "runtime_config_resolution": {
+    "batch_invariant": false,
+    "override_config": "absent",
+    "tuned_config_folder": "/opt/conda/lib/python3.12/site-packages/vllm_metax/model_executor/layers/fused_moe/configs/H=2048",
+    "candidate_paths": [
+      "/opt/conda/lib/python3.12/site-packages/vllm_metax/model_executor/layers/fused_moe/configs/H=2048/H=2048,E=64,N=768,device_name=MXC500.json",
+      "/opt/conda/lib/python3.12/site-packages/vllm_metax/model_executor/layers/fused_moe/configs/E=64,N=768,device_name=MXC500.json"
+    ],
+    "candidate_paths_exist": false,
+    "selected_source_branch": "get_default_config",
+    "default_config_at_m40": {
+      "BLOCK_SIZE_M": 32,
+      "BLOCK_SIZE_N": 64,
+      "BLOCK_SIZE_K": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_warps": 4,
+      "num_stages": 3
+    },
+    "general_bf16_default_rule": {
+      "block_size_m": {
+        "m_lte_32": 16,
+        "m_33_to_96": 32,
+        "m_97_to_512": 64,
+        "m_gt_512": 128
+      },
+      "block_size_n": {
+        "m_lte_64": 64,
+        "m_gt_64": 128
+      },
+      "block_size_k": {
+        "m_lte_64": 128,
+        "m_gt_64": 64
+      },
+      "group_size_m": {
+        "m_div_local_experts_lte_128": 1,
+        "m_div_local_experts_gt_128": 16
+      },
+      "num_warps": {
+        "m_lte_128": 4,
+        "m_gt_128": 8
+      },
+      "num_stages": {
+        "m_lte_32": 4,
+        "m_gt_32": 3
+      }
+    }
+  },
+  "compiler_resource": {
+    "aot_cache_identity": "c617277208cdd1130e7f6b54f779bcc8ca925685bc9a49cef5ed4bc7c45f6422",
+    "artifact_path": "inductor_cache/triton/0/MGE5O3NC7RKDHTXPSVAWXWYUHI7ONZKXJL5WHR7D3WRI2VJDGWZA/fused_moe_kernel.json",
+    "artifact_sha256": "a3ca71acdac16b459e65dcb9399ceb566a9513eed3132850c01a7c4ece9aab5f",
+    "ttir_sha256": "8d49fbb2775b4a97d25a77a1d9aa8d3392c4ba8cf38ac92ea375e1d13e7ade9b",
+    "triton_kernel_hash": "6189d76da2fc5433ceef95416bdb143a3ee6e5574afb63c7e3dda28d552335b2",
+    "tile": {
+      "m": 32,
+      "n": 64,
+      "k": 128
+    },
+    "num_warps": 4,
+    "num_stages": 3,
+    "dynamic_shared_memory_bytes": 49152,
+    "general_bf16_default_compiled_configs": [
+      {
+        "artifact_path": "inductor_cache/triton/0/OJZVJGT2LLPFYGVKFPPQW2FF5BOQCJMTOC6TZPQKTYRKFI3IP6RQ/fused_moe_kernel.json",
+        "artifact_sha256": "531dfe305a84a9d4e12e99f1c160225ee9811109d51716ee95ce1b7d072454be",
+        "tile": {
+          "m": 16,
+          "n": 64,
+          "k": 128
+        },
+        "num_warps": 4,
+        "num_stages": 4,
+        "dynamic_shared_memory_bytes": 40960
+      },
+      {
+        "artifact_path": "inductor_cache/triton/0/MGE5O3NC7RKDHTXPSVAWXWYUHI7ONZKXJL5WHR7D3WRI2VJDGWZA/fused_moe_kernel.json",
+        "artifact_sha256": "a3ca71acdac16b459e65dcb9399ceb566a9513eed3132850c01a7c4ece9aab5f",
+        "tile": {
+          "m": 32,
+          "n": 64,
+          "k": 128
+        },
+        "num_warps": 4,
+        "num_stages": 3,
+        "dynamic_shared_memory_bytes": 49152
+      },
+      {
+        "artifact_path": "inductor_cache/triton/0/WVLR7XVWPSHXBIAR37AZ6VFVPVI5VMGEDIVEXX2B37R2HTDYGEXQ/fused_moe_kernel.json",
+        "artifact_sha256": "1ef6f130622f1d309c378ac72f6bbab4b1fdf6a8805b4e786513429d5e05ff17",
+        "tile": {
+          "m": 32,
+          "n": 128,
+          "k": 64
+        },
+        "num_warps": 4,
+        "num_stages": 3,
+        "dynamic_shared_memory_bytes": 40960
+      },
+      {
+        "artifact_path": "inductor_cache/triton/0/DFMEZVSEI3RWQ47WGAZFFUMNI3UG5TZVBWB47LC3GJWVV3M3OYGA/fused_moe_kernel.json",
+        "artifact_sha256": "349f503ffcc959488ed46169f28f7fb3c1433476856359eadc3d211dafbc4551",
+        "tile": {
+          "m": 64,
+          "n": 128,
+          "k": 64
+        },
+        "num_warps": 4,
+        "num_stages": 3,
+        "dynamic_shared_memory_bytes": 49152
+      },
+      {
+        "artifact_path": "inductor_cache/triton/0/XX73HWUYK5UI3TM247PZF67XYCLLBMPABFZQZIS7JNXPRNO66WSA/fused_moe_kernel.json",
+        "artifact_sha256": "4cc56048c1d1062f7a0456202c2f569da0fa6868150cd594f56238fc071d8d74",
+        "tile": {
+          "m": 64,
+          "n": 128,
+          "k": 64
+        },
+        "num_warps": 8,
+        "num_stages": 3,
+        "dynamic_shared_memory_bytes": 49152
+      },
+      {
+        "artifact_path": "inductor_cache/triton/0/IAEP4OD4FV7RNNATT56XKMBTEOWKE7FKEWP5IIABYZUSR5CI4CDQ/fused_moe_kernel.json",
+        "artifact_sha256": "0252df5a85e2fd05f916f2b0d6d77208afa8f2f044c61b0e09f897c6138234d0",
+        "ttir_sha256": "32c871a8eae672bd3c254711d21cf65dee8f30f4c88cc134e83e4b14eea7d131",
+        "tile": {
+          "m": 128,
+          "n": 128,
+          "k": 64
+        },
+        "num_warps": 8,
+        "num_stages": 3,
+        "dynamic_shared_memory_bytes": 65536
+      }
+    ]
+  },
+  "selected_launch_observation": {
+    "raw_root": "/capture-workspace/wt-host-timeline-910b/profiler_output/serving/metax_c500/serving-error-diagnosis-20260914/c500-selected-vllm1145-mctracer-r6",
+    "launcher_log_sha256": "e7d42d0a81ed8857014fca03b54729a497ac5ef22587b6aa0bc1acaa83d11eeb",
+    "timeline_sha256": "6baa9cc8879cc3bde36a91af05f4c26cccf7899da1b3de1c2f870f1ef84baa56",
+    "w1": {
+      "grid": 3216,
+      "block": 256,
+      "dynamic_shared_memory_bytes": 49152
+    },
+    "w2": {
+      "grid": 4288,
+      "block": 256,
+      "dynamic_shared_memory_bytes": 49152
+    }
+  },
+  "forward_scope": {
+    "status": "source_backed",
+    "supported": "BF16 Qwen3-30B-A3B H=2048 I=768 E=128 topk=8 EP2 with no resolved tuned JSON, no override, VLLM_BATCH_INVARIANT=0 and one default FusedMoE invocation up to 16384 physical tokens; BM128 uses the retained live compiler resource record and source-issued base operand stream",
+    "unsupported": "batch-invariant mode, a loaded tuned JSON not represented by a compiler-resource record, explicit override outside a compiler-resource record, multi-chunk invocations and any BM128 second-stream traffic assertion"
+  }
+}

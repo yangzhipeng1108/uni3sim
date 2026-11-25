@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "software_revision": "vLLM 0.8.5 / MACA 3.7.2",
+  "service": "rmsnorm_block128_wave_lifetime_completion",
+  "request_size_unit": "source_program_completion",
+  "service_time_unit": "ns_per_cta_completion",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "1": 5765.262222222222
+  },
+  "source_contract": {
+    "kernel_symbol": "void vllm::rms_norm_kernel<c10::BFloat16>(c10::BFloat16*, c10::BFloat16 const*, long, c10::BFloat16 const*, float, int, int)",
+    "dtype": "bf16",
+    "rows": 188064,
+    "hidden": 128,
+    "grid": [188064, 1, 1],
+    "block": [128, 1, 1],
+    "workgroups": 188064,
+    "waves": 376128,
+    "waves_per_cta": 2,
+    "average_wave_life_cycles": 6485.92,
+    "xcore_clock_hz": 1125000000.0
+  },
+  "derivation": "average_wave_life_cycles / xcore_clock_hz; this hardware counter measures resident wave start-to-end completion and excludes queue wait before admission",
+  "composition": "one completion request begins with every CTA issue; requests have zero modeled issue occupancy, overlap across resident and later CTAs, and only the final outstanding request contributes launch drain",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/metax_c500/rmsnorm_block128_program_counters_20260911_r1/mcprofiler_out/_allk/1__ZN4vllm15rms_norm_kernelIN3c108BFloat16EEEvPT_PKS3_S6_fii.txt",
+      "sha256": "cd36d4a7ebe17f2f95cb5c7f96f5a88c9c9f60d3fabddfdc8300c5ea9b3722ff"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/rmsnorm_block128_program_counters_20260911_r1/mcprofiler_out/_allk/rmsnorm_block128_q_counters.json",
+      "sha256": "94b743aaa1879cc3ed746908ad9a4d1b151a7870b903aa004be99eb561f9e459"
+    }
+  ],
+  "source_files_sha256": {
+    "vllm_metax_plugin/_C.abi3.so": "5162686e3f1decbe131aa22429a1d5ee4def9f479fc4faf328f3b0bbeff0507a",
+    "csrc/layernorm_kernels.cu": "056986926c196168a2edd654ef79e07aac704404ef092fd7019a496d0ea0188a"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

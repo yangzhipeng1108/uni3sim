@@ -1,0 +1,424 @@
+{
+  "hardware_id": "nvidia_h200",
+  "mechanism": "cold_async_copy_ready",
+  "production_or_evaluation_duration_consumed": false,
+  "producer_threads": 128,
+  "resident_ctas_per_sm": 1,
+  "minimum_payload_bytes": 128,
+  "maximum_payload_bytes": 65536,
+  "measured_sm_clock_hz": 1980000000,
+  "profiles": {
+    "cp_async": [
+      {
+        "producers": 1,
+        "latency_ns": 382.70473818419026,
+        "aggregate_bandwidth_bytes_s": 112910061028.77069
+      },
+      {
+        "producers": 8,
+        "latency_ns": 390.79048805076206,
+        "aggregate_bandwidth_bytes_s": 741368672629.6958
+      },
+      {
+        "producers": 32,
+        "latency_ns": 464.29757457154716,
+        "aggregate_bandwidth_bytes_s": 1935209376605.1833
+      },
+      {
+        "producers": 132,
+        "latency_ns": 440.7667674790963,
+        "aggregate_bandwidth_bytes_s": 2723874263862.3325
+      }
+    ],
+    "tma": [
+      {
+        "producers": 1,
+        "latency_ns": 372.1471070786139,
+        "aggregate_bandwidth_bytes_s": 117948852459.01637
+      },
+      {
+        "producers": 8,
+        "latency_ns": 497.6081756903675,
+        "aggregate_bandwidth_bytes_s": 906838266958.4244
+      },
+      {
+        "producers": 32,
+        "latency_ns": 479.5795528672241,
+        "aggregate_bandwidth_bytes_s": 1829691337748.3442
+      },
+      {
+        "producers": 132,
+        "latency_ns": 473.83719780980056,
+        "aggregate_bandwidth_bytes_s": 2719324724409.4487
+      }
+    ]
+  },
+  "derivation": "Per producer-count endpoint secant at 128 B / 64 KiB; median over five trials and CTAs. L is ns, B is aggregate bytes/s. Other payloads validate only. No production durations or parameters selected by operator accuracy.",
+  "combination": "First-wave initial K readiness only, competing by maximum with source K-ready. Retain completion floors from measured producer cohorts no larger than demand to preserve nondecreasing contention. Not a steady per-panel bandwidth or an additive whole-operator price.",
+  "limitations": [
+    "affine finite-burst approximation; intermediate payload residuals retained",
+    "fixed 1.98 GHz clock conversion; no per-operator frequency inference",
+    "one resident CTA and independent contiguous source regions",
+    "production address order, bank mapping and consumer overlap remain partial"
+  ],
+  "evidence": {
+    "cp_async": {
+      "path": "profiler_output/microbench/nvidia_h200/cold_copy_ready_20261107/small_payload/raw.json",
+      "sha256": "52f62f15947ee71934c2527e322f75dddf03e15964126cafeed81c650fcc7915",
+      "source_sha256": "9a50e8bac0d7e257a095d6d98f9db8a3053adb87458a7a62b0f35fa4770d3b7f",
+      "runner_sha256": "71c7451e3e4dd89def91e584df66436f9a0f82c7b11e6980965697f4ab274065",
+      "cold_dram_bytes": 4332032.0,
+      "repeated_dram_bytes": 512.0,
+      "payload_bytes": 4325376,
+      "validation": [
+        {
+          "producers": 1,
+          "bytes": 128,
+          "observed_ready_ns": 383.83838383838383,
+          "affine_ready_ns": 383.83838383838383
+        },
+        {
+          "producers": 1,
+          "bytes": 512,
+          "observed_ready_ns": 461.11111111111114,
+          "affine_ready_ns": 387.23932080096466
+        },
+        {
+          "producers": 1,
+          "bytes": 2048,
+          "observed_ready_ns": 413.1313131313131,
+          "affine_ready_ns": 400.84306865128787
+        },
+        {
+          "producers": 1,
+          "bytes": 8192,
+          "observed_ready_ns": 816.1616161616162,
+          "affine_ready_ns": 455.2580600525806
+        },
+        {
+          "producers": 1,
+          "bytes": 16384,
+          "observed_ready_ns": 624.2424242424242,
+          "affine_ready_ns": 527.811381920971
+        },
+        {
+          "producers": 1,
+          "bytes": 32768,
+          "observed_ready_ns": 820.7070707070707,
+          "affine_ready_ns": 672.9180256577517
+        },
+        {
+          "producers": 1,
+          "bytes": 65536,
+          "observed_ready_ns": 963.1313131313132,
+          "affine_ready_ns": 963.1313131313132
+        },
+        {
+          "producers": 8,
+          "bytes": 128,
+          "observed_ready_ns": 392.1717171717172,
+          "affine_ready_ns": 392.1717171717172
+        },
+        {
+          "producers": 8,
+          "bytes": 512,
+          "observed_ready_ns": 404.04040404040404,
+          "affine_ready_ns": 396.3154045345827
+        },
+        {
+          "producers": 8,
+          "bytes": 2048,
+          "observed_ready_ns": 504.04040404040404,
+          "affine_ready_ns": 412.8901539860444
+        },
+        {
+          "producers": 8,
+          "bytes": 8192,
+          "observed_ready_ns": 668.939393939394,
+          "affine_ready_ns": 479.18915179189156
+        },
+        {
+          "producers": 8,
+          "bytes": 16384,
+          "observed_ready_ns": 765.6565656565657,
+          "affine_ready_ns": 567.5878155330211
+        },
+        {
+          "producers": 8,
+          "bytes": 32768,
+          "observed_ready_ns": 906.0606060606061,
+          "affine_ready_ns": 744.3851430152802
+        },
+        {
+          "producers": 8,
+          "bytes": 65536,
+          "observed_ready_ns": 1097.9797979797981,
+          "affine_ready_ns": 1097.9797979797981
+        },
+        {
+          "producers": 32,
+          "bytes": 128,
+          "observed_ready_ns": 466.4141414141414,
+          "affine_ready_ns": 466.4141414141414
+        },
+        {
+          "producers": 32,
+          "bytes": 512,
+          "observed_ready_ns": 420.2020202020202,
+          "affine_ready_ns": 472.7638419419241
+        },
+        {
+          "producers": 32,
+          "bytes": 2048,
+          "observed_ready_ns": 543.939393939394,
+          "affine_ready_ns": 498.162644053055
+        },
+        {
+          "producers": 32,
+          "bytes": 8192,
+          "observed_ready_ns": 797.7272727272727,
+          "affine_ready_ns": 599.7578524975785
+        },
+        {
+          "producers": 32,
+          "bytes": 16384,
+          "observed_ready_ns": 934.090909090909,
+          "affine_ready_ns": 735.2181304236099
+        },
+        {
+          "producers": 32,
+          "bytes": 32768,
+          "observed_ready_ns": 1111.3636363636365,
+          "affine_ready_ns": 1006.1386862756726
+        },
+        {
+          "producers": 32,
+          "bytes": 65536,
+          "observed_ready_ns": 1547.979797979798,
+          "affine_ready_ns": 1547.979797979798
+        },
+        {
+          "producers": 132,
+          "bytes": 128,
+          "observed_ready_ns": 446.969696969697,
+          "affine_ready_ns": 446.969696969697
+        },
+        {
+          "producers": 132,
+          "bytes": 512,
+          "observed_ready_ns": 502.020202020202,
+          "affine_ready_ns": 465.5784854414992
+        },
+        {
+          "producers": 132,
+          "bytes": 2048,
+          "observed_ready_ns": 614.1414141414142,
+          "affine_ready_ns": 540.0136393287079
+        },
+        {
+          "producers": 132,
+          "bytes": 8192,
+          "observed_ready_ns": 1024.4949494949497,
+          "affine_ready_ns": 837.7542548775426
+        },
+        {
+          "producers": 132,
+          "bytes": 16384,
+          "observed_ready_ns": 1449.2424242424242,
+          "affine_ready_ns": 1234.741742275989
+        },
+        {
+          "producers": 132,
+          "bytes": 32768,
+          "observed_ready_ns": 2149.4949494949497,
+          "affine_ready_ns": 2028.7167170728817
+        },
+        {
+          "producers": 132,
+          "bytes": 65536,
+          "observed_ready_ns": 3616.6666666666665,
+          "affine_ready_ns": 3616.666666666667
+        }
+      ]
+    },
+    "tma": {
+      "path": "profiler_output/microbench/nvidia_h200/tma_cold_copy_ready_20261107/raw.json",
+      "sha256": "a282764988884e61cfb43425b73bc11967ff2a53359ece2a7973546290c10b6f",
+      "source_sha256": "5598c69f5791c8ca724401434a53432ce66daf52d11cbc5114a302323cfc7fb9",
+      "runner_sha256": "a7653afeb7eb13bc4aa7614836dbda455e7685ec2d5cb9ca7cf8082a7c5de6cf",
+      "cold_dram_bytes": 4328704.0,
+      "repeated_dram_bytes": 0.0,
+      "payload_bytes": 4325376,
+      "validation": [
+        {
+          "producers": 1,
+          "bytes": 128,
+          "observed_ready_ns": 373.2323232323232,
+          "affine_ready_ns": 373.2323232323232
+        },
+        {
+          "producers": 1,
+          "bytes": 512,
+          "observed_ready_ns": 448.989898989899,
+          "affine_ready_ns": 376.48797169345113
+        },
+        {
+          "producers": 1,
+          "bytes": 2048,
+          "observed_ready_ns": 474.74747474747477,
+          "affine_ready_ns": 389.51056553796275
+        },
+        {
+          "producers": 1,
+          "bytes": 8192,
+          "observed_ready_ns": 612.1212121212121,
+          "affine_ready_ns": 441.6009409160094
+        },
+        {
+          "producers": 1,
+          "bytes": 16384,
+          "observed_ready_ns": 840.4040404040404,
+          "affine_ready_ns": 511.0547747534049
+        },
+        {
+          "producers": 1,
+          "bytes": 32768,
+          "observed_ready_ns": 853.030303030303,
+          "affine_ready_ns": 649.9624424281958
+        },
+        {
+          "producers": 1,
+          "bytes": 65536,
+          "observed_ready_ns": 927.7777777777778,
+          "affine_ready_ns": 927.7777777777778
+        },
+        {
+          "producers": 8,
+          "bytes": 128,
+          "observed_ready_ns": 498.73737373737373,
+          "affine_ready_ns": 498.73737373737373
+        },
+        {
+          "producers": 8,
+          "bytes": 512,
+          "observed_ready_ns": 536.8686868686868,
+          "affine_ready_ns": 502.12496787839257
+        },
+        {
+          "producers": 8,
+          "bytes": 2048,
+          "observed_ready_ns": 621.4646464646464,
+          "affine_ready_ns": 515.6753444424678
+        },
+        {
+          "producers": 8,
+          "bytes": 8192,
+          "observed_ready_ns": 747.4747474747475,
+          "affine_ready_ns": 569.8768506987685
+        },
+        {
+          "producers": 8,
+          "bytes": 16384,
+          "observed_ready_ns": 858.0808080808081,
+          "affine_ready_ns": 642.1455257071696
+        },
+        {
+          "producers": 8,
+          "bytes": 32768,
+          "observed_ready_ns": 1050.5050505050503,
+          "affine_ready_ns": 786.6828757239716
+        },
+        {
+          "producers": 8,
+          "bytes": 65536,
+          "observed_ready_ns": 1075.7575757575758,
+          "affine_ready_ns": 1075.7575757575758
+        },
+        {
+          "producers": 32,
+          "bytes": 128,
+          "observed_ready_ns": 481.8181818181818,
+          "affine_ready_ns": 481.8181818181818
+        },
+        {
+          "producers": 32,
+          "bytes": 512,
+          "observed_ready_ns": 657.3232323232323,
+          "affine_ready_ns": 488.53406867105497
+        },
+        {
+          "producers": 32,
+          "bytes": 2048,
+          "observed_ready_ns": 635.3535353535353,
+          "affine_ready_ns": 515.3976160825475
+        },
+        {
+          "producers": 32,
+          "bytes": 8192,
+          "observed_ready_ns": 829.7979797979798,
+          "affine_ready_ns": 622.851805728518
+        },
+        {
+          "producers": 32,
+          "bytes": 16384,
+          "observed_ready_ns": 941.1616161616162,
+          "affine_ready_ns": 766.124058589812
+        },
+        {
+          "producers": 32,
+          "bytes": 32768,
+          "observed_ready_ns": 1262.878787878788,
+          "affine_ready_ns": 1052.6685643124
+        },
+        {
+          "producers": 32,
+          "bytes": 65536,
+          "observed_ready_ns": 1625.7575757575758,
+          "affine_ready_ns": 1625.7575757575758
+        },
+        {
+          "producers": 132,
+          "bytes": 128,
+          "observed_ready_ns": 480.0505050505051,
+          "affine_ready_ns": 480.0505050505051
+        },
+        {
+          "producers": 132,
+          "bytes": 512,
+          "observed_ready_ns": 545.959595959596,
+          "affine_ready_ns": 498.69042677261854
+        },
+        {
+          "producers": 132,
+          "bytes": 2048,
+          "observed_ready_ns": 749.4949494949494,
+          "affine_ready_ns": 573.2501136610725
+        },
+        {
+          "producers": 132,
+          "bytes": 8192,
+          "observed_ready_ns": 1134.5959595959596,
+          "affine_ready_ns": 871.4888612148886
+        },
+        {
+          "producers": 132,
+          "bytes": 16384,
+          "observed_ready_ns": 1641.919191919192,
+          "affine_ready_ns": 1269.1405246199768
+        },
+        {
+          "producers": 132,
+          "bytes": 32768,
+          "observed_ready_ns": 2433.5858585858587,
+          "affine_ready_ns": 2064.443851430153
+        },
+        {
+          "producers": 132,
+          "bytes": 65536,
+          "observed_ready_ns": 3655.0505050505053,
+          "affine_ready_ns": 3655.0505050505053
+        }
+      ]
+    }
+  }
+}

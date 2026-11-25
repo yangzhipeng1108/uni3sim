@@ -1,0 +1,157 @@
+{
+  "schema": "finite_mixed_operand_stream_startup_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "mechanism": "finite_mixed_operand_stream_startup",
+  "production_or_evaluation_duration_consumed": false,
+  "source": "microbench/nvidia_h200/memory/dram/staged_ldgsts_finite_mixed_stream.cu",
+  "source_sha256": "032c91e8fcb1376aead2b496f22dee6916c08e135b733eb554e73f7328837fba",
+  "runner": "microbench/nvidia_h200/memory/dram/staged_ldgsts_finite_mixed_stream_topology_runner.py",
+  "runner_sha256": "7d49deba73cf029cd86f547d9c5637d48cdc7211e3d145ee77725382e5ae7d6e",
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp3_mixed_r1_t1",
+      "device_index": 2,
+      "raw_sha256": "2fa666fe6bddc4862eb475c4449cd950589fa40bda3bd0c0ba931ea311cb0e38",
+      "candidate_sha256": "cb102049f9866a2acae153c6d8788b4816e962be60acdb71320b15bdfb6c532f",
+      "source_commit": "aeb34ee300b317a6e3820ec9a9745a2c3ac41928",
+      "grids": [
+        64,
+        96,
+        132,
+        264,
+        371
+      ],
+      "complete_operand_pair_slots": [
+        3,
+        5
+      ]
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp3_mixed_r2_t1",
+      "device_index": 2,
+      "raw_sha256": "f32cedb6673bbda83ae0c8e38fbd0b05a2d102e0dd41d3d607c86976a9d4a7bf",
+      "candidate_sha256": "cb553996fac1e96cb1232c0d78a63460b73668b2345fd24a741e6bafe6f87bc4",
+      "source_commit": "aeb34ee300b317a6e3820ec9a9745a2c3ac41928",
+      "grids": [
+        64,
+        96,
+        132,
+        264,
+        371
+      ],
+      "complete_operand_pair_slots": [
+        3,
+        5
+      ]
+    }
+  ],
+  "probe_contract": {
+    "description": "Copy-only finite staged-LDGSTS operand stream. A 128-thread CTA moves private 16-KiB two-byte-element operand panels through a complete-pair ring with LDGSTS.E.BYPASS.128 / LDGDEPBAR / DEPBAR, replicating the launch geometry and ring structure of the sm80 128-thread K64 staged GEMM source class without any matrix instruction, output epilogue, production shape, or production duration. Rounds 0 gives the same-grid empty launch plus ring prologue; the 256-to-512 steady-round secant gives the per-tier steady service; the finite residual follows the methodology of the accepted A800 staged_ldgsts_depth3_wave_scaling_sm80 reference.",
+    "timer_domain": "cuda_event_gpu_timeline",
+    "threads_per_cta": 128,
+    "resident_ctas_per_sm": 1,
+    "operand_pair_bytes": 16384,
+    "rounds": [
+      0,
+      32,
+      256,
+      512
+    ],
+    "l2_fraction_pct": [
+      0,
+      25,
+      50,
+      75,
+      100
+    ],
+    "methodology_reference": "microbench/nvidia_a800/references/staged_ldgsts_depth3_wave_scaling_sm80.json"
+  },
+  "derived_model": {
+    "finite_residual_definition": "median duration at 32 rounds minus the same-grid zero-round launch and the 256-to-512 steady-round secant",
+    "residual_ns_by_grid_and_l2_fraction_slots3": {
+      "64": {
+        "0": -2665.9990624999955,
+        "25": -2444.0005,
+        "50": -1964.0011875000018,
+        "75": -2222.0012499999993,
+        "100": -2562.0001875000016
+      },
+      "96": {
+        "0": -320.0000624999957,
+        "25": -531.9991874999978,
+        "50": -1038.0008750000015,
+        "75": -836.0002499999973,
+        "100": -2143.9996250000004
+      },
+      "132": {
+        "0": -55.99987499998679,
+        "25": 930.000187499998,
+        "50": 393.999812500002,
+        "75": -59.999625000004016,
+        "100": -1325.9995624999974
+      },
+      "264": {
+        "0": -997.9984374999913,
+        "25": 892.0001250000059,
+        "50": 1537.9983749999992,
+        "75": 705.9996874999924,
+        "100": -420.0005625000049
+      },
+      "371": {
+        "0": -2489.997875000008,
+        "25": 313.9989999999889,
+        "50": 1075.9989375000005,
+        "75": -65.99943749999511,
+        "100": -3932.0004375000026
+      }
+    },
+    "residual_ns_ring_depth_check": {
+      "132_slots5": {
+        "0": -1719.999375000003,
+        "25": -734.0009375000045,
+        "50": -440.0023125000007,
+        "75": -1297.998437499995,
+        "100": -2146.000312500002
+      },
+      "264_slots5": {
+        "0": -2951.999312499989,
+        "25": -1408.0007499999992,
+        "50": -1016.0002499999973,
+        "75": -1757.999437500006,
+        "100": -1906.000624999997
+      }
+    },
+    "selection_rule": "The staged GEMM operand stream is intrinsically mixed-tier: the shared A panel is L2-resident while each CTA's B panel strip is DRAM-unique. The parameter is the finite residual at one full launch-local cohort (132 CTAs = one resident CTA on each of 132 H200 SMs), the midpoint mixed tier (50 pct L2), and the canonical three-complete-slot ring, with per-cell medians pooled over two independent clock-accepted capture processes.",
+    "one_wave_mixed_tier_startup_ns": 393.999812500002,
+    "boundedness": "Same-cell (50 pct L2, three slots) residuals on H200: grid 64: -1964.0 ns, grid 96: -1038.0 ns, grid 132: 394.0 ns, grid 264: 1538.0 ns, grid 371: 1076.0 ns; five-slot ring: grid 132: -440.0 ns, grid 264: -1016.0 ns; pure-DRAM (0 pct L2) three-slot residuals: grid 64: -2666.0 ns, grid 96: -320.0 ns, grid 132: -56.0 ns, grid 264: -998.0 ns, grid 371: -2490.0 ns.",
+    "formula": "prediction = common_terms + one_wave_mixed_tier_startup_ns, once per launch"
+  },
+  "scope": {
+    "dtype_element_bytes": 2,
+    "threads_per_cta": 128,
+    "tile_k": 64,
+    "minimum_pipeline_depth": 4,
+    "maximum_pipeline_depth": 6,
+    "minimum_rounds": 16,
+    "maximum_rounds": 512,
+    "one_wave_grid_ctas": 132
+  },
+  "allowed_use": "One launch-local additive startup for a staged K64-tile 128-thread two-byte-element GEMM source program whose operand read stream carries both L2-hit and DRAM-miss bytes, composed once per launch. The probe is byte-level, so the two-byte scope covers fp16 and bf16 element encodings of the same panel geometry.",
+  "forbidden_use": "A production GEMM duration, a per-shape or per-bucket correction, a generic DRAM or L2 capacity replacement, a per-grid or per-wave latency lookup, or a second serial charge of work already inside the common K-tile pipeline. Pure-DRAM operand streams are outside scope.",
+  "provenance": {
+    "clock_gate": {
+      "rule": "every probe process runs under nvidia-smi -lms 50; a process is accepted only if it shows a busy sample and every busy sample is >= 1980 MHz, otherwise it is rejected and re-run",
+      "accepted_captures": 56,
+      "rejected_captures": 2,
+      "accepted_busy_sm_clock_min_mhz": 1980,
+      "accepted_busy_sm_clock_max_mhz": 1980,
+      "accepted_busy_samples": 246,
+      "rejected_busy_sm_clock_min_mhz": [
+        null,
+        null
+      ]
+    },
+    "remote_raw_root": "/capture-public/h200_microbench/wp3_ldgsts/repo/profiler_output/microbench/nvidia_h200"
+  }
+}

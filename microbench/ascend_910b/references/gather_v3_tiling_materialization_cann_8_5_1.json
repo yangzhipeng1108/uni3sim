@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "tiling_struct_materialization",
+  "payload_bytes": 192,
+  "payload_size_provenance": "runtime_reflection_derived_observation",
+  "model": "gather_v3_aiv_tiling_materialization_complete_max_v1",
+  "formula": "max(single_worker_completion_ns, serialized_ns_per_aiv * active_aiv_workers)",
+  "request_size_unit": "active_aiv_workers",
+  "duration_unit": "ns_per_complete_tiling_materialization_phase",
+  "minimum_active_aiv_workers": 1,
+  "maximum_active_aiv_workers": 48,
+  "parameters": {
+    "single_worker_completion_ns": 160.42968750000023,
+    "serialized_ns_per_aiv": 64.16976928710938
+  },
+  "mechanism": "one AIV 192-byte GatherV3 InitTilingData GM-to-UB copy, MTE2-to-Scalar handoff, UB-to-local copy, and PIPE_ALL barrier",
+  "scope": "CANN AIV GatherV3 typed tiling-struct materialization",
+  "composition": "one shared phase before every GatherV3 AIV operator body",
+  "operator_source_evidence": {
+    "entry_source_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/ascendc/gather_v3/gather_v3.cpp",
+    "entry_source_sha256": "b7c7febe4adb597394953de8816cbef9df7b9ad4c408b06b2545d33e6df2470b",
+    "base_source_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/ascendc/gather_v3/gather_v3_base.h",
+    "base_source_sha256": "0b8a33a65e963aa6181a85b23050ea770c148e62618ecc8bcd3893231f52d610",
+    "tiling_reflection_path": "profiler_output/microbench/ascend_910b/gather_v3_launch_d6e18737_20260905/gather_v3_tiling_reflection.tsv",
+    "tiling_reflection_sha256": "36fc2816c99bb0a2680ce368631abdf2afcf1c01c390ba7af0f2033ab10ef713",
+    "tiling_struct": "GatherV3TilingData",
+    "tiling_field_count": 24,
+    "source_call": "GET_TILING_DATA(tilingData, tiling)"
+  },
+  "source_commit": "d6e187379f4cfacff27fcbab71ac3c9d1dee12fa",
+  "source_sha256": "cb01d80edd6d3de985742d7582871c70245df58da2579c472d63cc1484c6981f",
+  "deployed_source_snapshot": "/capture-workspace/execution_snapshots/d6e18737-vector-gather-tiling-20260905/tiling_materialization",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/gather_v3_tiling_materialization_d6e18737_20260905/raw/run1.csv",
+      "sha256": "0ae09bf487d3a304fc107dd1478269a6f0dc6a1131848ffb33b38584025961de"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/gather_v3_tiling_materialization_d6e18737_20260905/raw/run2.csv",
+      "sha256": "77c288de6bef866aeedba23d03cf79f53ab05d3d6283f93bddfbf2224091f65c"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/gather_v3_tiling_materialization_d6e18737_20260905/raw/run3.csv",
+      "sha256": "0b43f775e25fa3f32928fba91933cedc0d38eb8f8977a59657a1350832f66ca1"
+    }
+  ],
+  "independent_runs": 3,
+  "samples_per_cell": 6,
+  "block_dims": [1, 24, 48],
+  "medians_ns_by_run_and_block_dim": {
+    "gather192_run1": {"1": 167.77913411458348, "24": 1540.0773111979165, "48": 3080.2018229166665},
+    "gather192_run2": {"1": 153.080240885417, "24": 1540.0325520833335, "48": 3080.1741536458335},
+    "gather192_run3": {"1": 157.99967447916652, "24": 1540.29296875, "48": 3079.8250325520835}
+  },
+  "run_relative_median_spread_by_block_dim": {"1": 0.09303116147308677, "24": 0.0001690932427697123, "48": 0.0001223276171371817},
+  "training_run_ids": ["gather192_run1", "gather192_run2"],
+  "validation_run_ids": ["gather192_run3"],
+  "parameter_stability": {"single_worker_completion_relative_span": 0.091622027432837, "serialized_ns_per_aiv_relative_span": 0.000019023024993876964},
+  "training_metrics": {"mape": 0.015311523608743534, "wmae": 0.001550176989817194, "maximum_ape": 0.048010419712393886},
+  "validation_metrics": {"mape": 0.005208962326721135, "wmae": 0.0006220885108044604, "maximum_ape": 0.015379860932271278},
+  "maximum_relative_median_spread": 0.1,
+  "maximum_validation_mape": 0.1,
+  "maximum_validation_ape": 0.15,
+  "measurement_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

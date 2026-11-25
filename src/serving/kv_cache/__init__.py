@@ -1,0 +1,73 @@
+"""Framework-observed KV-cache configuration and events."""
+
+from .kv_capacity import (
+    CapacityEvidence,
+    KVCapacityPlan,
+    KVCapacityRankBudget,
+    RuntimeMemoryPolicy,
+    RuntimeMemoryPolicyBinding,
+    RuntimeMemoryPolicyConfig,
+    RuntimeMemoryReserve,
+    kv_capacity_manifest,
+    load_runtime_memory_policy,
+    resolve_analytical_kv_capacity_plan,
+    resolve_symbolic_kv_capacity_plan,
+    resolve_debug_kv_capacity_plan,
+)
+from .kv_cache_config import KVCacheConfig, KVCacheTierConfig
+from .kv_cache_events import KVCacheAction, KVCacheEvent
+from .kv_cache_tier_manager import (
+    KVCachePhysicalTransferCompletion,
+    KVCacheTierManager,
+    KVCacheTransferCompletion,
+)
+from .host_dram import (
+    HostDramAccess,
+    HostDramAccessPattern,
+    HostDramAnalyticalBackend,
+    HostDramCapability,
+    HostDramDirection,
+    HostDramIsolatedAccessBackend,
+    HostDramMechanismParameter,
+    HostDramModelKind,
+    HostDramOperatingPoint,
+    HostDramParameterProvenance,
+    HostDramPath,
+    HostDramPrediction,
+    HostDramPredictionProvenance,
+)
+
+__all__ = [
+    "HostDramAccess",
+    "HostDramAccessPattern",
+    "HostDramAnalyticalBackend",
+    "HostDramCapability",
+    "HostDramDirection",
+    "HostDramIsolatedAccessBackend",
+    "HostDramMechanismParameter",
+    "HostDramModelKind",
+    "HostDramOperatingPoint",
+    "HostDramParameterProvenance",
+    "HostDramPath",
+    "HostDramPrediction",
+    "HostDramPredictionProvenance",
+    "KVCacheAction",
+    "CapacityEvidence",
+    "KVCapacityPlan",
+    "KVCapacityRankBudget",
+    "KVCacheConfig",
+    "KVCacheEvent",
+    "KVCachePhysicalTransferCompletion",
+    "KVCacheTierConfig",
+    "KVCacheTierManager",
+    "KVCacheTransferCompletion",
+    "RuntimeMemoryPolicy",
+    "RuntimeMemoryPolicyBinding",
+    "RuntimeMemoryPolicyConfig",
+    "RuntimeMemoryReserve",
+    "kv_capacity_manifest",
+    "load_runtime_memory_policy",
+    "resolve_analytical_kv_capacity_plan",
+    "resolve_symbolic_kv_capacity_plan",
+    "resolve_debug_kv_capacity_plan",
+]

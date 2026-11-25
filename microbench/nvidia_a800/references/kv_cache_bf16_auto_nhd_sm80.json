@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "evidence_kind": "versioned_source_and_installed_binary_static_identity",
+  "production_or_evaluation_duration_consumed": false,
+  "hardware_execution_performed": false,
+  "runtime_stack": {
+    "vllm_version": "0.11.0",
+    "vllm_source_commit": "b8b302cde434df8c9289a2b465406b47ebab1c2d",
+    "cuda_architecture": "sm_80"
+  },
+  "upstream_source": {
+    "repository": "https://github.com/vllm-project/vllm.git",
+    "commit": "b8b302cde434df8c9289a2b465406b47ebab1c2d",
+    "path": "csrc/cache_kernels.cu",
+    "sha256": "49e205125feea06eff689843fd3be833143a85675cbb81ca976f5c2b27137e8a"
+  },
+  "installed_artifact": {
+    "path_scope": "capture-python_site_packages",
+    "relative_path": "vllm/_C.abi3.so",
+    "sha256": "984de21ce38cc8083d207663a380ca75acc6ad3dc230858092f59e363c4eebd5"
+  },
+  "kernel": {
+    "source_symbol": "reshape_and_cache_flash_kernel",
+    "registers_per_thread_sm80": 54,
+    "static_shared_memory_bytes_per_cta_sm80": 0,
+    "threads_per_cta": 512,
+    "register_file_entries_per_sm": 65536,
+    "thread_limited_resident_ctas_per_sm": 4,
+    "register_limited_resident_ctas_per_sm": 2,
+    "resident_ctas_per_sm": 2
+  },
+  "source_facts": {
+    "grid_rule": "one_cta_per_token",
+    "block_rule": "min_num_heads_times_head_size_512",
+    "vector_width_elements_bf16": 8,
+    "nhd_copy_order": [
+      "key_vectorize_with_alignment",
+      "value_vectorize_with_alignment"
+    ],
+    "copy_regions_are_source_ordered": true,
+    "cohort_pipeline_critical_depth": "resident_or_queued_cohort_count_plus_one"
+  },
+  "forward_scope": {
+    "dtype": "bf16",
+    "block_threads": 512,
+    "kv_cache_dtype": "auto",
+    "cache_head_layout": "nhd",
+    "minimum_vector_copy_base_alignment_bytes": 16,
+    "tail_free_vec8_required": true,
+    "at_most_one_vec8_pack_per_thread": true,
+    "limitations": [
+      "FP16, FP8 cache conversion, HND layout, base alignment below 16 bytes, vec8 tails, invalid slots, and more than one vec8 pack per thread are outside this contract.",
+      "The two-stage K then V critical-depth conclusion records source topology and static residency only; it consumes no production duration or profiler timing.",
+      "The 54-register resource identity is bound to the recorded vLLM binary SHA256 and must not be transferred to another binary."
+    ]
+  }
+}

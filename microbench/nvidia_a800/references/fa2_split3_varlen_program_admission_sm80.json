@@ -1,0 +1,51 @@
+{
+  "schema": "nvidia_a800_fa2_split3_varlen_program_admission_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "source_capture": "profiler_output/microbench/nvidia_a800/fa2_split_varlen_admission_77a1fe86_20260909_r1",
+  "source_baseline_commit": "cdcd73f10b3328da476ac7f8dce4362b63412bcc",
+  "physical_device_index": 1,
+  "device_uuid": "capture-device-c776d040251d",
+  "resource_contract": {
+    "threads_per_cta": 128,
+    "dynamic_shared_bytes_per_cta": 81920,
+    "resident_ctas_per_sm": 2,
+    "physical_sm_count": 108,
+    "grid_ctas": 384,
+    "resident_prefix_ctas": 216,
+    "queued_suffix_ctas": 168,
+    "split_count": 3
+  },
+  "resident_pairing": {
+    "adjacent_source_ordinal_range": [0, 165],
+    "cross_pair_lower_ordinal_range": [166, 190],
+    "cross_pair_upper_offset": 25,
+    "pair_set_sha256": "a99edb9578c27ac42e1f3f9d85b351c70a2bb0bff23fcffa1604a1e5882470ab"
+  },
+  "publication_gates": {
+    "mode_count": 2,
+    "trials_per_mode": 7,
+    "all_trials_cover_every_sm_twice": true,
+    "all_trials_share_exact_resident_pair_set": true,
+    "maximum_queued_start_order_displacement": 20
+  },
+  "artifact_sha256": {
+    "source": "16bfde30ecd3eb77f8afaa2ec4a97036cc6d92a6d797a53c135a66ca02b49087",
+    "runner": "37d4bf321b296159b2496b71474750d598ddbdce9f3793794d1ce27aa92b576e",
+    "analyzer": "c517cb03a137dd8c4495642d2784c752bdac257b5f26f756238a62f7097db686",
+    "binary": "2c49d7ad7d4a78ec0c777a3b686073ba86f144dcd6193480786970087bc9a2b6",
+    "mode1_raw": "0f26f5776e10328c3a6fd4a4ddc5aba59482f7bc21126d5931883e631dfffd1e",
+    "mode2_raw": "0df9ade947317a5e6407d7549bbed5f1efde2ac66680fa32a9364b2e70e74ce4",
+    "analysis": "f60b55eca76e894d55b2cd2d5d1d9944a594189589b0298f302b9e7a5ac2ebaf"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "allowed_conclusion": "For the frozen split-3, grid-384, 128-thread, 81920-byte source program, the first 216 CTAs occupy all two-slot SM80 resident positions with the published pair set in all 14 trials across two source work periods; the remaining 168 CTAs are admitted in bounded near-source order as resident slots complete.",
+  "excluded_conclusions": [
+    "production FlashAttention duration",
+    "a fixed CTA-to-SM identity",
+    "grids other than 384",
+    "split counts other than 3",
+    "source programs other than the frozen paged-varlen D128 specialization"
+  ]
+}

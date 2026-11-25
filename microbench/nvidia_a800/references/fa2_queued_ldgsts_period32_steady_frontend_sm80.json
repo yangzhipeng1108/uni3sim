@@ -1,0 +1,80 @@
+{
+  "schema": "nvidia_a800_fa2_queued_ldgsts_period32_steady_frontend_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "evidence_kind": "independent_queued_heterogeneous_ldgsts_frontend_microbenchmark",
+  "source_capture": "profiler_output/microbench/nvidia_a800/fa2_queued_ldgsts_period32_1463398d_20260910_r2",
+  "source_baseline_commit": "c4ca8d36c96a95d37c34e387f8267b22a1b5c268",
+  "physical_device_index": 1,
+  "device_uuid": "capture-device-c776d040251d",
+  "resource_contract": {
+    "threads_per_cta": 128,
+    "dynamic_shared_bytes_per_cta": 77824,
+    "registers_per_thread": 80,
+    "resident_ctas_per_sm": 2,
+    "physical_sm_count": 108,
+    "panel_bytes_per_cta": 65536,
+    "initial_transaction_bytes": 32,
+    "static_ldgsts_bypass_128_instructions": 32,
+    "stack_frame_bytes": 0,
+    "spill_store_bytes": 0,
+    "spill_load_bytes": 0,
+    "minimum_repeats": 1,
+    "maximum_repeats": 32,
+    "source_period_ctas": 64,
+    "source_period_panels": [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 23, 24, 24, 25, 25, 26, 26, 27, 27, 28, 28, 29, 29, 30, 30, 31, 31, 32, 32],
+    "average_panels_per_cta": 16.5,
+    "period_offset": 0
+  },
+  "campaign": {
+    "warmup_launches": 10,
+    "samples_per_grid": 7,
+    "grids": [2048, 4096],
+    "direct_globaltimer": {
+      "2048": {
+        "makespan_ns": [608256, 605184, 608256, 601088, 610304, 606208, 599040],
+        "median_payload_32b_transactions_per_model_sm_cycle": 100.14224751066857,
+        "relative_span_pct": 1.8581081081081081
+      },
+      "4096": {
+        "makespan_ns": [1175552, 1174528, 1172480, 1174528, 1184768, 1175552, 1177600],
+        "median_payload_32b_transactions_per_model_sm_cycle": 103.28259673574179,
+        "relative_span_pct": 1.0452961672473868
+      }
+    },
+    "steady_median_relative_difference_pct": 3.1358885017421527,
+    "ncu_dynamic_counter_closure": {
+      "2048": {"captured_launches": 7, "ldgsts_instructions_per_launch": 4325376, "ldgsts_bytes_per_launch": 2214592512},
+      "4096": {"captured_launches": 7, "ldgsts_instructions_per_launch": 8650752, "ldgsts_bytes_per_launch": 4429185024}
+    }
+  },
+  "selected_service": {
+    "selection_rule": "lower_direct_median_of_the_two_pre_registered_stable_queued_grids",
+    "minimum_queued_grid_ctas": 2048,
+    "model_sm_clock_hz": 1140000000.0,
+    "full_chip_initial_32b_transactions_per_model_sm_cycle": 100.14224751066857
+  },
+  "publication_gates": {
+    "two_resident_ctas_per_sm": true,
+    "static_ldgsts_bypass_128_count_is_32": true,
+    "no_stack_or_spill": true,
+    "dynamic_instruction_and_byte_counters_close_exactly": true,
+    "grid_2048_relative_span_at_most_5_pct": true,
+    "grid_4096_relative_span_at_most_5_pct": true,
+    "steady_grid_medians_differ_at_most_5_pct": true
+  },
+  "artifact_sha256": {
+    "source": "bd3a85486591468edc2ca9ec59c3e952feafc7b7d78354de17a52208f01f0c04",
+    "binary": "bd0464136d974af276305942b6ae8926d4b36ac16b9b94748e746a6d43fb752e",
+    "ptxas": "f47704d9b99a799d6dafc86f793d947379ecb81ac358387eb5676c85669257b5",
+    "sass": "0db522c37049b1a14c861a7cf007a9dc3e70ccfda939823e73d395b0d7d48569",
+    "grid_2048_globaltimer": "558acc748580c452740ce0c8ef2e7885698319d4e8243a3e624ca2af939d358c",
+    "grid_4096_globaltimer": "debb1e513e5b753935e5eb97d3dfa27a47fc632c1f9cbec0bb66ffc51173852a",
+    "grid_2048_ncu": "3fe9463ec5cb13b5cd6a80fb729c2e869ad8cd85cfbc861ba3c89b7be4aa8a7d",
+    "grid_4096_ncu": "12e26ffc8aa16853e68cba95f1bbd550176f45365bc2800fa8b6e0061c3a495e"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "allowed_conclusion": "For the source-exact two-resident Q64/KV128 causal period (1,1,...,32,32), queued grids at or above 2048 CTAs expose a stable full-chip LDGSTS frontend payload capacity of at least 100.14224751066857 initial 32-byte transactions per model-SM cycle.",
+  "forbidden_conclusion": "This reference does not authorize a generic LSU, L2, DRAM, different source-period, different residency, or production-duration correction."
+}

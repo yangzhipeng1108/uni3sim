@@ -1,0 +1,78 @@
+{
+  "schema": "nvidia_a800_bf16_staged_tile_dependency_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "mechanism": "bf16_tile_ldgsts_shared_hmma_handoff",
+  "scope": {
+    "tile_shape": "64x64x64",
+    "block_threads": 128,
+    "warps_per_cta": 4,
+    "pipeline_stages": 6,
+    "panel_bytes": 16384,
+    "dynamic_shared_bytes_per_cta": 98304,
+    "resident_ctas_per_sm": 1,
+    "grid_points": [
+      1,
+      64,
+      80,
+      108
+    ],
+    "round_points": [
+      16,
+      64,
+      128,
+      224
+    ]
+  },
+  "capture": {
+    "baseline_commit": "b173c2011ed5bb0b0d3097dff5e89ad9a50e74ff",
+    "branch": "agent/a800-gemm-small-m",
+    "device_index": 0,
+    "device_name": "NVIDIA A800-SXM4-80GB",
+    "device_uuid": "capture-device-6f63e60145b9",
+    "trials": 7,
+    "source": "microbench/nvidia_a800/operators/gemm/tile_dependency.cu",
+    "source_sha256": "5984cfcb99e1e6e3c4a4ab05d0f93d71615f601357610a1731652045546a6adf",
+    "runner": "microbench/nvidia_a800/operators/gemm/tile_dependency_runner.py",
+    "runner_sha256": "f0ff2c47bafd24509ea165b9f8ad1d8f2943929824090ac918368d23210db002",
+    "candidate_sha256": "6478929ff9f49d069a4a100e1575fd60c9489f6e7636d535d950cab1425b63f0",
+    "production_or_evaluation_duration_consumed": false
+  },
+  "static_contract": {
+    "required_sass_opcodes": [
+      "LDGSTS.E.BYPASS.128",
+      "LDS",
+      "HMMA.16816.F32.BF16",
+      "STG.E",
+      "BAR.SYNC"
+    ],
+    "local_memory_opcodes_absent": [
+      "LDL",
+      "STL"
+    ]
+  },
+  "results": {
+    "all_cells_stable_within_10_percent": true,
+    "grid_one_incremental_cycles_per_round": [
+      3112.9791666666665,
+      3113.015625,
+      3112.9895833333335
+    ],
+    "grid_one_steady_slope_relative_spread": 0.000011711678551280594,
+    "grid_64_80_108_median_cta_cycles_at_128_rounds": [
+      399950.0,
+      399950.0,
+      399952.0
+    ],
+    "grid64_to_grid108_ratio_at_128_rounds": 0.999994999399928,
+    "grid80_to_grid108_ratio_at_128_rounds": 0.999994999399928
+  },
+  "allowed_conclusion": "For this independent SM80 six-slot 64x64x64 BF16 panel handoff, the LDGSTS-to-shared-to-HMMA steady service is linear from 16 through 224 rounds and invariant across 64, 80, and 108 one-CTA-per-SM launches. This falsifies a generic 64-versus-80 CTA tail-wave penalty for the isolated mechanism.",
+  "production_boundary": "The closed cuBLAS kernel's warp-specialized shared-memory layout, barriers, instruction schedule, and binary identity are unavailable. The independent WMMA probe therefore cannot publish a production GEMM service or parameter, and no production duration was used to select its geometry or interpret its result.",
+  "limitations": [
+    "synthetic_private_panel_stream",
+    "wmma_schedule_is_not_cublas_binary_schedule",
+    "production_shared_layout_unavailable",
+    "production_warp_specialization_unavailable",
+    "production_binary_identity_unavailable"
+  ]
+}

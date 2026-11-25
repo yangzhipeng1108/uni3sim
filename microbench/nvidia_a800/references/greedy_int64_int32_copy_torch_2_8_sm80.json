@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "evidence_kind": "installed_torch_2_8_host_dispatch_and_independent_sm80_int_output_program",
+  "artifact_identity_reference": "pytorch_moe_reduce_vllm_0_11_0_torch_2_8_0.json#/installed_artifacts/4",
+  "host_copy_source_reference": "embedding_id_widen_torch_2_8.json",
+  "same_library_int_output_host_dispatch_reference": "../../nvidia_h200/references/greedy_int64_int32_copy_torch_2_8_sm90.json#/host_dispatch",
+  "hardware_execution_performed": false,
+  "duration_consumed": false,
+  "actual_provider_bound": false,
+  "raw_artifact": {
+    "path": "profiler_output/microbench/nvidia_a800/operator_support_typed_20261023/output_id_sm80/selected_program.txt",
+    "sha256": "04299641331d76ae3d0c12eae8f48f839736909655fce564b3d7b2540bc8c41d"
+  },
+  "compiled_entry": {
+    "symbol": "_ZN2at6native27unrolled_elementwise_kernelIZZZNS0_23direct_copy_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE1_clEvENKUlvE1_clEvEUliE_St5arrayIPcLm2EELi4E23TrivialOffsetCalculatorILi1EjESB_NS0_6memory12LoadWithCastILi1EEENSC_13StoreWithCastILi1EEEEEviT_T0_T2_T3_T4_T5_",
+    "architecture": "sm_80",
+    "registers_per_thread": 32,
+    "static_shared_bytes": 0,
+    "local_bytes": 0,
+    "stack_bytes": 0
+  },
+  "data_program": {
+    "input_long_dtype_tag": 4,
+    "output_int_dtype_tag": 3,
+    "input_load_offsets": [
+      "0x250",
+      "0x1100",
+      "0x1fb0",
+      "0x2e30"
+    ],
+    "output_store_offsets": [
+      "0x3d00",
+      "0x4bf0",
+      "0x5ac0",
+      "0x69b0"
+    ],
+    "per_element": "LDG.E reads low32bits at Long stride8; Int-output STG.E writes the same32bits. No data conversion, sign extension, FP arithmetic or SFU on this path.",
+    "issued_read_bytes_per_element": 4,
+    "issued_write_bytes_per_element": 4,
+    "logical_storage_read_bytes_per_element": 8,
+    "logical_storage_write_bytes_per_element": 4
+  },
+  "accepted_scope": {
+    "source": "vllm0.11 ordinary BF16 all-greedy sampled.to(int32)",
+    "input": "fresh contiguous INT64[rows] argmax output",
+    "output": "fresh contiguous INT32[rows], followed by unsqueeze view",
+    "elements": "1<=rows<=2^28, one unsplit32bit TensorIterator",
+    "launch": "128threads/vt4/gridceil(rows/512)",
+    "rate_mapping": "existing A800 memory services; no new rate or conversion arithmetic"
+  },
+  "reproduction": {
+    "tool": "/usr/local/cuda-12.2/bin/cuobjdump",
+    "arguments": [
+      "-arch",
+      "sm_80",
+      "-fun",
+      "_ZN2at6native27unrolled_elementwise_kernelIZZZNS0_23direct_copy_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE1_clEvENKUlvE1_clEvEUliE_St5arrayIPcLm2EELi4E23TrivialOffsetCalculatorILi1EjESB_NS0_6memory12LoadWithCastILi1EEENSC_13StoreWithCastILi1EEEEEviT_T0_T2_T3_T4_T5_",
+      "-sass",
+      "-res-usage"
+    ],
+    "library_owner": "pytorch_moe_reduce_vllm_0_11_0_torch_2_8_0.json#/installed_artifacts/4",
+    "returncode": 0,
+    "selected_function_count": 1,
+    "stderr": "repeated function-not-found warnings for unrelated code objects; one matching SM80 function was decoded"
+  },
+  "limitations": [
+    "Host dispatch is shared in the same installed library; SM80 resources/data program are independently decoded, not inferred from SM90.",
+    "Address, dtype-dispatch, uniform and control instructions retain existing Copy exclusions.",
+    "Logical and issued payload are not observed DRAM transactions or cache-hit evidence.",
+    "No argmax, actual-provider, device correctness/timing, normal capacity or complete Serving acceptance.",
+    "Other versions, split/strided iterators and hardware remain excluded."
+  ]
+}

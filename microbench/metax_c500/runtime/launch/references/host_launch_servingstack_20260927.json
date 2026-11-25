@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "measurement_boundary": "host_submit_only_no_device_sync",
+  "selection": {
+    "eager_enqueue_s": 6.47534765625e-06,
+    "eager_source": "eager:512 host_submit_ns_per_dispatch median",
+    "graph_replay_enqueue_s": 1.77365e-05,
+    "graph_source": "graph_replay:512 host_submit_ns median"
+  },
+  "raw": {
+    "path": "/capture-workspace/midlayer_hw_model/execution_snapshots/host-launch-servingstack-20260927/profiler_output/microbench/metax_c500/host_launch_servingstack_20260927_r1/manifest.json",
+    "sha256": "d786c871325c723221cb9a899bb788a4671aaa8a99934306298a2c957d80e851",
+    "retention": "remote_raw_not_committed"
+  },
+  "repeat": {
+    "path": "/capture-workspace/midlayer_hw_model/execution_snapshots/host-launch-servingstack-20260927/profiler_output/microbench/metax_c500/host_launch_servingstack_20260927_r2/manifest.json",
+    "sha256": "8434bc2c6a54c4b8677a053e1f9681b6d39f8a88abb142d1d4b9dc03efb0251a",
+    "eager_enqueue_s": 6.615794921875e-06,
+    "graph_replay_enqueue_s": 1.63005e-05
+  },
+  "sample_contract": {
+    "chain_length": 512,
+    "trials": 30,
+    "operation": "torch.add_out",
+    "production_or_evaluation_duration_consumed": false,
+    "fixed_service_time_model": true
+  },
+  "software_stack": {
+    "container": "capture-container-3",
+    "framework": "2.10.0+metax3.8.2.2",
+    "runtime": "MACA 3.8.2.2",
+    "note": "the stack the canonical C500 serving capture ran on; the 20260831 reference was taken in capture-container-1 on torch 2.4.0 + MACA 3.7.2.0"
+  }
+}

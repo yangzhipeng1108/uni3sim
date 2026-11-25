@@ -1,0 +1,63 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_e512_two_tile_w2_activation_refresh_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "software_revision": "maca_3.7.2",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true,
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "experts": 512,
+    "routed_rows": 40960,
+    "populated_experts": 512,
+    "production_active_m_tiles": 1010,
+    "probe_active_m_tiles": 1003,
+    "maximum_m_tiles": 1144,
+    "source_rows": 40960,
+    "production_k_n_tile_class": [16, 32],
+    "adjacent_nonproduction_n": 1984,
+    "source_order_precondition": "the full 40960x512 BF16 activation input is written on the same stream immediately before W2"
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090603,
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 1,
+    "independent_captures_per_device": 3,
+    "physical_devices": [0, 2],
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "cffe88825767f47104baac2a7d4f9f75a1b5c260f821ad63f308e28d530742ac",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "take the median capacity across three fresh processes on each device, then select the lower device median",
+    "rejected_w1": "W1 is not published because its fresh-process capacity range/mean reached 51.699% on device 0 and 23.494% on device 2"
+  },
+  "selected_service": {
+    "logical_byte_capacity_per_s": 906987228025.9921,
+    "device_medians_bytes_per_s": {
+      "0": 913852557715.4185,
+      "2": 906987228025.9921
+    },
+    "maximum_device_process_range_over_mean_pct": 2.274981
+  },
+  "capture": {
+    "baseline_commit": "b31deee8",
+    "raw_root": {
+      "path": "profiler_output/microbench/metax_c500/bm64_e512_1003_probe_1010_active_1144_max_b31deee8_20260909_r1",
+      "sha256": "19af5375234ff49dff651234fc0ddaf49322c7944c2f4e88fd2c7af46822b999"
+    },
+    "raw_tree_digest_rule": "sha256sum of the concatenated sorted relative-path sha256sum records"
+  },
+  "allowed_conclusion": "The exact E512 1010-active/1144-maximum W2 source class uses the conservative activation-refreshed full-source logical-operand service measured at the neighboring 1003-active topology.",
+  "excluded_conclusions": [
+    "W1 service",
+    "complete production MoE operator duration",
+    "production-shaped projection timing",
+    "per-case residual correction",
+    "other source depths or projection tile classes"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": 2,
+  "scheduler_pools": [
+    {
+      "pool_name": "main",
+      "binding": {
+        "hardware_id": "ascend_910b",
+        "hardware_config_sha256": "e0fe91381d31955cecc29c97484c959f5a4bf8ce941de4f38c47c0c42b48eff0",
+        "model_config_sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+        "deployment": "colocated",
+        "worker_role": "colocated",
+        "tensor_parallel_size": 1,
+        "pipeline_parallel_size": 1,
+        "expert_parallel_size": 1,
+        "max_model_len": 8192,
+        "max_batched_tokens": 8192,
+        "max_requests": 256,
+        "kv_block_size_tokens": 16
+      },
+      "gpu_memory_utilization": {
+        "numerator": 4,
+        "denominator": 5,
+        "provenance": {
+          "source_kind": "runtime_configuration",
+          "source_reference": "configs/evaluation/experiments/sharegpt_phase1.json prediction_contract gpu_memory_utilization=0.8 runtime binding",
+          "source_sha256": "bc9d93b69a7cd57eb31880ef49d82fd75c5efacbcf8d4d0854bfbd7722a86c4a"
+        }
+      },
+      "non_kv_reserves": [
+        {
+          "kind": "activation",
+          "bytes": 645925888,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "profiler_output/runtime_memory_policy/ascend_910b/qwen3-4b/init-exact-v3.log: Ascend vLLM 0.18.0 exact-byte runtime memory profile on one rank; torch peak activation bytes",
+            "source_sha256": "853fac89c2f25010588b7eff6b1fd4b7bf3a62b7b22c84dd648fe9f0f1c8796a"
+          }
+        },
+        {
+          "kind": "cuda_graph",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "Ascend vLLM 0.18.0 exact-byte runtime memory profile on one rank; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "853fac89c2f25010588b7eff6b1fd4b7bf3a62b7b22c84dd648fe9f0f1c8796a"
+          }
+        },
+        {
+          "kind": "communication",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "Ascend vLLM 0.18.0 exact-byte runtime memory profile on one rank; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "853fac89c2f25010588b7eff6b1fd4b7bf3a62b7b22c84dd648fe9f0f1c8796a"
+          }
+        },
+        {
+          "kind": "allocator",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "Ascend vLLM 0.18.0 exact-byte runtime memory profile on one rank; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "853fac89c2f25010588b7eff6b1fd4b7bf3a62b7b22c84dd648fe9f0f1c8796a"
+          }
+        },
+        {
+          "kind": "fragmentation",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "Ascend vLLM 0.18.0 exact-byte runtime memory profile on one rank; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "853fac89c2f25010588b7eff6b1fd4b7bf3a62b7b22c84dd648fe9f0f1c8796a"
+          }
+        },
+        {
+          "kind": "framework",
+          "bytes": 30457856,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "profiler_output/runtime_memory_policy/ascend_910b/qwen3-4b/init-exact-v3.log: Ascend vLLM 0.18.0 exact-byte runtime memory profile on one rank; non-Torch/framework bytes",
+            "source_sha256": "853fac89c2f25010588b7eff6b1fd4b7bf3a62b7b22c84dd648fe9f0f1c8796a"
+          }
+        }
+      ],
+      "reserve_scope": "verified_uniform_across_pool_ranks",
+      "completeness_assertion": "all_non_kv_reserves_for_bound_runtime"
+    }
+  ]
+}

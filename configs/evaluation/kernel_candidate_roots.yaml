@@ -1,0 +1,9 @@
+# Kernel evaluation reads a hardware listed here from a non-canonical
+# candidate root (per-plan <plan>/<family>.json.zst + <family>.manifest.json
+# written by the hardware's dataset assembly) instead of
+# kernel_dataset/<hardware_id>/.  Paths are repository-relative and must not
+# point into kernel_dataset/.  Empty: every hardware is scored from its
+# canonical dataset (nvidia_h200 is published by
+# `scripts/kernel_dataset/nvidia_h200/build_dataset.py publish`).
+schema_version: 1
+candidate_roots: {}

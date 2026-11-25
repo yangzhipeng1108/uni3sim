@@ -1,0 +1,661 @@
+{
+  "schema_version": 3,
+  "hardware_id": "nvidia_h200",
+  "mechanism": "isolated_bf16_wgmma_tensor_service_clock",
+  "timer_domain": "clock64_and_globaltimer_same_cta",
+  "source_boundary": "tensor_only_shared_operand_wgmma_no_attention",
+  "selection": "median_of_three_grid_clock_medians",
+  "dtype": "bf16",
+  "active_warpgroups": 2,
+  "instruction_m": 64,
+  "instruction_n": 128,
+  "instruction_k": 16,
+  "measured_clock_hz": 1799984378.0,
+  "measurements": [
+    {
+      "grid_ctas": 1,
+      "clock_hz_p50": 1799984378.0
+    },
+    {
+      "grid_ctas": 32,
+      "clock_hz_p50": 1799984378.0
+    },
+    {
+      "grid_ctas": 132,
+      "clock_hz_p50": 1799984378.0
+    }
+  ],
+  "raw": {
+    "path": "profiler_output/microbench/nvidia_h200/tensor_sfu_clock_20261107/raw.json",
+    "sha256": "7d38c3dc2acba3ab7a57cba392d9941ebf3b714855c726ed650e4a167cc89619",
+    "size": 1720811
+  },
+  "source_sha256": "c7639e4abc65b92e76c73343dff8e0de140ebce76897af69ddfbff1520928f4c",
+  "production_or_evaluation_duration_consumed": false,
+  "scope_limitations": [
+    "Unchanged original two-WG three-grid Tensor-only median converts measured BF16 N128/D128 QK cycles and, after42-cell mixed validation, core-cycle services for one/two consumer WGs. This is a common active-range approximation, not an exact per-stage native clock.",
+    "Architectural FP32/SFU/ALU/warp-issue capacity and measured register-chain cycles use the scoped active clock. Normalized public Tensor FLOP/s, bandwidth, latency, parameter and submit SI services retain their original basis.",
+    "Mixed full-chip pressure measured 1.767\u20131.809 GHz and short bursts about1.70\u20131.80 GHz; those are validation residuals, not alternative selected parameters.",
+    "Modal H200 driver610.57.04; source/compiler/deployment transfer remains partial. One-WG pure-Tensor clocks span1.751\u20131.807GHz, with grid medians about1.797/1.761GHz; applying the unchanged1.799984GHz value is an operating-range approximation, not a per-grid clock selection.",
+    "Public Tensor FLOP/s was normalized at the nominal config clock; it is not architectural instructions/cycle and is not scaled again by this measured clock ratio."
+  ],
+  "single_wg_validation": {
+    "source_boundary": "single_active_wg_tensor_only_no_attention",
+    "active_warpgroups": 1,
+    "selection": "all_36_pure_tensor_cells_validation_only",
+    "measurements": [
+      {
+        "matrix_instructions": 4,
+        "reserved_scalar_values": 16,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1792158792.6509185
+      },
+      {
+        "matrix_instructions": 4,
+        "reserved_scalar_values": 16,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1792158792.6509185
+      },
+      {
+        "matrix_instructions": 4,
+        "reserved_scalar_values": 64,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1793435013.2625995
+      },
+      {
+        "matrix_instructions": 4,
+        "reserved_scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1806742424.2424242
+      },
+      {
+        "matrix_instructions": 4,
+        "reserved_scalar_values": 128,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1805609939.759036
+      },
+      {
+        "matrix_instructions": 4,
+        "reserved_scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1792448945.9815547
+      },
+      {
+        "matrix_instructions": 8,
+        "reserved_scalar_values": 16,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1795360631.1044328
+      },
+      {
+        "matrix_instructions": 8,
+        "reserved_scalar_values": 16,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1795833333.3333335
+      },
+      {
+        "matrix_instructions": 8,
+        "reserved_scalar_values": 64,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1803846843.615495
+      },
+      {
+        "matrix_instructions": 8,
+        "reserved_scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1803846843.615495
+      },
+      {
+        "matrix_instructions": 8,
+        "reserved_scalar_values": 128,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1803229985.7040744
+      },
+      {
+        "matrix_instructions": 8,
+        "reserved_scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1804519849.7854078
+      },
+      {
+        "matrix_instructions": 16,
+        "reserved_scalar_values": 16,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1796735829.9595141
+      },
+      {
+        "matrix_instructions": 16,
+        "reserved_scalar_values": 16,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1796138211.382114
+      },
+      {
+        "matrix_instructions": 16,
+        "reserved_scalar_values": 64,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1796812097.4235106
+      },
+      {
+        "matrix_instructions": 16,
+        "reserved_scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1797409887.2331855
+      },
+      {
+        "matrix_instructions": 16,
+        "reserved_scalar_values": 128,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1797559306.569343
+      },
+      {
+        "matrix_instructions": 16,
+        "reserved_scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1800339700.669555
+      },
+      {
+        "matrix_instructions": 4,
+        "reserved_scalar_values": 16,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1751341027.3081925
+      },
+      {
+        "matrix_instructions": 4,
+        "reserved_scalar_values": 16,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1753255208.3333333
+      },
+      {
+        "matrix_instructions": 4,
+        "reserved_scalar_values": 64,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1755484393.4040046
+      },
+      {
+        "matrix_instructions": 4,
+        "reserved_scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1757102272.7272727
+      },
+      {
+        "matrix_instructions": 4,
+        "reserved_scalar_values": 128,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1754095625.6488566
+      },
+      {
+        "matrix_instructions": 4,
+        "reserved_scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1755725806.4516127
+      },
+      {
+        "matrix_instructions": 8,
+        "reserved_scalar_values": 16,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1763215003.6549706
+      },
+      {
+        "matrix_instructions": 8,
+        "reserved_scalar_values": 16,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1756291570.7867632
+      },
+      {
+        "matrix_instructions": 8,
+        "reserved_scalar_values": 64,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1766833178.4386616
+      },
+      {
+        "matrix_instructions": 8,
+        "reserved_scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1765844452.247191
+      },
+      {
+        "matrix_instructions": 8,
+        "reserved_scalar_values": 128,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1766423611.1111112
+      },
+      {
+        "matrix_instructions": 8,
+        "reserved_scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1758492348.8200588
+      },
+      {
+        "matrix_instructions": 16,
+        "reserved_scalar_values": 16,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1775766556.6226492
+      },
+      {
+        "matrix_instructions": 16,
+        "reserved_scalar_values": 16,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1770313752.0032053
+      },
+      {
+        "matrix_instructions": 16,
+        "reserved_scalar_values": 64,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1769887500.0
+      },
+      {
+        "matrix_instructions": 16,
+        "reserved_scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1774819494.5848374
+      },
+      {
+        "matrix_instructions": 16,
+        "reserved_scalar_values": 128,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1755094326.0368664
+      },
+      {
+        "matrix_instructions": 16,
+        "reserved_scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1766573250.8697333
+      }
+    ],
+    "raw": {
+      "path": "profiler_output/microbench/nvidia_h200/tensor_scalar_partition_20261107/outer_dispatch/raw.json",
+      "sha256": "72e82107917724804e023f7267fa23e32397e8587e5f98608602943949854370",
+      "size": 6311627
+    },
+    "source_sha256": "05cb9c6dbbd143eeae1e372feffbffdccf7e55f8a41b56a86fb5b143067f12f4",
+    "production_or_evaluation_duration_consumed": false
+  },
+  "mixed_core_cycle_validation": {
+    "selection": "all_same_wg_mixed_cells_validation_only",
+    "maximum_relative_clock_deviation": 0.05,
+    "measurements": [
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 4,
+        "scalar_values": 16,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1792651464.713715
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 4,
+        "scalar_values": 16,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1750853381.0143044
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 4,
+        "scalar_values": 16,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1792824074.0740743
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 4,
+        "scalar_values": 16,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1761266538.037486
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 4,
+        "scalar_values": 64,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1791703216.374269
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 4,
+        "scalar_values": 64,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1758718427.0952928
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 4,
+        "scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1794429986.5681665
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 4,
+        "scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1779065412.7829561
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 4,
+        "scalar_values": 128,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1793156350.053362
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 4,
+        "scalar_values": 128,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1764919248.9495797
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 4,
+        "scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1796851126.814362
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 4,
+        "scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1781196753.123817
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 8,
+        "scalar_values": 16,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1796546052.631579
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 8,
+        "scalar_values": 16,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1755763888.8888888
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 8,
+        "scalar_values": 16,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1795483732.8767123
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 8,
+        "scalar_values": 16,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1769536479.2503347
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 8,
+        "scalar_values": 64,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1794943820.2247193
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 8,
+        "scalar_values": 64,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1768909818.7650943
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 8,
+        "scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1795668285.9990034
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 8,
+        "scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1775638854.679803
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 8,
+        "scalar_values": 128,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1795484727.755644
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 8,
+        "scalar_values": 128,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1771983535.3866315
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 8,
+        "scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1797451609.9855282
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 8,
+        "scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1779668203.1116123
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 16,
+        "scalar_values": 16,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1796520748.9878542
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 16,
+        "scalar_values": 16,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1767890936.25498
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 16,
+        "scalar_values": 16,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1796616487.1104271
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 16,
+        "scalar_values": 16,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1772969426.6910713
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 16,
+        "scalar_values": 64,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1797903756.7776916
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 16,
+        "scalar_values": 64,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1762515533.2304845
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 16,
+        "scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1796586935.7914813
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 16,
+        "scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1763952286.204744
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 16,
+        "scalar_values": 128,
+        "exp_variant": 0,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1801630434.7826087
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 16,
+        "scalar_values": 128,
+        "exp_variant": 0,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1769173492.1816826
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 16,
+        "scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1797615911.4857745
+      },
+      {
+        "active_warpgroups": 1,
+        "matrix_instructions": 16,
+        "scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1766947986.794407
+      },
+      {
+        "active_warpgroups": 2,
+        "matrix_instructions": 16,
+        "scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1800005494.0
+      },
+      {
+        "active_warpgroups": 2,
+        "matrix_instructions": 16,
+        "scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 32,
+        "clock_hz_p50": 1800005494.0
+      },
+      {
+        "active_warpgroups": 2,
+        "matrix_instructions": 16,
+        "scalar_values": 64,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1809422098.0
+      },
+      {
+        "active_warpgroups": 2,
+        "matrix_instructions": 16,
+        "scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 1,
+        "clock_hz_p50": 1800002918.0
+      },
+      {
+        "active_warpgroups": 2,
+        "matrix_instructions": 16,
+        "scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 32,
+        "clock_hz_p50": 1800002918.0
+      },
+      {
+        "active_warpgroups": 2,
+        "matrix_instructions": 16,
+        "scalar_values": 128,
+        "exp_variant": 1,
+        "grid_ctas": 132,
+        "clock_hz_p50": 1767189101.0
+      }
+    ],
+    "core_cycle_roles": [
+      "compute_fma",
+      "compute_sfu",
+      "warp_issue",
+      "compute_alu"
+    ],
+    "source_records": [
+      "raw",
+      "single_wg_validation.raw"
+    ],
+    "production_or_evaluation_duration_consumed": false
+  }
+}

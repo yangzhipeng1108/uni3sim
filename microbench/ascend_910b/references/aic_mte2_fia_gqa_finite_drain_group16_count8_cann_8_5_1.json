@@ -1,0 +1,167 @@
+{
+  "schema_version": 4,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_mte2_fia_gqa_finite_drain_supplement",
+  "duration_unit": "ns_per_finite_descriptor_program_per_aic",
+  "publication_scope": {
+    "source_residency": "dram_cold_disjoint",
+    "dtype": "bf16",
+    "completion_edge": "MTE2_MTE1_after_every_descriptor",
+    "estimator": "exact_measured_geometry_and_descriptor_count_only",
+    "programs": [
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 1024,
+        "active_aic_groups": 16,
+        "descriptor_count": 8,
+        "duration_ns": 14480.0
+      },
+      {
+        "rows": 256,
+        "columns": 64,
+        "source_row_stride_elements": 512,
+        "active_aic_groups": 16,
+        "descriptor_count": 4,
+        "duration_ns": 7080.0
+      },
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 1024,
+        "active_aic_groups": 8,
+        "descriptor_count": 32,
+        "duration_ns": 47040.0
+      },
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 1024,
+        "active_aic_groups": 16,
+        "descriptor_count": 32,
+        "duration_ns": 55460.0
+      },
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 1024,
+        "active_aic_groups": 8,
+        "descriptor_count": 16,
+        "duration_ns": 24460.0
+      },
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 1024,
+        "active_aic_groups": 24,
+        "descriptor_count": 20,
+        "duration_ns": 47920.0
+      },
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 1024,
+        "active_aic_groups": 24,
+        "descriptor_count": 22,
+        "duration_ns": 51900.0
+      },
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 1024,
+        "active_aic_groups": 22,
+        "descriptor_count": 8,
+        "duration_ns": 18000.0
+      }
+    ]
+  },
+  "measurement": {
+    "mode": "independent_finite_drained_descriptor_microbenchmark",
+    "measurement_baseline_commit": "f1f021d3aac254992b16fd92b35534e016b196f5",
+    "source_commit": "808dc7617600742402ca3288e966807d0880b6ee",
+    "physical_device_id": 5,
+    "binary_sha256": "a58fa6fd212dc2035a4a50aa0865a8033d5fc8a03b4c1467a2bedc896e53e852",
+    "source_kernel_sha256": "348381a35f12f69e1a3bf23fe1caf3010865fcf013b3b919bfce749b743b0cc8",
+    "source_main_sha256": "8441f3e9ed7698e55f066f7b2caf38ffa1d0ba30edd210ea2e59af92419712f9",
+    "cmake_sha256": "5619959658d0d4e9cebf2e9765d8ee41e08fb74dab7cf9f67f371e6d3cbf2b02",
+    "raw_paths": [
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group16_count8_58f7d00a_20260906/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group16_count8_58f7d00a_20260906/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group16_count8_58f7d00a_20260906/run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d64_group16_count4_ebc27d46_20260906/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d64_group16_count4_ebc27d46_20260906/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d64_group16_count4_ebc27d46_20260906/run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group8_count32_09ea7f37_20260906/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group8_count32_09ea7f37_20260906/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group8_count32_09ea7f37_20260906/run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group16_count32_e070ec61_20260906/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group16_count32_e070ec61_20260906/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group16_count32_e070ec61_20260906/run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group8_count16_20260906_r1/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group8_count16_20260906_r1/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group8_count16_20260906_r1/run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group24_count20_22_20260906_r1/count20_run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group24_count20_22_20260906_r1/count20_run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group24_count20_22_20260906_r1/count20_run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group24_count20_22_20260906_r1/count22_run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group24_count20_22_20260906_r1/count22_run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group24_count20_22_20260906_r1/count22_run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group22_count8_480a8a33_20260906_r2/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group22_count8_480a8a33_20260906_r2/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_gqa_finite_drain_d128_group22_count8_480a8a33_20260906_r2/run3.csv"
+    ],
+    "raw_sha256": [
+      "b1d2521c989898e6ab493efd8ae463910c3da8ddffdcb55bd6802feae46dddd9",
+      "69491c0bcc969a34e9c99889d26c84e81bffa8f133e8daf886b6c68241e599a0",
+      "11c378a0c16b67fc93dc774364adade195a4ff607f90f831cd3d1f5a81ced0fd",
+      "2e7615e80a86d53a83e7e968f9eae8455b6072c81d799b62f5f1fde86744f321",
+      "a8ea7ea77252667e92e5b3d4e60f41b049d444fb5be8255562d079e117e187f2",
+      "dfb52995be73a3823c337cf136764db631c84b932ba8ae387b7d68ac07db56bd",
+      "6f078f6471d289f479891ceb468a28f1d160c32453052158cfba0a18688e1567",
+      "f971beb815fffc1004a425d9526d3e8599d92d7d3c6a58e2fea956d485a5f445",
+      "fc71b6d1d273c9b084bb561a1fe16ee9cc615eaafb407c7d10509fd296382fcd",
+      "285e2a550b439295fac5510ebf1c3e27a4743eb87a42350a7186b011b3cdc33e",
+      "f2c30a2185d5dcaa7f7347b1dd03ac12419365d9f88a8fb872b25c12900497fd",
+      "68f583aa3914e4a87b89b65a8157f642a9cd4406ed4050a599254442ced46081",
+      "7c7e9420eb6881ee5923e122fe26a47dc2da59fdcd0d52da16c45b40cedcc793",
+      "6d4a1ac7f9af4b71bb4aa79deaae4476063a229bd94328a6fbbb62e4c5cb965e",
+      "893b6b8b3617de3b74c730fbc7708c4c2d79fdf1239b2fe94deb42f1f510d97d",
+      "8df2f4a3fe74510c6a9e48b86113103132344ec1769c31eaf45f44725d3e27d0",
+      "7d4c3d8d6754d71e44168bd23fc65f64d6e41becb23c47dfa0f99acbdac3f257",
+      "de009f147b0ed464e48c1f4b97578b5c66d0563a78d664fcd68f2b87ea84e0c5",
+      "7f1a089aa4a09917d6e1dee188090684b211553f7e066f2aa6a34566b105bc9b",
+      "7f1a089aa4a09917d6e1dee188090684b211553f7e066f2aa6a34566b105bc9b",
+      "d6a8c6e392bf6c5a2aca0d7325ca41ddf86f62abbeca97603a4724b28ffbca0a",
+      "cbd564061e44a9b88cb186935335881fea4f81840930b1a36c662c6e4c8a009f",
+      "85e672d7b4de9557ca093fe618c8db7c4792d5c661718010fa7ea2e23ff86aa9",
+      "9b4faa21b391b27026db31c6841fd22063e2d4e64a76a7ad0fbc8ed5c6cf4452"
+    ],
+    "program_run_duration_ns": [
+      [14580.0, 14480.0, 14080.0],
+      [7080.0, 7220.0, 7060.0],
+      [46460.0, 47040.0, 47460.0],
+      [55800.0, 55440.0, 55460.0],
+      [24620.0, 24460.0, 24140.0],
+      [47920.0, 47200.0, 48760.0],
+      [51900.0, 51900.0, 52620.0],
+      [18000.0, 18020.0, 17600.0]
+    ],
+    "maximum_program_deviation_pct": [
+      2.7624309392265194,
+      1.9774011299435028,
+      1.2329931972789116,
+      0.6130537324197619,
+      1.3082583810302535,
+      1.7529215358931554,
+      1.3872832369942196,
+      2.2222222222222223
+    ],
+    "mechanism_gate_passed": true
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "only the exact listed BF16 FIA GQA K/V source geometries, descriptor counts and AIC concurrency, disjoint DRAM-cold residency, and an MTE2-to-MTE1 completion edge after every descriptor"
+}

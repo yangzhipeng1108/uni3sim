@@ -1,0 +1,86 @@
+{
+  "artifacts": {
+    "summary": {
+      "path": "/capture-workspace/midlayer_capture/profiler_output/microbench/ascend_910b/engine_core_host_round/run3_20260924_retest/summary.json",
+      "sha256": "00f975e0871489043fdefd0429977aae4eacb50937f48de3935033990f2dc9b1"
+    },
+    "trials": {
+      "path": "/capture-workspace/midlayer_capture/profiler_output/microbench/ascend_910b/engine_core_host_round/run3_20260924_retest/trials.jsonl",
+      "sha256": "8667fcd6a9a76e42c579a8f9d14e0e162f7b34e6b810f35273018e70ed02a5b2"
+    }
+  },
+  "baseline_commit": "35cb681aa99f70af9af3c487b49dd6662051ffae",
+  "command": [
+    "/usr/local/python3.11.14/bin/python",
+    "microbench/ascend_910b/runtime/engine_core_host_round/engine_core_host_round_runner.py",
+    "--output-dir",
+    "profiler_output/microbench/ascend_910b/engine_core_host_round/run3_20260924_retest",
+    "--device-id",
+    "1",
+    "--baseline-commit",
+    "35cb681aa99f70af9af3c487b49dd6662051ffae",
+    "--expected-source-sha256",
+    "4e3b3cc4c26cdd0d36db1aac9fb6ebd008a40734b56a5fcc598d4a9aafd26360",
+    "--container-name",
+    "capture-container-2",
+    "--model-path",
+    "/capture-workspace/models/Qwen3-8B"
+  ],
+  "completed_at_utc": "2026-09-23T21:37:31.798156+00:00",
+  "container_name": "capture-container-2",
+  "contract": {
+    "device_stub_durations_are_forward_parameters": false,
+    "eager_op_counts": [
+      64,
+      256,
+      700
+    ],
+    "eager_request_counts": [
+      1,
+      32,
+      120
+    ],
+    "graph_chain_ops": [
+      2,
+      64
+    ],
+    "hypothesis": "the EngineCore host round cadence is a serial host chain (plan + submit + wake + update + puts) whose per-request slope is host-side and independent of device stub duration",
+    "loop_source": "vllm 0.18 EngineCore run_busy_loop / step_with_batch_queue with batch queue depth 2; UniProcExecutor non-blocking collective_rpc with one WorkerAsyncOutput thread; GPUModelRunner synchronize_input_prep event barrier; ACLGraphWrapper pre-replay current_stream synchronize; AsyncGPUModelRunnerOutput copy-stream D2H wake with tolist",
+    "max_num_batched_tokens": 8192,
+    "max_num_seqs": 128,
+    "measured_rounds": 200,
+    "production_or_evaluation_duration_consumed": false,
+    "prompt_tokens": 64,
+    "request_counts": [
+      1,
+      8,
+      32,
+      64,
+      120
+    ],
+    "scheduler_requests_synthetic": true,
+    "timers": [
+      "time.perf_counter_ns"
+    ],
+    "warmup_rounds": 30
+  },
+  "environment": {
+    "hostname": "capture-host-71f8bb8f36fd",
+    "model_path": "/capture-workspace/models/Qwen3-8B",
+    "platform": "Linux-5.15.0-25-generic-aarch64-with-glibc2.35",
+    "python": "3.11.14 (main, Feb 26 2026, 04:49:14) [GCC 11.4.0]",
+    "torch": "2.9.0+cpu",
+    "torch_npu": "2.9.0.post1+gitee7ba04"
+  },
+  "failure": null,
+  "hardware_id": "ascend_910b",
+  "kind": "ascend_engine_core_host_round_microbenchmark",
+  "pid": 31583,
+  "schema_version": 1,
+  "source": {
+    "path": "/capture-workspace/midlayer_capture/microbench/ascend_910b/runtime/engine_core_host_round/engine_core_host_round_runner.py",
+    "sha256": "4e3b3cc4c26cdd0d36db1aac9fb6ebd008a40734b56a5fcc598d4a9aafd26360"
+  },
+  "started_at_utc": "2026-09-23T21:37:12.305444+00:00",
+  "status": "complete"
+}

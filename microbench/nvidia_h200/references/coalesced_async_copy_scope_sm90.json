@@ -1,0 +1,945 @@
+{
+  "hardware_id": "nvidia_h200",
+  "mechanism": "coalesced_async_copy_exact_grid_scope",
+  "production_or_evaluation_duration_consumed": false,
+  "legacy_reference_path": "microbench/nvidia_h200/references/finite_async_byte_progress_sm90.json",
+  "legacy_reference_sha256": "0bfd1d356edcc7299cef850569bb28ff8e790b696dafacb196309a6e0053465e",
+  "source_manifests": {
+    "scope": {
+      "path": "profiler_output/microbench/nvidia_h200/coalesced_scope_20261108/attempt_1/manifest.json",
+      "sha256": "36a35b39606d0d293233b4f62080f1b072b85207587a4c1fe72a03d95cedd056"
+    },
+    "accounting": {
+      "path": "profiler_output/microbench/nvidia_h200/coalesced_request_accounting_20261108/attempt_1/manifest.json",
+      "sha256": "47fab53693462e0d1de328e86b652c66fd110b4396e29569901d33e19472a7e0"
+    }
+  },
+  "selection_rule": "All original process/precision/clock/resource/uniqueDRAM/instruction checks and independently qualified upstream request-conservation proof; slower full COPY process median, no subtraction or cross-capture rate selection.",
+  "original_TEX_equals_logical_gate_passed": false,
+  "counter_scope_correction": "L1TEX conserves issued logical requests while LTS TEX sectors merge; original failed downstream-equality test is retained and replaced only following the separate all-six-cell causal accounting proof.",
+  "composition": "Unchanged adjacent-fanout competing compulsory-B progress floor, exact physical grid only; preserve all legacy capacities, source clock scope and original traffic/Tensor work.",
+  "approximations": [
+    "Broadcast warm one-row A and contiguous synthetic B; full original A/DRAM work stays in the normal pipeline.",
+    "Native shared layout, metadata and expert-address distribution remain analytical.",
+    "Mechanism progress reference, not a certified mathematical lower bound for every compiler."
+  ],
+  "programs": [
+    {
+      "program_id": "b32768_s4_r128_stride1024_fanout1",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          2526504672897.1963
+        ],
+        [
+          1530,
+          2690802919708.0293
+        ],
+        [
+          2040,
+          2700222976248.1826
+        ],
+        [
+          4592,
+          2813587434554.9736
+        ],
+        [
+          6624,
+          2848045347189.419
+        ],
+        [
+          9184,
+          2828714817460.6157
+        ],
+        [
+          24544,
+          2909886796821.859
+        ]
+      ],
+      "request_fanout": 1,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": [
+        6624,
+        24544
+      ]
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1024_fanout2",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4034865671641.791
+        ],
+        [
+          1530,
+          2953985387697.384
+        ],
+        [
+          2040,
+          2942715266772.319
+        ],
+        [
+          4592,
+          3003646119450.655
+        ],
+        [
+          9184,
+          2999096228972.3354
+        ],
+        [
+          14304,
+          3085833829299.7656
+        ],
+        [
+          24544,
+          3087267154943.4185
+        ]
+      ],
+      "request_fanout": 2,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": [
+        14304,
+        24544
+      ]
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1024_fanout4",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4111574144486.692
+        ],
+        [
+          1530,
+          2964465468306.528
+        ],
+        [
+          2040,
+          2954681753889.675
+        ],
+        [
+          4592,
+          3009413120000.0
+        ],
+        [
+          9184,
+          3000770899808.5513
+        ],
+        [
+          14304,
+          3086402781436.0215
+        ],
+        [
+          24544,
+          3091777094353.549
+        ]
+      ],
+      "request_fanout": 4,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": [
+        14304,
+        24544
+      ]
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1024_fanout8",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout8",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout8",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4127267175572.5186
+        ],
+        [
+          1530,
+          2972198245198.008
+        ],
+        [
+          2040,
+          2957819469026.549
+        ],
+        [
+          4592,
+          3008691034151.8037
+        ],
+        [
+          9184,
+          3000651218442.149
+        ],
+        [
+          24544,
+          3090161497556.3276
+        ]
+      ],
+      "request_fanout": 8,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": [
+        24544
+      ]
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1024_fanout16",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout16",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout16",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4111574144486.692
+        ],
+        [
+          1530,
+          2967272727272.7275
+        ],
+        [
+          2040,
+          2952593639575.9717
+        ],
+        [
+          4592,
+          3008691034151.8037
+        ],
+        [
+          9184,
+          2999454929633.616
+        ]
+      ],
+      "request_fanout": 16,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": []
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1536_fanout1",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1536
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1536,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          2735271500843.1704
+        ],
+        [
+          1530,
+          3018728323699.4224
+        ],
+        [
+          2040,
+          3041805606115.7627
+        ],
+        [
+          3064,
+          3139629086057.3716
+        ],
+        [
+          4592,
+          3161148235294.1177
+        ],
+        [
+          9184,
+          3175111611287.7363
+        ]
+      ],
+      "request_fanout": 1,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": [
+        3064
+      ]
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1536_fanout2",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1536
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1536,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          3956136585365.8535
+        ],
+        [
+          1530,
+          3214334074200.7183
+        ],
+        [
+          2040,
+          3207616122840.691
+        ],
+        [
+          3064,
+          3307311314125.088
+        ],
+        [
+          4592,
+          3285959468902.8647
+        ],
+        [
+          9184,
+          3281277934463.408
+        ]
+      ],
+      "request_fanout": 2,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": [
+        3064
+      ]
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1536_fanout4",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1536
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1536,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4106369620253.1646
+        ],
+        [
+          1530,
+          3230350515463.9175
+        ],
+        [
+          2040,
+          3222460470497.493
+        ],
+        [
+          3064,
+          3311383641160.9497
+        ],
+        [
+          4592,
+          3293823828147.8022
+        ],
+        [
+          9184,
+          3283951462243.5615
+        ]
+      ],
+      "request_fanout": 4,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": [
+        3064
+      ]
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1536_fanout8",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout8",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout8",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1536
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1536,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4085682619647.3555
+        ],
+        [
+          1530,
+          3235910499139.4146
+        ],
+        [
+          2040,
+          3224533058914.33
+        ],
+        [
+          4592,
+          3288065730435.2896
+        ],
+        [
+          9184,
+          3283187152707.0664
+        ]
+      ],
+      "request_fanout": 8,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": []
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1536_fanout16",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout16",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout16",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1536
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1536,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4075417085427.1357
+        ],
+        [
+          1530,
+          3229795567771.8604
+        ],
+        [
+          2040,
+          3223289186061.4634
+        ],
+        [
+          4592,
+          3288065730435.2896
+        ],
+        [
+          9184,
+          3281755030824.7065
+        ]
+      ],
+      "request_fanout": 16,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": []
+    },
+    {
+      "program_id": "b32768_s4_r128_stride4096_fanout1",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          3082947968638.632
+        ],
+        [
+          1146,
+          3749214057507.9873
+        ],
+        [
+          1530,
+          3622473988439.306
+        ],
+        [
+          2040,
+          3626076484947.1113
+        ],
+        [
+          3312,
+          3777764411027.569
+        ],
+        [
+          4592,
+          3740259905543.127
+        ],
+        [
+          9184,
+          3745753304622.738
+        ],
+        [
+          25338,
+          3919833363233.781
+        ]
+      ],
+      "request_fanout": 1,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": [
+        1146,
+        3312,
+        25338
+      ]
+    },
+    {
+      "program_id": "b32768_s4_r128_stride4096_fanout2",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4224000000000.0
+        ],
+        [
+          1530,
+          3806760820045.558
+        ],
+        [
+          2040,
+          3805677198975.235
+        ],
+        [
+          2298,
+          3991564484495.0967
+        ],
+        [
+          4592,
+          3899820029027.576
+        ],
+        [
+          7152,
+          4053282415814.8706
+        ],
+        [
+          9184,
+          3904576277343.8516
+        ],
+        [
+          25338,
+          4093980315970.099
+        ]
+      ],
+      "request_fanout": 2,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": [
+        2298,
+        7152,
+        25338
+      ]
+    },
+    {
+      "program_id": "b32768_s4_r128_stride4096_fanout4",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4265656804733.7275
+        ],
+        [
+          1530,
+          3816613885505.481
+        ],
+        [
+          2040,
+          3811101482326.112
+        ],
+        [
+          2298,
+          3991352909996.82
+        ],
+        [
+          3834,
+          3996707768658.1406
+        ],
+        [
+          4592,
+          3900932154615.923
+        ],
+        [
+          6906,
+          4061959182208.1816
+        ],
+        [
+          7152,
+          4059249939377.1436
+        ],
+        [
+          9184,
+          3905184293166.541
+        ],
+        [
+          12272,
+          4093498269473.5127
+        ]
+      ],
+      "request_fanout": 4,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": [
+        2298,
+        3834,
+        6906,
+        7152,
+        12272
+      ]
+    },
+    {
+      "program_id": "b32768_s4_r128_stride4096_fanout8",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout8",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout8",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4269867719644.6196
+        ],
+        [
+          1530,
+          3814000760745.5303
+        ],
+        [
+          2040,
+          3812405611953.918
+        ],
+        [
+          3834,
+          3994420450209.8438
+        ],
+        [
+          4592,
+          3898910579638.7944
+        ],
+        [
+          6906,
+          4065096788100.884
+        ],
+        [
+          9184,
+          3903107687119.8267
+        ],
+        [
+          12272,
+          4090250584860.7524
+        ],
+        [
+          13050,
+          4098041169931.3833
+        ],
+        [
+          25338,
+          4095050500367.446
+        ]
+      ],
+      "request_fanout": 8,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": [
+        3834,
+        6906,
+        12272,
+        13050,
+        25338
+      ]
+    },
+    {
+      "program_id": "b32768_s4_r128_stride4096_fanout16",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout16",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout16",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4261454187192.118
+        ],
+        [
+          1530,
+          3811970802919.708
+        ],
+        [
+          2040,
+          3809146959940.7373
+        ],
+        [
+          4592,
+          3897799606258.419
+        ],
+        [
+          9184,
+          3900123273113.709
+        ],
+        [
+          13050,
+          4092432841105.9326
+        ],
+        [
+          25338,
+          4091014993766.9683
+        ]
+      ],
+      "request_fanout": 16,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976",
+      "retained_legacy_grids": [
+        132,
+        1530,
+        2040,
+        4592,
+        9184
+      ],
+      "new_scope_grids": [
+        13050,
+        25338
+      ]
+    }
+  ]
+}

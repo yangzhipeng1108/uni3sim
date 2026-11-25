@@ -1,0 +1,140 @@
+{
+  "duration_unit": "dimensionless_count_independence_licence",
+  "forward_eligibility_constraint": "Licenses applying an exact measured FIA GQA drained descriptor program per descriptor at any descriptor count from 8 to 128, at the listed BF16 geometries and AIC concurrencies, with disjoint DRAM-cold residency and an MTE2-to-MTE1 completion edge after every descriptor. It does not supply the absolute per-descriptor service level: Forward takes that from the separately published exact-count aic_mte2_fia_gqa_finite_drain references, whose campaign this one does not replace. It licenses no interpolation across geometry or AIC concurrency.",
+  "forward_eligible": true,
+  "hardware_id": "ascend_910b",
+  "measurement": {
+    "excluded_cells": [
+      {
+        "active_aic_groups": 22,
+        "columns": 64,
+        "reason": "one or more descriptor-count cells exceeded the 5% process-median stability gate",
+        "rows": 256,
+        "source_row_stride_elements": 512
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 64,
+        "reason": "one or more descriptor-count cells exceeded the 5% process-median stability gate",
+        "rows": 256,
+        "source_row_stride_elements": 512
+      }
+    ],
+    "measurement_baseline_commit": "1b6bf72064b2ba1011c3959aa7267943c19cde70",
+    "mechanism_gate_passed": true,
+    "mode": "independent_finite_drained_descriptor_microbenchmark",
+    "physical_device_id": 5,
+    "process_count": 3,
+    "process_median_span_limit_pct": 5.0,
+    "registration_path": "microbench/ascend_910b/operators/flash_attn/gqa_drain_count_law/REGISTRATION.md",
+    "report_path": "profiler_output/microbench/ascend_910b/gqa_drain_count_law_20260922_r1/report.json",
+    "timing_boundary": "GetSystemCycle immediately before the first descriptor's WaitFlag<MTE1_MTE2> to GetSystemCycle immediately after the last descriptor's WaitFlag<MTE2_MTE1>; divided by descriptor count; worker median per launch, process median per cell"
+  },
+  "mechanism": "aic_mte2_fia_gqa_drained_descriptor_count_law",
+  "mechanism_publishable": true,
+  "parameter_fit_from_production_duration": false,
+  "production_or_evaluation_duration_consumed": false,
+  "publication_scope": {
+    "cells": [
+      {
+        "active_aic_groups": 8,
+        "columns": 128,
+        "count_independent": true,
+        "count_span_pct": 5.6679,
+        "measured_per_descriptor_ns_by_count": {
+          "128": 1231.5625,
+          "16": 1280.0,
+          "32": 1251.5625,
+          "64": 1240.4688,
+          "8": 1302.5
+        },
+        "rows": 256,
+        "source_row_stride_elements": 1024
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 128,
+        "count_independent": true,
+        "count_span_pct": 0.882,
+        "measured_per_descriptor_ns_by_count": {
+          "128": 1554.1406,
+          "16": 1567.5,
+          "32": 1553.75,
+          "64": 1558.9062,
+          "8": 1563.75
+        },
+        "rows": 256,
+        "source_row_stride_elements": 1024
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 128,
+        "count_independent": true,
+        "count_span_pct": 0.7928,
+        "measured_per_descriptor_ns_by_count": {
+          "128": 2109.0625,
+          "16": 2108.75,
+          "32": 2098.125,
+          "64": 2109.2188,
+          "8": 2092.5
+        },
+        "rows": 256,
+        "source_row_stride_elements": 1024
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 128,
+        "count_independent": true,
+        "count_span_pct": 0.9221,
+        "measured_per_descriptor_ns_by_count": {
+          "128": 2304.5312,
+          "16": 2290.0,
+          "32": 2306.5625,
+          "64": 2293.5938,
+          "8": 2311.25
+        },
+        "rows": 256,
+        "source_row_stride_elements": 1024
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 64,
+        "count_independent": true,
+        "count_span_pct": 6.0739,
+        "measured_per_descriptor_ns_by_count": {
+          "128": 1248.2031,
+          "16": 1273.125,
+          "32": 1264.375,
+          "64": 1252.1875,
+          "8": 1325.0
+        },
+        "rows": 256,
+        "source_row_stride_elements": 512
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 64,
+        "count_independent": true,
+        "count_span_pct": 1.265,
+        "measured_per_descriptor_ns_by_count": {
+          "128": 1499.6875,
+          "16": 1506.875,
+          "32": 1498.4375,
+          "64": 1507.0312,
+          "8": 1517.5
+        },
+        "rows": 256,
+        "source_row_stride_elements": 512
+      }
+    ],
+    "completion_edge": "MTE2_MTE1_after_every_descriptor",
+    "count_span_limit_pct": 8.0,
+    "dtype": "bf16",
+    "estimator": "count_free_per_descriptor_service_over_measured_range",
+    "maximum_descriptor_count": 128,
+    "minimum_descriptor_count": 8,
+    "source_residency": "dram_cold_disjoint"
+  },
+  "schema_version": 1,
+  "software_revision": "cann_8.5.1"
+}

@@ -1,0 +1,60 @@
+# User-authorized parameter scenario, 2026-11-04:
+# RTX PRO 5500 Blackwell Workstation Edition memory/bandwidth plus
+# user-specified RTX PRO 5000 dense compute proxy. These are NOT official
+# RTX PRO 5500 compute peaks, native execution or provider acceptance.
+# NVIDIA preliminary specifications: 84GB GDDR7 ECC, 1398GB/s.
+# Retained official source and user assumption evidence:
+# profiler_output/source_snapshots/gpu_fpga_hetero_20261104/manifest.json
+# SI units: decimal bytes/s and FLOP/s; INT8 uses operation/s.
+# Unconsumed FP4/FP6/TF32 proxy values stay in the source manifest.
+hardware_id: nvidia_rtx_pro_5500
+clock_domains: {}
+components:
+  - name: tensor_bf16
+    count: 1
+    type: compute
+    role: compute_tensor
+    scope: shared
+    capacity_per_second: 267700000000000
+  - name: tensor_fp16
+    count: 1
+    type: compute
+    role: compute_tensor_fp16
+    scope: shared
+    capacity_per_second: 267700000000000
+  - name: tensor_fp8
+    count: 1
+    type: compute
+    role: compute_tensor_fp8
+    scope: shared
+    capacity_per_second: 535500000000000
+  - name: tensor_int8
+    count: 1
+    type: compute
+    role: compute_tensor_int8
+    scope: shared
+    capacity_per_second: 535500000000000
+  - name: dram
+    count: 1
+    type: memory
+    role: dram
+    scope: shared
+    capacity_per_second: 1398000000000
+    size_bytes: 84000000000
+resource_groups: []
+memory_subsystem: {}
+scheduling: {}
+# The original experiment topology is retained as a user scenario:
+# two GPUs share one 400Gb/s NIC, each direction 50GB/s. This is not a
+# claim about an installed RTX workstation NIC or a native collective.
+interconnect:
+  roce_unidir_bw_GB_s: 50
+  roce_devices_per_nic: 2
+  roce_switch_topology: fully_connected
+  roce_signal_latency_ns: null
+  roce_collective_startup_ns: null
+  parameter_source: user_supplied_2026_10_21_two_cards_per_400Gbps_roce
+features:
+  kernel_memory_model: roofline
+  kernel_dtype: bf16
+  parameter_source: user_supplied_2026_11_04_rtx_pro_5500_memory_bandwidth_pro_5000_dense_compute_proxy

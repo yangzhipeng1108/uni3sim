@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "runtime_source": "torch_2_4_maca_3_7_2_native_default_unset_env",
+  "evidence_kind": "declared_target_runtime_native_allocator_alignment",
+  "software": "torch 2.4.0+metax3.7.2.0 / MACA 3.7.2",
+  "duration_consumed": false,
+  "identity_reference": "profiler_output/microbench/metax_c500/operator_support_typed_20261023/sampler_dispatch_fbc460ca/static/native_allocator_alignment.json#/installed_identity",
+  "evidence": {
+    "path": "profiler_output/microbench/metax_c500/operator_support_typed_20261023/sampler_dispatch_fbc460ca/static/native_allocator_alignment.json",
+    "sha256": "e0d7d121bdc9f6988ff0dda4f6d5eac97c81d883b7cdebec5131e656f3247942"
+  },
+  "conditions": {
+    "allocator_backend": "native",
+    "environment_initially_unset": [
+      "PYTORCH_CUDA_ALLOC_CONF",
+      "PYTORCH_NO_CUDA_MEMORY_CACHING",
+      "PYTORCH_DISABLE_UNROLL_FLOAT_OPT"
+    ],
+    "tensor_storage": "owning allocation from the declared native allocator",
+    "storage_offset_bytes": 0,
+    "contiguous": true
+  },
+  "binary_evidence": [
+    {
+      "function": "DeviceCachingAllocator::malloc",
+      "addresses": "0x3808f-0x38129, 0x383d2-0x383f0",
+      "fact": "Requests <=511 bytes become 512. The ordinary branch computes (size+511)&~511. The power-of-two-division branch is entered only when size>divisions*512 and rounds to a subdivision interval that is therefore at least 512 bytes. Every normalized block size is a multiple of 512."
+    },
+    {
+      "function": "DeviceCachingAllocator::malloc -> AllocParams",
+      "addresses": "0x381dc-0x381ea, 0x382d7-0x382fa, 0x38361-0x3837d",
+      "fact": "The normalized size from local -0x2a0 is stored at offset +0x30 of the AllocParams object beginning at -0xf0; the same object is passed to alloc_found_block."
+    },
+    {
+      "function": "DeviceCachingAllocator::alloc_found_block",
+      "addresses": "0x1fd4a-0x1fd61, 0x1ffdb-0x2000e, 0x2006d-0x20081",
+      "fact": "The function saves AllocParams+0x30 as the split size. It assigns that size to the allocated Block and advances the remainder Block pointer field at +0x48 by exactly that size while subtracting the same amount from remainder size. Repeated splits therefore add only multiples of 512 to the original base pointer."
+    },
+    {
+      "function": "DeviceCachingAllocator::alloc_block -> cudaMallocMaybeCapturing -> wcudaMalloc -> mcMalloc_v0",
+      "addresses": "0x2f0e9, 0x26d7c, 0x3204c",
+      "fact": "A new native segment is obtained through the installed MACA device allocation path. The installed public two-argument device-allocation contract states that returned linear memory is suitably aligned for any kind of variable."
+    }
+  ],
+  "proof": "Base device allocations are at least 4-byte aligned by the installed runtime contract. Every native caching-allocator split offset is a sum of normalized sizes, each divisible by 512 and therefore by 4. By induction, every native Block base returned for a fresh owning storage remains at least 4-byte aligned, including blocks reused after splits.",
+  "derived_copy_dispatch": {
+    "disable_unroll_float_opt": false,
+    "input_alignment_bytes": 4,
+    "output_alignment_bytes": 4
+  },
+  "scope": "Explicit source scenario carried through RuntimeInputs and the same virtual storage. No inference from simulator process environment or a single observed pointer.",
+  "excluded": [
+    "A tensor view or alias with nonzero storage_offset is not covered; contiguous layout alone does not imply storage_offset==0. A BF16 view offset by one element can shift an aligned storage base by 2 bytes and fail the 4-byte predicate.",
+    "Other allocator backends, expandable-segment configurations, externally supplied storage, IPC/imported pointers, and historical Serving-process allocator/config state are not covered.",
+    "The one observed runner data_ptr is corroboration only and is not used as the guarantee.",
+    "The initially unset cached-flag condition is a declared target-process input, not proof of a historical Serving process.",
+    "Argmax reduction flags, typed instructions, dynamic branch counts and rates are separate contracts.",
+    "No production duration, actual historical provider or normal-memory acceptance is derived."
+  ]
+}

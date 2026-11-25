@@ -1,0 +1,423 @@
+{
+  "allowed_use": "Achieved DRAM streaming bandwidth of a fully coalesced launch as a function of its total thread count, for the source-bound independent-request contract that src/kernel/predictors/common.py::gpu_memory_source currently declares unavailable. Bandwidth is a function of total threads and not of the grid/block split that produces them.",
+  "forbidden_use": "A per-shape correction, a launch floor, a bandwidth for a non-coalesced or reduction-bearing kernel, or an eager-launch cost.",
+  "hardware_id": "metax_c500",
+  "measured": {
+    "bytes_in_flight_per_thread": 32.0,
+    "cells": [
+      {
+        "block": 16,
+        "gb_s": 1.27,
+        "grid": 1,
+        "threads": 16,
+        "us": 421402.197
+      },
+      {
+        "block": 32,
+        "gb_s": 2.5,
+        "grid": 1,
+        "threads": 32,
+        "us": 214371.509
+      },
+      {
+        "block": 64,
+        "gb_s": 4.79,
+        "grid": 1,
+        "threads": 64,
+        "us": 112093.14
+      },
+      {
+        "block": 128,
+        "gb_s": 9.3,
+        "grid": 1,
+        "threads": 128,
+        "us": 57699.023
+      },
+      {
+        "block": 256,
+        "gb_s": 18.01,
+        "grid": 1,
+        "threads": 256,
+        "us": 29808.575
+      },
+      {
+        "block": 512,
+        "gb_s": 30.91,
+        "grid": 1,
+        "threads": 512,
+        "us": 17368.961
+      },
+      {
+        "block": 1024,
+        "gb_s": 35.11,
+        "grid": 1,
+        "threads": 1024,
+        "us": 15291.238
+      },
+      {
+        "block": 16,
+        "gb_s": 10.0,
+        "grid": 8,
+        "threads": 128,
+        "us": 53665.155
+      },
+      {
+        "block": 32,
+        "gb_s": 19.81,
+        "grid": 8,
+        "threads": 256,
+        "us": 27101.99
+      },
+      {
+        "block": 64,
+        "gb_s": 38.06,
+        "grid": 8,
+        "threads": 512,
+        "us": 14105.766
+      },
+      {
+        "block": 128,
+        "gb_s": 70.84,
+        "grid": 8,
+        "threads": 1024,
+        "us": 7579.059
+      },
+      {
+        "block": 256,
+        "gb_s": 131.29,
+        "grid": 8,
+        "threads": 2048,
+        "us": 4089.216
+      },
+      {
+        "block": 512,
+        "gb_s": 220.31,
+        "grid": 8,
+        "threads": 4096,
+        "us": 2436.851
+      },
+      {
+        "block": 1024,
+        "gb_s": 284.77,
+        "grid": 8,
+        "threads": 8192,
+        "us": 1885.261
+      },
+      {
+        "block": 16,
+        "gb_s": 42.44,
+        "grid": 35,
+        "threads": 560,
+        "us": 12649.319
+      },
+      {
+        "block": 32,
+        "gb_s": 82.46,
+        "grid": 35,
+        "threads": 1120,
+        "us": 6510.605
+      },
+      {
+        "block": 64,
+        "gb_s": 152.3,
+        "grid": 35,
+        "threads": 2240,
+        "us": 3525.12
+      },
+      {
+        "block": 128,
+        "gb_s": 275.73,
+        "grid": 35,
+        "threads": 4480,
+        "us": 1947.085
+      },
+      {
+        "block": 256,
+        "gb_s": 460.44,
+        "grid": 35,
+        "threads": 8960,
+        "us": 1166.003
+      },
+      {
+        "block": 512,
+        "gb_s": 730.32,
+        "grid": 35,
+        "threads": 17920,
+        "us": 735.117
+      },
+      {
+        "block": 1024,
+        "gb_s": 1106.3,
+        "grid": 35,
+        "threads": 35840,
+        "us": 485.286
+      },
+      {
+        "block": 16,
+        "gb_s": 83.88,
+        "grid": 70,
+        "threads": 1120,
+        "us": 6400.806
+      },
+      {
+        "block": 32,
+        "gb_s": 157.68,
+        "grid": 70,
+        "threads": 2240,
+        "us": 3404.877
+      },
+      {
+        "block": 64,
+        "gb_s": 282.11,
+        "grid": 70,
+        "threads": 4480,
+        "us": 1903.078
+      },
+      {
+        "block": 128,
+        "gb_s": 484.71,
+        "grid": 70,
+        "threads": 8960,
+        "us": 1107.622
+      },
+      {
+        "block": 256,
+        "gb_s": 801.14,
+        "grid": 70,
+        "threads": 17920,
+        "us": 670.131
+      },
+      {
+        "block": 512,
+        "gb_s": 1287.27,
+        "grid": 70,
+        "threads": 35840,
+        "us": 417.062
+      },
+      {
+        "block": 1024,
+        "gb_s": 1427.56,
+        "grid": 70,
+        "threads": 71680,
+        "us": 376.077
+      },
+      {
+        "block": 16,
+        "gb_s": 123.03,
+        "grid": 104,
+        "threads": 1664,
+        "us": 4363.789
+      },
+      {
+        "block": 32,
+        "gb_s": 226.33,
+        "grid": 104,
+        "threads": 3328,
+        "us": 2372.083
+      },
+      {
+        "block": 64,
+        "gb_s": 389.48,
+        "grid": 104,
+        "threads": 6656,
+        "us": 1378.432
+      },
+      {
+        "block": 128,
+        "gb_s": 663.11,
+        "grid": 104,
+        "threads": 13312,
+        "us": 809.626
+      },
+      {
+        "block": 256,
+        "gb_s": 1081.31,
+        "grid": 104,
+        "threads": 26624,
+        "us": 496.499
+      },
+      {
+        "block": 512,
+        "gb_s": 1413.46,
+        "grid": 104,
+        "threads": 53248,
+        "us": 379.827
+      },
+      {
+        "block": 1024,
+        "gb_s": 1431.75,
+        "grid": 104,
+        "threads": 106496,
+        "us": 374.976
+      },
+      {
+        "block": 16,
+        "gb_s": 230.32,
+        "grid": 208,
+        "threads": 3328,
+        "us": 2331.021
+      },
+      {
+        "block": 32,
+        "gb_s": 400.05,
+        "grid": 208,
+        "threads": 6656,
+        "us": 1342.003
+      },
+      {
+        "block": 64,
+        "gb_s": 656.11,
+        "grid": 208,
+        "threads": 13312,
+        "us": 818.266
+      },
+      {
+        "block": 128,
+        "gb_s": 1098.82,
+        "grid": 208,
+        "threads": 26624,
+        "us": 488.589
+      },
+      {
+        "block": 256,
+        "gb_s": 1418.19,
+        "grid": 208,
+        "threads": 53248,
+        "us": 378.56
+      },
+      {
+        "block": 512,
+        "gb_s": 1427.31,
+        "grid": 208,
+        "threads": 106496,
+        "us": 376.141
+      },
+      {
+        "block": 1024,
+        "gb_s": 1354.79,
+        "grid": 208,
+        "threads": 212992,
+        "us": 396.275
+      },
+      {
+        "block": 16,
+        "gb_s": 402.84,
+        "grid": 416,
+        "threads": 6656,
+        "us": 1332.723
+      },
+      {
+        "block": 32,
+        "gb_s": 677.55,
+        "grid": 416,
+        "threads": 13312,
+        "us": 792.371
+      },
+      {
+        "block": 64,
+        "gb_s": 1090.19,
+        "grid": 416,
+        "threads": 26624,
+        "us": 492.454
+      },
+      {
+        "block": 128,
+        "gb_s": 1408.71,
+        "grid": 416,
+        "threads": 53248,
+        "us": 381.107
+      },
+      {
+        "block": 256,
+        "gb_s": 1423.87,
+        "grid": 416,
+        "threads": 106496,
+        "us": 377.05
+      },
+      {
+        "block": 512,
+        "gb_s": 1359.32,
+        "grid": 416,
+        "threads": 212992,
+        "us": 394.957
+      },
+      {
+        "block": 1024,
+        "gb_s": 1374.28,
+        "grid": 416,
+        "threads": 425984,
+        "us": 390.656
+      },
+      {
+        "block": 16,
+        "gb_s": 649.85,
+        "grid": 832,
+        "threads": 13312,
+        "us": 826.15
+      },
+      {
+        "block": 32,
+        "gb_s": 1064.54,
+        "grid": 832,
+        "threads": 26624,
+        "us": 504.32
+      },
+      {
+        "block": 64,
+        "gb_s": 1398.29,
+        "grid": 832,
+        "threads": 53248,
+        "us": 383.949
+      },
+      {
+        "block": 128,
+        "gb_s": 1414.99,
+        "grid": 832,
+        "threads": 106496,
+        "us": 379.418
+      },
+      {
+        "block": 256,
+        "gb_s": 1381.25,
+        "grid": 832,
+        "threads": 212992,
+        "us": 388.685
+      },
+      {
+        "block": 512,
+        "gb_s": 1361.17,
+        "grid": 832,
+        "threads": 425984,
+        "us": 394.419
+      },
+      {
+        "block": 1024,
+        "gb_s": 1374.06,
+        "grid": 832,
+        "threads": 851968,
+        "us": 390.72
+      }
+    ],
+    "hwspec_dram_latency_ns": 373.3333333333,
+    "implied_in_flight_latency_ns": 454.6,
+    "linear_region_per_thread_gb_s": 0.07039,
+    "peak_gb_s": 1431.75
+  },
+  "mechanism": "workload_producer_independence",
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "capture": "profiler_output/microbench/metax_c500/thread_parallel_stream_20260919_r1",
+    "device_index": 0,
+    "mib_per_launch": 256,
+    "replays_per_cell": 20,
+    "source": "microbench/metax_c500/memory/dram/thread_parallel_stream_bandwidth.cpp",
+    "source_sha256": "6808f2c258b7ce81b3b8e4971d16cfb8eb7c94cea3a8a0f23a6bcc4696c36ec5"
+  },
+  "schema": "thread_parallel_stream_bandwidth_reference_v1",
+  "timer_domain": "maca_event_over_back_to_back_replays",
+  "unit": {
+    "bandwidth": "GB_s",
+    "threads": "resident threads",
+    "time": "microseconds"
+  }
+}

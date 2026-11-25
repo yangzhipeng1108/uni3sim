@@ -1,0 +1,383 @@
+{
+ "schema_version": 1,
+ "hardware_id": "ascend_910b",
+ "software_revision": "CANN 8.5.1",
+ "mechanism": "aic_mte2_fia_drained_descriptor_concurrency_locality",
+ "duration_unit": "ns_per_descriptor_per_aic",
+ "publication_scope": {
+  "cells": [
+   {
+    "address_mode": "disjoint",
+    "active_aic_groups": 8,
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "descriptor_count": 64,
+    "per_descriptor_ns": 1253.4375,
+    "process_median_span_pct": 1.1468461730241835
+   },
+   {
+    "address_mode": "disjoint",
+    "active_aic_groups": 16,
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "descriptor_count": 64,
+    "per_descriptor_ns": 1559.6875,
+    "process_median_span_pct": 0.721298337006612
+   },
+   {
+    "address_mode": "disjoint",
+    "active_aic_groups": 22,
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "descriptor_count": 64,
+    "per_descriptor_ns": 2098.75,
+    "process_median_span_pct": 0.3052435973793973
+   },
+   {
+    "address_mode": "disjoint",
+    "active_aic_groups": 24,
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "descriptor_count": 64,
+    "per_descriptor_ns": 2296.5625,
+    "process_median_span_pct": 0.44223921621989826
+   },
+   {
+    "address_mode": "packed",
+    "active_aic_groups": 8,
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "descriptor_count": 64,
+    "per_descriptor_ns": 1284.375,
+    "process_median_span_pct": 1.4963542579075504
+   },
+   {
+    "address_mode": "packed",
+    "active_aic_groups": 16,
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "descriptor_count": 64,
+    "per_descriptor_ns": 2167.3438,
+    "process_median_span_pct": 1.3048783492494314
+   },
+   {
+    "address_mode": "packed",
+    "active_aic_groups": 22,
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "descriptor_count": 64,
+    "per_descriptor_ns": 2803.4375,
+    "process_median_span_pct": 4.486677516441865
+   },
+   {
+    "address_mode": "packed",
+    "active_aic_groups": 24,
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "descriptor_count": 64,
+    "per_descriptor_ns": 2903.9062,
+    "process_median_span_pct": 1.3290305313580757
+   }
+  ],
+  "production_count_cells": [
+   {
+    "geometry": "d128_gqa_kv",
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "active_aic_groups": 8,
+    "descriptor_count": 1,
+    "disjoint_per_descriptor_ns": 1460.0,
+    "packed_per_descriptor_ns": 1740.0,
+    "layout_factor": 1.1917808219178083,
+    "process_median_span_pct": 4.109589041095891
+   },
+   {
+    "geometry": "d128_gqa_kv",
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "active_aic_groups": 8,
+    "descriptor_count": 2,
+    "disjoint_per_descriptor_ns": 1380.0,
+    "packed_per_descriptor_ns": 1480.0,
+    "layout_factor": 1.0724637681159421,
+    "process_median_span_pct": 1.4492753623188406
+   },
+   {
+    "geometry": "d128_gqa_kv",
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "active_aic_groups": 8,
+    "descriptor_count": 4,
+    "disjoint_per_descriptor_ns": 1332.5,
+    "packed_per_descriptor_ns": 1390.0,
+    "layout_factor": 1.0431519699812384,
+    "process_median_span_pct": 1.5009380863039399
+   },
+   {
+    "geometry": "d128_gqa_kv",
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "active_aic_groups": 16,
+    "descriptor_count": 2,
+    "disjoint_per_descriptor_ns": 1645.0,
+    "packed_per_descriptor_ns": 2235.0,
+    "layout_factor": 1.358662613981763,
+    "process_median_span_pct": 0.8948545861297539
+   },
+   {
+    "geometry": "d128_gqa_kv",
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "active_aic_groups": 16,
+    "descriptor_count": 4,
+    "disjoint_per_descriptor_ns": 1595.0,
+    "packed_per_descriptor_ns": 2205.0,
+    "layout_factor": 1.3824451410658307,
+    "process_median_span_pct": 2.6077097505668934
+   },
+   {
+    "geometry": "d128_gqa_kv",
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "active_aic_groups": 22,
+    "descriptor_count": 1,
+    "disjoint_per_descriptor_ns": 2040.0,
+    "packed_per_descriptor_ns": 2390.0,
+    "layout_factor": 1.1715686274509804,
+    "process_median_span_pct": 4.411764705882353
+   },
+   {
+    "geometry": "d128_gqa_kv",
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "active_aic_groups": 22,
+    "descriptor_count": 2,
+    "disjoint_per_descriptor_ns": 2080.0,
+    "packed_per_descriptor_ns": 2770.0,
+    "layout_factor": 1.3317307692307692,
+    "process_median_span_pct": 2.8846153846153846
+   },
+   {
+    "geometry": "d128_gqa_kv",
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "active_aic_groups": 22,
+    "descriptor_count": 4,
+    "disjoint_per_descriptor_ns": 2080.0,
+    "packed_per_descriptor_ns": 2877.5,
+    "layout_factor": 1.3834134615384615,
+    "process_median_span_pct": 2.8670721112076456
+   },
+   {
+    "geometry": "d128_gqa_kv",
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "active_aic_groups": 24,
+    "descriptor_count": 1,
+    "disjoint_per_descriptor_ns": 1860.0,
+    "packed_per_descriptor_ns": 2440.0,
+    "layout_factor": 1.3118279569892473,
+    "process_median_span_pct": 4.508196721311475
+   },
+   {
+    "geometry": "d128_gqa_kv",
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "active_aic_groups": 24,
+    "descriptor_count": 2,
+    "disjoint_per_descriptor_ns": 2110.0,
+    "packed_per_descriptor_ns": 2955.0,
+    "layout_factor": 1.400473933649289,
+    "process_median_span_pct": 1.6920473773265652
+   },
+   {
+    "geometry": "d128_gqa_kv",
+    "rows": 256,
+    "columns": 128,
+    "source_row_stride_elements": 1024,
+    "active_aic_groups": 24,
+    "descriptor_count": 4,
+    "disjoint_per_descriptor_ns": 2192.5,
+    "packed_per_descriptor_ns": 3182.5,
+    "layout_factor": 1.451539338654504,
+    "process_median_span_pct": 2.0524515393386547
+   },
+   {
+    "geometry": "d64_gqa_kv",
+    "rows": 256,
+    "columns": 64,
+    "source_row_stride_elements": 512,
+    "active_aic_groups": 8,
+    "descriptor_count": 1,
+    "disjoint_per_descriptor_ns": 1510.0,
+    "packed_per_descriptor_ns": 1780.0,
+    "layout_factor": 1.1788079470198676,
+    "process_median_span_pct": 2.6490066225165565
+   },
+   {
+    "geometry": "d64_gqa_kv",
+    "rows": 256,
+    "columns": 64,
+    "source_row_stride_elements": 512,
+    "active_aic_groups": 8,
+    "descriptor_count": 2,
+    "disjoint_per_descriptor_ns": 1415.0,
+    "packed_per_descriptor_ns": 1510.0,
+    "layout_factor": 1.0671378091872792,
+    "process_median_span_pct": 1.7667844522968197
+   },
+   {
+    "geometry": "d64_gqa_kv",
+    "rows": 256,
+    "columns": 64,
+    "source_row_stride_elements": 512,
+    "active_aic_groups": 8,
+    "descriptor_count": 4,
+    "disjoint_per_descriptor_ns": 1340.0,
+    "packed_per_descriptor_ns": 1425.0,
+    "layout_factor": 1.0634328358208955,
+    "process_median_span_pct": 1.7543859649122806
+   },
+   {
+    "geometry": "d64_gqa_kv",
+    "rows": 256,
+    "columns": 64,
+    "source_row_stride_elements": 512,
+    "active_aic_groups": 16,
+    "descriptor_count": 2,
+    "disjoint_per_descriptor_ns": 1575.0,
+    "packed_per_descriptor_ns": 2200.0,
+    "layout_factor": 1.3968253968253967,
+    "process_median_span_pct": 3.8095238095238093
+   },
+   {
+    "geometry": "d64_gqa_kv",
+    "rows": 256,
+    "columns": 64,
+    "source_row_stride_elements": 512,
+    "active_aic_groups": 16,
+    "descriptor_count": 4,
+    "disjoint_per_descriptor_ns": 1560.0,
+    "packed_per_descriptor_ns": 2250.0,
+    "layout_factor": 1.4423076923076923,
+    "process_median_span_pct": 1.1217948717948718
+   },
+   {
+    "geometry": "d64_gqa_kv",
+    "rows": 256,
+    "columns": 64,
+    "source_row_stride_elements": 512,
+    "active_aic_groups": 22,
+    "descriptor_count": 1,
+    "disjoint_per_descriptor_ns": 1950.0,
+    "packed_per_descriptor_ns": 2400.0,
+    "layout_factor": 1.2307692307692308,
+    "process_median_span_pct": 2.051282051282051
+   },
+   {
+    "geometry": "d64_gqa_kv",
+    "rows": 256,
+    "columns": 64,
+    "source_row_stride_elements": 512,
+    "active_aic_groups": 22,
+    "descriptor_count": 2,
+    "disjoint_per_descriptor_ns": 1880.0,
+    "packed_per_descriptor_ns": 2770.0,
+    "layout_factor": 1.4734042553191489,
+    "process_median_span_pct": 2.527075812274368
+   },
+   {
+    "geometry": "d64_gqa_kv",
+    "rows": 256,
+    "columns": 64,
+    "source_row_stride_elements": 512,
+    "active_aic_groups": 22,
+    "descriptor_count": 4,
+    "disjoint_per_descriptor_ns": 1830.0,
+    "packed_per_descriptor_ns": 2882.5,
+    "layout_factor": 1.575136612021858,
+    "process_median_span_pct": 3.551912568306011
+   },
+   {
+    "geometry": "d64_gqa_kv",
+    "rows": 256,
+    "columns": 64,
+    "source_row_stride_elements": 512,
+    "active_aic_groups": 24,
+    "descriptor_count": 1,
+    "disjoint_per_descriptor_ns": 1740.0,
+    "packed_per_descriptor_ns": 2470.0,
+    "layout_factor": 1.4195402298850575,
+    "process_median_span_pct": 4.048582995951417
+   },
+   {
+    "geometry": "d64_gqa_kv",
+    "rows": 256,
+    "columns": 64,
+    "source_row_stride_elements": 512,
+    "active_aic_groups": 24,
+    "descriptor_count": 2,
+    "disjoint_per_descriptor_ns": 1885.0,
+    "packed_per_descriptor_ns": 2895.0,
+    "layout_factor": 1.5358090185676392,
+    "process_median_span_pct": 0.7957559681697612
+   },
+   {
+    "geometry": "d64_gqa_kv",
+    "rows": 256,
+    "columns": 64,
+    "source_row_stride_elements": 512,
+    "active_aic_groups": 24,
+    "descriptor_count": 4,
+    "disjoint_per_descriptor_ns": 1907.5,
+    "packed_per_descriptor_ns": 3102.5,
+    "layout_factor": 1.6264744429882045,
+    "process_median_span_pct": 2.8203062046736505
+   }
+  ]
+ },
+ "measurement": {
+  "mode": "independent_finite_drained_descriptor_microbenchmark",
+  "registration_path": "microbench/ascend_910b/operators/flash_attn/mte2_concurrency_locality/REGISTRATION.md",
+  "measurement_baseline_commit": "5141eb9514e99205b7e5060c8273882329f77509",
+  "physical_device_id": 0,
+  "process_count": 3,
+  "process_median_span_limit_pct": 5.0,
+  "report_path": "experiment_logs/serving/910b_gating_device_pair/round16/mte2_concurrency_locality_report.json",
+  "timing_boundary": "GetSystemCycle immediately before the first descriptor's WaitFlag<MTE1_MTE2> to GetSystemCycle immediately after the last descriptor's slot release; divided by descriptor count; worker median per launch, process median per cell",
+  "instrument_cross_check": "disjoint cells reproduce aic_mte2_fia_gqa_drained_descriptor_count_law_cann_8_5_1 at the same groups within 1.1%",
+  "blocks_8_to_16_growth": {
+   "disjoint": 1.2443280977312392,
+   "packed": 1.6874696253041364
+  },
+  "verdict": "locality_confirmed",
+  "amendment_3": {
+   "aggregation": "process value is the median over 15 timed launches, each a fresh short program on addresses no other launch touched; per-launch statistic remains the median over workers",
+   "published_cells": "22/24 inside the 5% process-median stability gate (4/24 under the single-launch aggregation of amendment 2)",
+   "report_path": "experiment_logs/serving/910b_gating_device_pair/round16/mte2_amendment3_report.json"
+  }
+ },
+ "production_or_evaluation_duration_consumed": false,
+ "parameter_fit_from_production_duration": false,
+ "mechanism_publishable": true,
+ "forward_eligible": false,
+ "forward_eligibility_constraint": "Measures the drained per-descriptor ND2NZ service at the D128 and D64 GQA K/V geometries as a function of AIC concurrency and descriptor count under two source-address layouts. It licenses no interpolation across geometry, group count, descriptor count or layout. It is not Forward-eligible, and a counterfactual shows why: substituting these services into the FIA decode cold-drained branch -- even at an absurd 1 ms per descriptor -- leaves the predicted duration bit-identical, because that branch is computed and then discarded for decode shapes. The FIA decode prediction is dominated by its pipeline term (8.51 of 14.61 us at 8 blocks), and the MTE2 read term it would touch is 0.76 us. Consuming this data requires first changing which term prices FIA decode."
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_e32_h2880_production_source_depth_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "populated_experts": 32,
+    "projection_k": 2880,
+    "production_w1_n": 5760,
+    "production_w2_n": 2880,
+    "adjacent_nonproduction_w1_n": [5696, 5824],
+    "adjacent_nonproduction_w2_n": [2816, 2944],
+    "source_depth_classes": {
+      "47_active": {"tokens": 512, "active_m_tiles": 47, "maximum_m_tiles": 64},
+      "78_active": {"tokens": 1024, "production_active_m_tiles": 78, "probe_active_m_tiles": 79, "maximum_m_tiles": 96},
+      "143_active": {"tokens": 2048, "active_m_tiles": 143, "maximum_m_tiles": 160}
+    }
+  },
+  "method": {
+    "kernel": "frozen production Triton grouped-MoE source",
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026091008,
+    "event_trials_per_cell": 9,
+    "event_repetitions_per_trial": 3,
+    "physical_devices": [0, 2],
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "6830b3e020abdb010b161876e983cb01071c1d6fc02903fbf9df1cbac1da0f88",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "for each physical device and source role, linearly interpolate the two adjacent non-production N mechanism capacities to the midpoint production N, then select the lower interpolated capacity across the two devices",
+    "active_depth_scope": "47/64 and 143/160 probes exactly match the production active/maximum depth; the 78/96 production class uses the adjacent 79/96 deterministic-routing probe without interpolating across active depth"
+  },
+  "interpolated_capacity_per_s_by_device": {
+    "47_active": {
+      "w1": {"0": 3058874658624.45, "2": 3012523245854.0615},
+      "w2": {"0": 651661969390.2568, "2": 517471589714.3835}
+    },
+    "78_active": {
+      "w1": {"0": 2468599344990.376, "2": 2261726943705.3633},
+      "w2": {"0": 597925559051.866, "2": 604487718429.4292}
+    },
+    "143_active": {
+      "w1": {"0": 2058272948834.1006, "2": 1964611445153.842},
+      "w2": {"0": 887011464428.7026, "2": 900949864384.3921}
+    }
+  },
+  "selected_services": {
+    "47_active": {
+      "w1": {"logical_byte_capacity_per_s": 3012523245854.0615},
+      "w2": {"logical_byte_capacity_per_s": 517471589714.3835}
+    },
+    "78_active": {
+      "w1": {"logical_byte_capacity_per_s": 2261726943705.3633},
+      "w2": {"logical_byte_capacity_per_s": 597925559051.866}
+    },
+    "143_active": {
+      "w1": {"logical_byte_capacity_per_s": 1964611445153.842},
+      "w2": {"logical_byte_capacity_per_s": 887011464428.7026}
+    }
+  },
+  "raw": {
+    "roots": [
+      "profiler_output/microbench/metax_c500/bm64_e32_h2880_production_source_915d2081_20260908_r1",
+      "profiler_output/microbench/metax_c500/bm64_e32_h2880_production_source_curve_915d2081_20260908_r2"
+    ],
+    "sha256_by_depth_device_role": {
+      "47_active/device0/w1": ["492227bd658c188714f17c37affed65d4a2f8303686115d642d3b7a6f9568914", "758127f224ddc09126946bf86e45eb89c4804bfff7727a63bc71ac99b0e0c09d"],
+      "47_active/device0/w2": ["a55fe0e0f8197eb67f30b8c7d1dc8d5dec21b448bb8336b3c66a544d347a9cb4", "d060279c83275e7412703096c645b089294faade664e5d16f7e467b855321575"],
+      "47_active/device2/w1": ["682a14461494106867230ac5731729c4a0a06d317ce11935e56c7fabccc05f8b", "a8ff45ed3fce2408a5a8ab570f05cd0895209a779e95e9a685a39f671f7e1734"],
+      "47_active/device2/w2": ["08650cee3ccd421f2eb506a93fbee8da11a01d7da4f7fda442cf5af017041762", "e9e3b73badc468f7460fab88f385b9dddfa385fa0f598894e6f95f2b108dd6ca"],
+      "78_active_probe79/device0/w1": ["18d6571f01c00ed1f0865c7fe4ef69f320f985f9f98f4304133303c24059eee9", "8f76198a01849ffb3853a70146b95a667a26c64b88af840e508bb23f1e90b179"],
+      "78_active_probe79/device0/w2": ["6abdae464d496c9c3c290bab22d8b769a54bc618aa5823911ea764c16f134a92", "9e1c54244e6130d5a95efbdcc6ad8a780ccbf6d9748dcc901c6c54072682245f"],
+      "78_active_probe79/device2/w1": ["97e724e62b1eeae59fe03d7a8cd452e9b82279900908b1072a27a9f8ac564237", "a6eef3ed3c44f046e5120becf9627e395e9307d8be8958bf09734c19f38a4532"],
+      "78_active_probe79/device2/w2": ["9ea53adc8c7abdf7d1d275494f6430d90312b33859452d293408ae4e2b85f8ec", "6923985c748ff9d1adf7346154e3c9ca3e04ec6515e1f91500f1e7691629c17f"],
+      "143_active/device0/w1": ["89ab001474e24e6cea62a24d527b8ae9a31390715d3dad131e421be0d49dbeef", "b2a89374d3f21644bad65c454c2c51d9b9bf7f55d01c75aca0b6b05c20217ab1"],
+      "143_active/device0/w2": ["08e459bd99aa4afcfe2dc8a06f7fe063d240560d190edd7f41372268d78ce18b", "4eb20252826b77d2eab076c9cea7c60c653cfebcf07b5e05d035f5ac9ff7f13a"],
+      "143_active/device2/w1": ["40dbe08e198570c21068152c23e4895b03b0b30152504d9d36ab03f50d5a8237", "56423cb700159d92b36a59fd93c3b3dce64906cad7cef7b1792bf63fca771700"],
+      "143_active/device2/w2": ["90d8c8620b8726285b40b96fe11bc51e0e067c88f6123504cc3f70ba4fc15480", "50078b269d889d5f3ec7562552e744d7cd26e51d47da04d310ce8813ba1aa651"]
+    }
+  },
+  "allowed_conclusion": "The exact E32/H2880 BM64 source-depth classes use role-specific full-source operand completion services; no capacity is interpolated across active-depth classes."
+}

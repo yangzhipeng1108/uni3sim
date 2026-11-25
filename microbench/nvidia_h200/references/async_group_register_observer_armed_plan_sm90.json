@@ -1,0 +1,94 @@
+{
+  "kind": "independent_armed_register_async_group_observer_plan",
+  "physical_cells": [
+    [
+      16384,
+      132,
+      1
+    ],
+    [
+      16384,
+      132,
+      2
+    ],
+    [
+      16384,
+      132,
+      4
+    ],
+    [
+      16384,
+      264,
+      1
+    ],
+    [
+      16384,
+      264,
+      2
+    ],
+    [
+      16384,
+      264,
+      4
+    ],
+    [
+      32768,
+      132,
+      1
+    ],
+    [
+      32768,
+      132,
+      2
+    ],
+    [
+      32768,
+      132,
+      4
+    ]
+  ],
+  "control_cells": [
+    [
+      16384,
+      264,
+      1
+    ],
+    [
+      16384,
+      264,
+      2
+    ],
+    [
+      16384,
+      264,
+      4
+    ]
+  ],
+  "selection": "All original private byte geometry and full qualification are retained: B16KiB/grid132or264/shared98304B or B32KiB/grid132/shared196608B; 256producer+32observer threads,lookahead1/2/4,127rounds,six1024-roundwarmkernels,twoindependent63-sampleprocesses(secondreverse),18matchedcountercells. New polling is a closed16-instruction register-only uniform loop using 32bit SM clock stamps; reconstruct the64bit current epoch after the join. No shared stores,globaltimer or divergent branches occur inside polling. Every active event must be observed PENDING at the initial poll in EVERY CTA/round; late-start events fail, never dropped. Per-CTA clock64/globaltimer whole-window calibration converts ticks to ns; EVERY measured CTA/sample calibration plus directSM must be nominal3pct; all directSM/LTS stable3pct. All numerical/resource/132SM/CTA/LDGSTS/upstream/TEXlogical1pct/DRAM<=1pct/source-unit closure1pct gates remain. All first/all nonparametric95pctmedianintervals have maximumendpointdistance<=3pct and process medians agree3pct. Retain the original maxpoll95pctupper<=10pctfirstresponse95pctlower in EVERY cell. First screen ONLY the source-independent highest-residency-pressure B16KiB/grid264 lookahead1/2/4(all6timingand6countercells); if ANY quality gate fails, stop before all other cells and publish no parameter. Only if the entire screen qualifies may the same call fill the other12timing/12countercells. Full qualification requires all18/18,never a subset. Q=(first_L-first_1)/(all_L-first_1), conservative>=95pctjointinterval from three981/3pct nonparametric median intervals; all12Qupper<=.25supportfirstpriority,all12Qlower>=.75supportequalburstslowresponse,otherwiseinconclusive. No Q,wholebodytime,rate,sourcephase,copy-minus-control or Forward policy adopted. Marker/ninthwarp/CTAbarrier/clock-calibration scope remains independent instrumentation; original two failed observers and gates stay failed. Any production use still requires compact physical conservation and independent source applicability; no FIFO/fluid/order sweep selected by production error. Explicit new start policy: the observer tests every active event pending BEFORE publishing one shared producer-release flag. Every producer spins on that flag before its start timestamp or copy. The poll gap clock starts before the release, so all handshake/dispatch delay is INCLUDED in the unchanged10pct resolution check. No invalid cell or old gate is reclassified. The initial pending check, single producer-release store and register-only repeated loop must all survive compilation. A second failed screen closes this measurement path;no further automatic or same-observer retries. The initial check executes in the full32-lane observer warp before any producer is released. Flag1or2depends directly on the initial check predicate before its shared store; all32initial-ready flags are still verified after the join. An extra initial vote was rejected locally because the compiler inserted divergent convergence helpers into repeated polling; it was never deployed. The repeated polling gate and producer guard remain mandatory. Every measured CTA calibration window must be below2^31cycles,therefore every event fits safely inside the32bit wrap reconstruction;oversized windows fail before a numerical fixture is emitted.",
+  "source_sha256": {
+    "async_group_register_observer.cu": "56447729879de46503add111bdc28c19f58d69eae507c580aade56a853820b21",
+    "async_group_register_observer_analysis.py": "290139a231a26a1c603424cf7b44c9eebe40c3f8c45d9dbf0b7d1adc622dfe39",
+    "async_group_register_observer_modal_runner.py": "d172156d8c9e5b9d5716653d091feb71bf80f5498a7389b6bbd6c61dd6fc537d"
+  },
+  "local_poll_preflight": {
+    "path": "experiment_logs/h200_moe_accuracy_20261107/async_group_register_observer_armed_local_poll_proof.json",
+    "sha256": "5a0c5437669048d64454900e06696f08044f1e4712c84ea1a6a77a72e6569c3f"
+  },
+  "resources": {
+    "gpu": "H200",
+    "cards": 1,
+    "expected_seconds": 180,
+    "maximum_seconds": 480,
+    "maximum_gpu_hours": "0.1333333333333333333333333333",
+    "reserved_usd": "1.00",
+    "automatic_retries": 0,
+    "volume": false
+  },
+  "previous_failed_protocol": {
+    "path": "microbench/nvidia_h200/references/async_group_register_observer_plan_sm90.json",
+    "sha256": "0595921819586b9e67ed2a55fa414f324a1c105f11a3c2d48e4d65dd80f989f2",
+    "attempt1_manifest": "profiler_output/microbench/nvidia_h200/async_group_register_observer_20261108/attempt_1/manifest.json",
+    "reason": "first pending check ran after an event completed;no valid samples",
+    "manifest_sha256": "3a070e43fabdbf640e8dd074cf5104de4203fe0115e86ff76428d29c08857851"
+  }
+}

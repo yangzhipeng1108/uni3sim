@@ -1,0 +1,7 @@
+# GroupedMatmul nonempty prelude-control probe
+
+This 24-AIC, CANN 8.5.1 microbenchmark isolates the source-defined integer control issued before an individual nonempty `GMMCompute::MMCompute` invokes `IterateAll<false>`. It reproduces the `MNBlockIdxCompute` assignment, the `MMCompute` M/N-tail and X/W/Y-offset setup, and the base-K A1/B1/L0 scheduling counters for a fixed source tile program. The timed region deliberately excludes `GetTensorAddr` list loads, MTE transfers, Cube instructions, FixPipe, vector work, routing, activation, reduction, and any complete production operator.
+
+The descriptor lookup is intentionally excluded because it is a separately source-defined global-memory dependency with its own residency requirement; combining it into this ALU control probe would make the resulting service ambiguous. The host driver accepts only the exact base-M16, active-M16, N256/K64, A1/B1 depth 8/8, step-K 4/4 program used by the short-source FusedMoE family, and reports the maximum span of its 24 AIC workers.
+
+Build inside the agreed 910B container with `source /usr/local/Ascend/cann-8.5.1/set_env.sh`, `cmake -S . -B build -DASCEND_HOME_PATH=/usr/local/Ascend/cann-8.5.1 -DSOC_VERSION=Ascend910B2`, and `cmake --build build -j 8`. Run only after remapping an idle physical device to logical device zero: `ASCEND_RT_VISIBLE_DEVICES=<physical_device> ASCEND_DEVICE_ID=0 ./build/grouped_matmul_prelude_control --batch <tile_count> <k_rounds> <repeats> ...`.

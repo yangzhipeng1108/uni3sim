@@ -1,0 +1,164 @@
+{
+  "allowed_conclusion": "A source-matched local stack with the recorded scalar store/load site geometry adds the measured SM cycles for its single complete 128-thread CTA spill round.",
+  "baseline_commit": "7b6b4c46aaeb8173a44677a8ee48c9105f901f52",
+  "device_index": 2,
+  "device_uuid": "capture-device-077372b98985",
+  "excluded_conclusions": [
+    "production FlashAttention duration",
+    "per-shape latency correction",
+    "local spill service for a different stack or SASS site geometry"
+  ],
+  "h200_provenance": {
+    "clock": {
+      "busy_samples": 8,
+      "busy_sm_clock_mhz_max": 1980,
+      "busy_sm_clock_mhz_mean": 1980.0,
+      "busy_sm_clock_mhz_min": 1980,
+      "logger": "nvidia-smi -lms 50 timestamp,clocks.sm,utilization.gpu",
+      "target_sm_clock_mhz": 1980,
+      "total_samples": 33
+    },
+    "clock_gate": {
+      "accepted_captures": 2,
+      "captures": 2,
+      "rejected": [],
+      "rejected_captures_rerun": 0
+    },
+    "compiler": "CUDA 12.2 nvcc -arch=sm_90 -cudart static -Xptxas=-O0 (same toolchain as the A800 sm_80 capture)",
+    "device": "NVIDIA H200 SXM (h200-capture-host GPU 2)",
+    "files": {
+      "memory/l1/fa2_local_spill_round.cu": {
+        "path": "microbench/nvidia_h200/memory/l1/fa2_local_spill_round.cu",
+        "sha256": "e347184681bdb08bb8fec2211f1b33e8ccbffb86b2fbae4ab45dece3a540952d"
+      },
+      "memory/l1/fa2_local_spill_round_runner.py": {
+        "path": "microbench/nvidia_h200/memory/l1/fa2_local_spill_round_runner.py",
+        "sha256": "d60c0661e70fa66c94b60008b0ffabe09420116e2c0979df547df4e9b2422f3a"
+      }
+    },
+    "git_commit_of_probe_sources": "7b6b4c46aaeb8173a44677a8ee48c9105f901f52",
+    "hardware_id": "nvidia_h200",
+    "local_derived_dir": "profiler_output/microbench/nvidia_h200/h200_local_spill_d128_causal_20260925_r1",
+    "measured_sm_clock_mhz_for_cycle_ns_conversion": 1980,
+    "production_or_evaluation_duration_consumed": false,
+    "production_static_contract_status": "not_rechecked_on_h200",
+    "raw_sha256": {
+      "control": "a2d30dd00e412dbababadff204243ee0919150ebe451e2d41dedfde10809efe8",
+      "local": "df35cf1bf4a7a56e8bb057fd14a0dedf57ec249b6d4c61e60499f74826485b8b"
+    },
+    "remote_raw_path": "/capture-public/h200_microbench/wp6_fa2dep/repo/profiler_output/microbench/nvidia_h200/h200_local_spill_d128_causal_20260925_r1/{local,control}.csv",
+    "report_sha256": "e96edcfc22f5d8a50cfc1a10884172f89f61d2148ce4d6b604d6ece9a980667f",
+    "run_id": "h200_local_spill_d128_causal_20260925_r1",
+    "vllm_runtime_note": "these probes model the FA2 (sm80 source) program unchanged; the H200 vLLM 0.24 deployment runs FA3 for MLA attention"
+  },
+  "h200_yaml_values": {
+    "scalar_load_sites": 53,
+    "scalar_store_sites": 51,
+    "software_revision": "flash_attn_2_8_3_source_cuda_12_2_sm90_probe",
+    "spill_round_cycles": 8197.0,
+    "stack_bytes_per_thread": 176,
+    "yaml_key": "fa2_dense_d128_causal_local_spill_dependency_cycles"
+  },
+  "hardware_id": "nvidia_h200",
+  "measurement": {
+    "control_raw_sha256": "a2d30dd00e412dbababadff204243ee0919150ebe451e2d41dedfde10809efe8",
+    "grid_blocks": [
+      132,
+      264
+    ],
+    "local_minus_control_cycles": {
+      "132": {
+        "0": 30.0,
+        "1": 8197.0,
+        "16": 90736.0,
+        "256": 1411216.0,
+        "4": 24712.0,
+        "64": 354832.0
+      },
+      "264": {
+        "0": 29.0,
+        "1": 8196.0,
+        "16": 90732.0,
+        "256": 1411212.0,
+        "4": 24708.0,
+        "64": 354828.0
+      }
+    },
+    "local_raw_sha256": "df35cf1bf4a7a56e8bb057fd14a0dedf57ec249b6d4c61e60499f74826485b8b",
+    "one_cta_two_cta_max_clock64_tick_difference": 1.0,
+    "one_round_local_minus_register_control_cycles": 8197.0,
+    "rounds": [
+      0,
+      1,
+      4,
+      16,
+      64,
+      256
+    ],
+    "steady_local_minus_register_control_cycles_per_round": 5502.0,
+    "timer_domain": "clock64_same_cta_envelope_cycles",
+    "trials": 9
+  },
+  "mechanism": "sm80_128_thread_cta_176_byte_stack_51_scalar_store_53_scalar_load_round",
+  "owner": "h200-port-wp6_fa2dep",
+  "probe_static_contract": {
+    "control_binary_sha256": "f9275a8cfde1525e3ce7b77ef69719ef0e9890377009c66b31532ed8e37503a2",
+    "control_local_sites": 0,
+    "control_sass_sha256": "dcb1f5e6c380383b2d026b8b01c780680e2b1c78fe3ecf02d02a8d4618af44f6",
+    "control_stack_bytes_per_thread": 0,
+    "local_binary_sha256": "030926047d86e4faa9e8cb65c906f47f697ffe8e1d584695e1a162043eac5582",
+    "local_sass_sha256": "6e1f9a30211c95d3f5c77b566fee9ff5eb18a83674554e4dbd4a6bc5c3540268",
+    "scalar_load_sites": 53,
+    "scalar_store_sites": 51,
+    "source_sha256": "e347184681bdb08bb8fec2211f1b33e8ccbffb86b2fbae4ab45dece3a540952d",
+    "stack_bytes_per_thread": 176
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "production_static_contract": {
+    "a800_binary_sha256": "7c68f17400fac3f69c079842bd5304d3590e28dd5da850ff1465ff7ce86a1e93",
+    "a800_sass_sha256": "2cc41bc199f2268cb97c083acc703a2b70f1b55e734009c9ed7b0062e932341f",
+    "reason": "the pinned flash_attn 2.8.3 SM80 production cubin is an A800 artifact not installed on the H200 host; the probe models that SM80 source program unchanged and its own sm_90 build is audited against the same stack/site contract",
+    "registers_per_thread": 255,
+    "scalar_load_sites": 53,
+    "scalar_store_sites": 51,
+    "stack_bytes_per_thread": 176,
+    "status": "not_rechecked_on_h200"
+  },
+  "provenance": {
+    "clock_gate": {
+      "busy_samples": 8,
+      "busy_sm_clock_mhz_max": 1980,
+      "busy_sm_clock_mhz_mean": 1980.0,
+      "busy_sm_clock_mhz_min": 1980,
+      "log_path": "clock_log.csv",
+      "logger": "nvidia-smi -lms 50 timestamp,clocks.sm,utilization.gpu",
+      "logger_pid": 82584,
+      "passes": [
+        {
+          "accepted": true,
+          "busy_samples": 4,
+          "capture": "local",
+          "min_live_or_busy_clock_mhz": 1980,
+          "pass": 0,
+          "samples_in_window": 8
+        },
+        {
+          "accepted": true,
+          "busy_samples": 3,
+          "capture": "control",
+          "min_live_or_busy_clock_mhz": 1980,
+          "pass": 0,
+          "samples_in_window": 7
+        }
+      ],
+      "target_sm_clock_mhz": 1980,
+      "total_samples": 33
+    },
+    "command": "/usr/bin/python3 /capture-public/h200_microbench/wp6_fa2dep/repo/microbench/nvidia_h200/memory/l1/fa2_local_spill_round_runner.py capture --output /capture-public/h200_microbench/wp6_fa2dep/repo/profiler_output/microbench/nvidia_h200/h200_local_spill_d128_causal_20260925_r1 --device 2 --baseline-commit 7b6b4c46aaeb8173a44677a8ee48c9105f901f52 --specialization d128_causal",
+    "nvcc": "/usr/local/cuda-12.2/bin/nvcc",
+    "pid": 82579,
+    "runner_sha256": "97cf5a2e7fa02f31e6fd94026b3737530011d1b298d60eb49974706d1a2b10a8"
+  },
+  "schema": "nvidia_h200_local_spill_round_candidate_v2",
+  "specialization": "d128_causal"
+}

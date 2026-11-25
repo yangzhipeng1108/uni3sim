@@ -1,0 +1,107 @@
+{
+  "by_fork_spacing_nodes": {
+    "128": {
+      "main_chain_cadence_mean_ns": 908.8,
+      "main_chain_cadence_median_ns": 895.5,
+      "main_chain_gap_mean_ns": 100.3,
+      "main_chain_gap_median_ns": 94.7,
+      "side_stream_kernels": 320
+    },
+    "16": {
+      "main_chain_cadence_mean_ns": 1152.4,
+      "main_chain_cadence_median_ns": 1056.6,
+      "main_chain_gap_mean_ns": 345.9,
+      "main_chain_gap_median_ns": 255.9,
+      "side_stream_kernels": 2560
+    },
+    "24": {
+      "main_chain_cadence_mean_ns": 1124.8,
+      "main_chain_cadence_median_ns": 1056.6,
+      "main_chain_gap_mean_ns": 319.1,
+      "main_chain_gap_median_ns": 255.9,
+      "side_stream_kernels": 1720
+    },
+    "31": {
+      "main_chain_cadence_mean_ns": 1114.5,
+      "main_chain_cadence_median_ns": 1056.6,
+      "main_chain_gap_mean_ns": 308.4,
+      "main_chain_gap_median_ns": 255.9,
+      "side_stream_kernels": 1340
+    },
+    "32": {
+      "main_chain_cadence_mean_ns": 971.9,
+      "main_chain_cadence_median_ns": 927.7,
+      "main_chain_gap_mean_ns": 127.2,
+      "main_chain_gap_median_ns": 94.7,
+      "side_stream_kernels": 1280
+    },
+    "33": {
+      "main_chain_cadence_mean_ns": 1110.7,
+      "main_chain_cadence_median_ns": 1056.6,
+      "main_chain_gap_mean_ns": 305.3,
+      "main_chain_gap_median_ns": 255.9,
+      "side_stream_kernels": 1260
+    },
+    "40": {
+      "main_chain_cadence_mean_ns": 1104.2,
+      "main_chain_cadence_median_ns": 1056.6,
+      "main_chain_gap_mean_ns": 298.4,
+      "main_chain_gap_median_ns": 255.9,
+      "side_stream_kernels": 1040
+    },
+    "48": {
+      "main_chain_cadence_mean_ns": 1099.7,
+      "main_chain_cadence_median_ns": 1056.6,
+      "main_chain_gap_mean_ns": 293.4,
+      "main_chain_gap_median_ns": 255.9,
+      "side_stream_kernels": 860
+    },
+    "64": {
+      "main_chain_cadence_mean_ns": 1092.8,
+      "main_chain_cadence_median_ns": 1056.6,
+      "main_chain_gap_mean_ns": 286.4,
+      "main_chain_gap_median_ns": 255.9,
+      "side_stream_kernels": 640
+    },
+    "chain": {
+      "main_chain_cadence_mean_ns": 892.8,
+      "main_chain_cadence_median_ns": 895.5,
+      "main_chain_gap_mean_ns": 84.7,
+      "main_chain_gap_median_ns": 94.7,
+      "side_stream_kernels": 0
+    }
+  },
+  "capture": {
+    "device": "H200 GPU 4 alone (yield_gpus/resume_gpus)",
+    "framework": "SGLang 0.5.12 environment torch (sglang0512 env)",
+    "local_raw": "profiler_output/h200_sglang_dsr1/runs/torch_gap_forksize_20260927_2343",
+    "raw_sha256": {
+      "fillx2048.json.gz": "f7fe7bf59386734f644201460e77f8532ebc8c8a0d63c43a1dbc5434b274ff4f",
+      "fork_128x2048.json.gz": "c21d25c8cf6f715f8277d91ec565ff08461a8b2bca54e326a3d08e3e91697c59",
+      "fork_16x2048.json.gz": "e9dc81ed45544ae617b247b2dfa66e1e720575c492141df8d8bb90797c577755",
+      "fork_24x2048.json.gz": "2a165854f029497bdcee2dca6d53b973c4d6c48936974df582fd220baa0f8136",
+      "fork_31x2048.json.gz": "a6d2a02fedfd13b27fbdeb30725e707098edbf25ecea9ee81b27da65e73c1d8a",
+      "fork_32x2048.json.gz": "90722c29680ab1d99dcaec8ebb7c07c2dd459812999ddfec4c38d36bd6e4f871",
+      "fork_33x2048.json.gz": "428b847e094e76496d195aea6c241b0f0e8c64e06043e07f4cfa86f421d18be7",
+      "fork_40x2048.json.gz": "0964bfb2bb165514be0ceb7095db4093f9158c4aa72cf3954701e03fa7d11e50",
+      "fork_48x2048.json.gz": "c28a83bff5de28c0c8526aa5179cccb8f9510b6821f80538d3254d0dac09f4d4",
+      "fork_64x2048.json.gz": "4ee26da1ae2bc3377e2e8e6127e78fc4db72fde8e7aa98a6f98eafa43fc6e1d8"
+    },
+    "window": "2026-09-27 23:44:14-23:45:00 and 23:46:25-23:46:57"
+  },
+  "hardware_id": "nvidia_h200",
+  "mechanism": "dependent_node_boundary_of_a_cuda_graph_with_periodic_side_stream_fork_join",
+  "method": "CUDA graphs of 2048 dependent torch fill_ kernels on the capture stream; a side-stream node (scalar mul_) is forked from and joined back to the main chain every k main-chain nodes (wait_stream both ways), as SGLang forks kv_a_layernorm once per decoder layer. Each graph is replayed 20 times under torch.profiler; per main-chain kernel the start-to-start interval to the next main-chain kernel is taken, replay boundaries (>20 us) dropped; mean over all replays. The increment is the mean cadence at the published spacing minus the pure-chain mean cadence.",
+  "notes": "Every spacing from 16 to 64 except 32 raises the main-chain gap median from 95 to 256 ns; spacings 32 and 128 stay near the chain (972 and 909 ns mean cadence). The published spacing is SGLang v0.5.19 forward_mla.py:329-335 (one kv_a_layernorm fork per MLA layer, about 33 graph nodes per DeepSeek-V3 decode layer); the exception at 32 is a documented sensitivity of this mechanism.",
+  "production_or_evaluation_duration_consumed": false,
+  "production_predictor_consumption_allowed": true,
+  "published_fork_spacing_nodes": 33,
+  "published_increment_ns_per_node": 217.9,
+  "runner": {
+    "modes": "fillx2048, fork_<k>x2048 for k in 16,24,31,32,33,40,48,64,128",
+    "reducer": "experiment_logs/h200_dsr1_sglang_align/reduce_torch_gap_trace.py (gap view)",
+    "source": "microbench/nvidia_h200/runtime/torch_graph_node_gap.py"
+  },
+  "schema": "nvidia_h200_cuda_graph_side_stream_fork_node_boundary_reference_v1",
+  "timer_domain": "torch_profiler_cupti_main_chain_start_to_start"
+}

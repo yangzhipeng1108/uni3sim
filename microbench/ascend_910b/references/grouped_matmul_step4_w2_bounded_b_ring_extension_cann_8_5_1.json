@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism_id": "aic_grouped_matmul_step4_w2_bounded_b_ring_extension_v1",
+  "duration_unit": "ns_per_completed_worker_sequence",
+  "base_reference_path": "microbench/ascend_910b/references/grouped_matmul_step4_long_worker_sequence_completion_cann_8_5_1.json",
+  "base_reference_sha256": "52f244f941bb70efdd8f5e742ab0ae1cac229ca2a584ca691a260b6021c99239",
+  "publication_scope": {
+    "dtype": "bf16",
+    "active_aic_groups": 24,
+    "base_m": 128,
+    "active_m": 16,
+    "tile_n": 256,
+    "tile_k": 64,
+    "depth_a1": 8,
+    "depth_b1": 8,
+    "step_ka": 4,
+    "step_kb": 4,
+    "db_l0a": 2,
+    "db_l0b": 2,
+    "db_l0c": 1,
+    "source_operand_layout": "bounded_b_ring_128_bridged_to_disjoint_a_b_c_per_iterate_all_call",
+    "role": {
+      "name": "w2",
+      "projection_k": 1024,
+      "projection_n": 4096,
+      "base_maximum_output_tiles_per_worker": 240,
+      "extended_maximum_output_tiles_per_worker": 384,
+      "bridge_output_tiles_per_worker": [128, 176, 240],
+      "extension_output_tiles_per_worker": [288, 320, 352, 384]
+    }
+  },
+  "measurement": {
+    "bridge_completion_span_ns": {
+      "128": [1223720.0, 1217180.0, 1226060.0],
+      "176": [1671320.0, 1680240.0, 1679640.0],
+      "240": [2284280.0, 2306440.0, 2283080.0]
+    },
+    "bridge_reference_median_completion_span_ns": {
+      "128": 1221200.0,
+      "176": 1677800.0,
+      "240": 2300320.0
+    },
+    "bridge_median_completion_span_ns": {
+      "128": 1223720.0,
+      "176": 1679640.0,
+      "240": 2284280.0
+    },
+    "bridge_relative_deltas": {
+      "128": 0.0020635440550278413,
+      "176": 0.0010966742162355466,
+      "240": -0.0069729428949015793
+    },
+    "bridge_within_count_relative_spans": {
+      "128": 0.0072565619586179844,
+      "176": 0.00531066180848277,
+      "240": 0.010226417076715639
+    },
+    "extension_completion_span_ns": {
+      "288": [2828600.0, 2839640.0, 2828240.0],
+      "320": [3161800.0, 3156640.0, 3156120.0],
+      "352": [3484120.0, 3473560.0, 3480220.0],
+      "384": [3798540.0, 3802460.0, 3791300.0]
+    },
+    "extension_median_completion_span_ns": {
+      "288": 2828600.0,
+      "320": 3156640.0,
+      "352": 3480220.0,
+      "384": 3798540.0
+    },
+    "extension_within_count_relative_spans": {
+      "288": 0.00403026232058262,
+      "320": 0.001799381620964063,
+      "352": 0.003034290935630506,
+      "384": 0.002937970904610719
+    },
+    "maximum_allowed_within_count_relative_span": 0.05,
+    "maximum_allowed_bridge_relative_delta": 0.05,
+    "mechanism_gate_passed": true
+  },
+  "provenance": {
+    "measurement_baseline_commit": "c1589b778e05b688bcb87e8a12cf640c30c046fa",
+    "raw_root": "profiler_output/microbench/ascend_910b/grouped_matmul_step4_w2_bringup_ring_1463398d_20260910_r2",
+    "run_plan_sha256": "d02eab9b47e314d3b5383bbe8b296b8d168d6a6aec1af02f2e948c0747418122",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_id": 2,
+    "logical_device_id": 0,
+    "owner": "kernel-accuracy-fusedmoe",
+    "source_basis_snapshot_path": "/capture-workspace/execution_snapshots/grouped_matmul_step4_long_sequence_68a12103_20260909_r1/source",
+    "bounded_b_ring_source_snapshot_path": "/capture-workspace/execution_snapshots/grouped_matmul_step4_w2_bringup_ring_1463398d_20260910_r2/source",
+    "bounded_b_ring_source_sha256": {
+      "CMakeLists.txt": "98dcbf19b3578e6f99cc420e3dbd3ef33c0cb4536d874d3558340c762c9f8ad2",
+      "README.md": "5561434f953402d7fe067fa0e5f6cb8110109199d36e5e9314e9a967eaf3a987",
+      "grouped_matmul_tile_completion_kernel.cpp.in": "ba3c657aa8d8605efd9ab9a5a8976fd3ff1ba42cd076a21db1f9a70d04a59999",
+      "grouped_matmul_tile_completion_main.cpp": "a7e6d9ec0ab8e719f8e87942fd8c7a3b78f44d8a692dbab138aa5678c4ef8af1"
+    },
+    "bounded_b_ring_w2_binary_sha256": "89fcb44c4b842e2578903f63b6dcd04295cee2c6981ade3e63c522712ff8bec8",
+    "raw_sha256": {
+      "128": ["6666d8d07d00ba0aab1219681ffb454aa37ea7bc96c93ca185461ff62b36a30d", "f57decd4267887c5f18be5deb55aa12ec70af6a1d4eea5cca184868e192f7fbf", "6081a3f47235a3b42ecbbd4995b236a1e8efc784c95350ee633ba844b76e9e40"],
+      "176": ["592ea587b2a96d8b9479c8ffb5cc82960c8c52349acdd29182e0d94208179b6d", "61ef6fe83def96c78194a864fd19f07efbdc4a8e1b1412552a8b5c0d47cfca78", "8a13b70c7745903ff0353fe8236cb81b355ce30262dcb4a3916cc1dd7cd683ac"],
+      "240": ["e9719060210ce7293bce8c2c07572fdd57a79465c2e7d86b219398b2080bd33c", "f8418191526ee64ff05692bde9486c2d2b97f98d973d18440773ca3c5d3be150", "57fe9357ffd3c8c8a6fabbe94a5bf0075e4e5b83a8b5a59a87957f3afad69c4d"],
+      "288": ["c338c66a7440919e97abb962ccdc2a6263473e009bb8312ce545c397a073847d", "87f5581b40d7d129f530ee76fadc5080ab8869a0933ad619c01d61fc0dae0941", "f9badf81593431b60de9b3cd2a76abdec1c2b3d32b1f1b0d49c54bf8800d448c"],
+      "320": ["bb29d9abcd58546af5a65f761497d56ea8809c465ff894a93e7c4a986bd9e6f6", "065977b576a552e3fe0e31ba02c2de6b986fb183f811cd5708d5b38ba4cea030", "73c03135a81623b4839f3c1e5b10d1c9fce4d1802c23627f4f276d384ed4c8cb"],
+      "352": ["e176e26f4a1b1c91a32eb42888e1a36d887355cb3369796d8b5f7d864a9da0f6", "fdfbcee5d0303c58909c9fc61f17e306646862b142656045f119bd5f25ea56b9", "30f4a7c1e88fe1ece0b8cd494f6b50f3964c73e7673c542a12b5ea7adff3802a"],
+      "384": ["56df09acf7d49447ec1d4114fc2344f13d1ebc8330edb698209c0b11750f124d", "1761777670ad0df36d07a0287700d46dc9150a7ef2b5ea16957c9110a2821ec8", "6c6e7f373eb3fc13cbcba7abb7bca114f5f43f47d7a502e1e58100fc814b3d73"]
+    },
+    "cann_source_path": "vllm_src_3ver/910b_ascend/vllm_ascend/_cann_ops_custom/vendors/vllm-ascend/op_impl/ai_core/tbe/vllm-ascend_impl/ascendc/moe_grouped_matmul/moe_grouped_matmul.h",
+    "cann_source_sha256": "622409b7f5ce03b0c23c018eb6e3a360018867eb764fa261ab83a25d39456c32"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "extend only the existing 24-AIC BF16 base-M128/active-M16/N256/K64 step-4 W2 worker-sequence service from 241 through 384 tiles per worker after the bounded 128-slot B ring bridges the fully disjoint B reference at 128, 176 and 240 tiles"
+}

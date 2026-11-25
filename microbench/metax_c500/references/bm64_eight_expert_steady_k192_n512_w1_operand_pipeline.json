@@ -1,0 +1,53 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_eight_expert_steady_k192_n512_w1_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "populated_experts": 8,
+    "minimum_m_tiles_per_populated_expert_exclusive": 11,
+    "production_k_n_tile_class": [192, 512]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090608,
+    "route_sha256": "d04cf1ae7cecb65d6ae2f017150dde09bbadc82c559fc075e280c8e502a54494",
+    "tokens": 32768,
+    "experts": 8,
+    "topk": 2,
+    "source_topk": 2,
+    "mul_routed_weight": true,
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 1,
+    "independent_captures_per_adjacent_geometry": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "cffe88825767f47104baac2a7d4f9f75a1b5c260f821ad63f308e28d530742ac",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "at exact production N=32768, take the median event duration at adjacent non-production K=6080 and K=6208 after three independent captures, linearly interpolate duration to K=6144, then divide production-topology logical operand bytes by that duration"
+  },
+  "captures": {
+    "k6080": [
+      {"event_median_ms": 657.8782958984375, "raw_sha256": "3d6bef5c9372ea1208a998f17330e932fcb5cd1f695ecf180c65367132169609", "operand_pipeline_capacity_bytes_per_s": 2484469142621.3716},
+      {"event_median_ms": 646.024169921875, "raw_sha256": "40bb80e65bc482c200a3a4d225ae56ec48ba87b8a9f774bd3455984286c9adbb", "operand_pipeline_capacity_bytes_per_s": 2530057545614.216},
+      {"event_median_ms": 666.6710815429688, "raw_sha256": "7eea342badeebaa42b59a0ac84f7da8891e025cf34258bf14ebbc8d4df282ec9", "operand_pipeline_capacity_bytes_per_s": 2451701252703.3594}
+    ],
+    "k6208": [
+      {"event_median_ms": 714.1913452148438, "raw_sha256": "bfaffff6331d164666256f12a636ca0db7e5ab77b92e4e0d175f456bc8949d4a", "operand_pipeline_capacity_bytes_per_s": 2336752478110.699},
+      {"event_median_ms": 713.4089965820312, "raw_sha256": "8a4447bd2457c3e691dae7bf3b1722cf9b8558ce0df34ace0da8a3fda998e55b", "operand_pipeline_capacity_bytes_per_s": 2339315040561.173},
+      {"event_median_ms": 713.538818359375, "raw_sha256": "f44daa7aa9bc1d16c58ee3f09fd37962352c215a199233777c32d7652ba58145", "operand_pipeline_capacity_bytes_per_s": 2338889423862.377}
+    ]
+  },
+  "selected_service": {
+    "predicate": "exactly eight populated experts, more than 11 active M tiles per expert, and W1 K/N tile class (192,512)",
+    "production_k": 6144,
+    "interpolated_event_ms": 685.7085571289062,
+    "reference_operand_bytes": 1651683360768,
+    "logical_byte_capacity_per_s": 2408725024059.311
+  },
+  "raw_path": "profiler_output/microbench/metax_c500/bm64_e8_h6144_w1_source_class_42722ed0_20260908_r2",
+  "allowed_conclusion": "The deep eight-expert W1 K/N tile class (192,512) uses its own exact source-selected full-chip operand completion service instead of the conservative minimum shared with the distinct (128,448) class."
+}

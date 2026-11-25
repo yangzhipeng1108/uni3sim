@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_rope_key24_mte2_steady_completion_47_workers_4096b",
+  "request_size_unit": "source_steady_request_count",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "20": 121.0,
+    "21": 123.80952380952381
+  },
+  "source_scope": "ATB BF16 RoPE key-24 grid-47 ping-pong program after one warm 4096-byte MTE2-to-Vector request; exact steady sequences of 20 or 21 requests only",
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "derivation": "median cumulative sequence service divided by the source request count",
+  "entries": [
+    {
+      "request_count": 20,
+      "cumulative_service_time_ns": 2420.0,
+      "service_time_ns_per_request": 121.0,
+      "maximum_run_relative_spread": 0.044
+    },
+    {
+      "request_count": 21,
+      "cumulative_service_time_ns": 2600.0,
+      "service_time_ns_per_request": 123.80952380952381,
+      "maximum_run_relative_spread": 0.030303030303030304
+    }
+  ],
+  "production_source": {
+    "repository": "ascend-transformer-boost",
+    "commit": "f10dc20391d8af04c3f8024aca0e0dfa94d2a0a5",
+    "files_sha256": {
+      "src/kernels/mixkernels/rope/tiling/rope_tiling.cpp": "a3c0446a86165f90232b1e5810bbc37128d7a6199b817e6a5ae59bdf69ea97f6",
+      "src/kernels/mixkernels/rope/op_kernel/common_val.h": "f835a6211042a838298e968adee43bd697fd34633c210137622165e44d0a13ec",
+      "src/kernels/mixkernels/rope/op_kernel/rotary_pos_emb_base.h": "fc846fb20a541b4a5d77e1f5f519a27a2ec0168b420d219af6326b7b8998e151",
+      "src/kernels/mixkernels/rope/op_kernel/rotary_pos_emb_bf16_align.h": "7883759842684bd828f20b8c89d44f168d76b19bef180857bf1c10a81e1f0a20",
+      "src/kernels/mixkernels/rope/op_kernel/rotary_pos_emb.cpp": "83d7e446975d7bed81830c0a6d97c946ea26ef4a2bdf6ffc9324249fc6c258c2"
+    }
+  },
+  "benchmark_snapshot": {
+    "baseline_commit": "0921489f5e3552544519a47f57e6a8e91426b784",
+    "path": "/capture-workspace/source_snapshots/rope_key24_steady_grid47_0921489f_20260905_0305",
+    "source_files_sha256": {
+      "CMakeLists.txt": "0ddd25b7759ef565040d8d3209d8b89a46e2889f35950b5f1052a35b4621709f",
+      "rope_key24_steady_edges_kernel.cpp": "4b9c2a418ff2a4c58f72c59c00f1f5fee2c3a2c5807a6524565ada0ecaa3ff9d",
+      "rope_key24_steady_edges_main.cpp": "624f09c773f1253739bfc1abf1caecae7fc00b88227c5807eae7c719c75266b1",
+      "rope_key24_steady_edges_report.py": "16cffc7fcf72baea9bb5e92459757c558cac68bdd7147e165ad25ed9521f8196",
+      "rope_key24_steady_edges_runner.py": "429ae76544b97d18ca9b2e2c550594136713a6b1b07c6917d85acf5d47da9419"
+    },
+    "binary_sha256": "034b7a10b1d7dfcbe31ae2078a9d9c231cc71e86ce5a08eed3e3aa95554c4caf"
+  },
+  "execution": {
+    "hardware": "ascend_910b",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "owner": "ascend_rope_key24_steady_edges",
+    "device_id": 3,
+    "host_runner_pids": [1621401, 1627965, 1625175],
+    "container_runner_pids": [2607155, 2608583, 2608109],
+    "occupancy_before": {
+      "path": "profiler_output/microbench/ascend_910b/rope_key24_steady_grid47_0921489f_20260905_d3_execution/occupancy_before.txt",
+      "sha256": "8e372797cae26c48a1d08223466240f1a1ecde9145e65d447a3d99dba772ccc0"
+    },
+    "occupancy_after": {
+      "path": "profiler_output/microbench/ascend_910b/rope_key24_steady_grid47_0921489f_20260905_d3_execution/occupancy_after.txt",
+      "sha256": "1747c6adb893ef993b5ad3716af3d90b83591b1d5308b4c20527e220400341e3"
+    }
+  },
+  "raw_artifacts": [
+    {
+      "run_id": "rope_key24_steady_grid47_r1",
+      "path": "profiler_output/microbench/ascend_910b/rope_key24_steady_grid47_0921489f_20260905_d3_r1/raw.csv",
+      "sha256": "579df4dbcb9feeb626823204a8ad78f37dea0070a0997165685629416cdc4b34",
+      "runner_log_sha256": "348e79121cd9279d6fa286cdd6fd6606e84fa0d4296190c054eb54a87e6957fc"
+    },
+    {
+      "run_id": "rope_key24_steady_grid47_r2_retry1",
+      "path": "profiler_output/microbench/ascend_910b/rope_key24_steady_grid47_0921489f_20260905_d3_r2_retry1/raw.csv",
+      "sha256": "ce3eecf1d32328fae6f2250547c36ffac674a1654f04d29c0a87a930b7e74fcd",
+      "runner_log_sha256": "02ba6d7fe190edf25ca342856c9357462c2db8ce1e56183b064d0a3438a4c8e1"
+    },
+    {
+      "run_id": "rope_key24_steady_grid47_r3",
+      "path": "profiler_output/microbench/ascend_910b/rope_key24_steady_grid47_0921489f_20260905_d3_r3/raw.csv",
+      "sha256": "aa978115a7c1dacf3d19d36da6592ba9e027d62d464c678c11d77ce6cc2f53dd",
+      "runner_log_sha256": "1070b407d3229d26e8dab610348c648ab05b8c41de9d25dd555c861ede89ef3a"
+    }
+  ],
+  "discarded_attempts": [
+    {
+      "run_id": "rope_key24_steady_grid47_r2",
+      "path": "profiler_output/microbench/ascend_910b/rope_key24_steady_grid47_0921489f_20260905_d3_r2/raw.csv",
+      "sha256": "a0ed9933893d37207b771b20640ff703399f185fa51d7975ff7e149ca57d8564",
+      "runner_log_sha256": "2640d4d217a5e671768cfeaf0dcdab8c283bbd317f1bbd9713f9eebf71d143aa",
+      "reason": "diagnostic-only event_init_drain parity spread was 50%, above the frozen 20% within-run limit; the entire independent run was repeated"
+    }
+  ],
+  "audit_report": {
+    "path": "profiler_output/microbench/ascend_910b/rope_key24_steady_grid47_0921489f_20260905_d3_execution/three_run_report.txt",
+    "sha256": "b5e3247415f2f41ebea3fe7b43987602cd533a5ba0f2ee2e6b7030bbec9df7ba",
+    "script_path": "microbench/ascend_910b/operators/vector/rope_key24_steady_edges/rope_key24_steady_edges_report.py",
+    "script_sha256": "77fcb912f1d9a8b476da55ec0d847fa744f02cf3a322f4e8a858f6d9a36a3836"
+  },
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 52,
+  "stability_gate": "pass",
+  "mechanism_publishable": true,
+  "production_or_evaluation_duration_consumed": false
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "cann_grouped_matmul_finite_group_scan_control",
+  "request_size_unit": "expert_groups",
+  "service_time_unit": "ns_per_request_per_aic",
+  "lookup_policy": "exact_only",
+  "duration_unit": "ns_per_complete_group_scan_per_aic",
+  "system_counter_tick_ns": 20.0,
+  "source_scope": {
+    "upstream_file": "grouped_matmul/grouped_matmul.h",
+    "source_sequence": "GMMProcess::Process UpdateMnConfig, GetSplitValueFromGroupList, SetMNConfig, and zero-row continue",
+    "aic_workers": 24,
+    "group_counts": [8, 32, 128, 256, 512]
+  },
+  "probe_source": "microbench/ascend_910b/operators/fused_moe/grouped_matmul_zero_expert_control",
+  "probe_source_sha256": {
+    "CMakeLists.txt": "35cf7ddf766c699d346b3088e6f41add76b20d787e59aedfc271e03e00683296",
+    "grouped_matmul_zero_expert_control_kernel.cpp": "79e58da3e327fb97a1bccf8ede4ece5af55662257cc6898ceb3fcedfad1e97ea",
+    "grouped_matmul_zero_expert_control_main.cpp": "8ad56da05374578b1712b8233191d6d5730570d2bd51504c726fe4598cb0636e"
+  },
+  "measurement": {
+    "model": "one_pass_finite_source_scan_v1",
+    "repeats_per_launch": 1,
+    "fresh_process_trials_per_device": 12,
+    "physical_device_ids": [2, 6],
+    "selection_policy": "minimum_of_device_medians",
+    "service_time_ns_by_group_count": {
+      "8": 930.0,
+      "32": 3200.0,
+      "128": 11870.0,
+      "256": 18100.0,
+      "512": 26590.0
+    },
+    "device_median_service_time_ns": {
+      "2": {"8": 930.0, "32": 3200.0, "128": 11870.0, "256": 18100.0, "512": 26590.0},
+      "6": {"8": 1020.0, "32": 3440.0, "128": 12060.0, "256": 19040.0, "512": 26850.0}
+    },
+    "raw_artifacts": [
+      {"path": "profiler_output/microbench/ascend_910b/grouped_matmul_finite_scan_8b38080c_20260909_r1/device2.csv", "sha256": "31599090d1d59316ecaa6a6e907c85b1f0b18141cb550eeaf4e002dfb640fa25"},
+      {"path": "profiler_output/microbench/ascend_910b/grouped_matmul_finite_scan_8b38080c_20260909_r1/device6.csv", "sha256": "adff47b44ffbfd057fcefd9887b5144b43ae7c8e3e4aa562e9402be59eb92de3"},
+      {"path": "profiler_output/microbench/ascend_910b/grouped_matmul_finite_scan_8b38080c_20260909_r1/device2_e256.csv", "sha256": "b746c31e09506d15c0b1ac3f5c0aefc0d9dcd4b89bc173b8c09b540025db8f8c"},
+      {"path": "profiler_output/microbench/ascend_910b/grouped_matmul_finite_scan_8b38080c_20260909_r1/device6_e256.csv", "sha256": "5ab4246222e1f4fa8416c79dfdf4728342cc1927d8ae885f49393587cc35676b"}
+    ]
+  },
+  "excluded_work": [
+    "nonzero-expert MMCompute",
+    "matrix operand transfer",
+    "Cube arithmetic",
+    "FixPipe output",
+    "complete GroupedMatmul operator",
+    "production or evaluation duration"
+  ],
+  "service_time_ns_by_request_size": {
+    "8": 930.0,
+    "32": 3200.0,
+    "128": 11870.0,
+    "256": 18100.0,
+    "512": 26590.0
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

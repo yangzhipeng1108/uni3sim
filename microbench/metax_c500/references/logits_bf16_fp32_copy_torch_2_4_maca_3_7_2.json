@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "evidence_kind": "conditional_installed_source_and_compiled_copy_program",
+  "artifact_identity_reference": "bf16_vec4_elementwise_2r1w_dram_maca_3_7_2.json#/production_source_identity",
+  "shared_copy_source_reference": "embedding_id_widen_torch_2_4_maca_3_7_2.json",
+  "hardware_execution_performed": false,
+  "duration_consumed": false,
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/logits_cast_dispatch_source.json",
+      "sha256": "2b1961ee0db6eb02eeb5ce9e441327d5ea13f3003edb835f1ad67e07e158bac8"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/logits_cast_selected_isa.json",
+      "sha256": "70633a0f3ad4f87257f0b7a1d26172c9080b202843ea14495968b0f78b66c52a"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/logits_cast_selected_metadata.json",
+      "sha256": "7efd56c87307231c62a4f72cb2e8c826f74a5c767e36511bfca1e4c663eecbc4"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/copy_alignment_header_boundary.json",
+      "sha256": "45c363ed96df9fce76a6735895f88bd576b76421f22c74d017c993deb20a2411"
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/embedding_launch_static_20261023/logits_cast_generic_program.json",
+      "sha256": "1033b78986bc3c8f07525d33ae1ad6ca015e761bf29cb9e1386681c1c27ef776"
+    }
+  ],
+  "source_chain": [
+    "CUDALoops_copy.cuh5072-5095 selects optimized contiguous differing-dtype Copy only for N>=2048, both pointers4B-aligned and get_maca_disable_unroll_float_opt()==false.",
+    "libtorch_cpu getter at0x1515000 reads PYTORCH_DISABLE_UNROLL_FLOAT_OPT once and caches getenv pointer: unset permits optimization; every defined value, including0 or empty string, disables it.",
+    "CUDALoops_copy.cuh860-866: Float output/BFloat16 input uses block=num_threads()=256 and vt4, gridceil(N/1024). N%1024 selects full/tail entry.",
+    "Exact Float-output functor ENKUlvE5_clEvEUlfE_ in Copy bundle51: full entry0x611400 hasmtreg10/streg9; tail0x611500 hasmtreg14/streg20; private/shared0.",
+    "Full entry expands BF16x4 with twoSHL_B32 and twoAND_B32, then writesFP32x4. Tail uses the same packed expansion and scalar LDG_U16/SHL_B32/STG_B32 for residual elements.",
+    "Tail separately computes address/loop division with CVT_U32TOF32/RCPI_F32/MUL_F32/CVT_F32TOU32; these are not BF16 conversion instructions and remain in the excluded address/control service category.",
+    "MACA mc_runtime_api.h:2578 promises mcMalloc memory suitably aligned for any variable. This is an allocation API guarantee, not proof of which allocator/suballocation/view produced an original Serving pointer; the explicit per-input/output alignment facts remain required.",
+    "The same retained bundle51 generic Float-output LoadWithCast entry0x614b00 hasmtreg17/streg40,zero private/shared. BF16 tag15 selects LDG_U16 and SHL_B32 by16 at each of four slots; outputFloat tag6 calls cast_and_store<float> at0x393100 and stores unchanged bits with STX_B32 at0x393be0. SmallN<2048 is source-invariant generic; explicit cached disable=true proves the same entry for largeN."
+  ],
+  "accepted_scope": {
+    "input": "contiguous BF16[N] or flattened contiguous logits; optimized branch additionally needs actual input/output pointer alignment>=4B",
+    "output": "fresh contiguous FP32[N]",
+    "source_flag": "N<2048 does not require the runtime flag; N>=2048 requires explicit disable_unroll_float_opt=true for generic orfalse plus4B alignments for optimized. No simulator environment defaults.",
+    "elements": "0<N and4*N<2^31; generic/full/tail dispatch follows the source conditions",
+    "logical_and_source_payload_bytes": "read2*N,write4*N",
+    "data_conversion_instructions": "N integer32 bit operations; no floating conversion or SFU instruction on the data path",
+    "rates": "existing C500 integer ALU and memory resources; no new numeric parameters",
+    "generic_program": {
+      "threads": 256,
+      "values_per_thread": 4,
+      "grid": "ceil(N/1024)",
+      "registers_per_thread": 17,
+      "algorithm": "pytorch_2_4_metax_3_7_2_bfloat_to_float_generic"
+    },
+    "source_layout": "copy_input_contiguous is derived by the shared virtualTensor primitive; it does not prove pointer alignment or large-N runtime flag"
+  },
+  "limitations": [
+    "Conditional source scenario, not actual launch/provider validation",
+    "Original Serving config lacks copy-dispatch flag/alignment facts and remains unbound",
+    "No default branch chosen from fresh or contiguous logical storage",
+    "Noncontiguous or wider-index iterator paths are not supplied; flag-false largeN without proven4B alignment remains refused",
+    "Address, uniform and tail index-helper instruction services excluded; not a complete ISA latency claim",
+    "No production duration, rate fitting or physical-rate changes"
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "schema": "nvidia_a800_memory_dependency_multiwave_floor_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "evidence_kind": "independent_memory_dependency_task_duration_microbenchmark",
+  "evidence_status": "mechanism_candidate",
+  "production_or_evaluation_duration_consumed": false,
+  "production_predictor_consumption_allowed": false,
+  "capture": {
+    "owner": "a800-memory-dependency-multiwave",
+    "source_capture": "profiler_output/a800_memory_dependency_multiwave_v7_20260831T083359",
+    "source_baseline_commit": "4981959752391c9e09b2ec2ac2e0940dfc2ca603",
+    "started_at": "2026-08-31T08:34:09.896244+08:00",
+    "completed_at": "2026-08-31T08:34:28.557120+08:00",
+    "physical_device_index": 1,
+    "device_uuid": "capture-device-c776d040251d",
+    "pci_bus_id": "00000000:42:00.0",
+    "cleanup": "complete"
+  },
+  "source_identity": {
+    "probe_source": "microbench/nvidia_a800/runtime/launch/memory_dependency_task_duration.cu",
+    "probe_source_sha256": "81f1c1de4d10468cafccbb09825486ff9fdbdac8282f976102dc3c9c90dc1fa0",
+    "runner": "microbench/nvidia_a800/runtime/launch/memory_dependency_task_duration_runner.py",
+    "runner_sha256": "9cd66e7fd7a6ba5f3085ed4976ddbe66a3855104386962ab685db9328037f2e3",
+    "report": "microbench/nvidia_a800/runtime/launch/memory_dependency_task_duration_report.py",
+    "report_sha256": "0847b11b6e35c34e8358b4f9c5b014bb8848445edd851b8daa0ea975aef0b029"
+  },
+  "published_tool_identity": {
+    "probe_source_sha256": "81f1c1de4d10468cafccbb09825486ff9fdbdac8282f976102dc3c9c90dc1fa0",
+    "runner_sha256": "5e895366473a5bf1e73dac74fbc4212977b52d6a6c0a1ff5a57c5fb02e40b45c",
+    "report_sha256": "0847b11b6e35c34e8358b4f9c5b014bb8848445edd851b8daa0ea975aef0b029"
+  },
+  "tool_identity": {
+    "nvcc": {
+      "version": "Cuda compilation tools, release 12.2, V12.2.140",
+      "path": "/usr/local/cuda-12.2/bin/nvcc",
+      "sha256": "6b05c8048bff95eb892bcd53cc55fd4fe231aa27bb9dd7289661e746408d8b7d"
+    },
+    "cuobjdump": {
+      "version": "Cuda compilation tools, release 12.2, V12.2.140",
+      "path": "/usr/local/cuda-12.2/bin/cuobjdump",
+      "sha256": "35677eddc74964837050ca84b389ef7539a449a2bd57071474e7b3665102c2a1"
+    },
+    "nsys": {
+      "version": "NVIDIA Nsight Systems version 2025.6.1.190-256136895201v0",
+      "path": "/capture-workspace/nsys_2025.6.1/target-linux-x64/nsys",
+      "sha256": "33a5d22dc2eababa27cf608bc5f8a4ea7a56cb3c334fa27e34ae56b03cdc7f23"
+    },
+    "nvidia_smi": {
+      "version": "535.183.06",
+      "driver_version": "535.183.06",
+      "path": "/usr/bin/nvidia-smi",
+      "sha256": "f9229afde6e2b1f85d75d075c2c6ca0ee31436fc274e48f70ce19b78614edb30"
+    }
+  },
+  "artifact_identity": {
+    "capture_manifest_file_sha256": "f2d7011ecb4d40bcffc4a82dafe8c4170058bb03685f72f7ed0995c21e3cf00b",
+    "audited_artifact_map_sha256": "36ef5e998a5ecb967233e61652dab666740cc7c6da830383403ab4ce14f9a982",
+    "audited_report_sha256": "402caccb2fddf8bffe4739fcf0b8514c8ba39c6970b1f3ee0c1f1a0409c75049",
+    "audited_report_schema_version": 5,
+    "binary_sha256": "1696908bd9d1a75f214fca01744b46fdbb8cd30b672eeb23b8cfdb398bb5ac5e",
+    "resource_sha256": "ef1d1c1c78385781d80ab15c55a50f83136f027bad47b5672738bfec531d6a9b",
+    "sass_sha256": "e806759ff7696c9fd1859e8a73e63edc65f50bfb3d423be379849ccd4957e20c",
+    "summary_sha256": "e32de13909a490104f9c9b3b16f0805bcb9ab029441137ea098eea07bc96d28b",
+    "measurements_sha256": "082ea88eac5629ee3af018f1e3459ca11dad78f58b0026c483c5f29ed4564078",
+    "trial_nsys_report_sha256": {
+      "1": "4ace3db38c0e5faaeb01714851000f0ca44955c78a8564d3a54ee0da70402106",
+      "2": "f218e329ead0b51bd1aa3be6a79df38378cbb02504a3249d468fbdcf92f52c6a",
+      "3": "da2ff246c8ae8260b378e794d96ecbfea14b4aaa8117d683b3d6fd28b18e58ec"
+    },
+    "trial_sqlite_sha256": {
+      "1": "8aa8be30c81839a3ab5c7b4e2e9d93da308579ec0b590853cd9711799aae044c",
+      "2": "27c58bbb4b6ec10c771b09e6f2582f65f9f4f7007668938f772c7c4343b1ce92",
+      "3": "b70f76e6244181ac75c278f1f1311c4a5178d3799c34ced7f7e32471adfc1974"
+    },
+    "trial_live_clock_sha256": {
+      "1": "1d659cff863620c8d9c03a0d36dea045de5224ad3d9a63fd8b2080284f78baa8",
+      "2": "d28eb75e7643272c5ba096e9eadd610ae0ce6484b0201ecb8160f8c124167855",
+      "3": "b157db9454be90e7a7c9c5f87d22b79bfa1ac0a1e7987dc3a9ed7f57c5ddd609"
+    }
+  },
+  "probe_contract": {
+    "timer_domain": "nsys_gpu_kernel",
+    "trials": 3,
+    "samples_per_cell": 200,
+    "physical_sm_count": 108,
+    "grid": {
+      "values": [256, 512, 1024, 2048, 4096],
+      "unit": "ctas"
+    },
+    "block": {
+      "values": [128, 256],
+      "unit": "threads_per_cta"
+    },
+    "resident_ctas_per_sm": {
+      "128_threads": 16,
+      "256_threads": 8,
+      "unit": "ctas_per_sm"
+    },
+    "sm_clock": {
+      "value": 1410,
+      "unit": "MHz"
+    },
+    "warm_input_footprint": {
+      "value": 131072,
+      "unit": "bytes"
+    },
+    "warm_output_footprint": {
+      "value": 131072,
+      "unit": "bytes"
+    },
+    "resource_contract": {
+      "registers_per_thread": 10,
+      "stack_bytes_per_thread": 0,
+      "static_shared_bytes_per_cta": 0,
+      "local_bytes_per_thread": 0
+    },
+    "sass_contract": "one default-cache LDG.E -> dependent IADD3 -> STG.E chain per active warp, with no barrier or atomic",
+    "active_lane_contract": "lane_zero_only_per_physical_warp",
+    "address_contract": "separate_contiguous_uint32_arrays",
+    "cache_policy": "warm_default_cache"
+  },
+  "train_held_out_split": {
+    "training_grids": [256, 1024, 4096],
+    "held_out_grids": [512, 2048],
+    "unit": "ctas",
+    "rule": "grid identity was frozen before capture and all three trials of a grid remain on the same side of the split"
+  },
+  "model": {
+    "formula": "launch_base_ns + ceil(grid/108) * cta_wave_service_ns + max(0, ceil(grid/108) - resident_ctas_per_sm[block]) * queued_cta_wave_penalty_ns",
+    "parameters": {
+      "launch_base": {
+        "value": 1823.1507076777903,
+        "unit": "ns"
+      },
+      "cta_wave_service": {
+        "value": 63.494220528828535,
+        "unit": "ns_per_cta_wave"
+      },
+      "queued_cta_wave_penalty": {
+        "value": 18.45354351696218,
+        "unit": "ns_per_queued_cta_wave"
+      }
+    },
+    "lower_envelope_derivation": {
+      "unconstrained_launch_base_ns": 1915.8135244529763,
+      "training_observed_minimum_guard_ns": 92.662816775186,
+      "rule": "subtract the largest training-cell excess over any observed sample from the intercept only"
+    }
+  },
+  "fit_diagnostics": {
+    "training_median": {
+      "cell_count": 18,
+      "mape": {
+        "value": 3.3246282035261485,
+        "unit": "percent"
+      },
+      "maximum_absolute_percentage_error": {
+        "value": 5.166168481247093,
+        "unit": "percent"
+      },
+      "wmae": {
+        "value": 2.9731972495614984,
+        "unit": "percent"
+      }
+    },
+    "held_out_median": {
+      "cell_count": 12,
+      "mape": {
+        "value": 4.746247300882011,
+        "unit": "percent"
+      },
+      "maximum_absolute_percentage_error": {
+        "value": 5.782490742872666,
+        "unit": "percent"
+      },
+      "wmae": {
+        "value": 4.550837307885436,
+        "unit": "percent"
+      }
+    },
+    "cross_run_maximum_relative_spread": {
+      "value": 0.0,
+      "unit": "percent"
+    },
+    "training_cells_above_observed_minimum": 0,
+    "held_out_cells_above_observed_minimum": 0,
+    "held_out_minimum_margin_below_observed_minimum": {
+      "value": 62.47012358788379,
+      "unit": "ns"
+    }
+  },
+  "publication_gates": {
+    "parameters_are_nonnegative": true,
+    "cross_run_stability_at_most_10_percent": true,
+    "training_never_above_observed_minimum": true,
+    "held_out_never_above_observed_minimum": true,
+    "held_out_mape_at_most_5_percent": true,
+    "held_out_max_at_most_15_percent": true
+  },
+  "applicability": {
+    "launch_rank": 1,
+    "minimum_grid_ctas": 256,
+    "maximum_grid_ctas": 4096,
+    "supported_block_threads": [128, 256],
+    "maximum_supported_sm_clock_mhz": 1410,
+    "required_memory_path": "statically proven warm default-cache global load -> integer dependency -> global store",
+    "extrapolation_allowed": false
+  },
+  "decision": {
+    "status": "mechanism_candidate_only",
+    "mechanism_publishable": true,
+    "forward_eligible": false,
+    "reason": "The independent mechanism passes its frozen stability, lower-envelope, and held-out accuracy gates, but production composition and applicability checks have not been implemented or reviewed."
+  },
+  "allowed_conclusion": "Within the frozen one-dimensional grid, block, cache, clock, and instruction contract, the nonnegative CTA-wave lower envelope is stable and predicts the held-out mechanism cells with 4.75 percent MAPE and 5.79 percent maximum APE.",
+  "excluded_conclusions": [
+    "a complete production Vector kernel duration",
+    "applicability to cold-cache, streaming, atomic, barrier, or multi-dimensional launch paths",
+    "extrapolation outside grids 256 through 4096 or blocks 128 and 256",
+    "direct production Forward consumption without a separate composition and contract review"
+  ]
+}

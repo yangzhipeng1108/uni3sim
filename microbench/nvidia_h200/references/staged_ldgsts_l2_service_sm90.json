@@ -1,0 +1,92 @@
+{
+  "schema": "nvidia_h200_staged_ldgsts_l2_service_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "source_baseline_commit": "aeb34ee300b317a6e3820ec9a9745a2c3ac41928",
+  "source": "microbench/nvidia_h200/memory/l2/staged_ldgsts_l2.cu",
+  "runner": "microbench/nvidia_h200/memory/l2/staged_ldgsts_l2_runner.py",
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp3_l2_r1_t1",
+      "device_index": 2,
+      "device_uuid": "capture-device-077372b98985",
+      "provenance_sha256": "cc5ee36c0fe18430dfb8f8d7e124d13d4a80b0f3431a94f926378b6320d4aae4",
+      "raw_sha256": "cc5bacd6b10426a58fec0a87a964b048462ead7f66389155342313d5b13f2322",
+      "sass_sha256": "d8a4119e1ed6e0f49eebdf0b6dec88de6ba9141496a988e9751846ea6e1fe961",
+      "logical_byte_capacity_per_s": 9209050478409.68,
+      "relative_trial_spread": 0.0012641331617233892
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp3_l2_r2_t1",
+      "device_index": 2,
+      "device_uuid": "capture-device-077372b98985",
+      "provenance_sha256": "4b5f9dd7f990f85896dab5ef1ad4df7166ba3b4ea4d0e262bec11518774fdf4d",
+      "raw_sha256": "5f2be6623e7493b7e682467981cb21597b43cbdf6191b5427fa544229ac64119",
+      "sass_sha256": "d8a4119e1ed6e0f49eebdf0b6dec88de6ba9141496a988e9751846ea6e1fe961",
+      "logical_byte_capacity_per_s": 9208131857384.748,
+      "relative_trial_spread": 0.0012972778188323892
+    }
+  ],
+  "probe_contract": {
+    "dtype": "fp16",
+    "tile_m": 128,
+    "tile_n": 128,
+    "tile_k": 32,
+    "threads_per_cta": 128,
+    "pipeline_slots": 5,
+    "resident_ctas_per_sm": 2,
+    "physical_sm_count": 132,
+    "grid_ctas": 132,
+    "panel_bytes": 16384,
+    "backing_bytes": 33554432,
+    "rounds": 4096,
+    "load_instruction": "LDGSTS",
+    "cache_operator": "cg"
+  },
+  "selected_service": {
+    "selection_rule": "minimum complete-capture capacity across two independent clock-accepted capture processes on H200 GPU 2",
+    "logical_byte_capacity_per_s": 9208131857384.748,
+    "throughput_per_sm_clock": 4650.571645143812,
+    "scope": "full_chip"
+  },
+  "applicability": {
+    "dtype": "fp16",
+    "tile_shape": [
+      128,
+      128,
+      32
+    ],
+    "threads_per_cta": 128,
+    "required_launch_algorithm": "observed_gemm:gemm",
+    "required_operand_streams": 2,
+    "required_source_evidence": "five-slot CUTLASS SM80 A/B operand staging with LDGSTS"
+  },
+  "decision": {
+    "status": "accepted_mechanism_capacity",
+    "forward_eligible": true,
+    "reason": "The workload-independent staged copy is stable in two independent clock-gated H200 captures and provides only a source-class L2 read service ceiling."
+  },
+  "excluded_conclusions": [
+    "a complete production GEMM duration",
+    "a generic L2 capacity replacement",
+    "write or read/write-duplex capacity",
+    "a per-shape timing correction"
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "source_sha256": "46d84a8b338f763291951a0311d67fca2543a3c1eb7ff3c249c4b9315b632dcd",
+    "runner_sha256": "06ef321abe811aeeb3b340541c5f562bf42a0e1afa29ca6b51ecba2f6c5bac14",
+    "sm_clock_hz_for_per_clock_values": 1980000000.0,
+    "clock_gate": {
+      "rule": "every probe process runs under nvidia-smi -lms 50; a process is accepted only if it shows a busy sample and every busy sample is >= 1980 MHz, otherwise it is rejected and re-run",
+      "accepted_captures": 2,
+      "rejected_captures": 0,
+      "accepted_busy_sm_clock_min_mhz": 1980,
+      "accepted_busy_sm_clock_max_mhz": 1980,
+      "accepted_busy_samples": 8,
+      "rejected_busy_sm_clock_min_mhz": []
+    },
+    "remote_raw_root": "/capture-public/h200_microbench/wp3_ldgsts/repo/profiler_output/microbench/nvidia_h200"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_datacopypad_vector_to_mte3_completion_two_workers",
+  "request_size_unit": "payload_bytes",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "4096": 340.0,
+    "5120": 480.0,
+    "8192": 400.0,
+    "10240": 460.0,
+    "16384": 1020.0
+  },
+  "service_time_selection": "median_of_independent_run_medians",
+  "mechanism": "one source-form depth-one TQue UB-to-GM DataCopyPad per AIV with byte-valued blockLen followed by its Vector-to-MTE3 completion edge while exactly two AIV workers are admitted",
+  "scope": "maximum worker completion envelope for exactly two concurrently admitted AIV workers; shared byte throughput remains a separate mechanism",
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "pairing_formula": "maximum_worker(request_first_interval(pair_order=1)-control_first_interval(pair_order=0)), matched by run and trial",
+  "source_commit": "30fb681272eac8a8062b27cd15dc71409a454016",
+  "source_snapshot_path": "/capture-workspace/deployments/midlayer-vector-30fb6812",
+  "source_snapshot_files_sha256": {
+    "first_mte_completion_kernel.cpp": "d17d9d992d527f3e2cf5c26ad636f0c5376e429dcb0567e66ac83458212e6318",
+    "first_mte_completion_main.cpp": "f21fbd2029a4a699efa7f0e4b58c3cfccc77732cb5cdbb240a4e153618e38645",
+    "first_mte_completion_runner.py": "cd75677ac9aa56f399cfee6eec59251334cb5866591df6c354748b6d344bfb1c"
+  },
+  "analysis_report_source_sha256": "cb38c02df1786fae113cb6d8855fca9fc4a4e6aa1a5ca2ab51f9de42f40beab8",
+  "benchmark_binary_sha256": "6b4629db34eb5f7edb25e6e5a9493f08c24dfd26e998571ca929906ad98fc31b",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_two_worker_edges_120_30fb6812_r1/raw.csv",
+      "sha256": "6ea75be6923b4c799add1a1a95dfe05588392b2a334f8b445598599435f34b7c",
+      "report_path": "profiler_output/microbench/ascend_910b/rmsnorm_two_worker_edges_120_30fb6812_r1/report_balanced.txt",
+      "report_sha256": "2511898aea6e5828d5194076a3840493799e8c27fe327e13443bcd2821f0bf3b",
+      "device_id": 3,
+      "run_id": "rmsnorm_two_worker_edges_120_30fb6812_r1"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_two_worker_edges_120_30fb6812_r2/raw.csv",
+      "sha256": "485a8944fc5ee65121408063a48641336189c21ad99cee7098ba9e2b870866b1",
+      "report_path": "profiler_output/microbench/ascend_910b/rmsnorm_two_worker_edges_120_30fb6812_r2/report_balanced.txt",
+      "report_sha256": "4cef4670650e7acefba18ca0804a918c3ac7b78e18dee9eb10108f87e1ee22aa",
+      "device_id": 3,
+      "run_id": "rmsnorm_two_worker_edges_120_30fb6812_r2"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_two_worker_edges_120_30fb6812_r3/raw.csv",
+      "sha256": "122c7b402d0a5612d23ad3a7ee54dcdc689faad4501fea846d10e6272fb77ef1",
+      "report_path": "profiler_output/microbench/ascend_910b/rmsnorm_two_worker_edges_120_30fb6812_r3/report_balanced.txt",
+      "report_sha256": "086bb9038a5838e6604d8156e4b6f8d258520a32b81cacc39f2bc19ed645e899",
+      "device_id": 3,
+      "run_id": "rmsnorm_two_worker_edges_120_30fb6812_r3"
+    }
+  ],
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 120,
+  "block_dim": 2,
+  "replication_basis": "balanced_schedule_cycle_parity",
+  "replication_relative_limit": 0.2,
+  "median_ns_by_run_and_request_size": {
+    "rmsnorm_two_worker_edges_120_30fb6812_r1": {"4096": 340.0, "5120": 460.0, "8192": 400.0, "10240": 480.0, "16384": 980.0},
+    "rmsnorm_two_worker_edges_120_30fb6812_r2": {"4096": 340.0, "5120": 480.0, "8192": 400.0, "10240": 440.0, "16384": 1050.0},
+    "rmsnorm_two_worker_edges_120_30fb6812_r3": {"4096": 340.0, "5120": 480.0, "8192": 400.0, "10240": 460.0, "16384": 1020.0}
+  },
+  "maximum_run_relative_median_spread": 0.08333333333333333,
+  "all_per_run_two_worker_replication_gates_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

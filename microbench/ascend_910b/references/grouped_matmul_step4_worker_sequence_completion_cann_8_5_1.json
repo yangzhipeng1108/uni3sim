@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism_id": "aic_grouped_matmul_step4_worker_sequence_completion_v1",
+  "duration_unit": "ns_per_completed_worker_sequence",
+  "publication_scope": {
+    "dtype": "bf16",
+    "active_aic_groups": 24,
+    "base_m": 128,
+    "active_m": 16,
+    "tile_n": 256,
+    "tile_k": 64,
+    "depth_a1": 8,
+    "depth_b1": 8,
+    "step_ka": 4,
+    "step_kb": 4,
+    "db_l0a": 2,
+    "db_l0b": 2,
+    "db_l0c": 1,
+    "source_operand_layout": "disjoint_a_b_c_per_iterate_all_call",
+    "roles": {
+      "w1": {
+        "projection_k": 4096,
+        "projection_n": 1024,
+        "minimum_output_tiles_per_worker": 47,
+        "maximum_output_tiles_per_worker": 80,
+        "measured_output_tiles_per_worker": [47, 64, 80]
+      },
+      "w2": {
+        "projection_k": 1024,
+        "projection_n": 4096,
+        "minimum_output_tiles_per_worker": 95,
+        "maximum_output_tiles_per_worker": 160,
+        "measured_output_tiles_per_worker": [95, 128, 160]
+      }
+    }
+  },
+  "measurement": {
+    "completion_span_ns": {
+      "w1": {
+        "47": [1718880.0, 1716600.0, 1705020.0],
+        "64": [2411460.0, 2419500.0, 2370740.0],
+        "80": [2987180.0, 2986120.0, 2979800.0]
+      },
+      "w2": {
+        "95": [943700.0, 932400.0, 936320.0],
+        "128": [1221200.0, 1218620.0, 1221600.0],
+        "160": [1524140.0, 1520560.0, 1521320.0]
+      }
+    },
+    "median_completion_span_ns": {
+      "w1": {"47": 1716600.0, "64": 2411460.0, "80": 2986120.0},
+      "w2": {"95": 936320.0, "128": 1221200.0, "160": 1521320.0}
+    },
+    "within_count_relative_spans": {
+      "w1": {"47": 0.008074099965047186, "64": 0.020220115614606918, "80": 0.0024714345036368265},
+      "w2": {"95": 0.012068523581681477, "128": 0.002440222731739273, "160": 0.0023532195724765333}
+    },
+    "maximum_allowed_within_count_relative_span": 0.05,
+    "mechanism_gate_passed": true
+  },
+  "provenance": {
+    "measurement_baseline_commit": "4be298d2bb0f78b125d047ac5093beffb8c79e30",
+    "snapshot_path": "/capture-workspace/execution_snapshots/grouped_matmul_step4_worker_sequence_4be298d2_20260909_r2",
+    "raw_root": "profiler_output/microbench/ascend_910b/grouped_matmul_step4_worker_sequence_4be298d2_20260909_r2",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_id": 2,
+    "logical_device_id": 0,
+    "owner": "kernel-accuracy-fusedmoe",
+    "source_sha256": {
+      "CMakeLists.txt": "98dcbf19b3578e6f99cc420e3dbd3ef33c0cb4536d874d3558340c762c9f8ad2",
+      "README.md": "53fd1dbcbf455d183d47c6f1f3cbfff9c43bec8237aa85392d8ac2f57d8b3d19",
+      "grouped_matmul_tile_completion_kernel.cpp.in": "5889bb72bfe8b8b665dc2040c2f55498d698d0882387b9c68f9072732a0eb965",
+      "grouped_matmul_tile_completion_main.cpp": "8b240caa853a7d956fb8785ec15f1f53c85e217de1c62abd22d91059b0ead34f"
+    },
+    "binary_sha256": {
+      "w1": "2290c472ba143294a2f7de2c2e4049132da2c9de31592fa7020abab82db40a6b",
+      "w2": "ffe38f73a7a82ce2ad4fcf903abc4eca984e46b6cecae98bffcf83d0d9525710"
+    },
+    "raw_sha256": {
+      "w1": {
+        "47": ["1f322249e8dec252e70eb47f4f6f384096307097943063a1274459b93e2c818a", "a46c503434e4ad7e65215f0173edf88f477645cef81c593b9936a77892571322", "680bbc004fc932e6c9b32577e28cf63229398cdb7749c63e6a4987e996e81c9d"],
+        "64": ["11db63da8f98dae25320a3d68820a07eb8216db52527181f573b42860778be82", "8ab36e3d283d0f902348d1578975b2021b5df96f6332fec8c58e17721c4fe06f", "fc003eb9ccfb760d257be5d3a24d066276bb9c8d065a73a7b169207cc6bc85c7"],
+        "80": ["865be4fb6a8882109f78120a14a0e6bf0ba9c1e0496caf957d8b547dcf807b3e", "9c2e1ad2a95a2552452103e995dd5b7c8d8bcb1db16886b6e6cbeef929c25f45", "5877801b9e63f43b8a6a799e053dc220b667218cbd10651b4b66b0c34013b9c3"]
+      },
+      "w2": {
+        "95": ["09a8d4d68c3e09f976966e99578e90c9513a9d0bfd2da95f4ca4e05cfe839ab5", "510abfc8de543cc76c4e9f9a41a141ee0f57a13723ba88f8d168aac9457e600f", "16a0016dc2450a881d5dd28217f1993e936250b49d2f54180493b0db5319e41a"],
+        "128": ["9ec7258a46a205b7955d9bc8d0a1d0fdcd1ab26e0973ce384556ccd44a1f898c", "d20f6fe2f69c5098662fc2e67e5a56e12d454d97f3397a2dd200d740a2353133", "beec344c6f2a971922d59f7fe714663c754447bedfbc3130a3dc037e7291c55a"],
+        "160": ["cf054b6d93c0025b72ab7e0d8590e8849dece4c9f28c4350ef98d8e85490df3d", "7ad694f90b4e44de77d685dee612819f1167b1398cd0aa90d1220f578b735a36", "3ea758343e4a8ab2157588f5e3738c070140267995368e33f19c5778365541f9"]
+      }
+    },
+    "cann_source_path": "vllm_src_3ver/910b_ascend/vllm_ascend/_cann_ops_custom/vendors/vllm-ascend/op_impl/ai_core/tbe/vllm-ascend_impl/ascendc/moe_grouped_matmul/moe_grouped_matmul.h",
+    "cann_source_sha256": "622409b7f5ce03b0c23c018eb6e3a360018867eb764fa261ab83a25d39456c32"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "replace the analytical worker span only for 24-AIC BF16 base-M128/active-M16/N256/K64 GroupedMatmul programs with depthA1/depthB1 8/8, stepKa/stepKb 4/4, double-buffered L0A/L0B, single-buffered L0C, DRAM-cold B, only padded-M16 classes, and a per-worker output-tile count inside the measured role-specific interval"
+}

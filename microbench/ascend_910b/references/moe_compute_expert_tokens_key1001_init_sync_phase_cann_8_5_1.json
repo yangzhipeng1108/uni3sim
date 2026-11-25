@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "moe_compute_expert_tokens_key1001_init_sync_phase",
+  "request_size_unit": "shared_output_experts",
+  "service_time_unit": "ns_per_complete_48_aiv_source_phase",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "8": 1256.12304688,
+    "32": 1256.08886718,
+    "128": 1255.3515625
+  },
+  "duration_unit": "ns_per_source_phase_per_48_aiv_program",
+  "system_counter_tick_ns": 20.0,
+  "source_commit": "969d4e0aa9cf3e1ef41f15729c111147bb712970",
+  "source_snapshot_path": "/capture-workspace/execution_snapshots/compute_expert_tokens_ss_init_sync_969d4e0a_20260909_r1/source",
+  "probe_source_sha256": {
+    "CMakeLists.txt": "37c2008852f0bed082723919592f1b0fe59ae635c36f3550550880dcacec8361",
+    "compute_expert_tokens_ss_init_sync_phase_kernel.cpp": "fe1f5858f378860b5f379b40bdc6c5d6dd5add1ba14b9a1e6b79b36e5d289bcc",
+    "compute_expert_tokens_ss_init_sync_phase_main.cpp": "e41fe5942f7ab2309ee6857cf71455669ab59221e3d0cea8641a01de424686a1"
+  },
+  "binary_sha256": {
+    "compute_expert_tokens_ss_init_sync_phase": "9c6eec37e7a81d0962a8a8c48eefdfafbfe1da4ce0b26fc69b4c00c30210b788"
+  },
+  "source_scope": {
+    "upstream_repository": "https://github.com/ai2open/cann-ops-transformer.git",
+    "upstream_commit": "f6c15f3da135ad9bc0ec9a2fae4870285a3067cb",
+    "upstream_path": "moe/moe_compute_expert_tokens/op_kernel/moe_compute_expert_tokens_int32_ss.h",
+    "upstream_sha256": "04de50ba440d8ffb9b1bf6c57fb472ab25e078d1e5d905f50fe1f5df156e98b6",
+    "tiling_key": 1001,
+    "aiv_workers": 48,
+    "shared_output_owner": "aiv_worker_zero",
+    "source_sequence": [
+      "InitOutput<int32_t>(gmOutput, numOfExpert, 0)",
+      "SyncAll"
+    ],
+    "source_exclusions": [
+      "CopyIn",
+      "vector Compare/Select/Reduce loop",
+      "scalar GetValue control",
+      "atomic CopyOut",
+      "task launch",
+      "complete production operator"
+    ]
+  },
+  "measurement": {
+    "model": "exact_shared_int32_init_output_sync_all_v1",
+    "selection_policy": "median_of_three_fresh_process_runs_per_exact_expert_count",
+    "iterations_per_run": 4096,
+    "physical_device_ids": [2],
+    "service_time_ns_by_expert_count": {
+      "8": 1256.12304688,
+      "32": 1256.08886718,
+      "128": 1255.3515625
+    },
+    "run_service_times_ns": {
+      "8": [1255.82519532, 1256.19140624, 1256.12304688],
+      "32": [1255.74707032, 1256.76269532, 1256.08886718],
+      "128": [1255.02441406, 1255.3515625, 1255.91308594]
+    },
+    "maximum_cross_run_relative_spread": 0.0008085409096102368,
+    "raw_artifacts": [
+      {
+        "path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_ss_init_sync_969d4e0a_20260909_r1/r2_experts_8_run1.csv",
+        "sha256": "c247b88d597fcc0c092accbf84d37f5950131a36e4f02f7a004497c3119cda2e"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_ss_init_sync_969d4e0a_20260909_r1/r2_experts_8_run2.csv",
+        "sha256": "3b8c4a32782bc7e911536d32ecaac8c549eba80963fabeb077cfff98c0196446"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_ss_init_sync_969d4e0a_20260909_r1/r2_experts_8_run3.csv",
+        "sha256": "68048a6431418958acf3e347114ca80d37096c4409bd082f8716eb17e385d224"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_ss_init_sync_969d4e0a_20260909_r1/r2_experts_32_run1.csv",
+        "sha256": "78161998ed92446d0f5c1f32105a8ea8d423dfd74f3a8a74c3505f671ed82df3"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_ss_init_sync_969d4e0a_20260909_r1/r2_experts_32_run2.csv",
+        "sha256": "38e007193ed4ac489f4bb546ad1ce0bee3d345e2add800566b8da738ced7533c"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_ss_init_sync_969d4e0a_20260909_r1/r2_experts_32_run3.csv",
+        "sha256": "e7b6469786149842eb26a0e0beeca2a63612725e5e1c24d225e3ceebb0635eac"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_ss_init_sync_969d4e0a_20260909_r1/r2_experts_128_run1.csv",
+        "sha256": "1097f45e61888080f459c327c654776839a6cda43182555cfef9a2919dab239c"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_ss_init_sync_969d4e0a_20260909_r1/r2_experts_128_run2.csv",
+        "sha256": "6e5478e0f1a3961fe3d2b46bdfa91038568f8f34db19d1f0d7ad5065eaa707f5"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_ss_init_sync_969d4e0a_20260909_r1/r2_experts_128_run3.csv",
+        "sha256": "1453410553ca2763ce4dd4db5dd10d1c588e56108b8fd20233492af2bb6e9e6e"
+      }
+    ]
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

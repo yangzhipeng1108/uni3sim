@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "tiling_struct_materialization",
+  "payload_bytes": 80,
+  "payload_size_provenance": "runtime_reflection_derived_observation",
+  "model": "shared_aiv_tiling_materialization_affine_v1",
+  "formula": "startup_ns + serialized_ns_per_aiv * active_aiv_workers",
+  "request_size_unit": "active_aiv_workers",
+  "duration_unit": "ns_per_complete_tiling_materialization_phase",
+  "minimum_active_aiv_workers": 1,
+  "maximum_active_aiv_workers": 48,
+  "parameters": {
+    "startup_ns": 73.93497102530608,
+    "serialized_ns_per_aiv": 30.25055207901139
+  },
+  "mechanism": "one AIV 80-byte InitTilingData GM-to-UB copy, MTE2-to-Scalar handoff, UB-to-local copy, and PIPE_ALL barrier",
+  "scope": "CANN AIV typed tiling-struct materialization",
+  "composition": "one measured materialization phase; production repetition count comes only from inspected operator source",
+  "operator_source_evidence": {
+    "logical_tiling_materialization_phases": 2,
+    "entry_source_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/swi_glu/swi_glu.cpp",
+    "entry_source_sha256": "584fcf498038a6b31adf480c4fb4a600dd4cf59657a1c0a0bf725c3df3717cf3",
+    "single_source_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/swi_glu/swi_glu_single.hpp",
+    "single_source_sha256": "ace487f5c4f3929e0cc1e02dfc54b062294a3018d0cb102baa920ea83e8dd096",
+    "tiling_source_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/swi_glu/glu_tiling_kernel.hpp",
+    "tiling_source_sha256": "2b6abc813b6e372b0d36e81f79fd618c180b0c0e4de2643056fd7aad775c2053"
+  },
+  "source_commit": "963e49cab6decedcc5d85d001925f7ea5d55a5a8",
+  "source_sha256": "a721cf1d411101d7b8ed86ea240bdb7f21e7afe5501a82917b7950b4bd58f68b",
+  "template_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/ascendc/reshape_and_cache/reshape_and_cache.cpp",
+  "template_sha256": "dda9a4f36ec658ceec13b54dfd26388218f119d2dca42abf533b7d81d38185b8",
+  "host_tiler_sha256": "2be9b7e4b0514931abdc2899ce8104de30a2aae83fed43e3668e48b28009f2cf",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_tiling_80b_07bf84ab_20260828_r1/run1.csv",
+      "sha256": "9f11e90c6c2c17be02608dd6b6585e3d168cb0ecd9c416f1ce55d63d1e2419b8"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_tiling_80b_07bf84ab_20260828_r1/run2.csv",
+      "sha256": "dd88ca6ff0771d5f6cb8be9618b3b26f309f855a6c86afd6e941be04a5b905be"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_tiling_80b_07bf84ab_20260828_r1/run3.csv",
+      "sha256": "44d361622d89069fc3c5f32925e47d3cd8621f888e7680d1cc1e84fed7a7e3b3"
+    }
+  ],
+  "independent_runs": 3,
+  "samples_per_cell": 6,
+  "block_dims": [1, 24, 48],
+  "medians_ns_by_run_and_block_dim": {
+    "swiglu80b_r1": {"1": 121.982421875, "24": 770.01708984375, "48": 1540.9025065104165},
+    "swiglu80b_r2": {"1": 116.927083333333, "24": 770.0748697916665, "48": 1540.286458333333},
+    "swiglu80b_r3": {"1": 116.239420572917, "24": 770.045572916667, "48": 1540.209147135417}
+  },
+  "run_relative_median_spread_by_block_dim": {
+    "1": 0.049116091314028484,
+    "24": 0.00007503445243852851,
+    "48": 0.0004501496271997319
+  },
+  "training_run_ids": ["swiglu80b_r1", "swiglu80b_r2"],
+  "validation_run_ids": ["swiglu80b_r3"],
+  "parameter_stability": {
+    "serialized_ns_per_aiv_relative_span": 0.0030930222241110335,
+    "startup_relative_span": 0.05610289501221034
+  },
+  "training_metrics": {
+    "mape": 0.05858790000587857,
+    "wmae": 0.024609933735286745,
+    "maximum_ape": 0.14589724074276608
+  },
+  "validation_metrics": {
+    "mape": 0.050593889613005184,
+    "wmae": 0.0231627271832601,
+    "maximum_ape": 0.10369887779196317
+  },
+  "measurement_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

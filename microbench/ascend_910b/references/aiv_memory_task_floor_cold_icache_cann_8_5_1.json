@@ -1,0 +1,60 @@
+{
+ "schema_version": 1,
+ "hardware_id": "ascend_910b",
+ "software_revision": "cann_8.5.1",
+ "model": "isolated_aiv_memory_task_floor_v1",
+ "mechanism": "complete 64-byte MTE2 to Vector Mul to 64-byte MTE3 AIV memory task, measured in the production instruction-cache state",
+ "application_scope": "hardware_wide_minimum_mte2_vector_mte3_aiv_task_floor",
+ "composition": "max_floor_not_additive",
+ "formula": "submit_ns + descriptor_ns_per_aiv * aiv_block_dim",
+ "duration_unit": "ns_per_complete_nonempty_aiv_task",
+ "timer_domain": "msprof_task_time_complete_task",
+ "regime": "cold instruction cache; state separated by aiv_icache_miss_rate, not by duration",
+ "minimum_aiv_block_dim": 1,
+ "maximum_aiv_block_dim": 48,
+ "captures_per_block_dim": 4,
+ "launches_per_capture": 6,
+ "parameters": {
+  "submit_ns": 4553.397705544934,
+  "descriptor_ns_per_aiv": 212.16169997288614
+ },
+ "cells": [
+  {
+   "block_dim": 1,
+   "cold_ns": 4948.0,
+   "cold_icache_miss_rate": 0.206897,
+   "warm_ns": 2218.0,
+   "warm_icache_miss_rate": 0.206897,
+   "published_warm_ns": 987.4,
+   "fit_ns": 4765.6,
+   "ape_percent": 3.69
+  },
+  {
+   "block_dim": 24,
+   "cold_ns": 9288.0,
+   "cold_icache_miss_rate": 0.202167,
+   "warm_ns": 3260.0,
+   "warm_icache_miss_rate": 0.0,
+   "published_warm_ns": 3090.9,
+   "fit_ns": 9645.3,
+   "ape_percent": 3.85
+  },
+  {
+   "block_dim": 48,
+   "cold_ns": 14912.0,
+   "cold_icache_miss_rate": 0.201807,
+   "warm_ns": 5980.0,
+   "warm_icache_miss_rate": 0.0,
+   "published_warm_ns": 5285.9,
+   "fit_ns": 14737.2,
+   "ape_percent": 1.17
+  }
+ ],
+ "warm_control": "at block dims 24 and 48 the warm launches carry aiv_icache_miss_rate exactly 0.000000 and reproduce the previously published warm parameters; the block-dim-1 warm control is not clean because five warm launches did not settle the cache there",
+ "cross_check": "cold minus warm at block dim 48 is 8.93 us, against an independently measured serving excess of 9.72 us (121 tokens) and 10.42 us (2442 tokens) for the identical RmsNorm launch over its isolated counterpart",
+ "superseded_reference": "aiv_memory_task_floor_cann_8_5_1.json (warm regime, 200 launches per point in one process)",
+ "production_or_evaluation_duration_consumed": false,
+ "landed": false,
+ "verdict": "measured but rejected: replacing the hardware-wide AIV task floor with this cold-regime fit regressed I2 from a8/b9/c7 to a6/b9/c5 over the nine ascend_910b dense cells (llama graph cadence +18.8/+31.2/+33.0 against a +10.1 bound, TPOT +42.51/+30.79/+19.02)",
+ "why_it_is_wrong": "aiv_icache_miss_rate is a ratio, not a count.  The production Slice operator carries 0.23085 over 88146 launches at an aiv_total of 1.631 us, the same miss rate as this floor kernel at 14.9 us, so the absolute fetch cost scales with the kernel's text footprint and a hardware-wide cold floor asserts a minimum the production data contradicts"
+}

@@ -1,0 +1,72 @@
+# Ascend 950DT —— aggregate roofline 级配置。
+#
+# 架构：第三代 DaVinci，Chiplet（2 AI Die + 2 IO Die）
+# 内存：HiZQ 2.0（朱雀），自研 HBM，对标接近 HBM3e
+# 定位：Decode + Training（顶配档 36 Cube / 72 Vector）
+#
+# 规格来源：2026 年昇腾 950 公开规格汇总（多档位中取顶配）
+#   容量另有超节点 96 GB 档
+#
+# 可信度：
+#   Cube/Vector 核数、各档算力、带宽、容量、L2 = 🟢 有明确公布值
+#   时钟（sm / aic / aiv）                     = 🔴 未公布
+#   SMEM/寄存器/occupancy 上限                  = 🔴 未公布
+#
+# 关键判断：屋脊线 = 547/4.00 = 137 FLOP/B，是全部 10 张卡最低。
+#   这不是性能差，而是「带宽远快于算力」——正是 decode 需要的形状。
+#   与 950PR（304）比值 0.45，印证 PD 分离的合理性。
+#
+# 建模边界：aggregate roofline，本卡 roofline_only = True
+#   ✗ AIC/AIV 域划分未确认
+#   ✗ 无 launch_config/ascend_950dt/
+#   ✗ 超节点拓扑与 UB 域未建模
+hardware_id: ascend_950dt
+clock_domains: {}
+components:
+  - name: tensor_bf16
+    count: 1
+    type: compute
+    role: compute_tensor
+    scope: shared
+    capacity_per_second: 547000000000000        # 547 TFLOPS
+  - name: tensor_fp16
+    count: 1
+    type: compute
+    role: compute_tensor_fp16
+    scope: shared
+    capacity_per_second: 547000000000000        # 547 TFLOPS
+  - name: tensor_fp8
+    count: 1
+    type: compute
+    role: compute_tensor_fp8
+    scope: shared
+    capacity_per_second: 1034000000000000       # 1034 TFLOPS
+  - name: tensor_mxfp4
+    count: 1
+    type: compute
+    role: compute_tensor_mxfp4
+    scope: shared
+    capacity_per_second: 2007000000000000       # 2007 TFLOPS（MXFP4）
+  - name: dram
+    count: 1
+    type: memory
+    role: dram
+    scope: shared
+    capacity_per_second: 4000000000000          # 4.0 TB/s（HiZQ 2.0）
+    size_bytes: 144000000000                    # 144 GB（超节点 96 GB 档）
+resource_groups: []
+memory_subsystem: {}
+scheduling: {}
+# UB 双向 2016 GB/s → 单向 1008 GB/s；PCIe 5.0 x16 → 单向 64 GB/s
+# 跨节点 PD 迁移须 transfer-link: infiniband（见 serving_system.md §5）
+interconnect:
+  roce_unidir_bw_GB_s: 50
+  roce_devices_per_nic: 2
+  roce_switch_topology: fully_connected
+  roce_signal_latency_ns: null
+  roce_collective_startup_ns: null
+  parameter_source: user_supplied_2026_11_25_ascend_950dt_public_specs
+features:
+  kernel_memory_model: roofline
+  kernel_dtype: bf16
+  parameter_source: user_supplied_2026_11_25_ascend_950dt_public_specs_clock_unpublished

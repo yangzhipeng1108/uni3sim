@@ -1,0 +1,54 @@
+{
+  "hardware_id": "nvidia_h200",
+  "production_or_evaluation_duration_consumed": false,
+  "kind": "discrete_output_shared_work_and_order",
+  "classes": [
+    {
+      "tile_m": 128,
+      "tile_n": 256,
+      "tile_k": 64,
+      "dtype": "bf16",
+      "threads_per_cta": 256,
+      "dynamic_shared_bytes": 196608,
+      "static_shared_bytes": 0,
+      "registers_per_thread": [
+        210,
+        214
+      ],
+      "shared_write_bytes_per_cta": 65536,
+      "shared_read_bytes_per_cta": 65536,
+      "evidence_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/output_relayout_summary.json",
+      "evidence_sha256": "716dd2f8320e7096745cf844ecb48efdb703e3b6697749ed51537285ee3ad937"
+    },
+    {
+      "tile_m": 128,
+      "tile_n": 128,
+      "tile_k": 64,
+      "dtype": "bf16",
+      "threads_per_cta": 256,
+      "dynamic_shared_bytes": 98304,
+      "static_shared_bytes": 0,
+      "registers_per_thread": [
+        116
+      ],
+      "shared_write_bytes_per_cta": 32768,
+      "shared_read_bytes_per_cta": 32768,
+      "evidence_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/output_n128/output_relayout_summary.json",
+      "evidence_sha256": "c5c9c25b5977afbd57ba1744485685130104f8cc521d58b8d52fa7a49a9c0287"
+    }
+  ],
+  "source_order": [
+    "drain_all_matrix_groups",
+    "packed_fp32_to_bf16_conversion",
+    "full_padded_tile_shared_store",
+    "CTA_barrier",
+    "full_padded_tile_LDSM",
+    "masked_global_stores"
+  ],
+  "model_scope": "Price packed FP32-to-BF16 conversion as source-counted warp-issue work, then shared write+read bytes at existing HWSpec capacity after matrix completion. Preserve coarse operand SMEM proxy and replace its valid-output bytes once, not duplicate them. Conversion execution capacity, bank conflict and barrier service remain unpriced.",
+  "excluded": [
+    "No standalone output-tail event delta is transplanted",
+    "No1.5x output transaction multiplier",
+    "No production duration selects rates or geometry"
+  ]
+}

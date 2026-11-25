@@ -1,0 +1,68 @@
+{
+  "schema_version": "midlayer.cache_replacement_capacity.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "shared_l2_disjoint_24_aic_nd2nz_streams",
+  "nominal_capacity_bytes": 201326592,
+  "replacement_capacity_bytes": 167772160,
+  "selection_rule": "largest tested MiB footprint whose four-pass counter stream has only one compulsory pass of read misses",
+  "counter_sector_bytes": 128,
+  "source_program": {
+    "dtype": "bf16",
+    "active_aic_groups": 24,
+    "rows": 1,
+    "columns": 4096,
+    "source_row_stride_elements": 4096,
+    "descriptor_bytes": 8192,
+    "worker_addressing": "disjoint_contiguous_partitions",
+    "passes": 4
+  },
+  "measurements": [
+    {
+      "nominal_footprint_mib": 152,
+      "actual_footprint_bytes": 159252480,
+      "read_hit_sectors": 3734106,
+      "read_miss_sectors": 1244189,
+      "read_hit_rate_pct": 75.00772854963397,
+      "raw_path": "profiler_output/microbench/ascend_910b/l2_capacity_nd2nz_d64219c6_20260909_d4/aic24_mb152/OPPROF_20260909025907_KOPHBWIVDZKLPTPV/L2Cache.csv",
+      "raw_sha256": "bc56b213303efc2332cf1f71db744167121367bf5a3eb19a4ba4e3cbc81b3934"
+    },
+    {
+      "nominal_footprint_mib": 160,
+      "actual_footprint_bytes": 167706624,
+      "read_hit_sectors": 3932250,
+      "read_miss_sectors": 1310237,
+      "read_hit_rate_pct": 75.00733907399294,
+      "raw_path": "profiler_output/microbench/ascend_910b/l2_capacity_nd2nz_d64219c6_20260909_d4/aic24_mb160/OPPROF_20260909025915_KYRAGOKUHOHSFQVM/L2Cache.csv",
+      "raw_sha256": "527edeff41d02c143eb674a9d4dae0b0534350f4154e9ccbddd84ace61a311b4"
+    },
+    {
+      "nominal_footprint_mib": 168,
+      "actual_footprint_bytes": 176160768,
+      "read_hit_sectors": 3790130,
+      "read_miss_sectors": 1716549,
+      "read_hit_rate_pct": 68.82787247994662,
+      "raw_path": "profiler_output/microbench/ascend_910b/l2_capacity_nd2nz_d64219c6_20260909_d4/aic24_mb168/OPPROF_20260909030124_DCJSENAICNCSBRGY/L2Cache.csv",
+      "raw_sha256": "ae598ae46f93359447b6517c67a4ef14130f116faf9988e40beecfc02eecd4f4"
+    },
+    {
+      "nominal_footprint_mib": 176,
+      "actual_footprint_bytes": 184418304,
+      "read_hit_sectors": 3559174,
+      "read_miss_sectors": 2205553,
+      "read_hit_rate_pct": 61.74054729738286,
+      "raw_path": "profiler_output/microbench/ascend_910b/l2_capacity_nd2nz_d64219c6_20260909_d4/aic24_mb176/OPPROF_20260909030132_WBCBYCLMDHATFQST/L2Cache.csv",
+      "raw_sha256": "422bbb5aa365cb1e6a31ecd0254d2abf8172c30ecd8077aec92648cb65a43679"
+    }
+  ],
+  "capture": {
+    "source_commit": "d64219c610d0ab704b7c74f6ef5e5a53e3552ced",
+    "source_kernel_sha256": "3cdee9b19b126143b4351af4f60a0f4aa088dc4c496d0626e754eda65bcbfc72",
+    "source_main_sha256": "fe3d48698872b094ec1fd92039e463f3a46e3eb299ee38eb72ffe85101e7aba7",
+    "source_runner_sha256": "56e0a3aa3ebbc6aed451b98df5dbcec3c9f07eb48d5d08fd4af9777c442eef96",
+    "physical_device_id": 4,
+    "profiler_metric": "L2Cache"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false
+}

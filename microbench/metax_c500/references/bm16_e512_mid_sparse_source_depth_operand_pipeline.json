@@ -1,0 +1,65 @@
+{
+  "schema_version": "midlayer.metax_c500.bm16_e512_mid_sparse_source_depth_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "device_name": "MetaX C500",
+  "runtime_version": "MACA 3.7.0.38",
+  "source_baseline_commit": "f069a8b6",
+  "runner": "microbench/metax_c500/operators/fused_moe/fused_moe_triton_operand_stream_runner.py",
+  "runner_sha256": "cffe88825767f47104baac2a7d4f9f75a1b5c260f821ad63f308e28d530742ac",
+  "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+  "probe_contract": {
+    "dtype": "bf16",
+    "tile_m": 16,
+    "tile_n": 32,
+    "tile_k": 64,
+    "group_size_m": 1,
+    "experts": 512,
+    "topk": 10,
+    "route_seed": 2026090176,
+    "route_algorithm": "splitmix64_affine_without_replacement_v1",
+    "routed_rows": 640,
+    "populated_experts": 362,
+    "active_m_tiles": 362,
+    "maximum_m_tiles": 520,
+    "adjacent_projection_n": {
+      "w1": [992, 1056],
+      "w2": [2016, 2080]
+    },
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 100,
+    "independent_captures_per_role": 3,
+    "production_or_evaluation_duration_consumed": false
+  },
+  "lower_endpoint_reference": "microbench/metax_c500/references/bm16_e512_143_active_490_max_operand_pipeline.json",
+  "captures": {
+    "w1": [
+      {"capture": 1, "n": 1056, "event_median_ms": 0.9772313690185547, "raw_sha256": "8f225397be538004b5372db34ed072675c94a8b50b0fe8ee32752f4fd288374e", "operand_pipeline_capacity_bytes_per_s": 1690790619686.5317},
+      {"capture": 2, "n": 992, "event_median_ms": 0.9172045135498047, "raw_sha256": "e0113289f171db241ce6d464f895eae40e8db270e7b20ce099adb667ed10c869", "operand_pipeline_capacity_bytes_per_s": 1692266665798.2131},
+      {"capture": 3, "n": 1056, "event_median_ms": 0.9766451263427735, "raw_sha256": "9afa6f09211618a7d76b0baa30708eee6ef57758735759e55ed5f43ebbdc5afa", "operand_pipeline_capacity_bytes_per_s": 1691805536558.9302}
+    ],
+    "w2": [
+      {"capture": 1, "n": 2080, "event_median_ms": 0.5381760025024414, "raw_sha256": "58784490eb2d377b8ba8e47b570fc958a0bc33f89307c32dd6f7f23ec92af297", "operand_pipeline_capacity_bytes_per_s": 1511827796514.0393},
+      {"capture": 2, "n": 2016, "event_median_ms": 0.521077766418457, "raw_sha256": "477c0c563177875fabc426ce88bb6e2f51d6ef9445f7b5ca8104857c6fe675e3", "operand_pipeline_capacity_bytes_per_s": 1513391548866.644},
+      {"capture": 3, "n": 2080, "event_median_ms": 0.5373183822631836, "raw_sha256": "837dcaa639e80b5e73b899d46929e100cd3c88da3cb04c359f63a40ec95a505c", "operand_pipeline_capacity_bytes_per_s": 1514240842781.1365}
+    ]
+  },
+  "selected_services": {
+    "w1": {
+      "predicate": "E512 BF16 BM16/BK64/BN32/GSM1 W1 with 143 < active M tiles <= 362 and 490 < maximum M tiles <= 520",
+      "selection_rule": "minimum of the existing 143-active endpoint and the measured 362-active endpoint medians",
+      "logical_byte_capacity_per_s": 1554099288802.709
+    },
+    "w2": {
+      "predicate": "E512 BF16 BM16/BK64/BN32/GSM1 W2 with 143 < active M tiles <= 362 and 490 < maximum M tiles <= 520",
+      "selection_rule": "minimum of the existing 143-active endpoint and the measured 362-active endpoint medians",
+      "logical_byte_capacity_per_s": 1141998571106.0378
+    }
+  },
+  "raw_path": "profiler_output/microbench/metax_c500/bm16_e512_mid_sparse_depth_f069a8b6_20260909_r1",
+  "mechanism": "production_source_triton_grouped_operand_pipeline_mid_sparse_depth_envelope",
+  "allowed_conclusion": "The bounded E512 BM16 mid-sparse source-depth interval uses the conservative endpoint envelope for its exact W1/W2 projection tile classes.",
+  "excluded_conclusions": ["complete production MoE operator duration", "production K/N duration", "per-shape residual correction", "other source-depth intervals", "other projection tile classes"],
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true
+}

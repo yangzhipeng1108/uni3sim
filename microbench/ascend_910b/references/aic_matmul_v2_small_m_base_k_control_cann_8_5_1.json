@@ -1,0 +1,82 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_matmul_v2_small_m_base_k_control.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_small_m_scalar_source_control_validation_v1",
+  "duration_unit": "ns_per_output_tile_base_k_pair",
+  "source_program": {
+    "dtype": "bf16",
+    "base_tile_m": 16,
+    "base_tile_n_values": [96, 112],
+    "active_aic_workers_by_base_n": {"96": 22, "112": 23},
+    "base_tile_k": 64,
+    "projection_k_values": [1024, 2048],
+    "output_tiles_per_worker": 2,
+    "a1_descriptor_k": 512,
+    "b1_descriptor_k": 512,
+    "operand_buffer_depth": 2,
+    "static_logical_m": 16,
+    "dynamic_logical_m": 1
+  },
+  "capture": {
+    "measurement_baseline_commit": "de59b039892c49a64d4079de7a9ea92ffac44e2a",
+    "source_snapshot": "/capture-workspace_worker_de59b0398_20260916",
+    "source_snapshot_sha256": "54c89f3467791aa3601961a064912280c99f16615d3138cc67f17ea2216beab1",
+    "source_files_sha256": {
+      "CMakeLists.txt": "543f43f3ea284b932202099398d4bca96a3b77d3eb7dccfefa83c2326b101571",
+      "README.md": "677c48e46d701141c3dd967332fd856d1993bbaece16c2bc228618939cee704e",
+      "matmul_v2_small_m_lifecycle_kernel.cpp": "aec8b1f9b41b803bd851c5fa995681d71060de6ab2dc3944a385fb171bcc062f",
+      "matmul_v2_small_m_lifecycle_main.cpp": "7eb01d0055767b4a0ebcd4157272d0766a20c6f6b9e9e8a5e1f11b26cc3959d6"
+    },
+    "binary_sha256": "7d104b2f780feef79adbd4621789f0c0153612edad32b6aa70246f863053a7e5",
+    "physical_device_id": 4,
+    "raw_directory": "profiler_output/microbench/ascend_910b/matmul_v2_small_m_lifecycle_de59b0398_20260916_r2_d4",
+    "raw_sha256_manifest_sha256": "cd17ccd950556c0bae016440b0246ebb3a4772c3c90f089db84e2ae87b882c7e",
+    "independent_launches_per_cell": 3,
+    "worker_statistic": "median"
+  },
+  "measurements": {
+    "scalar_worker_median_ns": {
+      "96": {
+        "static": {"1024": 5977.5, "2048": 12208.8885},
+        "dynamic": {"1024": 6561.9445, "2048": 14271.3885}
+      },
+      "112": {
+        "static": {"1024": 5787.222, "2048": 12267.777},
+        "dynamic": {"1024": 6584.445, "2048": 13971.111}
+      }
+    },
+    "static_base_k_control_ns_per_pair_by_base_n": {
+      "96": 194.730890625,
+      "112": 202.51734375
+    },
+    "static_base_k_control_ns_per_pair_mean": 198.6241171875,
+    "dynamic_tail_delta_ns_per_pair_by_base_n": {
+      "96": 46.18923437500001,
+      "112": 28.315968750000025
+    },
+    "dynamic_tail_delta_ns_per_pair_mean": 37.25260156250002,
+    "derivation": "(scalar_k2048_ns - scalar_k1024_ns) / (2 output tiles * ((2048 - 1024) / 64 base-K tiles))"
+  },
+  "validated_services": {
+    "base_k_control_ns_per_pair": 200.57823129251713,
+    "base_k_control_reference": "microbench/ascend_910b/references/aic_matmul_v2_base_k_lifecycle_cann_8_5_1.json",
+    "base_k_control_mean_relative_deviation_pct": 0.9742403711633553,
+    "base_k_control_maximum_cell_relative_deviation_pct": 2.91524191326104,
+    "dynamic_tail_control_ns_per_pair": 37.6041640625,
+    "dynamic_tail_control_reference": "microbench/ascend_910b/references/aic_matmul_v2_dynamic_m_tail_control_cann_8_5_1.json",
+    "dynamic_tail_mean_relative_deviation_pct": 0.934903111835339
+  },
+  "forward_scope": {
+    "projection_k_rule": "positive multiple of base_tile_k",
+    "output_tiles_per_worker": 2,
+    "dynamic_m_tail_required": true,
+    "source_dependency": "base control and dynamic-tail control serialize on the source Scalar stream before the corresponding MTE2/MTE1 issue; previously issued MTE1, Cube, and FixPipe work may overlap"
+  },
+  "excluded_conclusions": [
+    "complete microbenchmark program duration is a production GEMM duration",
+    "MTE2 or complete task duration may replace the analytical payload recurrence",
+    "production profiler Scalar duration is a Forward parameter"
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_matmul_v2_full_a_n_tile_reuse.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "matmul_v2_full_k_a1_residency_across_worker_local_n_tiles",
+  "production_or_evaluation_duration_consumed": false,
+  "evidence_kind": "duration_free_launch_geometry_and_profiler_traffic_conservation",
+  "scope": {
+    "kernel_stub": "MatMulV2_ND_ND_FP16_FP16_false_true_all_99011",
+    "dtype": "bf16",
+    "worker_grid_m": 1,
+    "worker_grid_n": 23,
+    "active_aic_groups": 23,
+    "base_tile": {
+      "m": 16,
+      "n": 256,
+      "k": 64
+    },
+    "worker_local_output_tiles": {
+      "m": 1,
+      "n": 5
+    },
+    "a1_program": {
+      "rows": 16,
+      "columns": 8192,
+      "buffer_depth": 1,
+      "descriptors_per_worker": 1
+    },
+    "b1_program": {
+      "rows": 256,
+      "columns": 256,
+      "buffer_depth": 2,
+      "descriptors_per_output_tile": 32,
+      "descriptors_per_worker": 160
+    }
+  },
+  "traffic_observation": {
+    "counter": "GM_to_L1_datas",
+    "observed_bytes": 488374272,
+    "a_bytes": 6029312,
+    "b_bytes": 482344960,
+    "conservation": "488374272 = 23 * 16 * 8192 * 2 + 23 * 5 * 256 * 8192 * 2",
+    "rejected_per_n_tile_a_replay_bytes": 512491520,
+    "conclusion": "Each worker issues its complete-K A1 descriptor once and reuses the resident A1 slab across its five N tiles; B1 ingress remains per N tile."
+  },
+  "model_boundary": "The observation establishes descriptor multiplicity and traffic only. It supplies no duration, latency, bandwidth, control-service, Cube, FixPipe, or residual parameter.",
+  "provenance": {
+    "observation_path": "experiment_logs/kernel/mechanism_validation/goal_iteration34_current_full_20260915/component_comparisons.csv",
+    "case_id": "GEMM_B16_M1_K8192_N28672",
+    "metric": "traffic:aic_mte2_gm_to_l1",
+    "observation_provider": "ascend_msprof"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "c021fd30b7063f3da59877d42faed8b171af13bc",
+  "service": "add_rmsnorm_reduce_sum_fp32",
+  "operation_unit": "fp32_elements",
+  "rate_unit": "fp32_elements_per_second_per_aiv",
+  "setup_time_unit": "seconds_per_invocation_per_aiv",
+  "production_source_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/add_rms_norm",
+  "production_source_sha256": {
+    "add_rms_norm.h": "655b84f7fbe5c911cc83daa6a3e77d1b219ac8206965a1e3065af6fa835ac817",
+    "rms_norm_base.h": "a2ece498a72530c9163330d3631676ed5879af99ad16ea3e8f37a2d8838dae93"
+  },
+  "source_snapshot_path": "/capture-workspace/source_snapshots/vector_opcode_90ae5082_f5baa79b",
+  "source_snapshot_sha256": "f5baa79b83dc71367c04fa1b13da29b384adae853f98be758015aa5f75bfbd78",
+  "benchmark_binary_sha256": "2d6e988598e3a796a00b4be6eb9c9635e4f8a71b2b7b2ca4ae981c1c8eeeb025",
+  "raw_path": "/capture-workspace/profiler_output/microbench/ascend_910b/add_rmsnorm_reduce_sum_fp32_90ae5082_f5baa79b_20260829_d3_r2",
+  "raw_sha256": {
+    "run1.csv": "1232c9efcca30812b800ac720d912765f73542bc07607be7131b5ddc0b84835e",
+    "run2.csv": "c0b694c54813097f0c9cbdbe6441815d4ed23dc68783b9f9bd2a67ba7fee646d",
+    "run3.csv": "338351184dc35ef14907b9ad1a36c87985658b77a090af59e0485d3175df9e84",
+    "audit.txt": "782232ff2c9e76d6f3113c3e40d336c49214bdd87b83f785babd70f2c6f8e42f",
+    "pre_telemetry.txt": "41d44fd41599bd9af681ba50298beb3317acef392a7ee7986dd5a76c27e85394",
+    "post_telemetry.txt": "2bc1691e17edb12ce61586a1c881b871b6cd5341b4d3fcbb6692660717b57dd0"
+  },
+  "device_id": 3,
+  "independent_runs": 3,
+  "samples_per_cell": 108,
+  "block_dims": [1, 24, 48],
+  "tick_intersection_ns": [20.0, 20.0],
+  "maximum_run_relative_median_spread": 0.000018156396317919665,
+  "maximum_concurrency_relative_median_spread": 0.000015065002365312167,
+  "measured_service_time_ns_by_elements": {
+    "2048": 117.221679688,
+    "2560": 134.99898312,
+    "4096": 188.333333333,
+    "5120": 223.890243902,
+    "8192": 330.553385417,
+    "12288": 472.777777778
+  },
+  "calibration_elements": [2048, 4096, 8192],
+  "validation_elements": [2560, 5120, 12288],
+  "service_rate_elements_per_second_per_aiv": 28800251118.261005,
+  "service_setup_time_s_per_invocation": 4.611165364599998e-08,
+  "maximum_validation_ape_percent": 0.0010552391151296685,
+  "mechanism": "source-exact Duplicate, repeated-stride FP32 Add accumulation, terminal WholeReduceSum, and required PIPE_V barriers",
+  "composition": "one exact CANN 8.5.1 AddRMSNorm key-30 ReduceSumFP32 request per row before the separately measured scalar normalization and handoff",
+  "measurement_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

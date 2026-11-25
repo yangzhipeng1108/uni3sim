@@ -1,0 +1,3022 @@
+{
+  "schema": "dram_finite_read_stream_ramp_reference_v3_tma_quiescent",
+  "hardware_id": "nvidia_h200",
+  "mechanism": "dram_finite_read_stream_ramp",
+  "production_or_evaluation_duration_consumed": false,
+  "selection_rule": "quiescent_advancing_cumulative_grid_length_capacity_upper_envelope",
+  "capture": {
+    "path": "profiler_output/microbench/nvidia_h200/tma_activity_transition_wide_20261108/raw.json",
+    "sha256": "bf6d1a72b82100fc336fdf43e73c6ea89b00ba7d17af2a8b03111b2cddd82d4a"
+  },
+  "scope": {
+    "transport": "tma",
+    "threads_per_cta": 384,
+    "tile_k": 64,
+    "operand_element_bytes": 2,
+    "memory_start_state": "quiescent_after_3ms_ALU",
+    "request_total_bytes_min": 5120,
+    "request_total_bytes_max": 33792
+  },
+  "source_state_basis": "H200 capture helper before_nvtx waits GPU-idle for two clock samples with0.25s interval; ALU controls isolate a memory-quiescent high-SM-clock domain. This is an aggregate start-state assumption, not an observation of every Serving request.",
+  "measurements": [
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 4128.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 7040.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 12896.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 24736.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 94176.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 4640.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 7872.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 14496.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 28576.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 96896.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 5120.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 8896.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 16896.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 32768.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 102944.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 5888.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 10336.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 20256.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 36576.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 112480.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 3648.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 5920.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 10144.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 19040.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 71872.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 4032.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 6688.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 12032.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 23264.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 76288.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 4736.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 7744.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 14592.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 27616.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 84000.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 5472.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 9248.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 17088.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 31136.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 95584.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 16,
+      "span_ns": 3104.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 32,
+      "span_ns": 4928.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 64,
+      "span_ns": 8864.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 128,
+      "span_ns": 16416.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 512,
+      "span_ns": 63232.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 16,
+      "span_ns": 3680.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 32,
+      "span_ns": 5888.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 64,
+      "span_ns": 10400.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 128,
+      "span_ns": 20608.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 512,
+      "span_ns": 67968.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 16,
+      "span_ns": 4288.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 32,
+      "span_ns": 6944.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 64,
+      "span_ns": 12864.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 128,
+      "span_ns": 24512.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 512,
+      "span_ns": 75168.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 16,
+      "span_ns": 5216.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 32,
+      "span_ns": 8512.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 64,
+      "span_ns": 15616.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 128,
+      "span_ns": 28960.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 8,
+      "rounds": 512,
+      "span_ns": 89568.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 16,
+      "span_ns": 3008.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 32,
+      "span_ns": 4768.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 64,
+      "span_ns": 8576.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 128,
+      "span_ns": 16032.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 512,
+      "span_ns": 61056.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 16,
+      "span_ns": 3648.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 32,
+      "span_ns": 5408.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 64,
+      "span_ns": 9472.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 128,
+      "span_ns": 18080.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 512,
+      "span_ns": 63360.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 16,
+      "span_ns": 4480.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 32,
+      "span_ns": 6880.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 64,
+      "span_ns": 11808.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 128,
+      "span_ns": 21824.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 512,
+      "span_ns": 69728.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 16,
+      "span_ns": 5472.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 32,
+      "span_ns": 8608.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 64,
+      "span_ns": 15488.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 128,
+      "span_ns": 28064.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 12,
+      "rounds": 512,
+      "span_ns": 88576.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 16,
+      "span_ns": 2688.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 32,
+      "span_ns": 4512.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 64,
+      "span_ns": 8160.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 128,
+      "span_ns": 15776.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 512,
+      "span_ns": 60448.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 16,
+      "span_ns": 3424.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 32,
+      "span_ns": 5184.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 64,
+      "span_ns": 8768.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 128,
+      "span_ns": 16544.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 512,
+      "span_ns": 61024.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 16,
+      "span_ns": 4160.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 32,
+      "span_ns": 6784.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 64,
+      "span_ns": 11584.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 128,
+      "span_ns": 21120.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 512,
+      "span_ns": 68512.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 16,
+      "span_ns": 5120.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 32,
+      "span_ns": 8576.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 64,
+      "span_ns": 15072.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 128,
+      "span_ns": 27616.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 4096,
+      "depth": 16,
+      "rounds": 512,
+      "span_ns": 88000.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 4544.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 7776.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 14624.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 28800.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 99648.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 5472.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 9664.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 18816.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 34880.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 109888.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 6624.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 12096.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 22912.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 40064.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 127424.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 8032.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 14432.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 27072.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 46304.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 153088.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 4032.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 6592.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 11744.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 22624.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 76672.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 5056.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 8672.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 16352.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 29760.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 90784.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 6464.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 10944.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 19648.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 35456.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 113280.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 8064.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 14016.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 25344.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 44480.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 146464.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 16,
+      "span_ns": 3616.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 32,
+      "span_ns": 5728.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 64,
+      "span_ns": 10112.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 128,
+      "span_ns": 19616.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 512,
+      "span_ns": 66912.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 16,
+      "span_ns": 4768.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 32,
+      "span_ns": 7808.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 64,
+      "span_ns": 14432.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 128,
+      "span_ns": 26112.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 512,
+      "span_ns": 81504.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 16,
+      "span_ns": 6208.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 32,
+      "span_ns": 10656.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 64,
+      "span_ns": 19040.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 128,
+      "span_ns": 34496.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 512,
+      "span_ns": 110848.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 16,
+      "span_ns": 7712.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 32,
+      "span_ns": 13696.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 64,
+      "span_ns": 24960.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 128,
+      "span_ns": 44768.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 8,
+      "rounds": 512,
+      "span_ns": 146368.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 16,
+      "span_ns": 3520.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 32,
+      "span_ns": 5248.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 64,
+      "span_ns": 9184.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 128,
+      "span_ns": 17024.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 512,
+      "span_ns": 62144.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 16,
+      "span_ns": 5024.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 32,
+      "span_ns": 7872.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 64,
+      "span_ns": 13632.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 128,
+      "span_ns": 24544.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 512,
+      "span_ns": 77632.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 16,
+      "span_ns": 6496.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 32,
+      "span_ns": 10688.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 64,
+      "span_ns": 19328.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 128,
+      "span_ns": 35104.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 512,
+      "span_ns": 114848.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 16,
+      "span_ns": 8032.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 32,
+      "span_ns": 13888.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 64,
+      "span_ns": 25024.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 128,
+      "span_ns": 43872.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 12,
+      "rounds": 512,
+      "span_ns": 145952.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 16,
+      "span_ns": 3296.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 32,
+      "span_ns": 5024.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 64,
+      "span_ns": 8576.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 128,
+      "span_ns": 16288.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 512,
+      "span_ns": 60768.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 16,
+      "span_ns": 4768.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 32,
+      "span_ns": 7712.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 64,
+      "span_ns": 13536.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 128,
+      "span_ns": 24352.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 512,
+      "span_ns": 77600.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 16,
+      "span_ns": 6240.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 32,
+      "span_ns": 10848.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 64,
+      "span_ns": 19136.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 128,
+      "span_ns": 36096.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 512,
+      "span_ns": 120608.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 16,
+      "span_ns": 7808.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 32,
+      "span_ns": 13696.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 64,
+      "span_ns": 24736.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 128,
+      "span_ns": 43744.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 8192,
+      "depth": 16,
+      "rounds": 512,
+      "span_ns": 145280.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 5440.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 9632.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 18848.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 35808.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 111648.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 7648.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 13760.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 25664.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 44960.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 144800.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 10368.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 18496.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 33856.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 57664.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 197440.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 13280.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 25024.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 42112.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 74496.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 265472.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 5024.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 8512.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 16160.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 29888.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 90176.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 7648.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 13248.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 23904.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 41984.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 135232.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 10432.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 18400.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 32896.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 57760.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 199456.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 13344.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 24320.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 42016.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 74656.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 265312.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 16,
+      "span_ns": 4640.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 32,
+      "span_ns": 7712.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 64,
+      "span_ns": 14112.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 128,
+      "span_ns": 26208.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 512,
+      "span_ns": 79808.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 16,
+      "span_ns": 7392.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 32,
+      "span_ns": 12960.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 64,
+      "span_ns": 23232.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 128,
+      "span_ns": 41120.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 512,
+      "span_ns": 136064.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 16,
+      "span_ns": 10240.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 32,
+      "span_ns": 18208.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 64,
+      "span_ns": 33120.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 128,
+      "span_ns": 58624.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 512,
+      "span_ns": 207712.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 16,
+      "span_ns": 13216.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 32,
+      "span_ns": 23872.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 64,
+      "span_ns": 41632.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 128,
+      "span_ns": 74336.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 8,
+      "rounds": 512,
+      "span_ns": 264992.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 16,
+      "span_ns": 4928.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 32,
+      "span_ns": 7712.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 64,
+      "span_ns": 13344.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 128,
+      "span_ns": 23776.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 512,
+      "span_ns": 73888.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 16,
+      "span_ns": 7712.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 32,
+      "span_ns": 13024.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 64,
+      "span_ns": 23776.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 128,
+      "span_ns": 42784.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 512,
+      "span_ns": 144128.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 16,
+      "span_ns": 10432.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 32,
+      "span_ns": 18208.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 64,
+      "span_ns": 33248.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 128,
+      "span_ns": 58784.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 512,
+      "span_ns": 207840.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 16,
+      "span_ns": 13504.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 32,
+      "span_ns": 23968.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 64,
+      "span_ns": 42016.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 128,
+      "span_ns": 74528.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 16384,
+      "depth": 12,
+      "rounds": 512,
+      "span_ns": 265600.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 7488.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 13824.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 27008.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 44864.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 147776.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 12544.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 22816.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 39776.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 70784.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 253632.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 18048.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 32608.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 57600.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 105024.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 392320.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 16,
+      "span_ns": 24000.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 32,
+      "span_ns": 40704.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 64,
+      "span_ns": 72096.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 128,
+      "span_ns": 134144.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 4,
+      "rounds": 512,
+      "span_ns": 504320.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 7488.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 12960.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 23232.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 41024.0
+    },
+    {
+      "grid_ctas": 32,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 133824.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 12576.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 23136.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 40928.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 73376.0
+    },
+    {
+      "grid_ctas": 64,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 264672.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 17632.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 32256.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 57792.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 105536.0
+    },
+    {
+      "grid_ctas": 96,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 393216.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 16,
+      "span_ns": 23360.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 32,
+      "span_ns": 41024.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 64,
+      "span_ns": 72608.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 128,
+      "span_ns": 133824.0
+    },
+    {
+      "grid_ctas": 132,
+      "a_bytes": 1024,
+      "b_bytes": 32768,
+      "depth": 6,
+      "rounds": 512,
+      "span_ns": 504480.0
+    }
+  ],
+  "derived_model": {
+    "dram_read_capacity_bytes_per_s": 4621128079772.083,
+    "grids": [
+      32,
+      64,
+      96,
+      132
+    ],
+    "lengths_bytes_per_cta": [
+      81920,
+      147456,
+      163840,
+      278528,
+      294912,
+      327680,
+      540672,
+      557056,
+      589824,
+      655360,
+      1081344,
+      1114112,
+      1179648,
+      2162688,
+      2228224,
+      2621440,
+      4325376,
+      4718592,
+      8912896,
+      17301504
+    ],
+    "ramp": [
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 81920,
+        "achieved_fraction_of_dram_read_capacity": 0.21103896676375924
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 147456,
+        "achieved_fraction_of_dram_read_capacity": 0.30979700752116895
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 163840,
+        "achieved_fraction_of_dram_read_capacity": 0.30979700752116895
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 278528,
+        "achieved_fraction_of_dram_read_capacity": 0.415673992467101
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 294912,
+        "achieved_fraction_of_dram_read_capacity": 0.415673992467101
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 327680,
+        "achieved_fraction_of_dram_read_capacity": 0.415673992467101
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 540672,
+        "achieved_fraction_of_dram_read_capacity": 0.5000000135633681
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 557056,
+        "achieved_fraction_of_dram_read_capacity": 0.5001886216409098
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 589824,
+        "achieved_fraction_of_dram_read_capacity": 0.5001886216409098
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 655360,
+        "achieved_fraction_of_dram_read_capacity": 0.5001886216409098
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 1081344,
+        "achieved_fraction_of_dram_read_capacity": 0.5777777934510031
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 1114112,
+        "achieved_fraction_of_dram_read_capacity": 0.5781556729758239
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 1179648,
+        "achieved_fraction_of_dram_read_capacity": 0.5781556729758239
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 2162688,
+        "achieved_fraction_of_dram_read_capacity": 0.64462811666021
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 2228224,
+        "achieved_fraction_of_dram_read_capacity": 0.6489661255206423
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 2621440,
+        "achieved_fraction_of_dram_read_capacity": 0.6489661255206423
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 4325376,
+        "achieved_fraction_of_dram_read_capacity": 0.7301092241736545
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 4718592,
+        "achieved_fraction_of_dram_read_capacity": 0.7301092241736545
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 8912896,
+        "achieved_fraction_of_dram_read_capacity": 0.8353084993708743
+      },
+      {
+        "grid_ctas": 32,
+        "bytes_per_cta": 17301504,
+        "achieved_fraction_of_dram_read_capacity": 0.8952654475280966
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 81920,
+        "achieved_fraction_of_dram_read_capacity": 0.33135090108702386
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 147456,
+        "achieved_fraction_of_dram_read_capacity": 0.42830995670711947
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 163840,
+        "achieved_fraction_of_dram_read_capacity": 0.4377104495840933
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 278528,
+        "achieved_fraction_of_dram_read_capacity": 0.5218418087249319
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 294912,
+        "achieved_fraction_of_dram_read_capacity": 0.529611481737434
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 327680,
+        "achieved_fraction_of_dram_read_capacity": 0.529611481737434
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 540672,
+        "achieved_fraction_of_dram_read_capacity": 0.5969387917032047
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 557056,
+        "achieved_fraction_of_dram_read_capacity": 0.5969387917032047
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 589824,
+        "achieved_fraction_of_dram_read_capacity": 0.6034816411287073
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 655360,
+        "achieved_fraction_of_dram_read_capacity": 0.6034816411287073
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 1081344,
+        "achieved_fraction_of_dram_read_capacity": 0.6563815044815042
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 1114112,
+        "achieved_fraction_of_dram_read_capacity": 0.6641623020135498
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 1179648,
+        "achieved_fraction_of_dram_read_capacity": 0.6708876063007705
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 2162688,
+        "achieved_fraction_of_dram_read_capacity": 0.7530169150367056
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 2228224,
+        "achieved_fraction_of_dram_read_capacity": 0.7530169150367056
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 2621440,
+        "achieved_fraction_of_dram_read_capacity": 0.7530169150367056
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 4325376,
+        "achieved_fraction_of_dram_read_capacity": 0.8462929705159358
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 4718592,
+        "achieved_fraction_of_dram_read_capacity": 0.8462929705159358
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 8912896,
+        "achieved_fraction_of_dram_read_capacity": 0.9127909725732837
+      },
+      {
+        "grid_ctas": 64,
+        "bytes_per_cta": 17301504,
+        "achieved_fraction_of_dram_read_capacity": 0.9447388598441837
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 81920,
+        "achieved_fraction_of_dram_read_capacity": 0.40909092018821025
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 147456,
+        "achieved_fraction_of_dram_read_capacity": 0.4934395635259856
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 163840,
+        "achieved_fraction_of_dram_read_capacity": 0.501715279476107
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 278528,
+        "achieved_fraction_of_dram_read_capacity": 0.5650568335099654
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 294912,
+        "achieved_fraction_of_dram_read_capacity": 0.5749385905347819
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 327680,
+        "achieved_fraction_of_dram_read_capacity": 0.5876444157399706
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 540672,
+        "achieved_fraction_of_dram_read_capacity": 0.6370236107467956
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 557056,
+        "achieved_fraction_of_dram_read_capacity": 0.6370236107467956
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 589824,
+        "achieved_fraction_of_dram_read_capacity": 0.6435447080607811
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 655360,
+        "achieved_fraction_of_dram_read_capacity": 0.64462811666021
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 1081344,
+        "achieved_fraction_of_dram_read_capacity": 0.6964285903204055
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 1114112,
+        "achieved_fraction_of_dram_read_capacity": 0.7035727109851708
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 1179648,
+        "achieved_fraction_of_dram_read_capacity": 0.7104064959112519
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 2162688,
+        "achieved_fraction_of_dram_read_capacity": 0.7800000211588541
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 2228224,
+        "achieved_fraction_of_dram_read_capacity": 0.8027444471617711
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 2621440,
+        "achieved_fraction_of_dram_read_capacity": 0.8027444471617711
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 4325376,
+        "achieved_fraction_of_dram_read_capacity": 0.8555758915819242
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 4718592,
+        "achieved_fraction_of_dram_read_capacity": 0.8843166311689719
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 8912896,
+        "achieved_fraction_of_dram_read_capacity": 0.9377928646907692
+      },
+      {
+        "grid_ctas": 96,
+        "bytes_per_cta": 17301504,
+        "achieved_fraction_of_dram_read_capacity": 0.9447388598441837
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 81920,
+        "achieved_fraction_of_dram_read_capacity": 0.45703126239776615
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 147456,
+        "achieved_fraction_of_dram_read_capacity": 0.5461618405417288
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 163840,
+        "achieved_fraction_of_dram_read_capacity": 0.5498120449897939
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 278528,
+        "achieved_fraction_of_dram_read_capacity": 0.6019975950227234
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 294912,
+        "achieved_fraction_of_dram_read_capacity": 0.615070110142788
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 327680,
+        "achieved_fraction_of_dram_read_capacity": 0.6210191251264763
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 540672,
+        "achieved_fraction_of_dram_read_capacity": 0.6611301549206042
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 557056,
+        "achieved_fraction_of_dram_read_capacity": 0.6665549778669834
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 589824,
+        "achieved_fraction_of_dram_read_capacity": 0.6811125669886501
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 655360,
+        "achieved_fraction_of_dram_read_capacity": 0.6811125669886501
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 1081344,
+        "achieved_fraction_of_dram_read_capacity": 0.7588443602076117
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 1114112,
+        "achieved_fraction_of_dram_read_capacity": 0.7644120115123283
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 1179648,
+        "achieved_fraction_of_dram_read_capacity": 0.7702999477428334
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 2162688,
+        "achieved_fraction_of_dram_read_capacity": 0.8568575465460115
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 2228224,
+        "achieved_fraction_of_dram_read_capacity": 0.8568575465460115
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 2621440,
+        "achieved_fraction_of_dram_read_capacity": 0.8568575465460115
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 4325376,
+        "achieved_fraction_of_dram_read_capacity": 0.9232424927633497
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 4718592,
+        "achieved_fraction_of_dram_read_capacity": 0.9277533291316767
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 8912896,
+        "achieved_fraction_of_dram_read_capacity": 0.9607535582442112
+      },
+      {
+        "grid_ctas": 132,
+        "bytes_per_cta": 17301504,
+        "achieved_fraction_of_dram_read_capacity": 0.9799492651615046
+      }
+    ]
+  },
+  "allowed_use": "Ceiling grid/length lookup inside measured domain; maximum over every legal payload/depth and cumulative smaller grid/length. Use as an optimistic finite-copy completion bound. Compose by max after subtracting separately priced overlapping transport prefix; never add a wait residual or reuse LSU ramp prices.",
+  "limits": [
+    "Private ordinary3D requests; native descriptor, multicast fabric and stage-specific miss phase remain aggregate approximations.",
+    "Forward quiescent start is an explicit assumption; hot predecessor state may make this bound inapplicable.",
+    "Advancing panels plus eviction do not assert observed zero hits; logical rates are optimistic capacity envelopes."
+  ]
+}

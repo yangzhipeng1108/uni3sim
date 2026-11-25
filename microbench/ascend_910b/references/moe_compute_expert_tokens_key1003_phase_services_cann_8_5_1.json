@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "moe_compute_expert_tokens_key1003_phase_services",
+  "duration_unit": "ns_per_source_phase",
+  "system_counter_tick_ns": 20.0,
+  "source_commit": "8ab31c5de0fdd524fa6decb13674f0bc3883a0bd",
+  "source_snapshot_path": "/capture-workspace/execution_snapshots/e62028f1-compute-expert-scatter-mte3-20260907/source",
+  "probe_source_sha256": {
+    "CMakeLists.txt": "5455872224fe8f845944c991b715d92b58f9df01ccaaa53543a0a3b0a30c0c59",
+    "compute_expert_tokens_scatter_mte3_kernel.cpp": "d493f82b07f5e3119e425a3ddb64f283c178b8321f254fb41ed812bcaad492f0",
+    "compute_expert_tokens_scatter_mte3_main.cpp": "129ca9e3da8a9cd91256678517d821580ee13f38caf75f1f034918147d601743",
+    "compute_expert_tokens_sync_phase_kernel.cpp": "8ed3a0e081afa2ba2cc7fa5c98d16bbc5b8b6a72a281ce6734997f7cfca07777",
+    "compute_expert_tokens_sync_phase_main.cpp": "2b7079a92299d5757d814613a93249246ca5421babb3d3a1c010bd605eea4162"
+  },
+  "binary_sha256": {
+    "compute_expert_tokens_scatter_mte3": "fe08880f5544ecd89b6582dc596eeccfe36ff45304a0e7a3b29d66fff37b9d4e",
+    "compute_expert_tokens_sync_phase": "91d16b2fc133c2b140069cdc4c085243a9e3a4df7a4d7e9ed087cea892afc1d3"
+  },
+  "source_scope": {
+    "upstream_repository": "https://github.com/ai2open/cann-ops-transformer.git",
+    "upstream_commit": "f6c15f3da135ad9bc0ec9a2fae4870285a3067cb",
+    "upstream_path": "moe/moe_compute_expert_tokens/op_kernel/moe_compute_expert_tokens_int32_l.h",
+    "upstream_sha256": "4ec81d4360475faefd74e49a09350d5cbb711b02f9f748ef10fdbb46a744b260",
+    "tiling_key": 1003,
+    "aiv_workers": 48,
+    "expert_segment_size": 256,
+    "first_init_elements_per_worker": 512,
+    "second_init_elements_per_worker": 8
+  },
+  "scatter_mte3": {
+    "model": "exact_datacopypad_block_count_v1",
+    "block_count": 256,
+    "block_length_bytes": 4,
+    "service_time_ns": 9724.11376953,
+    "composition": "serial_once_per_expert_segment_on_each_active_input_worker",
+    "iterations_per_run": 4096,
+    "independent_runs": 4,
+    "physical_device_ids": [6, 2],
+    "run_service_times_ns": [9725.1953125, 9723.03222656, 9719.54101562, 9738.56445312],
+    "maximum_cross_run_relative_spread": 0.001956315809427173,
+    "raw_artifacts": [
+      {"path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_scatter_mte3_e62028f1_20260907_r1/run1_device6.csv", "sha256": "e1f3937646cead041cb533ba12fb953d094104b4f57c8c540e755e8efe165773"},
+      {"path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_scatter_mte3_e62028f1_20260907_r1/run2_device6.csv", "sha256": "237ec319c073fa48bca628cf8b22935ea6952ac8d86d2c8ab7bb5c561184c9b1"},
+      {"path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_scatter_mte3_e62028f1_20260907_r1/run3_device6.csv", "sha256": "896a8f441e624a3ef5393fd2a7e099f6e8a310fc501b6c431af74789bea41096"},
+      {"path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_scatter_mte3_e62028f1_20260907_r1/run4_device2.csv", "sha256": "cfb7fa9801d2842f70a12e4222fa7501e76ee3d572c56a95dbcba6f6a719cafb"}
+    ]
+  },
+  "init_output_sync_all": {
+    "model": "exact_int32_init_output_sync_all_v1",
+    "aiv_workers": 48,
+    "service_time_ns_by_payload_bytes_per_worker": {
+      "32": 1355.6640625,
+      "2048": 1407.87597656
+    },
+    "composition": "one_complete_phase_at_each_source_sync_point",
+    "iterations_per_run": 4096,
+    "runs_per_device": 3,
+    "physical_device_ids": [6, 2],
+    "device_median_service_time_ns": {
+      "6": {"32": 1378.25683594, "2048": 1398.76953124},
+      "2": {"32": 1333.07128906, "2048": 1416.98242188}
+    },
+    "maximum_cross_device_relative_spread": 0.03333093214603079,
+    "raw_artifacts": [
+      {"path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_scatter_mte3_e62028f1_20260907_r1/sync_device6_fixed.txt", "sha256": "b1f158a0684e9d7d68952df1c1d471464041b68a6a939d33097b0fbb21f36955", "runner_pid": 3524140},
+      {"path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_scatter_mte3_e62028f1_20260907_r1/sync_device2_fixed.txt", "sha256": "0662e3bb29c9e29e9087f7dc365fcfe20e5bfeb26ec28e7096d80d3f2aecf554", "runner_pid": 3524141}
+    ]
+  },
+  "selection_policy": "median_of_independent_run_values_for_scatter_and_median_of_device_medians_for_sync",
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

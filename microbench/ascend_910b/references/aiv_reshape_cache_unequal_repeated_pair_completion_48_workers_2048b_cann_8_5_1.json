@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "195cd107",
+  "service": "aiv_reshape_cache_unequal_repeated_pair_completion_48_workers_2048b",
+  "scope": "exact CANN key-202 maximum-worker K/V two-queue pair completion for 48 AIVs, a 2048-byte BF16 tensor payload, and 22 source token iterations",
+  "request_size_unit": "source_kv_queue_pairs_per_maximum_worker",
+  "service_time_unit": "ns_per_maximum_worker_pair_sequence",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "22": 7070.0
+  },
+  "composition": "maximum_with_same_source_queue_pair_memory_capacity_time",
+  "source_chain": {
+    "reference": "microbench/ascend_910b/references/reshape_and_cache_cann_8_5_1.json",
+    "reference_sha256": "6bae8fdd0cf09a68c364fe6034d545d8f8d72627e49044aa93dadda98723ba60",
+    "conclusion": "CANN 8.5.1 ProcessKVUnequal allocates independent two-slot TQueBind queues for K and V, then invokes CopyToCache for K followed by V on every token. Each CopyToCache executes AllocTensor, GM-to-UB DataCopy, EnQue, DeQue, UB-to-GM DataCopy, and FreeTensor. The maximum worker owns 22 tokens for the canonical 1024-token, 48-AIV launch."
+  },
+  "request_contract": {
+    "worker_count": 48,
+    "payload_bytes": 2048,
+    "stride_bytes": 2048,
+    "repeat_counts": [22],
+    "pair_orders": [0, 1],
+    "queue_count": 2,
+    "slots_per_queue": 2,
+    "copy_pairs_per_token": 2,
+    "warmup": "one untimed identical queue program on a disjoint address half before the measured launch"
+  },
+  "device": {
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_id": 7,
+    "logical_device_id": 0,
+    "model": "910B2",
+    "pci_bus_id": "0000:42:00.0"
+  },
+  "capture": {
+    "owner": "capture-owner-4c0f2645f650",
+    "date": "2026-09-06",
+    "source_snapshot_path": "/capture-workspace/source_snapshots/reshape_cache_key202_repeated_pair_warmisolated_195cd107_20260906",
+    "build_command": "source /usr/local/Ascend/ascend-toolkit/set_env.sh; cmake -S <snapshot>/microbench/ascend_910b/operators/kv_cache/reshape_cache_key202_repeated_pair -B <snapshot>/build -DASCEND_HOME_PATH=/usr/local/Ascend/cann-8.5.1 -DSOC_VERSION=Ascend910B2; cmake --build <snapshot>/build -j1",
+    "runner_command": "python3 <snapshot>/microbench/ascend_910b/operators/kv_cache/reshape_cache_key202_repeated_pair/reshape_cache_key202_repeated_pair_runner.py --binary <snapshot>/build/reshape_cache_key202_repeated_pair --device-id 7 --run-id <key202_repeated_pair_warmisolated_195cd107_r1|r2|r3>",
+    "report_command": "python3 microbench/ascend_910b/operators/kv_cache/reshape_cache_key202_repeated_pair/reshape_cache_key202_repeated_pair_report.py <run1.csv> <run2.csv> <run3.csv>",
+    "preflight_idle": true,
+    "postflight_idle": true,
+    "cleanup": "all benchmark processes exited; device 7 had no process after capture"
+  },
+  "campaign": {
+    "independent_runs": 3,
+    "schedule_cycles_per_run": 8,
+    "trials_per_run": 16,
+    "rows_per_run": 1536,
+    "run_ids": [
+      "key202_repeated_pair_warmisolated_195cd107_r1",
+      "key202_repeated_pair_warmisolated_195cd107_r2",
+      "key202_repeated_pair_warmisolated_195cd107_r3"
+    ],
+    "runner_pids": [2776499, 2776918, 2777341],
+    "run_summaries_ns": [
+      {"q1": 6755.0, "median": 7010.0, "q3": 7265.0, "replica_relative_spread": 0.018439716},
+      {"q1": 6955.0, "median": 7120.0, "q3": 7330.0, "replica_relative_spread": 0.018080668},
+      {"q1": 6835.0, "median": 7070.0, "q3": 7185.0, "replica_relative_spread": 0.023743017}
+    ],
+    "cross_run_relative_median_spread": 0.015449438,
+    "replication_relative_limit": 0.2,
+    "independent_run_relative_limit": 0.2
+  },
+  "benchmark_binary_sha256": "b884d9abd5bdba12e224a5bbdfb7121e9a18f8fc0afafaa6c3d5e56b33b66e61",
+  "benchmark_source_sha256": {
+    "CMakeLists.txt": "5aebaef20a1a055cd6e46e13298d44fb65516af9be5c2848fd518580705285cf",
+    "reshape_cache_key202_repeated_pair_kernel.cpp": "04a4b2564c70ba590a8b74f260f1d857c7434dd0249efb6ef3e71a60509bcdbb",
+    "reshape_cache_key202_repeated_pair_main.cpp": "25b83ccd15a7bc48aa87d1fe150ecc77b5a845ad21f9b8df71598db4ecdb7867",
+    "reshape_cache_key202_repeated_pair_report.py": "f3c3ed18408842fa25344a375494bcc2df12feaaaed5bb237bd49780f3cd0241",
+    "reshape_cache_key202_repeated_pair_runner.py": "95704707c5931c2e56e60c89676292a70c1a32a6ada4a2590c73596940bcf137"
+  },
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/reshape_cache_key202_repeated_pair_warmisolated_195cd107_20260906_d7/run1.csv", "sha256": "a4871bf3481738f71d8e487696058378bd102f716412b7b66cdd5ee4e8d9c7b5", "runner_log_sha256": "6ec2df3f8e70ed1f4ca81de93675d3bd7ab9f875dba4564405546840727f4682"},
+    {"path": "profiler_output/microbench/ascend_910b/reshape_cache_key202_repeated_pair_warmisolated_195cd107_20260906_d7/run2.csv", "sha256": "998a2f57546bf8cfd8f8f0e515386bc7ce7b94c6229b7ce02d4c9dec02d7e1dc", "runner_log_sha256": "0933390f8b1571989582f780c1bdd1bdb216a149aa2121b379c183074374f853"},
+    {"path": "profiler_output/microbench/ascend_910b/reshape_cache_key202_repeated_pair_warmisolated_195cd107_20260906_d7/run3.csv", "sha256": "eb4f5a66f599c6d9a199b740a989e411fb9d63458a64208548ef6bd337ef56dc", "runner_log_sha256": "d89689ed2b1de0c553d4834cc857cccb5906119f47e15ce8eebf821f44124d5c"},
+    {"path": "profiler_output/microbench/ascend_910b/reshape_cache_key202_repeated_pair_warmisolated_195cd107_20260906_d7/report.txt", "sha256": "b0b789347938c8811b0e60a259e95bc9596b1592b9d32a110556ffbe05462bac"},
+    {"path": "profiler_output/microbench/ascend_910b/reshape_cache_key202_repeated_pair_warmisolated_195cd107_20260906_d7/pre_npu_smi.txt", "sha256": "e7150dd7bc511044cc0a570078062a051fa7b9d06ca6701fe6b9fa3801e322fb"},
+    {"path": "profiler_output/microbench/ascend_910b/reshape_cache_key202_repeated_pair_warmisolated_195cd107_20260906_d7/post_npu_smi.txt", "sha256": "c347a1ab5eb1c1dbd27888df0cff77f4bfaa07e8273b82f22692d39e1b61e7ba"}
+  ],
+  "stability_gate": {
+    "all_positive_first_quartiles": true,
+    "all_replica_spreads_within_limit": true,
+    "all_cross_run_spreads_within_limit": true,
+    "passed": true
+  },
+  "excluded_conclusions": [
+    "a complete ReshapeAndCache or production key-202 kernel duration",
+    "reuse for a worker count other than 48, a payload other than 2048 bytes, or a repeat count other than 22",
+    "interpolation or extrapolation to an unmeasured repeat count",
+    "reuse for key-200, unequal K/V head sizes, slot-mapping, cache-layout, or another launch path"
+  ],
+  "measurement_gate_passed": true,
+  "provenance_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true,
+  "production_consumption_status": "exact_48_worker_2048_byte_22_repeat_cell_only"
+}

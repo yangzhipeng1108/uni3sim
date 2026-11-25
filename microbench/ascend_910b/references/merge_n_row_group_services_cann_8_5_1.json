@@ -1,0 +1,396 @@
+{
+ "block_dim": 1,
+ "calibration_run": "merge_n_raw_r1.csv",
+ "columns": 128,
+ "mechanism": "CANN 8.5.1 KernelRmsNormMergeN row-group Vector primitives, UB-resident, one PIPE_V barrier per invocation, no GM traffic",
+ "production_or_evaluation_duration_consumed": false,
+ "schema_version": 1,
+ "services": {
+  "merge_n_broadcast_gamma": {
+   "cells": {
+    "1": {
+     "ape_percent": 50.55026746170517,
+     "calibration_ns": 21.666666667,
+     "predicted_ns": 32.61922461720462,
+     "trials": 192,
+     "validation_ns": 21.666666667
+    },
+    "2": {
+     "ape_percent": 16.25785097780322,
+     "calibration_ns": 51.106770833,
+     "predicted_ns": 42.79790819140346,
+     "trials": 192,
+     "validation_ns": 51.106770833
+    },
+    "4": {
+     "ape_percent": 8.328763067978487,
+     "calibration_ns": 68.893229167,
+     "predicted_ns": 63.15527533980112,
+     "trials": 192,
+     "validation_ns": 68.893229167
+    },
+    "8": {
+     "ape_percent": 0.5193641647724344,
+     "calibration_ns": 103.333333333,
+     "predicted_ns": 103.87000963659645,
+     "trials": 192,
+     "validation_ns": 103.333333333
+    },
+    "16": {
+     "ape_percent": 0.46593666115532245,
+     "calibration_ns": 184.453125,
+     "predicted_ns": 185.2994782301871,
+     "trials": 192,
+     "validation_ns": 184.440104167
+    },
+    "32": {
+     "ape_percent": 0.4303121395289328,
+     "calibration_ns": 346.666666667,
+     "predicted_ns": 348.1584154173684,
+     "trials": 192,
+     "validation_ns": 346.666666667
+    },
+    "64": {
+     "ape_percent": 0.41267933495789894,
+     "calibration_ns": 671.106770833,
+     "predicted_ns": 673.8762897917311,
+     "trials": 192,
+     "validation_ns": 671.106770833
+    },
+    "84": {
+     "ape_percent": 0.28977712776049264,
+     "calibration_ns": 880.0,
+     "predicted_ns": 877.4499612757077,
+     "trials": 192,
+     "validation_ns": 880.0
+    }
+   },
+   "request_size_unit": "fp32_elements",
+   "service_rate_per_unit_s": 12575300044.148874,
+   "service_setup_time_s": 2.2440541043005797e-08,
+   "validation_max_ape_percent": 50.55026746170517
+  },
+  "merge_n_broadcast_rstd": {
+   "cells": {
+    "1": {
+     "ape_percent": 23.83476242959455,
+     "calibration_ns": 46.666666667,
+     "predicted_ns": 35.54377753310976,
+     "trials": 192,
+     "validation_ns": 46.666666667
+    },
+    "2": {
+     "ape_percent": 8.198121593359408,
+     "calibration_ns": 33.893229167,
+     "predicted_ns": 36.67183730602662,
+     "trials": 192,
+     "validation_ns": 33.893229167
+    },
+    "4": {
+     "ape_percent": 7.813454246320724,
+     "calibration_ns": 36.106770833,
+     "predicted_ns": 38.92795685186033,
+     "trials": 192,
+     "validation_ns": 36.106770833
+    },
+    "8": {
+     "ape_percent": 7.101349871279298,
+     "calibration_ns": 40.559895833,
+     "predicted_ns": 43.44019594352776,
+     "trials": 192,
+     "validation_ns": 40.559895833
+    },
+    "16": {
+     "ape_percent": 4.929348253725237,
+     "calibration_ns": 50.0,
+     "predicted_ns": 52.46467412686262,
+     "trials": 192,
+     "validation_ns": 50.0
+    },
+    "32": {
+     "ape_percent": 2.352047285524115,
+     "calibration_ns": 68.893229167,
+     "predicted_ns": 70.51363049353233,
+     "trials": 192,
+     "validation_ns": 68.893229167
+    },
+    "64": {
+     "ape_percent": 0.051678225120064855,
+     "calibration_ns": 106.666666667,
+     "predicted_ns": 106.61154322687176,
+     "trials": 192,
+     "validation_ns": 106.666666667
+    },
+    "84": {
+     "ape_percent": 1.0624680258365264,
+     "calibration_ns": 130.559895833,
+     "predicted_ns": 129.1727386852089,
+     "trials": 192,
+     "validation_ns": 130.559895833
+    }
+   },
+   "request_size_unit": "fp32_elements",
+   "service_rate_per_unit_s": 113469164554.13232,
+   "service_setup_time_s": 3.441571776019291e-08,
+   "validation_max_ape_percent": 23.83476242959455
+  },
+  "merge_n_performance_mul_row_gamma": {
+   "cells": {
+    "1": {
+     "ape_percent": 9.91488111720142,
+     "calibration_ns": 26.666666667,
+     "predicted_ns": 24.022698369046573,
+     "trials": 192,
+     "validation_ns": 26.666666667
+    },
+    "2": {
+     "ape_percent": 5.755281687265381,
+     "calibration_ns": 28.893229167,
+     "predicted_ns": 27.23034243989203,
+     "trials": 192,
+     "validation_ns": 28.893229167
+    },
+    "4": {
+     "ape_percent": 0.9368917457581998,
+     "calibration_ns": 33.333333333,
+     "predicted_ns": 33.64563058158294,
+     "trials": 192,
+     "validation_ns": 33.333333333
+    },
+    "8": {
+     "ape_percent": 10.063912649685292,
+     "calibration_ns": 42.2265625,
+     "predicted_ns": 46.476206864964766,
+     "trials": 192,
+     "validation_ns": 42.2265625
+    },
+    "16": {
+     "ape_percent": 1.449353678496855,
+     "calibration_ns": 71.106770833,
+     "predicted_ns": 72.13735943172841,
+     "trials": 192,
+     "validation_ns": 71.106770833
+    },
+    "32": {
+     "ape_percent": 0.7878807304987044,
+     "calibration_ns": 124.440104167,
+     "predicted_ns": 123.4596645652557,
+     "trials": 192,
+     "validation_ns": 124.440104167
+    },
+    "64": {
+     "ape_percent": 0.24811404471568801,
+     "calibration_ns": 226.666666667,
+     "predicted_ns": 226.10427483231027,
+     "trials": 192,
+     "validation_ns": 226.666666667
+    },
+    "84": {
+     "ape_percent": 0.08867456869632735,
+     "calibration_ns": 290.0,
+     "predicted_ns": 290.25715624921935,
+     "trials": 192,
+     "validation_ns": 290.0
+    }
+   },
+   "request_size_unit": "fp32_elements",
+   "service_rate_per_unit_s": 39904676819.78892,
+   "service_setup_time_s": 2.081505429820112e-08,
+   "validation_max_ape_percent": 10.063912649685292
+  },
+  "merge_n_performance_mul_row_rstd": {
+   "cells": {
+    "1": {
+     "ape_percent": 4.4337700702857585,
+     "calibration_ns": 27.2265625,
+     "predicted_ns": 28.433725679292646,
+     "trials": 192,
+     "validation_ns": 27.2265625
+    },
+    "2": {
+     "ape_percent": 5.159088607269362,
+     "calibration_ns": 28.893229167,
+     "predicted_ns": 30.383856461226927,
+     "trials": 192,
+     "validation_ns": 28.893229167
+    },
+    "4": {
+     "ape_percent": 6.384657144538726,
+     "calibration_ns": 32.2265625,
+     "predicted_ns": 34.28411802509549,
+     "trials": 192,
+     "validation_ns": 32.2265625
+    },
+    "8": {
+     "ape_percent": 8.205572163034608,
+     "calibration_ns": 38.893229167,
+     "predicted_ns": 42.08464115283261,
+     "trials": 192,
+     "validation_ns": 38.893229167
+    },
+    "16": {
+     "ape_percent": 4.746059062946657,
+     "calibration_ns": 60.559895833,
+     "predicted_ns": 57.68568740830685,
+     "trials": 192,
+     "validation_ns": 60.559895833
+    },
+    "32": {
+     "ape_percent": 8.047124221777075,
+     "calibration_ns": 96.666666667,
+     "predicted_ns": 88.88777991925534,
+     "trials": 192,
+     "validation_ns": 96.666666667
+    },
+    "64": {
+     "ape_percent": 0.9697186782536622,
+     "calibration_ns": 152.7734375,
+     "predicted_ns": 151.29196494115232,
+     "trials": 192,
+     "validation_ns": 152.7734375
+    },
+    "84": {
+     "ape_percent": 2.2502189082608743,
+     "calibration_ns": 186.106770833,
+     "predicted_ns": 190.2945805798379,
+     "trials": 192,
+     "validation_ns": 186.106770833
+    }
+   },
+   "request_size_unit": "fp32_elements",
+   "service_rate_per_unit_s": 65636623546.36563,
+   "service_setup_time_s": 2.6483594897358368e-08,
+   "validation_max_ape_percent": 8.205572163034608
+  },
+  "merge_n_performance_rstd_brcb": {
+   "cells": {
+    "1": {
+     "ape_percent": 0.025861391169268444,
+     "calibration_ns": 10.0,
+     "predicted_ns": 10.002586139116927,
+     "trials": 192,
+     "validation_ns": 10.0
+    },
+    "2": {
+     "ape_percent": 0.017171512038669557,
+     "calibration_ns": 10.559895833,
+     "predicted_ns": 10.558082539215766,
+     "trials": 192,
+     "validation_ns": 10.559895833
+    },
+    "4": {
+     "ape_percent": 0.02064576354323869,
+     "calibration_ns": 11.666666667,
+     "predicted_ns": 11.669075339413446,
+     "trials": 192,
+     "validation_ns": 11.666666667
+    },
+    "8": {
+     "ape_percent": 0.015606358789081674,
+     "calibration_ns": 13.893229167,
+     "predicted_ns": 13.891060939808808,
+     "trials": 192,
+     "validation_ns": 13.893229167
+    },
+    "16": {
+     "ape_percent": 0.009266223270340017,
+     "calibration_ns": 18.333333333,
+     "predicted_ns": 18.33503214059953,
+     "trials": 192,
+     "validation_ns": 18.333333333
+    },
+    "32": {
+     "ape_percent": 0.01317815210431149,
+     "calibration_ns": 27.2265625,
+     "predicted_ns": 27.222974542180975,
+     "trials": 192,
+     "validation_ns": 27.2265625
+    },
+    "64": {
+     "ape_percent": 0.002534788124756283,
+     "calibration_ns": 45.0,
+     "predicted_ns": 44.99885934534386,
+     "trials": 192,
+     "validation_ns": 45.0
+    },
+    "84": {
+     "ape_percent": 0.003594065904585034,
+     "calibration_ns": 56.106770833,
+     "predicted_ns": 56.10878734732067,
+     "trials": 192,
+     "validation_ns": 56.106770833
+    }
+   },
+   "request_size_unit": "rows",
+   "service_rate_per_unit_s": 1800191684.0902452,
+   "service_setup_time_s": 9.447089739018087e-09,
+   "validation_max_ape_percent": 0.025861391169268444
+  },
+  "merge_n_reduce_sum_multi_n": {
+   "cells": {
+    "1": {
+     "ape_percent": 0.5015517258243993,
+     "calibration_ns": 61.106770833,
+     "predicted_ns": 60.80028876929153,
+     "trials": 192,
+     "validation_ns": 61.106770833
+    },
+    "2": {
+     "ape_percent": 0.3039699291771261,
+     "calibration_ns": 67.2265625,
+     "predicted_ns": 67.02221396558053,
+     "trials": 192,
+     "validation_ns": 67.2265625
+    },
+    "4": {
+     "ape_percent": 0.03267894904059825,
+     "calibration_ns": 79.440104167,
+     "predicted_ns": 79.46606435815853,
+     "trials": 192,
+     "validation_ns": 79.440104167
+    },
+    "8": {
+     "ape_percent": 0.44327814238430424,
+     "calibration_ns": 103.893229167,
+     "predicted_ns": 104.35376514331455,
+     "trials": 192,
+     "validation_ns": 103.893229167
+    },
+    "16": {
+     "ape_percent": 0.15331249328102925,
+     "calibration_ns": 153.893229167,
+     "predicted_ns": 154.1291667136266,
+     "trials": 192,
+     "validation_ns": 153.893229167
+    },
+    "32": {
+     "ape_percent": 0.08399566756821887,
+     "calibration_ns": 253.893229167,
+     "predicted_ns": 253.67996985425066,
+     "trials": 192,
+     "validation_ns": 253.893229167
+    },
+    "64": {
+     "ape_percent": 0.001797507279513751,
+     "calibration_ns": 452.7734375,
+     "predicted_ns": 452.78157613549877,
+     "trials": 192,
+     "validation_ns": 452.7734375
+    },
+    "84": {
+     "ape_percent": 0.0011230319500476016,
+     "calibration_ns": 577.2265625,
+     "predicted_ns": 577.220080061279,
+     "trials": 192,
+     "validation_ns": 577.2265625
+    }
+   },
+   "request_size_unit": "fp32_elements",
+   "service_rate_per_unit_s": 20572410622.4138,
+   "service_setup_time_s": 5.457836357300252e-08,
+   "validation_max_ape_percent": 0.5015517258243993
+  }
+ },
+ "source": "cann-ops-nn norm/rms_norm/op_kernel/rms_norm_merge_n.h",
+ "validation_run": "merge_n_raw_r2.csv"
+}

@@ -1,0 +1,173 @@
+{
+  "schema_version": 2,
+  "scheduler_pools": [
+    {
+      "pool_name": "prefill-0",
+      "binding": {
+        "hardware_id": "nvidia_h200",
+        "hardware_config_sha256": "1133e4596931110db6f4d275547ab505b79849dbbbb4bf63d67e5ad486a28830",
+        "model_config_sha256": "3ac72612095574542f7fff847ada8e59d9199dd8af44bdf625d7e02615572e69",
+        "deployment": "pd_disagg",
+        "worker_role": "prefill",
+        "tensor_parallel_size": 8,
+        "pipeline_parallel_size": 1,
+        "expert_parallel_size": 1,
+        "max_model_len": 458752,
+        "max_batched_tokens": 8192,
+        "max_requests": 128,
+        "kv_block_size_tokens": 16
+      },
+      "gpu_memory_utilization": {
+        "numerator": 1,
+        "denominator": 1,
+        "provenance": {
+          "source_kind": "runtime_configuration",
+          "source_reference": "Declared GLM-5.3 H200 scenario: 100% of nominal physical HBM is available to the explicit weight/source-reserve/KV ledger; no additional hidden utilization discount is assumed",
+          "source_sha256": null
+        }
+      },
+      "non_kv_reserves": [
+        {
+          "kind": "activation",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "Derived by resolve_glm_block_fp8_kv_capacity_plan from M=1 and maximum-M source storage; zero here is only the unprojected base input",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "cuda_graph",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "Declared eager execution; no CUDA graph capture reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "communication",
+          "bytes": 1073741824,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "Conservative 1 GiB scenario reserve for unobserved TP8 collective/library workspace; not a measured runtime value",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "allocator",
+          "bytes": 536870912,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "Conservative 512 MiB scenario reserve for allocator metadata and alignment outside source tensor payloads; not a measured runtime value",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "fragmentation",
+          "bytes": 536870912,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "Conservative 512 MiB scenario reserve for fragmentation outside source tensor payloads; not a measured runtime value",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "framework",
+          "bytes": 1073741824,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "Conservative 1 GiB base scenario reserve for non-Torch runtime state; after-profile source-retained constructor/worker buffers are added once by the GLM FP8 projection",
+            "source_sha256": null
+          }
+        }
+      ],
+      "reserve_scope": "assumed_uniform_across_pool_ranks_unverified",
+      "completeness_assertion": "reserves_inherited_unverified_not_complete_for_bound_runtime"
+    },
+    {
+      "pool_name": "decode-0",
+      "binding": {
+        "hardware_id": "nvidia_h200",
+        "hardware_config_sha256": "1133e4596931110db6f4d275547ab505b79849dbbbb4bf63d67e5ad486a28830",
+        "model_config_sha256": "3ac72612095574542f7fff847ada8e59d9199dd8af44bdf625d7e02615572e69",
+        "deployment": "pd_disagg",
+        "worker_role": "decode",
+        "tensor_parallel_size": 8,
+        "pipeline_parallel_size": 1,
+        "expert_parallel_size": 1,
+        "max_model_len": 458752,
+        "max_batched_tokens": 8192,
+        "max_requests": 128,
+        "kv_block_size_tokens": 16
+      },
+      "gpu_memory_utilization": {
+        "numerator": 1,
+        "denominator": 1,
+        "provenance": {
+          "source_kind": "runtime_configuration",
+          "source_reference": "Declared GLM-5.3 H200 scenario: 100% of nominal physical HBM is available to the explicit weight/source-reserve/KV ledger; no additional hidden utilization discount is assumed",
+          "source_sha256": null
+        }
+      },
+      "non_kv_reserves": [
+        {
+          "kind": "activation",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "Derived by resolve_glm_block_fp8_kv_capacity_plan from M=1 and maximum-M source storage; zero here is only the unprojected base input",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "cuda_graph",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "Declared eager execution; no CUDA graph capture reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "communication",
+          "bytes": 1073741824,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "Conservative 1 GiB scenario reserve for unobserved TP8 collective/library workspace; not a measured runtime value",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "allocator",
+          "bytes": 536870912,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "Conservative 512 MiB scenario reserve for allocator metadata and alignment outside source tensor payloads; not a measured runtime value",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "fragmentation",
+          "bytes": 536870912,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "Conservative 512 MiB scenario reserve for fragmentation outside source tensor payloads; not a measured runtime value",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "framework",
+          "bytes": 1073741824,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "Conservative 1 GiB base scenario reserve for non-Torch runtime state; after-profile source-retained constructor/worker buffers are added once by the GLM FP8 projection",
+            "source_sha256": null
+          }
+        }
+      ],
+      "reserve_scope": "assumed_uniform_across_pool_ranks_unverified",
+      "completeness_assertion": "reserves_inherited_unverified_not_complete_for_bound_runtime"
+    }
+  ]
+}

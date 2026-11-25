@@ -1,0 +1,468 @@
+{
+    "allowed_use": "The finite completion of a staged three-slot LDGSTS operand ring at a measured declared operand-pair panel and CTA grid with one resident CTA per SM, as intercept plus rounds times the per-tier round service, for round counts inside the measured domain.",
+    "derived_model": {
+        "not_a_production_floor": "These per-round services are valid for this probe's ring only. Shaping the probe's bytes exactly like production -- the whole A panel issued with a zero cp.async source size, only B fetched -- still leaves its marginal round above the cuBLAS ring's: separating production's finite intercept from its marginal round over several K per topology gives 344.6 ns/round at (16384, grid 64), 442.0 at (16384, grid 80) and 557.1 at (24576, grid 64), while this probe's production-shaped minimum is 442.7, 458.7 and 777.3 respectively, i.e. 4 to 39 percent higher. The already published SASS-pinned ring is higher still (608 ns at the first topology). The cause is the consumer: a copy-only ring retires a slot with a volatile shared read and two barriers, while cuBLAS retires it through LDSM and HMMA. No copy-only ring can therefore serve as a production per-round floor, and the byte-capacity route already prices the marginal round correctly (320.6 ns modelled against 344.6 ns measured at the first topology). What transfers from this probe is the zero-fill mechanism itself, which is a property of cp.async: a partially zero-filled declared panel costs the same round as a fully fetched one.",
+        "production_shaped_topologies": [
+            {
+                "dram_unique_ns_per_round": 479.9999739583335,
+                "fetched_bytes": 8192,
+                "grid_ctas": 56,
+                "l2_resident_ns_per_round": 442.66660937500035,
+                "operand_pair_bytes": 16384,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 522.6667760416665,
+                "fetched_bytes": 8192,
+                "grid_ctas": 64,
+                "l2_resident_ns_per_round": 426.66665104166634,
+                "operand_pair_bytes": 16384,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 549.3334531249998,
+                "fetched_bytes": 8192,
+                "grid_ctas": 80,
+                "l2_resident_ns_per_round": 426.66665104166634,
+                "operand_pair_bytes": 16384,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 554.6667395833332,
+                "fetched_bytes": 8192,
+                "grid_ctas": 96,
+                "l2_resident_ns_per_round": 426.66665104166634,
+                "operand_pair_bytes": 16384,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 544.0000781249998,
+                "fetched_bytes": 8192,
+                "grid_ctas": 100,
+                "l2_resident_ns_per_round": 442.6666666666664,
+                "operand_pair_bytes": 16384,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 593.3333111979166,
+                "fetched_bytes": 8192,
+                "grid_ctas": 108,
+                "l2_resident_ns_per_round": 426.66665104166634,
+                "operand_pair_bytes": 16384,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 762.6666406249999,
+                "fetched_bytes": 16384,
+                "grid_ctas": 56,
+                "l2_resident_ns_per_round": 839.9999518229166,
+                "operand_pair_bytes": 24576,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 773.3334114583332,
+                "fetched_bytes": 16384,
+                "grid_ctas": 64,
+                "l2_resident_ns_per_round": 837.3333177083335,
+                "operand_pair_bytes": 24576,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 799.999875,
+                "fetched_bytes": 16384,
+                "grid_ctas": 80,
+                "l2_resident_ns_per_round": 831.9999218750003,
+                "operand_pair_bytes": 24576,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 821.3332656250001,
+                "fetched_bytes": 16384,
+                "grid_ctas": 86,
+                "l2_resident_ns_per_round": 839.9999518229166,
+                "operand_pair_bytes": 24576,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 944.0000286458334,
+                "fetched_bytes": 16384,
+                "grid_ctas": 96,
+                "l2_resident_ns_per_round": 831.9999218750003,
+                "operand_pair_bytes": 24576,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 1170.6667317708332,
+                "fetched_bytes": 32768,
+                "grid_ctas": 56,
+                "l2_resident_ns_per_round": 1240.0000091145835,
+                "operand_pair_bytes": 40960,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 1456.0001770833335,
+                "fetched_bytes": 32768,
+                "grid_ctas": 80,
+                "l2_resident_ns_per_round": 1241.3333528645835,
+                "operand_pair_bytes": 40960,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 1568.000208333333,
+                "fetched_bytes": 32768,
+                "grid_ctas": 86,
+                "l2_resident_ns_per_round": 1240.0000091145835,
+                "operand_pair_bytes": 40960,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 1839.9995781250004,
+                "fetched_bytes": 32768,
+                "grid_ctas": 100,
+                "l2_resident_ns_per_round": 1231.9999635416666,
+                "operand_pair_bytes": 40960,
+                "zfill_bytes": 8192
+            },
+            {
+                "dram_unique_ns_per_round": 1978.666989583333,
+                "fetched_bytes": 32768,
+                "grid_ctas": 108,
+                "l2_resident_ns_per_round": 1226.6665885416664,
+                "operand_pair_bytes": 40960,
+                "zfill_bytes": 8192
+            }
+        ],
+        "round_cost_follows_declared_panel": "The zero-fill validation issues part of the declared panel with a zero source size, exactly as a cuBLAS staged GEMM does for operand rows outside a logical M smaller than its tile. Removing two thirds of a 24-KiB panel's fetched bytes changes the L2-resident round service by 0.2 percent on both devices, and removing all of them by about 12 percent. A ring round therefore costs its declared panel rather than the bytes it moves.",
+        "selection_rule": "Per (declared panel, grid) retain the minimum conservative per-tier round service and the minimum finite intercept across the two idle devices. Each device's per-tier value follows the accepted finite-stream methodology: the intercept runs through the 128- and 512-round completions and the retained service is the smallest residual per round over the measured round domain. Only topologies whose every measured cell stayed inside a ten percent trial spread on both devices are published; the rest are recorded as excluded in the captures.",
+        "topologies": [
+            {
+                "dram_unique_ns_per_round": 613.3333802083333,
+                "finite_intercept_ns": 8874.664666666664,
+                "grid_ctas": 56,
+                "l2_resident_ns_per_round": 463.9998385416668,
+                "operand_pair_bytes": 16384
+            },
+            {
+                "dram_unique_ns_per_round": 639.99996875,
+                "finite_intercept_ns": 7850.666666666642,
+                "grid_ctas": 64,
+                "l2_resident_ns_per_round": 498.66668229166675,
+                "operand_pair_bytes": 16384
+            },
+            {
+                "dram_unique_ns_per_round": 805.3333372395832,
+                "finite_intercept_ns": 7509.331333333335,
+                "grid_ctas": 56,
+                "l2_resident_ns_per_round": 821.3333541666669,
+                "operand_pair_bytes": 24576
+            },
+            {
+                "dram_unique_ns_per_round": 940.0000338541666,
+                "finite_intercept_ns": 682.6626666666416,
+                "grid_ctas": 64,
+                "l2_resident_ns_per_round": 833.3333307291667,
+                "operand_pair_bytes": 24576
+            },
+            {
+                "dram_unique_ns_per_round": 1285.3334166666666,
+                "finite_intercept_ns": 7509.331666666665,
+                "grid_ctas": 56,
+                "l2_resident_ns_per_round": 1233.3332916666666,
+                "operand_pair_bytes": 40960
+            },
+            {
+                "dram_unique_ns_per_round": 1477.3333593750006,
+                "finite_intercept_ns": 7167.995666666655,
+                "grid_ctas": 64,
+                "l2_resident_ns_per_round": 1234.6666341145833,
+                "operand_pair_bytes": 40960
+            },
+            {
+                "dram_unique_ns_per_round": 1994.6667213541666,
+                "finite_intercept_ns": 7167.995666666655,
+                "grid_ctas": 86,
+                "l2_resident_ns_per_round": 1233.3332916666666,
+                "operand_pair_bytes": 40960
+            }
+        ],
+        "zero_fill_validation": [
+            {
+                "dram_unique_ns_per_round": [
+                    940.0000338541666,
+                    946.6666744791667
+                ],
+                "fetched_bytes": 24576,
+                "l2_resident_ns_per_round": [
+                    833.3333307291667,
+                    834.6666744791667
+                ],
+                "zfill_bytes": 0
+            },
+            {
+                "dram_unique_ns_per_round": [
+                    762.6667135416669,
+                    762.6667135416669
+                ],
+                "fetched_bytes": 8192,
+                "l2_resident_ns_per_round": [
+                    831.9999479166667,
+                    841.3332942708333
+                ],
+                "zfill_bytes": 16384
+            },
+            {
+                "dram_unique_ns_per_round": [
+                    674.6666432291665,
+                    673.3332994791667
+                ],
+                "fetched_bytes": 0,
+                "l2_resident_ns_per_round": [
+                    730.6667135416667,
+                    736.0000885416669
+                ],
+                "zfill_bytes": 24576
+            }
+        ]
+    },
+    "evidence_status": "mechanism_candidate",
+    "forbidden_use": "A production GEMM duration, a per-shape correction, or extrapolation to a panel geometry, CTA grid, slot count or round count outside the measured domain.",
+    "hardware_id": "nvidia_a800",
+    "mechanism": "staged_ldgsts_panel_topology_stream",
+    "production_or_evaluation_duration_consumed": false,
+    "production_predictor_consumption_allowed": false,
+    "provenance": {
+        "captures": [
+            {
+                "device_index": 6,
+                "device_uuid": "capture-device-0b790647dba7",
+                "excluded_unstable_cells": [
+                    {
+                        "grid_ctas": 80,
+                        "panel_bytes": 16384,
+                        "relative_spread": 0.1049999976806639,
+                        "rounds": 256,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 86,
+                        "panel_bytes": 16384,
+                        "relative_spread": 0.15740739836516213,
+                        "rounds": 128,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 96,
+                        "panel_bytes": 16384,
+                        "relative_spread": 0.18032787173936796,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 100,
+                        "panel_bytes": 16384,
+                        "relative_spread": 0.20588242179052135,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 108,
+                        "panel_bytes": 16384,
+                        "relative_spread": 0.1333332743055586,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 80,
+                        "panel_bytes": 24576,
+                        "relative_spread": 0.12345674487501794,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 86,
+                        "panel_bytes": 24576,
+                        "relative_spread": 0.10227275942967903,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 96,
+                        "panel_bytes": 24576,
+                        "relative_spread": 0.10309274738614478,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 100,
+                        "panel_bytes": 24576,
+                        "relative_spread": 0.1414141160061785,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 108,
+                        "panel_bytes": 24576,
+                        "relative_spread": 0.12264154741525601,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 64,
+                        "panel_bytes": 40960,
+                        "relative_spread": 2.211199934307499,
+                        "rounds": 512,
+                        "tier": "l2_resident"
+                    },
+                    {
+                        "grid_ctas": 86,
+                        "panel_bytes": 16384,
+                        "relative_spread": 2.827118517824442,
+                        "rounds": 512,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 100,
+                        "panel_bytes": 24576,
+                        "relative_spread": 1.7903226840746649,
+                        "rounds": 512,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 108,
+                        "panel_bytes": 24576,
+                        "relative_spread": 0.12318838902877885,
+                        "rounds": 128,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 64,
+                        "panel_bytes": 40960,
+                        "relative_spread": 2.2347418476651204,
+                        "rounds": 512,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 96,
+                        "panel_bytes": 40960,
+                        "relative_spread": 1.3317383632816575,
+                        "rounds": 512,
+                        "tier": "l2_resident"
+                    }
+                ],
+                "measurements_sha256": "dfbeaae37e753086fdcfb118283f9efa6e68258290eb2582ce452b98174bee72",
+                "memory_clock_mhz": 1593,
+                "path": "profiler_output/microbench/nvidia_a800/staged_ldgsts_panel_topology_20260918_d6",
+                "sm_clock_mhz": 1140,
+                "trials": 9
+            },
+            {
+                "device_index": 7,
+                "device_uuid": "capture-device-ceb3fcab78ae",
+                "excluded_unstable_cells": [
+                    {
+                        "grid_ctas": 80,
+                        "panel_bytes": 16384,
+                        "relative_spread": 0.14572857799025796,
+                        "rounds": 256,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 86,
+                        "panel_bytes": 16384,
+                        "relative_spread": 0.1388889431423612,
+                        "rounds": 128,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 96,
+                        "panel_bytes": 16384,
+                        "relative_spread": 0.19672131462476503,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 100,
+                        "panel_bytes": 16384,
+                        "relative_spread": 0.1470588788623207,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 108,
+                        "panel_bytes": 16384,
+                        "relative_spread": 0.18421049486831167,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 86,
+                        "panel_bytes": 24576,
+                        "relative_spread": 0.13793107938218407,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 96,
+                        "panel_bytes": 24576,
+                        "relative_spread": 0.13265303529535144,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 100,
+                        "panel_bytes": 24576,
+                        "relative_spread": 0.13131310560625106,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 108,
+                        "panel_bytes": 24576,
+                        "relative_spread": 0.1619048192141446,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 64,
+                        "panel_bytes": 40960,
+                        "relative_spread": 0.10185188802083334,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 80,
+                        "panel_bytes": 40960,
+                        "relative_spread": 4.7251911906334865,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    },
+                    {
+                        "grid_ctas": 108,
+                        "panel_bytes": 24576,
+                        "relative_spread": 0.12328759939716946,
+                        "rounds": 64,
+                        "tier": "dram_unique"
+                    }
+                ],
+                "measurements_sha256": "c4a7380c28f740714d3b2fe5aadc7c0d86d8dbf9971272d77f2bc30306fcdac7",
+                "memory_clock_mhz": 1593,
+                "path": "profiler_output/microbench/nvidia_a800/staged_ldgsts_panel_topology_20260918_d7",
+                "sm_clock_mhz": 1140,
+                "trials": 9
+            }
+        ],
+        "runner": "microbench/nvidia_a800/memory/dram/staged_ldgsts_panel_topology_stream_runner.py",
+        "runner_sha256": "cbc81a0a6be07921f69c408896f0a191a7e0e1476c1ee80452ccb2b43203140a",
+        "source": "microbench/nvidia_a800/memory/dram/staged_ldgsts_panel_topology_stream.cu",
+        "source_sha256": "214f5fb835ec337e059aa0fc187fa737890436404cfc9d845bf28ee5ee1ea177"
+    },
+    "schema": "staged_ldgsts_panel_topology_completion_reference_v1",
+    "scope": {
+        "complete_operand_pair_slots": 3,
+        "dtype": "fp16",
+        "maximum_rounds": 512,
+        "minimum_rounds": 64,
+        "resident_ctas_per_compute_unit": 1,
+        "threads_per_cta": 128
+    }
+}

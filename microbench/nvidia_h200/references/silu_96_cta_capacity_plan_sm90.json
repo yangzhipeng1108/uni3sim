@@ -1,0 +1,11 @@
+{
+  "kind": "independent_silu_96_cta_capacity_plan",
+  "threads_per_cta": 96,
+  "elements_per_lane": 8,
+  "grids": [1320, 13200, 132000, 524288],
+  "processes": 2,
+  "samples_per_cell": 7,
+  "variants": ["arithmetic_control", "source_silu"],
+  "selection": "Reuse unchanged silu_96_cta_service.cu with no routed data, weights, model output, operand loads or complete activation. For each variant/grid/process take the median of seven CUDA-event samples; require process medians within3%. Use the slower source_silu process median to derive grid*96*8 elements/second, then take the conservative minimum over all four grids. The arithmetic control is evidence only and no control subtraction, production duration, error, case or rate selection is allowed. This is an independent arithmetic capacity floor, never a whole activation price or memory/SFU overlap claim.",
+  "limits": "One H200, expected30s/max180s including build/warmup/repeats/cleanup, max0.05GPU-hours, shared US$0.35 reservation, no retries or Volume."
+}

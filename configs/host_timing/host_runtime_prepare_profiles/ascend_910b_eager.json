@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "runtime": {
+    "name": "CANN",
+    "version": "8.5.1"
+  },
+  "framework": {
+    "name": "torch_npu",
+    "version": "2.9.0.post1+gitee7ba04"
+  },
+  "service_time_s": {
+    "collective_all_gather_prepare": 0.000194373620095568,
+    "collective_all_reduce_prepare": 0.00010053687634390462,
+    "compiled_fx_backend_entry": 8.772131012643714e-05,
+    "compiled_fx_graph_entry": 0.0002647860714285712,
+    "compiled_fx_aten_linear_node_dispatch": 7.2181e-05,
+    "compiled_fx_aten_copy_node_dispatch": 1.947e-05,
+    "compiled_fx_torch_npu_norm_node_dispatch": 0.000157517,
+    "compiled_fx_norm_no_residual_node_dispatch": 0.000121341,
+    "compiled_fx_swiglu_node_dispatch": 6.2496e-05,
+    "compiled_fx_fia_node_dispatch": 0.000129052,
+    "compiled_fx_reshape_cache_node_dispatch": 4.443e-05,
+    "compiled_fx_rope_node_dispatch": 0.000304659,
+    "compiled_fx_aten_view_metadata": 1.0466490215264187e-05,
+    "compiled_fx_aten_empty_metadata": 2.2354533023483366e-05,
+    "compiled_fx_rotary_composite_entry": 0.00010234965851272015,
+    "compiled_fx_aten_reshape_metadata": 1.1041204011741684e-05,
+    "compiled_fx_moe_wrapper_control": 0.00016704825538160463,
+    "compiled_fx_moe_source_wrapper_prepare": 0.00032692883561643833,
+    "fused_attention_source_wrapper_prepare": 0.0002262214861817907,
+    "moe_gating_prepare": 8.054289288832555e-05,
+    "moe_grouped_gemm_prepare": 4.704164560169147e-05,
+    "moe_routing_index_mask_mul_prepare": 0.00019415579760371785,
+    "moe_swiglu_prepare": 3.2580420675516316e-05,
+    "moe_token_combine_prepare": 4.175154144813577e-05,
+    "moe_token_dispatch_prepare": 0.00020198935379290314,
+    "moe_unquant_mlp_wrapper_prepare": 4.973916343128237e-05,
+    "model_runner_input_prepare": 0.0001896095,
+    "model_runner_forward_metadata_prepare": 2.3066e-05,
+    "model_runner_logits_prepare": 9.84525e-05,
+    "rotary_cache_update_prepare": 0.0002549758976569686,
+    "reshape_cache_prepare": 6.013392736118505e-06,
+    "stream_record_event_prepare": 5.492891493440481e-05,
+    "triton_three_output_composite_prepare": 0.0002724229473783289,
+    "unquantized_gemm_prepare": 3.54211414508399e-05,
+    "aten_ge_scalar_host_submit": 5.5806e-05,
+    "aten_lt_scalar_host_submit": 5.2155e-05,
+    "aten_bool_and_host_submit": 4.95005e-05,
+    "aten_scalar_mul_bool_host_submit": 6.7181e-05,
+    "aten_scalar_zero_mul_bool_host_submit": 6.409e-05,
+    "aten_sub_int32_int64_host_submit": 5.5985e-05,
+    "aten_bool_mul_int64_host_submit": 5.30105e-05,
+    "aten_bool_invert_host_submit": 4.65055e-05,
+    "aten_unsqueeze_host_submit": 2.9225e-05,
+    "aten_masked_fill_inplace_host_submit": 4.1241e-05,
+    "aten_index_int32_host_submit": 5.2745e-05,
+    "aten_ne_scalar_host_submit": 3.8885e-05,
+    "aten_bf16_mul_bool_host_submit": 4.5035e-05,
+    "aten_abs_int32_host_submit": 3.5245e-05,
+    "moe_init_routing_prepare": 7.750839779223221e-05
+  },
+  "measurement": {
+    "boundary": "independent_runtime_mechanism_microbenchmark",
+    "artifacts": [
+      {
+        "path": "profiler_output/microbench/ascend_910b/runtime_call_suite_20260916_r14_unquantized_gemm_descriptor/summary.json",
+        "sha256": "8e5afeb8e8de0a0c38dc55667920545c092b705ece1ab8aff5203703b866a663"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/collective_host_submit_20260916_r6_vllm_replication/summary-rank-0.json",
+        "sha256": "7bf544414ed5c6fc780e0dcba4515dd116855b0b49bc09838f6016dd35f3d683"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/collective_host_submit_20260916_r6_vllm_replication/summary-rank-1.json",
+        "sha256": "11ffcbebe67b8e9e456ab76b2424c60501a69e3ec2c3b5a5d16285f2f2f742bb"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/compiled_fx_executor_20260916_r2/summary.json",
+        "sha256": "12e48bd1d2cea4a1e88e48fa62ecbcd37f4cd16986eb5b0ac5162377786018d8"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/rotary_cache_update_20260919_r1/summary.json",
+        "sha256": "541b8643ccde360e4593103b37bcdf7e847f9d321cce16b6ae70157d85843bab"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/rotary_cache_update_20260919_r1/manifest.json",
+        "sha256": "7c70f70d60559e45672e0691c09fe6805e6b0dc35c59b2a8efc1165dd39f58d3"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/moe_wrapper_control_20260916_r12_compiled_boundary/summary.json",
+        "sha256": "186e92a45d40fd44489bd86dadf8e4d5dba8768648f62ecc6b78c133f5bf56ac"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/moe_wrapper_control_20260916_r13_unquant_mlp/summary.json",
+        "sha256": "84025cc88894261336f08dd4a91dc222ac7d18066795375abda9232ee542927d"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/triton_signature_packing_20260916_r2_composite/summary.json",
+        "sha256": "f18959b9c195ec707bfac34879f40639394c73a143fb9da1e76a274365c6a4d9"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/wt_host_timeline_fused_attention_20260916_r4_source_wrapper/summary.json",
+        "sha256": "dc05b1a2fca05aad7ce8658016ea448cb4f535cdd8a28f19bc2f5a69136207ae"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/torchair_node_class_dispatch_20260924_r8/summary.json",
+        "sha256": "612a1e278f542b437dbf548059cd673bfaad92cfb751260b01131c1bd6339373"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/aclnn_eager_dispatch_20260926_r2/summary.json",
+        "sha256": "ef50a0464c15464e375645af50ef3d59707895ebcf5aadd8801ea883fd0298bc"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/production_node_dispatch_20260926_r7/summary.json",
+        "sha256": "af115f17b1d883e9ae07e60a79e451709b3cf7160394f8ff84e856419abf8b49"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/production_node_dispatch_20260926_r7/manifest.json",
+        "sha256": "4c2c22ded7d7d462ea5319b58b78a66ecde4d132eb3639b21d496e0f3255fe51"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/tp_host_dispatch_20261028/device_probe_aten.json",
+        "sha256": "bf633987beae918710b6f0bdd1e69f11f48dc8a79588c796d844e6119d874e6b"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/tp_host_dispatch_20261028/environment.json",
+        "sha256": "83030dd2b6cab19dbd7fa23a2fe9f39b3fbd3ecfdb829b8768b3909d74ee7242"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/tp_host_dispatch_20261028/derived_profile.json",
+        "sha256": "03f3a495b39d1e413564cdefccadebeacae11036769ae7b4823de0857cb4154b"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/moe_wrapper_control_20261105_torchair/summary.json",
+        "sha256": "780f88692643c2a69fd06ad9933f7bc7d2ee2833196e74e3920f02395a09d1cf"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/moe_wrapper_control_20261105_torchair/manifest.json",
+        "sha256": "8c2a6403459cb07d1ed921d1054b244ac2a89fc350cd69f46a6d0a81f9458d88"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/moe_wrapper_control_20261105_torchair/moe_wrapper_control_runner.py",
+        "sha256": "f2c23baa99d6f497f51db807b16f67881f9578872fddf3376cecb8858187ba55"
+      }
+    ]
+  }
+}

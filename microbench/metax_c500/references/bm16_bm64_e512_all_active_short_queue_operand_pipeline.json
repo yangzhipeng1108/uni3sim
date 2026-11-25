@@ -1,0 +1,182 @@
+{
+  "schema_version": "midlayer.metax_c500.bm16_bm64_e512_all_active_short_queue_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "experts": 512,
+    "topk": 10,
+    "populated_experts": 512,
+    "source_topology": {
+      "bm16": {
+        "tokens": 512,
+        "tile_m": 16,
+        "tile_k": 64,
+        "tile_n": 32,
+        "group_size_m": 1,
+        "active_m_tiles": 521,
+        "maximum_m_tiles": 800,
+        "production_k_n_tile_classes": {
+          "w1": [32, 32],
+          "w2": [8, 64]
+        },
+        "adjacent_nonproduction_geometries": {
+          "w1": [[2048, 992], [2048, 1056]],
+          "w2": [[512, 2016], [512, 2080]]
+        }
+      },
+      "bm64": {
+        "tokens": 1024,
+        "tile_m": 64,
+        "tile_k": 32,
+        "tile_n": 64,
+        "group_size_m": 8,
+        "active_m_tiles": 512,
+        "maximum_m_tiles": 664,
+        "production_k_n_tile_classes": {
+          "w1": [64, 16],
+          "w2": [16, 32]
+        },
+        "adjacent_nonproduction_geometries": {
+          "w1": [[2048, 960], [2048, 1088]],
+          "w2": [[512, 1984], [512, 2112]]
+        }
+      }
+    }
+  },
+  "method": {
+    "kernel": "frozen production Triton grouped-MoE source",
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seeds": {
+      "bm16": 2026091002,
+      "bm64": 2026091003
+    },
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 100,
+    "fresh_processes_per_geometry": 3,
+    "physical_devices": [2],
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "cffe88825767f47104baac2a7d4f9f75a1b5c260f821ad63f308e28d530742ac",
+    "production_source_files": {
+      "scripts/kernel_dataset/metax_c500/fused_moe_runner.py": "436bee88cb5fe444ec0aa5204e7df158edb51119891424ed15237e9dc9c13474",
+      "dataset_pipeline/kernel_dataset/metax_c500_fused_moe_kernels.py": "40e0cd0e9439a6e060cb73ebe36f344ae25d0ba51efddd1ad38d154ece5f064b"
+    },
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "For each source role, take the median capacity across the three fresh-process captures of each adjacent non-production K/N geometry, then select the lower geometry median.",
+    "source_role_semantics": {
+      "w1": "source_topk=10, routed-weight multiply, production-kernel source path",
+      "w2": "source_topk=1, no routed-weight multiply and no activation refresh because the formal predictor separately prices the source-required activation copy"
+    }
+  },
+  "captures": {
+    "bm16_w1_k2048_n992": {
+      "median_event_ms": 1.4071807861328125,
+      "median_operand_pipeline_capacity_bytes_per_s": 1980823771521.3672,
+      "range_over_median": 0.0005403568143880556,
+      "rounds": [
+        {"event_median_ms": 1.4075315856933595, "operand_pipeline_capacity_bytes_per_s": 1980330090160.5837, "raw_sha256": "d74d15b772187a2ee2247518cd198700a8bcd3a25cf251fd23b46bfaa225fe66"},
+        {"event_median_ms": 1.4071807861328125, "operand_pipeline_capacity_bytes_per_s": 1980823771521.3672, "raw_sha256": "172fe930fa300476856dde75be8fbb86a4b5946a16e52357082bf56463b2a692"},
+        {"event_median_ms": 1.406771240234375, "operand_pipeline_capacity_bytes_per_s": 1981400438308.37, "raw_sha256": "4c492871c594dad700ae52fd4140e5b9d8044199053b153ededfb1eed4149390"}
+      ]
+    },
+    "bm16_w1_k2048_n1056": {
+      "median_event_ms": 1.4981964111328125,
+      "median_operand_pipeline_capacity_bytes_per_s": 1980519986532.635,
+      "range_over_median": 0.0008339709870354187,
+      "rounds": [
+        {"event_median_ms": 1.4981964111328125, "operand_pipeline_capacity_bytes_per_s": 1980519986532.635, "raw_sha256": "50ccfa204286a796eae8380338dc438c72c9e60492622e9334a7f1f4b31ba24c"},
+        {"event_median_ms": 1.498693084716797, "operand_pipeline_capacity_bytes_per_s": 1979863633360.7314, "raw_sha256": "b28bcdd8253ca843ace3b5d722ce71c7a6eb9300ea9af7ee57a4fe51b0d4ce42"},
+        {"event_median_ms": 1.49744384765625, "operand_pipeline_capacity_bytes_per_s": 1981515327365.4814, "raw_sha256": "7d6a476d541ea4661ddd50427446ef23284364284a73184b821ee636215fe1e5"}
+      ]
+    },
+    "bm16_w2_k512_n2016": {
+      "median_event_ms": 0.8501785278320313,
+      "median_operand_pipeline_capacity_bytes_per_s": 1665729464623.4473,
+      "range_over_median": 0.00013552268770302277,
+      "rounds": [
+        {"event_median_ms": 0.8501785278320313, "operand_pipeline_capacity_bytes_per_s": 1665729464623.4473, "raw_sha256": "d225b8a0e0869201eda6a08b6f57c6fe1fac71c1de1e3fd3768f12057e3abe94"},
+        {"event_median_ms": 0.8500787353515625, "operand_pipeline_capacity_bytes_per_s": 1665925008010.3735, "raw_sha256": "7479b373734964fdd9f5ca571a402e57cddb1728eaeccdcca6b24488e3ee9ed3"},
+        {"event_median_ms": 0.8501939392089843, "operand_pipeline_capacity_bytes_per_s": 1665699270118.9968, "raw_sha256": "5e8fc24444bd30703cae0f264215bdd66b6b859f00dfc848c814cf229934cb73"}
+      ]
+    },
+    "bm16_w2_k512_n2080": {
+      "median_event_ms": 0.8774553680419922,
+      "median_operand_pipeline_capacity_bytes_per_s": 1665184547517.7207,
+      "range_over_median": 0.0007996037821430343,
+      "rounds": [
+        {"event_median_ms": 0.8777037048339844, "operand_pipeline_capacity_bytes_per_s": 1664713401518.988, "raw_sha256": "1f226b001d73d3eead1ca48db889f34818e55d1c6aa4aa5eb116573e73dd392a"},
+        {"event_median_ms": 0.8774553680419922, "operand_pipeline_capacity_bytes_per_s": 1665184547517.7207, "raw_sha256": "4fe538fd8b209c899d79568cdd6558ed9eea014d1774a9644d80c9db21a63979"},
+        {"event_median_ms": 0.8770022583007813, "operand_pipeline_capacity_bytes_per_s": 1666044877502.3394, "raw_sha256": "28d8ba6001cb7e5241e28b02f3fda83036e5a296399d133ab47025ddf87df8c7"}
+      ]
+    },
+    "bm64_w1_k2048_n960": {
+      "median_event_ms": 2.032445373535156,
+      "median_operand_pipeline_capacity_bytes_per_s": 2600228822291.929,
+      "range_over_median": 0.000639674739567036,
+      "rounds": [
+        {"event_median_ms": 2.0319949340820314, "operand_pipeline_capacity_bytes_per_s": 2600805224146.6133, "raw_sha256": "bc59ad617de1b598cccab569c2378369096cc221a1710dfaa5e67d6bcd62a3e2"},
+        {"event_median_ms": 2.032445373535156, "operand_pipeline_capacity_bytes_per_s": 2600228822291.929, "raw_sha256": "6e598b94837d335ec606a3ce9aff238624bd94ea382cf4bd06de5ff2e7848625"},
+        {"event_median_ms": 2.0332952880859376, "operand_pipeline_capacity_bytes_per_s": 2599141930326.765, "raw_sha256": "1b04e3db8015f63d421fd2199c1bf958e8d7231751e0c8b4e721e913d18514b1"}
+      ]
+    },
+    "bm64_w1_k2048_n1088": {
+      "median_event_ms": 2.300200958251953,
+      "median_operand_pipeline_capacity_bytes_per_s": 2603888190948.2026,
+      "range_over_median": 0.0012993138661180625,
+      "rounds": [
+        {"event_median_ms": 2.297269744873047, "operand_pipeline_capacity_bytes_per_s": 2607210635741.4263, "raw_sha256": "ce6a564c0f6c667c33d8b52f07d4c965379227d810cf1d48ebecb89ecff24392"},
+        {"event_median_ms": 2.300254669189453, "operand_pipeline_capacity_bytes_per_s": 2603827390169.161, "raw_sha256": "d74508cea6991674ecbe626005da51e8f1d514e5505e8240994d819b2447b1e0"},
+        {"event_median_ms": 2.300200958251953, "operand_pipeline_capacity_bytes_per_s": 2603888190948.2026, "raw_sha256": "3376168b0e4b7929d65751d6badd5ae575314af94d090c37ae2a53d93ee12c2a"}
+      ]
+    },
+    "bm64_w2_k512_n1984": {
+      "median_event_ms": 1.1047039794921876,
+      "median_operand_pipeline_capacity_bytes_per_s": 2471695544407.433,
+      "range_over_median": 0.001409327697126379,
+      "rounds": [
+        {"event_median_ms": 1.1047039794921876, "operand_pipeline_capacity_bytes_per_s": 2471695544407.433, "raw_sha256": "9d2fa01ff8deb1281f212195981364dc7945896df61da44dc4275c6cedfc8df8"},
+        {"event_median_ms": 1.1062271881103516, "operand_pipeline_capacity_bytes_per_s": 2468292167600.947, "raw_sha256": "fcb9f614e1c255df7431480e83b804c8852033368068842b30616072532cbf6d"},
+        {"event_median_ms": 1.104668197631836, "operand_pipeline_capacity_bytes_per_s": 2471775606334.6167, "raw_sha256": "d24ada956be7da2c6461794385616ff9d6386141028f36964dc278435584877b"}
+      ]
+    },
+    "bm64_w2_k512_n2112": {
+      "median_event_ms": 1.1747891235351562,
+      "median_operand_pipeline_capacity_bytes_per_s": 2474190996298.424,
+      "range_over_median": 0.0004271982253516579,
+      "rounds": [
+        {"event_median_ms": 1.1743488311767578, "operand_pipeline_capacity_bytes_per_s": 2475118631563.149, "raw_sha256": "52d1254817c0b34eb86b19a21e7303ef8e2a7aa7e7b741ccc308b198fdc269c0"},
+        {"event_median_ms": 1.1747891235351562, "operand_pipeline_capacity_bytes_per_s": 2474190996298.424, "raw_sha256": "3d23b8ecbd26bd963f2978d14b502cfc37dace7cc08363088a71cb5267cb8295"},
+        {"event_median_ms": 1.1748505401611329, "operand_pipeline_capacity_bytes_per_s": 2474061655196.879, "raw_sha256": "0455f27e1a1b950cfb1b89bdfebff0d195e994680742ab028bbf5607f49bd05b"}
+      ]
+    }
+  },
+  "selected_services": {
+    "bm16_w1": {
+      "predicate": "E512 BM16 source with 512 routed source rows, 5,120 routed rows, 521 active M tiles, 800 maximum M tiles, and K/N tile class (32,32)",
+      "logical_byte_capacity_per_s": 1980519986532.635
+    },
+    "bm16_w2": {
+      "predicate": "E512 BM16 source with 5,120 source/routed rows, 521 active M tiles, 800 maximum M tiles, and K/N tile class (8,64)",
+      "logical_byte_capacity_per_s": 1665184547517.7207
+    },
+    "bm64_w1": {
+      "predicate": "E512 BM64 source with 1,024 routed source rows, 10,240 routed rows, 512 active M tiles, 664 maximum M tiles, and K/N tile class (64,16)",
+      "logical_byte_capacity_per_s": 2600228822291.929
+    },
+    "bm64_w2": {
+      "predicate": "E512 BM64 source with 10,240 source/routed rows, 512 active M tiles, 664 maximum M tiles, and K/N tile class (16,32)",
+      "logical_byte_capacity_per_s": 2471695544407.433
+    }
+  },
+  "raw": {
+    "bm16": [
+      "profiler_output/microbench/metax_c500/bm16_e512_all_active_short_queue_225ea4a3_20260910_r1",
+      "profiler_output/microbench/metax_c500/bm16_e512_all_active_short_queue_225ea4a3_20260910_r2"
+    ],
+    "bm64": [
+      "profiler_output/microbench/metax_c500/bm64_e512_all_active_single_tile_225ea4a3_20260910_r1",
+      "profiler_output/microbench/metax_c500/bm64_e512_all_active_single_tile_225ea4a3_20260910_r2"
+    ]
+  },
+  "allowed_conclusion": "The all-active E512 short queues use role-specific full-source operand completion services selected conservatively from adjacent non-production K/N geometries."
+}

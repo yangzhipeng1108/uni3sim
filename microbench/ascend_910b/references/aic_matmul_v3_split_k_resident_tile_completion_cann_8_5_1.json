@@ -1,0 +1,121 @@
+{
+  "cann_source": {
+    "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/3rd/mat_mul_v3/op_kernel/mat_mul_sc_splitk_kernel_gm_to_l1.h",
+    "sha256": "fd77d477b43422eb3f5da0c83f542c532e9d66ddf1c6480af49b65174878f223"
+  },
+  "capture": {
+    "container": "capture-container-2",
+    "iteration_counts": [64, 256, 1024, 4096],
+    "physical_device_id": 4,
+    "raw": [
+      {
+        "path": "profiler_output/microbench/ascend_910b/gemm_splitk_tile_aff7fd42_20260908/run1.csv",
+        "sha256": "de112a9ecad056c6bf128dbeac17f3fd351d923ca9154369fe49988eb261f636"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/gemm_splitk_tile_aff7fd42_20260908/run2.csv",
+        "sha256": "e2e2fe75a03765f000fdd977a0720189ea5b24dc91a91d1278b375d2c597e604"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/gemm_splitk_tile_aff7fd42_20260908/run3.csv",
+        "sha256": "29cb7d5fa4ad888b1c28c20b4dd11c8a8d2b2015b9a31a2853783f0b7b4accb3"
+      }
+    ],
+    "run_order": [
+      [[384, 64], [384, 256], [384, 1024], [384, 4096], [256, 64], [256, 256], [256, 1024], [256, 4096]],
+      [[256, 4096], [256, 1024], [256, 256], [256, 64], [384, 4096], [384, 1024], [384, 256], [384, 64]],
+      [[384, 64], [384, 256], [384, 1024], [384, 4096], [256, 64], [256, 256], [256, 1024], [256, 4096]]
+    ]
+  },
+  "forward_eligible": true,
+  "hardware_id": "ascend_910b",
+  "mechanism": "matmul_v3_key65632_resident_base_tile_completion",
+  "production_or_evaluation_duration_consumed": false,
+  "result": {
+    "median_cycles_per_tile_by_tile_k": {
+      "256": 28.445963541666668,
+      "384": 42.66796875
+    },
+    "median_ns_per_tile_by_tile_k": {
+      "256": 568.9192708333334,
+      "384": 853.359375
+    },
+    "system_counter_tick_ns": 20.0,
+    "tensor_operations_per_tile_by_tile_k": {
+      "256": 8388608,
+      "384": 12582912
+    },
+    "unit": "ns_per_aic_resident_base_tile_completion"
+  },
+  "schema": "ascend_910b_matmul_v3_split_k_resident_tile_reference_v2",
+  "scope": {
+    "active_aic_workers": 24,
+    "dtype": "bfloat16",
+    "excluded": [
+      "GM_to_L1",
+      "paired_AIV_cast_store",
+      "production_outer_loops",
+      "complete_production_operator"
+    ],
+    "included": [
+      "SetSingleShape",
+      "A1_B1_tensor_binding",
+      "MTE1_to_Cube",
+      "M_to_FixPipe_handoff",
+      "FP32_workspace_tile_store",
+      "Matmul_End",
+      "ping_pong_L0C_lifetime"
+    ],
+    "tile_k_values": [384, 256],
+    "tile_m": 128,
+    "tile_n": 128
+  },
+  "software_revision": "CANN 8.5.1",
+  "source_artifacts": [
+    {
+      "path": "microbench/ascend_910b/operators/gemm/single_core_split_k_tile/CMakeLists.txt",
+      "sha256": "1357338212cdc33a03fed17eee55f50cd82fc54b961eba173918c82bc946c0da"
+    },
+    {
+      "path": "microbench/ascend_910b/operators/gemm/single_core_split_k_tile/README.md",
+      "sha256": "38de19c5527dce54948e68cb5f48001a7e97f7d230c62f3982a79a3bba5c0400"
+    },
+    {
+      "path": "microbench/ascend_910b/operators/gemm/single_core_split_k_tile/single_core_split_k_tile_kernel.cpp",
+      "sha256": "648359c84ea8dfbac430513314d029a6f1057b97dfca9914a7264e38fb07b372"
+    },
+    {
+      "path": "microbench/ascend_910b/operators/gemm/single_core_split_k_tile/single_core_split_k_tile_main.cpp",
+      "sha256": "a1c1f3f8396a415fb757a21fcb8db52e5a8f2948f865db307d6784ad5b56cb36"
+    }
+  ],
+  "source_commit": "aff7fd42a0787e22eae435033543217626ed8b85",
+  "validation": {
+    "affine_error_limit": 0.05,
+    "count_relative_spans": {
+      "256": {
+        "1024": 0.00065287609099031,
+        "256": 0.0012401818933443572,
+        "4096": 0.00014593652619560645,
+        "64": 0.008963585434173669
+      },
+      "384": {
+        "1024": 0.000616917241694466,
+        "256": 0.0023675104716809323,
+        "4096": 0.00014298623900435822,
+        "64": 0.009255962976148096
+      }
+    },
+    "maximum_held_out_affine_error": 0.004271708683473389,
+    "stability_limit": 0.1,
+    "status": "pass",
+    "steady_cycles_per_tile_by_run": {
+      "256": [28.4443359375, 28.445963541666668, 28.447265625],
+      "384": [42.668294270833336, 42.667643229166664, 42.66796875]
+    },
+    "steady_relative_span": {
+      "256": 0.000102991325841668,
+      "384": 0.000015258323415534132
+    }
+  }
+}

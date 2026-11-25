@@ -1,0 +1,140 @@
+{
+ "derivation_rule": "minimum_all_binary_graph_replay_differentials_per_element",
+ "derivation_samples_per_element": 10,
+ "derivation_trials": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "device_name": "NVIDIA H200",
+ "duration_unit": "ns_per_task",
+ "floor_ns_by_elements": {
+  "1048576": 2275.2716,
+  "131072": 1604.339,
+  "16384": 1475.1104,
+  "16777216": 25209.1797,
+  "2048": 1247.0528,
+  "2097152": 2886.1055,
+  "262144": 1658.0734,
+  "32768": 1514.4575,
+  "33554432": 47675.1465,
+  "4096": 1432.1664,
+  "4194304": 4343.8595,
+  "524288": 1847.9616,
+  "65536": 1531.776,
+  "8192": 1481.536,
+  "8388608": 12129.9695
+ },
+ "hardware_id": "nvidia_h200",
+ "l2_capacity_transition": {
+  "elements": 16777216,
+  "note": "three bf16 streams put the working set at 50 MB at 8388608 elements and 101 MB at 16777216, crossing H200's 60 MiB (62.9 MB) L2. On H200 the largest per-doubling step of the floor (2.79x) is already between 4194304 and 8388608 elements (25 -> 50 MB), one sample below the nominal capacity crossing; the curve is a measured table and no breakpoint is chosen from it"
+ },
+ "lookup_rule": "step_down_largest_sampled_element_not_exceeding_request",
+ "lookup_rule_note": "step_down_largest_sampled_element_not_exceeding_request; each tabled value is the minimum measured at that element count, so the value at the largest sampled size at or below the request is used and no interpolation shape is chosen. The measured curve is NOT monotone: 16384 (1475.1 ns) < 8192 (1481.5 ns); no running maximum is applied (the A800 rule has none).",
+ "maximum_cross_sample_spread_fraction": 0.1591114792751709,
+ "maximum_validation_shortfall_fraction": 0.0059,
+ "model": "warm_bf16_binary_tensor_iterator_task_floor_curve_v1",
+ "monotone_non_decreasing": false,
+ "probe_launch_geometry": {
+  "block_threads": 128,
+  "grid_rule": "ceil(elements / 1024)",
+  "kernel_template": "at::native::vectorized_elementwise_kernel<8, at::native::BinaryFunctor<c10::BFloat16, ...>, ...>",
+  "note": "read from an nsys cuda_gpu_trace of torch.maximum (torch 2.11.0+cu129, vLLM 0.24 env) on the H200 as discrete launch facts; no duration was consumed. On H200 the template vectorizes 8 BF16 values per thread (A800 torch 2.8: 4), so 128 threads cover 1024 elements per CTA in both cases"
+ },
+ "production_or_evaluation_duration_consumed": false,
+ "profiler_attached": false,
+ "provenance": {
+  "clock_gate": [
+   {
+    "accepted": true,
+    "busy_clock_mhz_max": 1980,
+    "busy_clock_mhz_min": 1980,
+    "busy_clock_samples": 112,
+    "trial": 1
+   },
+   {
+    "accepted": true,
+    "busy_clock_mhz_max": 1980,
+    "busy_clock_mhz_min": 1980,
+    "busy_clock_samples": 122,
+    "trial": 2
+   },
+   {
+    "accepted": true,
+    "busy_clock_mhz_max": 1980,
+    "busy_clock_mhz_min": 1980,
+    "busy_clock_samples": 112,
+    "trial": 3
+   },
+   {
+    "accepted": true,
+    "busy_clock_mhz_max": 1980,
+    "busy_clock_mhz_min": 1980,
+    "busy_clock_samples": 112,
+    "trial": 4
+   },
+   {
+    "accepted": true,
+    "busy_clock_mhz_max": 1980,
+    "busy_clock_mhz_min": 1980,
+    "busy_clock_samples": 114,
+    "trial": 5
+   },
+   {
+    "accepted": true,
+    "busy_clock_mhz_max": 1980,
+    "busy_clock_mhz_min": 1980,
+    "busy_clock_samples": 109,
+    "trial": 6
+   }
+  ],
+  "clock_gate_rule": "nvidia-smi -lms 50 during each trial process; reject a trial with no busy sample or a busy sample below 1980 MHz",
+  "derivation": "microbench/nvidia_h200/runtime/task_floor/bf16_binary_task_floor_curve_reference.py",
+  "derivation_sha256": "e1d5e3e730771884f566f39e97f5f2272f7082f13856228c359ee87e3f012102",
+  "host_contention": "GPUs 1-3 of the same host were used concurrently by other workers; the per-element value is a minimum",
+  "launch_geometry_evidence": {
+   "observed": [
+    {
+     "elements": 2048,
+     "grid": 2
+    },
+    {
+     "elements": 1048576,
+     "grid": 1024
+    },
+    {
+     "elements": 33554432,
+     "grid": 32768
+    }
+   ],
+   "trace": "profiler_output/microbench/nvidia_h200/bf16_launch_geometry_wp7_20260925/geometry_cuda_gpu_trace.csv",
+   "trace_sha256": "a7068403b7150aca9a483932a9fab08d168894139dfa1f8451cb2d33c38c6eb8"
+  },
+  "python": "/capture-public/envs/vllm024/bin/python",
+  "remote_path": "h200-capture-host:/capture-public/h200_microbench/wp7_launch/runs/bf16_task_floor_wp7"
+ },
+ "raw_sha256": {
+  "curve2_trial_1.json": "36b66494f3be8e8d2119686d482548e8569ac49f7c64dcf7745aa153d83633b9",
+  "curve2_trial_2.json": "ff6107e08d5cfd1425a0231ec33c454d06f2b334135c6385cf45daedb9158a07",
+  "curve2_trial_3.json": "52fc7a33dfec4f1bcb7eb21a99905841b6f1f6d27e23278f115c3fa48e3da893",
+  "curve2_trial_4.json": "1022de45a9596003d148b146f09dc8ddf5b227b7ff1dd64ebc01a93def5a36c1",
+  "curve2_trial_5.json": "751f64383eb3474ee8236cab58500e67b00802e006efedfd2353b8ba629387d7",
+  "curve2_trial_6.json": "5fc2af6d83316b9e8d34cdd88b348528830fd1f6d654dad8b6dd11070475d826"
+ },
+ "runner": "microbench/nvidia_h200/runtime/task_floor/bf16_binary_task_floor_runner.py",
+ "runner_sha256": "0c7f2e16b35ef13509a3df272bbe71b20d8803207dbd5352b6b6458f7d96d783",
+ "schema_version": 1,
+ "software_revision": "torch_2.11.0+cu129_cuda_sm90",
+ "source_capture": "profiler_output/microbench/nvidia_h200/bf16_task_floor_wp7_20260925",
+ "target_operator_used": false,
+ "task_class": "pytorch_bf16_binary_tensor_iterator",
+ "timer_domain": "paired_differential_events_around_cuda_graph_replay",
+ "torch_version": "2.11.0+cu129",
+ "validation_below_floor_count": 4,
+ "validation_sample_count": 30,
+ "validation_trial": 6,
+ "warm_probe_caveat": "the probe replays the same tensors, so mid-size samples are L2-warm while production elementwise reads are colder. A warm measurement is faster than a cold one, so this curve is a conservative lower bound on production task time, which is the direction a floor requires; it must not be read as a prediction of production duration"
+}

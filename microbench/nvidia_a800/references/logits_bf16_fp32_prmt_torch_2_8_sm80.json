@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "evidence_kind": "independent_exact_prmt_register_service_with_source_mapping",
+  "production_source_reference": "embedding_id_widen_torch_2_8.json#/bf16_fp32_cast_static_evidence_only",
+  "capture_preparation": "profiler_output/microbench/nvidia_a800/operator_support_typed_20261023/prepare/receipt.json",
+  "source_program": "PRMT Rdst,RZ,0x5410,Rsrc; one output element per lane instruction",
+  "launch_domain": {
+    "source": "vllm_0_11_plain_sampler_bf16",
+    "dtype": "bf16",
+    "input_contiguous": true,
+    "maximum_elements": 536870912,
+    "threads": 128,
+    "values_per_thread": 4,
+    "registers_per_thread": 30,
+    "shared_bytes": 0,
+    "stack_bytes": 0
+  },
+  "predeclared_derivation_cell": {
+    "primitive": "prmt_bf16_expand",
+    "chains": 4,
+    "threads": 256,
+    "grid": 432,
+    "outer": 511,
+    "samples": 3
+  },
+  "derivation": "For each trial: median of work/span over actual same-SM groups (108 SM x3samples). Then median of the three trial medians. Each warp PRMT is32 lane operations. Per-subcore SI = median*32*1140000000/4. No production duration consumed.",
+  "trials": [
+    {
+      "trial": 1,
+      "receipt": "profiler_output/microbench/nvidia_a800/operator_support_typed_20261023/trial1/receipt.json",
+      "raw_csv": "profiler_output/microbench/nvidia_a800/operator_support_typed_20261023/trial1/095_prmt_bf16_expand_c4_t256_g432_o511.csv",
+      "raw_csv_sha256": "03c9b02ea937e15929635bbd74d77419c614d042ddc28a4043a89c6334abfe5b",
+      "telemetry": "profiler_output/microbench/nvidia_a800/operator_support_typed_20261023/trial1/clock_telemetry.csv",
+      "telemetry_samples": 92,
+      "observed_sm_clocks_mhz": [
+        1140
+      ],
+      "same_sm_groups": 324,
+      "observed_sm_count": 108,
+      "warp_prmt_per_sm_cycle_median": 1.967207516270117,
+      "rotation_warp_prmt_per_sm_cycle_median": 1.9672141962835483
+    },
+    {
+      "trial": 2,
+      "receipt": "profiler_output/microbench/nvidia_a800/operator_support_typed_20261023/trial2/receipt.json",
+      "raw_csv": "profiler_output/microbench/nvidia_a800/operator_support_typed_20261023/trial2/095_prmt_bf16_expand_c4_t256_g432_o511.csv",
+      "raw_csv_sha256": "b24fc9ab3d305f3b9b1340b75636d87a8681d4add18dc6906ba24cdf00dcc8eb",
+      "telemetry": "profiler_output/microbench/nvidia_a800/operator_support_typed_20261023/trial2/clock_telemetry.csv",
+      "telemetry_samples": 89,
+      "observed_sm_clocks_mhz": [
+        1140
+      ],
+      "same_sm_groups": 324,
+      "observed_sm_count": 108,
+      "warp_prmt_per_sm_cycle_median": 1.9672056077033155,
+      "rotation_warp_prmt_per_sm_cycle_median": 1.967207516270117
+    },
+    {
+      "trial": 3,
+      "receipt": "profiler_output/microbench/nvidia_a800/operator_support_typed_20261023/trial3/receipt.json",
+      "raw_csv": "profiler_output/microbench/nvidia_a800/operator_support_typed_20261023/trial3/095_prmt_bf16_expand_c4_t256_g432_o511.csv",
+      "raw_csv_sha256": "de133e74d1d19fceace1c3a7e7fc2247ae7405e3c509a96e065b9c2fe9bf5b8e",
+      "telemetry": "profiler_output/microbench/nvidia_a800/operator_support_typed_20261023/trial3/clock_telemetry.csv",
+      "telemetry_samples": 89,
+      "observed_sm_clocks_mhz": [
+        1140
+      ],
+      "same_sm_groups": 324,
+      "observed_sm_count": 108,
+      "warp_prmt_per_sm_cycle_median": 1.9672036991402178,
+      "rotation_warp_prmt_per_sm_cycle_median": 1.9672084705553692
+    }
+  ],
+  "derived_service": {
+    "name": "prmt_b32_bf16_expand",
+    "resource_role": "compute_alu",
+    "unit": "one lane PRMT Rdst,RZ,0x5410,Rsrc",
+    "measured_warp_prmt_per_sm_cycle": 1.9672056077033155,
+    "sm_clock_hz": 1140000000,
+    "physical_subcores_per_sm": 4,
+    "lane_prmt_per_sm_cycle": 62.9505794465061,
+    "service_rates_per_unit_s": 17940915142.25424
+  },
+  "independent_mechanism_caveats": [
+    "BF16-expand dependency stream becomes zero after2 operations; CPU/GPU verification and raw receipt disclose this",
+    "Distinct noncollapsing0x1032 rotation stream closely agrees at same declared geometry; no data-independent timing proof for all possible operands",
+    "Measured sustained register issue service includes bounded loop/scheduling/timer overhead; it is not an architecture-peak assertion",
+    "No pure-predicate, SHF, FP16 conversion, NaN/tie argmax, scheduler/provider, normal capacity or Serving acceptance inferred",
+    "Fixed1140MHz SI service is not extrapolated to other clocks"
+  ],
+  "production_duration_consumed": false,
+  "actual_provider_validation": false,
+  "serving_acceptance": false
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_matmul_v2_finite_ingress_completion.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_source_pair_finite_completion_v1",
+  "duration_unit": "ns_per_source_program_per_aic",
+  "source_program": {
+    "dtype": "bf16",
+    "active_aic_groups": [23, 24],
+    "operand_buffer_depth": 2,
+    "base_tile_m": 128,
+    "base_tile_n": 112,
+    "base_tile_k": 128,
+    "mte1_base_k": 64,
+    "a_rows": 128,
+    "a_columns": 256,
+    "b_rows": 112,
+    "b_columns": 256,
+    "minimum_completion_pairs_per_worker": 12,
+    "maximum_completion_pairs_per_worker": 96
+  },
+  "affine_service": {
+    "startup_ns": 2040.0,
+    "ns_per_completion_pair": 433.3333333333333,
+    "fit_cells": [
+      {"output_tiles_per_worker": 1, "k_slabs": 3, "completion_pairs_per_worker": 12, "completion_ns": 7240.0},
+      {"output_tiles_per_worker": 1, "k_slabs": 6, "completion_pairs_per_worker": 24, "completion_ns": 12620.0},
+      {"output_tiles_per_worker": 2, "k_slabs": 3, "completion_pairs_per_worker": 24, "completion_ns": 12260.0}
+    ]
+  },
+  "validation_cells": [
+    {"output_tiles_per_worker": 3, "k_slabs": 6, "completion_pairs_per_worker": 72, "completion_ns": 32210.0},
+    {"output_tiles_per_worker": 2, "k_slabs": 12, "completion_pairs_per_worker": 96, "completion_ns": 43600.0}
+  ],
+  "holdout": {
+    "output_tiles_per_worker": 2,
+    "k_slabs": 6,
+    "completion_pairs_per_worker": 48,
+    "completion_run_medians_ns": [22270.0, 22540.0, 22310.0],
+    "completion_median_of_run_medians_ns": 22310.0,
+    "predicted_completion_ns": 22840.0
+  },
+  "capture": {
+    "measurement_baseline_commit": "6e811730cf2936af8376c4b5b84795f42c6a1a4f",
+    "source_snapshot_sha256": "6b15796dcd49878bc074c85e5e9b3b7717b85ac890e2cf39dca1c066a66dcdad",
+    "binary_sha256": "5b69dae66bea0ee22eaab6140da0a8ba8b797ca0a10d02d152443e9f45b491c4",
+    "sweep_raw_path": "profiler_output/microbench/ascend_910b/gemm_k1536_ingress_sweep_6e811730_20260909_d4/raw.csv",
+    "sweep_raw_sha256": "e062fe98e44435e1679604bb548e5ad435f6ffa375f54ece80d34ec092eb0c69",
+    "holdout_raw_path": "profiler_output/microbench/ascend_910b/gemm_k1536_ingress_6e811730_20260909_d4_r2/raw.csv",
+    "holdout_raw_sha256": "cb6afc55da0517b255409b9808f2bfe80904b647e052de7f743d3833707cf0d1"
+  },
+  "production_or_evaluation_duration_consumed": false
+}

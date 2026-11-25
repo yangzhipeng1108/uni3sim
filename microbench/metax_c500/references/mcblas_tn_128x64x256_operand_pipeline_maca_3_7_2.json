@@ -1,0 +1,347 @@
+{
+  "applicability_domain": {
+    "ctas": [
+      70,
+      384
+    ],
+    "declared_from": "the swept geometry, not from where the residuals are small",
+    "m_values_swept": [
+      8,
+      32,
+      48,
+      64
+    ],
+    "note": "deployed launches reach 12 waves, beyond the 4 measured; those fall back to the largest measured wave count and score -7.7 to -11.0 percent. M > 64 leaves this program on both the swept grid and the deployed surface, so the M bound is a program boundary rather than a sweep limitation.",
+    "waves_measured": [
+      1,
+      3,
+      4
+    ]
+  },
+  "dtype": "bf16",
+  "form": {
+    "expression": "t_us = fill_us(waves, wave_fill) + split_k_reduction_us + rounds_per_cta * round_service_us",
+    "interpolation": "linear in wave_fill inside a measured wave count; a wave count beyond the measured range falls back to the largest measured one",
+    "round_service_us": "ctas * tile_n * tile_k * dtype_bytes / in_round_gb_s, tile_n = 128",
+    "rounds_per_cta": "K / (tile_k * split_k), tile_k = 256",
+    "units": "fill and service in microseconds; in_round_gb_s in GB/s of weight read",
+    "wave_fill": "ctas / (waves * 104)",
+    "waves": "ceil(ctas / 104), where 104 is the C500 AP count"
+  },
+  "hardware_id": "metax_c500",
+  "held_out_score_against_deployed_projections": {
+    "held_out_by_construction": "every sweep avoids the deployed K {2560,4096,9728,12288,14336} and the deployed N {2560,4096,6144,19456,24576,28672,128256,151936}",
+    "keyed_on_waves_and_wave_fill": {
+      "cells": 32,
+      "forward_mape_pct": 5.46,
+      "forward_signed_pct": -2.34,
+      "mechanism_mape_pct": 3.85,
+      "mechanism_signed_pct": -2.83,
+      "mechanism_worst_pct": -18.6,
+      "note": "the form was fixed before this score was computed and scored once; no functional form, threshold or breakpoint was chosen by looking at the residuals"
+    },
+    "known_weakness": "the tables pool the swept M values, and the three deployed M=64 cells are the worst at -11.9, -13.6 and -18.6 percent. M=64 is the last M inside this program; above it the vendor selects tn_128x128x128_4m1n8k_256t_4stage",
+    "superseded": {
+      "keyed_on_cta_count": {
+        "in_band_cells": 19,
+        "mape_pct": 2.98,
+        "out_of_band_mape_pct": 13.25
+      },
+      "keyed_on_wave_fill_only": {
+        "cells": 32,
+        "mape_pct": 6.58
+      }
+    }
+  },
+  "isolation_experiment": {
+    "design": "sweep N so that the same wave fill recurs at different wave counts, with the program identity verified at every point; 72 of 80 cells stayed in the program",
+    "question": "is the rate a function of wave fill alone, or does wave count matter separately?",
+    "reading": "the residual wave-count effect vanishes at full fill and grows as fill falls, so the table is keyed on both. The measurement also supplied the missing low-fill three-wave point (1238 GB/s at fill 0.692), which is why the deployed 224-CTA cells stop running fast",
+    "result": {
+      "fill_0.775": {
+        "1_wave_gb_s": 1509,
+        "4_wave_gb_s": 1346
+      },
+      "fill_0.850": {
+        "1_wave_gb_s": 1550,
+        "3_wave_gb_s": 1450
+      },
+      "fill_0.875": {
+        "3_wave_gb_s": 1524,
+        "4_wave_gb_s": 1491
+      },
+      "fill_0.925": {
+        "3_wave_gb_s": 1597,
+        "4_wave_gb_s": 1577
+      },
+      "fill_1.000": {
+        "1_wave_gb_s": 1572,
+        "3_wave_gb_s": 1562
+      }
+    }
+  },
+  "measured": {
+    "cta_range": [
+      70,
+      384
+    ],
+    "fill_us_by_waves_and_fill_split_k_1": {
+      "1": [
+        [
+          0.673,
+          9.5137
+        ],
+        [
+          0.769,
+          10.1218
+        ],
+        [
+          0.846,
+          7.706
+        ],
+        [
+          1.0,
+          9.5871
+        ]
+      ],
+      "3": [
+        [
+          0.692,
+          11.9322
+        ],
+        [
+          0.821,
+          13.0784
+        ],
+        [
+          0.846,
+          8.6923
+        ],
+        [
+          0.872,
+          13.9967
+        ],
+        [
+          0.923,
+          14.1693
+        ],
+        [
+          0.974,
+          13.0554
+        ],
+        [
+          1.0,
+          5.3904
+        ]
+      ],
+      "4": [
+        [
+          0.769,
+          12.3676
+        ],
+        [
+          0.808,
+          14.056
+        ],
+        [
+          0.865,
+          14.8247
+        ],
+        [
+          0.923,
+          15.7091
+        ]
+      ]
+    },
+    "groups": 42,
+    "in_round_gb_s_by_waves_and_fill": {
+      "1": [
+        [
+          0.673,
+          1354.3362
+        ],
+        [
+          0.769,
+          1458.9068
+        ],
+        [
+          0.846,
+          1530.9551
+        ],
+        [
+          1.0,
+          1566.3875
+        ]
+      ],
+      "3": [
+        [
+          0.692,
+          1238.3645
+        ],
+        [
+          0.821,
+          1441.0014
+        ],
+        [
+          0.846,
+          1449.9115
+        ],
+        [
+          0.872,
+          1524.1789
+        ],
+        [
+          0.923,
+          1596.5926
+        ],
+        [
+          0.974,
+          1611.5667
+        ],
+        [
+          1.0,
+          1523.9306
+        ]
+      ],
+      "4": [
+        [
+          0.769,
+          1345.6914
+        ],
+        [
+          0.808,
+          1405.7285
+        ],
+        [
+          0.865,
+          1491.0995
+        ],
+        [
+          0.923,
+          1576.8278
+        ]
+      ]
+    },
+    "m_swept": [
+      8,
+      32,
+      48,
+      64
+    ],
+    "non_production_points_timed": 538,
+    "split_k_fp32_external_reduction_us": 2.3129,
+    "waves_measured": [
+      1,
+      3,
+      4
+    ],
+    "within_group_worst_residual_pct": 4.8
+  },
+  "mechanism": "mcblas_tn_128x64x256_2m1n8k_256t_operand_pipeline",
+  "physical_reading": "A launch of C CTAs occupies ceil(C / 104) waves on the 104 APs and its last wave is only C mod 104 wide; the idle APs in that partial wave are what depress the achieved weight-read rate. The evidence that this is the right axis rather than raw CTA count: at wave fill 1.00 the rate is 1572 GB/s over one wave and 1562 over three, and scoring the deployed 9.6- and 11.4-wave lm_head cells on fill instead of on CTA count moves them from -12.5% to -3%. This is the per-kernel producers-per-unit quantity that gpu_memory_source declares it cannot supply, measured for one compiled program.",
+  "production_or_evaluation_duration_consumed": false,
+  "program": "mcblas__Mck_bf16gemm_tn_128x64x256_2m1n8k_256t_bf16_bf16_fp32",
+  "provenance": {
+    "capture": [
+      "profiler_output/microbench/metax_c500/mcblas_island_scan_20260923_r2",
+      "profiler_output/microbench/metax_c500/mcblas_island_widen_20260923_r1",
+      "profiler_output/microbench/metax_c500/mcblas_island_extend_20260923_r1",
+      "profiler_output/microbench/metax_c500/mcblas_wavefill_20260923_r1"
+    ],
+    "container": "capture-container-1",
+    "date": "2026-09-23",
+    "device_index": 0,
+    "host": "capture-host-1",
+    "identity_tool": "mcTracer, per-point program identity verified for every swept cell",
+    "midlayer_commit": "c32fba289",
+    "source": "microbench/metax_c500/operators/gemm/mcblas_projection_surface_runner.py",
+    "source_sha256": "f4ec4a69450b6eb9a90a7a080339befbeabf899eb9cf78f3d9119794694545b6",
+    "timer_domain": "maca_graph_replay_event, 8 rotating weight buffers",
+    "workspace": "vendor default; CUBLAS_WORKSPACE_CONFIG / MCBLAS_WORKSPACE_CONFIG / MACA_WORKSPACE unset"
+  },
+  "schema": "mcblas_program_operand_pipeline_v1",
+  "software_revision": "maca_3.7.2",
+  "status": "Measured and held-out scored; beats the current Forward across the whole island. Not yet wired -- wiring is implementation plus three-hardware revalidation, not further measurement.",
+  "torch_build": "2.4.0+metax3.7.2.0",
+  "why_not_wired": "Nothing further to measure for this island. What remains is implementation: a C500-gated consumer keyed on the launch signature the canonical GEMM launch selection already carries (tile_m, tile_n, tile_k, split_k, reduction), then the full three-hardware revalidation with A800 and 910B bit-identical. The island is 41.3% of predicted decode GEMM time across the nine C500 TP1 dense cells; the rest of the surface stays on the current path until its own programs are measured.",
+  "wiring_form": {
+    "efficiency_range": [
+      0.749,
+      0.975
+    ],
+    "expression": "in_round_gb_s = dram_effective_capacity * in_round_efficiency(waves, wave_fill)",
+    "in_round_efficiency_by_waves_and_fill": {
+      "1": [
+        [
+          0.673,
+          0.8193
+        ],
+        [
+          0.769,
+          0.8825
+        ],
+        [
+          0.846,
+          0.9261
+        ],
+        [
+          1.0,
+          0.9476
+        ]
+      ],
+      "3": [
+        [
+          0.692,
+          0.7491
+        ],
+        [
+          0.821,
+          0.8717
+        ],
+        [
+          0.846,
+          0.8771
+        ],
+        [
+          0.872,
+          0.922
+        ],
+        [
+          0.923,
+          0.9658
+        ],
+        [
+          0.974,
+          0.9749
+        ],
+        [
+          1.0,
+          0.9219
+        ]
+      ],
+      "4": [
+        [
+          0.769,
+          0.8141
+        ],
+        [
+          0.808,
+          0.8504
+        ],
+        [
+          0.865,
+          0.902
+        ],
+        [
+          0.923,
+          0.9539
+        ]
+      ]
+    },
+    "physical_meaning": "the fraction of the device's DRAM capacity a launch achieves when its last wave leaves APs idle. It is the per-kernel producers-per-unit / independent-request quantity gpu_memory_source's own docstring declares it cannot supply, measured for one compiled program.",
+    "remaining_work": "a C500-gated consumer in the GEMM predictor keyed on the launch signature canonical already carries (tile_m 64, tile_n 128, tile_k 256, split_k, fp32_external reduction), a mechanism entry in configs/hardware/metax_c500.yaml binding this reference by SHA the way the fused-MoE operand pipelines are bound, and the three-hardware revalidation with A800 and 910B bit-identical.",
+    "repository_dram_capacity_gb_s": 1653.1,
+    "second_order_m_dependence": "at matched geometry the round grows 0.6 to 9.2 percent from M=8 to M=64, mostly under 5 percent. It is recorded but not modelled; it is why the three deployed M=64 cells are the worst scored.",
+    "statement": "The repository's C500 DRAM effective_capacity is flat at 1653.1 GB/s in the number of active units, so it already carries the peak but not the occupancy dependence. The measurement is therefore published as a dimensionless in-round efficiency multiplying that existing capacity, rather than as a replacement rate table."
+  }
+}

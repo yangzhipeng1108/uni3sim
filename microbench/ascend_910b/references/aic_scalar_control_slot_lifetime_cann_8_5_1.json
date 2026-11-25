@@ -1,0 +1,55 @@
+{
+  "duration_unit": "ns_per_source_slot_lifetime_iteration_per_aic",
+  "forward_eligibility_constraint": "Measured and reproducible, but deliberately not consumed by Forward. It covers only the minimal slot-lifetime control skeleton, not the FIA source's full per-iteration scalar program, and at roughly 7.19 ns per iteration it contributes well under one percent of any 910B FA task in the canonical set -- about 0.5 us across the ~66 descriptors per AIC of FLASHATTN_B1_S8192_HQ32_HKV8_D128_C0, whose measured duration is 51096 ns. Its value here is as a falsification: AIC scalar control does not scale with active AIC group count and cannot account for the under-predicted body of the 910B FA residual.",
+  "forward_eligible": false,
+  "hardware_id": "ascend_910b",
+  "measurement": {
+    "host_span_not_published": "aclrtEventElapsedTime host spans failed the declared 5% process-median stability gate at three processes, so no mix-task envelope parameter is published from this campaign; the host medians are recorded in the report for reference only",
+    "internal_span_pct_by_active_aic_groups": {
+      "1": 1.0753,
+      "16": 0.0,
+      "22": 0.0,
+      "24": 0.0,
+      "4": 0.0,
+      "8": 0.0
+    },
+    "measurement_baseline_commit": "1b6bf72064b2ba1011c3959aa7267943c19cde70",
+    "mechanism_gate_passed": true,
+    "mode": "independent_mix_task_scalar_control_microbenchmark",
+    "physical_device_id": 5,
+    "process_count": 3,
+    "registration_path": "microbench/ascend_910b/operators/flash_attn/aic_scalar_control_floor/REGISTRATION.md",
+    "report_path": "profiler_output/microbench/ascend_910b/aic_scalar_control_floor_20260922_r1/report.json",
+    "separation_pct_at_24_groups": 9200.0,
+    "timing_boundary": "internal: GetSystemCycle before the first iteration's WaitFlag<MTE1_MTE2> to GetSystemCycle after PipeBarrier<PIPE_ALL> following the last slot release, max over AIC cores per launch; host: aclrtEventElapsedTime across launch and synchronize; envelope = host minus internal; process median per cell"
+  },
+  "mechanism": "aic_scalar_control_slot_lifetime",
+  "mechanism_publishable": true,
+  "parameter_fit_from_production_duration": false,
+  "production_or_evaluation_duration_consumed": false,
+  "publication_scope": {
+    "active_aic_groups": [
+      1,
+      4,
+      8,
+      16,
+      22,
+      24
+    ],
+    "actor_topology": "mix_aic_1_2",
+    "control_body": "one source L1 slot lifetime with the descriptor removed: WaitFlag<MTE1_MTE2> on a two-slot ping-pong, one descriptor's source and destination address arithmetic, SetFlag<MTE2_MTE1>, WaitFlag<MTE2_MTE1>, SetFlag<MTE1_MTE2>; no DataCopy, LoadData, Mmad, Fixpipe, Vector arithmetic or production memory traffic",
+    "estimator": "slope_from_iters_256_cells_only",
+    "group_independence_span_pct": 1.087,
+    "ns_per_iteration": 7.1875,
+    "ns_per_iteration_by_active_aic_groups": {
+      "1": 7.2656,
+      "16": 7.1875,
+      "22": 7.1875,
+      "24": 7.1875,
+      "4": 7.2656,
+      "8": 7.1875
+    }
+  },
+  "schema_version": 1,
+  "software_revision": "cann_8.5.1"
+}

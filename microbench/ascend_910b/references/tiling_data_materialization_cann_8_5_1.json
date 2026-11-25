@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "tiling_struct_materialization",
+  "model": "shared_aiv_tiling_materialization_affine_v1",
+  "formula": "startup_ns + serialized_ns_per_aiv * active_aiv_workers",
+  "request_size_unit": "active_aiv_workers",
+  "duration_unit": "ns_per_complete_tiling_materialization_phase",
+  "minimum_active_aiv_workers": 1,
+  "maximum_active_aiv_workers": 48,
+  "parameters": {
+    "startup_ns": 72.24797060254156,
+    "serialized_ns_per_aiv": 30.28680482540925
+  },
+  "mechanism": "one AIV InitTilingData GM-to-UB copy, MTE2-to-Scalar handoff, UB-to-local copy, and PIPE_ALL barrier",
+  "scope": "CANN AIV typed tiling-struct materialization",
+  "composition": "one source-proven prologue phase before the AIV operator body",
+  "source_commit": "55eeec12c85f2e23f97ec678bce36d0ef3fcebcb",
+  "source_sha256": "3f2c2c460a1df9fad01f5b9efd07004af042fce7fd3cd55108e874f8f3937c5b",
+  "template_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/ascendc/reshape_and_cache/reshape_and_cache.cpp",
+  "template_sha256": "dda9a4f36ec658ceec13b54dfd26388218f119d2dca42abf533b7d81d38185b8",
+  "host_tiler_sha256": "2be9b7e4b0514931abdc2899ce8104de30a2aae83fed43e3668e48b28009f2cf",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/tiling_data_3bd66536_20260828_r5/run1.csv",
+      "sha256": "43c95239ae335d4aef900d30eb54f81c8c60ca2e2da8d022ba6bdc1cbdc2feca"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/tiling_data_3bd66536_20260828_r5/run2.csv",
+      "sha256": "299a3e65233344c2d9f01f94435f99450c89c72f7eb06286868af8e62ce89704"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/tiling_data_3bd66536_20260828_r5/run3.csv",
+      "sha256": "bfdcde5e49936bc867dbb700f1bb61eb02d4fa4a6462f56be38eb3911c9ad236"
+    }
+  ],
+  "independent_runs": 3,
+  "samples_per_cell": 24,
+  "block_dims": [1, 24, 48],
+  "medians_ns_by_run_and_block_dim": {
+    "run1": {"1": 115.445149739583, "24": 770.05859375, "48": 1540.138346354167},
+    "run2": {"1": 119.3318684895835, "24": 770.02685546875, "48": 1540.3605143229165},
+    "run3": {"1": 115.44677734375, "24": 770.016276041667, "48": 1540.3841145833335}
+  },
+  "run_relative_median_spread_by_block_dim": {
+    "1": 0.03366675830566971,
+    "24": 0.00005495614605190552,
+    "48": 0.0001595524079468795
+  },
+  "training_run_ids": ["run1", "run2"],
+  "validation_run_ids": ["run3"],
+  "parameter_stability": {
+    "serialized_ns_per_aiv_relative_span": 0.0025531876596342714,
+    "startup_relative_span": 0.04485516934942994
+  },
+  "training_metrics": {
+    "mape": 0.05777083866714911,
+    "wmae": 0.023964075863512988,
+    "maximum_ape": 0.1407594909410047
+  },
+  "validation_metrics": {
+    "mape": 0.05299439673052836,
+    "wmae": 0.023248177128514947,
+    "maximum_ape": 0.11184376223298899
+  },
+  "measurement_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

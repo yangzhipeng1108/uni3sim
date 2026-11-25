@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_elementwise_single_tile_finite_worker_completion_47_workers",
+  "request_size_unit": "source_worker_programs",
+  "service_time_unit": "ns_per_maximum_worker_program",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "1": 1080.0
+  },
+  "source_contract": {
+    "active_aiv_workers": 47,
+    "input_streams": 2,
+    "output_streams": 1,
+    "full_tile_elements": 1408,
+    "tail_tile_elements": 768,
+    "full_tile_bytes_per_input": 2816,
+    "tail_tile_bytes_per_input": 1536,
+    "tbuf_bytes": 28160,
+    "tiles_per_worker": 1,
+    "production_add_or_mul_arithmetic_executed": false,
+    "completion_boundary": "PIPE_ALL barrier before the worker end counter"
+  },
+  "derivation": {
+    "statistic": "median across independent runs of the maximum per-worker body span",
+    "run_values_ns": [960.0, 1110.0, 1080.0],
+    "median_ns": 1080.0,
+    "cross_run_spread_percent": 13.88888888888889,
+    "maximum_allowed_cross_run_spread_percent": 20.0
+  },
+  "composition": "max of the existing analytical bounds and this exact one-tile 2R1W memory/control completion; aggregate production Vector arithmetic remains independently conserved",
+  "source_path": "microbench/ascend_910b/operators/vector/elementwise_single_tile_program",
+  "source_files_sha256": {
+    "CMakeLists.txt": "40445965f498718da1c2fa60d2ffe690591ce518c3f2780ff7744127a49c36a2",
+    "elementwise_single_tile_program_contract.h": "89db3e729226eeecf08f44767df464b50eb01a365c5cfe1f6eda68d200ecd766",
+    "elementwise_single_tile_program_kernel.cpp": "dd3f9c6ad23837a959941036f91664b273ea9355dc7137a3fa87af1f506c174c",
+    "elementwise_single_tile_program_main.cpp": "7351e055dfdb5a210c2df1c1c6b0e34631808062b6af2018439f99a012228b1b"
+  },
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/elementwise_single_tile_span_819a68c7_20260907_d7/span_run1.csv",
+      "sha256": "a736bf96366a3767767ff416b792ca5fcb183680d65ed0a0abed3353d0e963fd"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/elementwise_single_tile_span_819a68c7_20260907_d7/span_run2.csv",
+      "sha256": "7b5778756b86bf3531a18abad3cecef413167512baacfad6bcc6ecb278953672"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/elementwise_single_tile_span_819a68c7_20260907_d7/span_run3.csv",
+      "sha256": "cde02ae8d211122d3cbeaaf498993d97b81dd7e61dc41159e573cf61675db811"
+    }
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

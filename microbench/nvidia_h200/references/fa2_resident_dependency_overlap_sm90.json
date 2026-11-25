@@ -1,0 +1,274 @@
+{
+  "allowed_conclusion": "For the three captured source geometries with exactly two resident 128-thread CTAs per SM on H200, each measured dependency has a finite conservative per-CTA demand-factor upper bound derived from the maximum 264/132 aggregate grid-span ratio across three trials. CTA barriers and FP32 quad reductions additionally satisfy the frozen near-complete-overlap gates. Keys named *_216_to_108 keep the A800 schema names and hold the H200 264/132 ratios.",
+  "artifact_sha256": {
+    "binary": "d1920533e852759d3117e72066bbc192979af557c8754339a004710f6e11fc81",
+    "capture_manifest": "83553f521d91c9120e545415e27e69e4471d5c52d024435b8ba914f5fcb8853f",
+    "raw": "1533e376d976e8c1471a28cbb7f29ba939c361b6513aaff57f504c53ade7c6e3",
+    "report": "04ee051f9fb9db5a891992eed1474df693d2bb87f9ad7130650b5257537de08c",
+    "reporter": "ad27c03400ecf7fa81a96c768d92f50d2c329fb6568f282909eae147daac4101",
+    "runner": "9664b706af16a28392173fea35503d4cccf5fb3f82312046227d92b4d5275ab6",
+    "source": "a459add9f513477fc99bbafefa1012e952a3e99c9afc2361e22e89d460ba6a54"
+  },
+  "compute_capability": "sm_90",
+  "contention_span_upper_bounds": [
+    {
+      "cross_trial_ratio_spread": 0.021782764420018055,
+      "lane_local_rows_per_thread": 2,
+      "maximum_grid_span_ratio_216_to_108": 1.4317343173431734,
+      "mode_name": "fp32_max_quad4",
+      "per_cta_demand_factor_upper_bound": 0.7158671586715867,
+      "score_values_per_lane_local_row": 32
+    },
+    {
+      "cross_trial_ratio_spread": 0.04155870548188808,
+      "lane_local_rows_per_thread": 2,
+      "maximum_grid_span_ratio_216_to_108": 1.0246913580246915,
+      "mode_name": "cta_barrier",
+      "per_cta_demand_factor_upper_bound": 0.5123456790123457,
+      "score_values_per_lane_local_row": 32
+    },
+    {
+      "cross_trial_ratio_spread": 0.007168458781361984,
+      "lane_local_rows_per_thread": 2,
+      "maximum_grid_span_ratio_216_to_108": 1.0,
+      "mode_name": "fp32_quad4_sum",
+      "per_cta_demand_factor_upper_bound": 0.5,
+      "score_values_per_lane_local_row": 32
+    },
+    {
+      "cross_trial_ratio_spread": 0.0021086150074034987,
+      "lane_local_rows_per_thread": 2,
+      "maximum_grid_span_ratio_216_to_108": 1.5127768313458263,
+      "mode_name": "fp32_scale_exp2_sum",
+      "per_cta_demand_factor_upper_bound": 0.7563884156729132,
+      "score_values_per_lane_local_row": 32
+    },
+    {
+      "cross_trial_ratio_spread": 0.0888828380660211,
+      "lane_local_rows_per_thread": 2,
+      "maximum_grid_span_ratio_216_to_108": 1.5922799306393245,
+      "mode_name": "integer_column_predicate",
+      "per_cta_demand_factor_upper_bound": 0.7961399653196622,
+      "score_values_per_lane_local_row": 32
+    },
+    {
+      "cross_trial_ratio_spread": 0.01856170536207857,
+      "lane_local_rows_per_thread": 2,
+      "maximum_grid_span_ratio_216_to_108": 1.2268518518518519,
+      "mode_name": "fp32_to_bf16_conversion",
+      "per_cta_demand_factor_upper_bound": 0.6134259259259259,
+      "score_values_per_lane_local_row": 32
+    },
+    {
+      "cross_trial_ratio_spread": 0.015417142877993974,
+      "lane_local_rows_per_thread": 4,
+      "maximum_grid_span_ratio_216_to_108": 1.4429611271237863,
+      "mode_name": "fp32_max_quad4",
+      "per_cta_demand_factor_upper_bound": 0.7214805635618932,
+      "score_values_per_lane_local_row": 16
+    },
+    {
+      "cross_trial_ratio_spread": 0.01636052406346704,
+      "lane_local_rows_per_thread": 4,
+      "maximum_grid_span_ratio_216_to_108": 1.0040160642570282,
+      "mode_name": "cta_barrier",
+      "per_cta_demand_factor_upper_bound": 0.5020080321285141,
+      "score_values_per_lane_local_row": 16
+    },
+    {
+      "cross_trial_ratio_spread": 0.034865406643757195,
+      "lane_local_rows_per_thread": 4,
+      "maximum_grid_span_ratio_216_to_108": 1.0243055555555556,
+      "mode_name": "fp32_quad4_sum",
+      "per_cta_demand_factor_upper_bound": 0.5121527777777778,
+      "score_values_per_lane_local_row": 16
+    },
+    {
+      "cross_trial_ratio_spread": 0.00841822609266327,
+      "lane_local_rows_per_thread": 4,
+      "maximum_grid_span_ratio_216_to_108": 1.5503875276854928,
+      "mode_name": "fp32_scale_exp2_sum",
+      "per_cta_demand_factor_upper_bound": 0.7751937638427464,
+      "score_values_per_lane_local_row": 16
+    },
+    {
+      "cross_trial_ratio_spread": 0.01100408492897811,
+      "lane_local_rows_per_thread": 4,
+      "maximum_grid_span_ratio_216_to_108": 1.540078761498029,
+      "mode_name": "integer_column_predicate",
+      "per_cta_demand_factor_upper_bound": 0.7700393807490145,
+      "score_values_per_lane_local_row": 16
+    },
+    {
+      "cross_trial_ratio_spread": 0.026198192051850644,
+      "lane_local_rows_per_thread": 4,
+      "maximum_grid_span_ratio_216_to_108": 1.2181818181818183,
+      "mode_name": "fp32_to_bf16_conversion",
+      "per_cta_demand_factor_upper_bound": 0.6090909090909091,
+      "score_values_per_lane_local_row": 16
+    },
+    {
+      "cross_trial_ratio_spread": 0.004269220168272329,
+      "lane_local_rows_per_thread": 4,
+      "maximum_grid_span_ratio_216_to_108": 1.5782688766114181,
+      "mode_name": "fp32_max_quad4",
+      "per_cta_demand_factor_upper_bound": 0.7891344383057091,
+      "score_values_per_lane_local_row": 32
+    },
+    {
+      "cross_trial_ratio_spread": 0.032988724948977824,
+      "lane_local_rows_per_thread": 4,
+      "maximum_grid_span_ratio_216_to_108": 1.0164609053497942,
+      "mode_name": "cta_barrier",
+      "per_cta_demand_factor_upper_bound": 0.5082304526748971,
+      "score_values_per_lane_local_row": 32
+    },
+    {
+      "cross_trial_ratio_spread": 0.0018462999792216912,
+      "lane_local_rows_per_thread": 4,
+      "maximum_grid_span_ratio_216_to_108": 1.0297723292469352,
+      "mode_name": "fp32_quad4_sum",
+      "per_cta_demand_factor_upper_bound": 0.5148861646234676,
+      "score_values_per_lane_local_row": 32
+    },
+    {
+      "cross_trial_ratio_spread": 0.0044902346498374235,
+      "lane_local_rows_per_thread": 4,
+      "maximum_grid_span_ratio_216_to_108": 1.6271298252606858,
+      "mode_name": "fp32_scale_exp2_sum",
+      "per_cta_demand_factor_upper_bound": 0.8135649126303429,
+      "score_values_per_lane_local_row": 32
+    },
+    {
+      "cross_trial_ratio_spread": 0.00455194201183134,
+      "lane_local_rows_per_thread": 4,
+      "maximum_grid_span_ratio_216_to_108": 1.6855576260030636,
+      "mode_name": "integer_column_predicate",
+      "per_cta_demand_factor_upper_bound": 0.8427788130015318,
+      "score_values_per_lane_local_row": 32
+    },
+    {
+      "cross_trial_ratio_spread": 0.0309597998434358,
+      "lane_local_rows_per_thread": 4,
+      "maximum_grid_span_ratio_216_to_108": 1.251101321585903,
+      "mode_name": "fp32_to_bf16_conversion",
+      "per_cta_demand_factor_upper_bound": 0.6255506607929515,
+      "score_values_per_lane_local_row": 32
+    }
+  ],
+  "device_name": "NVIDIA H200",
+  "device_uuid": "capture-device-077372b98985",
+  "evidence_kind": "independent_two_resident_cta_scalar_dependency_microbenchmark",
+  "excluded_conclusions": [
+    "a complete production FlashAttention duration",
+    "resident counts other than two",
+    "source geometries outside the three captured entries",
+    "CUDA admission topology"
+  ],
+  "h200_provenance": {
+    "clock": {
+      "busy_samples": 480,
+      "busy_sm_clock_mhz_max": 1980,
+      "busy_sm_clock_mhz_mean": 1980.0,
+      "busy_sm_clock_mhz_min": 1980,
+      "logger": "nvidia-smi -lms 50 timestamp,clocks.sm,utilization.gpu",
+      "target_sm_clock_mhz": 1980,
+      "total_samples": 1855
+    },
+    "clock_gate": {
+      "accepted_cells": 126,
+      "passes": 1,
+      "rejected_cell_runs_rerun": 0,
+      "rejected_cells": []
+    },
+    "compiler": "CUDA 12.2 nvcc -arch=sm_90 -cudart static (same toolchain as the A800 sm_80 captures)",
+    "device": "NVIDIA H200 SXM (h200-capture-host GPU 2)",
+    "files": {
+      "operators/flash_attn/fa2_resident_dependency_overlap.cu": {
+        "path": "microbench/nvidia_h200/operators/flash_attn/fa2_resident_dependency_overlap.cu",
+        "sha256": "a459add9f513477fc99bbafefa1012e952a3e99c9afc2361e22e89d460ba6a54"
+      },
+      "operators/flash_attn/fa2_resident_dependency_overlap_report.py": {
+        "path": "microbench/nvidia_h200/operators/flash_attn/fa2_resident_dependency_overlap_report.py",
+        "sha256": "ad27c03400ecf7fa81a96c768d92f50d2c329fb6568f282909eae147daac4101"
+      },
+      "operators/flash_attn/fa2_resident_dependency_overlap_runner.py": {
+        "path": "microbench/nvidia_h200/operators/flash_attn/fa2_resident_dependency_overlap_runner.py",
+        "sha256": "9664b706af16a28392173fea35503d4cccf5fb3f82312046227d92b4d5275ab6"
+      },
+      "operators/flash_attn/fa2_scalar_dependency.cu": {
+        "path": "microbench/nvidia_h200/operators/flash_attn/fa2_scalar_dependency.cu",
+        "sha256": "73b1818517ed13096433fa275794a714718ec6f1ba1b4ab1fd41892bd2f579a9"
+      }
+    },
+    "git_commit_of_probe_sources": "7b6b4c46aaeb8173a44677a8ee48c9105f901f52",
+    "hardware_id": "nvidia_h200",
+    "key_name_note": "*_216_to_108 keys hold span(264)/span(132) on H200",
+    "local_derived_dir": "profiler_output/microbench/nvidia_h200/h200_fa2_resident_dependency_20260925_r1",
+    "measured_sm_clock_mhz_for_cycle_ns_conversion": 1980,
+    "production_or_evaluation_duration_consumed": false,
+    "raw_sha256": "1533e376d976e8c1471a28cbb7f29ba939c361b6513aaff57f504c53ade7c6e3",
+    "remote_raw_path": "/capture-public/h200_microbench/wp6_fa2dep/repo/profiler_output/microbench/nvidia_h200/h200_fa2_resident_dependency_20260925_r1/raw.csv",
+    "run_id": "h200_fa2_resident_dependency_20260925_r1",
+    "vllm_runtime_note": "these probes model the FA2 (sm80 source) program unchanged; the H200 vLLM 0.24 deployment runs FA3 for MLA attention"
+  },
+  "h200_yaml_values": {
+    "two_resident_demand_factors": {
+      "cta_barrier": 0.5020080321285141,
+      "fp32_max_quad4": 0.7214805635618932,
+      "fp32_quad4_sum": 0.5121527777777778,
+      "fp32_scale_exp2_sum": 0.7751937638427464,
+      "fp32_to_bf16_conversion": 0.6090909090909091,
+      "integer_column_predicate": 0.7700393807490145,
+      "resident_ctas_per_sm": 2
+    },
+    "yaml_key": "register_reduction_dependency_cycles.entries[lane_local_rows_per_thread=4,score_values_per_lane_local_row=16].two_resident_demand_factors"
+  },
+  "hardware_id": "nvidia_h200",
+  "maximum_overlap_cross_trial_ratio_spread": 0.04155870548188808,
+  "maximum_overlap_cta_cycle_ratio_216_to_108": 1.0372694428598592,
+  "maximum_overlap_grid_span_ratio_216_to_108": 1.0297723292469352,
+  "overlap_classes": [
+    "cta_barrier",
+    "fp32_quad4_sum"
+  ],
+  "physical_device_index": 2,
+  "production_or_evaluation_duration_consumed": false,
+  "publication_gates": {
+    "all_cells_have_constant_clocks": true,
+    "all_contention_cross_trial_ratio_spreads_at_most_0_10": true,
+    "all_contention_grid_span_ratios_finite_and_at_most_2_00": true,
+    "barrier_and_quad_cross_trial_ratio_spread_at_most_0_10": true,
+    "barrier_and_quad_cta_cycle_ratio_at_most_1_10": true,
+    "barrier_and_quad_grid_span_ratio_at_most_1_10": true
+  },
+  "resource_contract": {
+    "dynamic_shared_bytes_per_cta": 77824,
+    "one_resident_grid": 132,
+    "physical_sm_count": 132,
+    "resident_ctas_per_sm": 2,
+    "threads_per_cta": 128,
+    "two_resident_grid": 264
+  },
+  "schema": "nvidia_h200_fa2_resident_dependency_overlap_reference_v1",
+  "source_baseline_commit": "7b6b4c46aaeb8173a44677a8ee48c9105f901f52",
+  "source_capture": "profiler_output/microbench/nvidia_h200/h200_fa2_resident_dependency_20260925_r1",
+  "source_geometries": [
+    {
+      "lane_local_rows_per_thread": 2,
+      "score_values_per_lane_local_row": 32
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 16
+    },
+    {
+      "lane_local_rows_per_thread": 4,
+      "score_values_per_lane_local_row": 32
+    }
+  ],
+  "timer_domains": [
+    "cuda_event_grid_span",
+    "clock64_same_cta_envelope_cycles"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_mte2_fia_gqa_interleaved_finite_drain_override",
+  "duration_unit": "ns_per_finite_descriptor_program_per_aic",
+  "publication_scope": {
+    "source_residency": "dram_cold_disjoint",
+    "source_address_layout": "bshd_eight_head_interleaved",
+    "dtype": "bf16",
+    "completion_edge": "MTE2_MTE1_after_every_descriptor",
+    "estimator": "exact_measured_geometry_and_descriptor_count_only",
+    "programs": [
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 1024,
+        "active_aic_groups": 8,
+        "descriptor_count": 16,
+        "duration_ns": 22260.0
+      },
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 1024,
+        "active_aic_groups": 8,
+        "descriptor_count": 32,
+        "duration_ns": 44420.0
+      }
+    ]
+  },
+  "measurement": {
+    "mode": "independent_finite_drained_descriptor_microbenchmark",
+    "measurement_baseline_commit": "682707403ab7fb9ae3182f2e880430f97789a8ba",
+    "physical_device_id": 5,
+    "binary_sha256": "ae0a45e824f4c4c95a1095c7b3a934e3999c7963266d0eb1e269747e0443befe",
+    "source_kernel_sha256": "c7bed0914048809b28ae95de5a505375328d6d572bdaa7e09e77b3b954d877a9",
+    "source_main_sha256": "1fc48829e6cf031145b9f559b9282993870a92ff83c1f5f9deaf4d44cf42520f",
+    "cmake_sha256": "817c4281b4d7c1dfd1742020d9e8fcb98a9fcefa108bc1d193993f9a7157ac5e",
+    "raw_paths": [
+      "profiler_output/microbench/ascend_910b/fia_gqa_interleaved_finite_drain_68270740_20260906_r1/raw/d128_g8_c16_mode2_r1.csv",
+      "profiler_output/microbench/ascend_910b/fia_gqa_interleaved_finite_drain_68270740_20260906_r1/raw/d128_g8_c16_mode2_r2.csv",
+      "profiler_output/microbench/ascend_910b/fia_gqa_interleaved_finite_drain_68270740_20260906_r1/raw/d128_g8_c16_mode2_r3.csv",
+      "profiler_output/microbench/ascend_910b/fia_gqa_interleaved_finite_drain_68270740_20260906_r1/raw/d128_g8_c32_mode2_r1.csv",
+      "profiler_output/microbench/ascend_910b/fia_gqa_interleaved_finite_drain_68270740_20260906_r1/raw/d128_g8_c32_mode2_r2.csv",
+      "profiler_output/microbench/ascend_910b/fia_gqa_interleaved_finite_drain_68270740_20260906_r1/raw/d128_g8_c32_mode2_r3.csv"
+    ],
+    "raw_sha256": [
+      "a52c7ab7450463e77dcc0c43ba5e8a61ce2bdcbaf4d2788f87040f83eb9e03a4",
+      "b5661652541a823105c88b66e8d064a689c77b3963bc1128bdcda17d4241d58e",
+      "1cb9c921062c58b36e3a2ab241a009fef2bf8f3007a1f50324b60caca8c20646",
+      "ef46b697ee0a7c36dc0cfcb70964407949e5877f19dd94b38171cc69172da9f0",
+      "ef46b697ee0a7c36dc0cfcb70964407949e5877f19dd94b38171cc69172da9f0",
+      "31b101d20e00d2e9d87b1945d77c074138579ebff5c9b80307f1de8b6e894aca"
+    ],
+    "program_run_duration_ns": [
+      [22500.0, 22260.0, 21960.0],
+      [44420.0, 44420.0, 43820.0]
+    ],
+    "maximum_program_deviation_pct": [
+      1.3477088948787062,
+      1.35074290859973
+    ],
+    "mechanism_gate_passed": true
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "only the exact listed BF16 FIA GQA BSHD eight-head-interleaved K/V source geometries, descriptor counts and AIC concurrency, disjoint DRAM-cold residency, and an MTE2-to-MTE1 completion edge after every descriptor"
+}

@@ -1,0 +1,3321 @@
+{
+  "kind": "static_post_wait_matrix_preparation_issue",
+  "hardware_id": "nvidia_h200",
+  "production_or_evaluation_duration_consumed": false,
+  "parser_path": "dataset_pipeline/kernel_dataset/nvidia_h200_matrix_preparation.py",
+  "parser_sha256": "d57c99849dfa7c40aa08946ecb231b79414becb11ab17ea0c52f983ecd6cd72d",
+  "classes": [
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 98304,
+        "registers_per_thread": 116,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 43,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/output_n128/source_sass.txt",
+          "source_sha256": "7ac1e4e085984def0b02417ef8afbb871fca74fa7af3f33a2af529923b5ebb86",
+          "projection": "w1",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 43,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2b8150b57b60",
+            "loop_end": "0x2b8150b58270",
+            "first_matrix_address": "0x2b8150b57e70",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2b8150b57b60",
+                "instruction": "DEPBAR.LE SB0, 0x2"
+              },
+              {
+                "address": "0x2b8150b57b70",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2b8150b57b80",
+                "instruction": "UIADD3 UR13, UR13, 0x1, URZ"
+              },
+              {
+                "address": "0x2b8150b57b90",
+                "instruction": "ISETP.GE.AND P4, PT, R12, R91, PT"
+              },
+              {
+                "address": "0x2b8150b57ba0",
+                "instruction": "USHF.L.U32 UR6, UR16, 0x7, URZ"
+              },
+              {
+                "address": "0x2b8150b57bb0",
+                "instruction": "IMAD.MOV.U32 R110, RZ, RZ, R18"
+              },
+              {
+                "address": "0x2b8150b57bc0",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR13, 0x2, UPT"
+              },
+              {
+                "address": "0x2b8150b57bd0",
+                "instruction": "SEL R98, RZ, 0x10, P4"
+              },
+              {
+                "address": "0x2b8150b57be0",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x200, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b8150b57bf0",
+                "instruction": "ISETP.LE.AND P4, PT, R17, UR4, PT"
+              },
+              {
+                "address": "0x2b8150b57c00",
+                "instruction": "USEL UR13, UR13, URZ, !UP0"
+              },
+              {
+                "address": "0x2b8150b57c10",
+                "instruction": "SEL R94, R98, RZ, !P0"
+              },
+              {
+                "address": "0x2b8150b57c20",
+                "instruction": "UMOV UR9, 0x40000040"
+              },
+              {
+                "address": "0x2b8150b57c30",
+                "instruction": "UMOV UR11, 0x40000040"
+              },
+              {
+                "address": "0x2b8150b57c40",
+                "instruction": "ULEA UR5, UR13, UR7, 0xe"
+              },
+              {
+                "address": "0x2b8150b57c50",
+                "instruction": "SEL R95, R98, RZ, !P1"
+              },
+              {
+                "address": "0x2b8150b57c60",
+                "instruction": "UIADD3 UR12, UR12, 0x1, URZ"
+              },
+              {
+                "address": "0x2b8150b57c70",
+                "instruction": "SEL R94, R94, RZ, !P4"
+              },
+              {
+                "address": "0x2b8150b57c80",
+                "instruction": "UIADD3 UR6, UR5, 0xc000, URZ"
+              },
+              {
+                "address": "0x2b8150b57c90",
+                "instruction": "SEL R95, R95, RZ, !P4"
+              },
+              {
+                "address": "0x2b8150b57ca0",
+                "instruction": "ULEA.HI UR8, UR5, UR8, URZ, 0x1c"
+              },
+              {
+                "address": "0x2b8150b57cb0",
+                "instruction": "ISETP.NE.U32.AND P5, PT, R94, RZ, PT"
+              },
+              {
+                "address": "0x2b8150b57cc0",
+                "instruction": "USHF.R.U32.HI UR6, URZ, 0x4, UR6"
+              },
+              {
+                "address": "0x2b8150b57cd0",
+                "instruction": "ISETP.NE.U32.AND P6, PT, R95, RZ, PT"
+              },
+              {
+                "address": "0x2b8150b57ce0",
+                "instruction": "ULOP3.LUT UR8, UR8, 0x3fff, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b8150b57cf0",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b8150b57d00",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b8150b57d10",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b8150b57d20",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b8150b57d30",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2b8150b57d40",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2b8150b57d50",
+                "instruction": "USGXT.U32 UR10, UR6, 0xe"
+              },
+              {
+                "address": "0x2b8150b57d60",
+                "instruction": "IMAD.MOV.U32 R94, RZ, RZ, R88"
+              },
+              {
+                "address": "0x2b8150b57d70",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2b8150b57d80",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2b8150b57d90",
+                "instruction": "IMAD.MOV.U32 R95, RZ, RZ, R23"
+              },
+              {
+                "address": "0x2b8150b57da0",
+                "instruction": "SEL R99, R98, RZ, !P2"
+              },
+              {
+                "address": "0x2b8150b57db0",
+                "instruction": "IMAD.WIDE.U32 R104, R22, 0x10, R102"
+              },
+              {
+                "address": "0x2b8150b57dc0",
+                "instruction": "SEL R100, R98, RZ, !P3"
+              },
+              {
+                "address": "0x2b8150b57dd0",
+                "instruction": "UIADD3 UR4, UR4, 0x1, URZ"
+              },
+              {
+                "address": "0x2b8150b57de0",
+                "instruction": "SEL R99, R99, RZ, !P4"
+              },
+              {
+                "address": "0x2b8150b57df0",
+                "instruction": "IMAD.WIDE.U32 R96, R22, 0x10, R94"
+              },
+              {
+                "address": "0x2b8150b57e00",
+                "instruction": "SEL R100, R100, RZ, !P4"
+              },
+              {
+                "address": "0x2b8150b57e10",
+                "instruction": "SEL R98, R98, RZ, !P4"
+              },
+              {
+                "address": "0x2b8150b57e20",
+                "instruction": "IMAD.WIDE.U32 R94, R22, 0x10, R110"
+              },
+              {
+                "address": "0x2b8150b57e30",
+                "instruction": "ISETP.NE.U32.AND P4, PT, R98, RZ, PT"
+              },
+              {
+                "address": "0x2b8150b57e40",
+                "instruction": "IMAD.MOV.U32 R98, RZ, RZ, R16"
+              },
+              {
+                "address": "0x2b8150b57e50",
+                "instruction": "VIADD R91, R91, 0xffffffc0"
+              },
+              {
+                "address": "0x2b8150b57e60",
+                "instruction": "WARPGROUP.ARRIVE"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 98304,
+        "registers_per_thread": 116,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 43,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/output_n128/source_sass.txt",
+          "source_sha256": "7ac1e4e085984def0b02417ef8afbb871fca74fa7af3f33a2af529923b5ebb86",
+          "projection": "w2",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 43,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2b7fa4e26d50",
+            "loop_end": "0x2b7fa4e27460",
+            "first_matrix_address": "0x2b7fa4e27060",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2b7fa4e26d50",
+                "instruction": "DEPBAR.LE SB0, 0x2"
+              },
+              {
+                "address": "0x2b7fa4e26d60",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2b7fa4e26d70",
+                "instruction": "UIADD3 UR13, UR13, 0x1, URZ"
+              },
+              {
+                "address": "0x2b7fa4e26d80",
+                "instruction": "ISETP.GE.AND P4, PT, R14, R91, PT"
+              },
+              {
+                "address": "0x2b7fa4e26d90",
+                "instruction": "USHF.L.U32 UR6, UR17, 0x7, URZ"
+              },
+              {
+                "address": "0x2b7fa4e26da0",
+                "instruction": "IMAD.MOV.U32 R110, RZ, RZ, R18"
+              },
+              {
+                "address": "0x2b7fa4e26db0",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR13, 0x2, UPT"
+              },
+              {
+                "address": "0x2b7fa4e26dc0",
+                "instruction": "SEL R98, RZ, 0x10, P4"
+              },
+              {
+                "address": "0x2b7fa4e26dd0",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x200, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b7fa4e26de0",
+                "instruction": "ISETP.LE.AND P4, PT, R17, UR4, PT"
+              },
+              {
+                "address": "0x2b7fa4e26df0",
+                "instruction": "USEL UR13, UR13, URZ, !UP0"
+              },
+              {
+                "address": "0x2b7fa4e26e00",
+                "instruction": "SEL R94, R98, RZ, !P1"
+              },
+              {
+                "address": "0x2b7fa4e26e10",
+                "instruction": "UMOV UR9, 0x40000040"
+              },
+              {
+                "address": "0x2b7fa4e26e20",
+                "instruction": "UMOV UR11, 0x40000040"
+              },
+              {
+                "address": "0x2b7fa4e26e30",
+                "instruction": "ULEA UR5, UR13, UR7, 0xe"
+              },
+              {
+                "address": "0x2b7fa4e26e40",
+                "instruction": "SEL R95, R98, RZ, !P2"
+              },
+              {
+                "address": "0x2b7fa4e26e50",
+                "instruction": "UIADD3 UR12, UR12, 0x1, URZ"
+              },
+              {
+                "address": "0x2b7fa4e26e60",
+                "instruction": "SEL R94, R94, RZ, !P4"
+              },
+              {
+                "address": "0x2b7fa4e26e70",
+                "instruction": "UIADD3 UR6, UR5, 0xc000, URZ"
+              },
+              {
+                "address": "0x2b7fa4e26e80",
+                "instruction": "SEL R95, R95, RZ, !P4"
+              },
+              {
+                "address": "0x2b7fa4e26e90",
+                "instruction": "ULEA.HI UR8, UR5, UR8, URZ, 0x1c"
+              },
+              {
+                "address": "0x2b7fa4e26ea0",
+                "instruction": "ISETP.NE.U32.AND P5, PT, R94, RZ, PT"
+              },
+              {
+                "address": "0x2b7fa4e26eb0",
+                "instruction": "USHF.R.U32.HI UR6, URZ, 0x4, UR6"
+              },
+              {
+                "address": "0x2b7fa4e26ec0",
+                "instruction": "ISETP.NE.U32.AND P6, PT, R95, RZ, PT"
+              },
+              {
+                "address": "0x2b7fa4e26ed0",
+                "instruction": "ULOP3.LUT UR8, UR8, 0x3fff, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b7fa4e26ee0",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b7fa4e26ef0",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b7fa4e26f00",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b7fa4e26f10",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b7fa4e26f20",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2b7fa4e26f30",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2b7fa4e26f40",
+                "instruction": "USGXT.U32 UR10, UR6, 0xe"
+              },
+              {
+                "address": "0x2b7fa4e26f50",
+                "instruction": "IMAD.MOV.U32 R94, RZ, RZ, R88"
+              },
+              {
+                "address": "0x2b7fa4e26f60",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2b7fa4e26f70",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2b7fa4e26f80",
+                "instruction": "IMAD.MOV.U32 R95, RZ, RZ, R23"
+              },
+              {
+                "address": "0x2b7fa4e26f90",
+                "instruction": "SEL R99, R98, RZ, !P3"
+              },
+              {
+                "address": "0x2b7fa4e26fa0",
+                "instruction": "IMAD.WIDE.U32 R104, R22, 0x10, R102"
+              },
+              {
+                "address": "0x2b7fa4e26fb0",
+                "instruction": "SEL R100, R98, RZ, !P0"
+              },
+              {
+                "address": "0x2b7fa4e26fc0",
+                "instruction": "UIADD3 UR4, UR4, 0x1, URZ"
+              },
+              {
+                "address": "0x2b7fa4e26fd0",
+                "instruction": "SEL R99, R99, RZ, !P4"
+              },
+              {
+                "address": "0x2b7fa4e26fe0",
+                "instruction": "IMAD.WIDE.U32 R96, R22, 0x10, R94"
+              },
+              {
+                "address": "0x2b7fa4e26ff0",
+                "instruction": "SEL R100, R100, RZ, !P4"
+              },
+              {
+                "address": "0x2b7fa4e27000",
+                "instruction": "SEL R98, R98, RZ, !P4"
+              },
+              {
+                "address": "0x2b7fa4e27010",
+                "instruction": "IMAD.WIDE.U32 R94, R22, 0x10, R110"
+              },
+              {
+                "address": "0x2b7fa4e27020",
+                "instruction": "ISETP.NE.U32.AND P4, PT, R98, RZ, PT"
+              },
+              {
+                "address": "0x2b7fa4e27030",
+                "instruction": "IMAD.MOV.U32 R98, RZ, RZ, R16"
+              },
+              {
+                "address": "0x2b7fa4e27040",
+                "instruction": "VIADD R91, R91, 0xffffffc0"
+              },
+              {
+                "address": "0x2b7fa4e27050",
+                "instruction": "WARPGROUP.ARRIVE"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 256,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 210,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 47,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/source_sass.txt",
+          "source_sha256": "4b6b5e3b0b649b76034f855c1e7088d265f2022d67b49ad56259fae807d69192",
+          "projection": "w1",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 47,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2b6bb7b580c0",
+            "loop_end": "0x2b6bb7b589c0",
+            "first_matrix_address": "0x2b6bb7b58410",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2b6bb7b580c0",
+                "instruction": "DEPBAR.LE SB0, 0x4"
+              },
+              {
+                "address": "0x2b6bb7b580d0",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2b6bb7b580e0",
+                "instruction": "UIADD3 UR12, UR12, 0x1, URZ"
+              },
+              {
+                "address": "0x2b6bb7b580f0",
+                "instruction": "ISETP.GE.AND P4, PT, R13, R186, PT"
+              },
+              {
+                "address": "0x2b6bb7b58100",
+                "instruction": "USHF.L.U32 UR6, UR13, 0x7, URZ"
+              },
+              {
+                "address": "0x2b6bb7b58110",
+                "instruction": "VIADD R199, R199, 0x1"
+              },
+              {
+                "address": "0x2b6bb7b58120",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR12, 0x3, UPT"
+              },
+              {
+                "address": "0x2b6bb7b58130",
+                "instruction": "SEL R8, RZ, 0x10, P4"
+              },
+              {
+                "address": "0x2b6bb7b58140",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x200, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b6bb7b58150",
+                "instruction": "ISETP.LE.AND P4, PT, R206, UR4, PT"
+              },
+              {
+                "address": "0x2b6bb7b58160",
+                "instruction": "USEL UR12, UR12, URZ, !UP0"
+              },
+              {
+                "address": "0x2b6bb7b58170",
+                "instruction": "SEL R4, R8, RZ, !P0"
+              },
+              {
+                "address": "0x2b6bb7b58180",
+                "instruction": "UMOV UR9, 0x40000040"
+              },
+              {
+                "address": "0x2b6bb7b58190",
+                "instruction": "UMOV UR11, 0x40000040"
+              },
+              {
+                "address": "0x2b6bb7b581a0",
+                "instruction": "ULEA UR5, UR12, UR7, 0xe"
+              },
+              {
+                "address": "0x2b6bb7b581b0",
+                "instruction": "SEL R5, R8, RZ, !P1"
+              },
+              {
+                "address": "0x2b6bb7b581c0",
+                "instruction": "IMAD.MOV.U32 R6, RZ, RZ, R195"
+              },
+              {
+                "address": "0x2b6bb7b581d0",
+                "instruction": "SEL R4, R4, RZ, !P4"
+              },
+              {
+                "address": "0x2b6bb7b581e0",
+                "instruction": "UIADD3 UR6, UR5, 0x20000, URZ"
+              },
+              {
+                "address": "0x2b6bb7b581f0",
+                "instruction": "ISETP.GT.AND P6, PT, R199, 0x3, PT"
+              },
+              {
+                "address": "0x2b6bb7b58200",
+                "instruction": "ULEA UR5, UR12, UR5, 0xe"
+              },
+              {
+                "address": "0x2b6bb7b58210",
+                "instruction": "SEL R5, R5, RZ, !P4"
+              },
+              {
+                "address": "0x2b6bb7b58220",
+                "instruction": "ULEA.HI UR6, UR6, UR8, URZ, 0x1c"
+              },
+              {
+                "address": "0x2b6bb7b58230",
+                "instruction": "ISETP.NE.U32.AND P5, PT, R4, RZ, PT"
+              },
+              {
+                "address": "0x2b6bb7b58240",
+                "instruction": "USHF.R.U32.HI UR5, URZ, 0x4, UR5"
+              },
+              {
+                "address": "0x2b6bb7b58250",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b6bb7b58260",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b6bb7b58270",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b6bb7b58280",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b6bb7b58290",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2b6bb7b582a0",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2b6bb7b582b0",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x3fff, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b6bb7b582c0",
+                "instruction": "SEL R199, R199, RZ, !P6"
+              },
+              {
+                "address": "0x2b6bb7b582d0",
+                "instruction": "USGXT.U32 UR10, UR5, 0xe"
+              },
+              {
+                "address": "0x2b6bb7b582e0",
+                "instruction": "ISETP.NE.U32.AND P6, PT, R5, RZ, PT"
+              },
+              {
+                "address": "0x2b6bb7b582f0",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2b6bb7b58300",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2b6bb7b58310",
+                "instruction": "IMAD.MOV.U32 R7, RZ, RZ, R204"
+              },
+              {
+                "address": "0x2b6bb7b58320",
+                "instruction": "SEL R9, R8, RZ, !P2"
+              },
+              {
+                "address": "0x2b6bb7b58330",
+                "instruction": "IMAD.MOV.U32 R4, RZ, RZ, R181"
+              },
+              {
+                "address": "0x2b6bb7b58340",
+                "instruction": "SEL R10, R8, RZ, !P3"
+              },
+              {
+                "address": "0x2b6bb7b58350",
+                "instruction": "IMAD.MOV.U32 R5, RZ, RZ, R202"
+              },
+              {
+                "address": "0x2b6bb7b58360",
+                "instruction": "SEL R9, R9, RZ, !P4"
+              },
+              {
+                "address": "0x2b6bb7b58370",
+                "instruction": "IMAD.WIDE.U32 R6, R14, 0x10, R6"
+              },
+              {
+                "address": "0x2b6bb7b58380",
+                "instruction": "SEL R10, R10, RZ, !P4"
+              },
+              {
+                "address": "0x2b6bb7b58390",
+                "instruction": "UIADD3 UR4, UR4, 0x1, URZ"
+              },
+              {
+                "address": "0x2b6bb7b583a0",
+                "instruction": "SEL R8, R8, RZ, !P4"
+              },
+              {
+                "address": "0x2b6bb7b583b0",
+                "instruction": "IMAD R17, R199, 0x4000, R12"
+              },
+              {
+                "address": "0x2b6bb7b583c0",
+                "instruction": "IMAD.WIDE.U32 R4, R14, 0x10, R4"
+              },
+              {
+                "address": "0x2b6bb7b583d0",
+                "instruction": "ISETP.NE.U32.AND P4, PT, R8, RZ, PT"
+              },
+              {
+                "address": "0x2b6bb7b583e0",
+                "instruction": "IMAD R207, R199, 0x4000, R17"
+              },
+              {
+                "address": "0x2b6bb7b583f0",
+                "instruction": "WARPGROUP.ARRIVE"
+              },
+              {
+                "address": "0x2b6bb7b58400",
+                "instruction": "VIADD R186, R186, 0xffffffc0"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 256,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 214,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 47,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/source_sass.txt",
+          "source_sha256": "4b6b5e3b0b649b76034f855c1e7088d265f2022d67b49ad56259fae807d69192",
+          "projection": "w2",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 47,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2b6b728291b0",
+            "loop_end": "0x2b6b72829ab0",
+            "first_matrix_address": "0x2b6b72829500",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2b6b728291b0",
+                "instruction": "DEPBAR.LE SB0, 0x4"
+              },
+              {
+                "address": "0x2b6b728291c0",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2b6b728291d0",
+                "instruction": "UIADD3 UR12, UR12, 0x1, URZ"
+              },
+              {
+                "address": "0x2b6b728291e0",
+                "instruction": "ISETP.GE.AND P4, PT, R173, R200, PT"
+              },
+              {
+                "address": "0x2b6b728291f0",
+                "instruction": "USHF.L.U32 UR6, UR13, 0x7, URZ"
+              },
+              {
+                "address": "0x2b6b72829200",
+                "instruction": "VIADD R202, R202, 0x1"
+              },
+              {
+                "address": "0x2b6b72829210",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR12, 0x3, UPT"
+              },
+              {
+                "address": "0x2b6b72829220",
+                "instruction": "SEL R12, RZ, 0x10, P4"
+              },
+              {
+                "address": "0x2b6b72829230",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x200, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b6b72829240",
+                "instruction": "ISETP.LE.AND P4, PT, R209, UR4, PT"
+              },
+              {
+                "address": "0x2b6b72829250",
+                "instruction": "USEL UR12, UR12, URZ, !UP0"
+              },
+              {
+                "address": "0x2b6b72829260",
+                "instruction": "SEL R8, R12, RZ, !P0"
+              },
+              {
+                "address": "0x2b6b72829270",
+                "instruction": "UMOV UR9, 0x40000040"
+              },
+              {
+                "address": "0x2b6b72829280",
+                "instruction": "UMOV UR11, 0x40000040"
+              },
+              {
+                "address": "0x2b6b72829290",
+                "instruction": "ULEA UR5, UR12, UR7, 0xe"
+              },
+              {
+                "address": "0x2b6b728292a0",
+                "instruction": "SEL R9, R12, RZ, !P1"
+              },
+              {
+                "address": "0x2b6b728292b0",
+                "instruction": "IMAD.MOV.U32 R10, RZ, RZ, R197"
+              },
+              {
+                "address": "0x2b6b728292c0",
+                "instruction": "SEL R8, R8, RZ, !P4"
+              },
+              {
+                "address": "0x2b6b728292d0",
+                "instruction": "UIADD3 UR6, UR5, 0x20000, URZ"
+              },
+              {
+                "address": "0x2b6b728292e0",
+                "instruction": "ISETP.GT.AND P6, PT, R202, 0x3, PT"
+              },
+              {
+                "address": "0x2b6b728292f0",
+                "instruction": "ULEA UR5, UR12, UR5, 0xe"
+              },
+              {
+                "address": "0x2b6b72829300",
+                "instruction": "SEL R9, R9, RZ, !P4"
+              },
+              {
+                "address": "0x2b6b72829310",
+                "instruction": "ULEA.HI UR6, UR6, UR8, URZ, 0x1c"
+              },
+              {
+                "address": "0x2b6b72829320",
+                "instruction": "ISETP.NE.U32.AND P5, PT, R8, RZ, PT"
+              },
+              {
+                "address": "0x2b6b72829330",
+                "instruction": "USHF.R.U32.HI UR5, URZ, 0x4, UR5"
+              },
+              {
+                "address": "0x2b6b72829340",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b6b72829350",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b6b72829360",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b6b72829370",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b6b72829380",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2b6b72829390",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2b6b728293a0",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x3fff, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b6b728293b0",
+                "instruction": "SEL R202, R202, RZ, !P6"
+              },
+              {
+                "address": "0x2b6b728293c0",
+                "instruction": "USGXT.U32 UR10, UR5, 0xe"
+              },
+              {
+                "address": "0x2b6b728293d0",
+                "instruction": "ISETP.NE.U32.AND P6, PT, R9, RZ, PT"
+              },
+              {
+                "address": "0x2b6b728293e0",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2b6b728293f0",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2b6b72829400",
+                "instruction": "IMAD.MOV.U32 R11, RZ, RZ, R208"
+              },
+              {
+                "address": "0x2b6b72829410",
+                "instruction": "SEL R13, R12, RZ, !P2"
+              },
+              {
+                "address": "0x2b6b72829420",
+                "instruction": "IMAD.MOV.U32 R8, RZ, RZ, R184"
+              },
+              {
+                "address": "0x2b6b72829430",
+                "instruction": "SEL R14, R12, RZ, !P3"
+              },
+              {
+                "address": "0x2b6b72829440",
+                "instruction": "IMAD.MOV.U32 R9, RZ, RZ, R205"
+              },
+              {
+                "address": "0x2b6b72829450",
+                "instruction": "SEL R13, R13, RZ, !P4"
+              },
+              {
+                "address": "0x2b6b72829460",
+                "instruction": "IMAD.WIDE.U32 R10, R175, 0x10, R10"
+              },
+              {
+                "address": "0x2b6b72829470",
+                "instruction": "SEL R14, R14, RZ, !P4"
+              },
+              {
+                "address": "0x2b6b72829480",
+                "instruction": "UIADD3 UR4, UR4, 0x1, URZ"
+              },
+              {
+                "address": "0x2b6b72829490",
+                "instruction": "SEL R12, R12, RZ, !P4"
+              },
+              {
+                "address": "0x2b6b728294a0",
+                "instruction": "IMAD R17, R202, 0x4000, R181"
+              },
+              {
+                "address": "0x2b6b728294b0",
+                "instruction": "IMAD.WIDE.U32 R8, R175, 0x10, R8"
+              },
+              {
+                "address": "0x2b6b728294c0",
+                "instruction": "ISETP.NE.U32.AND P4, PT, R12, RZ, PT"
+              },
+              {
+                "address": "0x2b6b728294d0",
+                "instruction": "IMAD R211, R202, 0x4000, R17"
+              },
+              {
+                "address": "0x2b6b728294e0",
+                "instruction": "WARPGROUP.ARRIVE"
+              },
+              {
+                "address": "0x2b6b728294f0",
+                "instruction": "VIADD R200, R200, 0xffffffc0"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 64,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 120,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 29,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E128_TOPK4_H2880_INT2880/startup_source_sass.txt",
+          "source_sha256": "69893a89944afcd05cb427f6d7881bbd23b8af8336fefaa4feedc70c80a31782",
+          "projection": "w1",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 29,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2b27f8b586a0",
+            "loop_end": "0x2b27f8b58f30",
+            "first_matrix_address": "0x2b27f8b588d0",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2b27f8b586a0",
+                "instruction": "DEPBAR.LE SB0, 0x2"
+              },
+              {
+                "address": "0x2b27f8b586b0",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2b27f8b586c0",
+                "instruction": "UIADD3 UR15, UR15, 0x1, URZ"
+              },
+              {
+                "address": "0x2b27f8b586d0",
+                "instruction": "ISETP.GE.AND P4, PT, R9, UR13, PT"
+              },
+              {
+                "address": "0x2b27f8b586e0",
+                "instruction": "UIADD3 UR14, UR14, 0x1, URZ"
+              },
+              {
+                "address": "0x2b27f8b586f0",
+                "instruction": "IMAD.MOV.U32 R96, RZ, RZ, R106"
+              },
+              {
+                "address": "0x2b27f8b58700",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR15, 0x2, UPT"
+              },
+              {
+                "address": "0x2b27f8b58710",
+                "instruction": "SEL R98, RZ, 0x10, P4"
+              },
+              {
+                "address": "0x2b27f8b58720",
+                "instruction": "UMOV UR9, 0x40000040"
+              },
+              {
+                "address": "0x2b27f8b58730",
+                "instruction": "UMOV UR11, 0x40000040"
+              },
+              {
+                "address": "0x2b27f8b58740",
+                "instruction": "USEL UR15, UR15, URZ, !UP0"
+              },
+              {
+                "address": "0x2b27f8b58750",
+                "instruction": "SEL R94, R98, RZ, !P0"
+              },
+              {
+                "address": "0x2b27f8b58760",
+                "instruction": "IMAD.MOV.U32 R97, RZ, RZ, R111"
+              },
+              {
+                "address": "0x2b27f8b58770",
+                "instruction": "SEL R95, R98, RZ, !P1"
+              },
+              {
+                "address": "0x2b27f8b58780",
+                "instruction": "ULEA UR5, UR15, UR7, 0xd"
+              },
+              {
+                "address": "0x2b27f8b58790",
+                "instruction": "SEL R99, R98, RZ, !P2"
+              },
+              {
+                "address": "0x2b27f8b587a0",
+                "instruction": "IMAD.WIDE.U32 R96, R14, 0x10, R96"
+              },
+              {
+                "address": "0x2b27f8b587b0",
+                "instruction": "UIADD3 UR13, UR13, -0x40, URZ"
+              },
+              {
+                "address": "0x2b27f8b587c0",
+                "instruction": "UIADD3 UR6, UR5, 0xc000, URZ"
+              },
+              {
+                "address": "0x2b27f8b587d0",
+                "instruction": "IMAD.WIDE.U32 R104, R14, 0x10, R90"
+              },
+              {
+                "address": "0x2b27f8b587e0",
+                "instruction": "ULEA UR5, UR15, UR5, 0xd"
+              },
+              {
+                "address": "0x2b27f8b587f0",
+                "instruction": "USHF.R.U32.HI UR6, URZ, 0x4, UR6"
+              },
+              {
+                "address": "0x2b27f8b58800",
+                "instruction": "IMAD.WIDE.U32 R102, R14, 0x10, R88"
+              },
+              {
+                "address": "0x2b27f8b58810",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b27f8b58820",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b27f8b58830",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b27f8b58840",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b27f8b58850",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2b27f8b58860",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2b27f8b58870",
+                "instruction": "USHF.R.U32.HI UR5, URZ, 0x4, UR5"
+              },
+              {
+                "address": "0x2b27f8b58880",
+                "instruction": "USGXT.U32 UR8, UR6, 0xe"
+              },
+              {
+                "address": "0x2b27f8b58890",
+                "instruction": "USGXT.U32 UR10, UR5, 0xe"
+              },
+              {
+                "address": "0x2b27f8b588a0",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2b27f8b588b0",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2b27f8b588c0",
+                "instruction": "WARPGROUP.ARRIVE"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 64,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 128,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 122,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 25,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E128_TOPK4_H2880_INT2880/startup_source_sass.txt",
+          "source_sha256": "69893a89944afcd05cb427f6d7881bbd23b8af8336fefaa4feedc70c80a31782",
+          "projection": "w2",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 25,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2b27f9027ca0",
+            "loop_end": "0x2b27f9028510",
+            "first_matrix_address": "0x2b27f9027e90",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2b27f9027ca0",
+                "instruction": "DEPBAR.LE SB0, 0x2"
+              },
+              {
+                "address": "0x2b27f9027cb0",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2b27f9027cc0",
+                "instruction": "UIADD3 UR15, UR15, 0x1, URZ"
+              },
+              {
+                "address": "0x2b27f9027cd0",
+                "instruction": "ISETP.GE.AND P4, PT, R12, UR13, PT"
+              },
+              {
+                "address": "0x2b27f9027ce0",
+                "instruction": "UIADD3 UR14, UR14, 0x1, URZ"
+              },
+              {
+                "address": "0x2b27f9027cf0",
+                "instruction": "IMAD.WIDE.U32 R98, R15, 0x10, R108"
+              },
+              {
+                "address": "0x2b27f9027d00",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR15, 0x2, UPT"
+              },
+              {
+                "address": "0x2b27f9027d10",
+                "instruction": "SEL R94, RZ, 0x10, P4"
+              },
+              {
+                "address": "0x2b27f9027d20",
+                "instruction": "UMOV UR9, 0x40000040"
+              },
+              {
+                "address": "0x2b27f9027d30",
+                "instruction": "UMOV UR11, 0x40000040"
+              },
+              {
+                "address": "0x2b27f9027d40",
+                "instruction": "USEL UR15, UR15, URZ, !UP0"
+              },
+              {
+                "address": "0x2b27f9027d50",
+                "instruction": "SEL R92, R94, RZ, !P0"
+              },
+              {
+                "address": "0x2b27f9027d60",
+                "instruction": "IMAD.WIDE.U32 R102, R15, 0x10, R88"
+              },
+              {
+                "address": "0x2b27f9027d70",
+                "instruction": "SEL R93, R94, RZ, !P1"
+              },
+              {
+                "address": "0x2b27f9027d80",
+                "instruction": "ULEA UR5, UR15, UR7, 0xd"
+              },
+              {
+                "address": "0x2b27f9027d90",
+                "instruction": "UIADD3 UR13, UR13, -0x40, URZ"
+              },
+              {
+                "address": "0x2b27f9027da0",
+                "instruction": "UIADD3 UR6, UR5, 0xc000, URZ"
+              },
+              {
+                "address": "0x2b27f9027db0",
+                "instruction": "ULEA UR5, UR15, UR5, 0xd"
+              },
+              {
+                "address": "0x2b27f9027dc0",
+                "instruction": "USHF.R.U32.HI UR6, URZ, 0x4, UR6"
+              },
+              {
+                "address": "0x2b27f9027dd0",
+                "instruction": "USHF.R.U32.HI UR5, URZ, 0x4, UR5"
+              },
+              {
+                "address": "0x2b27f9027de0",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b27f9027df0",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b27f9027e00",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b27f9027e10",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b27f9027e20",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2b27f9027e30",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2b27f9027e40",
+                "instruction": "USGXT.U32 UR8, UR6, 0xe"
+              },
+              {
+                "address": "0x2b27f9027e50",
+                "instruction": "USGXT.U32 UR10, UR5, 0xe"
+              },
+              {
+                "address": "0x2b27f9027e60",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2b27f9027e70",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2b27f9027e80",
+                "instruction": "WARPGROUP.ARRIVE"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 64,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 80,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 31,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E8_TOPK2_H4096_INT14336/startup_source_sass.txt",
+          "source_sha256": "802820c49abffd0505a28b9dc52a72fb298dca238677010490fc635a13802fa6",
+          "projection": "w1",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 31,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2b7e03956bf0",
+            "loop_end": "0x2b7e03957530",
+            "first_matrix_address": "0x2b7e03956e40",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2b7e03956bf0",
+                "instruction": "DEPBAR.LE SB0, 0x4"
+              },
+              {
+                "address": "0x2b7e03956c00",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2b7e03956c10",
+                "instruction": "UIADD3 UR13, UR13, 0x1, URZ"
+              },
+              {
+                "address": "0x2b7e03956c20",
+                "instruction": "ISETP.GE.AND P4, PT, R11, R64, PT"
+              },
+              {
+                "address": "0x2b7e03956c30",
+                "instruction": "USHF.L.U32 UR6, UR16, 0x7, URZ"
+              },
+              {
+                "address": "0x2b7e03956c40",
+                "instruction": "IMAD.MOV.U32 R76, RZ, RZ, R62"
+              },
+              {
+                "address": "0x2b7e03956c50",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR13, 0x3, UPT"
+              },
+              {
+                "address": "0x2b7e03956c60",
+                "instruction": "SEL R73, RZ, 0x10, P4"
+              },
+              {
+                "address": "0x2b7e03956c70",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x200, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b7e03956c80",
+                "instruction": "ISETP.LE.AND P4, PT, R66, UR4, PT"
+              },
+              {
+                "address": "0x2b7e03956c90",
+                "instruction": "USEL UR13, UR13, URZ, !UP0"
+              },
+              {
+                "address": "0x2b7e03956ca0",
+                "instruction": "SEL R75, R73, RZ, !P0"
+              },
+              {
+                "address": "0x2b7e03956cb0",
+                "instruction": "UMOV UR9, 0x40000040"
+              },
+              {
+                "address": "0x2b7e03956cc0",
+                "instruction": "UMOV UR11, 0x40000040"
+              },
+              {
+                "address": "0x2b7e03956cd0",
+                "instruction": "ULEA UR5, UR13, UR7, 0xe"
+              },
+              {
+                "address": "0x2b7e03956ce0",
+                "instruction": "SEL R75, R75, RZ, !P4"
+              },
+              {
+                "address": "0x2b7e03956cf0",
+                "instruction": "UIADD3 UR12, UR12, 0x1, URZ"
+              },
+              {
+                "address": "0x2b7e03956d00",
+                "instruction": "IMAD.MOV.U32 R77, RZ, RZ, R69"
+              },
+              {
+                "address": "0x2b7e03956d10",
+                "instruction": "UIADD3 UR6, UR5, 0x20000, URZ"
+              },
+              {
+                "address": "0x2b7e03956d20",
+                "instruction": "ISETP.NE.U32.AND P5, PT, R75, RZ, PT"
+              },
+              {
+                "address": "0x2b7e03956d30",
+                "instruction": "ULEA UR5, UR13, UR5, 0xe"
+              },
+              {
+                "address": "0x2b7e03956d40",
+                "instruction": "IMAD.WIDE.U32 R76, R65, 0x10, R76"
+              },
+              {
+                "address": "0x2b7e03956d50",
+                "instruction": "USHF.R.U32.HI UR6, URZ, 0x4, UR6"
+              },
+              {
+                "address": "0x2b7e03956d60",
+                "instruction": "ULEA.HI UR5, UR5, UR8, URZ, 0x1c"
+              },
+              {
+                "address": "0x2b7e03956d70",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b7e03956d80",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b7e03956d90",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b7e03956da0",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b7e03956db0",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2b7e03956dc0",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2b7e03956dd0",
+                "instruction": "USGXT.U32 UR8, UR6, 0xe"
+              },
+              {
+                "address": "0x2b7e03956de0",
+                "instruction": "VIADD R64, R64, 0xffffff80"
+              },
+              {
+                "address": "0x2b7e03956df0",
+                "instruction": "ULOP3.LUT UR10, UR5, 0x3fff, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b7e03956e00",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2b7e03956e10",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2b7e03956e20",
+                "instruction": "UIADD3 UR4, UR4, 0x1, URZ"
+              },
+              {
+                "address": "0x2b7e03956e30",
+                "instruction": "WARPGROUP.ARRIVE"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 64,
+          "n": 128,
+          "k": 128
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 94,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 41,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK128_E8_TOPK2_H4096_INT14336/startup_source_sass.txt",
+          "source_sha256": "802820c49abffd0505a28b9dc52a72fb298dca238677010490fc635a13802fa6",
+          "projection": "w2",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 41,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2b7dbe826ae0",
+            "loop_end": "0x2b7dbe827450",
+            "first_matrix_address": "0x2b7dbe826dd0",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2b7dbe826ae0",
+                "instruction": "DEPBAR.LE SB0, 0x4"
+              },
+              {
+                "address": "0x2b7dbe826af0",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2b7dbe826b00",
+                "instruction": "UIADD3 UR8, UR8, 0x1, URZ"
+              },
+              {
+                "address": "0x2b7dbe826b10",
+                "instruction": "ISETP.GE.AND P4, PT, R11, R72, PT"
+              },
+              {
+                "address": "0x2b7dbe826b20",
+                "instruction": "USHF.L.U32 UR6, UR18, 0x7, URZ"
+              },
+              {
+                "address": "0x2b7dbe826b30",
+                "instruction": "IMAD.MOV.U32 R86, RZ, RZ, R80"
+              },
+              {
+                "address": "0x2b7dbe826b40",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR8, 0x3, UPT"
+              },
+              {
+                "address": "0x2b7dbe826b50",
+                "instruction": "SEL R6, RZ, 0x10, P4"
+              },
+              {
+                "address": "0x2b7dbe826b60",
+                "instruction": "ULOP3.LUT UR10, UR6, 0x200, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b7dbe826b70",
+                "instruction": "ISETP.LE.AND P4, PT, R90, UR4, PT"
+              },
+              {
+                "address": "0x2b7dbe826b80",
+                "instruction": "USEL UR8, UR8, URZ, !UP0"
+              },
+              {
+                "address": "0x2b7dbe826b90",
+                "instruction": "SEL R2, R6, RZ, !P1"
+              },
+              {
+                "address": "0x2b7dbe826ba0",
+                "instruction": "UMOV UR13, 0x40000040"
+              },
+              {
+                "address": "0x2b7dbe826bb0",
+                "instruction": "UMOV UR15, 0x40000040"
+              },
+              {
+                "address": "0x2b7dbe826bc0",
+                "instruction": "ULEA UR5, UR8, UR7, 0xe"
+              },
+              {
+                "address": "0x2b7dbe826bd0",
+                "instruction": "SEL R2, R2, RZ, !P4"
+              },
+              {
+                "address": "0x2b7dbe826be0",
+                "instruction": "UIADD3 UR9, UR9, 0x1, URZ"
+              },
+              {
+                "address": "0x2b7dbe826bf0",
+                "instruction": "SEL R3, R6, RZ, !P3"
+              },
+              {
+                "address": "0x2b7dbe826c00",
+                "instruction": "UIADD3 UR6, UR5, 0x20000, URZ"
+              },
+              {
+                "address": "0x2b7dbe826c10",
+                "instruction": "ISETP.NE.U32.AND P5, PT, R2, RZ, PT"
+              },
+              {
+                "address": "0x2b7dbe826c20",
+                "instruction": "ULEA UR5, UR8, UR5, 0xe"
+              },
+              {
+                "address": "0x2b7dbe826c30",
+                "instruction": "SEL R3, R3, RZ, !P4"
+              },
+              {
+                "address": "0x2b7dbe826c40",
+                "instruction": "USHF.R.U32.HI UR6, URZ, 0x4, UR6"
+              },
+              {
+                "address": "0x2b7dbe826c50",
+                "instruction": "SEL R7, R6, RZ, !P2"
+              },
+              {
+                "address": "0x2b7dbe826c60",
+                "instruction": "ULEA.HI UR5, UR5, UR10, URZ, 0x1c"
+              },
+              {
+                "address": "0x2b7dbe826c70",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b7dbe826c80",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b7dbe826c90",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b7dbe826ca0",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b7dbe826cb0",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2b7dbe826cc0",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2b7dbe826cd0",
+                "instruction": "USGXT.U32 UR12, UR6, 0xe"
+              },
+              {
+                "address": "0x2b7dbe826ce0",
+                "instruction": "ISETP.NE.U32.AND P6, PT, R3, RZ, PT"
+              },
+              {
+                "address": "0x2b7dbe826cf0",
+                "instruction": "ULOP3.LUT UR14, UR5, 0x3fff, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b7dbe826d00",
+                "instruction": "IMAD.WIDE.U32 R2, R75, 0x10, R86"
+              },
+              {
+                "address": "0x2b7dbe826d10",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2b7dbe826d20",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2b7dbe826d30",
+                "instruction": "SEL R8, R6, RZ, !P0"
+              },
+              {
+                "address": "0x2b7dbe826d40",
+                "instruction": "IMAD.MOV.U32 R88, RZ, RZ, R84"
+              },
+              {
+                "address": "0x2b7dbe826d50",
+                "instruction": "SEL R7, R7, RZ, !P4"
+              },
+              {
+                "address": "0x2b7dbe826d60",
+                "instruction": "UIADD3 UR4, UR4, 0x1, URZ"
+              },
+              {
+                "address": "0x2b7dbe826d70",
+                "instruction": "SEL R8, R8, RZ, !P4"
+              },
+              {
+                "address": "0x2b7dbe826d80",
+                "instruction": "IMAD.WIDE.U32 R58, R75, 0x10, R88"
+              },
+              {
+                "address": "0x2b7dbe826d90",
+                "instruction": "SEL R56, R6, RZ, !P4"
+              },
+              {
+                "address": "0x2b7dbe826da0",
+                "instruction": "VIADD R72, R72, 0xffffff80"
+              },
+              {
+                "address": "0x2b7dbe826db0",
+                "instruction": "ISETP.NE.U32.AND P4, PT, R56, RZ, PT"
+              },
+              {
+                "address": "0x2b7dbe826dc0",
+                "instruction": "WARPGROUP.ARRIVE"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 98304,
+        "registers_per_thread": 116,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 43,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16384_E32_TOPK4_H2880_INT2880/startup_source_sass.txt",
+          "source_sha256": "68499512a18673d804d863d7cf97262461fe0da2675319f227895c0455c18374",
+          "projection": "w1",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 43,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2ab337d56970",
+            "loop_end": "0x2ab337d57080",
+            "first_matrix_address": "0x2ab337d56c80",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2ab337d56970",
+                "instruction": "DEPBAR.LE SB0, 0x2"
+              },
+              {
+                "address": "0x2ab337d56980",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2ab337d56990",
+                "instruction": "UIADD3 UR13, UR13, 0x1, URZ"
+              },
+              {
+                "address": "0x2ab337d569a0",
+                "instruction": "ISETP.GE.AND P4, PT, R12, R91, PT"
+              },
+              {
+                "address": "0x2ab337d569b0",
+                "instruction": "USHF.L.U32 UR6, UR16, 0x7, URZ"
+              },
+              {
+                "address": "0x2ab337d569c0",
+                "instruction": "IMAD.MOV.U32 R110, RZ, RZ, R18"
+              },
+              {
+                "address": "0x2ab337d569d0",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR13, 0x2, UPT"
+              },
+              {
+                "address": "0x2ab337d569e0",
+                "instruction": "SEL R98, RZ, 0x10, P4"
+              },
+              {
+                "address": "0x2ab337d569f0",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x200, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2ab337d56a00",
+                "instruction": "ISETP.LE.AND P4, PT, R17, UR4, PT"
+              },
+              {
+                "address": "0x2ab337d56a10",
+                "instruction": "USEL UR13, UR13, URZ, !UP0"
+              },
+              {
+                "address": "0x2ab337d56a20",
+                "instruction": "SEL R94, R98, RZ, !P0"
+              },
+              {
+                "address": "0x2ab337d56a30",
+                "instruction": "UMOV UR9, 0x40000040"
+              },
+              {
+                "address": "0x2ab337d56a40",
+                "instruction": "UMOV UR11, 0x40000040"
+              },
+              {
+                "address": "0x2ab337d56a50",
+                "instruction": "ULEA UR5, UR13, UR7, 0xe"
+              },
+              {
+                "address": "0x2ab337d56a60",
+                "instruction": "SEL R95, R98, RZ, !P1"
+              },
+              {
+                "address": "0x2ab337d56a70",
+                "instruction": "UIADD3 UR12, UR12, 0x1, URZ"
+              },
+              {
+                "address": "0x2ab337d56a80",
+                "instruction": "SEL R94, R94, RZ, !P4"
+              },
+              {
+                "address": "0x2ab337d56a90",
+                "instruction": "UIADD3 UR6, UR5, 0xc000, URZ"
+              },
+              {
+                "address": "0x2ab337d56aa0",
+                "instruction": "SEL R95, R95, RZ, !P4"
+              },
+              {
+                "address": "0x2ab337d56ab0",
+                "instruction": "ULEA.HI UR8, UR5, UR8, URZ, 0x1c"
+              },
+              {
+                "address": "0x2ab337d56ac0",
+                "instruction": "ISETP.NE.U32.AND P5, PT, R94, RZ, PT"
+              },
+              {
+                "address": "0x2ab337d56ad0",
+                "instruction": "USHF.R.U32.HI UR6, URZ, 0x4, UR6"
+              },
+              {
+                "address": "0x2ab337d56ae0",
+                "instruction": "ISETP.NE.U32.AND P6, PT, R95, RZ, PT"
+              },
+              {
+                "address": "0x2ab337d56af0",
+                "instruction": "ULOP3.LUT UR8, UR8, 0x3fff, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2ab337d56b00",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ab337d56b10",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ab337d56b20",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ab337d56b30",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ab337d56b40",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2ab337d56b50",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2ab337d56b60",
+                "instruction": "USGXT.U32 UR10, UR6, 0xe"
+              },
+              {
+                "address": "0x2ab337d56b70",
+                "instruction": "IMAD.MOV.U32 R94, RZ, RZ, R88"
+              },
+              {
+                "address": "0x2ab337d56b80",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2ab337d56b90",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2ab337d56ba0",
+                "instruction": "IMAD.MOV.U32 R95, RZ, RZ, R23"
+              },
+              {
+                "address": "0x2ab337d56bb0",
+                "instruction": "SEL R99, R98, RZ, !P2"
+              },
+              {
+                "address": "0x2ab337d56bc0",
+                "instruction": "IMAD.WIDE.U32 R104, R22, 0x10, R102"
+              },
+              {
+                "address": "0x2ab337d56bd0",
+                "instruction": "SEL R100, R98, RZ, !P3"
+              },
+              {
+                "address": "0x2ab337d56be0",
+                "instruction": "UIADD3 UR4, UR4, 0x1, URZ"
+              },
+              {
+                "address": "0x2ab337d56bf0",
+                "instruction": "SEL R99, R99, RZ, !P4"
+              },
+              {
+                "address": "0x2ab337d56c00",
+                "instruction": "IMAD.WIDE.U32 R96, R22, 0x10, R94"
+              },
+              {
+                "address": "0x2ab337d56c10",
+                "instruction": "SEL R100, R100, RZ, !P4"
+              },
+              {
+                "address": "0x2ab337d56c20",
+                "instruction": "SEL R98, R98, RZ, !P4"
+              },
+              {
+                "address": "0x2ab337d56c30",
+                "instruction": "IMAD.WIDE.U32 R94, R22, 0x10, R110"
+              },
+              {
+                "address": "0x2ab337d56c40",
+                "instruction": "ISETP.NE.U32.AND P4, PT, R98, RZ, PT"
+              },
+              {
+                "address": "0x2ab337d56c50",
+                "instruction": "IMAD.MOV.U32 R98, RZ, RZ, R16"
+              },
+              {
+                "address": "0x2ab337d56c60",
+                "instruction": "VIADD R91, R91, 0xffffffc0"
+              },
+              {
+                "address": "0x2ab337d56c70",
+                "instruction": "WARPGROUP.ARRIVE"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 16,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 98304,
+        "registers_per_thread": 116,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 43,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16384_E32_TOPK4_H2880_INT2880/startup_source_sass.txt",
+          "source_sha256": "68499512a18673d804d863d7cf97262461fe0da2675319f227895c0455c18374",
+          "projection": "w2",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 43,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2ab383a26360",
+            "loop_end": "0x2ab383a26a70",
+            "first_matrix_address": "0x2ab383a26670",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2ab383a26360",
+                "instruction": "DEPBAR.LE SB0, 0x2"
+              },
+              {
+                "address": "0x2ab383a26370",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2ab383a26380",
+                "instruction": "UIADD3 UR13, UR13, 0x1, URZ"
+              },
+              {
+                "address": "0x2ab383a26390",
+                "instruction": "ISETP.GE.AND P4, PT, R14, R91, PT"
+              },
+              {
+                "address": "0x2ab383a263a0",
+                "instruction": "USHF.L.U32 UR6, UR17, 0x7, URZ"
+              },
+              {
+                "address": "0x2ab383a263b0",
+                "instruction": "IMAD.MOV.U32 R110, RZ, RZ, R18"
+              },
+              {
+                "address": "0x2ab383a263c0",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR13, 0x2, UPT"
+              },
+              {
+                "address": "0x2ab383a263d0",
+                "instruction": "SEL R98, RZ, 0x10, P4"
+              },
+              {
+                "address": "0x2ab383a263e0",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x200, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2ab383a263f0",
+                "instruction": "ISETP.LE.AND P4, PT, R17, UR4, PT"
+              },
+              {
+                "address": "0x2ab383a26400",
+                "instruction": "USEL UR13, UR13, URZ, !UP0"
+              },
+              {
+                "address": "0x2ab383a26410",
+                "instruction": "SEL R94, R98, RZ, !P1"
+              },
+              {
+                "address": "0x2ab383a26420",
+                "instruction": "UMOV UR9, 0x40000040"
+              },
+              {
+                "address": "0x2ab383a26430",
+                "instruction": "UMOV UR11, 0x40000040"
+              },
+              {
+                "address": "0x2ab383a26440",
+                "instruction": "ULEA UR5, UR13, UR7, 0xe"
+              },
+              {
+                "address": "0x2ab383a26450",
+                "instruction": "SEL R95, R98, RZ, !P2"
+              },
+              {
+                "address": "0x2ab383a26460",
+                "instruction": "UIADD3 UR12, UR12, 0x1, URZ"
+              },
+              {
+                "address": "0x2ab383a26470",
+                "instruction": "SEL R94, R94, RZ, !P4"
+              },
+              {
+                "address": "0x2ab383a26480",
+                "instruction": "UIADD3 UR6, UR5, 0xc000, URZ"
+              },
+              {
+                "address": "0x2ab383a26490",
+                "instruction": "SEL R95, R95, RZ, !P4"
+              },
+              {
+                "address": "0x2ab383a264a0",
+                "instruction": "ULEA.HI UR8, UR5, UR8, URZ, 0x1c"
+              },
+              {
+                "address": "0x2ab383a264b0",
+                "instruction": "ISETP.NE.U32.AND P5, PT, R94, RZ, PT"
+              },
+              {
+                "address": "0x2ab383a264c0",
+                "instruction": "USHF.R.U32.HI UR6, URZ, 0x4, UR6"
+              },
+              {
+                "address": "0x2ab383a264d0",
+                "instruction": "ISETP.NE.U32.AND P6, PT, R95, RZ, PT"
+              },
+              {
+                "address": "0x2ab383a264e0",
+                "instruction": "ULOP3.LUT UR8, UR8, 0x3fff, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2ab383a264f0",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ab383a26500",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ab383a26510",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ab383a26520",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ab383a26530",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2ab383a26540",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2ab383a26550",
+                "instruction": "USGXT.U32 UR10, UR6, 0xe"
+              },
+              {
+                "address": "0x2ab383a26560",
+                "instruction": "IMAD.MOV.U32 R94, RZ, RZ, R88"
+              },
+              {
+                "address": "0x2ab383a26570",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2ab383a26580",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2ab383a26590",
+                "instruction": "IMAD.MOV.U32 R95, RZ, RZ, R23"
+              },
+              {
+                "address": "0x2ab383a265a0",
+                "instruction": "SEL R99, R98, RZ, !P3"
+              },
+              {
+                "address": "0x2ab383a265b0",
+                "instruction": "IMAD.WIDE.U32 R104, R22, 0x10, R102"
+              },
+              {
+                "address": "0x2ab383a265c0",
+                "instruction": "SEL R100, R98, RZ, !P0"
+              },
+              {
+                "address": "0x2ab383a265d0",
+                "instruction": "UIADD3 UR4, UR4, 0x1, URZ"
+              },
+              {
+                "address": "0x2ab383a265e0",
+                "instruction": "SEL R99, R99, RZ, !P4"
+              },
+              {
+                "address": "0x2ab383a265f0",
+                "instruction": "IMAD.WIDE.U32 R96, R22, 0x10, R94"
+              },
+              {
+                "address": "0x2ab383a26600",
+                "instruction": "SEL R100, R100, RZ, !P4"
+              },
+              {
+                "address": "0x2ab383a26610",
+                "instruction": "SEL R98, R98, RZ, !P4"
+              },
+              {
+                "address": "0x2ab383a26620",
+                "instruction": "IMAD.WIDE.U32 R94, R22, 0x10, R110"
+              },
+              {
+                "address": "0x2ab383a26630",
+                "instruction": "ISETP.NE.U32.AND P4, PT, R98, RZ, PT"
+              },
+              {
+                "address": "0x2ab383a26640",
+                "instruction": "IMAD.MOV.U32 R98, RZ, RZ, R16"
+              },
+              {
+                "address": "0x2ab383a26650",
+                "instruction": "VIADD R91, R91, 0xffffffc0"
+              },
+              {
+                "address": "0x2ab383a26660",
+                "instruction": "WARPGROUP.ARRIVE"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 256,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 214,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 47,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK16384_E512_TOPK10_H2048_INT512/startup_source_sass.txt",
+          "source_sha256": "f802d150aeae76b205653233deb4cac4745d4addb3e7b33d254977cd55bbee6b",
+          "projection": "w2",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 47,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2ae8e2e3c0a0",
+            "loop_end": "0x2ae8e2e3c9a0",
+            "first_matrix_address": "0x2ae8e2e3c3f0",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2ae8e2e3c0a0",
+                "instruction": "DEPBAR.LE SB0, 0x4"
+              },
+              {
+                "address": "0x2ae8e2e3c0b0",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2ae8e2e3c0c0",
+                "instruction": "UIADD3 UR12, UR12, 0x1, URZ"
+              },
+              {
+                "address": "0x2ae8e2e3c0d0",
+                "instruction": "ISETP.GE.AND P4, PT, R173, R200, PT"
+              },
+              {
+                "address": "0x2ae8e2e3c0e0",
+                "instruction": "USHF.L.U32 UR6, UR13, 0x7, URZ"
+              },
+              {
+                "address": "0x2ae8e2e3c0f0",
+                "instruction": "VIADD R202, R202, 0x1"
+              },
+              {
+                "address": "0x2ae8e2e3c100",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR12, 0x3, UPT"
+              },
+              {
+                "address": "0x2ae8e2e3c110",
+                "instruction": "SEL R12, RZ, 0x10, P4"
+              },
+              {
+                "address": "0x2ae8e2e3c120",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x200, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2ae8e2e3c130",
+                "instruction": "ISETP.LE.AND P4, PT, R209, UR4, PT"
+              },
+              {
+                "address": "0x2ae8e2e3c140",
+                "instruction": "USEL UR12, UR12, URZ, !UP0"
+              },
+              {
+                "address": "0x2ae8e2e3c150",
+                "instruction": "SEL R8, R12, RZ, !P0"
+              },
+              {
+                "address": "0x2ae8e2e3c160",
+                "instruction": "UMOV UR9, 0x40000040"
+              },
+              {
+                "address": "0x2ae8e2e3c170",
+                "instruction": "UMOV UR11, 0x40000040"
+              },
+              {
+                "address": "0x2ae8e2e3c180",
+                "instruction": "ULEA UR5, UR12, UR7, 0xe"
+              },
+              {
+                "address": "0x2ae8e2e3c190",
+                "instruction": "SEL R9, R12, RZ, !P1"
+              },
+              {
+                "address": "0x2ae8e2e3c1a0",
+                "instruction": "IMAD.MOV.U32 R10, RZ, RZ, R197"
+              },
+              {
+                "address": "0x2ae8e2e3c1b0",
+                "instruction": "SEL R8, R8, RZ, !P4"
+              },
+              {
+                "address": "0x2ae8e2e3c1c0",
+                "instruction": "UIADD3 UR6, UR5, 0x20000, URZ"
+              },
+              {
+                "address": "0x2ae8e2e3c1d0",
+                "instruction": "ISETP.GT.AND P6, PT, R202, 0x3, PT"
+              },
+              {
+                "address": "0x2ae8e2e3c1e0",
+                "instruction": "ULEA UR5, UR12, UR5, 0xe"
+              },
+              {
+                "address": "0x2ae8e2e3c1f0",
+                "instruction": "SEL R9, R9, RZ, !P4"
+              },
+              {
+                "address": "0x2ae8e2e3c200",
+                "instruction": "ULEA.HI UR6, UR6, UR8, URZ, 0x1c"
+              },
+              {
+                "address": "0x2ae8e2e3c210",
+                "instruction": "ISETP.NE.U32.AND P5, PT, R8, RZ, PT"
+              },
+              {
+                "address": "0x2ae8e2e3c220",
+                "instruction": "USHF.R.U32.HI UR5, URZ, 0x4, UR5"
+              },
+              {
+                "address": "0x2ae8e2e3c230",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ae8e2e3c240",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ae8e2e3c250",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ae8e2e3c260",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ae8e2e3c270",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2ae8e2e3c280",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2ae8e2e3c290",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x3fff, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2ae8e2e3c2a0",
+                "instruction": "SEL R202, R202, RZ, !P6"
+              },
+              {
+                "address": "0x2ae8e2e3c2b0",
+                "instruction": "USGXT.U32 UR10, UR5, 0xe"
+              },
+              {
+                "address": "0x2ae8e2e3c2c0",
+                "instruction": "ISETP.NE.U32.AND P6, PT, R9, RZ, PT"
+              },
+              {
+                "address": "0x2ae8e2e3c2d0",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2ae8e2e3c2e0",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2ae8e2e3c2f0",
+                "instruction": "IMAD.MOV.U32 R11, RZ, RZ, R208"
+              },
+              {
+                "address": "0x2ae8e2e3c300",
+                "instruction": "SEL R13, R12, RZ, !P2"
+              },
+              {
+                "address": "0x2ae8e2e3c310",
+                "instruction": "IMAD.MOV.U32 R8, RZ, RZ, R184"
+              },
+              {
+                "address": "0x2ae8e2e3c320",
+                "instruction": "SEL R14, R12, RZ, !P3"
+              },
+              {
+                "address": "0x2ae8e2e3c330",
+                "instruction": "IMAD.MOV.U32 R9, RZ, RZ, R205"
+              },
+              {
+                "address": "0x2ae8e2e3c340",
+                "instruction": "SEL R13, R13, RZ, !P4"
+              },
+              {
+                "address": "0x2ae8e2e3c350",
+                "instruction": "IMAD.WIDE.U32 R10, R175, 0x10, R10"
+              },
+              {
+                "address": "0x2ae8e2e3c360",
+                "instruction": "SEL R14, R14, RZ, !P4"
+              },
+              {
+                "address": "0x2ae8e2e3c370",
+                "instruction": "UIADD3 UR4, UR4, 0x1, URZ"
+              },
+              {
+                "address": "0x2ae8e2e3c380",
+                "instruction": "SEL R12, R12, RZ, !P4"
+              },
+              {
+                "address": "0x2ae8e2e3c390",
+                "instruction": "IMAD R17, R202, 0x4000, R181"
+              },
+              {
+                "address": "0x2ae8e2e3c3a0",
+                "instruction": "IMAD.WIDE.U32 R8, R175, 0x10, R8"
+              },
+              {
+                "address": "0x2ae8e2e3c3b0",
+                "instruction": "ISETP.NE.U32.AND P4, PT, R12, RZ, PT"
+              },
+              {
+                "address": "0x2ae8e2e3c3c0",
+                "instruction": "IMAD R211, R202, 0x4000, R17"
+              },
+              {
+                "address": "0x2ae8e2e3c3d0",
+                "instruction": "WARPGROUP.ARRIVE"
+              },
+              {
+                "address": "0x2ae8e2e3c3e0",
+                "instruction": "VIADD R200, R200, 0xffffffc0"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 256,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 32,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 210,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 47,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2048_E8_TOPK2_H4096_INT14336/startup_source_sass.txt",
+          "source_sha256": "af9de875c44891d9ef55e047b14d45a598fdb5ab722d6ba2628453be0b40da9b",
+          "projection": "w1",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 47,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2ad32bf580c0",
+            "loop_end": "0x2ad32bf589c0",
+            "first_matrix_address": "0x2ad32bf58410",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2ad32bf580c0",
+                "instruction": "DEPBAR.LE SB0, 0x4"
+              },
+              {
+                "address": "0x2ad32bf580d0",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2ad32bf580e0",
+                "instruction": "UIADD3 UR12, UR12, 0x1, URZ"
+              },
+              {
+                "address": "0x2ad32bf580f0",
+                "instruction": "ISETP.GE.AND P4, PT, R13, R186, PT"
+              },
+              {
+                "address": "0x2ad32bf58100",
+                "instruction": "USHF.L.U32 UR6, UR13, 0x7, URZ"
+              },
+              {
+                "address": "0x2ad32bf58110",
+                "instruction": "VIADD R199, R199, 0x1"
+              },
+              {
+                "address": "0x2ad32bf58120",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR12, 0x3, UPT"
+              },
+              {
+                "address": "0x2ad32bf58130",
+                "instruction": "SEL R8, RZ, 0x10, P4"
+              },
+              {
+                "address": "0x2ad32bf58140",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x200, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2ad32bf58150",
+                "instruction": "ISETP.LE.AND P4, PT, R206, UR4, PT"
+              },
+              {
+                "address": "0x2ad32bf58160",
+                "instruction": "USEL UR12, UR12, URZ, !UP0"
+              },
+              {
+                "address": "0x2ad32bf58170",
+                "instruction": "SEL R4, R8, RZ, !P0"
+              },
+              {
+                "address": "0x2ad32bf58180",
+                "instruction": "UMOV UR9, 0x40000040"
+              },
+              {
+                "address": "0x2ad32bf58190",
+                "instruction": "UMOV UR11, 0x40000040"
+              },
+              {
+                "address": "0x2ad32bf581a0",
+                "instruction": "ULEA UR5, UR12, UR7, 0xe"
+              },
+              {
+                "address": "0x2ad32bf581b0",
+                "instruction": "SEL R5, R8, RZ, !P1"
+              },
+              {
+                "address": "0x2ad32bf581c0",
+                "instruction": "IMAD.MOV.U32 R6, RZ, RZ, R195"
+              },
+              {
+                "address": "0x2ad32bf581d0",
+                "instruction": "SEL R4, R4, RZ, !P4"
+              },
+              {
+                "address": "0x2ad32bf581e0",
+                "instruction": "UIADD3 UR6, UR5, 0x20000, URZ"
+              },
+              {
+                "address": "0x2ad32bf581f0",
+                "instruction": "ISETP.GT.AND P6, PT, R199, 0x3, PT"
+              },
+              {
+                "address": "0x2ad32bf58200",
+                "instruction": "ULEA UR5, UR12, UR5, 0xe"
+              },
+              {
+                "address": "0x2ad32bf58210",
+                "instruction": "SEL R5, R5, RZ, !P4"
+              },
+              {
+                "address": "0x2ad32bf58220",
+                "instruction": "ULEA.HI UR6, UR6, UR8, URZ, 0x1c"
+              },
+              {
+                "address": "0x2ad32bf58230",
+                "instruction": "ISETP.NE.U32.AND P5, PT, R4, RZ, PT"
+              },
+              {
+                "address": "0x2ad32bf58240",
+                "instruction": "USHF.R.U32.HI UR5, URZ, 0x4, UR5"
+              },
+              {
+                "address": "0x2ad32bf58250",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ad32bf58260",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ad32bf58270",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ad32bf58280",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ad32bf58290",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2ad32bf582a0",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2ad32bf582b0",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x3fff, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2ad32bf582c0",
+                "instruction": "SEL R199, R199, RZ, !P6"
+              },
+              {
+                "address": "0x2ad32bf582d0",
+                "instruction": "USGXT.U32 UR10, UR5, 0xe"
+              },
+              {
+                "address": "0x2ad32bf582e0",
+                "instruction": "ISETP.NE.U32.AND P6, PT, R5, RZ, PT"
+              },
+              {
+                "address": "0x2ad32bf582f0",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2ad32bf58300",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2ad32bf58310",
+                "instruction": "IMAD.MOV.U32 R7, RZ, RZ, R204"
+              },
+              {
+                "address": "0x2ad32bf58320",
+                "instruction": "SEL R9, R8, RZ, !P2"
+              },
+              {
+                "address": "0x2ad32bf58330",
+                "instruction": "IMAD.MOV.U32 R4, RZ, RZ, R181"
+              },
+              {
+                "address": "0x2ad32bf58340",
+                "instruction": "SEL R10, R8, RZ, !P3"
+              },
+              {
+                "address": "0x2ad32bf58350",
+                "instruction": "IMAD.MOV.U32 R5, RZ, RZ, R202"
+              },
+              {
+                "address": "0x2ad32bf58360",
+                "instruction": "SEL R9, R9, RZ, !P4"
+              },
+              {
+                "address": "0x2ad32bf58370",
+                "instruction": "IMAD.WIDE.U32 R6, R14, 0x10, R6"
+              },
+              {
+                "address": "0x2ad32bf58380",
+                "instruction": "SEL R10, R10, RZ, !P4"
+              },
+              {
+                "address": "0x2ad32bf58390",
+                "instruction": "UIADD3 UR4, UR4, 0x1, URZ"
+              },
+              {
+                "address": "0x2ad32bf583a0",
+                "instruction": "SEL R8, R8, RZ, !P4"
+              },
+              {
+                "address": "0x2ad32bf583b0",
+                "instruction": "IMAD R17, R199, 0x4000, R12"
+              },
+              {
+                "address": "0x2ad32bf583c0",
+                "instruction": "IMAD.WIDE.U32 R4, R14, 0x10, R4"
+              },
+              {
+                "address": "0x2ad32bf583d0",
+                "instruction": "ISETP.NE.U32.AND P4, PT, R8, RZ, PT"
+              },
+              {
+                "address": "0x2ad32bf583e0",
+                "instruction": "IMAD R207, R199, 0x4000, R17"
+              },
+              {
+                "address": "0x2ad32bf583f0",
+                "instruction": "WARPGROUP.ARRIVE"
+              },
+              {
+                "address": "0x2ad32bf58400",
+                "instruction": "VIADD R186, R186, 0xffffffc0"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 128,
+          "n": 256,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 32,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 196608,
+        "registers_per_thread": 214,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 47,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK2048_E8_TOPK2_H4096_INT14336/startup_source_sass.txt",
+          "source_sha256": "af9de875c44891d9ef55e047b14d45a598fdb5ab722d6ba2628453be0b40da9b",
+          "projection": "w2",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 47,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2ad2ff0291b0",
+            "loop_end": "0x2ad2ff029ab0",
+            "first_matrix_address": "0x2ad2ff029500",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2ad2ff0291b0",
+                "instruction": "DEPBAR.LE SB0, 0x4"
+              },
+              {
+                "address": "0x2ad2ff0291c0",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2ad2ff0291d0",
+                "instruction": "UIADD3 UR12, UR12, 0x1, URZ"
+              },
+              {
+                "address": "0x2ad2ff0291e0",
+                "instruction": "ISETP.GE.AND P4, PT, R173, R200, PT"
+              },
+              {
+                "address": "0x2ad2ff0291f0",
+                "instruction": "USHF.L.U32 UR6, UR13, 0x7, URZ"
+              },
+              {
+                "address": "0x2ad2ff029200",
+                "instruction": "VIADD R202, R202, 0x1"
+              },
+              {
+                "address": "0x2ad2ff029210",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR12, 0x3, UPT"
+              },
+              {
+                "address": "0x2ad2ff029220",
+                "instruction": "SEL R12, RZ, 0x10, P4"
+              },
+              {
+                "address": "0x2ad2ff029230",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x200, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2ad2ff029240",
+                "instruction": "ISETP.LE.AND P4, PT, R209, UR4, PT"
+              },
+              {
+                "address": "0x2ad2ff029250",
+                "instruction": "USEL UR12, UR12, URZ, !UP0"
+              },
+              {
+                "address": "0x2ad2ff029260",
+                "instruction": "SEL R8, R12, RZ, !P0"
+              },
+              {
+                "address": "0x2ad2ff029270",
+                "instruction": "UMOV UR9, 0x40000040"
+              },
+              {
+                "address": "0x2ad2ff029280",
+                "instruction": "UMOV UR11, 0x40000040"
+              },
+              {
+                "address": "0x2ad2ff029290",
+                "instruction": "ULEA UR5, UR12, UR7, 0xe"
+              },
+              {
+                "address": "0x2ad2ff0292a0",
+                "instruction": "SEL R9, R12, RZ, !P1"
+              },
+              {
+                "address": "0x2ad2ff0292b0",
+                "instruction": "IMAD.MOV.U32 R10, RZ, RZ, R197"
+              },
+              {
+                "address": "0x2ad2ff0292c0",
+                "instruction": "SEL R8, R8, RZ, !P4"
+              },
+              {
+                "address": "0x2ad2ff0292d0",
+                "instruction": "UIADD3 UR6, UR5, 0x20000, URZ"
+              },
+              {
+                "address": "0x2ad2ff0292e0",
+                "instruction": "ISETP.GT.AND P6, PT, R202, 0x3, PT"
+              },
+              {
+                "address": "0x2ad2ff0292f0",
+                "instruction": "ULEA UR5, UR12, UR5, 0xe"
+              },
+              {
+                "address": "0x2ad2ff029300",
+                "instruction": "SEL R9, R9, RZ, !P4"
+              },
+              {
+                "address": "0x2ad2ff029310",
+                "instruction": "ULEA.HI UR6, UR6, UR8, URZ, 0x1c"
+              },
+              {
+                "address": "0x2ad2ff029320",
+                "instruction": "ISETP.NE.U32.AND P5, PT, R8, RZ, PT"
+              },
+              {
+                "address": "0x2ad2ff029330",
+                "instruction": "USHF.R.U32.HI UR5, URZ, 0x4, UR5"
+              },
+              {
+                "address": "0x2ad2ff029340",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ad2ff029350",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ad2ff029360",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ad2ff029370",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2ad2ff029380",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2ad2ff029390",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2ad2ff0293a0",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x3fff, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2ad2ff0293b0",
+                "instruction": "SEL R202, R202, RZ, !P6"
+              },
+              {
+                "address": "0x2ad2ff0293c0",
+                "instruction": "USGXT.U32 UR10, UR5, 0xe"
+              },
+              {
+                "address": "0x2ad2ff0293d0",
+                "instruction": "ISETP.NE.U32.AND P6, PT, R9, RZ, PT"
+              },
+              {
+                "address": "0x2ad2ff0293e0",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2ad2ff0293f0",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2ad2ff029400",
+                "instruction": "IMAD.MOV.U32 R11, RZ, RZ, R208"
+              },
+              {
+                "address": "0x2ad2ff029410",
+                "instruction": "SEL R13, R12, RZ, !P2"
+              },
+              {
+                "address": "0x2ad2ff029420",
+                "instruction": "IMAD.MOV.U32 R8, RZ, RZ, R184"
+              },
+              {
+                "address": "0x2ad2ff029430",
+                "instruction": "SEL R14, R12, RZ, !P3"
+              },
+              {
+                "address": "0x2ad2ff029440",
+                "instruction": "IMAD.MOV.U32 R9, RZ, RZ, R205"
+              },
+              {
+                "address": "0x2ad2ff029450",
+                "instruction": "SEL R13, R13, RZ, !P4"
+              },
+              {
+                "address": "0x2ad2ff029460",
+                "instruction": "IMAD.WIDE.U32 R10, R175, 0x10, R10"
+              },
+              {
+                "address": "0x2ad2ff029470",
+                "instruction": "SEL R14, R14, RZ, !P4"
+              },
+              {
+                "address": "0x2ad2ff029480",
+                "instruction": "UIADD3 UR4, UR4, 0x1, URZ"
+              },
+              {
+                "address": "0x2ad2ff029490",
+                "instruction": "SEL R12, R12, RZ, !P4"
+              },
+              {
+                "address": "0x2ad2ff0294a0",
+                "instruction": "IMAD R17, R202, 0x4000, R181"
+              },
+              {
+                "address": "0x2ad2ff0294b0",
+                "instruction": "IMAD.WIDE.U32 R8, R175, 0x10, R8"
+              },
+              {
+                "address": "0x2ad2ff0294c0",
+                "instruction": "ISETP.NE.U32.AND P4, PT, R12, RZ, PT"
+              },
+              {
+                "address": "0x2ad2ff0294d0",
+                "instruction": "IMAD R211, R202, 0x4000, R17"
+              },
+              {
+                "address": "0x2ad2ff0294e0",
+                "instruction": "WARPGROUP.ARRIVE"
+              },
+              {
+                "address": "0x2ad2ff0294f0",
+                "instruction": "VIADD R200, R200, 0xffffffc0"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "signature": {
+        "variant": "w1",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 64,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 25,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E128_TOPK4_H2880_INT2880/startup_source_sass.txt",
+          "source_sha256": "9be971c3dd5135b191dea43f4c173d7a72d67d1559593dcbf502c8bf63e48e1d",
+          "projection": "w1",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 25,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2b9fb4b57480",
+            "loop_end": "0x2b9fb4b57ad0",
+            "first_matrix_address": "0x2b9fb4b57670",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2b9fb4b57480",
+                "instruction": "DEPBAR.LE SB0, 0x2"
+              },
+              {
+                "address": "0x2b9fb4b57490",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2b9fb4b574a0",
+                "instruction": "UIADD3 UR15, UR15, 0x1, URZ"
+              },
+              {
+                "address": "0x2b9fb4b574b0",
+                "instruction": "ISETP.GE.AND P2, PT, R8, UR13, PT"
+              },
+              {
+                "address": "0x2b9fb4b574c0",
+                "instruction": "USHF.L.U32 UR6, UR19, 0x7, URZ"
+              },
+              {
+                "address": "0x2b9fb4b574d0",
+                "instruction": "IMAD.MOV.U32 R15, RZ, RZ, R19"
+              },
+              {
+                "address": "0x2b9fb4b574e0",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR15, 0x2, UPT"
+              },
+              {
+                "address": "0x2b9fb4b574f0",
+                "instruction": "SEL R10, RZ, 0x10, P2"
+              },
+              {
+                "address": "0x2b9fb4b57500",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x200, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b9fb4b57510",
+                "instruction": "USEL UR15, UR15, URZ, !UP0"
+              },
+              {
+                "address": "0x2b9fb4b57520",
+                "instruction": "SEL R14, R10, RZ, !P0"
+              },
+              {
+                "address": "0x2b9fb4b57530",
+                "instruction": "UMOV UR9, 0x40000040"
+              },
+              {
+                "address": "0x2b9fb4b57540",
+                "instruction": "UMOV UR11, 0x40000040"
+              },
+              {
+                "address": "0x2b9fb4b57550",
+                "instruction": "ULEA UR5, UR15, UR7, 0xd"
+              },
+              {
+                "address": "0x2b9fb4b57560",
+                "instruction": "UIADD3 UR14, UR14, 0x1, URZ"
+              },
+              {
+                "address": "0x2b9fb4b57570",
+                "instruction": "UIADD3 UR6, UR5, 0xc000, URZ"
+              },
+              {
+                "address": "0x2b9fb4b57580",
+                "instruction": "ULEA UR5, UR15, UR5, 0xd"
+              },
+              {
+                "address": "0x2b9fb4b57590",
+                "instruction": "USHF.R.U32.HI UR6, URZ, 0x4, UR6"
+              },
+              {
+                "address": "0x2b9fb4b575a0",
+                "instruction": "ULEA.HI UR5, UR5, UR8, URZ, 0x1c"
+              },
+              {
+                "address": "0x2b9fb4b575b0",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b9fb4b575c0",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b9fb4b575d0",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b9fb4b575e0",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b9fb4b575f0",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2b9fb4b57600",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2b9fb4b57610",
+                "instruction": "USGXT.U32 UR8, UR6, 0xe"
+              },
+              {
+                "address": "0x2b9fb4b57620",
+                "instruction": "ULOP3.LUT UR10, UR5, 0x3fff, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b9fb4b57630",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2b9fb4b57640",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2b9fb4b57650",
+                "instruction": "UIADD3 UR13, UR13, -0x40, URZ"
+              },
+              {
+                "address": "0x2b9fb4b57660",
+                "instruction": "WARPGROUP.ARRIVE"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "signature": {
+        "variant": "w2",
+        "dtype": "bf16",
+        "tile_shape": {
+          "m": 64,
+          "n": 128,
+          "k": 64
+        },
+        "assignment_mode": "aligned",
+        "group_size_m": 1,
+        "threads_per_cta": 256,
+        "dynamic_shared_bytes": 73728,
+        "registers_per_thread": 64,
+        "static_shared_bytes": 0
+      },
+      "unpredicated_warp_instructions_per_k": 26,
+      "matrix_launch_capacity": 2,
+      "evidence": [
+        {
+          "source_path": "profiler_output/kernel_dataset/nvidia_h200/moe_barrier_source_20261107/FUSEDMOE_TOK256_E128_TOPK4_H2880_INT2880/startup_source_sass.txt",
+          "source_sha256": "9be971c3dd5135b191dea43f4c173d7a72d67d1559593dcbf502c8bf63e48e1d",
+          "projection": "w2",
+          "proof": {
+            "status": "bound_post_wait_matrix_preparation_issue",
+            "unpredicated_warp_instructions_per_k": 26,
+            "matrix_launch_capacity": 2,
+            "loop_begin": "0x2b9fb50251d0",
+            "loop_end": "0x2b9fb5025810",
+            "first_matrix_address": "0x2b9fb50253d0",
+            "physical_k_tiles_per_static_loop": 1,
+            "predicated_instructions_charged": false,
+            "dependency_or_barrier_latency_charged": false,
+            "operand_wait_and_barrier": [
+              {
+                "address": "0x2b9fb50251d0",
+                "instruction": "DEPBAR.LE SB0, 0x2"
+              },
+              {
+                "address": "0x2b9fb50251e0",
+                "instruction": "BAR.SYNC.DEFER_BLOCKING 0x0"
+              }
+            ],
+            "preparation": [
+              {
+                "address": "0x2b9fb50251f0",
+                "instruction": "UIADD3 UR15, UR15, 0x1, URZ"
+              },
+              {
+                "address": "0x2b9fb5025200",
+                "instruction": "ISETP.GE.AND P2, PT, R9, UR13, PT"
+              },
+              {
+                "address": "0x2b9fb5025210",
+                "instruction": "USHF.L.U32 UR6, UR19, 0x7, URZ"
+              },
+              {
+                "address": "0x2b9fb5025220",
+                "instruction": "IMAD.MOV.U32 R15, RZ, RZ, R21"
+              },
+              {
+                "address": "0x2b9fb5025230",
+                "instruction": "UISETP.GT.AND UP0, UPT, UR15, 0x2, UPT"
+              },
+              {
+                "address": "0x2b9fb5025240",
+                "instruction": "SEL R11, RZ, 0x10, P2"
+              },
+              {
+                "address": "0x2b9fb5025250",
+                "instruction": "ULOP3.LUT UR8, UR6, 0x200, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b9fb5025260",
+                "instruction": "USEL UR15, UR15, URZ, !UP0"
+              },
+              {
+                "address": "0x2b9fb5025270",
+                "instruction": "SEL R14, R11, RZ, !P0"
+              },
+              {
+                "address": "0x2b9fb5025280",
+                "instruction": "UMOV UR9, 0x40000040"
+              },
+              {
+                "address": "0x2b9fb5025290",
+                "instruction": "UMOV UR11, 0x40000040"
+              },
+              {
+                "address": "0x2b9fb50252a0",
+                "instruction": "ULEA UR5, UR15, UR7, 0xd"
+              },
+              {
+                "address": "0x2b9fb50252b0",
+                "instruction": "SEL R58, R11, RZ, !P1"
+              },
+              {
+                "address": "0x2b9fb50252c0",
+                "instruction": "UIADD3 UR14, UR14, 0x1, URZ"
+              },
+              {
+                "address": "0x2b9fb50252d0",
+                "instruction": "UIADD3 UR6, UR5, 0xc000, URZ"
+              },
+              {
+                "address": "0x2b9fb50252e0",
+                "instruction": "ULEA UR5, UR15, UR5, 0xd"
+              },
+              {
+                "address": "0x2b9fb50252f0",
+                "instruction": "USHF.R.U32.HI UR6, URZ, 0x4, UR6"
+              },
+              {
+                "address": "0x2b9fb5025300",
+                "instruction": "ULEA.HI UR5, UR5, UR8, URZ, 0x1c"
+              },
+              {
+                "address": "0x2b9fb5025310",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b9fb5025320",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b9fb5025330",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b9fb5025340",
+                "instruction": "@!PT LDS RZ, [RZ]"
+              },
+              {
+                "address": "0x2b9fb5025350",
+                "instruction": "MEMBAR.ALL.CTA"
+              },
+              {
+                "address": "0x2b9fb5025360",
+                "instruction": "FENCE.VIEW.ASYNC.S"
+              },
+              {
+                "address": "0x2b9fb5025370",
+                "instruction": "USGXT.U32 UR8, UR6, 0xe"
+              },
+              {
+                "address": "0x2b9fb5025380",
+                "instruction": "ULOP3.LUT UR10, UR5, 0x3fff, URZ, 0xc0, !UPT"
+              },
+              {
+                "address": "0x2b9fb5025390",
+                "instruction": "UMOV UR6, URZ"
+              },
+              {
+                "address": "0x2b9fb50253a0",
+                "instruction": "UMOV UR5, URZ"
+              },
+              {
+                "address": "0x2b9fb50253b0",
+                "instruction": "UIADD3 UR13, UR13, -0x40, URZ"
+              },
+              {
+                "address": "0x2b9fb50253c0",
+                "instruction": "WARPGROUP.ARRIVE"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "unbound": []
+}

@@ -1,0 +1,16 @@
+{
+  "service": "aiv_reshape_cache_equal_chain_completion",
+  "request_size_unit": "payload_bytes",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "production_or_evaluation_duration_consumed": false,
+  "service_time_ns_by_request_size": {
+    "1024": 780.0,
+    "2048": 780.0
+  },
+  "worker_count": 1,
+  "request_semantics": "one source-matched key-200 K-then-V GM-to-UB-to-GM chain",
+  "composition": "maximum_with_same_token_memory_capacity_time",
+  "source_reference": "microbench/ascend_910b/references/reshape_cache_equal_chain_completion_cann_8_5_1.json",
+  "source_reference_sha256": "a10e93d43570466506666286947c9e5b0fe8bc7de71bfe4a3622bd17cc03e292"
+}

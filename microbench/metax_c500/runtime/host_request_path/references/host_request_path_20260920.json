@@ -1,0 +1,41 @@
+{
+  "hardware_id": "metax_c500",
+  "host": {
+    "cpu": "Intel(R) Xeon(R) Gold 6430",
+    "operating_system": "Linux 5.15.0-119-generic",
+    "python_version": "3.12.11",
+    "vllm_version": "0.24.0"
+  },
+  "measurement_boundary": "host_only_no_device_no_model",
+  "production_or_evaluation_duration_consumed": false,
+  "raw": {
+    "path": "profiler_output/microbench/metax_c500/host_request_path_20260920_r1/manifest.json",
+    "retention": "local_raw_not_committed",
+    "sha256": "36e37b4fdbf722e23f6f78cffbe005fc5ec660263f9227d43739d881361b572a"
+  },
+  "sample_contract": {
+    "runner": "microbench/nvidia_a800/runtime/host_request_path/vllm_host_request_path_runner.py",
+    "trials": 120,
+    "warmup": 15
+  },
+  "schema_version": 1,
+  "selection": {
+    "api_entry_s": 0.000536866,
+    "first_token_delivery_s": 0.00043692300000000003,
+    "first_token_delivery_terms": {
+      "incremental_detokenize_s": 1.9065e-06,
+      "output_ipc_transit_s": 7.4039e-05,
+      "stream_chunk_return_s": 0.0003609775
+    },
+    "ipc_transit_s": 7.4039e-05,
+    "request_build_s": 7.2715e-06,
+    "statistic": "median_of_independent_primitive_samples",
+    "tokenizer_async_call_s": null,
+    "tokenizer_encode_intercept_s": 2.3471051181102362e-05,
+    "tokenizer_encode_per_token_s": 1.6972780511811026e-06,
+    "tokenizer_entry_form": "direct_executor_dispatch",
+    "tokenizer_entry_note": "Reaching the tokenizer and running it are separate costs.  The entry form is a source fact of this runtime; the encode's fixed call cost and its per-token cost are paid on either form and are read off the same measured endpoints as before.",
+    "tokenizer_executor_dispatch_s": 5.74935e-05
+  },
+  "tokenizer_entry_source": "vllm.utils.async_utils.make_async(run_in_executor); runtime has no batching tokenizer wrapper"
+}

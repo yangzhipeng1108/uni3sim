@@ -1,0 +1,308 @@
+{
+  "schema": "finite_mixed_operand_stream_startup_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "mechanism": "finite_mixed_operand_stream_startup",
+  "production_or_evaluation_duration_consumed": false,
+  "source": "profiler_output/microbench/nvidia_h200/gemm_ring_service_20261107_startup/tma_operand_ring_service.cu",
+  "source_sha256": "437a4a34d52adaa2e107ea41f1382c7dfbc03e137f815f58ee752679fc0e9640",
+  "runner": "profiler_output/microbench/nvidia_h200/gemm_ring_service_20261107_startup/tma_operand_ring_service_modal_runner.py",
+  "runner_sha256": "5bb34aef3dcb61c2c1314d4f328673083f947b6d7e00fa8959bd02ab3ee89026",
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/gemm_ring_service_20261107_startup/raw.json",
+      "raw_sha256": "7dcedd6288524943c873ee6ff43a3f4a74524429619f371900583b2fb20fc23e",
+      "source_snapshot_directory": "profiler_output/microbench/nvidia_h200/gemm_ring_service_20261107_startup"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/tma_ring_boundary_20261107/raw.json",
+      "raw_sha256": "28578bb3e3a8c3636639f58205ef607520b0428a5fe6a0e89ee5625c2edd5cc3",
+      "source_snapshot_directory": "profiler_output/microbench/nvidia_h200/tma_ring_boundary_20261107",
+      "source": "profiler_output/microbench/nvidia_h200/tma_ring_boundary_20261107/tma_cluster_ring_service.cu",
+      "source_sha256": "44ebbf61377eaedc9ed61a02b7a397cb6471440d25af0843828312e57ae3204d",
+      "runner": "profiler_output/microbench/nvidia_h200/tma_ring_boundary_20261107/tma_cluster_ring_service_modal_runner.py",
+      "runner_sha256": "cecc0c1151d4bab3d4ca5e004ea041739e9b34aa1200315da6171e15e6f512c4"
+    }
+  ],
+  "probe_contract": {
+    "description": "MMA-free two-dimensional TMA operand ring, one 64-row private box and zero/one shared 16-row box, 32-node graph replay, cold-intended eviction before each graph; plus an independent no-TMA/no-math full/empty-barrier initialization and cluster-sync prefix, paired with the same timestamp-writing empty control. No matrix, library, output epilogue or production shape.",
+    "clock_status": "provisional: two-second transport warmup, endpoint clocks recorded; no per-configuration busy trace",
+    "scope_approximation": "launch-local transport startup envelope, not native ABI equivalence; no transfer of steady byte rates or multicast behavior",
+    "derivation": "microbench/nvidia_h200/operators/gemm/tma_operand_ring_startup_reference.py"
+  },
+  "derived_model": {
+    "selection_rule": "Transport fill: minimum over all cold-intended grid/depth/single-or-dual-descriptor controls of t8-t0-8*(t128-t32)/96, minus the existing independent full DRAM first-request latency. The discarded zero-round program is separately represented by the predeclared minimum of joint-minus-empty event and same-CTA intervals across every boundary geometry; every difference must be positive. Add the two disjoint program phases once per launch, never per K tile or split. Neither rule reads production data.",
+    "existing_first_request_ns": 352.61976432800293,
+    "controls": [
+      {
+        "grid": 32,
+        "depth": 4,
+        "shared_rows": 0,
+        "steady_ns_per_round": 182.08333333333334,
+        "finite_residual_ns": 1095.3333333333333,
+        "additional_startup_ns": 742.7135690053303
+      },
+      {
+        "grid": 32,
+        "depth": 4,
+        "shared_rows": 16,
+        "steady_ns_per_round": 182.03125,
+        "finite_residual_ns": 1139.75,
+        "additional_startup_ns": 787.1302356719971
+      },
+      {
+        "grid": 32,
+        "depth": 16,
+        "shared_rows": 0,
+        "steady_ns_per_round": 83.05208333333333,
+        "finite_residual_ns": 1396.5833333333335,
+        "additional_startup_ns": 1043.9635690053306
+      },
+      {
+        "grid": 32,
+        "depth": 16,
+        "shared_rows": 16,
+        "steady_ns_per_round": 111.65625,
+        "finite_residual_ns": 1247.75,
+        "additional_startup_ns": 895.1302356719971
+      },
+      {
+        "grid": 72,
+        "depth": 4,
+        "shared_rows": 0,
+        "steady_ns_per_round": 203.67708333333334,
+        "finite_residual_ns": 1262.5833333333333,
+        "additional_startup_ns": 909.9635690053303
+      },
+      {
+        "grid": 72,
+        "depth": 4,
+        "shared_rows": 16,
+        "steady_ns_per_round": 204.78125,
+        "finite_residual_ns": 1254.75,
+        "additional_startup_ns": 902.1302356719971
+      },
+      {
+        "grid": 72,
+        "depth": 16,
+        "shared_rows": 0,
+        "steady_ns_per_round": 140.8125,
+        "finite_residual_ns": 1419.5,
+        "additional_startup_ns": 1066.880235671997
+      },
+      {
+        "grid": 72,
+        "depth": 16,
+        "shared_rows": 16,
+        "steady_ns_per_round": 144.73958333333334,
+        "finite_residual_ns": 1358.0833333333333,
+        "additional_startup_ns": 1005.4635690053303
+      },
+      {
+        "grid": 132,
+        "depth": 4,
+        "shared_rows": 0,
+        "steady_ns_per_round": 270.0208333333333,
+        "finite_residual_ns": 1282.8333333333335,
+        "additional_startup_ns": 930.2135690053306
+      },
+      {
+        "grid": 132,
+        "depth": 4,
+        "shared_rows": 16,
+        "steady_ns_per_round": 270.6875,
+        "finite_residual_ns": 1289.5,
+        "additional_startup_ns": 936.8802356719971
+      },
+      {
+        "grid": 132,
+        "depth": 16,
+        "shared_rows": 0,
+        "steady_ns_per_round": 252.20833333333334,
+        "finite_residual_ns": 1316.3333333333333,
+        "additional_startup_ns": 963.7135690053303
+      },
+      {
+        "grid": 132,
+        "depth": 16,
+        "shared_rows": 16,
+        "steady_ns_per_round": 249.73958333333334,
+        "finite_residual_ns": 1326.0833333333333,
+        "additional_startup_ns": 973.4635690053303
+      }
+    ],
+    "operand_transport_fill_ns": 742.7135690053303,
+    "ring_initialization_prefix_ns": 352.0,
+    "ring_initialization_controls": [
+      {
+        "grid": 32,
+        "cluster": 1,
+        "depth": 4,
+        "joint_minus_empty_event_ns": 369.0,
+        "joint_minus_empty_cta_ns": 352.0
+      },
+      {
+        "grid": 32,
+        "cluster": 1,
+        "depth": 16,
+        "joint_minus_empty_event_ns": 450.0,
+        "joint_minus_empty_cta_ns": 448.0
+      },
+      {
+        "grid": 32,
+        "cluster": 2,
+        "depth": 4,
+        "joint_minus_empty_event_ns": 374.5,
+        "joint_minus_empty_cta_ns": 352.0
+      },
+      {
+        "grid": 32,
+        "cluster": 2,
+        "depth": 16,
+        "joint_minus_empty_event_ns": 454.5,
+        "joint_minus_empty_cta_ns": 448.0
+      },
+      {
+        "grid": 32,
+        "cluster": 4,
+        "depth": 4,
+        "joint_minus_empty_event_ns": 377.0,
+        "joint_minus_empty_cta_ns": 352.0
+      },
+      {
+        "grid": 32,
+        "cluster": 4,
+        "depth": 16,
+        "joint_minus_empty_event_ns": 459.0,
+        "joint_minus_empty_cta_ns": 448.0
+      },
+      {
+        "grid": 32,
+        "cluster": 8,
+        "depth": 4,
+        "joint_minus_empty_event_ns": 383.0,
+        "joint_minus_empty_cta_ns": 384.0
+      },
+      {
+        "grid": 32,
+        "cluster": 8,
+        "depth": 16,
+        "joint_minus_empty_event_ns": 464.5,
+        "joint_minus_empty_cta_ns": 448.0
+      },
+      {
+        "grid": 72,
+        "cluster": 1,
+        "depth": 4,
+        "joint_minus_empty_event_ns": 373.0,
+        "joint_minus_empty_cta_ns": 352.0
+      },
+      {
+        "grid": 72,
+        "cluster": 1,
+        "depth": 16,
+        "joint_minus_empty_event_ns": 453.5,
+        "joint_minus_empty_cta_ns": 448.0
+      },
+      {
+        "grid": 72,
+        "cluster": 2,
+        "depth": 4,
+        "joint_minus_empty_event_ns": 384.5,
+        "joint_minus_empty_cta_ns": 352.0
+      },
+      {
+        "grid": 72,
+        "cluster": 2,
+        "depth": 16,
+        "joint_minus_empty_event_ns": 461.5,
+        "joint_minus_empty_cta_ns": 448.0
+      },
+      {
+        "grid": 72,
+        "cluster": 4,
+        "depth": 4,
+        "joint_minus_empty_event_ns": 379.0,
+        "joint_minus_empty_cta_ns": 384.0
+      },
+      {
+        "grid": 72,
+        "cluster": 4,
+        "depth": 16,
+        "joint_minus_empty_event_ns": 456.5,
+        "joint_minus_empty_cta_ns": 448.0
+      },
+      {
+        "grid": 72,
+        "cluster": 8,
+        "depth": 4,
+        "joint_minus_empty_event_ns": 385.5,
+        "joint_minus_empty_cta_ns": 384.0
+      },
+      {
+        "grid": 72,
+        "cluster": 8,
+        "depth": 16,
+        "joint_minus_empty_event_ns": 472.0,
+        "joint_minus_empty_cta_ns": 480.0
+      },
+      {
+        "grid": 132,
+        "cluster": 1,
+        "depth": 4,
+        "joint_minus_empty_event_ns": 368.0,
+        "joint_minus_empty_cta_ns": 352.0
+      },
+      {
+        "grid": 132,
+        "cluster": 1,
+        "depth": 16,
+        "joint_minus_empty_event_ns": 448.0,
+        "joint_minus_empty_cta_ns": 448.0
+      },
+      {
+        "grid": 132,
+        "cluster": 2,
+        "depth": 4,
+        "joint_minus_empty_event_ns": 373.5,
+        "joint_minus_empty_cta_ns": 352.0
+      },
+      {
+        "grid": 132,
+        "cluster": 2,
+        "depth": 16,
+        "joint_minus_empty_event_ns": 460.0,
+        "joint_minus_empty_cta_ns": 448.0
+      },
+      {
+        "grid": 132,
+        "cluster": 4,
+        "depth": 4,
+        "joint_minus_empty_event_ns": 767.0,
+        "joint_minus_empty_cta_ns": 384.0
+      },
+      {
+        "grid": 132,
+        "cluster": 4,
+        "depth": 16,
+        "joint_minus_empty_event_ns": 917.0,
+        "joint_minus_empty_cta_ns": 448.0
+      }
+    ],
+    "one_wave_mixed_tier_startup_ns": 1094.7135690053303
+  },
+  "scope": {
+    "dtype_element_bytes": 2,
+    "threads_per_cta": 384,
+    "tile_k": 64,
+    "minimum_pipeline_depth": 4,
+    "maximum_pipeline_depth": 16,
+    "minimum_rounds": 8,
+    "maximum_rounds": 128,
+    "one_wave_grid_ctas": 132,
+    "transport": "tma",
+    "minimum_grid_ctas": 32
+  },
+  "allowed_use": "One additive launch-local startup for a declared TMA K64 two-byte operand ring inside the measured concurrency/depth/round domain; aggregate transport approximation.",
+  "forbidden_use": "No production duration/APE fitting; no per-shape time price, native multicast, raster, reducer ABI or steady-bandwidth certification."
+}

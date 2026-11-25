@@ -1,0 +1,146 @@
+{
+  "schema": "nvidia_a800_add_rmsnorm_round_service_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "device_uuid": "capture-device-6f63e60145b9",
+  "compute_capability": "sm_80",
+  "physical_sm_count": 108,
+  "source_baseline_commit": "255e3254eadf57c45de427b3e018eac177176ed2",
+  "capture": {
+    "path": "profiler_output/microbench/nvidia_a800/add_rmsnorm_round_service_255e3254_gpu0_r3",
+    "provenance_sha256": "f7dea12c7405052fafef2a3cad0bb7dea5f35d5972abba990b9e9ed8e733005f",
+    "candidate_sha256": "078a455ffc16288675e43ac85336f504c2d3dad8822150313ef1ef359ac78b5d",
+    "raw_sha256": "a5a5b193e638b4d5109db9c58550034d0f121e5bdcdf4ffb0109f6bb7e726d29",
+    "trials": 5,
+    "preflight_cleanup": "target_device_idle_no_compute_processes",
+    "postflight_cleanup": "target_device_idle_no_compute_processes"
+  },
+  "tool_identity": {
+    "source_sha256": "abcd356266b00dfcbf03cf3cb83b0aa5877973890d22fd87d210484f31c0693a",
+    "runner_sha256": "d41d7119798a381af5b201fdcd658b3d750ee1acc6ba2e874b95310e016897a6",
+    "probe_binary_sha256": "0e0e128f24913dc8d60a532e9710197f08e4c6a6bcd1382732f804fdf0bfcdd2",
+    "probe_resource_dump_sha256": "cfc374a963ed95d795ebc2c08efe573ce0fa14d76c7da3d70c8c0779ea73f50b",
+    "probe_sass_dump_sha256": "f4072a6e05c5db704a2149fcccc13e2a42c1a151b19d67ce5d86d7064459ff2d",
+    "nvcc_sha256": "6b05c8048bff95eb892bcd53cc55fd4fe231aa27bb9dd7289661e746408d8b7d",
+    "cuobjdump_sha256": "ad1d0f0699f46603416eb58e7b9fdf9a293e95f9312c9df7fd6fda56a6c30d41",
+    "nvidia_smi_sha256": "f9229afde6e2b1f85d75d075c2c6ca0ee31436fc274e48f70ce19b78614edb30",
+    "nvcc_version": "Cuda compilation tools, release 12.2, V12.2.140",
+    "cuobjdump_version": "Cuda compilation tools, release 12.8, V12.8.55",
+    "driver_version": "535.183.06"
+  },
+  "production_artifact": {
+    "binary_path": "/capture-workspace/miniconda_capture/envs/capture-python/lib/python3.10/site-packages/vllm/_C.abi3.so",
+    "binary_sha256": "984de21ce38cc8083d207663a380ca75acc6ad3dc230858092f59e363c4eebd5",
+    "cubin_name": "_C.abi3.59.sm_80.cubin",
+    "cubin_sha256": "166d5a3ad91de17854f489ae49038b1a39179121fe744edc5d5449a5ea225700",
+    "rejected_activation_cubin": "_C.abi3.52.sm_80.cubin",
+    "symbol": "_ZN4vllm25fused_add_rms_norm_kernelIN3c108BFloat16ELi8EEENSt9enable_ifIXaagtT0_Li0Esr4vllm12_typeConvertIT_EE6existsEvE4typeEPS4_lS7_PKS4_fii",
+    "registers_per_thread": 32,
+    "static_shared_bytes": 168,
+    "local_bytes": 0,
+    "resource_dump_sha256": "52b39e83c1381178a70d626b50e04584c25c63db4e8a764eb0a1aafec7f73863",
+    "function_sass_sha256": "b1f9aaf1a8a221567499e1214b053592c62ff594815742bdc881b912e971cf4b",
+    "instruction_count": 432,
+    "required_opcodes": [
+      "BAR.SYNC.DEFER_BLOCKING",
+      "F2FP.BF16.PACK_AB",
+      "HFMA2.BF16_V2",
+      "LDG.E.128",
+      "LDG.E.U16.CONSTANT",
+      "MUFU.RSQ",
+      "STG.E.128"
+    ]
+  },
+  "probe_contract": {
+    "block_threads": 256,
+    "rounds": 512,
+    "resident_ctas_per_sm": 8,
+    "cells": {
+      "first": {
+        "grid_blocks": 108,
+        "ctas_per_sm": 1
+      },
+      "resident": {
+        "grid_blocks": 864,
+        "ctas_per_sm": 8
+      }
+    },
+    "supported_grid_scope": "grid_blocks <= 864",
+    "supported_service_scope": [
+      "first_cta_source_round",
+      "resident_cta_source_round"
+    ],
+    "probe_resources": {
+      "add_square": {
+        "registers_per_thread": 29,
+        "static_shared_bytes": 0,
+        "local_bytes": 0
+      },
+      "scale_multiply": {
+        "registers_per_thread": 31,
+        "static_shared_bytes": 0,
+        "local_bytes": 0
+      }
+    },
+    "required_probe_opcodes": [
+      "LDG.E.128",
+      "STG.E.128",
+      "BAR.SYNC"
+    ],
+    "forbidden_probe_opcodes_absent": [
+      "LDL",
+      "STL",
+      "ATOM"
+    ]
+  },
+  "measurements": {
+    "time_unit": "ns_per_cta_round",
+    "service_rate_unit": "cta_rounds_per_sm_second",
+    "add_square": {
+      "first": {
+        "incremental_ns_per_cta_round": 246.0,
+        "service_rate_per_sm_s": 4065040.650406504,
+        "maximum_relative_spread": 0.016260162601626018
+      },
+      "resident": {
+        "incremental_ns_per_cta_round": 760.2857142857143,
+        "service_rate_per_sm_s": 1315295.001878993,
+        "maximum_relative_spread": 0.010057471264367816
+      }
+    },
+    "scale_multiply": {
+      "first": {
+        "incremental_ns_per_cta_round": 256.0,
+        "service_rate_per_sm_s": 3906250.0,
+        "maximum_relative_spread": 0.046875
+      },
+      "resident": {
+        "incremental_ns_per_cta_round": 515.7142857142857,
+        "service_rate_per_sm_s": 1939058.1717451524,
+        "maximum_relative_spread": 0.02172788411795137
+      }
+    }
+  },
+  "gates": {
+    "all_cells_stable_within_10_percent": true,
+    "all_incremental_services_positive": true,
+    "production_artifact_identity_exact": true,
+    "probe_resource_and_sass_contract_exact": true
+  },
+  "decision": {
+    "status": "mechanism_candidate_only",
+    "mechanism_publishable": true,
+    "forward_eligible": false,
+    "reason": "The fresh r3 capture supports only block-256 first and resident source-round service through grid 864. Composition into complete Add-RMSNorm and queued grids remains unvalidated."
+  },
+  "allowed_conclusion": "The independent block-256 probe characterizes first and resident CTA Add-RMSNorm source-round service on the captured A800 within the exact audited production artifact scope.",
+  "excluded_conclusions": [
+    "a complete Add-RMSNorm duration",
+    "a reduction or reciprocal-square-root service",
+    "a production-specific correction factor",
+    "queued CTA service or grids above 864",
+    "direct Forward consumption before composition review"
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "production_predictor_consumption_allowed": false
+}

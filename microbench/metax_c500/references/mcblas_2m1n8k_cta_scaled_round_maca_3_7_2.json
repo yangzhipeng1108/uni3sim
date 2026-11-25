@@ -1,0 +1,24 @@
+{
+  "dtype": "bf16",
+  "fill_us": 2.9659,
+  "fitted_cells": "non-production widths N=1408..3328 at K rounds 8..11; K=3072 excluded (selector leaves the program)",
+  "form": "t_us = fill_us + k_rounds * (round_base_us + round_per_cta_us * ctas)",
+  "hardware_id": "metax_c500",
+  "k_round_width_elements": 256,
+  "mechanism": "mcblas_2m1n8k_cta_scaled_round",
+  "production_or_evaluation_duration_consumed": false,
+  "program": "mcblas__Mck_bf16gemm_tn_64x32x256_2m1n8k_256t_bf16_bf16_fp32_sb_0_0",
+  "round_base_us": 1.7034,
+  "round_per_cta_us": 0.0151,
+  "schema": "mcblas_program_pipeline_v2",
+  "validity": {
+    "ctas_max": 52,
+    "ctas_min": 22,
+    "k_rounds_max": 11,
+    "k_rounds_min": 8,
+    "note": "Production widths N=2048 and N=2560 are 32 and 40 CTAs, strictly inside the measured CTA range, so applying this is interpolation."
+  },
+  "why_this_program": "The canonical dataset's raw device-launch projection shows every mcBLAS launch in it is 2m1n8k.  The earlier 4m1n8k reference measures what the current container selects and does not apply to that dataset.",
+  "wired": false,
+  "worst_residual_pct": 2.43
+}

@@ -1,0 +1,210 @@
+{
+  "kind": "fixed_state_mbarrier_query_address_multiplicity",
+  "source_sha256": {
+    "mbarrier_query_fanin.cu": "0fe4318f4faec694fa4cd4a4b2c1ce5da2f3ddaf25ef890ac357334640b645be",
+    "mbarrier_query_fanin_analysis.py": "19849b9e5b1b3566388d47628a2a6862de04cc65848c907aa7ef4b4f5f39adcd",
+    "mbarrier_query_fanin_modal_runner.py": "2df1bcecbc12f97aabed2f393156b27929ec2ac201025308ef4a093bddece3f0"
+  },
+  "cells": [
+    [
+      132,
+      1,
+      0,
+      1
+    ],
+    [
+      132,
+      1,
+      0,
+      128
+    ],
+    [
+      132,
+      1,
+      1,
+      1
+    ],
+    [
+      132,
+      1,
+      1,
+      128
+    ],
+    [
+      132,
+      4,
+      0,
+      1
+    ],
+    [
+      132,
+      4,
+      0,
+      128
+    ],
+    [
+      132,
+      4,
+      1,
+      1
+    ],
+    [
+      132,
+      4,
+      1,
+      128
+    ],
+    [
+      132,
+      32,
+      0,
+      1
+    ],
+    [
+      132,
+      32,
+      0,
+      128
+    ],
+    [
+      132,
+      32,
+      1,
+      1
+    ],
+    [
+      132,
+      32,
+      1,
+      128
+    ],
+    [
+      264,
+      1,
+      0,
+      1
+    ],
+    [
+      264,
+      1,
+      0,
+      128
+    ],
+    [
+      264,
+      1,
+      1,
+      1
+    ],
+    [
+      264,
+      1,
+      1,
+      128
+    ],
+    [
+      264,
+      4,
+      0,
+      1
+    ],
+    [
+      264,
+      4,
+      0,
+      128
+    ],
+    [
+      264,
+      4,
+      1,
+      1
+    ],
+    [
+      264,
+      4,
+      1,
+      128
+    ],
+    [
+      264,
+      32,
+      0,
+      1
+    ],
+    [
+      264,
+      32,
+      0,
+      128
+    ],
+    [
+      264,
+      32,
+      1,
+      1
+    ],
+    [
+      264,
+      32,
+      1,
+      128
+    ]
+  ],
+  "counter_cells": [
+    [
+      264,
+      1,
+      0,
+      128
+    ],
+    [
+      264,
+      1,
+      1,
+      128
+    ],
+    [
+      264,
+      32,
+      0,
+      128
+    ],
+    [
+      264,
+      32,
+      1,
+      128
+    ]
+  ],
+  "processes": [
+    0,
+    1
+  ],
+  "launch_samples": 17,
+  "rounds": 257,
+  "threads": 288,
+  "shared_bytes": 98304,
+  "resident_ctas_per_sm": 2,
+  "gates": [
+    "both N1/N128 fixed unrolled SASS bodies; no async copy, Tensor, spill or timed helper/backedge; result consumption and comparison BEFORE end clock",
+    "all-lane fixed ready/pending numerical state, all132SM placement and two resident capacity",
+    "all24conditions in2processes and4directclock controls retained",
+    "allperCTA calibrated clocks nominal3pct; directSM nominal/stable3pct; meanquery min/max17launch intervals halfwidth3pct; reverseprocess meanmedian3pct"
+  ],
+  "confidence": "min/max17 independent launch statistics bound the median per metric; 48cells x2metrics family failure <=96*2/2**17=0.001465; independent launch-repeat assumption explicit",
+  "hypothesis": "address multiplicity explains wide query only if ALL16 state/grid/N/process ratio32_over1 lower confidence endpoints >=8; otherwise inconclusive/negative, no subset selection",
+  "transfer": "pure instruction query+completion-predicate-clock witness, not DMA response observer. N128 is amortized throughput, N1 is completed query bracket. No old observer requalified, no Q/FIFO/fluid/rate/clock/phase enters Forward. Full-copy-activity timing-support/resolution proof is still needed before any new observer.",
+  "budget": {
+    "gpu": "H200",
+    "cards": 1,
+    "expected_seconds": 60,
+    "maximum_seconds": 180,
+    "maximum_gpu_hours": 0.05,
+    "usd_hold": 0.35,
+    "retries": 0,
+    "volume": false
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "forward_parameter_or_policy_adopted": false
+}

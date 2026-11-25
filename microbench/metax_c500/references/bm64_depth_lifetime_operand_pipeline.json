@@ -1,0 +1,69 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_depth_lifetime_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "global_queue_minimum_populated_experts_per_compute_unit": 4,
+    "global_queue_maximum_m_tiles_per_populated_expert": 2,
+    "e256_minimum_m_tiles_per_populated_expert_exclusive": 4,
+    "e256_maximum_m_tiles_per_populated_expert": 5,
+    "production_k_n_tile_classes": [[128, 32], [32, 64], [64, 16], [16, 32]]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090701,
+    "event_trials_per_capture": 21,
+    "independent_captures_per_cell": 3,
+    "adjacent_nonproduction_cells_per_class": 2,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "01f83fecf7fb57f932afd57ee42210e97981ec712237ce3b0af81a6b9fda94e1",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "median capacity across three independent captures per cell, then conservative minimum across two adjacent non-production K/N cells"
+  },
+  "captures": {
+    "global_deep_long_k": [
+      {"cell": "lo", "capture": 1, "tokens": 4096, "experts": 512, "topk": 10, "source_topk": 10, "k": 4032, "n": 2112, "k_tiles": 126, "n_tiles": 33, "active_m_tiles": 1003, "maximum_m_tiles": 1144, "raw_sha256": "f0f20dc32983bd5b4a08b00cccc14294e77bbeafeb273f94c91b1464ac67f1b4", "operand_pipeline_capacity_bytes_per_s": 622465137115.988},
+      {"cell": "lo", "capture": 2, "tokens": 4096, "experts": 512, "topk": 10, "source_topk": 10, "k": 4032, "n": 2112, "k_tiles": 126, "n_tiles": 33, "active_m_tiles": 1003, "maximum_m_tiles": 1144, "raw_sha256": "d7eeb42a9cc0e7c38c76c8eb59eb450938e5ce351c98cfbdcd5279b926f449cd", "operand_pipeline_capacity_bytes_per_s": 618672479201.7102},
+      {"cell": "lo", "capture": 3, "tokens": 4096, "experts": 512, "topk": 10, "source_topk": 10, "k": 4032, "n": 2112, "k_tiles": 126, "n_tiles": 33, "active_m_tiles": 1003, "maximum_m_tiles": 1144, "raw_sha256": "ba3af2f786297ba87a8ac8a86035a2acd5592d8bee7e757136726d1f5be34ba6", "operand_pipeline_capacity_bytes_per_s": 668608819522.8219},
+      {"cell": "hi", "capture": 1, "tokens": 4096, "experts": 512, "topk": 10, "source_topk": 10, "k": 4160, "n": 1984, "k_tiles": 130, "n_tiles": 31, "active_m_tiles": 1003, "maximum_m_tiles": 1144, "raw_sha256": "96c96d33acb3bcd9f7716e606b5cacd1c7ba0212ea922997ff4bdd48ae03ba13", "operand_pipeline_capacity_bytes_per_s": 647844057371.1271},
+      {"cell": "hi", "capture": 2, "tokens": 4096, "experts": 512, "topk": 10, "source_topk": 10, "k": 4160, "n": 1984, "k_tiles": 130, "n_tiles": 31, "active_m_tiles": 1003, "maximum_m_tiles": 1144, "raw_sha256": "41f82af36dd120c33240411a7512c7009f1994d76dc6ffc3d259a8d1648dc10f", "operand_pipeline_capacity_bytes_per_s": 744009564294.2854},
+      {"cell": "hi", "capture": 3, "tokens": 4096, "experts": 512, "topk": 10, "source_topk": 10, "k": 4160, "n": 1984, "k_tiles": 130, "n_tiles": 31, "active_m_tiles": 1003, "maximum_m_tiles": 1144, "raw_sha256": "3f79239d83aeceefdd81a7384db3dc31dadc59305e7801d091c1c4c08ebb107b", "operand_pipeline_capacity_bytes_per_s": 662164166041.3708}
+    ],
+    "global_large_wide_n": [
+      {"cell": "lo", "capture": 1, "tokens": 4096, "experts": 512, "topk": 10, "source_topk": 1, "k": 960, "n": 4160, "k_tiles": 30, "n_tiles": 65, "active_m_tiles": 1003, "maximum_m_tiles": 1144, "raw_sha256": "86269ec73f3d0e161661bbc22269edfc66211f5746adc997c492abc91b12d3a8", "operand_pipeline_capacity_bytes_per_s": 1160976888533.392},
+      {"cell": "lo", "capture": 2, "tokens": 4096, "experts": 512, "topk": 10, "source_topk": 1, "k": 960, "n": 4160, "k_tiles": 30, "n_tiles": 65, "active_m_tiles": 1003, "maximum_m_tiles": 1144, "raw_sha256": "afc1be9da3ea4c6ecae9c504cbf2ee3c869fee4c8f983bee54ebec19c361de6e", "operand_pipeline_capacity_bytes_per_s": 1180503646731.7588},
+      {"cell": "lo", "capture": 3, "tokens": 4096, "experts": 512, "topk": 10, "source_topk": 1, "k": 960, "n": 4160, "k_tiles": 30, "n_tiles": 65, "active_m_tiles": 1003, "maximum_m_tiles": 1144, "raw_sha256": "3493dae20971e85295e9d3b55a519ec5b15a41a1ac38c2878a2cd88232480db3", "operand_pipeline_capacity_bytes_per_s": 1189460822997.228},
+      {"cell": "hi", "capture": 1, "tokens": 4096, "experts": 512, "topk": 10, "source_topk": 1, "k": 1088, "n": 4032, "k_tiles": 34, "n_tiles": 63, "active_m_tiles": 1003, "maximum_m_tiles": 1144, "raw_sha256": "0582288bb34dd04f20201c925ef7d3722ea83827c54f4d09c9a05d5d6e2c2e63", "operand_pipeline_capacity_bytes_per_s": 1170577937479.043},
+      {"cell": "hi", "capture": 2, "tokens": 4096, "experts": 512, "topk": 10, "source_topk": 1, "k": 1088, "n": 4032, "k_tiles": 34, "n_tiles": 63, "active_m_tiles": 1003, "maximum_m_tiles": 1144, "raw_sha256": "c9b8e2a7be8cf7fc870678342258b7246081a0c14f7a1c7a88d5ab8b83fc0e6d", "operand_pipeline_capacity_bytes_per_s": 1164381308417.5315},
+      {"cell": "hi", "capture": 3, "tokens": 4096, "experts": 512, "topk": 10, "source_topk": 1, "k": 1088, "n": 4032, "k_tiles": 34, "n_tiles": 63, "active_m_tiles": 1003, "maximum_m_tiles": 1144, "raw_sha256": "b67237c7a67a7b1b6d5c95be67077dcb7222d566e510596910dcf91e9eeba769", "operand_pipeline_capacity_bytes_per_s": 1164080366107.3887}
+    ],
+    "e256_four_mid_long_k": [
+      {"cell": "lo", "capture": 1, "tokens": 8192, "experts": 256, "topk": 8, "source_topk": 8, "k": 1984, "n": 1088, "k_tiles": 62, "n_tiles": 17, "active_m_tiles": 1151, "maximum_m_tiles": 1276, "raw_sha256": "4444a75fa41e97fd9fb87dd0447cdd8e9f14810b2fd75d32c425e2bd793d4dec", "operand_pipeline_capacity_bytes_per_s": 1275532058368.6504},
+      {"cell": "lo", "capture": 2, "tokens": 8192, "experts": 256, "topk": 8, "source_topk": 8, "k": 1984, "n": 1088, "k_tiles": 62, "n_tiles": 17, "active_m_tiles": 1151, "maximum_m_tiles": 1276, "raw_sha256": "a9f5bfd0e805bcb474c7c068167dc12671e8932b27890846bfd41906f07c4e56", "operand_pipeline_capacity_bytes_per_s": 1226155012842.5259},
+      {"cell": "lo", "capture": 3, "tokens": 8192, "experts": 256, "topk": 8, "source_topk": 8, "k": 1984, "n": 1088, "k_tiles": 62, "n_tiles": 17, "active_m_tiles": 1151, "maximum_m_tiles": 1276, "raw_sha256": "40e6b9afd72a5f018f85100571ffcd6cbf7d04453b5d9f7e7c380e8ebdc22242", "operand_pipeline_capacity_bytes_per_s": 1174843473814.0503},
+      {"cell": "hi", "capture": 1, "tokens": 8192, "experts": 256, "topk": 8, "source_topk": 8, "k": 2112, "n": 960, "k_tiles": 66, "n_tiles": 15, "active_m_tiles": 1151, "maximum_m_tiles": 1276, "raw_sha256": "9e2cf7906a0b014e3d062bf48d13d981e2967ceafaee55bcbbee743d6944bcac", "operand_pipeline_capacity_bytes_per_s": 1076271868877.4132},
+      {"cell": "hi", "capture": 2, "tokens": 8192, "experts": 256, "topk": 8, "source_topk": 8, "k": 2112, "n": 960, "k_tiles": 66, "n_tiles": 15, "active_m_tiles": 1151, "maximum_m_tiles": 1276, "raw_sha256": "0180999a6c16072473f5d3a2b044b0b9ae452a5f49d45354c53006b6ee916602", "operand_pipeline_capacity_bytes_per_s": 986146105267.6028},
+      {"cell": "hi", "capture": 3, "tokens": 8192, "experts": 256, "topk": 8, "source_topk": 8, "k": 2112, "n": 960, "k_tiles": 66, "n_tiles": 15, "active_m_tiles": 1151, "maximum_m_tiles": 1276, "raw_sha256": "9a9249fcfde45a607e9673efeb447ed918536f5d9def81697732d70b8641dfd2", "operand_pipeline_capacity_bytes_per_s": 1079424814553.9023}
+    ],
+    "e256_four_mid_wide_n": [
+      {"cell": "lo", "capture": 1, "tokens": 8192, "experts": 256, "topk": 8, "source_topk": 1, "k": 448, "n": 2112, "k_tiles": 14, "n_tiles": 33, "active_m_tiles": 1151, "maximum_m_tiles": 1276, "raw_sha256": "e6f3a9f907426482a98afc6acc56ad0f28db93cb98e6f0c7ad7a9366c7ba4ec8", "operand_pipeline_capacity_bytes_per_s": 1110945250534.4165},
+      {"cell": "lo", "capture": 2, "tokens": 8192, "experts": 256, "topk": 8, "source_topk": 1, "k": 448, "n": 2112, "k_tiles": 14, "n_tiles": 33, "active_m_tiles": 1151, "maximum_m_tiles": 1276, "raw_sha256": "73fc69b4a29f8db5f0ae40f740370948972251ae0ec8fad031adb5ebd225c7bc", "operand_pipeline_capacity_bytes_per_s": 1168387805798.572},
+      {"cell": "lo", "capture": 3, "tokens": 8192, "experts": 256, "topk": 8, "source_topk": 1, "k": 448, "n": 2112, "k_tiles": 14, "n_tiles": 33, "active_m_tiles": 1151, "maximum_m_tiles": 1276, "raw_sha256": "c4fe0af2159fb926ee4b010a57388c65ccc0caf23e856ce6f5346075b3217aa3", "operand_pipeline_capacity_bytes_per_s": 1168133073635.9155},
+      {"cell": "hi", "capture": 1, "tokens": 8192, "experts": 256, "topk": 8, "source_topk": 1, "k": 576, "n": 1984, "k_tiles": 18, "n_tiles": 31, "active_m_tiles": 1151, "maximum_m_tiles": 1276, "raw_sha256": "e685c41a7f161acea72fa02065547e2e3e80af3de31bd37b944743a0799d67f7", "operand_pipeline_capacity_bytes_per_s": 1010401399126.2913},
+      {"cell": "hi", "capture": 2, "tokens": 8192, "experts": 256, "topk": 8, "source_topk": 1, "k": 576, "n": 1984, "k_tiles": 18, "n_tiles": 31, "active_m_tiles": 1151, "maximum_m_tiles": 1276, "raw_sha256": "5e516e1b49167cf5e9204063f0280417a444b6142bbdb8818db3f66ca34aefbd", "operand_pipeline_capacity_bytes_per_s": 986707274876.5145},
+      {"cell": "hi", "capture": 3, "tokens": 8192, "experts": 256, "topk": 8, "source_topk": 1, "k": 576, "n": 1984, "k_tiles": 18, "n_tiles": 31, "active_m_tiles": 1151, "maximum_m_tiles": 1276, "raw_sha256": "2114a15059b4839dd98a3d1052113e01393f8d735e8e7473b662b1dfd4cdc7be", "operand_pipeline_capacity_bytes_per_s": 1012324037480.9799}
+    ]
+  },
+  "selected_services": {
+    "global_deep_long_k": {"predicate": "at least four populated experts per compute unit, at most two active M tiles per populated expert, and K/N tile class (128,32)", "logical_byte_capacity_per_s": 622465137115.988},
+    "global_large_wide_n": {"predicate": "at least four populated experts per compute unit, at most two active M tiles per populated expert, and K/N tile class (32,64)", "logical_byte_capacity_per_s": 1164381308417.5315},
+    "e256_four_mid_long_k": {"predicate": "256 populated experts, more than four and at most five active M tiles per populated expert, and K/N tile class (64,16)", "logical_byte_capacity_per_s": 1076271868877.4132},
+    "e256_four_mid_wide_n": {"predicate": "256 populated experts, more than four and at most five active M tiles per populated expert, and K/N tile class (16,32)", "logical_byte_capacity_per_s": 1010401399126.2913}
+  },
+  "raw_path": "profiler_output/microbench/metax_c500/fused_moe_depth_1458f821_20260907_r1"
+}

@@ -1,0 +1,104 @@
+{
+  "duration_source": "nsys_gpu_kernel",
+  "fit_diagnostics": {
+    "crossover_wave_count": 15.659407792630443,
+    "maximum_cta_wave_count": 8,
+    "training": {
+      "cell_count": 280,
+      "mape_percent": 3.6983565166607315,
+      "maximum_absolute_percentage_error": 13.653304498647909,
+      "p95_absolute_percentage_error": 11.110864824823043,
+      "signed_mean_percentage_error": -0.25149331134231684,
+      "wmae_percent": 1.5621315673454776
+    },
+    "validation": {
+      "cell_count": 140,
+      "mape_percent": 3.754868056641722,
+      "maximum_absolute_percentage_error": 13.653304498647909,
+      "p95_absolute_percentage_error": 11.110864824823043,
+      "signed_mean_percentage_error": -0.34922913966256447,
+      "wmae_percent": 1.5633424107886755
+    }
+  },
+  "formula": "submit_ns + ceil(grid/132) * max(cta_round_ns, wave_round_ns * ceil(block/32))",
+  "hardware_id": "nvidia_h200",
+  "input": {
+    "capture": {
+      "binary": "bin/empty_kernel_duration",
+      "device": "NVIDIA H200, capture-device-3628c660fa6e, 575.57.08",
+      "device_index": 0,
+      "kernel_name": "empty_kernel",
+      "label_prefix": "empty_kernel",
+      "nsys": "/capture-public/tools/nsys_2025.6.1/bin/nsys",
+      "nsys_command": "nsys profile -t cuda,nvtx -s none --cpuctxsw=none",
+      "samples_per_cell": 200,
+      "trials": [
+        {
+          "accepted": true,
+          "busy_clock_mhz_max": 1980,
+          "busy_clock_mhz_min": 1980,
+          "busy_samples": 56,
+          "host_loadavg_before": [
+            "2.74",
+            "2.57",
+            "2.60"
+          ],
+          "labelled_launches": 28000,
+          "trial": 1
+        },
+        {
+          "accepted": true,
+          "busy_clock_mhz_max": 1980,
+          "busy_clock_mhz_min": 1980,
+          "busy_samples": 60,
+          "host_loadavg_before": [
+            "2.71",
+            "2.56",
+            "2.60"
+          ],
+          "labelled_launches": 28000,
+          "trial": 2
+        },
+        {
+          "accepted": true,
+          "busy_clock_mhz_max": 1980,
+          "busy_clock_mhz_min": 1980,
+          "busy_samples": 56,
+          "host_loadavg_before": [
+            "2.52",
+            "2.53",
+            "2.59"
+          ],
+          "labelled_launches": 28000,
+          "trial": 3
+        }
+      ]
+    },
+    "path": "profiler_output/microbench/nvidia_h200/empty_kernel_wp7_20260925/summary_by_trial.csv",
+    "report_sha256": "4ff8f6ab1461c1c1bba42e7586873b41b9cc8d3073ba0d8f01c8c9892b59b562",
+    "samples_per_cell": 200,
+    "sha256": "0fc28c5369aaf5ae377e3890a40cd836fa8b4c549d1b363ecc1f70a6030d95ed",
+    "training_trials": [
+      1,
+      2
+    ],
+    "trials": [
+      1,
+      2,
+      3
+    ],
+    "validation_trials": [
+      3
+    ]
+  },
+  "mechanism": "isolated_empty_task_scheduler",
+  "parameters": {
+    "cta_round_ns": 78.58150486706998,
+    "extra_block_dimension_ns": 0.0,
+    "extra_grid_dimension_ns": 0.0,
+    "submit_ns": 803.1987160706855,
+    "wave_round_ns": 5.018165814932774
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "schema_version": 1
+}

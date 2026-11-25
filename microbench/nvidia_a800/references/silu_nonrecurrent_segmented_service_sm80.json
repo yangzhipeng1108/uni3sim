@@ -1,0 +1,116 @@
+{
+  "schema": "nvidia_a800_silu_nonrecurrent_segmented_service_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "device_uuid": "capture-device-ceb3fcab78ae",
+  "compute_capability": "sm_80",
+  "physical_sm_count": 108,
+  "source_baseline_commit": "2373168383ada17a8a81b742f2bc1a07c62db6ca",
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_a800/silu_nonrecurrent_envelope_23731683_20260908_d7_r0",
+      "run_id": "silu_nonrecurrent_envelope_23731683_20260908_d7_r0",
+      "rotation": 0,
+      "manifest_sha256": "d4fbc7f0a82943d4c167d92ff028427e2122fece1cebbeab43fb248446a5e92c",
+      "probe_binary_sha256": "e56beab932f7008f279e8b4ddf1222bfba0374306c82dc4df9ad2260b0362c87",
+      "probe_resource_sha256": "3094afb83e9e6478730c482347ccb9891c7ebb6028cda00d33bf0bf73bb01d63",
+      "probe_sass_sha256": "95fa0add9b9fa62bd8a383be3f612b2aab270f7525f0069c15a473e3379acf3a",
+      "raw_sha256": "a1d5a82c80289aa86f3d9aec73ff4be47a1a049274e8699aa93bb4e284023dc7"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_a800/silu_nonrecurrent_envelope_23731683_20260908_d7_r1",
+      "run_id": "silu_nonrecurrent_envelope_23731683_20260908_d7_r1",
+      "rotation": 1,
+      "manifest_sha256": "28c528967d3712b4e5ad31f6341cc0caaa675d00e776a22d326d7756a87633ac",
+      "probe_binary_sha256": "1cb088de558947aeeb99fa433a2e90c2e98738d17d37ac72c1f44be60a7674e3",
+      "probe_resource_sha256": "7dc7a6bde89e778e3efd234ae1370da0e91f546b3e9144729afaa078984c5e4c",
+      "probe_sass_sha256": "a6f24d8d0024cff24c85ea8241cde7720698f7ec53f3c73591c048563658f78f",
+      "raw_sha256": "087178ac2c3cc1ba412d02c98dd3847e2dd916f28c096e3bbb1b0ef57acd0951"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_a800/silu_nonrecurrent_envelope_23731683_20260908_d7_r2",
+      "run_id": "silu_nonrecurrent_envelope_23731683_20260908_d7_r2",
+      "rotation": 2,
+      "manifest_sha256": "64d5cff7755f1456e9c70b9bf2a585f5fd11ffb77b1fc9985cf1bf204d788b34",
+      "probe_binary_sha256": "351b3ed6e7a2378f00ee444dfb66487633324d5e21b4de727d3ffa1df63fd3f3",
+      "probe_resource_sha256": "f2f51aa9bda008d7cc5aa3c819ba04894cd705760f7e190d5c8ffc47c515d98a",
+      "probe_sass_sha256": "1adc042ae59f7fd75c61fe8ed0363722a3f0513a3c480620f1aee3d761cc9234",
+      "raw_sha256": "c3193f1fce14b4ec3ba9aa21fd552ce232ba7d7e73486e331f32b0f84c480ca4"
+    }
+  ],
+  "audit": {
+    "path": "profiler_output/microbench/nvidia_a800/silu_nonrecurrent_envelope_23731683_20260908_d7_audit.json",
+    "sha256": "e1505aad660584853d87f7ae507da798c8dc18467d1f403ea0dad5c1f8e77408",
+    "calibration_rotations": [0, 1],
+    "held_out_rotation": 2,
+    "within_run_maximum_interquartile_relative_spread": 0.025313693398799783,
+    "cross_run_maximum_relative_median_spread": 0.021477098400175323,
+    "held_out_duration_ape_limit": 0.1,
+    "held_out_mean_duration_ape": 0.005890620174978685,
+    "held_out_maximum_duration_ape": 0.040586938450973935,
+    "segmented_service_gate": "pass"
+  },
+  "tool_identity": {
+    "source_sha256": "807cd42f92015808373b1234fc5e5e6c2f3232323a2e59bacaa48e1e1fbbf189",
+    "runner_sha256": "a205421ccccc7f13527efe1967ac896da2b7479f91aac5d7af107b1c8c646749",
+    "report_sha256": "007321161592241cad00b65a09f9091e7546d91556b6d47e9959016d7ab99aee",
+    "gates_sha256": "2bab1b2c6d1bb0b9209525a517caf6a95cbb0fee097e0f345de4f354c826efea"
+  },
+  "production_binary_identity": {
+    "path": "/capture-workspace/miniconda_capture/envs/capture-python/lib/python3.10/site-packages/vllm/_C.abi3.so",
+    "binary_sha256": "984de21ce38cc8083d207663a380ca75acc6ad3dc230858092f59e363c4eebd5",
+    "sm80_cubin_sha256": "5d69f0fc996af251da17e14f0e3a54332f4b2414c68084575bd8abf7b4f91",
+    "silu_function_sass_sha256": "681fe0f4724e5b726db3c8f2527cbd19d29482c5644fd8fc60d846dce68ca9ad"
+  },
+  "mechanism_contract": {
+    "threads_per_cta": 1024,
+    "resident_ctas_per_sm": 2,
+    "calibration_grid_ctas": [108, 216, 1024],
+    "validation_grid_ctas": [256],
+    "calibration_endpoint_widths": [6144, 53248],
+    "source_round_elements": 1024,
+    "formula": "service(segment, rounds) = entry + rounds * round; total = first + (min(ceil(grid/108), 2) - 1) * resident + max(0, ceil(grid/108) - 2) * queued"
+  },
+  "selected_services": {
+    "silu_nonrecurrent_first_entry_block1024": {
+      "cycles_per_cta": 397.0434782608695,
+      "operations_per_second_at_1_14ghz": 2871222.0762155065
+    },
+    "silu_nonrecurrent_first_round_block1024": {
+      "cycles_per_cta": 310.82608695652175,
+      "operations_per_second_at_1_14ghz": 3667645.8245908516
+    },
+    "silu_nonrecurrent_resident_entry_block1024": {
+      "cycles_per_cta": 295.39130434782624,
+      "operations_per_second_at_1_14ghz": 3859287.6067118025
+    },
+    "silu_nonrecurrent_resident_round_block1024": {
+      "cycles_per_cta": 308.4347826086956,
+      "operations_per_second_at_1_14ghz": 3696081.1953763748
+    },
+    "silu_nonrecurrent_queued_entry_block1024": {
+      "cycles_per_cta": 751.663043478261,
+      "operations_per_second_at_1_14ghz": 1516637.0222549995
+    },
+    "silu_nonrecurrent_queued_round_block1024": {
+      "cycles_per_cta": 306.5978260869565,
+      "operations_per_second_at_1_14ghz": 3718225.9722763854
+    }
+  },
+  "forward_domain": {
+    "dtype": "bf16",
+    "threads_per_cta": 1024,
+    "grid_ctas": 256,
+    "resident_ctas_per_sm": 2,
+    "maximum_ctas_per_sm": 3,
+    "cohort_refills": 2
+  },
+  "decision": {
+    "status": "positive_mechanism_candidate",
+    "mechanism_publishable": true,
+    "forward_eligible": true,
+    "reason": "The predeclared first/resident/queued affine services pass the frozen held-out 10 percent duration gate without production or evaluation durations."
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "production_predictor_consumption_allowed": true
+}

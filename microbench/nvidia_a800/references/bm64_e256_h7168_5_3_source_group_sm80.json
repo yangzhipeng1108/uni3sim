@@ -1,0 +1,75 @@
+{
+  "schema": "nvidia_a800_bm64_e256_h7168_ordered_5_3_source_group_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "source_baseline_commit": "724d3bc8132db05b0700e568e9429cea98d4ceed",
+  "source": "microbench/nvidia_a800/operators/fused_moe/fused_moe_triton_operand_stream_runner.py",
+  "source_sha256": "685ef209ef00e683ae2f42a5f451080de346907154d9693e88d0b087fbdb19bd",
+  "vllm_source": "/capture-workspace/vllm_src_3ver/a800/vllm/model_executor/layers/fused_moe/fused_moe.py",
+  "vllm_source_sha256": "8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e",
+  "probe_contract": {
+    "dtype": "bf16",
+    "role": "w1",
+    "experts": 256,
+    "tokens": 8192,
+    "topk": 8,
+    "source_topk": 8,
+    "projection_k": 7168,
+    "production_projection_n": 4096,
+    "non_production_projection_n": [4032, 4160],
+    "tile_m": 64,
+    "tile_n": 64,
+    "tile_k": 32,
+    "group_size_m": 8,
+    "ordered_m_tile_runs_per_complete_group": [5, 3],
+    "repetitions": 128,
+    "active_m_tiles": 1024,
+    "maximum_m_tiles": 1276,
+    "timing_domain": "CUDA events around one synthetic-routing grouped matrix kernel"
+  },
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_a800/fused_moe_skew53_k7168_n4032_724d3bc8_20260911_r4/result.json",
+      "result_sha256": "d6481e67a8025667c9fa0d677df9a4ad3791c8f2a7b1419a2ea95083c973cccb",
+      "logical_operand_capacity_bytes_per_s": 2102568093264.9724
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_a800/fused_moe_skew53_k7168_n4032_724d3bc8_20260911_r5/result.json",
+      "result_sha256": "35268459241172bf586fe0f0506c6d7cb7f4fa21d9b2c6b6c97781c73344d7c8",
+      "logical_operand_capacity_bytes_per_s": 2118752676882.8289
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_a800/fused_moe_skew53_k7168_n4032_724d3bc8_20260911_r6/result.json",
+      "result_sha256": "55fcc6f20e7997a847a326949ece2ab72c80efc8b93e91e99159eea2dd108e87",
+      "logical_operand_capacity_bytes_per_s": 2111708910486.7976
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_a800/fused_moe_skew53_k7168_n4160_724d3bc8_20260911_r4/result.json",
+      "result_sha256": "122672ca729a4a70690f9e19a95683e62c968836d735315ce6ec4be308355d81",
+      "logical_operand_capacity_bytes_per_s": 2107601967146.322
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_a800/fused_moe_skew53_k7168_n4160_724d3bc8_20260911_r5/result.json",
+      "result_sha256": "e890a5230716878f5d0cf287f4b666b6a055b587cace2f2dc40bb0c21ef2a956",
+      "logical_operand_capacity_bytes_per_s": 2113090706642.0803
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_a800/fused_moe_skew53_k7168_n4160_724d3bc8_20260911_r6/result.json",
+      "result_sha256": "5826561ea4c99a7f40394b9136098232f41c6824c0ee63bde1bc282d2097643e",
+      "logical_operand_capacity_bytes_per_s": 2118495263844.5444
+    }
+  ],
+  "selected_service": 2102568093264.9724,
+  "selection_rule": "minimum capacity across two adjacent non-production N endpoints and three fresh processes per endpoint; endpoint ranges divided by their medians are 0.766421% and 0.515515%",
+  "mechanism": "ordered complete GSM8 5+3 expert-weight-stream A/B plus HMMA operand pipeline",
+  "allowed_conclusion": "Only BF16 E256 W1 K7168/N4096 BM64/BN64/BK32/GSM8 source groups with the ordered exact M-tile fanout 5+3 may use this full-chip ingress service; all other group patterns retain their independently selected or generic services.",
+  "excluded_conclusions": [
+    "reverse 3+5 fanout",
+    "uniform 4+4 fanout",
+    "6+2, 7+1, three-stream, or repeated-expert boundary groups",
+    "W2 or another projection program",
+    "production operator duration or residual correction"
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

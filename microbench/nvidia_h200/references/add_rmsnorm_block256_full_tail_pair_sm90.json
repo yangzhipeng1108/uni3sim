@@ -1,0 +1,87 @@
+{
+  "schema": "nvidia_h200_add_rmsnorm_block256_full_tail_pair_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "software_revision": "vllm_0.11.0_source_cuda_12.9_sm90",
+  "production_or_evaluation_duration_consumed": false,
+  "source_contract": {
+    "dtype": "bf16",
+    "vector_width_elements": 8,
+    "block_threads": 256,
+    "tail_threads": [
+      64,
+      128
+    ],
+    "registers_per_thread": 32,
+    "static_shared_memory_bytes": 168,
+    "resident_ctas_per_sm": 8,
+    "operation_unit": "one_source_round_equivalent",
+    "operations_per_measured_pair": 2
+  },
+  "artifacts": {
+    "tracked_source": "microbench/nvidia_h200/compute/sfu/add_rmsnorm_block256_full_tail_pair.cu",
+    "compiled_source_snapshot_sha256": "b0a80b61e34ad2d5b0d764466537140d710cbfcadcbf9ee7fed67d5d45dde1d5",
+    "binary_sha256": "e5cffe977eb53e0b3e0b69237bf62e4c7053ee10ee745e0e1dff825eda1d48c7",
+    "raw_csv_sha256": "3953dca3248d59e71847d2bdcbb1ded2e772934d299295075607de49521e7ee6",
+    "raw_output": "profiler_output/microbench/nvidia_h200/h200_add_rmsnorm_block256_full_tail_pair_b5f13ef0_20260925_gpu3",
+    "remote_raw_output": "h200-capture-host:/capture-public/h200_microbench/wp5_vector/runs/h200_add_rmsnorm_block256_full_tail_pair_b5f13ef0_20260925_gpu3",
+    "runner": "microbench/nvidia_h200/compute/sfu/add_rmsnorm_block256_full_tail_pair_runner.py",
+    "runner_sha256": "9ad6a8da531956709d4948fee366badfdc201674ee3c700115f9f78f44cc7c3a",
+    "helper_sha256": "f001aca483d0276f8150dbf5be325e8754afa5846e06f4a74962d371706e2480",
+    "baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+    "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86",
+    "ptxas_verbose": "ptxas info    : 0 bytes gmem\nptxas info    : Compiling entry function '_Z35add_rmsnorm_block256_full_tail_pairIL13RoundFunction1ELi128EEvPK4PackPS1_S3_S4_PfPmS6_Pj' for 'sm_90'\nptxas info    : Function properties for _Z35add_rmsnorm_block256_full_tail_pairIL13RoundFunction1ELi128EEvPK4PackPS1_S3_S4_PfPmS6_Pj\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 32 registers, used 1 barriers, 168 bytes smem\nptxas info    : Compile time = 9.500 ms\nptxas info    : Compiling entry function '_Z35add_rmsnorm_block256_full_tail_pairIL13RoundFunction0ELi128EEvPK4PackPS1_S3_S4_PfPmS6_Pj' for 'sm_90'\nptxas info    : Function properties for _Z35add_rmsnorm_block256_full_tail_pairIL13RoundFunction0ELi128EEvPK4PackPS1_S3_S4_PfPmS6_Pj\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 32 registers, used 1 barriers, 168 bytes smem\nptxas info    : Compile time = 6.666 ms\nptxas info    : Compiling entry function '_Z35add_rmsnorm_block256_full_tail_pairIL13RoundFunction1ELi64EEvPK4PackPS1_S3_S4_PfPmS6_Pj' for 'sm_90'\nptxas info    : Function properties for _Z35add_rmsnorm_block256_full_tail_pairIL13RoundFunction1ELi64EEvPK4PackPS1_S3_S4_PfPmS6_Pj\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 32 registers, used 1 barriers, 168 bytes smem\nptxas info    : Compile time = 7.240 ms\nptxas info    : Compiling entry function '_Z35add_rmsnorm_block256_full_tail_pairIL13RoundFunction0ELi64EEvPK4PackPS1_S3_S4_PfPmS6_Pj' for 'sm_90'\nptxas info    : Function properties for _Z35add_rmsnorm_block256_full_tail_pairIL13RoundFunction0ELi64EEvPK4PackPS1_S3_S4_PfPmS6_Pj\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 32 registers, used 1 barriers, 168 bytes smem\nptxas info    : Compile time = 6.334 ms\nptxas info    : Compiling entry function '_Z31add_rmsnorm_block256_tail_roundIL13RoundFunction1ELi128EEvPK4PackPS1_S3_S4_PfPmS6_Pj' for 'sm_90'\nptxas info    : Function properties for _Z31add_rmsnorm_block256_tail_roundIL13RoundFunction1ELi128EEvPK4PackPS1_S3_S4_PfPmS6_Pj\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 32 registers, used 1 barriers, 168 bytes smem\nptxas info    : Compile time = 6.265 ms\nptxas info    : Compiling entry function '_Z31add_rmsnorm_block256_tail_roundIL13RoundFunction0ELi128EEvPK4PackPS1_S3_S4_PfPmS6_Pj' for 'sm_90'\nptxas info    : Function properties for _Z31add_rmsnorm_block256_tail_roundIL13RoundFunction0ELi128EEvPK4PackPS1_S3_S4_PfPmS6_Pj\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 32 registers, used 1 barriers, 168 bytes smem\nptxas info    : Compile time = 5.713 ms\nptxas info    : Compiling entry function '_Z31add_rmsnorm_block256_tail_roundIL13RoundFunction1ELi64EEvPK4PackPS1_S3_S4_PfPmS6_Pj' for 'sm_90'\nptxas info    : Function properties for _Z31add_rmsnorm_block256_tail_roundIL13RoundFunction1ELi64EEvPK4PackPS1_S3_S4_PfPmS6_Pj\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 32 registers, used 1 barriers, 168 bytes smem\nptxas info    : Compile time = 6.212 ms\nptxas info    : Compiling entry function '_Z31add_rmsnorm_block256_tail_roundIL13RoundFunction0ELi64EEvPK4PackPS1_S3_S4_PfPmS6_Pj' for 'sm_90'\nptxas info    : Function properties for _Z31add_rmsnorm_block256_tail_roundIL13RoundFunction0ELi64EEvPK4PackPS1_S3_S4_PfPmS6_Pj\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 32 registers, used 1 barriers, 168 bytes smem\nptxas info    : Compile time = 5.711 ms\n",
+    "device": {
+      "index": 3,
+      "name": "NVIDIA H200",
+      "uuid": "capture-device-462006ac8ee4",
+      "pci_bus_id": "00000000:AA:00.0",
+      "driver_version": "575.57.08",
+      "memory_used_mib": 4
+    }
+  },
+  "campaign": {
+    "device": 3,
+    "timer_domain": "globaltimer_same_cta",
+    "rounds_per_sample": 8192,
+    "samples_per_cell": 5,
+    "cells": [
+      "first",
+      "resident"
+    ],
+    "maximum_cross_sample_relative_spread": 0.08292964036809596,
+    "clock_gate": {
+      "gate": "every busy nvidia-smi sample (50 ms) >= 1980 MHz; a window without busy samples requires every sample >= boost",
+      "accepted_captures": 1,
+      "rejected_captures": 0,
+      "captures_without_busy_sample": 0,
+      "busy_samples_total": 21,
+      "busy_clock_mhz_min": 1980,
+      "busy_clock_mhz_max": 1980,
+      "measured_sm_clock_mhz": 1980
+    },
+    "accepted_captures": 1,
+    "rejected_captures": 0
+  },
+  "service_parameters": {
+    "unit": "ns_per_full_tail_pair",
+    "add_square_first_64": 197.42578125,
+    "add_square_resident_64": 362.57700892857144,
+    "scale_multiply_first_64": 224.15625,
+    "scale_multiply_resident_64": 211.37834821428572,
+    "add_square_first_128": 216.91015625,
+    "add_square_resident_128": 524.5491071428571,
+    "scale_multiply_first_128": 227.44140625,
+    "scale_multiply_resident_128": 269.1841517857143
+  },
+  "composition_contract": {
+    "domain": "one_complete_256_thread_source_round_followed_by_one_exact_64_or_128_thread_tail",
+    "replacement": "the measured pair replaces the complete round and tail rather than stacking with either service",
+    "queued_ctas_supported": false,
+    "interpolation_allowed": false
+  },
+  "decision": {
+    "status": "accepted",
+    "forward_eligible": true,
+    "reason": "The independent loop isolates two adjacent source iterations at the exact production widths while preserving the static CTA resource identity; it does not implement or time a complete AddRMSNorm operator."
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "matmul_v3_asw_mte2_operand_pair",
+  "scope": "24_aic_full_chip_l2_resident",
+  "l2_resident_256x128_pair_service": {
+    "active_aic_groups": 24,
+    "tile_m": 256,
+    "tile_n": 128,
+    "tile_k": 64,
+    "a_bytes": 32768,
+    "b_bytes": 16384,
+    "pair_bytes": 49152,
+    "a_median_ns": 281.4494875545,
+    "b_median_ns": 219.6217667155,
+    "pair_median_ns": 386.381161542,
+    "pair_to_isolated_sum_ratio": 0.7711102128676497,
+    "pair_max_relative_median_deviation": 0.021757116062415083,
+    "logical_byte_capacity_per_s": 3053068103248.5356
+  },
+  "measurement": {
+    "mode": "independent_source_shaped_mte2_pair_microbenchmark",
+    "source_commit": "e15b26ec9abf8bedf8636bb5d013b2b56d841db3",
+    "source_snapshot_sha256": "462d1027aa85032ca8858b2c266971bba4e2a02537feea464c4435acd14b614f",
+    "binary_sha256": "2dd8b9b11a343ab81631c6097738ee8c8a4e34e5ecac14f4d0e6bbaef649a532",
+    "independent_processes": 5,
+    "replications_per_process": 4,
+    "order": "alternating_forward_reverse",
+    "active_aic_groups": 24,
+    "epochs_per_aic": 1366,
+    "raw_paths": [
+      "profiler_output/microbench/ascend_910b/matmul_v3_mte2_pair_e15b26ec_20260901T005849Z_r1/raw_0.csv",
+      "profiler_output/microbench/ascend_910b/matmul_v3_mte2_pair_e15b26ec_20260901T005849Z_r1/raw_1.csv",
+      "profiler_output/microbench/ascend_910b/matmul_v3_mte2_pair_e15b26ec_20260901T005849Z_r1/raw_2.csv",
+      "profiler_output/microbench/ascend_910b/matmul_v3_mte2_pair_e15b26ec_20260901T005849Z_r1/raw_3.csv",
+      "profiler_output/microbench/ascend_910b/matmul_v3_mte2_pair_e15b26ec_20260901T005849Z_r1/raw_4.csv"
+    ],
+    "raw_sha256": [
+      "97409688955224d6228d123926519a7ab75f9c9ccc7d4ca856c07cdcc7ecd0fd",
+      "8e53faddb71856303e02a0071332c2da6abc5c056bfcbab7c04e23f2df91ed36",
+      "a4057ab50d3f855cd58aba58ff1655be8f4cb225380696d1f8fb411b04d5ff16",
+      "8063b52a1aba93ed7c22b331444e987a3984eac34f815cf1242b9f157b302128",
+      "571d33300264aed1f065dd55ebfc1827d7a2d1e970c2c0822b4b001d3bd81dd3"
+    ],
+    "full_production_gemm_executed": false
+  },
+  "mechanism": {
+    "descriptor": "BF16_ND_to_NZ",
+    "copy_in_order": [
+      "A.LoadData",
+      "B.LoadData"
+    ],
+    "a1_b1_banks_independent": true,
+    "consumer_rule": "use_joint_pair_completion_not_isolated_duration_sum"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "measurement_gate_passed": true,
+  "mechanism_publishable": true
+}

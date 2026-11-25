@@ -1,0 +1,86 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_mte2_legacy_l1_pair_reference.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_legacy_matmul_v2_cold_pair_program_v1",
+  "duration_unit": "ns_per_a_b_operand_pair_per_aic",
+  "source_residency": "dram_cold_disjoint",
+  "capture": {
+    "source_commit": "39681591308316a4cb8980f41b1753d9e29af0b0",
+    "source_snapshot_sha256": "54b61e2c9a26658038f45a97b13b91e443cd4b63a653c628d505bfd50e49d946",
+    "binary_sha256": "dc7227cf1f519388a71ed9116b2acd8751a99f6a459539cce5956c58a77d1e0a",
+    "footprint_mb_per_operand": 16384,
+    "short_programs": 1,
+    "long_programs": 4,
+    "run_count": 3,
+    "raw_paths": [
+      "profiler_output/microbench/ascend_910b/legacy_l1_pair_39681591_20260905/r0.csv",
+      "profiler_output/microbench/ascend_910b/legacy_l1_pair_39681591_20260905/r1.csv",
+      "profiler_output/microbench/ascend_910b/legacy_l1_pair_39681591_20260905/r2.csv"
+    ],
+    "raw_sha256": [
+      "52218a3b5ce7ec0b7a9d5a757d22b21cb9295b14e8f02399c9238abb44bdc660",
+      "ea01144098c137bdd4864ae99cf606e873223fd7f9dddd1103b57920105c990f",
+      "9f32332816aea3642b284099d435bfb249c6bde56f2c29b5f3e23220d4c4f93c"
+    ]
+  },
+  "cells": [
+    {
+      "l0c_pipeline_depth": 2,
+      "a_rows": 128,
+      "a_columns": 256,
+      "a_source_row_stride_elements": 14336,
+      "b_rows": 96,
+      "b_columns": 256,
+      "b_source_row_stride_elements": 14336,
+      "active_aic_groups": 22,
+      "pairs_per_worker": 112,
+      "drain_after_each_pair": 1,
+      "ns_per_pair_samples": [2169.166666667, 2176.845238095, 2149.94047619],
+      "production_consumed": true
+    },
+    {
+      "l0c_pipeline_depth": 2,
+      "a_rows": 128,
+      "a_columns": 256,
+      "a_source_row_stride_elements": 14336,
+      "b_rows": 96,
+      "b_columns": 256,
+      "b_source_row_stride_elements": 14336,
+      "active_aic_groups": 22,
+      "pairs_per_worker": 112,
+      "drain_after_each_pair": 0,
+      "ns_per_pair_samples": [2288.035714286, 2266.30952381, 2290.476190476],
+      "production_consumed": false
+    },
+    {
+      "l0c_pipeline_depth": 1,
+      "a_rows": 256,
+      "a_columns": 256,
+      "a_source_row_stride_elements": 5120,
+      "b_rows": 112,
+      "b_columns": 256,
+      "b_source_row_stride_elements": 5120,
+      "active_aic_groups": 24,
+      "pairs_per_worker": 80,
+      "drain_after_each_pair": 1,
+      "ns_per_pair_samples": [3434.583333333, 3424.583333333, 3451.333333333],
+      "production_consumed": false
+    },
+    {
+      "l0c_pipeline_depth": 1,
+      "a_rows": 256,
+      "a_columns": 256,
+      "a_source_row_stride_elements": 5120,
+      "b_rows": 112,
+      "b_columns": 256,
+      "b_source_row_stride_elements": 5120,
+      "active_aic_groups": 24,
+      "pairs_per_worker": 80,
+      "drain_after_each_pair": 0,
+      "ns_per_pair_samples": [3485.666666667, 3511.083333333, 3475.5],
+      "production_consumed": false
+    }
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "evidence_kind": "versioned_upstream_source_and_installed_artifact_identity",
+  "production_or_evaluation_duration_consumed": false,
+  "hardware_execution_performed": false,
+  "runtime_stack": {
+    "vllm_version": "0.11.0",
+    "vllm_source_commit": "b8b302cde434df8c9289a2b465406b47ebab1c2d",
+    "pytorch_version": "2.8.0+cu128",
+    "pytorch_source_commit": "a1cb3cc05d46d198467bebbb6e8fba50a325d4e7"
+  },
+  "upstream_sources": [
+    {
+      "repository": "https://github.com/vllm-project/vllm.git",
+      "commit": "b8b302cde434df8c9289a2b465406b47ebab1c2d",
+      "path": "csrc/moe/moe_align_sum_kernels.cu",
+      "sha256": "522d00331af2c30a92177177597510519c59261b73da09bf5fba2c997553391a"
+    },
+    {
+      "repository": "https://github.com/vllm-project/vllm.git",
+      "commit": "b8b302cde434df8c9289a2b465406b47ebab1c2d",
+      "path": "vllm/model_executor/layers/fused_moe/fused_moe.py",
+      "sha256": "8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e"
+    },
+    {
+      "repository": "https://github.com/pytorch/pytorch.git",
+      "commit": "a1cb3cc05d46d198467bebbb6e8fba50a325d4e7",
+      "path": "aten/src/ATen/TensorIterator.cpp",
+      "sha256": "f10aac89e6687af962a6a9f9754a2eafd7be6e2bb7e0764b154443868d8da2c9"
+    },
+    {
+      "repository": "https://github.com/pytorch/pytorch.git",
+      "commit": "a1cb3cc05d46d198467bebbb6e8fba50a325d4e7",
+      "path": "aten/src/ATen/native/ReduceOps.cpp",
+      "sha256": "281fe711a4b2d81291623b910f68d158cc492b5fb0f3b401f4ba94a19f393876"
+    },
+    {
+      "repository": "https://github.com/pytorch/pytorch.git",
+      "commit": "a1cb3cc05d46d198467bebbb6e8fba50a325d4e7",
+      "path": "aten/src/ATen/native/ReduceOpsUtils.h",
+      "sha256": "8bc75aec7951fbdac203157f7658cefdfe3a69fb0f2827a0cb42f03d67163d2a"
+    },
+    {
+      "repository": "https://github.com/pytorch/pytorch.git",
+      "commit": "a1cb3cc05d46d198467bebbb6e8fba50a325d4e7",
+      "path": "aten/src/ATen/native/cuda/Reduce.cuh",
+      "sha256": "36bdd7066e2eb0210e26a12b4630538c400af07c83a8b5c5b1ef0239569fbea9"
+    },
+    {
+      "repository": "https://github.com/pytorch/pytorch.git",
+      "commit": "a1cb3cc05d46d198467bebbb6e8fba50a325d4e7",
+      "path": "aten/src/ATen/native/cuda/ReduceSumProdKernel.cu",
+      "sha256": "d4282beb6a3c746d8af8919155dd08fc6795c07dd8562a879c3798766c682d8a"
+    }
+  ],
+  "installed_artifacts": [
+    {
+      "path_scope": "capture-python_site_packages",
+      "relative_path": "vllm/model_executor/layers/fused_moe/fused_moe.py",
+      "sha256": "8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e",
+      "upstream_source_match": true
+    },
+    {
+      "path_scope": "capture-python_site_packages",
+      "relative_path": "vllm/_moe_C.abi3.so",
+      "sha256": "4e317a753f5c02752624dcd40f057f08515762036dd63caf20397a3d5ed1d1b9",
+      "upstream_source_match": null
+    },
+    {
+      "path_scope": "capture-python_site_packages",
+      "relative_path": "torch/include/ATen/native/cuda/Reduce.cuh",
+      "sha256": "36bdd7066e2eb0210e26a12b4630538c400af07c83a8b5c5b1ef0239569fbea9",
+      "upstream_source_match": true
+    },
+    {
+      "path_scope": "capture-python_site_packages",
+      "relative_path": "torch/version.py",
+      "sha256": "ba23e699ea8931779f14ccfcb3ed6dc67a14452d5e49ebd91875d418dba2a7f1",
+      "upstream_source_match": null
+    },
+    {
+      "path_scope": "capture-python_site_packages",
+      "relative_path": "torch/lib/libtorch_cuda.so",
+      "sha256": "84027b0ac8e637f9ebc80a3a19d1e9c341f0429a100382233c45ce5224581dfe",
+      "upstream_source_match": null
+    },
+    {
+      "path_scope": "capture-python_site_packages",
+      "relative_path": "nvidia/cuda_runtime/include/cuda_runtime_api.h",
+      "sha256": "116852112153fef5797986694c112ee04be036d13dae19873f9d375e72061c8b",
+      "upstream_source_match": null
+    }
+  ],
+  "source_facts": {
+    "input_layout": "contiguous_[tokens,topk,hidden]",
+    "output_layout": "contiguous_[tokens,hidden]",
+    "reduction_dimension": 1,
+    "specialized_topk_values": [
+      2,
+      3,
+      4
+    ],
+    "other_topk_dispatch": "at::sum_out",
+    "tensor_iterator_index_limit": 2147483647,
+    "tensor_iterator_split_rule": "recursively_bisect_largest_operand_byte_extent",
+    "split_first_size_rule": "floor_half",
+    "topk_one_iterator_layout": "coalesced_flat_output_elements",
+    "cuda_reduction_rule": "one_gpu_reduce_kernel_call_per_32bit_sub_iterator",
+    "output_vector_width_candidates": [
+      4,
+      2,
+      1
+    ],
+    "output_vector_width_requires_extent_and_base_alignment": true,
+    "maximum_reduce_threads_before_output_vector_division": 512,
+    "block_y_reduces_when_values_per_thread_reach_warp_split_threshold": true,
+    "bf16_fp16_accumulator_bytes": 4,
+    "dynamic_shared_memory_rule": "accumulator_bytes_times_block_threads_times_output_vector_width_when_block_y_reduces",
+    "cuda_allocation_alignment_contract": "cudaMalloc_memory_is_suitably_aligned_for_any_variable",
+    "bf16_accumulation_in_output": false
+  },
+  "forward_scope": {
+    "dtypes": [
+      "bf16",
+      "fp16"
+    ],
+    "specialized_topk_values_excluded": [
+      2,
+      3,
+      4
+    ],
+    "split_dimension_required": "tokens_for_topk_gt_1_or_flattened_output_elements_for_topk_eq_1",
+    "production_capture_binary_binding": "evidence_pending",
+    "limitations": [
+      "The retained A800 evaluation capture did not record the vLLM or PyTorch operator binary SHA256, so the installed artifact identities cannot be asserted to be the historical capture identities.",
+      "For topk greater than one, a split of the reduction or hidden dimension would require a partial-accumulation lifecycle model and is rejected by the production selector.",
+      "Reduce.cuh may split very large reductions across grid.y and use a global accumulation buffer; that scratch-buffer demand remains evidence_pending and is rejected before prediction."
+    ]
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "schema": "nvidia_h200_fa2_resident_ldgsts_finite_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "evidence_kind": "independent_two_resident_cta_finite_ldgsts_microbenchmark",
+  "source_capture": [
+    "profiler_output/microbench/nvidia_h200/wp3_fa2res_r1_t1",
+    "profiler_output/microbench/nvidia_h200/wp3_fa2res_r2_t1"
+  ],
+  "source_baseline_commit": [
+    "aeb34ee300b317a6e3820ec9a9745a2c3ac41928"
+  ],
+  "physical_device_index": 2,
+  "device_uuid": "capture-device-077372b98985",
+  "resource_contract": {
+    "threads_per_cta": 128,
+    "dynamic_shared_bytes_per_cta": 77824,
+    "registers_per_thread": 80,
+    "resident_ctas_per_sm": 2,
+    "physical_sm_count": 132,
+    "full_chip_ctas": 264,
+    "panel_bytes_per_cta": 65536,
+    "initial_transaction_bytes": 32,
+    "static_ldgsts_bypass_128_instructions": 32,
+    "stack_frame_bytes": 0,
+    "spill_store_bytes": 0,
+    "spill_load_bytes": 0
+  },
+  "single_panel_cycles": 7286.4,
+  "recurrent_affine_startup_cycles": 5884.431940298513,
+  "recurrent_affine_panel_cycles": 3802.753240938166,
+  "recurrent_domain_panels": [
+    2,
+    64
+  ],
+  "maximum_odd_even_holdout_absolute_error_pct": 13.443710009843723,
+  "publication_gates": {
+    "register_count_is_79": null,
+    "register_count_of_this_sm90_build": 80,
+    "no_stack_or_spill": true,
+    "static_ldgsts_bypass_128_count_is_32": true,
+    "dynamic_instruction_and_byte_counters_close_exactly": null,
+    "odd_even_holdout_max_ape_at_most_15_pct": true
+  },
+  "artifact_sha256": {
+    "source": "8f8461c154576c7e05a8c07a7f3b9d7bb9a3b15a65fe4425794b652d0a392b09",
+    "runner": "71204aac1f93b2eb1e09249bb950d25d83a54e5a1d1899310f476f8f7e0d75a4",
+    "reporter": "3cbc6bb5ada2fab0c7515078327edabb62458627a6e8d3405144ab56b326f6f3",
+    "binary": [
+      "a92ff848eb20c881cb39aebf5ea0fb9b5115e3d5f438897a2c7f3994a78310c5",
+      "c581ce204b93e47be41471289fcb2a6031a1a6e92f8879ac771b0ccd57734ad6"
+    ],
+    "ptxas": [
+      "3a6fbb13f405a7dbd246c5f21302cc7a1821faca5e9cb908e4ddd1b7ccd4812c",
+      "cdd31edaff718118ecc2cbe1ef003cab30d2ee2365af6967f597727d4c30495d"
+    ],
+    "sass": [
+      "b628ae59f448c47a6f0c56e8f0b98bd602c25aea49aa8b8ffcb2a643044d12aa"
+    ],
+    "manifests": [
+      "cb7a416169e2b631754663daeb817e4cf372c1297462327585d8f171e161b376",
+      "916f5f5df8ea446ce234ee1ce323c7d0929d064a5525a403a33ee18601950901"
+    ],
+    "report": null
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "allowed_conclusion": "For a full 264-CTA H200 cohort with exactly two resident 128-thread CTAs per SM and one 64-KiB LDGSTS panel per CTA recurrence, the one-panel endpoint and recurrent 2..64-panel affine service bound finite fill, steady, and drain.",
+  "excluded_conclusions": [
+    "a complete production FlashAttention duration",
+    "resident counts other than two",
+    "partial cohorts or panel depths above 64",
+    "MMA, softmax, output, cache-miss, or page-table service"
+  ],
+  "provenance": {
+    "source": "microbench/nvidia_h200/memory/l1/fa2_resident_ldgsts_finite.cu",
+    "runner": "microbench/nvidia_h200/memory/l1/fa2_resident_ldgsts_finite_runner.py",
+    "reporter": "microbench/nvidia_h200/memory/l1/fa2_resident_ldgsts_finite_report.py",
+    "timer": "nsys 2025.6.1 cuda_gpu_trace kernel duration",
+    "sm_clock_hz": 1980000000.0,
+    "cells": [
+      {
+        "panels": 1,
+        "median_cycles": 7286.4,
+        "median_duration_ns": 3680.0,
+        "initial_32b_transactions_per_cycle": 74.20289855072464
+      },
+      {
+        "panels": 2,
+        "median_cycles": 12260.16,
+        "median_duration_ns": 6192.0,
+        "initial_32b_transactions_per_cycle": 88.19982773471146
+      },
+      {
+        "panels": 4,
+        "median_cycles": 21384.0,
+        "median_duration_ns": 10800.0,
+        "initial_32b_transactions_per_cycle": 101.1358024691358
+      },
+      {
+        "panels": 8,
+        "median_cycles": 37003.23,
+        "median_duration_ns": 18688.5,
+        "initial_32b_transactions_per_cycle": 116.89184971149815
+      },
+      {
+        "panels": 16,
+        "median_cycles": 67162.59,
+        "median_duration_ns": 33920.5,
+        "initial_32b_transactions_per_cycle": 128.80313281545574
+      },
+      {
+        "panels": 32,
+        "median_cycles": 127543.68,
+        "median_duration_ns": 64416.0,
+        "initial_32b_transactions_per_cycle": 135.6515979466799
+      },
+      {
+        "panels": 64,
+        "median_cycles": 249099.84,
+        "median_duration_ns": 125808.0,
+        "initial_32b_transactions_per_cycle": 138.91220484123957
+      }
+    ],
+    "holdouts": [
+      {
+        "training_panels": [
+          2,
+          8,
+          32
+        ],
+        "validation": [
+          {
+            "panels": 4,
+            "observed_cycles": 21384.0,
+            "predicted_cycles": 20708.60785714286,
+            "absolute_error_pct": 3.158399470899463
+          },
+          {
+            "panels": 16,
+            "observed_cycles": 67162.59,
+            "predicted_cycles": 66581.10642857142,
+            "absolute_error_pct": 0.8657849130424732
+          },
+          {
+            "panels": 64,
+            "observed_cycles": 249099.84,
+            "predicted_cycles": 250071.1007142857,
+            "absolute_error_pct": 0.3899082047927915
+          }
+        ],
+        "maximum_absolute_error_pct": 3.158399470899463
+      },
+      {
+        "training_panels": [
+          4,
+          16,
+          64
+        ],
+        "validation": [
+          {
+            "panels": 2,
+            "observed_cycles": 12260.16,
+            "predicted_cycles": 13908.380357142856,
+            "absolute_error_pct": 13.443710009843723
+          },
+          {
+            "panels": 8,
+            "observed_cycles": 37003.23,
+            "predicted_cycles": 36671.55642857143,
+            "absolute_error_pct": 0.896336810134075
+          },
+          {
+            "panels": 32,
+            "observed_cycles": 127543.68,
+            "predicted_cycles": 127724.26071428572,
+            "absolute_error_pct": 0.14158342795638557
+          }
+        ],
+        "maximum_absolute_error_pct": 13.443710009843723
+      }
+    ],
+    "samples_per_cell_pooled": 14,
+    "clock_gate": {
+      "rule": "every probe process runs under nvidia-smi -lms 50; a process is accepted only if it shows a busy sample and every busy sample is >= 1980 MHz, otherwise it is rejected and re-run",
+      "accepted_captures": 14,
+      "rejected_captures": 3,
+      "accepted_busy_sm_clock_min_mhz": 1980,
+      "accepted_busy_sm_clock_max_mhz": 1980,
+      "accepted_busy_samples": 63,
+      "rejected_busy_sm_clock_min_mhz": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ncu_note": "Nsight Compute is unavailable on the H200 host: NCU duration is replaced by the nsys kernel duration at the gated 1.98-GHz clock, and the dynamic counter-closure gate is not evaluated.",
+    "remote_raw_root": "/capture-public/h200_microbench/wp3_ldgsts/repo/profiler_output/microbench/nvidia_h200"
+  }
+}

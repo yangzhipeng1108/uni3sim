@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "campaign": "rope_key22_first_q_slice_edges",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "service_time_selection": "median_of_independent_run_medians",
+  "lookup_policy": "exact_worker_count_direction_payload_and_first_q_slice_only",
+  "pairing_formula": "maximum_worker(request_first_interval(pair_order=1)-control_first_interval(pair_order=0)), matched by run and trial",
+  "source_scope": "ATB BF16 RoPE key-22 single-UB program, first complete 4096-element Q slice only: direction 2 is plain GM-to-UB DataCopy followed by the MTE2-to-Vector hard completion edge; direction 3 is the source-corresponding first UB-to-GM store completion after its Vector-to-MTE3 handoff",
+  "source_tile_evidence": {
+    "slice_elements": 4096,
+    "dtype_bytes": 2,
+    "payload_bytes": 8192,
+    "production_worker_counts": [1, 2, 4, 8, 16],
+    "unloaded_control": {"payload_bytes": 8192, "block_dim": 1},
+    "representative_geometry": {"payload_bytes": 8192, "block_dim": 16},
+    "scope_boundary": "first Q slice per worker only; later Q/K slices, source PIPE_ALL cost, and key-24 ping-pong behavior remain unmeasured"
+  },
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "source_commit": "d3d9b8f4559ec0dea8625dd498f115eefb518c27",
+  "source_snapshot_path": "/capture-workspace/source_snapshots/rope_key22_first_q_slice_edges_8432436c_20260831_0645",
+  "source_snapshot_files_sha256": {
+    "first_mte_completion_kernel.cpp": "d17d9d992d527f3e2cf5c26ad636f0c5376e429dcb0567e66ac83458212e6318",
+    "first_mte_completion_main.cpp": "f21fbd2029a4a699efa7f0e4b58c3cfccc77732cb5cdbb240a4e153618e38645",
+    "first_mte_completion_runner.py": "1ece4a1ac9a70aa9f7139a3b9ddeec0759b35d562ab14008fc526d7d3f4b4727",
+    "first_mte_completion_report.py": "51cd691114618b89d50de520004dd409556412e179cd529301c8a43ea78ffe5c"
+  },
+  "production_source": {
+    "repository": "ascend-transformer-boost",
+    "commit": "f10dc20391d8af04c3f8024aca0e0dfa94d2a0a5",
+    "files_sha256": {
+      "src/kernels/mixkernels/rope/tiling/rope_tiling.cpp": "a3c0446a86165f90232b1e5810bbc37128d7a6199b817e6a5ae59bdf69ea97f6",
+      "src/kernels/mixkernels/rope/op_kernel/common_val.h": "f835a6211042a838298e968adee43bd697fd34633c210137622165e44d0a13ec",
+      "src/kernels/mixkernels/rope/op_kernel/rotary_pos_emb_base.h": "fc846fb20a541b4a5d77e1f5f519a27a2ec0168b420d219af6326b7b8998e151",
+      "src/kernels/mixkernels/rope/op_kernel/rotary_pos_emb_bf16.h": "cae2054f622cbfd7a49942b5d4a1c80a91c14fb3f655d9ac1bb7e7171a6833c",
+      "src/kernels/mixkernels/rope/op_kernel/rotary_pos_emb.cpp": "83d7e446975d7bed81830c0a6d97c946ea26ef4a2bdf6ffc9324249fc6c258c2"
+    }
+  },
+  "benchmark_binary_sha256": "7bf99015e8519e1e42a6be9c0dfefe6540996591051e6cbb893148dc620b7a71",
+  "execution_metadata": {
+    "path": "profiler_output/microbench/ascend_910b/rope_key22_first_q_slice_edges_8432436c_d7_execution/metadata.txt",
+    "sha256": "bccecf11865575cb9c567aa9a54aef3d7c025882df4e7259af26f60634ef5b3e",
+    "occupancy_before_sha256": "2e37db0d2179de201e13c7a47a3d8faf5e1c84625560c4ec97c8f6a4a85e8a9c",
+    "occupancy_after_sha256": "d0bd22f4517b889f8d19c5e7f3ddec97e1efbc9694a384b61aaa5dd82d6ccf63",
+    "device_id": 7,
+    "tmux": "rope_key22_edge_d7",
+    "pane_pid": 1492742
+  },
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/rope_key22_first_q_slice_edges_8432436c_d7_r1_retry1/raw.csv",
+      "sha256": "f7e021d9b0146e3635dfd3f3ca394b1326c03d0cb13e8a0fcc90f1e73ab19d7b",
+      "runner_log_sha256": "beea3e32157fdf59b8cf07004ebabbf160e285370013262d418c4b1003db6e67",
+      "device_id": 7,
+      "run_id": "rope_key22_first_q_slice_edges_8432436c_d7_r1_retry1"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rope_key22_first_q_slice_edges_8432436c_d7_r2/raw.csv",
+      "sha256": "ed6e90af736cf822f4993750f63a0033ce977a1133088eb493c89e1c3bf87743",
+      "runner_log_sha256": "741febbe08da6daa37da528ac540c0129f03d7dd63879f8b4094b00175bf6d80",
+      "device_id": 7,
+      "run_id": "rope_key22_first_q_slice_edges_8432436c_d7_r2"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rope_key22_first_q_slice_edges_8432436c_d7_r3/raw.csv",
+      "sha256": "441eb4c627edabea87dc21ce9444cab712556b303bc6e7030dd5f5f8663f7e24",
+      "runner_log_sha256": "ffb23006a811ef0d32ce04e9247bd66d50ada915a7ebff1ad98770b899c7d17a",
+      "device_id": 7,
+      "run_id": "rope_key22_first_q_slice_edges_8432436c_d7_r3"
+    }
+  ],
+  "audit_report": {
+    "path": "profiler_output/microbench/ascend_910b/rope_key22_first_q_slice_edges_8432436c_d7_execution/three_run_report.txt",
+    "sha256": "35fae3e4db7f985c1437d9d3ce589b9415d07f7d4b65f19d6ae9c8c220109844"
+  },
+  "discarded_attempts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/rope_key22_first_q_slice_edges_8432436c_d7_r1/raw.csv",
+      "sha256": "5e07bf9d90da7069fa8d415f4f86d036aa0b5d19024c463d505cc954b03391a5",
+      "runner_log_sha256": "aad8dd1ed022800ce6eff2852cf3441bdc3871b495cc55e6c2bf438d45dc7d0b",
+      "reason": "16-worker MTE2-to-Vector balanced-cycle parity was 1070 ns versus 840 ns, a 21.50% relative difference above the frozen 20% limit"
+    }
+  ],
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 32,
+  "replication_basis": "balanced_schedule_cycle_parity",
+  "median_ns_by_run": {
+    "rope_key22_first_q_slice_edges_8432436c_d7_r1_retry1": {"1:mte2_to_vector:8192": 420.0, "1:mte3_to_vector:8192": 370.0, "16:mte2_to_vector:8192": 900.0, "16:mte3_to_vector:8192": 880.0},
+    "rope_key22_first_q_slice_edges_8432436c_d7_r2": {"1:mte2_to_vector:8192": 420.0, "1:mte3_to_vector:8192": 350.0, "16:mte2_to_vector:8192": 960.0, "16:mte3_to_vector:8192": 850.0},
+    "rope_key22_first_q_slice_edges_8432436c_d7_r3": {"1:mte2_to_vector:8192": 450.0, "1:mte3_to_vector:8192": 360.0, "16:mte2_to_vector:8192": 870.0, "16:mte3_to_vector:8192": 930.0}
+  },
+  "published_cells": {
+    "1:mte2_to_vector:8192": {"service_time_ns": 420.0, "maximum_run_relative_median_spread": 0.06666666666666667},
+    "1:mte3_to_vector:8192": {"service_time_ns": 360.0, "maximum_run_relative_median_spread": 0.05405405405405406},
+    "16:mte2_to_vector:8192": {"service_time_ns": 900.0, "maximum_run_relative_median_spread": 0.09375},
+    "16:mte3_to_vector:8192": {"service_time_ns": 880.0, "maximum_run_relative_median_spread": 0.08602150537634409}
+  },
+  "gates": {
+    "source_identity": "pass",
+    "binary_identity": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "balanced_cell_order": "pass",
+    "within_run_replication": "pass",
+    "cross_run_relative_median_spread_limit": 0.2,
+    "cross_run_stability": "pass"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true,
+  "production_consumption_status": "candidate_only_unwired"
+}

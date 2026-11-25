@@ -1,0 +1,201 @@
+{
+  "allowed_use": "The DRAM-served byte fraction of a repeated same-operand single-pass stream at a given complete operand-and-result footprint, by linear interpolation between the measured footprints. At or below the first measured footprint the first fraction applies; at or above the last measured footprint the stream is fully DRAM-served.",
+  "derived_model": {
+    "dram_asymptote_logical_byte_rate_per_s": 4132168430270.743,
+    "excluded_footprints": {
+      "6291456": "The probe's grid-stride inner loop performs fewer than two iterations per thread at this footprint, so its rate reflects loop shape rather than memory service. The measurement is retained in the capture but excluded from the published domain.",
+      "12582912": "The probe's grid-stride inner loop performs fewer than two iterations per thread at this footprint, so its rate reflects loop shape rather than memory service. The measurement is retained in the capture but excluded from the published domain."
+    },
+    "formula": "dram_served_byte_fraction = (1/rate - 1/resident_plateau) / (1/dram_asymptote - 1/resident_plateau), clamped to [0, 1] and then replaced by its running maximum over increasing footprint",
+    "residency_curve": [
+      {
+        "conservative_logical_byte_rate_per_s": 9518724935732.648,
+        "dram_served_byte_fraction": 0.044781730560919046,
+        "total_footprint_bytes": 18874368
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 10138304048892.283,
+        "dram_served_byte_fraction": 0.044781730560919046,
+        "total_footprint_bytes": 28311552
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 9611946666666.666,
+        "dram_served_byte_fraction": 0.044781730560919046,
+        "total_footprint_bytes": 34603008
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 9944345626975.764,
+        "dram_served_byte_fraction": 0.044781730560919046,
+        "total_footprint_bytes": 37748736
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 10024664957007.09,
+        "dram_served_byte_fraction": 0.044781730560919046,
+        "total_footprint_bytes": 40894464
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 10167814068031.398,
+        "dram_served_byte_fraction": 0.044781730560919046,
+        "total_footprint_bytes": 44040192
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 8792261825891.082,
+        "dram_served_byte_fraction": 0.10532730005173722,
+        "total_footprint_bytes": 47185920
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 8565908713692.946,
+        "dram_served_byte_fraction": 0.12629064634090542,
+        "total_footprint_bytes": 50331648
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 7383114645460.57,
+        "dram_served_byte_fraction": 0.256740704313326,
+        "total_footprint_bytes": 53477376
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 5933520391517.128,
+        "dram_served_byte_fraction": 0.48754431574361123,
+        "total_footprint_bytes": 56623104
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 4764387435318.125,
+        "dram_served_byte_fraction": 0.7760089561913638,
+        "total_footprint_bytes": 59768832
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 4748985507246.377,
+        "dram_served_byte_fraction": 0.7807570071200386,
+        "total_footprint_bytes": 62914560
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 4660995413815.0,
+        "dram_served_byte_fraction": 0.8084839796194904,
+        "total_footprint_bytes": 66060288
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 4663234889058.913,
+        "dram_served_byte_fraction": 0.8084839796194904,
+        "total_footprint_bytes": 69206016
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 4594224215246.637,
+        "dram_served_byte_fraction": 0.8302333406546074,
+        "total_footprint_bytes": 72351744
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 4582746305931.321,
+        "dram_served_byte_fraction": 0.8340358735451083,
+        "total_footprint_bytes": 75497472
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 4442040433793.011,
+        "dram_served_byte_fraction": 0.8822475342656997,
+        "total_footprint_bytes": 84934656
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 4364364321270.0117,
+        "dram_served_byte_fraction": 0.9101943396550399,
+        "total_footprint_bytes": 94371840
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 4260081053969.103,
+        "dram_served_byte_fraction": 0.949316602200341,
+        "total_footprint_bytes": 113246208
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 4196435522805.2344,
+        "dram_served_byte_fraction": 0.9741489447818643,
+        "total_footprint_bytes": 150994944
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 4186595348247.6704,
+        "dram_served_byte_fraction": 0.978055639307682,
+        "total_footprint_bytes": 301989888
+      },
+      {
+        "conservative_logical_byte_rate_per_s": 4132168430270.743,
+        "dram_served_byte_fraction": 1.0,
+        "total_footprint_bytes": 603979776
+      }
+    ],
+    "resident_plateau_logical_byte_rate_per_s": 10138304048892.283,
+    "selection_rule": "At each measured footprint retain the minimum median logical byte rate across the two independent clock-gated captures on the owned device. The endpoints are measured extremes, not a fit: the resident plateau is the largest conservative rate at or below 40.5 MiB (0.675x L2, the A800 27/40 ratio) and the DRAM asymptote the smallest at or above 81.0 MiB (1.35x L2, the A800 54/40 ratio). A stream serving a fraction f of its bytes from DRAM and the rest from L2 takes (1-f)/resident_plateau + f/dram_asymptote per byte, so inverting the measured rate gives f directly. The running maximum over increasing footprint keeps the published fraction monotone and conservative against measurement noise; no intermediate value is fitted.",
+    "spread_gate_note": "The A800 runner aborts a capture whose footprint trial spread exceeds 8 percent. On H200 the 45..54 MiB transition exceeds it in every capture (also with 256 warm-up passes), so the H200 runner records the footprints instead (provenance.captures[].spread_gate_exceeded_footprints_mib) and the median rate is used as on A800."
+  },
+  "forbidden_use": "A production operator duration, a per-shape correction, a binary residency threshold at the L2 capacity, or extrapolation outside the measured stream contract or footprint domain.",
+  "hardware_id": "nvidia_h200",
+  "mechanism": "l2_operand_residency_curve",
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "captures": [
+      {
+        "binary_sha256": "5e593b0fc7f44df9773753aa2226fed395573f1f148c39e8ea0f9fd2d1068f33",
+        "device_index": 1,
+        "device_uuid": "capture-device-31adbc24ad46",
+        "maximum_relative_spread": 0.18751132862062717,
+        "measurements_sha256": "8858e2e22a23b5e635d5fdafb7b36c877edbf4c0fa4bcd677f501714cb65e204",
+        "memory_clock_mhz": 3201,
+        "path": "profiler_output/microbench/nvidia_h200/l2_residency_knee_20260925_a",
+        "sass_sha256": null,
+        "sm_clock_mhz": 1980,
+        "trials": 5,
+        "clock_gate": {
+          "gate": "every busy nvidia-smi sample (utilization.gpu > 0, 50 ms period) must report at least boost_mhz; otherwise the process is rejected and re-run",
+          "boost_mhz": 1980,
+          "accepted_captures": 1,
+          "rejected_captures": 0,
+          "busy_sm_clock_mhz_min": 1980,
+          "busy_sm_clock_mhz_max": 1980,
+          "busy_samples": 11,
+          "rejected": []
+        },
+        "spread_gate_exceeded_footprints_mib": [
+          54
+        ]
+      },
+      {
+        "binary_sha256": "6822755d6feefb784a563d6a5fa35be97340e63647ba4acc7474ee1f4895ab2b",
+        "device_index": 1,
+        "device_uuid": "capture-device-31adbc24ad46",
+        "maximum_relative_spread": 0.15722120658135283,
+        "measurements_sha256": "2cef33eb8963e41a310b9d5f946c8ce9635af16f531e6ecdc6d0a3738d227526",
+        "memory_clock_mhz": 3201,
+        "path": "profiler_output/microbench/nvidia_h200/l2_residency_knee_20260925_b",
+        "sass_sha256": null,
+        "sm_clock_mhz": 1980,
+        "trials": 5,
+        "clock_gate": {
+          "gate": "every busy nvidia-smi sample (utilization.gpu > 0, 50 ms period) must report at least boost_mhz; otherwise the process is rejected and re-run",
+          "boost_mhz": 1980,
+          "accepted_captures": 1,
+          "rejected_captures": 0,
+          "busy_sm_clock_mhz_min": 1980,
+          "busy_sm_clock_mhz_max": 1980,
+          "busy_samples": 5,
+          "rejected": []
+        },
+        "spread_gate_exceeded_footprints_mib": [
+          51,
+          54
+        ]
+      }
+    ],
+    "runner": "microbench/nvidia_h200/memory/l2/l2_residency_knee_runner.py",
+    "runner_sha256": "31b307238bff6c8e5f741617a95dca80a5c0782111b3048aa77006a8282a4360",
+    "source": "microbench/nvidia_h200/memory/l2/l2_residency_knee.cu",
+    "source_sha256": "d2c08bd0492c5aa5f1b56a81430dc671b783fb39d905d00e0f2f24ed50015440",
+    "git_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+    "warmup_passes": 5
+  },
+  "schema": "l2_operand_residency_curve_reference_v1",
+  "scope": {
+    "l2_capacity_bytes": 62914560,
+    "maximum_footprint_bytes": 603979776,
+    "minimum_footprint_bytes": 18874368,
+    "read_instruction": "ld.global.cg.v4.u32",
+    "stream": "two_read_one_write_vec4",
+    "threads_per_cta": 128,
+    "write_policy": "default_write_back"
+  }
+}

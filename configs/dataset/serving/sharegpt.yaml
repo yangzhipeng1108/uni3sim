@@ -1,0 +1,56 @@
+schema_version: 1
+cases:
+  - id: ShareGPT-Qwen3-4B_TP1_n128_qps4
+    model: "${MODELS_ROOT}/Qwen3-4B"
+    qps: 4
+    tensor_parallel_size: 1
+    expert_parallel_size: 1
+    scheduler_pipeline_depth: 1
+  - id: ShareGPT-Qwen3-4B_TP1_n128_qps16
+    model: "${MODELS_ROOT}/Qwen3-4B"
+    qps: 16
+    tensor_parallel_size: 1
+    expert_parallel_size: 1
+    scheduler_pipeline_depth: 1
+  - id: ShareGPT-Qwen3-4B_TP1_n128_qps64
+    model: "${MODELS_ROOT}/Qwen3-4B"
+    qps: 64
+    tensor_parallel_size: 1
+    expert_parallel_size: 1
+    scheduler_pipeline_depth: 1
+  - id: ShareGPT-Qwen3-8B_TP1_n128_qps4
+    model: "${MODELS_ROOT}/Qwen3-8B"
+    qps: 4
+    tensor_parallel_size: 1
+    expert_parallel_size: 1
+    scheduler_pipeline_depth: 1
+  - id: ShareGPT-Qwen3-8B_TP1_n128_qps16
+    model: "${MODELS_ROOT}/Qwen3-8B"
+    qps: 16
+    tensor_parallel_size: 1
+    expert_parallel_size: 1
+    scheduler_pipeline_depth: 1
+  - id: ShareGPT-Qwen3-8B_TP1_n128_qps64
+    model: "${MODELS_ROOT}/Qwen3-8B"
+    qps: 64
+    tensor_parallel_size: 1
+    expert_parallel_size: 1
+    scheduler_pipeline_depth: 1
+  - id: ShareGPT-Llama-3.1-8B_TP1_n128_qps4
+    model: "${MODELS_ROOT}/Llama-3.1-8B-Instruct"
+    qps: 4
+    tensor_parallel_size: 1
+    expert_parallel_size: 1
+    scheduler_pipeline_depth: 1
+  - id: ShareGPT-Llama-3.1-8B_TP1_n128_qps16
+    model: "${MODELS_ROOT}/Llama-3.1-8B-Instruct"
+    qps: 16
+    tensor_parallel_size: 1
+    expert_parallel_size: 1
+    scheduler_pipeline_depth: 1
+  - id: ShareGPT-Llama-3.1-8B_TP1_n128_qps64
+    model: "${MODELS_ROOT}/Llama-3.1-8B-Instruct"
+    qps: 64
+    tensor_parallel_size: 1
+    expert_parallel_size: 1
+    scheduler_pipeline_depth: 1

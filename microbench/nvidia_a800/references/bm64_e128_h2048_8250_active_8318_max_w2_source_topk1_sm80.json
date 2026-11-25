@@ -1,0 +1,61 @@
+{
+  "schema": "nvidia_a800_bm64_e128_h2048_8250_active_8318_max_w2_source_topk1_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "source_baseline_commit": "8a7e80070957a6de6e6ad377fadedfac1a2fd14f",
+  "runner": "microbench/nvidia_a800/operators/fused_moe/fused_moe_triton_operand_stream_runner.py",
+  "runner_sha256": "4b5410b9eebea40cbe1010283539e8d774696a286780ee596a34ecac0dd449b8",
+  "vllm_source": "/capture-workspace/vllm_src_3ver/a800/vllm/model_executor/layers/fused_moe/fused_moe.py",
+  "vllm_source_sha256": "8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e",
+  "probe_contract": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_n": 64,
+    "tile_k": 32,
+    "group_size_m": 8,
+    "threads_per_cta": 128,
+    "tokens": 32768,
+    "experts": 128,
+    "topk": 16,
+    "source_topk": 1,
+    "source_rows": 524288,
+    "mul_routed_weight": true,
+    "production_projection_k": 768,
+    "production_projection_n": 2048,
+    "active_m_tiles": 8250,
+    "maximum_m_tiles": 8318,
+    "adjacent_non_production_projection_n": [1984, 2112]
+  },
+  "static_selection": {
+    "role": "w2",
+    "projection_tiles": [24, 32],
+    "source_topk": 1,
+    "mul_routed_weight": true,
+    "active_m_tiles": 8250,
+    "maximum_m_tiles": 8318,
+    "ordered_m_tile_census_source": "kernel_dataset/nvidia_a800/fused_moe.json.zst#FUSEDMOE_TOK32768_E128_TOPK16_H2048_INT768/op_info/Attr/tok_per_expert"
+  },
+  "fresh_process_cell_spread": [
+    {"n": 1984, "device_id": 2, "median_logical_byte_capacity_per_s": 2102134847962.7576},
+    {"n": 1984, "device_id": 6, "median_logical_byte_capacity_per_s": 2106115938613.4045},
+    {"n": 2112, "device_id": 2, "median_logical_byte_capacity_per_s": 2109092426644.1194},
+    {"n": 2112, "device_id": 6, "median_logical_byte_capacity_per_s": 2106192799937.1465}
+  ],
+  "captures": [
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e128_h2048_w2_8250_active_8318_max_8a7e8007_20260915_r2/tok32768_n1984_d2/result.json", "sha256": "11ad92b305e2d69b53dd171420975f5c136ead209881723b4a65cd2f2c4d8bc0"},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e128_h2048_w2_8250_active_8318_max_8a7e8007_20260915_r2/tok32768_n1984_d6/result.json", "sha256": "2e82287d36fa8586994e0cc7666b2cfa86b49be9f93e88145b83ca6a2b2f0bbb"},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e128_h2048_w2_8250_active_8318_max_8a7e8007_20260915_r2/tok32768_n2112_d2/result.json", "sha256": "3080e18ee0e5ba408af42f97a15cada8e64df51e2f45f3874a257fd60cb3a695"},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e128_h2048_w2_8250_active_8318_max_8a7e8007_20260915_r2/tok32768_n2112_d6/result.json", "sha256": "3d5f3a1461cb1d21d5b5f5888e54358aad12184ffaf968f212622f51bfa34c01"}
+  ],
+  "selected_service": {
+    "selection_rule": "minimum fresh-process cell median across both adjacent non-production N tile counts and idle devices 2 and 6",
+    "logical_byte_capacity_per_s": 2102134847962.7576
+  },
+  "mechanism": "source-exact Triton grouped-matrix operand and HMMA pipeline at bounded E128/H2048 W2 source_topk=1 depth",
+  "allowed_conclusion": "Only BF16 BM64/BN64/BK32/GSM8 E128 W2 launches with source_topk=1, MUL_ROUTED_WEIGHT, projection tile class (24,32), the exact 8250/8318 active/padded topology, and the recorded ordered M-tile census use this conservative combined operand service.",
+  "excluded_conclusions": ["complete production MoE operator duration", "production K/N duration", "per-shape residual correction", "other source depths", "other routing censuses", "W1"],
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true
+}

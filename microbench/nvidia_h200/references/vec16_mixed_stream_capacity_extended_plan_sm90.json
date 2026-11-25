@@ -1,0 +1,8 @@
+{
+  "kind": "independent_vec16_mixed_stream_capacity_extended_plan",
+  "cells": [[65536,1024],[262144,256],[32768,1024],[262144,192],[131072,360],[327680,128],[131072,256],[16384,1024],[131072,192],[65536,360],[327680,64],[163840,128]],
+  "processes": 2,
+  "samples_per_cell": 7,
+  "selection": "Use the same two16B-read/one16B-write/XOR primitive at twelve additional exact observation geometries, each with role bytes above60MiB. Require process medians within3% and use the slower process. Derive conserved read+write logical bytes/second independently for every cell; no interpolation, global rate, activation, SiLU, routing, weights, model output, production duration or error selection. This is a competing memory-path floor only.",
+  "limits": "One H200, expected30s/max180s including build/warmup/repeats/cleanup, max0.05GPU-hours, shared US$0.35 reservation, no retries or Volume."
+}

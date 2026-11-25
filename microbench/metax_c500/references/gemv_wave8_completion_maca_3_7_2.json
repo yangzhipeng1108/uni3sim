@@ -1,0 +1,227 @@
+{
+  "analysis": {
+    "path": "microbench/metax_c500/compute/reduction/gemv_wave8_completion_runner.py",
+    "sha256": "0d183068a0086ab995aeb5b31c6e871dea46f84b54d57dbf289ca993cb852abb"
+  },
+  "baseline_commit": "955b2fe33b37079c2ce810f4b9ca88d79f57dd59",
+  "campaign": {
+    "block_threads": 64,
+    "derivation": "adjacent_runtime_repetition_count_reduce8_minus_control",
+    "derivation_trials": [
+      1,
+      2
+    ],
+    "fit_grids": [
+      1,
+      104,
+      208,
+      416,
+      832,
+      1664,
+      3328,
+      6656
+    ],
+    "grids": [
+      1,
+      104,
+      208,
+      416,
+      640,
+      832,
+      1664,
+      3328,
+      6656
+    ],
+    "held_out_grid": 640,
+    "launches_per_batch": 16,
+    "outputs_per_cta": 8,
+    "peus_per_ap": 4,
+    "repetition_counts": [
+      4,
+      8,
+      16,
+      32
+    ],
+    "samples_per_cell": 31,
+    "timer_domain": "mcevent_paired_default_stream",
+    "trials": [
+      1,
+      2,
+      3
+    ],
+    "validation_trial": 3
+  },
+  "disposition": "candidate_for_forward_evaluation",
+  "forward_scope": {
+    "block_threads": 64,
+    "dtype": "bf16",
+    "maximum_resident_grid_size": 3328,
+    "minimum_grid_size": 1,
+    "outputs_per_cta": 8,
+    "requires_fully_resident_grid": true,
+    "requires_single_wave_cta": true
+  },
+  "hardware_id": "metax_c500",
+  "mechanism": "wave64_eight_output_reduction_completion",
+  "parameters": {
+    "block_threads": 64,
+    "first_wave_cohort_completion_ns_per_ap": 1214.7500819992274,
+    "first_wave_cohort_completion_rate_per_ap_s": 823214.5976514007,
+    "outputs_per_cta": 8,
+    "resident_ctas_per_ap": 32,
+    "subsequent_wave_cohort_completion_ns_per_ap": 944.6250478504226,
+    "subsequent_wave_cohort_completion_rate_per_ap_s": 1058621.0923324423,
+    "wave_completion_slots_per_ap": 4
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "publishable": true,
+  "resources": {
+    "1": {
+      "control": {
+        "registers_per_thread": 10,
+        "resident_ctas_per_ap": 32,
+        "shared_bytes_per_cta": 0
+      },
+      "reduce8": {
+        "registers_per_thread": 29,
+        "resident_ctas_per_ap": 32,
+        "shared_bytes_per_cta": 0
+      }
+    },
+    "2": {
+      "control": {
+        "registers_per_thread": 10,
+        "resident_ctas_per_ap": 32,
+        "shared_bytes_per_cta": 0
+      },
+      "reduce8": {
+        "registers_per_thread": 29,
+        "resident_ctas_per_ap": 32,
+        "shared_bytes_per_cta": 0
+      }
+    },
+    "3": {
+      "control": {
+        "registers_per_thread": 10,
+        "resident_ctas_per_ap": 32,
+        "shared_bytes_per_cta": 0
+      },
+      "reduce8": {
+        "registers_per_thread": 29,
+        "resident_ctas_per_ap": 32,
+        "shared_bytes_per_cta": 0
+      }
+    }
+  },
+  "schema_version": 1,
+  "software_revision": "maca_3.7.2",
+  "source": {
+    "path": "microbench/metax_c500/compute/reduction/gemv_wave8_completion.cpp",
+    "sha256": "1e8b23b73bf00526361b5650572a5e93ec38fd8b7ad72bb5b0108c05e9a40e08"
+  },
+  "target_operator_used": false,
+  "thresholds": {
+    "maximum_mape_percent": 15.0,
+    "maximum_max_ape_percent": 25.0
+  },
+  "trial_stdout_sha256": {
+    "1": "b8be71d1b8c4fddf3534dad5210ba6861dde152a60e8894cb5b677b495dfd8b4",
+    "2": "c3963c5ea658b58b0ccdd3bfadcd91541d5ae3774197f1f5e7500d68c450c5ad",
+    "3": "99fe698978547427eeb34525c08b4f73461f23373425724f4bfbca864d8ce79a"
+  },
+  "validation": {
+    "count": 11,
+    "mape_percent": 3.7031015104878917,
+    "max_ape_percent": 7.881893963627551
+  },
+  "validation_rows": [
+    {
+      "grid": 640,
+      "held_out_geometry": true,
+      "held_out_trial": false,
+      "measured_ns": 2144.999976735562,
+      "predicted_ns": 2159.37512984965,
+      "trial": 1
+    },
+    {
+      "grid": 640,
+      "held_out_geometry": true,
+      "held_out_trial": false,
+      "measured_ns": 2166.999940527603,
+      "predicted_ns": 2159.37512984965,
+      "trial": 2
+    },
+    {
+      "grid": 1,
+      "held_out_geometry": false,
+      "held_out_trial": true,
+      "measured_ns": 1135.9999771229923,
+      "predicted_ns": 1214.7500819992274,
+      "trial": 3
+    },
+    {
+      "grid": 104,
+      "held_out_geometry": false,
+      "held_out_trial": true,
+      "measured_ns": 1125.9999591857195,
+      "predicted_ns": 1214.7500819992274,
+      "trial": 3
+    },
+    {
+      "grid": 208,
+      "held_out_geometry": false,
+      "held_out_trial": true,
+      "measured_ns": 1300.0002363696694,
+      "predicted_ns": 1214.7500819992274,
+      "trial": 3
+    },
+    {
+      "grid": 416,
+      "held_out_geometry": false,
+      "held_out_trial": true,
+      "measured_ns": 1298.9999959245324,
+      "predicted_ns": 1214.7500819992274,
+      "trial": 3
+    },
+    {
+      "grid": 640,
+      "held_out_geometry": true,
+      "held_out_trial": true,
+      "measured_ns": 2124.9998826533556,
+      "predicted_ns": 2159.37512984965,
+      "trial": 3
+    },
+    {
+      "grid": 832,
+      "held_out_geometry": false,
+      "held_out_trial": true,
+      "measured_ns": 2216.000051703304,
+      "predicted_ns": 2159.37512984965,
+      "trial": 3
+    },
+    {
+      "grid": 1664,
+      "held_out_geometry": false,
+      "held_out_trial": true,
+      "measured_ns": 4192.000080365688,
+      "predicted_ns": 4048.625225550495,
+      "trial": 3
+    },
+    {
+      "grid": 3328,
+      "held_out_geometry": false,
+      "held_out_trial": true,
+      "measured_ns": 8078.000508248806,
+      "predicted_ns": 7827.125416952185,
+      "trial": 3
+    },
+    {
+      "grid": 6656,
+      "held_out_geometry": false,
+      "held_out_trial": true,
+      "measured_ns": 15564.001281745732,
+      "predicted_ns": 15384.125799755566,
+      "trial": 3
+    }
+  ]
+}

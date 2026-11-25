@@ -1,0 +1,72 @@
+# NVIDIA B200 (HGX B200 单卡) —— aggregate roofline 级配置。
+#
+# 规格来源：NVIDIA DGX/HGX B200 官方规格页（2026-11 访问）
+#   SM 148, HBM3e 192 GB, 8 TB/s
+#   BF16 2250 / FP8 4500 / FP4 9000 TFLOPS dense
+#   双 die 封装（NV-HBI 10 TB/s），软件视为单一 CUDA 设备
+#
+# 【显存口径修正 2026-11-25】
+#   旧值 180 GB 属「云厂商可用显存」口径（扣 ECC/预留），与官方物理容量混用。
+#   现统一采用官方物理容量 192 GB = 192e9 B（十进制 SI），与 hygon_bw1100.yaml /
+#   nvidia_rtx_pro_5500.yaml 的 SI 约定一致。
+#   若需「可用显存」口径，应在业务侧另设一列，不写进硬件事实。
+#
+# 可信度：
+#   算力 / 显存 / 带宽 = 官方 🟢
+#   口径：一律按「稠密」；规格页若标稀疏值，已按脚注折半
+#
+# 建模边界：aggregate roofline，本卡 roofline_only = True
+#   ✗ 无 launch_config/nvidia_b200/ → 不能做 kernel 级 launch 建模
+#   ✗ 双 die 跨 die 流量未建模
+#   ✗ TMEM（256 KiB/SM, 128 lane × 512 列）未建模
+#   ✗ FP4 块缩放（MXFP4 4.25 bit / NVFP4 4.5 bit）元数据开销未建模
+#   ✗ TDP / NVLink 未建模（B200 TDP ~1000-1200W；NVLink 5 双向 1.8 TB/s）
+hardware_id: nvidia_b200
+clock_domains: {}
+components:
+  - name: tensor_bf16
+    count: 1
+    type: compute
+    role: compute_tensor
+    scope: shared
+    capacity_per_second: 2250000000000000       # 2250 TFLOPS dense
+  - name: tensor_fp16
+    count: 1
+    type: compute
+    role: compute_tensor_fp16
+    scope: shared
+    capacity_per_second: 2250000000000000       # 2250 TFLOPS dense
+  - name: tensor_fp8
+    count: 1
+    type: compute
+    role: compute_tensor_fp8
+    scope: shared
+    capacity_per_second: 4500000000000000       # 4500 TFLOPS dense
+  - name: tensor_fp4
+    count: 1
+    type: compute
+    role: compute_tensor_fp4
+    scope: shared
+    capacity_per_second: 9000000000000000       # 9000 TFLOPS dense
+  - name: dram
+    count: 1
+    type: memory
+    role: dram
+    scope: shared
+    capacity_per_second: 8000000000000          # 8.0 TB/s HBM3e
+    size_bytes: 192000000000                    # 192 GB 官方物理容量（SI 十进制）
+resource_groups: []
+memory_subsystem: {}
+scheduling: {}
+# NVLink 5 双向 1.8 TB/s → 单向 900 GB/s；PCIe 5.0 x16 → 64 GB/s
+interconnect:
+  roce_unidir_bw_GB_s: 50
+  roce_devices_per_nic: 2
+  roce_switch_topology: fully_connected
+  roce_signal_latency_ns: null
+  roce_collective_startup_ns: null
+  parameter_source: user_supplied_2026_11_25_b200_two_cards_per_400Gbps_roce
+features:
+  kernel_memory_model: roofline
+  kernel_dtype: bf16
+  parameter_source: user_supplied_2026_11_25_b200_official_hgx_dense

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_h200",
+  "evidence_kind": "independently_decoded_sm90_bf16_fp32_data_bit_expansion",
+  "artifact_identity_reference": "../../nvidia_a800/references/pytorch_moe_reduce_vllm_0_11_0_torch_2_8_0.json#/installed_artifacts/4",
+  "host_copy_source_reference": "../../nvidia_a800/references/embedding_id_widen_torch_2_8.json#/bf16_fp32_cast_static_evidence_only",
+  "containing_code_object_reference": "embedding_id_widen_torch_2_8.json",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/bf16_fp32_sm90_selected_program.json",
+      "sha256": "59e5f0fbf18293e1a0c699bb7772e65848f5a8632b78bb6fefcd6149a8fe35d6"
+    }
+  ],
+  "hardware_execution_performed": false,
+  "GPU_queried": false,
+  "duration_consumed": false,
+  "actual_provider_bound": false,
+  "compiled_entry": {
+    "symbol": "_ZN2at6native27unrolled_elementwise_kernelIZZZNS0_23direct_copy_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE1_clEvENKUlvE5_clEvEUlfE_St5arrayIPcLm2EELi4E23TrivialOffsetCalculatorILi1EjESB_NS0_6memory12LoadWithCastILi1EEENSC_13StoreWithCastILi1EEEEEviT_T0_T2_T3_T4_T5_",
+    "symbol_index": 446,
+    "registers_per_thread": 30,
+    "static_shared_bytes": 0,
+    "frame_bytes": 0,
+    "minimum_stack_bytes": 0,
+    "max_threads": [
+      128,
+      1,
+      1
+    ]
+  },
+  "data_program": {
+    "input_dtype_tag": 15,
+    "output_dtype_tag": 6,
+    "input_load_offsets": [
+      "0x830",
+      "0x1660",
+      "0x24a0",
+      "0x32a0"
+    ],
+    "integer_expand_instructions": [
+      "/*0840*/                   IMAD.U32 R18, R4, 0x10000, RZ ;",
+      "/*1670*/                   IMAD.U32 R22, R4, 0x10000, RZ ;",
+      "/*24b0*/                   IMAD.U32 R24, R4, 0x10000, RZ ;",
+      "/*32b0*/                   IMAD.U32 R16, R4, 0x10000, RZ ;"
+    ],
+    "output_store_instructions": [
+      "/*3c10*/                   STG.E desc[UR36][R8.64], R18 ;",
+      "/*4ac0*/                   STG.E desc[UR36][R8.64], R22 ;",
+      "/*5960*/                   STG.E desc[UR36][R8.64], R24 ;",
+      "/*6800*/                   STG.E desc[UR36][R2.64], R16 ;"
+    ],
+    "per_element": "2Bread,oneIMAD.U32(bits,65536,0),4Bwrite. Unsigned16bitinput times65536 is exactFP32bitpattern expansion for everyBF16bitpattern,includingexceptional values.",
+    "floating_arithmetic_or_sfu": 0,
+    "data_path_prmt": false,
+    "dispatch_prmt_in_entry": "PRMT0x9910 handlesdtype dispatch; otherPRMTsites belongto excludedconversion/outputdtype branches,not theBF16tag15->Float6 data path."
+  },
+  "accepted_scope": {
+    "source": "vllm0.11ordinaryplainBF16sampler",
+    "input": "provencontiguousBF16[N]",
+    "output": "freshcontiguousFP32[N]",
+    "elements": "1<=N<=2^29,oneunsplit32bitTensorIterator",
+    "launch": "128threads/vt4/gridceil(N/512)",
+    "rate_mapping": "N ordinaryINT32integerarithmetic operations on existingH200compute_alu envelope and existingmemoryresources. IMADhaszeroaddend; noFP-FMA,conversion,SFUorPRMTrate is substituted. No numericparameter added."
+  },
+  "limitations": [
+    "No actualprovider,devicecorrectness/timing orhistoricalcapture claim.",
+    "Address,dtype-dispatch,uniformandcontrolinstruction services are excluded as inexisting scalarCopymodel; not completeSASSlatency.",
+    "Stridedvocabularyslices,wide/splititerators,FP16,otherlibraryversions remainunbound.",
+    "A800PRMT dataexpansion hasdifferenttypedinstructionservice and isnotadmittedbytheSM90proof.",
+    "ArgmaxandoutputIDcast remainseparatesteps; no sampler-complete orServing acceptance."
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_add_rmsnorm_key30_terminal_output_sequence_32_workers",
+  "request_size_unit": "payload_bytes",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "4096": 1440.0,
+    "8192": 500.0
+  },
+  "service_time_selection": "median_of_three_independent_run_medians",
+  "mechanism": "source-ordered depth-one VECOUT Y then rstd DataCopyPad completion sequence",
+  "composition": "replace the terminal Y and rstd MTE3 completion stages while retaining their combined MTE3, L2, and DRAM byte-capacity demands",
+  "source_domain": {
+    "cann_tiling_key": 30,
+    "active_aiv_workers": 32,
+    "rows_per_worker": 2,
+    "dtype": "bf16",
+    "exact_y_payload_bytes": [4096, 8192],
+    "logical_rstd_payload_bytes": 8,
+    "physical_rstd_transaction_bytes": 32
+  },
+  "source_semantics": {
+    "production_source_path": "/usr/local/Ascend/ascend-toolkit/latest/opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/add_rms_norm/add_rms_norm.h",
+    "production_source_sha256": "5dfa3822e752e8c7a136039d09b4f33c877afe0502e871d5acde83087ca5c58e",
+    "datacopy_helper_path": "/usr/local/Ascend/ascend-toolkit/latest/opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/add_rms_norm/add_rms_norm_base.h",
+    "datacopy_helper_sha256": "73807734d5df6170a32a3c717708359957cf4df78ede6548e3db622b6803a722",
+    "source_order": [
+      "CopyOutY for each owned row",
+      "outQueueRstd.EnQue after the row group",
+      "CopyOutRstd for the owned row group"
+    ],
+    "physical_rounding_evidence": "the independent 32-AIV terminal-rstd campaign measured identical 180 ns completion for 32, 64, and 96-byte physical payloads, covering both the probe's 4-byte and key-30's 8-byte logical rstd stores after 32-byte transaction rounding",
+    "physical_rounding_report_path": "profiler_output/microbench/ascend_910b/rmsnorm_rstd_completion_45f45a2c_20260907_d7/report.txt",
+    "physical_rounding_report_sha256": "180844faafca6e792da8c1a3542355ea0aedca43ee1d0614bab710d451a9ad21"
+  },
+  "capture_baseline": "04f4b978",
+  "source_snapshot_path": "/capture-workspace/source_snapshots/rmsnorm_output_seq_f6262f81_20260908",
+  "source_snapshot_files_sha256": {
+    "CMakeLists.txt": "83ec4021a088ced5ee733b5b1e834efa8a50b57e462c5f00c745b641729d864d",
+    "rmsnorm_key0_output_sequence_kernel.cpp": "cbd04bfe3a7413f56e1cd07ec8ddf2b7fa8da4f0cbc8e8547d26c157aa2f4736",
+    "rmsnorm_key0_output_sequence_main.cpp": "c0449cedbafabf496e931c0e38cc883b941ba3b41716b44279ca1c6968f803c0",
+    "rmsnorm_key0_output_sequence_report.py": "e50aeea3ff43412fe41341c1a4f43fd316d4b03f53eb34220a36ea5894ca2702",
+    "rmsnorm_key0_output_sequence_runner.py": "6515976540474e211ba2d247d520a22188412887d5f9dfde04764b99e1fcbb72"
+  },
+  "benchmark_binary_sha256": "9955d6f6adfa9db3e0f93024f07b34012baed2fed13701fb9bdc11823f49bd54",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_output_sequence_04f4b978_20260908_d7/run1.csv",
+      "sha256": "03e200699403f3b9998b9f3d84c40b66541e404dbb613523546aaaa98be37f8a",
+      "run_id": "rms_key0_seq_04f4b978_r1"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_output_sequence_04f4b978_20260908_d7/run2.csv",
+      "sha256": "7b1a2fb24c9c12b36073085f0f7adedaf561e4c2b42867ce3134940d62bbba7e",
+      "run_id": "rms_key0_seq_04f4b978_r2"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_output_sequence_04f4b978_20260908_d7/run3.csv",
+      "sha256": "654f008fafe1167524c8efad5aa5531dcd21d37d49fbd11e8730321afc47eccc",
+      "run_id": "rms_key0_seq_04f4b978_r3"
+    }
+  ],
+  "audit_artifact": {
+    "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_output_sequence_04f4b978_20260908_d7/report.txt",
+    "sha256": "ed16086c177d4824b96b7b9fbe4db40c198a0321df747c3aebd7533625fcca75"
+  },
+  "device_id": 7,
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 120,
+  "median_ns_by_run_and_request_size": {
+    "rms_key0_seq_04f4b978_r1": {"4096": 1440.0, "8192": 500.0},
+    "rms_key0_seq_04f4b978_r2": {"4096": 1420.0, "8192": 500.0},
+    "rms_key0_seq_04f4b978_r3": {"4096": 1440.0, "8192": 480.0}
+  },
+  "maximum_run_relative_median_spread_by_request_size": {
+    "4096": 0.013888889,
+    "8192": 0.04
+  },
+  "replication_relative_limit": 0.2,
+  "independent_run_relative_limit": 0.2,
+  "all_per_run_replication_gates_passed": true,
+  "cross_run_stability_gate_passed": true,
+  "physical_rounding_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": "midlayer.metax.add_rmsnorm_grid64_fixed_input_loop.v1",
+  "hardware_id": "metax_c500",
+  "software_revision": "maca_3.7.2",
+  "mechanism": "bf16_add_rmsnorm_grid64_fixed_address_input_loop_cycles",
+  "duration_unit": "ns_per_cta_input_function",
+  "production_or_evaluation_duration_consumed": false,
+  "source_semantics": {
+    "dtype": "bf16",
+    "threads_per_cta": 1024,
+    "grid_ctas": 64,
+    "address_mode": "fixed",
+    "operations_per_source_round": [
+      "load_input",
+      "load_residual",
+      "add",
+      "square",
+      "accumulate",
+      "store_residual"
+    ],
+    "excluded_work": [
+      "host_launch",
+      "cta_admission",
+      "address_progression",
+      "block_reduction",
+      "output_scale",
+      "source_setup"
+    ]
+  },
+  "measurement_scope": {
+    "timer_domain": "clock64_cta_local_cycles",
+    "model_clock_hz": 1125000000,
+    "source_depths": [4, 5, 8, 16, 32],
+    "samples_per_cell": 31,
+    "derivation_trials": [1, 2],
+    "validation_trial": 3,
+    "statistic": "median_of_maximum_cta_spans"
+  },
+  "selected_services": [
+    {
+      "source_depth": 4,
+      "service_cycles_per_cta": 4048,
+      "service_ns_per_cta": 3598.222222222222,
+      "service_rate_per_unit_s": 277915.0197628458,
+      "cross_trial_spread_percent": 0.3948667324777887,
+      "validation_ape_percent": 0.2955665024630542
+    },
+    {
+      "source_depth": 5,
+      "service_cycles_per_cta": 4858,
+      "service_ns_per_cta": 4318.222222222223,
+      "service_rate_per_unit_s": 231576.78056813503,
+      "cross_trial_spread_percent": 1.3957307060755337,
+      "validation_ape_percent": 0.28735632183908044
+    },
+    {
+      "source_depth": 8,
+      "service_cycles_per_cta": 7200,
+      "service_ns_per_cta": 6400.0,
+      "service_rate_per_unit_s": 156250.0,
+      "cross_trial_spread_percent": 1.5995587424158852,
+      "validation_ape_percent": 0.881057268722467
+    },
+    {
+      "source_depth": 16,
+      "service_cycles_per_cta": 13580,
+      "service_ns_per_cta": 12071.111111111111,
+      "service_rate_per_unit_s": 82842.41531664212,
+      "cross_trial_spread_percent": 1.2967875036840553,
+      "validation_ape_percent": 0.05894488653109342
+    },
+    {
+      "source_depth": 32,
+      "service_cycles_per_cta": 26346,
+      "service_ns_per_cta": 23418.666666666668,
+      "service_rate_per_unit_s": 42700.97927579139,
+      "cross_trial_spread_percent": 0.9869419981779531,
+      "validation_ape_percent": 0.007591861524445795
+    }
+  ],
+  "stability_gate": {
+    "maximum_cross_trial_spread_percent": 20.0,
+    "maximum_validation_ape_percent": 20.0,
+    "observed_maximum_cross_trial_spread_percent": 1.5995587424158852,
+    "observed_maximum_validation_ape_percent": 0.881057268722467,
+    "passed": true
+  },
+  "provenance": {
+    "baseline_commit": "cdcd73f10b3328da476ac7f8dce4362b63412bcc",
+    "benchmark_commit": "53ac6c7bebcfe5d2ff3d80cfea07688c520663a9",
+    "owner": "capture-owner-4c0f2645f650",
+    "physical_device_index": 3,
+    "raw_output": "profiler_output/microbench/metax_c500/add_rmsnorm_grid64_fixed_loop_53ac6c7b_20260909_d3",
+    "remote_source_snapshot": "/capture-workspace/source_snapshots/vector_add_rms_grid64_fixed_loop_53ac6c7b_20260909",
+    "source_path": "microbench/metax_c500/compute/vector/add_rmsnorm_input_progression/add_rmsnorm_input_progression_cycles.cpp",
+    "source_sha256": "dc5dcd8b5bcddd583cbc2ac1caa66cbada6c371f1c45f6306776f23406db2b36",
+    "binary_sha256": "47cd04bc8dbea1e49ccf4422f1df458677e3e2c9119ef90aaabaf11c431cefe2",
+    "report_sha256": "839f3fb19055870bbab8cbddfcc25fd3b08be983d1c51c6e81e317bdce89a70f",
+    "trial_stdout_sha256": {
+      "1": "801c4027e24135070a74ddd8b41f4e457098408df40784e1fdeb846f63486c25",
+      "2": "c35685f34787127bf78620730785c24bd7083b027b998d8e47cfd7ab31a2fabd",
+      "3": "1b5f257d4db73a254774c8dad4050ee029c4180a7744e6b5ad1bed074c21a339"
+    },
+    "postflight_device_processes": 0
+  }
+}

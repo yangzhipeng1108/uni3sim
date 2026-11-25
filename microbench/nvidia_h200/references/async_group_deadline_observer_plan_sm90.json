@@ -1,0 +1,110 @@
+{
+  "schema": "nvidia_h200_one_shot_deadline_readiness_plan_v1",
+  "source_sha256": {
+    "async_group_deadline_observer.cu": "1eaa7db6396d277a9c352a88efbf6fe7c94acac835863bf479febecfb1213a3d",
+    "async_group_deadline_observer_analysis.py": "f848a107b869febbb0f79bf9bed3ea0f0fb82dc9a9ab3a08f9a5cbe28c7496b3",
+    "async_group_deadline_observer_modal_runner.py": "9650c9a7fe531b368ce999b50947ee676b86aa432655848c8ceb92f5dc9f5064"
+  },
+  "control_cells": [
+    [
+      16384,
+      264,
+      1
+    ],
+    [
+      16384,
+      264,
+      2
+    ],
+    [
+      16384,
+      264,
+      4
+    ]
+  ],
+  "physical_cells": [
+    [
+      16384,
+      132,
+      1
+    ],
+    [
+      16384,
+      132,
+      2
+    ],
+    [
+      16384,
+      132,
+      4
+    ],
+    [
+      16384,
+      264,
+      1
+    ],
+    [
+      16384,
+      264,
+      2
+    ],
+    [
+      16384,
+      264,
+      4
+    ],
+    [
+      32768,
+      132,
+      1
+    ],
+    [
+      32768,
+      132,
+      2
+    ],
+    [
+      32768,
+      132,
+      4
+    ]
+  ],
+  "trials_per_process": 17,
+  "processes": [
+    0,
+    1
+  ],
+  "rounds": 260,
+  "tiers": 65,
+  "delay_count_step": 8,
+  "warm_launches": 6,
+  "query_policy": "one initial pending check before full-warp release; exactly one timed query per round after bounded arithmetic delay; actual clock brackets for every CTA, no periodic readiness polling",
+  "estimand": "50pct crossing of median-launch spatial readiness CDF under stationary repeated warm byte bursts; distinct from prior mean per-CTA observer",
+  "confidence": "min/max of17 launch readiness fractions at each tier/event; exact sign interval for median fraction; full9cells x2process x65tiers x2events union failure <=2340*2/2**17 =0.0357055664; temporal stationarity and launch-repeat independence remain explicit assumptions",
+  "gates": [
+    "all lane checksums, initial pending, finite delay sink, exact132SM/resident placement",
+    "all six compiled bodies have one finite arithmetic delay and one timed query with no branch/memory/yield inside clock bracket; no spill or matrix",
+    "all17samples and65tiers retained; no CTA/round/sample filtering",
+    "complete monotone first/all CDF crossing; all-CTA actual-time support and query width each <=10pct lower response endpoint",
+    "all CTA calibration within3pct1.98GHz; directSM nominal3pct; allSM/LTS counter clocks stable3pct; response bracket midpoints process3pct",
+    "exact CTA and LDGSTS; upstream/TEX logical1pct; DRAM<=1pct; source unit closure1pct"
+  ],
+  "selection": "all6control timing/counter measurements must pass before12remaining; failed screen ends this method without retry or threshold relaxation; no rate/policy adopted; any Q is explicitly median-CDF contrast, not former mean-Q",
+  "transfer_limits": [
+    "extra observer warp, barrier markers and finite ALU delay may perturb native scheduling; passing byte census alone does not license native FIFO/fluid choice",
+    "warm private panels do not establish mixed-hit/miss state or actual production graph",
+    "no native geometry/phase/rate or production duration is inferred"
+  ],
+  "budget": {
+    "gpu": "H200",
+    "cards": 1,
+    "expected_seconds": 180,
+    "maximum_seconds": 480,
+    "maximum_gpu_hours": 0.13333333333333333,
+    "usd_hold": 1,
+    "retries": 0,
+    "volume": false
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "forward_parameter_or_policy_adopted": false
+}

@@ -1,0 +1,41 @@
+{
+  "hardware_id": "ascend_910b",
+  "host": {
+    "cpu": "Kunpeng-920 (aarch64)",
+    "operating_system": "Linux 5.15.0-25-generic",
+    "python_version": "3.11.14",
+    "vllm_version": "0.18.0"
+  },
+  "measurement_boundary": "host_only_no_device_no_model",
+  "production_or_evaluation_duration_consumed": false,
+  "raw": {
+    "path": "profiler_output/microbench/ascend_910b/host_request_path_20260920_r1/manifest.json",
+    "retention": "local_raw_not_committed",
+    "sha256": "6e8f1a594f9e8abac97bb137d31b0cc8dd3da0551d9ad2a5eab01d329914f2bd"
+  },
+  "sample_contract": {
+    "runner": "microbench/nvidia_a800/runtime/host_request_path/vllm_host_request_path_runner.py",
+    "trials": 120,
+    "warmup": 15
+  },
+  "schema_version": 1,
+  "selection": {
+    "api_entry_s": 0.001175316,
+    "first_token_delivery_s": 0.000509837,
+    "first_token_delivery_terms": {
+      "incremental_detokenize_s": 3.2905e-06,
+      "output_ipc_transit_s": 4.4671e-05,
+      "stream_chunk_return_s": 0.0004618755
+    },
+    "ipc_transit_s": 4.4671e-05,
+    "request_build_s": 2.21655e-05,
+    "statistic": "median_of_independent_primitive_samples",
+    "tokenizer_async_call_s": 0.0024440345,
+    "tokenizer_encode_intercept_s": 8.392395275590552e-05,
+    "tokenizer_encode_per_token_s": 3.6024404527559056e-06,
+    "tokenizer_entry_form": "batching_wrapper_call",
+    "tokenizer_entry_note": "Reaching the tokenizer and running it are separate costs.  The entry form is a source fact of this runtime; the encode's fixed call cost and its per-token cost are paid on either form and are read off the same measured endpoints as before.",
+    "tokenizer_executor_dispatch_s": null
+  },
+  "tokenizer_entry_source": "vllm.utils.async_utils.AsyncMicrobatchTokenizer(batch_wait_timeout_s=0.002,max_batch_size=32)"
+}

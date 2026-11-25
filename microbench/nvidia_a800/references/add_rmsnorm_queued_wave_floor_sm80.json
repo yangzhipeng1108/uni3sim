@@ -1,0 +1,177 @@
+{
+  "schema": "nvidia_a800_add_rmsnorm_queued_wave_floor_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "evidence_status": "mechanism_rejected",
+  "production_or_evaluation_duration_consumed": false,
+  "production_predictor_consumption_allowed": false,
+  "capture": {
+    "owner": "agent-a800-addrms-queued-rounds",
+    "source_capture": "profiler_output/microbench/nvidia_a800/add_rmsnorm_queued_wave_floor_c7224f80_gpu0_r2",
+    "source_baseline_commit": "c7224f803a0b5cc029641aa8180990b522674bbb",
+    "started_at_utc": "2026-08-31T03:39:12.622994+00:00",
+    "completed_at_utc": "2026-08-31T03:39:19.304839+00:00",
+    "physical_device_index": 0,
+    "device_uuid": "capture-device-6f63e60145b9",
+    "pci_bus_id": "00000000:3D:00.0",
+    "preflight_cleanup": "target_device_idle_no_compute_processes",
+    "postflight_cleanup": "target_device_idle_no_compute_processes",
+    "candidate_sha256": "0f6b1bce1d17f50ecae4bb638303cefbe68135043250a13892e08cd819240870",
+    "raw_sha256": "0e682f1563f596471bf2b1337ed1bc4c12256f2afa1427c38484016a8d559078",
+    "provenance_sha256": "97a176938d585230a833ddee6ee8712ceef922e10c966b96946fe26c4ef021d0"
+  },
+  "source_identity": {
+    "probe_source": "microbench/nvidia_a800/compute/sfu/add_rmsnorm_round_service.cu",
+    "probe_source_sha256": "178cef5fafbbfac061c9ac1ddabb24683968403322ec7b9edc9872e88afb7521",
+    "runner": "microbench/nvidia_a800/compute/sfu/add_rmsnorm_queued_wave_floor_runner.py",
+    "runner_sha256": "06fa6d622e07cff22d1d0f8df1801a0ac3a669d6b47274a70eb134c32aab46f0",
+    "base_runner": "microbench/nvidia_a800/compute/sfu/add_rmsnorm_round_service_runner.py",
+    "base_runner_sha256": "d41d7119798a381af5b201fdcd658b3d750ee1acc6ba2e874b95310e016897a6",
+    "probe_binary_sha256": "5468e5f94bde5435b791d7c9a75d33ac498c2fd9b20eded9810ca501c5ffc741",
+    "probe_resource_dump_sha256": "2f3c5aa093791a6feaae3278a7616538f3064ecec5842487f895c61cb2aebf3c",
+    "probe_sass_dump_sha256": "cd8e6d39229ff8bbbd2774f9e97a39aad571fd41866492007fd90840ef6fd8ec"
+  },
+  "published_tool_identity": {
+    "probe_source_sha256": "a516b9d31d04717d52c828b6b8409bc7ce5a12b5605d1f11a55802ddb185cac0",
+    "runner_sha256": "4dccd64cc02886731495996164e59223236d165a92a8faabb5e1b4081f16a54f",
+    "base_runner_sha256": "d41d7119798a381af5b201fdcd658b3d750ee1acc6ba2e874b95310e016897a6"
+  },
+  "tool_identity": {
+    "nvcc_sha256": "6b05c8048bff95eb892bcd53cc55fd4fe231aa27bb9dd7289661e746408d8b7d",
+    "cuobjdump_sha256": "ad1d0f0699f46603416eb58e7b9fdf9a293e95f9312c9df7fd6fda56a6c30d41",
+    "nvidia_smi_sha256": "f9229afde6e2b1f85d75d075c2c6ca0ee31436fc274e48f70ce19b78614edb30",
+    "nvcc_version": "Cuda compilation tools, release 12.2, V12.2.140",
+    "cuobjdump_version": "Cuda compilation tools, release 12.8, V12.8.55",
+    "driver_version": "535.183.06"
+  },
+  "production_artifact": {
+    "binary_sha256": "984de21ce38cc8083d207663a380ca75acc6ad3dc230858092f59e363c4eebd5",
+    "cubin_name": "_C.abi3.59.sm_80.cubin",
+    "cubin_sha256": "166d5a3ad91de17854f489ae49038b1a39179121fe744edc5d5449a5ea225700",
+    "symbol": "_ZN4vllm25fused_add_rms_norm_kernelIN3c108BFloat16ELi8EEENSt9enable_ifIXaagtT0_Li0Esr4vllm12_typeConvertIT_EE6existsEvE4typeEPS4_lS7_PKS4_fii",
+    "registers_per_thread": 32,
+    "static_shared_bytes": 168,
+    "local_bytes": 0,
+    "function_sass_sha256": "b1f9aaf1a8a221567499e1214b053592c62ff594815742bdc881b912e971cf4b"
+  },
+  "probe_contract": {
+    "functions": [
+      "add_square",
+      "scale_multiply"
+    ],
+    "block_threads": 256,
+    "rounds": 512,
+    "resident_ctas_per_sm": 8,
+    "resident_grid_blocks": 864,
+    "queued_grid_blocks": 1024,
+    "campaign_warmup_launches_per_cell": 16,
+    "training_trials": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "holdout_trials": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "split_rule": "trial identity was frozen before capture; resident-first and queued-first order each occur three times in both training and holdout",
+    "probe_resources": {
+      "add_square": {
+        "registers_per_thread": 29,
+        "static_shared_bytes": 0,
+        "local_bytes": 0
+      },
+      "scale_multiply": {
+        "registers_per_thread": 31,
+        "static_shared_bytes": 0,
+        "local_bytes": 0
+      }
+    },
+    "required_probe_opcodes": [
+      "LDG.E.128",
+      "STG.E.128",
+      "BAR.SYNC"
+    ],
+    "forbidden_probe_opcodes_absent": [
+      "LDL",
+      "STL",
+      "ATOM"
+    ]
+  },
+  "observations": {
+    "time_unit": "ns_per_source_round",
+    "add_square": {
+      "resident_cell_maximum_relative_spread": 0.006396588486140725,
+      "queued_cell_maximum_relative_spread": 0.02164111812443643,
+      "additional_wave_relative_spread": 0.15163147792706333,
+      "holdout_minimum_margin_above_training_floor": -6.0,
+      "queued_minimum_ctas_per_sm_observed": [
+        8
+      ],
+      "queued_maximum_ctas_per_sm_observed": [
+        15,
+        16
+      ]
+    },
+    "scale_multiply": {
+      "resident_cell_maximum_relative_spread": 0.004685059864653826,
+      "queued_cell_maximum_relative_spread": 0.030330466274332276,
+      "additional_wave_relative_spread": 0.22876949740034663,
+      "holdout_minimum_margin_above_training_floor": 6.0,
+      "queued_minimum_ctas_per_sm_observed": [
+        8,
+        9
+      ],
+      "queued_maximum_ctas_per_sm_observed": [
+        12,
+        13
+      ]
+    }
+  },
+  "gates": {
+    "frozen_balanced_train_holdout_order": true,
+    "all_additional_wave_intervals_positive": true,
+    "all_cells_stable_within_10_percent": true,
+    "all_additional_wave_intervals_stable_within_10_percent": false,
+    "held_out_intervals_preserve_training_floor": false,
+    "all_queued_launches_are_two_assignment_waves": true,
+    "static_resource_contract": true,
+    "static_sass_contract": true
+  },
+  "publication": {
+    "allowed": false,
+    "failed_gates": [
+      "all_additional_wave_intervals_stable_within_10_percent",
+      "held_out_intervals_preserve_training_floor"
+    ],
+    "additional_queued_wave_floor_ns_per_round": {}
+  },
+  "design_disposition": {
+    "exact_queued_cta_service": "rejected because the 1024-CTA launch has nonuniform and cross-trial-variable per-SM assignment unavailable to production",
+    "average_queued_tail_service": "rejected because 160/108 average tail CTAs do not determine the maximum-SM whole-launch span",
+    "held_out_whole_launch_wave_floor": "rejected because the frozen 10 percent stability and holdout lower-envelope gates failed"
+  },
+  "decision": {
+    "status": "wontfix_without_static_assignment_invariant",
+    "mechanism_publishable": false,
+    "forward_eligible": false,
+    "reason": "No queued source-round parameter survives the frozen stability and holdout gates without requiring the runtime per-SM CTA assignment that production cannot statically know."
+  },
+  "allowed_conclusion": "The exact A800 block-256 grid-1024 Add-RMS source-round campaign falsifies exact-tail, average-tail and held-out whole-launch-floor publication under the current scheduler evidence.",
+  "excluded_conclusions": [
+    "a complete Add-RMSNorm duration",
+    "an exact queued CTA service rate",
+    "an exact or average queued-tail CTA assignment",
+    "a per-grid or per-shape timing lookup table",
+    "a queued-wave floor parameter",
+    "direct Forward consumption"
+  ]
+}

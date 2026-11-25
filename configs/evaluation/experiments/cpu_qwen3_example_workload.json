@@ -1,0 +1,35 @@
+{
+  "hash": "49fb4b2cdf97fb85577155b70e8da27785121f30e4cce7bb5b6ae54bbc4e45c5",
+  "num_requests": 2,
+  "prompt_lengths": [
+    4,
+    4
+  ],
+  "prompts": [
+    "test",
+    "test"
+  ],
+  "request_ids": [
+    "a",
+    "b"
+  ],
+  "requested_num_requests": 2,
+  "sampling": {
+    "ignore_eos": true,
+    "max_tokens": 4,
+    "min_tokens": 4,
+    "temperature": 0.0
+  },
+  "seed": 0,
+  "token_controls": {
+    "ignore_eos": true,
+    "max_tokens": 4,
+    "min_tokens": 4
+  },
+  "version": 1,
+  "workload": {
+    "name": "synthetic-graph",
+    "output_len": 4,
+    "prompt_len": 4
+  }
+}

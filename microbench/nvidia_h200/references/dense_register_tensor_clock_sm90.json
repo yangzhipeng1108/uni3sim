@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_h200",
+  "mechanism": "register_tensor_activity_clock",
+  "selection": "median_of_all_eight_control_point_clock_medians",
+  "measurements": [
+    {
+      "grid_ctas": 32,
+      "rounds": 512,
+      "patterned": 0,
+      "clock_mhz": 1814.247
+    },
+    {
+      "grid_ctas": 32,
+      "rounds": 2048,
+      "patterned": 0,
+      "clock_mhz": 1814.81
+    },
+    {
+      "grid_ctas": 32,
+      "rounds": 512,
+      "patterned": 1,
+      "clock_mhz": 1814.204
+    },
+    {
+      "grid_ctas": 32,
+      "rounds": 2048,
+      "patterned": 1,
+      "clock_mhz": 1814.805
+    },
+    {
+      "grid_ctas": 132,
+      "rounds": 512,
+      "patterned": 0,
+      "clock_mhz": 1812.137
+    },
+    {
+      "grid_ctas": 132,
+      "rounds": 2048,
+      "patterned": 0,
+      "clock_mhz": 1814.372
+    },
+    {
+      "grid_ctas": 132,
+      "rounds": 512,
+      "patterned": 1,
+      "clock_mhz": 1809.893
+    },
+    {
+      "grid_ctas": 132,
+      "rounds": 2048,
+      "patterned": 1,
+      "clock_mhz": 1813.703
+    }
+  ],
+  "selected_sm_clock_hz": 1814225500.0,
+  "raw": {
+    "path": "profiler_output/microbench/nvidia_h200/dense_register_tensor_clock_20261107/raw.json",
+    "sha256": "681882062bd14dd47b2499517188ca57da01db0272f8cd2cb40a8b10489e2a35"
+  },
+  "source_sha256": "c072983afc7ef73583d455da39db9f9ba0de69c20f2fb587f6dc56c0e850a26a",
+  "runner_sha256": "b964ef5612c3fe9a13ff712d9cc4992692dfac69162089bb366db6c596ecdec2",
+  "scope_limitations": [
+    "provisional single-device register-only Tensor activity clock",
+    "not native HGMMA instruction schedule, numerical/provider certification, or a duration-derived efficiency",
+    "applies only to declared two-byte TMA GEMM Tensor cycle service inside measured active-unit domain",
+    "independent memory byte capacities and latency ns are not rescaled"
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

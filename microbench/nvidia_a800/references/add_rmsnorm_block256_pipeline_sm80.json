@@ -1,0 +1,59 @@
+{
+  "schema": "nvidia_a800_add_rmsnorm_block256_pipeline_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "software_revision": "vllm_0.11.0_cuda_12.2_sm80",
+  "production_or_evaluation_duration_consumed": false,
+  "source_service_reference": {
+    "path": "microbench/nvidia_a800/references/add_rmsnorm_round_service_sm80.json",
+    "sha256": "eec85c453649bfc859c16f91575c96d15c885fc359559fcc672e34c3f92ca4b2",
+    "time_unit": "ns_per_cta_round"
+  },
+  "source_contract": {
+    "dtype": "bf16",
+    "vector_width_elements": 8,
+    "source_round_elements": 2048,
+    "block_threads": 256,
+    "registers_per_thread": 32,
+    "static_shared_memory_bytes": 168,
+    "resident_ctas_per_sm": 8,
+    "minimum_grid_blocks": 1,
+    "maximum_grid_blocks": 864,
+    "hidden_domain": "hidden_size % source_round_elements == 0",
+    "grid_derivation": "The source launches one CTA per row. At most eight 256-thread CTAs reside on each of 108 SMs from the static thread, warp, register, shared-memory, and block limits, so grids through 864 contain no queued CTA.",
+    "production_function_sass_sha256": "b1f9aaf1a8a221567499e1214b053592c62ff594815742bdc881b912e971cf4b"
+  },
+  "service_parameters": {
+    "timer_domain": "globaltimer_same_cta",
+    "unit": "ns_per_cta_source_round",
+    "add_square_first": 246.0,
+    "add_square_resident": 760.2857142857143,
+    "scale_multiply_first": 256.0,
+    "scale_multiply_resident": 515.7142857142857
+  },
+  "composition_contract": {
+    "ordered_stages": [
+      "add_square_source_round",
+      "existing_block_reduction_and_publication",
+      "scale_multiply_source_round"
+    ],
+    "resident_cta_source_and_reduction_stages_share_warp_issue": true,
+    "independent_vector_reduction_stage_overlap_allowed": false,
+    "each_stage_composed_once": true,
+    "generic_fma_alu_replaced": true,
+    "generic_complete_memory_task_replaced": true,
+    "aggregate_l2_dram_capacity_envelope_retained": true,
+    "reduction_report_sha256": "5794b6ddb0fcfd9ed7e83c75a0d10d522540841570bf7eb33439bd0bf56941f1"
+  },
+  "decision": {
+    "status": "accepted_after_pipeline_composition_review",
+    "forward_eligible": true,
+    "reason": "The analytical CTA pipeline composes the disjoint source input, reduction, and output phases once, preserves their shared SM warp-issue path across resident CTAs, models the eight static CTA slots explicitly, and retains the aggregate memory envelope. The independent reference supplies only first/resident source-round service and no production duration."
+  },
+  "excluded_conclusions": [
+    "a complete AddRMSNorm duration",
+    "hidden sizes with a partial source round",
+    "block widths other than 256",
+    "queued CTA service or grids above 864",
+    "per-shape timing interpolation or residual correction"
+  ]
+}

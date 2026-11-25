@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "e2ed67265f179f5224e191f34a152874157988f6",
+  "campaign": "reshape_cache_equal_chain_completion",
+  "service_time_unit": "ns_per_two_copy_chains_per_aiv",
+  "service_time_selection": "median_of_independent_run_medians",
+  "lookup_policy": "exact_worker_count_and_payload_only",
+  "pairing_formula": "maximum_worker(request_first_interval(pair_order=1)-control_first_interval(pair_order=0)), matched by run and trial",
+  "source_scope": "CANN 8.5.1 ReshapeAndCache key 200 equal-head path; one source-shaped K GM-to-UB-to-GM chain followed by one V chain through a shared TBuf, with one MTE2_MTE3 and one MTE3_MTE2 hard completion edge per chain",
+  "source_geometry_evidence": {
+    "unloaded_controls": [{"block_dim": 1, "payload_bytes": 1024}, {"block_dim": 1, "payload_bytes": 2048}],
+    "highest_error_contribution_representatives": [{"block_dim": 48, "payload_bytes": 1024}, {"block_dim": 48, "payload_bytes": 2048}],
+    "payload_formula": "num_kv_heads * head_dim * sizeof(bfloat16)",
+    "stride_bytes": 4096
+  },
+  "composition": "one exact two-chain completion service per key-200 token on each active AIV; no interpolation across worker count or payload",
+  "capture_source_snapshot": "/capture-workspace/deployments/midlayer-kvcache-chain-e2ed6726-20260831",
+  "benchmark_source_sha256": {
+    "CMakeLists.txt": "42ea52a2f1dcae64a70166e4590ee109dbf4608142b1a0ff052b157b2b5c3440",
+    "reshape_cache_equal_chain_kernel.cpp": "6ab62105e73e71ea70cedfb3fc57bb5bd3ad62d0e1adb7b27f88751461774e93",
+    "reshape_cache_equal_chain_main.cpp": "67ca470fbf5ff9dd1e36ddf266d1288379bc53a25fc13185f1018e21c130911b",
+    "reshape_cache_equal_chain_runner.py": "da26fb3ecd40164863ef518de054c02322f4d7de4216a2f4dd65cbc69b6abcc1",
+    "reshape_cache_equal_chain_report.py": "57f79a55b2ccbd78d636a018d41078b12b192e0b11c3b7c224b7b40d64c693e4"
+  },
+  "production_source_sha256": {
+    "reshape_and_cache.cpp": "dda9a4f36ec658ceec13b54dfd26388218f119d2dca42abf533b7d81d38185b8",
+    "reshape_and_cache_base.h": "e80c4a4ca36b6b2a949f72fbfc0f275b938ce8adf90645e288481fe94301da33"
+  },
+  "benchmark_binary_sha256": "40b35e7264ae8d6d44c32ecd28ae3410c0d78aae2209d1ea66dc719d0d18aa9f",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/kvcache_equal_chain_e2ed6726_d5/r2.csv",
+      "sha256": "87efb6bfcdd94b4ef32f422db5c61ea9d0f4005550e74062b68f5a6e8c07c193",
+      "runner_log_sha256": "5c325df075b97b98dab72bd3e0448b570474243562eadb29de783cd63c5b3dfb",
+      "device_id": 5,
+      "run_id": "r2"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/kvcache_equal_chain_e2ed6726_d5/r3.csv",
+      "sha256": "d30c0dd531327ee7c2fd07fb6a366592e056bfa04ec4affbddcb0c5814a0adf0",
+      "runner_log_sha256": "47ca09822a02657ae435d81b58bbecd87bd177d28d737e1b2b77a1258d21729a",
+      "device_id": 5,
+      "run_id": "r3"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/kvcache_equal_chain_e2ed6726_d5/r4.csv",
+      "sha256": "233ca0bd5668114c3e51e0df8686ff87125d9cd8014bf7e9010849882252413d",
+      "runner_log_sha256": "c4cd2c6c3db2f0b457c616acb9cbbad910c89254bccf9635c1efe2966e465c54",
+      "report_path": "profiler_output/microbench/ascend_910b/kvcache_equal_chain_e2ed6726_d5/three_run_report.txt",
+      "report_sha256": "f565a51ddeda0f9ad7058c556e3b1e3f2dd359174839c1f9662f444ee263ebae",
+      "device_id": 5,
+      "run_id": "r4"
+    }
+  ],
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 64,
+  "replication_basis": "balanced_schedule_cycle_parity",
+  "median_ns_by_run": {
+    "r2": {"1:1024": 780.0, "1:2048": 780.0, "48:1024": 1060.0, "48:2048": 1790.0},
+    "r3": {"1:1024": 780.0, "1:2048": 780.0, "48:1024": 1050.0, "48:2048": 1810.0},
+    "r4": {"1:1024": 760.0, "1:2048": 790.0, "48:1024": 1140.0, "48:2048": 1820.0}
+  },
+  "published_cells": {
+    "1:1024": {"service_time_ns": 780.0, "maximum_run_relative_median_spread": 0.02564102564102564},
+    "1:2048": {"service_time_ns": 780.0, "maximum_run_relative_median_spread": 0.012658227848101266},
+    "48:1024": {"service_time_ns": 1060.0, "maximum_run_relative_median_spread": 0.07894736842105263},
+    "48:2048": {"service_time_ns": 1810.0, "maximum_run_relative_median_spread": 0.016483516483516484}
+  },
+  "gates": {
+    "source_identity": "pass",
+    "binary_identity": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "balanced_cell_order": "pass",
+    "within_run_replication": "pass",
+    "cross_run_relative_median_spread_limit": 0.2,
+    "cross_run_stability": "pass"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true,
+  "production_consumption_status": "exact_key_200_worker_and_payload_cells_only"
+}

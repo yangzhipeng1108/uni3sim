@@ -1,0 +1,80 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_matmul_v2_narrow_scalar_control_diagnostic.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_narrow_asymmetric_scalar_control_diagnostic",
+  "duration_unit": "ns_per_isolated_aic_program",
+  "source_program": {
+    "dtype": "bf16",
+    "active_aic_workers": 23,
+    "base_tile_m": 16,
+    "base_tile_n": 224,
+    "base_tile_k": 64,
+    "projection_k_values": [768, 1536],
+    "operand_buffer_depth_a": 1,
+    "operand_buffer_depth_b": 2,
+    "static_logical_m": 16,
+    "dynamic_tail_logical_m": 1,
+    "static_branch_enable_set_tail": false,
+    "dynamic_branch_enable_set_tail": true,
+    "output_tiles_per_worker": 1,
+    "persistent_program_scope": "one source-matched output tile per AIC; the production persistent N-then-M scheduler is not timed"
+  },
+  "capture": {
+    "measurement_baseline_commit": "328aaf7e35bb55f7d030d79eb04e2fb1c5be7f3c",
+    "physical_device_id": 4,
+    "container": "capture-container-2",
+    "source_snapshot_sha256": "c22786fe14abc3e6d77c0a0c2d42ea4cafab70a2b260ea8e1a9bc58e24423c6f",
+    "source_files_sha256": {
+      "CMakeLists.txt": "cf7426e7e11be9c281c5a3fd78238aad3271d197cd8340dfd29b82af54eeac9d",
+      "matmul_v2_narrow_scalar_control_kernel.cpp": "b9841e25e5e5d646a49324cedd8fa060fb1d5ba1a34d9a1d6b7f55955ffbb8d2",
+      "matmul_v2_narrow_scalar_control_main.cpp": "e9c56fa297bbbac2786d513aaaa32c5a2be8822b3e36280a6c4bdde615bd582b",
+      "matmul_v2_narrow_scalar_control_runner.py": "b1706a71b79f40c28533b7f20048d9ac42c2c3c5e08c2cd2258d4c6ded80cf42"
+    },
+    "binary_sha256": "793ca0e68ee7da3572b0eb27a2b6076090b8b9bf8dc657ca5e2388a2ee3cdb91",
+    "raw_path": "profiler_output/microbench/ascend_910b/matmul_v2_narrow_scalar_control_328aaf7e3_20260916_d4_v2/raw.csv",
+    "raw_sha256": "a7efc79dc2d7308e85faeba20d8449786ad07e24ed1f67ea975d067d6d826d45",
+    "runner_stderr_path": "profiler_output/microbench/ascend_910b/matmul_v2_narrow_scalar_control_328aaf7e3_20260916_d4_v2/runner.stderr",
+    "runner_stderr_sha256": "fe31ad0d316717b1f26207ffbb799600361716dde3d62ff012fcc3dd412cd2cf",
+    "independent_launches_per_cell": 3,
+    "trials_per_launch": 8,
+    "worker_statistic": "median of 184 worker samples per run; median over three run medians"
+  },
+  "measurements": {
+    "program_run_worker_medians_ns": {
+      "dynamic_m1": {
+        "768": [20770.0, 21690.0, 21190.0],
+        "1536": [31680.0, 33540.0, 32090.0]
+      },
+      "static_m16": {
+        "768": [23900.0, 23940.0, 21580.0],
+        "1536": [35280.0, 35270.0, 34210.0]
+      }
+    },
+    "program_median_of_run_worker_medians_ns": {
+      "dynamic_m1": {"768": 21190.0, "1536": 32090.0},
+      "static_m16": {"768": 23900.0, "1536": 35270.0}
+    },
+    "endpoint_delta_ns": {
+      "dynamic_m1_by_run": [10910.0, 11850.0, 10900.0],
+      "static_m16_by_run": [11380.0, 11330.0, 12630.0],
+      "dynamic_m1_median_of_run_medians": 10900.0,
+      "static_m16_median_of_run_medians": 11370.0,
+      "dynamic_minus_static_by_run": [-470.0, 520.0, -1730.0],
+      "dynamic_minus_static_median_of_run_deltas": -470.0
+    }
+  },
+  "interpretation": {
+    "forward_use": "rejected",
+    "candidate": "the narrow MatMulV2 source Scalar base-K or M-tail control span explains the shared M=1, K=1536 underprediction",
+    "decision": "rejected as non-identifiable from this complete MatmulImpl program probe",
+    "evidence": [
+      "Each endpoint includes source Scalar descriptor work together with MTE2, MTE1, Cube, and FixPipe execution, so the K-endpoint delta is not a Scalar-only service.",
+      "The dynamic and static branches change both logical M and tail configuration; their difference is therefore confounded by payload and pipeline work.",
+      "The dynamic-minus-static endpoint delta changes sign across the three independent launches, so it supplies no stable directional Scalar-tail service."
+    ],
+    "boundary": "Do not install an endpoint-derived Scalar or tail-control floor for this source program. Do not use complete probe durations or the production residual to choose a Forward parameter; an eligible future mechanism must independently isolate the source Scalar span."
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "forward_eligible": false
+}

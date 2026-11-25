@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_rope_vector_to_mte3_completion_43_workers",
+  "request_size_unit": "payload_bytes",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"4096": 580.0},
+  "mechanism": "one plain UB-to-GM DataCopy followed by the ATB RoPE Vector-to-MTE3 hard completion edge with exactly 43 admitted AIVs",
+  "scope": "key-24 full 4096-byte Q slice at exactly 43 AIVs; other payloads and worker counts are unavailable",
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "source_commit": "1e05a5ae250a833939f56c9ca1c5d056cc45c547",
+  "audit_report_ref": "microbench/ascend_910b/references/aiv_rope_key24_mte_edge_completion_partial_report_cann_8_5_1.json",
+  "audit_report_sha256": "95e93d05fa00f450d0d0c86438e4548539686cb1e76c46b57317d5c05ae413ce",
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

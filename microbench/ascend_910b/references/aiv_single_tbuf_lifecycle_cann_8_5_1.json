@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "090ea17ba73d720048b00e48e9bb7c8b65b0b395",
+  "capture_source_snapshot": "/capture-workspace/execution_snapshots/090ea17b-elementwise-tbuf-20260906",
+  "service": "aiv_single_tbuf_lifecycle",
+  "request_size_unit": "buffer_bytes",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {"1024": 40.0, "2048": 40.0, "110080": 40.0},
+  "benchmark_binary_sha256": "7053b3c49e9b96f9cff845bd13b9f75e5dd741681c6090197e4dc36785f5ca13",
+  "benchmark_source_sha256": {
+    "CMakeLists.txt": "7c6b6caf9717ae145a02e5d685adc476db150a3e6dc6450612a6c77322e8aa1a",
+    "single_tbuf_lifecycle_kernel.cpp": "6bbc25f281f5a1e811f4e65e7a9af703f46731313c20952e70facdc23c01b2f5",
+    "single_tbuf_lifecycle_main.cpp": "c404f4c69f7359f5f342d8d2a267b55bbb3132eb88eaaeac2d77000fca56a18e",
+    "single_tbuf_lifecycle_report.py": "fd5e17a8befee9530a007a907d2599761c040853a4065fa1684623d3adc5a9d0",
+    "single_tbuf_lifecycle_runner.py": "f2d0ca56df793a03722ced2c8deb553f9449af463d23d713a7c6ac37914478f8"
+  },
+  "production_source_sha256": {
+    "reshape_and_cache.cpp": "dda9a4f36ec658ceec13b54dfd26388218f119d2dca42abf533b7d81d38185b8",
+    "reshape_and_cache_base.h": "e80c4a4ca36b6b2a949f72fbfc0f275b938ce8adf90645e288481fe94301da33"
+  },
+  "elementwise_source_allocation": {
+    "static_accounting_reference": "microbench/ascend_910b/references/elementwise_add_mul_dag_accounting_cann_8_5_1.json",
+    "static_accounting_sha256": "ac2f90c76a4cc6b2966d6dc97dc34f45a6ec51333d53f9fb7b739b63c5f46c5b",
+    "dag": "MulDag::MulXfp16Op<bfloat16_t>::OpDag",
+    "allocation_formula": "ubFormer * MaxDtypeBytes * BufferNum",
+    "ub_former_elements": 5504,
+    "max_dtype_bytes": 4,
+    "buffer_num": 5,
+    "allocation_bytes": 110080
+  },
+  "derived_exact_service": {
+    "service": "aiv_elementwise_tbuf_lifecycle_110080b",
+    "request_size_unit": "source_tbuf_lifecycles",
+    "request_size": 1,
+    "required_allocation_bytes": 110080,
+    "service_time_ns": 40.0,
+    "derivation": "one source InitBuffer call at the exact measured allocation; allocation bytes select the service domain but are not scalar operations"
+  },
+  "device": {
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_id": 3,
+    "model": "910B2",
+    "pci_bus_id": "0000:02:00.0"
+  },
+  "campaign": {
+    "owner": "capture-owner-4c0f2645f650",
+    "independent_runs": 3,
+    "balanced_trials_per_run": 36,
+    "amplification_iterations": 64,
+    "block_dims": [1, 2, 4, 8, 16, 48],
+    "payload_bytes": [1024, 2048, 110080],
+    "runner_pids": [2940072, 2940776, 2941564],
+    "maximum_run_relative_median_spread": 0.0026041666750000305,
+    "maximum_concurrency_relative_median_spread": 0.0,
+    "run_command": "python3 single_tbuf_lifecycle_runner.py --binary <snapshot>/build/single_tbuf_lifecycle --device-id 3 --run-id <elementwise-tbuf-r1|r2|r3>",
+    "report_command": "python3 single_tbuf_lifecycle_report.py <run1.csv> <run2.csv> <run3.csv>"
+  },
+  "mechanism": "one complete TPipe scope containing one VECCALC TBuf initialization; 64 independent source-identical scopes amplify the 20 ns SYS_CNT interval and the report divides the long-minus-short interval by the exact lifecycle count",
+  "composition": "one exact lifecycle request per active CANN key-200 AIV before its token loop or per active BF16 BroadcastOneDimSch AIV before its tile loop; active AIVs execute concurrently, so Forward serializes one lifecycle on each worker source DAG",
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/single_tbuf_lifecycle_elementwise_090ea17b_20260906/run1.csv", "sha256": "2bfab842f1953b70eddc4d8750a73dce7596f647391d6a35c3f97c9117367f95", "runner_log_sha256": "01ca10115a7142bc81867fdfc2d539a6408a913c7715bfdb0b5fc2569778ce33"},
+    {"path": "profiler_output/microbench/ascend_910b/single_tbuf_lifecycle_elementwise_090ea17b_20260906/run2.csv", "sha256": "a3305e8384521adb3d310d3ebe01edc5962c786589175139d7807a8d87d2e987", "runner_log_sha256": "a0820ccffe89e935301844d1085760fc975a26b2499a447b4dc040f213271a64"},
+    {"path": "profiler_output/microbench/ascend_910b/single_tbuf_lifecycle_elementwise_090ea17b_20260906/run3.csv", "sha256": "6f198c648795622d733ce8aa2bac3af9c55b99e5d6cf8ee82d6b7b835bdb974d", "runner_log_sha256": "ea3d3a8c8a396bdcf9a301eb04e3c8b26223caa41e9fa7dbc51b334554f7fbf3"},
+    {"path": "profiler_output/microbench/ascend_910b/single_tbuf_lifecycle_elementwise_090ea17b_20260906/report.txt", "sha256": "26080efa06bff22fefc6ba3e87d1460771c30a2af9069f305d51c51809faede5"},
+    {"path": "profiler_output/microbench/ascend_910b/single_tbuf_lifecycle_elementwise_090ea17b_20260906/pre_run_npu_smi.txt", "sha256": "08403d0d675c07cca37d4a2408b186b6700e2490a57cf448a34e4c61c4b0ba76"},
+    {"path": "profiler_output/microbench/ascend_910b/single_tbuf_lifecycle_elementwise_090ea17b_20260906/post_npu_smi.txt", "sha256": "b55ccf7cfc69d24474be0aaca64f1c4d68a80ec97aefe898c40dea22cf594ee5"}
+  ],
+  "excluded_conclusions": [
+    "a complete ReshapeAndCache or production key-200 kernel duration",
+    "a queue-control, slot-mapping, copy, cache-layout, or token-loop service",
+    "interpolation to an unmeasured payload or worker count"
+  ],
+  "measurement_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

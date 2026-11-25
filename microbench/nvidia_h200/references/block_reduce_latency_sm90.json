@@ -1,0 +1,153 @@
+{
+  "clock_gate": {
+    "accepted_captures": 3,
+    "busy_clock_mhz_max": 1980,
+    "busy_clock_mhz_min": 1980,
+    "busy_samples_total": 295,
+    "captures_without_busy_sample": 0,
+    "gate": "every busy nvidia-smi sample (50 ms) >= 1980 MHz; a window without busy samples requires every sample >= boost",
+    "measured_sm_clock_mhz": 1980,
+    "rejected_captures": 0
+  },
+  "derivation": "first-block latency is the pooled clock64 median at grid=1; resident service is the incremental same-SMID clock64 span from one CTA to the static-resource occupancy boundary, and queued service is the increment from that boundary to 16 CTAs/SM. Resident CTA counts 8/2 follow only from the ptxas resource usage and H200 SM capacities. CUDA blocks do not migrate between SMs. Cycles are converted by the measured (clock-gated, 1980 MHz) SM clock. Globaltimer is retained only as a quantized diagnostic. No production/evaluation duration or residual is used",
+  "diagnostics": {
+    "training": {
+      "mape_percent": 5.881903377267082,
+      "maximum_absolute_percentage_error": 15.123194562446898,
+      "sample_count": 4800,
+      "signed_mean_percentage_error": -2.7711610614499187,
+      "wmae_percent": 4.071749552454467
+    },
+    "validation": {
+      "mape_percent": 5.881539597327469,
+      "maximum_absolute_percentage_error": 15.025466893039049,
+      "sample_count": 2400,
+      "signed_mean_percentage_error": -2.7664812020510974,
+      "wmae_percent": 4.071047086437975
+    }
+  },
+  "duration_source": "clock64_same_smid_span_with_globaltimer_diagnostic",
+  "formula": "first_block_latency_cycles[threads] + (min(max(1, ceil(grid / 132)), resident_ctas) - 1) * resident_block_service_cycles_per_sm[threads] + max(0, ceil(grid / 132) - resident_ctas) * queued_block_service_cycles_per_sm[threads]; then multiply by 1000 / measured_sm_clock_mhz for nanoseconds",
+  "hardware_id": "nvidia_h200",
+  "input": {
+    "baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+    "block_threads": [
+      256,
+      1024
+    ],
+    "cub_version": 200802,
+    "grids": [
+      1,
+      132,
+      264,
+      528,
+      1056,
+      2112
+    ],
+    "manifest_path": "profiler_output/microbench/nvidia_h200/h200_block_reduce_b5f13ef0_20260925_gpu3/manifest.json",
+    "manifest_sha256": "4596bf4792161028a9473c04e6fddca8140cff8995e12349c85904241a3abb38",
+    "path": "profiler_output/microbench/nvidia_h200/h200_block_reduce_b5f13ef0_20260925_gpu3/raw.csv",
+    "samples_per_cell": 200,
+    "sha256": "468958f625382073a3d0f5f32effbdaf2bb8dcaa422128c021ca1868a6c5ac7f",
+    "toolchain_nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86",
+    "training_trials": [
+      0,
+      1
+    ],
+    "trials": [
+      0,
+      1,
+      2
+    ],
+    "validation_trials": [
+      2
+    ]
+  },
+  "mechanism": "source_bound_add_rmsnorm_reduction_and_publication",
+  "parameters": [
+    {
+      "first_block_latency_cycles": 1355.0,
+      "first_block_latency_ns": 684.3434343434343,
+      "measured_sm_clock_mhz": 1980,
+      "queued_block_rate_per_sm_s": 8655737.704918033,
+      "queued_block_service_cycles_per_sm": 228.75,
+      "queued_block_service_ns_per_sm": 115.53030303030303,
+      "resident_block_rate_per_sm_s": 16191588.785046728,
+      "resident_block_service_cycles_per_sm": 122.28571428571429,
+      "resident_block_service_ns_per_sm": 61.760461760461766,
+      "resident_ctas_per_sm": 8,
+      "threads": 256
+    },
+    {
+      "first_block_latency_cycles": 1581.0,
+      "first_block_latency_ns": 798.4848484848485,
+      "measured_sm_clock_mhz": 1980,
+      "queued_block_rate_per_sm_s": 2433179.723502304,
+      "queued_block_service_cycles_per_sm": 813.75,
+      "queued_block_service_ns_per_sm": 410.9848484848485,
+      "resident_block_rate_per_sm_s": 7071428.571428571,
+      "resident_block_service_cycles_per_sm": 280.0,
+      "resident_block_service_ns_per_sm": 141.41414141414143,
+      "resident_ctas_per_sm": 2,
+      "threads": 1024
+    }
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "a800_counterpart": "profiler_output/microbench/nvidia_a800/a800_reduce_daa756d_20260818/report.json (report schema; no A800 references/ JSON exists for this mechanism)",
+    "accepted_captures": 3,
+    "baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+    "captured_runner_sha256": "5afa3adf1fa95dc97ad8116d045d56b670a5a1efd98fffe3fdccd9115409bcbe",
+    "captured_source_sha256": "26d28dbc56eec20a1ac77cc5c016f934694efbdb682ded88a73fb35e3ce8db18",
+    "device": {
+      "driver_version": "575.57.08",
+      "index": 3,
+      "memory_used_mib": 4,
+      "name": "NVIDIA H200",
+      "pci_bus_id": "00000000:AA:00.0",
+      "uuid": "capture-device-462006ac8ee4"
+    },
+    "local_raw_dir": "profiler_output/microbench/nvidia_h200/h200_block_reduce_b5f13ef0_20260925_gpu3",
+    "rejected_captures": 0,
+    "remote_raw_dir": "h200-capture-host:/capture-public/h200_microbench/wp5_vector/runs/h200_block_reduce_b5f13ef0_20260925_gpu3",
+    "reporter": "microbench/nvidia_h200/compute/reduction/block_reduce_latency_report.py",
+    "reporter_sha256": "1aa1deb57faadae8b594904082aeb4947e1f54b64d1adb9ad2dc669ae8e95c88",
+    "runner": "microbench/nvidia_h200/compute/reduction/block_reduce_latency_runner.py",
+    "runner_sha256": "5afa3adf1fa95dc97ad8116d045d56b670a5a1efd98fffe3fdccd9115409bcbe",
+    "source": "microbench/nvidia_h200/compute/reduction/block_reduce_latency.cu",
+    "source_sha256": "26d28dbc56eec20a1ac77cc5c016f934694efbdb682ded88a73fb35e3ce8db18"
+  },
+  "publication_gate": {
+    "maximum_validation_mape_percent": 10.0,
+    "maximum_validation_maximum_ape_percent": 30.0,
+    "passed": true
+  },
+  "schema_version": 2,
+  "static_equivalence": {
+    "resource_usage": {
+      "registers_per_thread": 24,
+      "resident_ctas_by_threads": {
+        "1024": 2,
+        "256": 8
+      },
+      "shared_memory_bytes_per_cta": 168,
+      "sm_block_capacity": 32,
+      "sm_register_capacity": 65536,
+      "sm_shared_memory_bytes": 233472,
+      "sm_thread_capacity": 2048
+    },
+    "schema": "h200_owner_copy_same_source_v1",
+    "status": "not_run_production_sass_unavailable"
+  },
+  "status": "candidate",
+  "validity_domain": {
+    "block_threads": [
+      256,
+      1024
+    ],
+    "dtype": "bfloat16",
+    "hidden_size": 4096,
+    "normal_fdiv_path": true,
+    "vector_width_elements": 8
+  }
+}

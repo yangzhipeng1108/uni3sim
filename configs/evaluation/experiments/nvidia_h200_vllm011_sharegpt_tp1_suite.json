@@ -1,0 +1,207 @@
+{
+  "schema_version": 4,
+  "suite_id": "sharegpt_nvidia_h200_vllm011_sharegpt_tp1",
+  "dataset_root": "serving_dataset/sharegpt",
+  "models": [
+    {
+      "dataset_model_id": "qwen3-4b",
+      "simulation_model_path": "configs/model/qwen3-4b.json",
+      "model_config_sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a"
+    },
+    {
+      "dataset_model_id": "qwen3-8b",
+      "simulation_model_path": "configs/model/qwen3-8b.json",
+      "model_config_sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+    },
+    {
+      "dataset_model_id": "llama-3.1-8b",
+      "simulation_model_path": "configs/model/llama-3.1-8b-instruct.json",
+      "model_config_sha256": "29e4c210b0d6ac178b16b2a255a568bdb23b581e50ca1ef6a6d071dd85704e6e"
+    }
+  ],
+  "hardware": [
+    {
+      "hardware_id": "nvidia_h200",
+      "hardware_config_path": "configs/hardware/nvidia_h200.yaml",
+      "hardware_config_sha256": "2dc939911eb7d3ea1bbb3cc746a44f64f430f6ce8fadf81aa5f4bf38d290c1fe",
+      "graph_execution": {
+        "configured_mode": "FULL_AND_PIECEWISE",
+        "piecewise_eager_workload_kinds": [
+          "flash_attn",
+          "kv_update"
+        ],
+        "uniform_decode_query_len": 1,
+        "capture_sizes": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304,
+          312,
+          320,
+          328,
+          336,
+          344,
+          352,
+          360,
+          368,
+          376,
+          384,
+          392,
+          400,
+          408,
+          416,
+          424,
+          432,
+          440,
+          448,
+          456,
+          464,
+          472,
+          480,
+          488,
+          496,
+          504,
+          512
+        ]
+      }
+    }
+  ],
+  "qps_values": [
+    4,
+    16,
+    64
+  ],
+  "cells": [
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "e185ef4968ebfd1b1c2efc0444e9d803473825b4a63e2d7a142b076f65b69c33",
+      "requests_sha256": "639df2b6aa0675df84a61f787fc2757506d5525eb2f7dc4d7e0badedca475d0f"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "651d70c35f99c478ffe5aa7ac785f421ff4c0162102fbaf70b5c391cb7041637",
+      "requests_sha256": "ab02b9d540e9fd6d35d8fb612a2df32a5868f4bbe19696c103b32ec3139b78a4"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-4b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "95efa895a0f3d8c52103c51e5dc65267e43015c53a3d2678e37c25f971ba2882",
+      "requests_sha256": "e169977d6b55bc410d2be544f028b99d767fd5980c72f708954e53903747a563"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "b4a50b029172cc08be642adbe85ab9a892a75cc9bc28127985705ca8b99dd24c",
+      "requests_sha256": "a42ae9abb7cc196040213b27636eb480214cd9bc8a3361fbc1ac5f825193d47d"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "159553e4d8187b56942f13d77ea993e6985bd15362e93c952f57693ea3afb130",
+      "requests_sha256": "aefc90b259581b642ef1ff8f692c0dae11e6c82dd2f394b12bff7585771d7cc8"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "qwen3-8b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "8db37739f0b167f364a7261c90da82fd912a2fb7915a22ae18bbb6a0b0aa14b4",
+      "requests_sha256": "cb36b79edf5b2ff22c8c91f3eaf2557b9c66dc680a3c7f63edba7f769731b780"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps4",
+      "manifest_sha256": "902937383c78e517e24c439927a425a1686e820b60cfbfa2d2968a2a7b86e52f",
+      "requests_sha256": "11bec2ddf6f24cc9cf62ab937fafde1973029998d8e19c303ea0e8490403a727"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps16",
+      "manifest_sha256": "685c70c501a913b418e4bfd2096d3c502e163cda60c697b6b2b8797231879d6c",
+      "requests_sha256": "f85c5db9b6e568906fd119d406f1be91c135afed551b4b0c00d5fdb1932a04eb"
+    },
+    {
+      "hardware_id": "nvidia_h200",
+      "model_id": "llama-3.1-8b",
+      "case_id": "tp1_qps64",
+      "manifest_sha256": "2dac25eb5e4c0ac446bd4d15abbd9087beb8ca122813cb9f19279b19340fda6d",
+      "requests_sha256": "6e626cda89cc4a59ad75291d345354085089f97680873c9150947dc5acc26d3a"
+    }
+  ],
+  "prediction_contract": {
+    "semantics": "current_pinned_vllm_not_capture_replay",
+    "backend": "vllm",
+    "scheduler_version": "0.11.0",
+    "scheduler_source_commit": "b8b302cde434df8c9289a2b465406b47ebab1c2d",
+    "deployment": "colocated",
+    "compute_dtype": "bf16",
+    "prediction_method": "midlayer",
+    "tensor_collective_backend": "protobridge",
+    "tensor_all_reduce_profile_sha256": null,
+    "tensor_all_gather_profile_sha256": null,
+    "launch_policy": "injected_launch",
+    "tensor_parallel_size": 1,
+    "pipeline_parallel_size": 1,
+    "expert_parallel_size": 1,
+    "max_model_len": 8192,
+    "max_batched_tokens": 8192,
+    "max_requests": 256,
+    "runtime_memory_policy_path": "configs/runtime_memory_policy/{hardware_id}/{model_id}.json",
+    "kv_block_size_tokens": 16,
+    "attention_kv_layout": "paged_varlen",
+    "attention_kv_distribution": "uniform",
+    "enable_chunked_prefill": true,
+    "enable_prefix_caching": true,
+    "router_resource_id": "router_cpu",
+    "router_dispatch_service_time_s": 0.0,
+    "mtp_num_speculative_tokens": 0,
+    "mtp_acceptance_policy": "disabled",
+    "mtp_fixed_accepted_tokens": 0,
+    "mtp_acceptance_source_id": "disabled"
+  }
+}

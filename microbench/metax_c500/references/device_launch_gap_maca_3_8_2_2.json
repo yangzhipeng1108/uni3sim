@@ -1,0 +1,56 @@
+{
+  "allowed_conclusion": "On the C500 serving stack, a launch that follows another launch on the same stream starts after a device-side gap set by the boundary it crosses: next node inside one replayed CUDA Graph, first node of a Graph replay after eager work, eager launch after a Graph replay, or eager launch after an eager launch. The values are synthetic-launch mechanism evidence, not a kernel or Serving observation.",
+  "derivation_rule": "median_of_per_trial_medians",
+  "hardware_id": "metax_c500",
+  "mechanism": "device-side idle between consecutive launches on one stream, host already ahead",
+  "model": "device_launch_boundary_gap_v1",
+  "production_or_evaluation_duration_consumed": false,
+  "raw": {
+    "path": "profiler_output/microbench/metax_c500/piecewise_graph_boundary_gap_20260926/pw_boundary_gap.json",
+    "sha256": "6666d2074462260b98ad63b659aff97f72d9029a1471d0d82a537cd4dca05fc0"
+  },
+  "runner": {
+    "path": "microbench/metax_c500/runtime/launch/piecewise_graph_boundary_gap_runner.py",
+    "sha256": "de203dbd903c5e07e6496eafcdd210d9d2032c9863055a0ec31107d359d1c61a"
+  },
+  "schema_version": "midlayer.metax_c500.device_launch_gap.v1",
+  "selected_gap_ns": {
+    "eager": 2815.999999991618,
+    "graph_entry": 11712.999999988824,
+    "graph_exit": 10694.499999997788,
+    "graph_node": 729.9999999813735
+  },
+  "software_revision": "torch_2.10.0_metax_3.8.2.2",
+  "target_operator_used": false,
+  "timer_domain": "kineto_device_timestamps_host_ahead",
+  "torch_version": "2.10.0+metax3.8.2.2",
+  "trial_median_ns": {
+    "eager": [
+      2815.999999991618,
+      2815.999999991618,
+      2815.999999991618
+    ],
+    "graph_entry": [
+      11651.000000012573,
+      11778.000000020256,
+      11712.999999988824
+    ],
+    "graph_exit": [
+      10647.500000006403,
+      10752.50000001688,
+      10694.499999997788
+    ],
+    "graph_node": [
+      729.9999999813735,
+      729.9999999813735,
+      729.9999999813735
+    ]
+  },
+  "workload": {
+    "eager_launches_per_repetition": 6,
+    "graph_nodes_per_replay": 8,
+    "host_ahead": "torch.cuda._sleep spin queued before the sequence",
+    "launch": "torch.add on preallocated 16-KiB BF16 tensors",
+    "repetitions_per_trial": 64
+  }
+}

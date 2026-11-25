@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "software_revision": "vllm_0.11.0_triton_sm80",
+  "mechanism": "bm16_grouped_gemm_sparse_second_wave_fill_v1",
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "use only for a two-resident-wave BF16 BM16/N32/K64 grouped-GEMM source launch with K32 and a positive early-return tail shorter than one 108-SM scheduling round",
+  "source_geometry": {
+    "dtype": "bf16",
+    "tile_m": 16,
+    "tile_n": 32,
+    "tile_k": 64,
+    "group_size_m": 1,
+    "threads_per_cta": 128,
+    "k_tiles": 32,
+    "maximum_m_tiles": 32,
+    "active_m_tiles": [16, 31],
+    "n_tiles": [47, 49],
+    "cache_polluter_bytes": 134217728
+  },
+  "measurement": {
+    "physical_devices": [2, 6],
+    "trials_per_cell": 9,
+    "one_wave_midpoint_ns_by_device": {
+      "2": 68608.001,
+      "6": 68608.001
+    },
+    "two_wave_midpoint_ns_by_device": {
+      "2": 144384.0045,
+      "6": 145407.997
+    },
+    "pooled_one_wave_midpoint_ns": 68608.001,
+    "pooled_two_wave_midpoint_ns": 144896.00075,
+    "existing_fixed_span_ns": 8874.666666666666,
+    "one_additional_fixed_span_is_a_conservative_lower_bound": true
+  },
+  "capture": {
+    "baseline_commit": "a6532f273aab27b9f431dee4f1d01240fabc9348",
+    "runner_path": "microbench/nvidia_a800/operators/fused_moe/sm80_bf16_bm16_sparse_w1_source_runner.py",
+    "runner_sha256": "42a104c11b2c46f04cce1bc460c62b011a8f69834b84a160c7a7c035a9560d62",
+    "reproduction_runner_sha256": "869584a4cab7389c3187400eb48823c0156ee1ff3d16d83171ad5a8709eb80ca",
+    "vllm_source_sha256": "8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e",
+    "raw_paths": [
+      "profiler_output/microbench/nvidia_a800/sparse_w1_source_a6532f27_20260908_r4/device2.log",
+      "profiler_output/microbench/nvidia_a800/sparse_w1_source_a6532f27_20260908_r4/device6.log"
+    ],
+    "raw_sha256": [
+      "f266e412cbf48b4d8534d710d5eea462d6db4c2432b4b0dcf055c9483a113630",
+      "644bb44fc13e1a8af83d34abfebdf34d0e88bb5dee8be3e93b49dcb21d76e466"
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_mte2_nd2nz_finite_stream_completion",
+  "duration_unit": "ns_per_finite_descriptor_program_per_aic",
+  "publication_scope": {
+    "source_residency": "dram_cold",
+    "dtype": "bf16",
+    "rows": 256,
+    "columns": 256,
+    "descriptor_bytes": 131072,
+    "minimum_descriptors_per_worker": 48,
+    "maximum_descriptors_per_worker": 72,
+    "worker_classes": [
+      {
+        "source_row_stride_elements": 8192,
+        "active_aic_groups": [16],
+        "duration_at_48_descriptors_ns": [217720.001935959],
+        "ns_per_additional_descriptor": [3253.1246542930625]
+      },
+      {
+        "source_row_stride_elements": 13824,
+        "active_aic_groups": [18, 22],
+        "duration_at_48_descriptors_ns": [220679.998397827, 250340.014696121],
+        "ns_per_additional_descriptor": [4035.833064601917, 4232.499748468416]
+      }
+    ],
+    "source_program": "one B1 ND-to-NZ descriptor stream with no intermediate drain",
+    "estimator": "lower-envelope endpoint affine service; interpolate only within a published active-AIC axis"
+  },
+  "measurement": {
+    "mode": "independent_finite_descriptor_stream_microbenchmark",
+    "capture_commit": "efcf67d7dd02326e56fd036ad4f8898cb71d4d70",
+    "physical_device_id": 4,
+    "sweep_bytes": 2147483648,
+    "binary_sha256": "0a3ba29aa4629ab9f94f0e5dfc09b5933095506585f92446df42de1f7b607fd9",
+    "source_kernel_sha256": "c7060a13deef676923953971f808c6b88c94d36075a2891824622581be3c67d0",
+    "source_main_sha256": "723b325fbda7a375e2d296a2389bff00a45ba46480da1bf0cfc15c80c6f13eda",
+    "source_runner_sha256": "2e9f50478cbdcee9f79b969162de9e48cfff29920d28db417dabd681cae8a5d5",
+    "raw_paths": [
+      "profiler_output/microbench/ascend_910b/nd2nz_finite_affine_efcf67d7_20260905/run0.csv",
+      "profiler_output/microbench/ascend_910b/nd2nz_finite_affine_efcf67d7_20260905/run1.csv",
+      "profiler_output/microbench/ascend_910b/nd2nz_finite_affine_efcf67d7_20260905/run2.csv",
+      "profiler_output/microbench/ascend_910b/nd2nz_finite_factorial_efcf67d7_20260905/run0.csv",
+      "profiler_output/microbench/ascend_910b/nd2nz_finite_factorial_efcf67d7_20260905/run1.csv",
+      "profiler_output/microbench/ascend_910b/nd2nz_finite_factorial_efcf67d7_20260905/run2.csv"
+    ],
+    "raw_sha256": [
+      "995e494ca92b7b74e4be296752048880adf9c0babfec71fa0a4e1553500f4295",
+      "42eac155e15203261bb8b90a0007f956bb9cbdd76f51ac3121f51e3182568678",
+      "0cbd4b2facff0f0b62ac56e130882c09c5b2fbef80bd7ab37764c1b404160e1c",
+      "fb4e8bf6c2f6fda41d554fdd5006fe1a1563c0cca05d9c3d67f5d2fb44632a53",
+      "1e443e3672bd16e6fa26c9e95316d006d30f51d96d1fd9cebe95312a66c388e3",
+      "77ead44f283a4cf37c578be327670f518950382bef908d4f5d6f90ad1ccccd4d"
+    ],
+    "mechanism_gate_passed": true
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "only a full-M-tile cann_matmul_v3 B1 program with the exact BF16 descriptor geometry, published physical source-row stride, active-AIC interval, descriptor-count interval, and DRAM-cold residency"
+}

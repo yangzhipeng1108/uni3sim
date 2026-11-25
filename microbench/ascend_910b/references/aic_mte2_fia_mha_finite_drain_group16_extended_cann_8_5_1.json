@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_mte2_fia_mha_finite_drain_supplement",
+  "duration_unit": "ns_per_finite_descriptor_program_per_aic",
+  "publication_scope": {
+    "source_residency": "dram_cold_disjoint",
+    "dtype": "bf16",
+    "completion_edge": "MTE2_MTE1_after_every_descriptor",
+    "estimator": "exact_measured_geometry_and_descriptor_count_only",
+    "programs": [
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 4096,
+        "active_aic_groups": 16,
+        "descriptor_count": 16,
+        "duration_ns": 28220.0
+      },
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 4096,
+        "active_aic_groups": 16,
+        "descriptor_count": 32,
+        "duration_ns": 56560.0
+      },
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 4096,
+        "active_aic_groups": 16,
+        "descriptor_count": 64,
+        "duration_ns": 111600.0
+      }
+    ]
+  },
+  "measurement": {
+    "mode": "independent_finite_drained_descriptor_microbenchmark",
+    "measurement_baseline_commit": "f1f021d3aac254992b16fd92b35534e016b196f5",
+    "source_commit": "808dc7617600742402ca3288e966807d0880b6ee",
+    "physical_device_id": 5,
+    "binary_sha256": "a58fa6fd212dc2035a4a50aa0865a8033d5fc8a03b4c1467a2bedc896e53e852",
+    "source_kernel_sha256": "348381a35f12f69e1a3bf23fe1caf3010865fcf013b3b919bfce749b743b0cc8",
+    "source_main_sha256": "8441f3e9ed7698e55f066f7b2caf38ffa1d0ba30edd210ea2e59af92419712f9",
+    "cmake_sha256": "5619959658d0d4e9cebf2e9765d8ee41e08fb74dab7cf9f67f371e6d3cbf2b02",
+    "raw_paths": [
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_count16_d63494eb_20260906/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_count16_d63494eb_20260906/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_count16_d63494eb_20260906/run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_count32_d63494eb_20260906/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_count32_d63494eb_20260906/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_count32_d63494eb_20260906/run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_count64_20260906_r1/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_count64_20260906_r1/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_count64_20260906_r1/run3.csv"
+    ],
+    "raw_sha256": [
+      "a1aa2b7bd8d2b9ab2da26ee51fb271823aac6a343f7c90d9f1b883e4bf6dc155",
+      "39758e5bcd729092a6dfc1a1d1142595b40661d851124a004348d62ce0adbef9",
+      "7548025f7bc781001de6f13d994001163be5f25c93f9a3f4c934538e1ce35135",
+      "cc03784e0ba2f2763b0c7bd2dbbe32936c322338a342bcb56ed684246ac255a9",
+      "8c4436a51ba8ef86ee8a29d171b3c2c1d482ccd90ccf91cba04b61ae39e82eee",
+      "a245ce3786653004241a1f31800d0dc78c486b7ac324764fea6a3c23b14d383c",
+      "38c488731c37670b2876f563f8e9aabad10337eba79ef057567aec8508a5168d",
+      "6d10f97ad45e0c9ed23b6e072848802aa842190b212980216db18614040f4ce0",
+      "6ab440522ee66cac10e34e0cb03c612ca0aa77549027cc7ec7f9fabe1fc82223"
+    ],
+    "program_run_duration_ns": [
+      [28120.0, 28400.0, 28220.0],
+      [56940.0, 55580.0, 56560.0],
+      [112780.0, 111600.0, 111280.0]
+    ],
+    "maximum_program_deviation_pct": [
+      0.6378454996456414,
+      1.7326732673267327,
+      1.057347670250896
+    ],
+    "mechanism_gate_passed": true
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "only the exact listed BF16 FIA MHA K/V source geometries, descriptor counts and AIC concurrency, disjoint DRAM-cold residency, and an MTE2-to-MTE1 completion edge after every descriptor"
+}

@@ -1,0 +1,592 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_h200",
+  "mechanism": "packed_bf16_conversion_capacity_v1",
+  "instruction": "F2FP.BF16.F32.PACK_AB",
+  "packed_results": 2,
+  "timer_domain": "same_CTA_clock64_envelope",
+  "selection": "grid132_threads256_width16_64_repetition128_512_one_two_LOP3",
+  "validation_fraction": 0.05,
+  "measurements": [
+    {
+      "pairs": 16,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 1,
+      "cycles_128": 10020,
+      "cycles_256": 19748,
+      "cycles_512": 39204
+    },
+    {
+      "pairs": 16,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 32,
+      "cycles_128": 10033.0,
+      "cycles_256": 19760.5,
+      "cycles_512": 39215.0
+    },
+    {
+      "pairs": 16,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 132,
+      "cycles_128": 10047.5,
+      "cycles_256": 19775.5,
+      "cycles_512": 39227.0
+    },
+    {
+      "pairs": 16,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 1,
+      "cycles_128": 17201,
+      "cycles_256": 34097,
+      "cycles_512": 67889
+    },
+    {
+      "pairs": 16,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 32,
+      "cycles_128": 17226.5,
+      "cycles_256": 34120.0,
+      "cycles_512": 67912.5
+    },
+    {
+      "pairs": 16,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 132,
+      "cycles_128": 17261.5,
+      "cycles_256": 34156.5,
+      "cycles_512": 67948.0
+    },
+    {
+      "pairs": 16,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 1,
+      "cycles_128": 14117,
+      "cycles_256": 27941,
+      "cycles_512": 55589
+    },
+    {
+      "pairs": 16,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 32,
+      "cycles_128": 14142.5,
+      "cycles_256": 27966.5,
+      "cycles_512": 55616.0
+    },
+    {
+      "pairs": 16,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 132,
+      "cycles_128": 14140.0,
+      "cycles_256": 27964.0,
+      "cycles_512": 55610.5
+    },
+    {
+      "pairs": 16,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 1,
+      "cycles_128": 25363,
+      "cycles_256": 50451,
+      "cycles_512": 100627
+    },
+    {
+      "pairs": 16,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 32,
+      "cycles_128": 25375.0,
+      "cycles_256": 50463.0,
+      "cycles_512": 100639.0
+    },
+    {
+      "pairs": 16,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 132,
+      "cycles_128": 25386.0,
+      "cycles_256": 50461.5,
+      "cycles_512": 100641.0
+    },
+    {
+      "pairs": 32,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 1,
+      "cycles_128": 18617,
+      "cycles_256": 36535,
+      "cycles_512": 72378
+    },
+    {
+      "pairs": 32,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 32,
+      "cycles_128": 18665.0,
+      "cycles_256": 36582.0,
+      "cycles_512": 72425.0
+    },
+    {
+      "pairs": 32,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 132,
+      "cycles_128": 18724.5,
+      "cycles_256": 36643.0,
+      "cycles_512": 72483.0
+    },
+    {
+      "pairs": 32,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 1,
+      "cycles_128": 34091,
+      "cycles_256": 67375,
+      "cycles_512": 133934
+    },
+    {
+      "pairs": 32,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 32,
+      "cycles_128": 34111.5,
+      "cycles_256": 67396.0,
+      "cycles_512": 133953.5
+    },
+    {
+      "pairs": 32,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 132,
+      "cycles_128": 34174.0,
+      "cycles_256": 67458.0,
+      "cycles_512": 134016.5
+    },
+    {
+      "pairs": 32,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 1,
+      "cycles_128": 26847,
+      "cycles_256": 52927,
+      "cycles_512": 105152
+    },
+    {
+      "pairs": 32,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 32,
+      "cycles_128": 26894.0,
+      "cycles_256": 52994.0,
+      "cycles_512": 105216.5
+    },
+    {
+      "pairs": 32,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 132,
+      "cycles_128": 26961.5,
+      "cycles_256": 53066.0,
+      "cycles_512": 105293.0
+    },
+    {
+      "pairs": 32,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 1,
+      "cycles_128": 50627,
+      "cycles_256": 100451,
+      "cycles_512": 200105
+    },
+    {
+      "pairs": 32,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 32,
+      "cycles_128": 50683.5,
+      "cycles_256": 100514.5,
+      "cycles_512": 200149.5
+    },
+    {
+      "pairs": 32,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 132,
+      "cycles_128": 50730.5,
+      "cycles_256": 100547.0,
+      "cycles_512": 200205.0
+    },
+    {
+      "pairs": 44,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 1,
+      "cycles_128": 24946,
+      "cycles_256": 49069,
+      "cycles_512": 97140
+    },
+    {
+      "pairs": 44,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 32,
+      "cycles_128": 25065.5,
+      "cycles_256": 49124.5,
+      "cycles_512": 97255.0
+    },
+    {
+      "pairs": 44,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 132,
+      "cycles_128": 25123.0,
+      "cycles_256": 49173.0,
+      "cycles_512": 97310.0
+    },
+    {
+      "pairs": 44,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 1,
+      "cycles_128": 46881,
+      "cycles_256": 92532,
+      "cycles_512": 184087
+    },
+    {
+      "pairs": 44,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 32,
+      "cycles_128": 46802.5,
+      "cycles_256": 92554.0,
+      "cycles_512": 184053.0
+    },
+    {
+      "pairs": 44,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 132,
+      "cycles_128": 46887.5,
+      "cycles_256": 92628.5,
+      "cycles_512": 184111.0
+    },
+    {
+      "pairs": 44,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 1,
+      "cycles_128": 36234,
+      "cycles_256": 71672,
+      "cycles_512": 142217
+    },
+    {
+      "pairs": 44,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 32,
+      "cycles_128": 36390.0,
+      "cycles_256": 71668.0,
+      "cycles_512": 142364.5
+    },
+    {
+      "pairs": 44,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 132,
+      "cycles_128": 36403.5,
+      "cycles_256": 71725.5,
+      "cycles_512": 142383.5
+    },
+    {
+      "pairs": 44,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 1,
+      "cycles_128": 69250,
+      "cycles_256": 137248,
+      "cycles_512": 273556
+    },
+    {
+      "pairs": 44,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 32,
+      "cycles_128": 69203.0,
+      "cycles_256": 137332.5,
+      "cycles_512": 273492.5
+    },
+    {
+      "pairs": 44,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 132,
+      "cycles_128": 69280.5,
+      "cycles_256": 137354.5,
+      "cycles_512": 273557.0
+    },
+    {
+      "pairs": 48,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 1,
+      "cycles_128": 27249,
+      "cycles_256": 53184,
+      "cycles_512": 105417
+    },
+    {
+      "pairs": 48,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 32,
+      "cycles_128": 27205.0,
+      "cycles_256": 53381.5,
+      "cycles_512": 105548.0
+    },
+    {
+      "pairs": 48,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 132,
+      "cycles_128": 27243.0,
+      "cycles_256": 53357.5,
+      "cycles_512": 105592.5
+    },
+    {
+      "pairs": 48,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 1,
+      "cycles_128": 51156,
+      "cycles_256": 101201,
+      "cycles_512": 201295
+    },
+    {
+      "pairs": 48,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 32,
+      "cycles_128": 51173.0,
+      "cycles_256": 101234.0,
+      "cycles_512": 201392.0
+    },
+    {
+      "pairs": 48,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 132,
+      "cycles_128": 51250.5,
+      "cycles_256": 101301.0,
+      "cycles_512": 201395.5
+    },
+    {
+      "pairs": 48,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 1,
+      "cycles_128": 39242,
+      "cycles_256": 77515,
+      "cycles_512": 154216
+    },
+    {
+      "pairs": 48,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 32,
+      "cycles_128": 39376.0,
+      "cycles_256": 77686.5,
+      "cycles_512": 154199.0
+    },
+    {
+      "pairs": 48,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 132,
+      "cycles_128": 39422.5,
+      "cycles_256": 77697.5,
+      "cycles_512": 154253.0
+    },
+    {
+      "pairs": 48,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 1,
+      "cycles_128": 75525,
+      "cycles_256": 150028,
+      "cycles_512": 301663
+    },
+    {
+      "pairs": 48,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 32,
+      "cycles_128": 75682.5,
+      "cycles_256": 150003.5,
+      "cycles_512": 298899.5
+    },
+    {
+      "pairs": 48,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 132,
+      "cycles_128": 75672.5,
+      "cycles_256": 150088.5,
+      "cycles_512": 298884.5
+    },
+    {
+      "pairs": 64,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 1,
+      "cycles_128": 35512,
+      "cycles_256": 70027,
+      "cycles_512": 138428
+    },
+    {
+      "pairs": 64,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 32,
+      "cycles_128": 35758.5,
+      "cycles_256": 70008.5,
+      "cycles_512": 138679.5
+    },
+    {
+      "pairs": 64,
+      "feedback": 1,
+      "threads": 128,
+      "grid": 132,
+      "cycles_128": 35753.0,
+      "cycles_256": 70048.0,
+      "cycles_512": 138663.0
+    },
+    {
+      "pairs": 64,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 1,
+      "cycles_128": 68085,
+      "cycles_256": 133783,
+      "cycles_512": 265921
+    },
+    {
+      "pairs": 64,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 32,
+      "cycles_128": 67698.5,
+      "cycles_256": 133785.0,
+      "cycles_512": 265868.0
+    },
+    {
+      "pairs": 64,
+      "feedback": 1,
+      "threads": 256,
+      "grid": 132,
+      "cycles_128": 67747.0,
+      "cycles_256": 133781.5,
+      "cycles_512": 265879.0
+    },
+    {
+      "pairs": 64,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 1,
+      "cycles_128": 51910,
+      "cycles_256": 102762,
+      "cycles_512": 203964
+    },
+    {
+      "pairs": 64,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 32,
+      "cycles_128": 52208.5,
+      "cycles_256": 102794.5,
+      "cycles_512": 204238.5
+    },
+    {
+      "pairs": 64,
+      "feedback": 2,
+      "threads": 128,
+      "grid": 132,
+      "cycles_128": 52137.5,
+      "cycles_256": 102829.0,
+      "cycles_512": 204196.5
+    },
+    {
+      "pairs": 64,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 1,
+      "cycles_128": 100509,
+      "cycles_256": 200048,
+      "cycles_512": 398406
+    },
+    {
+      "pairs": 64,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 32,
+      "cycles_128": 100712.5,
+      "cycles_256": 200183.5,
+      "cycles_512": 398968.5
+    },
+    {
+      "pairs": 64,
+      "feedback": 2,
+      "threads": 256,
+      "grid": 132,
+      "cycles_128": 100884.5,
+      "cycles_256": 199933.5,
+      "cycles_512": 398452.0
+    }
+  ],
+  "evidence": {
+    "raw": {
+      "path": "profiler_output/microbench/nvidia_h200/bf16_pack_throughput_20261107/feedback_control/attempt_01/raw.json",
+      "sha256": "9d300a7ad69a03e54d84dc75cafb2ff4c80ff7870f1c0c472cd8ed957dc13619",
+      "size": 20762149
+    },
+    "source": {
+      "path": "profiler_output/microbench/nvidia_h200/bf16_pack_throughput_20261107/feedback_control/attempt_01/bf16_pack_throughput.cu",
+      "sha256": "cca442ee282510a4d75ab8a8c54c697dd803db621cc29d93dc43e77809ff9a3b",
+      "size": 5345
+    },
+    "runner": {
+      "path": "profiler_output/microbench/nvidia_h200/bf16_pack_throughput_20261107/feedback_control/attempt_01/bf16_pack_throughput_modal_runner.py",
+      "sha256": "ccfc599f9f3b394e6fd0c8c59b0039d77ebff8fe101f208de05550cb87c1abea",
+      "size": 5671
+    },
+    "analysis": {
+      "path": "profiler_output/microbench/nvidia_h200/bf16_pack_throughput_20261107/feedback_control/analyze.py",
+      "sha256": "3e16d2ca74d806b1a7d4fe4ed0fbb6ec06f184aca80a31fdc10c84c0096f6c91",
+      "size": 6075
+    },
+    "derivation": {
+      "path": "profiler_output/microbench/nvidia_h200/bf16_pack_throughput_20261107/feedback_control/build_reference.py",
+      "sha256": "ac6f96cd5d23883ddbdf0b8391d689fd0e077de473af29b1f414324da94fbb23",
+      "size": 2274
+    },
+    "plan": {
+      "path": "profiler_output/microbench/nvidia_h200/bf16_pack_throughput_20261107/feedback_control/plan.json",
+      "sha256": "a8641a84f28f8731a9b9f4a1d14bb4efde545cf10c995eb276a8a9c80ac30575",
+      "size": 2787
+    }
+  },
+  "scope_limitations": [
+    "Normal finite input register streams;exact period-two outputs,not a rounding accuracy benchmark.",
+    "Capacity derived by matchedone/two LOP3 width differences;fixedloop/barrier cost excluded,not an isolated latency.",
+    "One/two warpgroup andone residentCTA/SM primitive domain;concurrent Tensor/producer arbitration remains partial.",
+    "Forward transfer onlyexistingBF16 GQA typed1/2WG domains;otherdtypes/tiles retain their issue lowerbound.",
+    "Cycles useexisting independently validated mixed-core clock;fixed SI services andTensor capacity unchanged."
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

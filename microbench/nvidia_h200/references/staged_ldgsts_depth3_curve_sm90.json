@@ -1,0 +1,122 @@
+{
+  "schema": "nvidia_h200_staged_ldgsts_depth3_curve_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "source_baseline_commit": "55de4e06103377df8f2d90104dbd4d65aaa65441",
+  "source": "microbench/nvidia_h200/memory/l2/staged_ldgsts_depth3_curve.cu",
+  "runner": "microbench/nvidia_h200/memory/l2/staged_ldgsts_depth3_curve_runner.py",
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp3_depth3_r1f_t1",
+      "device_index": 2,
+      "device_uuid": "capture-device-077372b98985",
+      "candidate_sha256": "1e6703f12862c62751019f5cdd761fa7c17219e41f6bb4ed6dbe1e42233b9757",
+      "raw_sha256": "a55f2ca36d94d8568d76e3134b7b25c18841709d2865093a2da3bfda30c1fe48",
+      "sass_sha256": "bccc5056a8b2e3b3a8a38a4b290d3377d8bf191dec25d0d5ad6e7686a49fb563",
+      "l2_resident_1024_round_capacity_per_s": 12427009958612.39,
+      "dram_unique_1024_round_capacity_per_s": 4706078113812.474
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp3_depth3_r2f_t1",
+      "device_index": 2,
+      "device_uuid": "capture-device-077372b98985",
+      "candidate_sha256": "43a3fb58e843e56b278f9246692c02b31723a634dae8ae01f366c5d3d1fe4b57",
+      "raw_sha256": "333e615e2a7b705509f9024bd53423db1d6ed0921bd8d13f68ae09503e45acd0",
+      "sass_sha256": "bccc5056a8b2e3b3a8a38a4b290d3377d8bf191dec25d0d5ad6e7686a49fb563",
+      "l2_resident_1024_round_capacity_per_s": 12128639681289.86,
+      "dram_unique_1024_round_capacity_per_s": 4706824924317.544
+    }
+  ],
+  "probe_contract": {
+    "dtype": "fp16",
+    "tile_m": 128,
+    "tile_n": 256,
+    "tile_k": 64,
+    "threads_per_cta": 256,
+    "pipeline_slots": 3,
+    "resident_ctas_per_sm": 1,
+    "physical_sm_count": 132,
+    "grid_ctas": 132,
+    "a_panel_bytes": 16384,
+    "b_panel_bytes": 32768,
+    "panel_bytes": 49152,
+    "rounds": [
+      0,
+      16,
+      32,
+      48,
+      128,
+      256,
+      1024
+    ],
+    "load_instruction": "LDGSTS.E.BYPASS.128",
+    "commit_instruction": "LDGDEPBAR",
+    "wait_instruction": "DEPBAR.LE SB0, 0x1",
+    "cache_operator": "cg"
+  },
+  "selected_services": {
+    "selection_rule": "minimum complete-capture 1024-round logical-byte capacity across two independent clock-accepted capture processes on H200 GPU 2",
+    "l2_resident": {
+      "logical_byte_capacity_per_s": 12128639681289.86
+    },
+    "dram_unique": {
+      "logical_byte_capacity_per_s": 4706078113812.474
+    }
+  },
+  "source_order": {
+    "vectors_per_panel": 3072,
+    "vectors_per_thread_per_panel": 12,
+    "initial_committed_groups": 3,
+    "initial_arrival_levels": 36,
+    "additional_dependent_arrivals_per_cta_cohort": 35,
+    "validation": "Static source order is unchanged from A800.  The A800 validation against 35 x the configured L2 first-request latency is not re-established on H200: no H200-measured L2 first-request latency exists in this package.  Measured H200 launch-subtracted L2 finite residual medians (ns) per capture: 23628.0, 21349.0."
+  },
+  "applicability": {
+    "dtype": "fp16",
+    "tile_shapes": [
+      [
+        128,
+        256,
+        64
+      ],
+      [
+        256,
+        128,
+        64
+      ]
+    ],
+    "threads_per_cta": 256,
+    "pipeline_slots": 3,
+    "resident_ctas_per_sm": 1,
+    "required_launch_algorithm": "observed_gemm:gemm",
+    "required_split_k_semantics": "in_place_or_non_split",
+    "orientation_equivalence": "Exchanging the 16-KiB and 32-KiB A/B panel labels leaves the probe's contiguous 49,152-byte issue_panel byte stream, 3,072 16-byte LDGSTS vectors, 256-thread mapping, three slots, and one-CTA residency unchanged."
+  },
+  "decision": {
+    "status": "accepted_mechanism_service",
+    "forward_eligible": true,
+    "reason": "The workload-independent source program separates L2-hit and DRAM-miss service on H200 in two independent clock-gated captures."
+  },
+  "excluded_conclusions": [
+    "a complete production GEMM duration",
+    "a generic L2 or DRAM capacity replacement",
+    "a per-shape timing correction",
+    "a moment approximation"
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "source_sha256": "56c7664387ce624b6f87134c5c5ecd89d8e12fd9ce5aaac1ae19710ef810b59c",
+    "runner_sha256": "c2512cc81b2eae12edf5fcaf167ae5c50fb00ab194bcadfe949c9ec7642ce228",
+    "clock_gate": {
+      "rule": "every probe process runs under nvidia-smi -lms 50; a process is accepted only if it shows a busy sample and every busy sample is >= 1980 MHz, otherwise it is rejected and re-run",
+      "accepted_captures": 2,
+      "rejected_captures": 0,
+      "accepted_busy_sm_clock_min_mhz": 1980,
+      "accepted_busy_sm_clock_max_mhz": 1980,
+      "accepted_busy_samples": 8,
+      "rejected_busy_sm_clock_min_mhz": []
+    },
+    "remote_raw_root": "/capture-public/h200_microbench/wp3_ldgsts/repo/profiler_output/microbench/nvidia_h200"
+  }
+}

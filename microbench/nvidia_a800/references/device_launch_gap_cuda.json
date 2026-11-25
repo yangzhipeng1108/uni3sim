@@ -1,0 +1,112 @@
+{
+    "allowed_conclusion": "On the A800 serving stack, a launch that follows another launch on the same stream starts after a device-side gap set by the boundary it crosses.  Synthetic-launch mechanism evidence, not a kernel or Serving observation.",
+    "derivation_rule": "median_of_per_trial_medians",
+    "hardware_id": "nvidia_a800",
+    "mechanism": "device-side idle between consecutive launches on one stream, host already ahead",
+    "model": "device_launch_boundary_gap_v1",
+    "production_or_evaluation_duration_consumed": false,
+    "raw": {
+        "path": "profiler_output/microbench/nvidia_a800/piecewise_graph_boundary_gap_20260927/pw_boundary_gap_r1.json",
+        "sha256": "8eaf0b6fb5ca275e5909ec8ba46f2c549add6514756df1c1dd668c54912a00ff",
+        "retention": "local_raw_not_committed"
+    },
+    "runner": {
+        "path": "microbench/nvidia_a800/runtime/launch/piecewise_graph_boundary_gap_runner.py",
+        "sha256": "e24d7092a2fd902f912af8779269fd79fbbd371e27e88934a3af4d7e7df857e5"
+    },
+    "schema_version": "midlayer.nvidia_a800.device_launch_gap.v1",
+    "selected_gap_ns": {
+        "graph_node": 64.00000001303852,
+        "graph_entry": 3551.999999996042,
+        "graph_exit": 1535.4999999981374,
+        "eager": 1247.9999999923166
+    },
+    "software_revision": "torch_2.8.0+cu128_CUDA 12.8",
+    "target_operator_used": false,
+    "timer_domain": "kineto_device_timestamps_host_ahead",
+    "torch_version": "2.8.0+cu128",
+    "trial_median_ns": {
+        "graph_node": [
+            64.00000001303852,
+            64.00000001303852,
+            64.00000001303852
+        ],
+        "graph_entry": [
+            3551.999999996042,
+            3551.999999996042,
+            3551.999999996042
+        ],
+        "graph_exit": [
+            1535.4999999981374,
+            1535.0000000034925,
+            1535.4999999981374
+        ],
+        "eager": [
+            1247.9999999923166,
+            1247.9999999923166,
+            1216.500000009546
+        ]
+    },
+    "workload": {
+        "eager_launches_per_repetition": 6,
+        "graph_nodes_per_replay": 8,
+        "host_ahead": "torch.cuda._sleep spin queued before the sequence",
+        "launch": "torch.add on preallocated 16-KiB BF16 tensors",
+        "repetitions_per_trial": 64
+    },
+    "repeats": [
+        {
+            "path": "profiler_output/microbench/nvidia_a800/piecewise_graph_boundary_gap_20260927/pw_boundary_gap_r2.json",
+            "sha256": "f1dd0a1411c52158459153524afe99c36e0717c7b59afdd9be3933df8e08f18a",
+            "trial_median_ns": {
+                "graph_node": [
+                    64.00000001303852,
+                    64.00000001303852,
+                    64.00000001303852
+                ],
+                "graph_entry": [
+                    3487.9999999830034,
+                    3519.9999999895226,
+                    3487.9999999830034
+                ],
+                "graph_exit": [
+                    1535.0000000034925,
+                    1535.9999999927823,
+                    1535.9999999927823
+                ],
+                "eager": [
+                    1408.0000000249129,
+                    1407.999999995809,
+                    1424.4999999937136
+                ]
+            }
+        },
+        {
+            "path": "profiler_output/microbench/nvidia_a800/piecewise_graph_boundary_gap_20260927/pw_boundary_gap_r3.json",
+            "sha256": "437af2e5dfc95e7ca67e0a42afe28fb42d63de9b642698bec8922f0d2198fe8f",
+            "trial_median_ns": {
+                "graph_node": [
+                    64.00000001303852,
+                    64.00000001303852,
+                    64.00000001303852
+                ],
+                "graph_entry": [
+                    3456.000000005588,
+                    3488.000000012107,
+                    3456.000000005588
+                ],
+                "graph_exit": [
+                    1535.4999999981374,
+                    1535.0000000034925,
+                    1505.0000000046566
+                ],
+                "eager": [
+                    1407.999999995809,
+                    1407.999999995809,
+                    1407.0000000065193
+                ]
+            }
+        }
+    ],
+    "device": "NVIDIA A800-SXM4-80GB, CUDA_VISIBLE_DEVICES=7, idle (0 MiB, 0%)"
+}

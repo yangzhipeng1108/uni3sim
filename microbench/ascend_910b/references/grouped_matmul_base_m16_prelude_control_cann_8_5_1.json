@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann-8.5.1",
+  "mechanism_id": "aic_grouped_matmul_base_m16_prelude_control_v1",
+  "duration_unit": "ns_per_nonempty_output_tile_per_aic",
+  "publication_scope": {
+    "dtype": "bf16",
+    "active_aic_groups": 24,
+    "base_m": 16,
+    "active_m": 16,
+    "tile_n": 256,
+    "tile_k": 64,
+    "depth_a1": 8,
+    "depth_b1": 8,
+    "step_ka": 4,
+    "step_kb": 4,
+    "db_l0a": 2,
+    "db_l0b": 2,
+    "db_l0c": 1,
+    "k_rounds": [45, 96, 256]
+  },
+  "source_scope": {
+    "upstream_file": "grouped_matmul/grouped_matmul.h",
+    "source_sequence": "GMMProcess::MNBlockIdxCompute followed by GMMCompute::MMCompute tail and offset setup plus the base-K A1/B1/L0 scheduler counters before IterateAll<false>",
+    "excluded_source_work": [
+      "GetTensorAddr list loads",
+      "MTE transfer",
+      "Cube arithmetic",
+      "FixPipe output",
+      "vector work",
+      "routing",
+      "activation",
+      "reduction",
+      "complete production operator"
+    ]
+  },
+  "measurement": {
+    "model": "exact_k_round_lookup_with_minimum_non_tiny_per_tile_service_v1",
+    "repeats_per_launch": 256,
+    "fresh_process_trials": 3,
+    "tile_counts": [1, 4, 16, 64],
+    "system_counter_tick_ns": 20.0,
+    "selection_policy": "for each exact K-round, select the minimum median per-tile service among non-tiny tile counts 4, 16 and 64; no production/evaluation timing or APE selects a value",
+    "service_time_ns_by_k_rounds": {
+      "45": 455.076904296875,
+      "96": 965.777587890625,
+      "256": 2576.888427734375
+    },
+    "completion_span_ns": {
+      "45": {
+        "1": [456.71875, 456.71875, 456.71875],
+        "4": [1824.53125, 1824.53125, 1824.53125],
+        "16": [7284.609375, 7284.609375, 7284.609375],
+        "64": [29124.921875, 29124.921875, 29124.921875]
+      },
+      "96": {
+        "1": [966.796875, 966.796875, 966.796875],
+        "4": [3876.40625, 3876.40625, 3876.40625],
+        "16": [15463.125, 15463.125, 15463.125],
+        "64": [61809.765625, 61809.765625, 61809.765625]
+      },
+      "256": {
+        "1": [2577.890625, 2577.890625, 2577.890625],
+        "4": [10320.859375, 10320.859375, 10320.859375],
+        "16": [41240.859375, 41240.859375, 41240.859375],
+        "64": [164920.859375, 164920.859375, 164920.859375]
+      }
+    },
+    "maximum_fresh_process_relative_span": 0.0,
+    "non_tiny_per_tile_relative_span_by_k_rounds": {
+      "45": 0.002319210996564459,
+      "96": 0.00343937559136174,
+      "256": 0.001290531816780729
+    },
+    "maximum_allowed_relative_span": 0.05,
+    "mechanism_gate_passed": true
+  },
+  "provenance": {
+    "measurement_baseline_commit": "c1589b778e05b688bcb87e8a12cf640c30c046fa",
+    "worker_head": "5cfe64ad617d6851595e974df8056eab30717a72",
+    "raw_root": "profiler_output/microbench/ascend_910b/grouped_matmul_prelude_control_5cfe64ad_20260910_r2",
+    "source_snapshot_path": "/capture-workspace/execution_snapshots/grouped_matmul_prelude_control_5cfe64ad_20260910_r2/source",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_id": 2,
+    "logical_device_id": 0,
+    "owner": "kernel-accuracy-fusedmoe",
+    "source_sha256": {
+      "CMakeLists.txt": "71979be0588d3e51d8b5ea39e27b76ec98fb67bb8cb4bb4b6742fe5059efd1e5",
+      "README.md": "87651e7d5a96f1630c3fb889645871a71caa1c6e21787cb6525f9277f9634419",
+      "grouped_matmul_prelude_control_kernel.cpp": "17d3fdc913b94476192fcc2bd1316d836d177662ab9f2038450a6f348eec9de3",
+      "grouped_matmul_prelude_control_main.cpp": "0549c99d9c3542fac11c67e3c910dac110b0b08500815e010203c31d34d80b81"
+    },
+    "binary_sha256": "b5cd5d626eb69bef3bea34e7052dc6cd8c4044923fec49e19da4c8d840d3a6cf",
+    "raw_sha256": {
+      "trial1_forward.csv": "d055ca006e915958a46ba570b948026490f4adb9aa3c6244775ac351b7479d0e",
+      "trial2_reverse.csv": "5b97495ea292abd8b4acd96832f19daf998dfbd909c05232a29c0111e8b89ac9",
+      "trial3_interleaved.csv": "71af9fb8c66c0ccc972f3871c4d4d9e3626ba0ce8357f99fffc2c6aa270b9aca"
+    },
+    "cann_source_sha256": {
+      "grouped_matmul.h": "d06679b4a391c032665f11fb3700c7478726c62e4230a0029d4286e086b209ed",
+      "grouped_matmul_utils.h": "377bd1fc2e9858e1809c6dca5320fe2e25150749c6644a41b958c2562c6149e4"
+    }
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "an exact-source consumer may use only an exact listed K-round and the full base-M16/active-M16/N256/K64/depth-8/step-4/24-AIC scope, and must compose the prelude as an AIC controller dependency before the same tile's IterateAll issue; it must not use this as an OP residual or together with unclassified GetTensorAddr service"
+}

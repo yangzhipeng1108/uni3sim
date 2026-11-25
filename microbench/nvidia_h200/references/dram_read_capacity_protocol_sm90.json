@@ -1,0 +1,270 @@
+{
+  "schema": "nvidia_h200_dram_read_capacity_protocol_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "production_or_evaluation_duration_consumed": false,
+  "dram_read_capacity": {
+    "selection_rule": "maximum over resident-CTA counts of the per-count median over five clock-gated processes (saturated plateau)",
+    "capacity_gb_per_s": 4512.6,
+    "capacity_bytes_per_s": 4512600000000.0,
+    "selected_ctas_per_sm": 4,
+    "medians_by_ctas_per_sm": {
+      "1": 2450.4,
+      "2": 3959.2,
+      "3": 4445.2,
+      "4": 4512.6,
+      "6": 4332.3,
+      "8": 4509.0
+    },
+    "relative_spread_by_ctas_per_sm": {
+      "1": 0.0031015344433561495,
+      "2": 0.0026267932915740783,
+      "3": 0.0004949158643030275,
+      "4": 0.00425475335726628,
+      "6": 0.0038547653671259646,
+      "8": 0.0014415613218008428
+    },
+    "dram_clock_hz": 3125000000.0,
+    "dram_read_capacity_per_dram_clk": 1444.032,
+    "per_sm_clk_bytes": 2279.090909090909
+  },
+  "dram_protocol_efficiency": {
+    "probe": "bw_per_sm.cu (.cg vs .ca, 2 GiB incompressible, one CTA per active SM)",
+    "full_chip_gb_per_s": {
+      "256/L1-bypass": 1309.19,
+      "256/L1-cached": 1309.67,
+      "1024/L1-bypass": 3957.22,
+      "1024/L1-cached": 3960.49
+    },
+    "l1_cached_over_l1_bypass_full_chip": {
+      "256": 1.0003666389141377,
+      "1024": 1.0008263376815036
+    },
+    "maximum_abs_cached_over_bypass_deviation_all_points": 0.0008951730757823517,
+    "per_point_medians": [
+      {
+        "threads_per_block": 256,
+        "active_sms": 1,
+        "l1_bypass_gb_per_s": 10.28,
+        "l1_cached_gb_per_s": 10.28,
+        "cached_over_bypass": 1.0
+      },
+      {
+        "threads_per_block": 256,
+        "active_sms": 2,
+        "l1_bypass_gb_per_s": 20.22,
+        "l1_cached_gb_per_s": 20.21,
+        "cached_over_bypass": 0.9995054401582593
+      },
+      {
+        "threads_per_block": 256,
+        "active_sms": 4,
+        "l1_bypass_gb_per_s": 40.47,
+        "l1_cached_gb_per_s": 40.45,
+        "cached_over_bypass": 0.9995058067704473
+      },
+      {
+        "threads_per_block": 256,
+        "active_sms": 8,
+        "l1_bypass_gb_per_s": 81.53,
+        "l1_cached_gb_per_s": 81.51,
+        "cached_over_bypass": 0.9997546915245922
+      },
+      {
+        "threads_per_block": 256,
+        "active_sms": 12,
+        "l1_bypass_gb_per_s": 121.87,
+        "l1_cached_gb_per_s": 121.83,
+        "cached_over_bypass": 0.9996717814064167
+      },
+      {
+        "threads_per_block": 256,
+        "active_sms": 16,
+        "l1_bypass_gb_per_s": 163.25,
+        "l1_cached_gb_per_s": 163.23,
+        "cached_over_bypass": 0.9998774885145482
+      },
+      {
+        "threads_per_block": 256,
+        "active_sms": 24,
+        "l1_bypass_gb_per_s": 246.05,
+        "l1_cached_gb_per_s": 246.04,
+        "cached_over_bypass": 0.9999593578540946
+      },
+      {
+        "threads_per_block": 256,
+        "active_sms": 32,
+        "l1_bypass_gb_per_s": 326.56,
+        "l1_cached_gb_per_s": 326.64,
+        "cached_over_bypass": 1.0002449779519842
+      },
+      {
+        "threads_per_block": 256,
+        "active_sms": 48,
+        "l1_bypass_gb_per_s": 485.4,
+        "l1_cached_gb_per_s": 485.44,
+        "cached_over_bypass": 1.000082406262876
+      },
+      {
+        "threads_per_block": 256,
+        "active_sms": 64,
+        "l1_bypass_gb_per_s": 649.39,
+        "l1_cached_gb_per_s": 649.82,
+        "cached_over_bypass": 1.0006621598731118
+      },
+      {
+        "threads_per_block": 256,
+        "active_sms": 80,
+        "l1_bypass_gb_per_s": 811.42,
+        "l1_cached_gb_per_s": 811.58,
+        "cached_over_bypass": 1.0001971851815337
+      },
+      {
+        "threads_per_block": 256,
+        "active_sms": 96,
+        "l1_bypass_gb_per_s": 966.53,
+        "l1_cached_gb_per_s": 966.93,
+        "cached_over_bypass": 1.000413851613504
+      },
+      {
+        "threads_per_block": 256,
+        "active_sms": 132,
+        "l1_bypass_gb_per_s": 1309.19,
+        "l1_cached_gb_per_s": 1309.67,
+        "cached_over_bypass": 1.0003666389141377
+      },
+      {
+        "threads_per_block": 1024,
+        "active_sms": 1,
+        "l1_bypass_gb_per_s": 40.59,
+        "l1_cached_gb_per_s": 40.61,
+        "cached_over_bypass": 1.0004927322000492
+      },
+      {
+        "threads_per_block": 1024,
+        "active_sms": 2,
+        "l1_bypass_gb_per_s": 81.31,
+        "l1_cached_gb_per_s": 81.33,
+        "cached_over_bypass": 1.0002459722051407
+      },
+      {
+        "threads_per_block": 1024,
+        "active_sms": 4,
+        "l1_bypass_gb_per_s": 162.93,
+        "l1_cached_gb_per_s": 162.88,
+        "cached_over_bypass": 0.9996931197446756
+      },
+      {
+        "threads_per_block": 1024,
+        "active_sms": 8,
+        "l1_bypass_gb_per_s": 331.05,
+        "l1_cached_gb_per_s": 331.04,
+        "cached_over_bypass": 0.9999697930826159
+      },
+      {
+        "threads_per_block": 1024,
+        "active_sms": 12,
+        "l1_bypass_gb_per_s": 490.48,
+        "l1_cached_gb_per_s": 490.46,
+        "cached_over_bypass": 0.9999592236176805
+      },
+      {
+        "threads_per_block": 1024,
+        "active_sms": 16,
+        "l1_bypass_gb_per_s": 657.45,
+        "l1_cached_gb_per_s": 657.11,
+        "cached_over_bypass": 0.999482850406875
+      },
+      {
+        "threads_per_block": 1024,
+        "active_sms": 24,
+        "l1_bypass_gb_per_s": 975.35,
+        "l1_cached_gb_per_s": 975.33,
+        "cached_over_bypass": 0.9999794945404215
+      },
+      {
+        "threads_per_block": 1024,
+        "active_sms": 32,
+        "l1_bypass_gb_per_s": 1269.98,
+        "l1_cached_gb_per_s": 1269.91,
+        "cached_over_bypass": 0.9999448810217484
+      },
+      {
+        "threads_per_block": 1024,
+        "active_sms": 48,
+        "l1_bypass_gb_per_s": 1854.39,
+        "l1_cached_gb_per_s": 1852.73,
+        "cached_over_bypass": 0.9991048269242176
+      },
+      {
+        "threads_per_block": 1024,
+        "active_sms": 64,
+        "l1_bypass_gb_per_s": 2384.47,
+        "l1_cached_gb_per_s": 2383.37,
+        "cached_over_bypass": 0.9995386815518753
+      },
+      {
+        "threads_per_block": 1024,
+        "active_sms": 80,
+        "l1_bypass_gb_per_s": 2890.62,
+        "l1_cached_gb_per_s": 2892.96,
+        "cached_over_bypass": 1.0008095149137555
+      },
+      {
+        "threads_per_block": 1024,
+        "active_sms": 96,
+        "l1_bypass_gb_per_s": 3308.76,
+        "l1_cached_gb_per_s": 3305.82,
+        "cached_over_bypass": 0.9991114496064991
+      },
+      {
+        "threads_per_block": 1024,
+        "active_sms": 132,
+        "l1_bypass_gb_per_s": 3957.22,
+        "l1_cached_gb_per_s": 3960.49,
+        "cached_over_bypass": 1.0008263376815036
+      }
+    ],
+    "dram_protocol_efficiency": 1.0,
+    "dram_protocol_efficiency_l1cached": 1.0,
+    "derivation": "The A800 contract keeps both efficiencies at 1.0 because the sustained capacity is itself a measured stream rate that already contains protocol overhead, and .cg and .ca streams achieve the same rate.  On H200 .ca/.cg stays within the listed maximum deviation at every active-SM point, so both remain 1.0 relative to the measured read capacity above.  One CTA per SM (even at 1024 threads) does not saturate HBM3e, so this probe supplies the .cg/.ca ratio and dram_read_bw.cu supplies the capacity."
+  },
+  "provenance": {
+    "capacity_source": "microbench/nvidia_h200/memory/dram/dram_read_bw.cu",
+    "capacity_source_sha256": "a4195799a1e196bea71f10199aac51e687eb41e9a557ad10f067cebd0003076d",
+    "capacity_runner": "microbench/nvidia_h200/memory/dram/dram_read_bw_runner.py",
+    "capacity_runner_sha256": "60dbe4e29ad06cfcdd0e53282bbfb43e18bd924dda490e28509b8b13e116d1d9",
+    "capacity_raw": "profiler_output/microbench/nvidia_h200/dram_read_bw_20260925",
+    "capacity_measurements_sha256": "9edb88cacfc1bb3b6f13e06bb6e61783f58810a0baac5551c60baf0df4d7ecfb",
+    "capacity_clock": {
+      "gate": "every busy nvidia-smi sample (utilization.gpu > 0, 50 ms period) must report at least boost_mhz; otherwise the process is rejected and re-run",
+      "boost_mhz": 1980,
+      "accepted_captures": 5,
+      "rejected_captures": 0,
+      "busy_sm_clock_mhz_min": 1980,
+      "busy_sm_clock_mhz_max": 1980,
+      "busy_samples": 36,
+      "rejected": []
+    },
+    "protocol_source": "microbench/nvidia_h200/memory/dram/bw_per_sm.cu",
+    "protocol_source_sha256": "8d810dae93ba84d88b1b2d9310c5f0406dcb7ea8070e21eec2722776b48f572c",
+    "protocol_runner": "microbench/nvidia_h200/memory/dram/bw_per_sm_runner.py",
+    "protocol_runner_sha256": "8e5ca4b0b561970da0847af7addb412781aba465ec1202ca3727e5de18b10e1a",
+    "protocol_raw": "profiler_output/microbench/nvidia_h200/dram_bw_per_sm_20260925",
+    "protocol_measurements_sha256": "dd35d1d8a1d7dab28260115f101e0120e724afdd70473fd3067835b15315a156",
+    "protocol_clock": {
+      "gate": "every busy nvidia-smi sample (utilization.gpu > 0, 50 ms period) must report at least boost_mhz; otherwise the process is rejected and re-run",
+      "boost_mhz": 1980,
+      "accepted_captures": 10,
+      "rejected_captures": 0,
+      "busy_sm_clock_mhz_min": 1980,
+      "busy_sm_clock_mhz_max": 1980,
+      "busy_samples": 453,
+      "rejected": []
+    },
+    "device_index": 1,
+    "device_uuid": "capture-device-31adbc24ad46",
+    "git_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919"
+  }
+}

@@ -1,0 +1,142 @@
+{
+ "schema": "cooperative_group_sharing_residency_reference_v1",
+ "mechanism": "cooperative_group_sharing_residency",
+ "hardware_id": "metax_c500",
+ "allowed_use": "Evidence that operand sharing between co-scheduled programs is realised in full only when the sharers are adjacent in dispatch order, and decays monotonically with the dispatch spacing between them.  Distinguishes a grouped launch's weight sharing (sharers one apart) from its activation sharing (sharers one group width apart).",
+ "forbidden_use": "Any duration.  Not an L2 capacity, a DRAM bandwidth, a replacement policy, or a per-shape traffic correction.  The spacing-to-sharing relation must not be fitted or interpolated into a predictor.",
+ "production_or_evaluation_duration_consumed": false,
+ "instrument": "mcProfiler perf_exec --custom --per-kernel, one marker window, one numbered per-invocation file per ordinal",
+ "counters": [
+  "Global Memory Read bytes",
+  "L2C Hit Rate"
+ ],
+ "geometry": {
+  "workers": 416,
+  "block_threads": 256,
+  "slice_bytes": 4096,
+  "steps": 64,
+  "group": 8,
+  "shared_unique_mib": 13.0,
+  "private_unique_mib": 104.0,
+  "note": "every configuration reads identical logical bytes per CTA and has identical group membership; only the dispatch distance between two members of a group changes"
+ },
+ "why_independent_axes": "The shared miss core prices a grouped program by interleaving a wave of co-scheduled CTAs in lock step, so every co-wave sharer touches the shared object at an adjacent position in the reference stream and the sharing is granted regardless of how far apart the sharers were dispatched.  Whether the hardware honours that is the question; sweeping only the spacing, at fixed group size, footprint and per-CTA bytes, answers it.",
+ "finding": "Sharing is realised almost in full at spacing 1 and decays monotonically with spacing: 7.79, 7.34, 6.44, 5.20, 3.69, 3.25 and 1.89 of an ideal 8 at spacings 1, 2, 4, 8, 16, 32 and 52. Repeats agree to 0.03 (spacing 1: 7.79 against 7.81; spacing 8: 5.20 against 5.23).  The footprint is 208 MiB throughout, far above L2, so this is not a capacity effect: at spacing 1 the sharing survives a footprint 26 times the cache.  A grouped launch's weight sharing, whose sharers are consecutive programs, is therefore realised at 97 percent of ideal, while its activation sharing, whose sharers are one group width apart, is realised at 65 percent.",
+ "build": {
+  "compiler": "/opt/maca/mxgpu_llvm/bin/mxcc",
+  "flags": "-x maca -offload-arch native --maca-path=/opt/maca -O3",
+  "source": "microbench/metax_c500/memory/l2/cooperative_group_sharing_residency.cpp",
+  "binary_sha256": "e5de4ea57ecdc9365e78"
+ },
+ "status": "candidate_pending_main_agent_review",
+ "measurements": [
+  {
+   "ordinal": 0,
+   "axis": "spacing_at_group8",
+   "group": 8,
+   "dispatch_spacing": 1,
+   "shared_unique_mib": 13.0,
+   "private_unique_mib": 104.0,
+   "shared_logical_mib": 104.0,
+   "measured_downstream_read_mib": 117.353,
+   "realised_sharing": 7.788,
+   "measured_l2c_hit_rate_pct": 59.03
+  },
+  {
+   "ordinal": 1,
+   "axis": "spacing_at_group8",
+   "group": 8,
+   "dispatch_spacing": 2,
+   "shared_unique_mib": 13.0,
+   "private_unique_mib": 104.0,
+   "shared_logical_mib": 104.0,
+   "measured_downstream_read_mib": 118.178,
+   "realised_sharing": 7.335,
+   "measured_l2c_hit_rate_pct": 58.73
+  },
+  {
+   "ordinal": 2,
+   "axis": "spacing_at_group8",
+   "group": 8,
+   "dispatch_spacing": 4,
+   "shared_unique_mib": 13.0,
+   "private_unique_mib": 104.0,
+   "shared_logical_mib": 104.0,
+   "measured_downstream_read_mib": 120.157,
+   "realised_sharing": 6.437,
+   "measured_l2c_hit_rate_pct": 58.04
+  },
+  {
+   "ordinal": 3,
+   "axis": "spacing_at_group8",
+   "group": 8,
+   "dispatch_spacing": 8,
+   "shared_unique_mib": 13.0,
+   "private_unique_mib": 104.0,
+   "shared_logical_mib": 104.0,
+   "measured_downstream_read_mib": 123.989,
+   "realised_sharing": 5.203,
+   "measured_l2c_hit_rate_pct": 56.7
+  },
+  {
+   "ordinal": 4,
+   "axis": "spacing_at_group8",
+   "group": 8,
+   "dispatch_spacing": 16,
+   "shared_unique_mib": 13.0,
+   "private_unique_mib": 104.0,
+   "shared_logical_mib": 104.0,
+   "measured_downstream_read_mib": 132.146,
+   "realised_sharing": 3.695,
+   "measured_l2c_hit_rate_pct": 53.87
+  },
+  {
+   "ordinal": 5,
+   "axis": "spacing_at_group8",
+   "group": 8,
+   "dispatch_spacing": 32,
+   "shared_unique_mib": 13.0,
+   "private_unique_mib": 104.0,
+   "shared_logical_mib": 104.0,
+   "measured_downstream_read_mib": 135.962,
+   "realised_sharing": 3.254,
+   "measured_l2c_hit_rate_pct": 52.54
+  },
+  {
+   "ordinal": 6,
+   "axis": "spacing_at_group8",
+   "group": 8,
+   "dispatch_spacing": 52,
+   "shared_unique_mib": 13.0,
+   "private_unique_mib": 104.0,
+   "shared_logical_mib": 104.0,
+   "measured_downstream_read_mib": 159.023,
+   "realised_sharing": 1.89,
+   "measured_l2c_hit_rate_pct": 44.99
+  },
+  {
+   "ordinal": 7,
+   "axis": "repeat",
+   "group": 8,
+   "dispatch_spacing": 1,
+   "shared_unique_mib": 13.0,
+   "private_unique_mib": 104.0,
+   "shared_logical_mib": 104.0,
+   "measured_downstream_read_mib": 117.319,
+   "realised_sharing": 7.809,
+   "measured_l2c_hit_rate_pct": 59.04
+  },
+  {
+   "ordinal": 8,
+   "axis": "repeat",
+   "group": 8,
+   "dispatch_spacing": 8,
+   "shared_unique_mib": 13.0,
+   "private_unique_mib": 104.0,
+   "shared_logical_mib": 104.0,
+   "measured_downstream_read_mib": 123.886,
+   "realised_sharing": 5.23,
+   "measured_l2c_hit_rate_pct": 56.74
+  }
+ ]
+}

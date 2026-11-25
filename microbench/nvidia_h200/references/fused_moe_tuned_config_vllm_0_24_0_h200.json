@@ -1,0 +1,2773 @@
+{
+ "bundled_bf16_config_domains": [
+  {
+   "hidden": 1024,
+   "local_experts": 128,
+   "path": "configs/E=128,N=1024,device_name=NVIDIA_H200.json",
+   "sha256": "da3f84f3c74d42086726e22b08bc149fb41f508ebab627a80ade932188ccbc74"
+  },
+  {
+   "hidden": 192,
+   "local_experts": 128,
+   "path": "configs/E=128,N=192,device_name=NVIDIA_H200.json",
+   "sha256": "9ec344b83364b34b552df41f226ef1c45c047a9b537d07286bd7c9cb4352f314"
+  },
+  {
+   "hidden": 384,
+   "local_experts": 128,
+   "path": "configs/E=128,N=384,device_name=NVIDIA_H200.json",
+   "sha256": "c6a865ef8f22b7c195d8a5d7d178b18ad13fcb09ec2a4b2a2bc0062fbb40813f"
+  },
+  {
+   "hidden": 512,
+   "local_experts": 128,
+   "path": "configs/E=128,N=512,device_name=NVIDIA_H200.json",
+   "sha256": "4ba21c280372c03284ef84506b4fecbfda9fdbe514c3f3ae3f6ec77e04c25764"
+  },
+  {
+   "hidden": 768,
+   "local_experts": 128,
+   "path": "configs/E=128,N=768,device_name=NVIDIA_H200.json",
+   "sha256": "26b68cf8dbdb83957f4c991297a50f15864dd731c7a086ebda901c92c7a7a136"
+  },
+  {
+   "hidden": 96,
+   "local_experts": 128,
+   "path": "configs/E=128,N=96,device_name=NVIDIA_H200.json",
+   "sha256": "2a815f4e12a7de0bcb9b313834c2917bdfa0ed9035cc3309272df40012527f01"
+  },
+  {
+   "hidden": 1024,
+   "local_experts": 16,
+   "path": "configs/E=16,N=1024,device_name=NVIDIA_H200.json",
+   "sha256": "87adf31baf7c2a7cde0c72f6d0c7f127770a8913a705dec6559f9ae9681b702c"
+  },
+  {
+   "hidden": 2048,
+   "local_experts": 16,
+   "path": "configs/E=16,N=2048,device_name=NVIDIA_H200.json",
+   "sha256": "2dcf16aaea388665c6914abf1c2c64c56d5fcc39ef13a8c765211cdbcfa2ee50"
+  },
+  {
+   "hidden": 128,
+   "local_experts": 512,
+   "path": "configs/E=512,N=128,device_name=NVIDIA_H200.json",
+   "sha256": "041dea3cc4446800b35879a1bdc1134072c36065fb1974caaf5139726dbdb82d"
+  },
+  {
+   "hidden": 256,
+   "local_experts": 512,
+   "path": "configs/E=512,N=256,device_name=NVIDIA_H200.json",
+   "sha256": "85ef2b95e6134f8d24a6c8495b516c762c91d27454dfaec2ab2b52fbdf9464db"
+  },
+  {
+   "hidden": 512,
+   "local_experts": 512,
+   "path": "configs/E=512,N=512,device_name=NVIDIA_H200.json",
+   "sha256": "c51fefe30cbcfda7bd7c6cae4e7856634776f4dc02f4284f2af7422b9fcf4b66"
+  },
+  {
+   "hidden": 64,
+   "local_experts": 512,
+   "path": "configs/E=512,N=64,device_name=NVIDIA_H200.json",
+   "sha256": "2b51e422ca308126efc2d029a5964fb9d6082278bfc1aa12c4390045308442ca"
+  },
+  {
+   "hidden": 1280,
+   "local_experts": 64,
+   "path": "configs/E=64,N=1280,device_name=NVIDIA_H200.json",
+   "sha256": "c35f11dde1c1e285217db7025e31f20efa744620d2782adf33e5451128a6da14"
+  },
+  {
+   "hidden": 2560,
+   "local_experts": 64,
+   "path": "configs/E=64,N=2560,device_name=NVIDIA_H200.json",
+   "sha256": "097887946a5e6b97041a6162dbc25e737e2ec446484c5d9795d545709b5e657d"
+  },
+  {
+   "hidden": 320,
+   "local_experts": 64,
+   "path": "configs/E=64,N=320,device_name=NVIDIA_H200.json",
+   "sha256": "6ccf60f97a62aec4e13b7436c7c0a14b1dcf3ed1ee1d15cbbd53274d6b7c8cb2"
+  },
+  {
+   "hidden": 640,
+   "local_experts": 64,
+   "path": "configs/E=64,N=640,device_name=NVIDIA_H200.json",
+   "sha256": "279f6b9aa17c3505a4aa66b2fff6a1037b7723068f5cdbb901534b9d36837d80"
+  },
+  {
+   "hidden": 14336,
+   "local_experts": 8,
+   "path": "configs/E=8,N=14336,device_name=NVIDIA_H200.json",
+   "sha256": "082fe3b0c857ceb6277bb7883aba036b47c204a3677df89a556d9329de0ff9e9"
+  },
+  {
+   "hidden": 1792,
+   "local_experts": 8,
+   "path": "configs/E=8,N=1792,device_name=NVIDIA_H200.json",
+   "sha256": "f2aea89792500568fac957f314e9fb1b3e4c4974da5bd8dabcbeea4266153b08"
+  },
+  {
+   "hidden": 2048,
+   "local_experts": 8,
+   "path": "configs/E=8,N=2048,device_name=NVIDIA_H200.json",
+   "sha256": "4d748ea2abe2fb1f07d77c4faab07dab3d93de8a44180fb60f4bffe27e41106e"
+  },
+  {
+   "hidden": 3584,
+   "local_experts": 8,
+   "path": "configs/E=8,N=3584,device_name=NVIDIA_H200.json",
+   "sha256": "69dd599244b22c9c1119be0a7f6e2a839856fc33e6b74057aca47ce68022577e"
+  },
+  {
+   "hidden": 4096,
+   "local_experts": 8,
+   "path": "configs/E=8,N=4096,device_name=NVIDIA_H200.json",
+   "sha256": "253f9930b840aaacd292a8af396e404d3291972c9a15092a4039da3d2e03135d"
+  },
+  {
+   "hidden": 7168,
+   "local_experts": 8,
+   "path": "configs/E=8,N=7168,device_name=NVIDIA_H200.json",
+   "sha256": "1acb50a2c3cf1d49ff2360d5dde306b67df15cec3a925d616fc2f412f46c6c45"
+  }
+ ],
+ "bundled_h200_configs_all_dtypes": [
+  {
+   "bf16": false,
+   "hidden": 3072,
+   "local_experts": 1,
+   "path": "configs/E=1,N=3072,device_name=NVIDIA_H200,dtype=int8_w8a16.json",
+   "selector_suffix": "dtype=int8_w8a16",
+   "sha256": "35951be64422d07c81af3851c8f97aa5d2b007817a2aa1dc25ea701d66f1b186"
+  },
+  {
+   "bf16": false,
+   "hidden": 1024,
+   "local_experts": 128,
+   "path": "configs/E=128,N=1024,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "977cb7b90921940dbfedc6eb0c7b11b2559747d37382d903fc111072427e39ff"
+  },
+  {
+   "bf16": true,
+   "hidden": 1024,
+   "local_experts": 128,
+   "path": "configs/E=128,N=1024,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "da3f84f3c74d42086726e22b08bc149fb41f508ebab627a80ade932188ccbc74"
+  },
+  {
+   "bf16": false,
+   "hidden": 1856,
+   "local_experts": 128,
+   "path": "configs/E=128,N=1856,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "fd0d535d816188bebf5c8efc106ec9f2e45608cb25f1a9b75effdeb7121e2a2f"
+  },
+  {
+   "bf16": true,
+   "hidden": 192,
+   "local_experts": 128,
+   "path": "configs/E=128,N=192,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "9ec344b83364b34b552df41f226ef1c45c047a9b537d07286bd7c9cb4352f314"
+  },
+  {
+   "bf16": false,
+   "hidden": 384,
+   "local_experts": 128,
+   "path": "configs/E=128,N=384,device_name=NVIDIA_H200,dtype=fp8_w8a8,block_shape=[128,128].json",
+   "selector_suffix": "dtype=fp8_w8a8,block_shape=[128,128]",
+   "sha256": "325a7372b919a3bf24158afa72a9a1e2505da7129c12f973aaf45fd1b99e76e4"
+  },
+  {
+   "bf16": true,
+   "hidden": 384,
+   "local_experts": 128,
+   "path": "configs/E=128,N=384,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "c6a865ef8f22b7c195d8a5d7d178b18ad13fcb09ec2a4b2a2bc0062fbb40813f"
+  },
+  {
+   "bf16": false,
+   "hidden": 512,
+   "local_experts": 128,
+   "path": "configs/E=128,N=512,device_name=NVIDIA_H200,dtype=fp8_w8a8,block_shape=[128,128].json",
+   "selector_suffix": "dtype=fp8_w8a8,block_shape=[128,128]",
+   "sha256": "b8408f0295e5b42434f605016500f918cacba1ff37ef6fa082a6c9dd0adf4432"
+  },
+  {
+   "bf16": false,
+   "hidden": 512,
+   "local_experts": 128,
+   "path": "configs/E=128,N=512,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "96f5d43e0b51c43b8d9fb11244d1334fb576a92b5be73f1b00e1823b33fcabf5"
+  },
+  {
+   "bf16": true,
+   "hidden": 512,
+   "local_experts": 128,
+   "path": "configs/E=128,N=512,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "4ba21c280372c03284ef84506b4fecbfda9fdbe514c3f3ae3f6ec77e04c25764"
+  },
+  {
+   "bf16": false,
+   "hidden": 768,
+   "local_experts": 128,
+   "path": "configs/E=128,N=768,device_name=NVIDIA_H200,dtype=fp8_w8a8,block_shape=[128,128].json",
+   "selector_suffix": "dtype=fp8_w8a8,block_shape=[128,128]",
+   "sha256": "4451f915c3766423e4e83b31be24ed8b543c254e63cc14455ef5103603af9e62"
+  },
+  {
+   "bf16": true,
+   "hidden": 768,
+   "local_experts": 128,
+   "path": "configs/E=128,N=768,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "26b68cf8dbdb83957f4c991297a50f15864dd731c7a086ebda901c92c7a7a136"
+  },
+  {
+   "bf16": false,
+   "hidden": 96,
+   "local_experts": 128,
+   "path": "configs/E=128,N=96,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "2c981ffaf359b511dac089b5eefaba78de9cbb3c70db9ea2fcc27e55918722dd"
+  },
+  {
+   "bf16": true,
+   "hidden": 96,
+   "local_experts": 128,
+   "path": "configs/E=128,N=96,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "2a815f4e12a7de0bcb9b313834c2917bdfa0ed9035cc3309272df40012527f01"
+  },
+  {
+   "bf16": false,
+   "hidden": 1024,
+   "local_experts": 16,
+   "path": "configs/E=16,N=1024,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "f79ccb69f0463c8e3308ba9db088c7ee681b958881053cc6088b4546d2a2410c"
+  },
+  {
+   "bf16": true,
+   "hidden": 1024,
+   "local_experts": 16,
+   "path": "configs/E=16,N=1024,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "87adf31baf7c2a7cde0c72f6d0c7f127770a8913a705dec6559f9ae9681b702c"
+  },
+  {
+   "bf16": false,
+   "hidden": 2048,
+   "local_experts": 16,
+   "path": "configs/E=16,N=2048,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "ff8537a575981117f0174220f144d20a6784235bca1f68ab1cc101a2fe9936a0"
+  },
+  {
+   "bf16": true,
+   "hidden": 2048,
+   "local_experts": 16,
+   "path": "configs/E=16,N=2048,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "2dcf16aaea388665c6914abf1c2c64c56d5fcc39ef13a8c765211cdbcfa2ee50"
+  },
+  {
+   "bf16": false,
+   "hidden": 3072,
+   "local_experts": 16,
+   "path": "configs/E=16,N=3072,device_name=NVIDIA_H200,dtype=int8_w8a16.json",
+   "selector_suffix": "dtype=int8_w8a16",
+   "sha256": "29500232c1d19e4ba6ab02b000620516fa20b6aa0f67b5c2ea233928e643eae5"
+  },
+  {
+   "bf16": false,
+   "hidden": 4096,
+   "local_experts": 16,
+   "path": "configs/E=16,N=4096,device_name=NVIDIA_H200,dtype=fp8_w8a8,block_shape=[128,128].json",
+   "selector_suffix": "dtype=fp8_w8a8,block_shape=[128,128]",
+   "sha256": "4b66988bd3585b8b02c4094234c8789079ee5c6027a831241906d18604f198b6"
+  },
+  {
+   "bf16": false,
+   "hidden": 192,
+   "local_experts": 160,
+   "path": "configs/E=160,N=192,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "515a5aa657afd560adc1af3457e22752da1feceb877def68c10b616937ea2bcd"
+  },
+  {
+   "bf16": false,
+   "hidden": 256,
+   "local_experts": 256,
+   "path": "configs/E=256,N=256,device_name=NVIDIA_H200,dtype=fp8_w8a8,block_shape=[128,128].json",
+   "selector_suffix": "dtype=fp8_w8a8,block_shape=[128,128]",
+   "sha256": "573d60f98b5359cbf9ef7118691ecbce1265472a2768cb073d3d8c323b9127d9"
+  },
+  {
+   "bf16": false,
+   "hidden": 512,
+   "local_experts": 256,
+   "path": "configs/E=256,N=512,device_name=NVIDIA_H200,dtype=fp8_w8a8,block_shape=[128,128].json",
+   "selector_suffix": "dtype=fp8_w8a8,block_shape=[128,128]",
+   "sha256": "a6369986978dd55c750a10086a41d843b64703d3f863e4ea1d3f95444b2458d9"
+  },
+  {
+   "bf16": false,
+   "hidden": 2048,
+   "local_experts": 32,
+   "path": "configs/E=32,N=2048,device_name=NVIDIA_H200,dtype=fp8_w8a8,block_shape=[128,128].json",
+   "selector_suffix": "dtype=fp8_w8a8,block_shape=[128,128]",
+   "sha256": "20e62a52e75f94c43b3c118dc4562286db95a9bf89e1e569e4198bfce9c8152e"
+  },
+  {
+   "bf16": false,
+   "hidden": 128,
+   "local_experts": 384,
+   "path": "configs/E=384,N=128,device_name=NVIDIA_H200,dtype=fp8_w8a8,block_shape=[128,128].json",
+   "selector_suffix": "dtype=fp8_w8a8,block_shape=[128,128]",
+   "sha256": "897a1ad748998bd110e63022308bb78427a6b2f8e259506d9f8aca55aad50820"
+  },
+  {
+   "bf16": true,
+   "hidden": 128,
+   "local_experts": 512,
+   "path": "configs/E=512,N=128,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "041dea3cc4446800b35879a1bdc1134072c36065fb1974caaf5139726dbdb82d"
+  },
+  {
+   "bf16": true,
+   "hidden": 256,
+   "local_experts": 512,
+   "path": "configs/E=512,N=256,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "85ef2b95e6134f8d24a6c8495b516c762c91d27454dfaec2ab2b52fbdf9464db"
+  },
+  {
+   "bf16": true,
+   "hidden": 512,
+   "local_experts": 512,
+   "path": "configs/E=512,N=512,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "c51fefe30cbcfda7bd7c6cae4e7856634776f4dc02f4284f2af7422b9fcf4b66"
+  },
+  {
+   "bf16": true,
+   "hidden": 64,
+   "local_experts": 512,
+   "path": "configs/E=512,N=64,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "2b51e422ca308126efc2d029a5964fb9d6082278bfc1aa12c4390045308442ca"
+  },
+  {
+   "bf16": false,
+   "hidden": 1280,
+   "local_experts": 64,
+   "path": "configs/E=64,N=1280,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "28437ac6df2980f1ff15b2d3d9fb000f8b34dff57e67d197b840b820a7b770f8"
+  },
+  {
+   "bf16": true,
+   "hidden": 1280,
+   "local_experts": 64,
+   "path": "configs/E=64,N=1280,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "c35f11dde1c1e285217db7025e31f20efa744620d2782adf33e5451128a6da14"
+  },
+  {
+   "bf16": false,
+   "hidden": 2560,
+   "local_experts": 64,
+   "path": "configs/E=64,N=2560,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "758a4a82fb86ec98e2d16d3383f13d35f2288d2b4101d05c29de01de78629aa9"
+  },
+  {
+   "bf16": true,
+   "hidden": 2560,
+   "local_experts": 64,
+   "path": "configs/E=64,N=2560,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "097887946a5e6b97041a6162dbc25e737e2ec446484c5d9795d545709b5e657d"
+  },
+  {
+   "bf16": false,
+   "hidden": 320,
+   "local_experts": 64,
+   "path": "configs/E=64,N=320,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "1c9715f93cedfb2a23ccd4243c2822f38078e05fd1a695f138889c472836d3e5"
+  },
+  {
+   "bf16": true,
+   "hidden": 320,
+   "local_experts": 64,
+   "path": "configs/E=64,N=320,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "6ccf60f97a62aec4e13b7436c7c0a14b1dcf3ed1ee1d15cbbd53274d6b7c8cb2"
+  },
+  {
+   "bf16": false,
+   "hidden": 640,
+   "local_experts": 64,
+   "path": "configs/E=64,N=640,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "1eb95ab3436dedddc932bd6f4e9237395824cf1a9c47389231f15ffd4e69439f"
+  },
+  {
+   "bf16": true,
+   "hidden": 640,
+   "local_experts": 64,
+   "path": "configs/E=64,N=640,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "279f6b9aa17c3505a4aa66b2fff6a1037b7723068f5cdbb901534b9d36837d80"
+  },
+  {
+   "bf16": false,
+   "hidden": 14336,
+   "local_experts": 8,
+   "path": "configs/E=8,N=14336,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "41a213148254e14b2b3815da19d3d82704e6609d274fd9228aa794899cef7759"
+  },
+  {
+   "bf16": true,
+   "hidden": 14336,
+   "local_experts": 8,
+   "path": "configs/E=8,N=14336,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "082fe3b0c857ceb6277bb7883aba036b47c204a3677df89a556d9329de0ff9e9"
+  },
+  {
+   "bf16": false,
+   "hidden": 1792,
+   "local_experts": 8,
+   "path": "configs/E=8,N=1792,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "b8648b14f6572bf250dc64c350012221e703a2bd728db0b76c9bcca251745e5f"
+  },
+  {
+   "bf16": true,
+   "hidden": 1792,
+   "local_experts": 8,
+   "path": "configs/E=8,N=1792,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "f2aea89792500568fac957f314e9fb1b3e4c4974da5bd8dabcbeea4266153b08"
+  },
+  {
+   "bf16": false,
+   "hidden": 2048,
+   "local_experts": 8,
+   "path": "configs/E=8,N=2048,device_name=NVIDIA_H200,dtype=fp8_w8a8,block_shape=[128,128].json",
+   "selector_suffix": "dtype=fp8_w8a8,block_shape=[128,128]",
+   "sha256": "053a707b646031bccff4c4ed6dc275e88d4800ad20843d2b6ae58479af1338a1"
+  },
+  {
+   "bf16": false,
+   "hidden": 2048,
+   "local_experts": 8,
+   "path": "configs/E=8,N=2048,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "0e56ad44b3da4abf0726e3b9d20459da5cd7a1e971e7910fdd20d4760213dafe"
+  },
+  {
+   "bf16": true,
+   "hidden": 2048,
+   "local_experts": 8,
+   "path": "configs/E=8,N=2048,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "4d748ea2abe2fb1f07d77c4faab07dab3d93de8a44180fb60f4bffe27e41106e"
+  },
+  {
+   "bf16": false,
+   "hidden": 3584,
+   "local_experts": 8,
+   "path": "configs/E=8,N=3584,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "58acdd76b217a3e29abe9b97ba8b96dda2cb029b6ee50e172546f92b63cb8033"
+  },
+  {
+   "bf16": true,
+   "hidden": 3584,
+   "local_experts": 8,
+   "path": "configs/E=8,N=3584,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "69dd599244b22c9c1119be0a7f6e2a839856fc33e6b74057aca47ce68022577e"
+  },
+  {
+   "bf16": false,
+   "hidden": 4096,
+   "local_experts": 8,
+   "path": "configs/E=8,N=4096,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "a9489f6d66c4e1c38a65b2075a698bc7af1545ab25417ebd7991f0448431fbb2"
+  },
+  {
+   "bf16": true,
+   "hidden": 4096,
+   "local_experts": 8,
+   "path": "configs/E=8,N=4096,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "253f9930b840aaacd292a8af396e404d3291972c9a15092a4039da3d2e03135d"
+  },
+  {
+   "bf16": false,
+   "hidden": 7168,
+   "local_experts": 8,
+   "path": "configs/E=8,N=7168,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "83a22fcb8c2f69d68200c27864495b514f82c324cc75b69ae3d33b2154215639"
+  },
+  {
+   "bf16": true,
+   "hidden": 7168,
+   "local_experts": 8,
+   "path": "configs/E=8,N=7168,device_name=NVIDIA_H200.json",
+   "selector_suffix": "",
+   "sha256": "1acb50a2c3cf1d49ff2360d5dde306b67df15cec3a925d616fc2f412f46c6c45"
+  },
+  {
+   "bf16": false,
+   "hidden": 8192,
+   "local_experts": 8,
+   "path": "configs/E=8,N=8192,device_name=NVIDIA_H200,dtype=fp8_w8a8.json",
+   "selector_suffix": "dtype=fp8_w8a8",
+   "sha256": "5902caba09cace54346af7f537ee359511ed1bac09e7a0df54fbff9e2a7a3417"
+  }
+ ],
+ "compile_metadata": [
+  {
+   "N": 256,
+   "config_id": "7c9bc8875cc45339",
+   "dtype": "bf16",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 32,
+    "BLOCK_SIZE_N": 64,
+    "GROUP_SIZE_M": 1,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 71,
+     "representative_tokens": 33,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 49152,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 78,
+     "representative_tokens": 33,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 49152,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 256,
+   "config_id": "9259220ceec2f232",
+   "dtype": "bf16",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 64,
+    "BLOCK_SIZE_M": 64,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 1,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 122,
+     "representative_tokens": 97,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 73728,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 126,
+     "representative_tokens": 97,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 73728,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 256,
+   "config_id": "a8583870b74fbeef",
+   "dtype": "bf16",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 64,
+    "BLOCK_SIZE_M": 32,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 1,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 102,
+     "representative_tokens": 65,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 40960,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 101,
+     "representative_tokens": 65,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 40960,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 256,
+   "config_id": "c3975a207474fbb4",
+   "dtype": "bf16",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 16,
+    "BLOCK_SIZE_N": 64,
+    "GROUP_SIZE_M": 1,
+    "SPLIT_K": 1,
+    "num_stages": 4,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 63,
+     "representative_tokens": 1,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 61440,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 64,
+     "representative_tokens": 1,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 61440,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 256,
+   "config_id": "ed62c636ab061e17",
+   "dtype": "bf16",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 64,
+    "BLOCK_SIZE_M": 64,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 1,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 8
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 8,
+     "registers_per_thread": 64,
+     "representative_tokens": 129,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 73728,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 256,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 8,
+     "registers_per_thread": 72,
+     "representative_tokens": 129,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 73728,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 256,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 256,
+   "config_id": "f985847c7ac02e66",
+   "dtype": "bf16",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 64,
+    "BLOCK_SIZE_M": 128,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 1,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 8
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 8,
+     "registers_per_thread": 116,
+     "representative_tokens": 513,
+     "resident_ctas_per_sm": 2,
+     "shared_memory_bytes_per_cta": 98304,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 256,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 8,
+     "registers_per_thread": 116,
+     "representative_tokens": 513,
+     "resident_ctas_per_sm": 2,
+     "shared_memory_bytes_per_cta": 98304,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 256,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 512,
+   "config_id": "044128e269addcf1",
+   "dtype": "bf16",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 64,
+    "BLOCK_SIZE_M": 64,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 1,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 8
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 8,
+     "registers_per_thread": 64,
+     "representative_tokens": 129,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 73728,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 256,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 8,
+     "registers_per_thread": 72,
+     "representative_tokens": 129,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 73728,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 256,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 512,
+   "config_id": "30f1d8a498e5a9b2",
+   "dtype": "bf16",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 64,
+    "BLOCK_SIZE_M": 32,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 1,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 102,
+     "representative_tokens": 65,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 40960,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 101,
+     "representative_tokens": 65,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 40960,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 512,
+   "config_id": "4be5557a660a419d",
+   "dtype": "bf16",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 64,
+    "BLOCK_SIZE_M": 64,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 1,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 122,
+     "representative_tokens": 97,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 73728,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 126,
+     "representative_tokens": 97,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 73728,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 512,
+   "config_id": "b0c9ea7b32fc67af",
+   "dtype": "bf16",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 32,
+    "BLOCK_SIZE_N": 64,
+    "GROUP_SIZE_M": 1,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 71,
+     "representative_tokens": 33,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 49152,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 78,
+     "representative_tokens": 33,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 49152,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 512,
+   "config_id": "d5ca41f6ff7c612f",
+   "dtype": "bf16",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 16,
+    "BLOCK_SIZE_N": 64,
+    "GROUP_SIZE_M": 1,
+    "SPLIT_K": 1,
+    "num_stages": 4,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 63,
+     "representative_tokens": 1,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 61440,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 64,
+     "representative_tokens": 1,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 61440,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 512,
+   "config_id": "ddc844b9d656920a",
+   "dtype": "bf16",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 64,
+    "BLOCK_SIZE_M": 128,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 1,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 8
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 8,
+     "registers_per_thread": 116,
+     "representative_tokens": 513,
+     "resident_ctas_per_sm": 2,
+     "shared_memory_bytes_per_cta": 98304,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 256,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 8,
+     "registers_per_thread": 116,
+     "representative_tokens": 513,
+     "resident_ctas_per_sm": 2,
+     "shared_memory_bytes_per_cta": 98304,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 256,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 256,
+   "config_id": "12974297821ec13c",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 64,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 16,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 236,
+     "representative_tokens": 3585,
+     "resident_ctas_per_sm": 2,
+     "shared_memory_bytes_per_cta": 74240,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 237,
+     "representative_tokens": 3585,
+     "resident_ctas_per_sm": 2,
+     "shared_memory_bytes_per_cta": 74240,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 256,
+   "config_id": "12d9d4bdf00fb2ff",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 16,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 16,
+    "SPLIT_K": 1,
+    "num_stages": 4,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 1,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 55808,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 1,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 55808,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 256,
+   "config_id": "35591cb2c794b91b",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 16,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 64,
+    "SPLIT_K": 1,
+    "num_stages": 4,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 4,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 55808,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 4,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 55808,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 256,
+   "config_id": "50e8c1da81dc66d8",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 16,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 64,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 41,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 37376,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 41,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 37376,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 256,
+   "config_id": "63d65789df08a862",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 16,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 16,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 13,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 37376,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 13,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 37376,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 256,
+   "config_id": "65c0c8e5705f60f2",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 16,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 32,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 113,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 37376,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 113,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 37376,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 256,
+   "config_id": "b336fde8d25c71c0",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 16,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 16,
+    "SPLIT_K": 1,
+    "num_stages": 5,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 5,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 29,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 74240,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 5,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 29,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 74240,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 256,
+   "config_id": "bc3c0c641b7ec1b3",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 64,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 32,
+    "SPLIT_K": 1,
+    "num_stages": 4,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 236,
+     "representative_tokens": 769,
+     "resident_ctas_per_sm": 2,
+     "shared_memory_bytes_per_cta": 98816,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 237,
+     "representative_tokens": 769,
+     "resident_ctas_per_sm": 2,
+     "shared_memory_bytes_per_cta": 98816,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 512,
+   "config_id": "0e0b351e3086258f",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 16,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 16,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 4,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 37376,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 4,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 37376,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 512,
+   "config_id": "32e1b6206e8cd459",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 16,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 16,
+    "SPLIT_K": 1,
+    "num_stages": 4,
+    "num_warps": 8
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 4,
+     "num_warps": 8,
+     "registers_per_thread": 80,
+     "representative_tokens": 2,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 55296,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 256,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 4,
+     "num_warps": 8,
+     "registers_per_thread": 76,
+     "representative_tokens": 2,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 55296,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 256,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 512,
+   "config_id": "57bc196faf4fc400",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 64,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 32,
+    "SPLIT_K": 1,
+    "num_stages": 4,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 236,
+     "representative_tokens": 769,
+     "resident_ctas_per_sm": 2,
+     "shared_memory_bytes_per_cta": 98816,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 237,
+     "representative_tokens": 769,
+     "resident_ctas_per_sm": 2,
+     "shared_memory_bytes_per_cta": 98816,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 512,
+   "config_id": "96f97a9b394c141b",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 16,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 32,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 7,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 37376,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 7,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 37376,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 512,
+   "config_id": "a2b5ff407c7333d6",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 32,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 32,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 160,
+     "representative_tokens": 385,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 41472,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 159,
+     "representative_tokens": 385,
+     "resident_ctas_per_sm": 3,
+     "shared_memory_bytes_per_cta": 41472,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 512,
+   "config_id": "c707ac95391bd157",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 16,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 16,
+    "SPLIT_K": 1,
+    "num_stages": 4,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 21,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 55808,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 21,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 55808,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 512,
+   "config_id": "cb47dc9924056440",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 16,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 1,
+    "SPLIT_K": 1,
+    "num_stages": 3,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 1,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 37376,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 3,
+     "num_warps": 4,
+     "registers_per_thread": 100,
+     "representative_tokens": 1,
+     "resident_ctas_per_sm": 4,
+     "shared_memory_bytes_per_cta": 37376,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  },
+  {
+   "N": 512,
+   "config_id": "d26bcbdc1237b406",
+   "dtype": "fp8_w8a8",
+   "kernel_config": {
+    "BLOCK_SIZE_K": 128,
+    "BLOCK_SIZE_M": 64,
+    "BLOCK_SIZE_N": 128,
+    "GROUP_SIZE_M": 16,
+    "SPLIT_K": 1,
+    "num_stages": 4,
+    "num_warps": 4
+   },
+   "stages": {
+    "w1": {
+     "mul_routed_weight": false,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 236,
+     "representative_tokens": 1793,
+     "resident_ctas_per_sm": 2,
+     "shared_memory_bytes_per_cta": 98816,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 8
+    },
+    "w2": {
+     "mul_routed_weight": true,
+     "num_stages": 4,
+     "num_warps": 4,
+     "registers_per_thread": 237,
+     "representative_tokens": 1793,
+     "resident_ctas_per_sm": 2,
+     "shared_memory_bytes_per_cta": 98816,
+     "spilled_registers": 0,
+     "target": "GPUTarget(backend='cuda', arch=90, warp_size=32)",
+     "threads_per_cta": 128,
+     "top_k": 1
+    }
+   }
+  }
+ ],
+ "deepseek_v3_selection": [
+  {
+   "block_shape": [
+    128,
+    128
+   ],
+   "config_file": {
+    "bundled_file_exists": true,
+    "file_name": "E=256,N=512,device_name=NVIDIA_H200,dtype=fp8_w8a8,block_shape=[128,128].json",
+    "path": "configs/E=256,N=512,device_name=NVIDIA_H200,dtype=fp8_w8a8,block_shape=[128,128].json",
+    "sha256": "a6369986978dd55c750a10086a41d843b64703d3f863e4ea1d3f95444b2458d9",
+    "tuned_batch_keys": [
+     1,
+     2,
+     4,
+     8,
+     16,
+     24,
+     32,
+     48,
+     64,
+     96,
+     128,
+     256,
+     512,
+     1024,
+     1536,
+     2048,
+     3072,
+     4096
+    ]
+   },
+   "config_resolution": "bundled_tuned_config_nearest_key",
+   "dtype": "fp8_w8a8",
+   "expert_parallel_size": 1,
+   "global_experts": 256,
+   "hidden": 7168,
+   "intermediate_per_rank_N": 512,
+   "local_experts": 256,
+   "m_domain": [
+    1,
+    32768
+   ],
+   "selection_ranges": [
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "cb47dc9924056440",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 1,
+     "m_min": 1
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 4,
+      "num_warps": 8
+     },
+     "config_id": "32e1b6206e8cd459",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 8
+     },
+     "m_max": 3,
+     "m_min": 2
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 256,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "0e0b351e3086258f",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 6,
+     "m_min": 4
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 32,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "96f97a9b394c141b",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 32,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 12,
+     "m_min": 7
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "cb47dc9924056440",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 20,
+     "m_min": 13
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 256,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "config_id": "c707ac95391bd157",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "m_max": 28,
+     "m_min": 21
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 256,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "cb47dc9924056440",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 80,
+     "m_min": 29
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 256,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 32,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "96f97a9b394c141b",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 32,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 112,
+     "m_min": 81
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 256,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "0e0b351e3086258f",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 192,
+     "m_min": 113
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "cb47dc9924056440",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 384,
+     "m_min": 193
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 32,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 32,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "a2b5ff407c7333d6",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 32,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 32,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 768,
+     "m_min": 385
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 32,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "config_id": "57bc196faf4fc400",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 32,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "m_max": 1792,
+     "m_min": 769
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 256,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "config_id": "d26bcbdc1237b406",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "m_max": 2560,
+     "m_min": 1793
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "config_id": "d26bcbdc1237b406",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "m_max": 3584,
+     "m_min": 2561
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 256,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "config_id": "d26bcbdc1237b406",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "m_max": 32768,
+     "m_min": 3585
+    }
+   ],
+   "tensor_parallel_size": 4,
+   "top_k": 8
+  },
+  {
+   "block_shape": null,
+   "config_file": {
+    "bundled_file_exists": false,
+    "file_name": "E=256,N=512,device_name=NVIDIA_H200.json"
+   },
+   "config_resolution": "get_default_config",
+   "dtype": "bf16",
+   "expert_parallel_size": 1,
+   "global_experts": 256,
+   "hidden": 7168,
+   "intermediate_per_rank_N": 512,
+   "local_experts": 256,
+   "m_domain": [
+    1,
+    32768
+   ],
+   "selection_ranges": [
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 64,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "config_id": "d5ca41f6ff7c612f",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 64,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "m_max": 32,
+     "m_min": 1
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 32,
+      "BLOCK_SIZE_N": 64,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "b0c9ea7b32fc67af",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 32,
+      "BLOCK_SIZE_N": 64,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 64,
+     "m_min": 33
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 32,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "30f1d8a498e5a9b2",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 32,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 96,
+     "m_min": 65
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "4be5557a660a419d",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 128,
+     "m_min": 97
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 8
+     },
+     "config_id": "044128e269addcf1",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 8
+     },
+     "m_max": 512,
+     "m_min": 129
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 128,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 8
+     },
+     "config_id": "ddc844b9d656920a",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 128,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 8
+     },
+     "m_max": 32768,
+     "m_min": 513
+    }
+   ],
+   "tensor_parallel_size": 4,
+   "top_k": 8
+  },
+  {
+   "block_shape": [
+    128,
+    128
+   ],
+   "config_file": {
+    "bundled_file_exists": true,
+    "file_name": "E=256,N=256,device_name=NVIDIA_H200,dtype=fp8_w8a8,block_shape=[128,128].json",
+    "path": "configs/E=256,N=256,device_name=NVIDIA_H200,dtype=fp8_w8a8,block_shape=[128,128].json",
+    "sha256": "573d60f98b5359cbf9ef7118691ecbce1265472a2768cb073d3d8c323b9127d9",
+    "tuned_batch_keys": [
+     1,
+     2,
+     4,
+     8,
+     16,
+     24,
+     32,
+     48,
+     64,
+     96,
+     128,
+     256,
+     512,
+     1024,
+     1536,
+     2048,
+     3072,
+     4096
+    ]
+   },
+   "config_resolution": "bundled_tuned_config_nearest_key",
+   "dtype": "fp8_w8a8",
+   "expert_parallel_size": 1,
+   "global_experts": 256,
+   "hidden": 7168,
+   "intermediate_per_rank_N": 256,
+   "local_experts": 256,
+   "m_domain": [
+    1,
+    32768
+   ],
+   "selection_ranges": [
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "config_id": "12d9d4bdf00fb2ff",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "m_max": 3,
+     "m_min": 1
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 64,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "config_id": "35591cb2c794b91b",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 64,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "m_max": 6,
+     "m_min": 4
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "config_id": "12d9d4bdf00fb2ff",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "m_max": 12,
+     "m_min": 7
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "63d65789df08a862",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 20,
+     "m_min": 13
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "config_id": "12d9d4bdf00fb2ff",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "m_max": 28,
+     "m_min": 21
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 5,
+      "num_warps": 4
+     },
+     "config_id": "b336fde8d25c71c0",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 5,
+      "num_warps": 4
+     },
+     "m_max": 40,
+     "m_min": 29
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 64,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "50e8c1da81dc66d8",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 64,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 80,
+     "m_min": 41
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "63d65789df08a862",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 112,
+     "m_min": 81
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 32,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "65c0c8e5705f60f2",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 32,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 384,
+     "m_min": 113
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "63d65789df08a862",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 768,
+     "m_min": 385
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 32,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "config_id": "bc3c0c641b7ec1b3",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 32,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "m_max": 3584,
+     "m_min": 769
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "12974297821ec13c",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 16,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 32768,
+     "m_min": 3585
+    }
+   ],
+   "tensor_parallel_size": 8,
+   "top_k": 8
+  },
+  {
+   "block_shape": null,
+   "config_file": {
+    "bundled_file_exists": false,
+    "file_name": "E=256,N=256,device_name=NVIDIA_H200.json"
+   },
+   "config_resolution": "get_default_config",
+   "dtype": "bf16",
+   "expert_parallel_size": 1,
+   "global_experts": 256,
+   "hidden": 7168,
+   "intermediate_per_rank_N": 256,
+   "local_experts": 256,
+   "m_domain": [
+    1,
+    32768
+   ],
+   "selection_ranges": [
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 64,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "config_id": "c3975a207474fbb4",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 16,
+      "BLOCK_SIZE_N": 64,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 4,
+      "num_warps": 4
+     },
+     "m_max": 32,
+     "m_min": 1
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 32,
+      "BLOCK_SIZE_N": 64,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "7c9bc8875cc45339",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 128,
+      "BLOCK_SIZE_M": 32,
+      "BLOCK_SIZE_N": 64,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 64,
+     "m_min": 33
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 32,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "a8583870b74fbeef",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 32,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 96,
+     "m_min": 65
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "config_id": "9259220ceec2f232",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 4
+     },
+     "m_max": 128,
+     "m_min": 97
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 8
+     },
+     "config_id": "ed62c636ab061e17",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 64,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 8
+     },
+     "m_max": 512,
+     "m_min": 129
+    },
+    {
+     "config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 128,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 8
+     },
+     "config_id": "f985847c7ac02e66",
+     "kernel_config": {
+      "BLOCK_SIZE_K": 64,
+      "BLOCK_SIZE_M": 128,
+      "BLOCK_SIZE_N": 128,
+      "GROUP_SIZE_M": 1,
+      "SPLIT_K": 1,
+      "num_stages": 3,
+      "num_warps": 8
+     },
+     "m_max": 32768,
+     "m_min": 513
+    }
+   ],
+   "tensor_parallel_size": 8,
+   "top_k": 8
+  }
+ ],
+ "deployment": {
+  "device_name": "NVIDIA H200",
+  "python_environment": "/capture-public/envs/vllm024",
+  "torch_version": "2.11.0+cu129",
+  "triton_version": "3.6.0",
+  "vllm_tuned_config_folder": null,
+  "vllm_version": "0.24.0"
+ },
+ "distinct_kernel_config_count": 28,
+ "evidence_kind": "installed_runtime_source_and_bundled_tuned_config_with_triton_compile_metadata",
+ "forward_scope": {
+  "also_unrepresented": "explicit get_config override and any VLLM_TUNED_CONFIG_FOLDER candidate",
+  "status": "supported_for_listed_deepseek_v3_shapes",
+  "supported": "DeepSeek-V3 routed experts E=256 top-8 hidden 7168 with N=2048/TP (TP4 N=512, TP8 N=256, no EP), fp8_w8a8 block [128,128] via the bundled NVIDIA_H200 tuned config and BF16 via get_default_config (no bundled E=256 BF16 file), M = 1..32768 tokens",
+  "unsupported": "other (E, N, dtype) domains are not enumerated here; any BF16 domain listed in bundled_bf16_config_domains selects a tuned file instead of get_default_config"
+ },
+ "hardware_execution_performed": true,
+ "hardware_id": "nvidia_h200",
+ "production_or_evaluation_duration_consumed": false,
+ "provenance": {
+  "clock_stats": "not applicable: no timed capture",
+  "derivation": "microbench/nvidia_h200/operators/fused_moe/derive_fused_moe_tuned_config_reference.py",
+  "derivation_sha256": "6552548bdc04f9a2c87366bbd812e3f7d0a7e906fb22dcecbec84e99ca0f54e8",
+  "device": "h200-capture-host GPU 0 (CUDA_VISIBLE_DEVICES=0)",
+  "git_commit": "eb6e819d712f06b3d068705afe44d5f4edb79b15",
+  "raw_local": "profiler_output/microbench/nvidia_h200/wp0_gemm_launch/moe_configs_20260925.json",
+  "raw_remote": "h200-capture-host:/capture-public/h200_microbench/wp0_launch/moe_configs_20260925.json",
+  "raw_sha256": "2ae3da4a61fbf9e402575b2b5ebd5994e6d5dd3f7fd0cc4f865a216c28dbd577",
+  "runner": "microbench/nvidia_h200/operators/fused_moe/fused_moe_tuned_config_vllm_0_24_0_runner.py",
+  "runner_sha256": "eb4aa08e8248947deeeea7636fa1dc07708925dd9cb26f6665e7e1c392b195b2",
+  "timing_captured": false
+ },
+ "schema_version": 1,
+ "source": {
+  "device_name_rule": "get_config_file_name maps any device whose name contains the token H200 to NVIDIA_H200",
+  "path": "/capture-public/envs/vllm024/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/fused_moe.py",
+  "resolution_precedence": "get_config override, VLLM_TUNED_CONFIG_FOLDER candidate, bundled config candidate (nearest tuned batch key), get_default_config",
+  "sha256": "57a3f7efc9624f5c437908892ed5109a81ba0dbf45e1c6ac8a1438a23131f207"
+ }
+}

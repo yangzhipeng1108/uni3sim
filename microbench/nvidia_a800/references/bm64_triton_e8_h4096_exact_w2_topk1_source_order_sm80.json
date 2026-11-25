@@ -1,0 +1,68 @@
+{
+  "schema": "nvidia_a800_bm64_triton_e8_h4096_exact_w2_topk1_source_order_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "source_baseline_commit": "0c530a00a9f7c1135210e99b843cce3f8250e3ac",
+  "runner": "microbench/nvidia_a800/operators/fused_moe/fused_moe_triton_operand_stream_runner.py",
+  "runner_sha256": "4b5410b9eebea40cbe1010283539e8d774696a286780ee596a34ecac0dd449b8",
+  "vllm_source": "/capture-workspace/vllm_src_3ver/a800/vllm/model_executor/layers/fused_moe/fused_moe.py",
+  "vllm_source_sha256": "8be8477a653894194ef5c5095afc287b0409a51d980590a36dd43c8471f6740e",
+  "probe_contract": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_n": 64,
+    "tile_k": 32,
+    "group_size_m": 8,
+    "threads_per_cta": 128,
+    "experts": 8,
+    "topk": 2,
+    "source_topk": 1,
+    "mul_routed_weight": true,
+    "production_k": 14336,
+    "production_n": 4096,
+    "adjacent_n": [4032, 4160],
+    "source_depths": [
+      {"tokens": 16384, "source_rows": 32768, "active_m_tiles": 515, "maximum_m_tiles": 520, "tokens_per_expert_source": "exact canonical launch observation"},
+      {"tokens": 32768, "source_rows": 65536, "active_m_tiles": 1027, "maximum_m_tiles": 1032, "tokens_per_expert_source": "exact canonical launch observation"}
+    ]
+  },
+  "static_selection": {
+    "source": "fused_experts_impl invokes W2 with not apply_router_weight_on_input and source_topk=1; its frozen default is false, so W2 selects MUL_ROUTED_WEIGHT",
+    "projection_tiles": [448, 64],
+    "ordered_m_tile_census_sources": {
+      "tokens16384": "kernel_dataset/nvidia_a800/fused_moe.json.zst#FUSEDMOE_TOK16384_E8_TOPK2_H4096_INT14336/op_info/Attr/tok_per_expert",
+      "tokens32768": "kernel_dataset/nvidia_a800/fused_moe.json.zst#FUSEDMOE_TOK32768_E8_TOPK2_H4096_INT14336/op_info/Attr/tok_per_expert"
+    }
+  },
+  "fresh_process_cell_spread": [
+    {"tokens": 16384, "n": 4032, "device_id": 2, "median_logical_byte_capacity_per_s": 1664740667442.007, "range_over_median": 0.00025845482100612954},
+    {"tokens": 16384, "n": 4032, "device_id": 6, "median_logical_byte_capacity_per_s": 1661543907885.2961, "range_over_median": 0.00074515417559138},
+    {"tokens": 16384, "n": 4160, "device_id": 2, "median_logical_byte_capacity_per_s": 1664046299489.4287, "range_over_median": 0.00029206176536309146},
+    {"tokens": 16384, "n": 4160, "device_id": 6, "median_logical_byte_capacity_per_s": 1661850109977.998, "range_over_median": 0.00022232814205402015},
+    {"tokens": 32768, "n": 4032, "device_id": 2, "median_logical_byte_capacity_per_s": 1636012041763.779, "range_over_median": 0.00016245321836881596},
+    {"tokens": 32768, "n": 4032, "device_id": 6, "median_logical_byte_capacity_per_s": 1638640251158.3071, "range_over_median": 0.0003467299244902791},
+    {"tokens": 32768, "n": 4160, "device_id": 2, "median_logical_byte_capacity_per_s": 1634994402450.8403, "range_over_median": 0.00027371706344422956},
+    {"tokens": 32768, "n": 4160, "device_id": 6, "median_logical_byte_capacity_per_s": 1636954926275.7676, "range_over_median": 0.0002466815914475002}
+  ],
+  "captures": [
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e8_h4096_exact_w2_topk1_0c530a00_20260915_r1/tok16384_n4032_d2/result.json", "sha256": "b0a3c15d27bd157f03cbf509056aa330345bb20152f846237bedcd9486e718a2"},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e8_h4096_exact_w2_topk1_0c530a00_20260915_r1/tok16384_n4032_d6/result.json", "sha256": "5d0597dad36ccb3e858bfa64977437418ac5a125282ddcdf312a89d9a0942bc5"},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e8_h4096_exact_w2_topk1_0c530a00_20260915_r1/tok16384_n4160_d2/result.json", "sha256": "61bb74cfc88b1ef214794293fcb16b8d109cc2d036b4762d542a72a6b1a73f16"},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e8_h4096_exact_w2_topk1_0c530a00_20260915_r1/tok16384_n4160_d6/result.json", "sha256": "4e4af72aa49ac0eb197ee648cc78b6a08076c708ad3269426480a572f0d44864"},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e8_h4096_exact_w2_topk1_0c530a00_20260915_r1/tok32768_n4032_d2/result.json", "sha256": "5b27ce4d225f6a1d6795529cdd23ac2156d767ab0fa071a6230788842a6e29d1"},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e8_h4096_exact_w2_topk1_0c530a00_20260915_r1/tok32768_n4032_d6/result.json", "sha256": "7f84035f432948c65bf3e60b57ae9732d271032a7cef3a829786dff3d690b322"},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e8_h4096_exact_w2_topk1_0c530a00_20260915_r1/tok32768_n4160_d2/result.json", "sha256": "5031b45a0d96b2547d526867abb8b56325d80523f49288461f4d4b0bd2fd788a"},
+    {"path": "profiler_output/microbench/nvidia_a800/bm64_e8_h4096_exact_w2_topk1_0c530a00_20260915_r1/tok32768_n4160_d6/result.json", "sha256": "520660369995919e8ec12de65009e151af0af3e568dc6875b4cc50fa69cf7c7f"}
+  ],
+  "selected_services": {
+    "tokens16384": {"selection_rule": "minimum fresh-process cell median across exact source order, both adjacent non-production N tile counts, and idle devices 2 and 6", "logical_byte_capacity_per_s": 1661543907885.2961},
+    "tokens32768": {"selection_rule": "minimum fresh-process cell median across exact source order, both adjacent non-production N tile counts, and idle devices 2 and 6", "logical_byte_capacity_per_s": 1634994402450.8403}
+  },
+  "mechanism": "production_source_triton_grouped_matrix_operand_hmma_and_w2_router_weight_pipeline_with_exact_e8_h4096_source_order",
+  "allowed_conclusion": "Only BF16 BM64/BN64/BK32/GSM8 E8 W2 launches with source_topk=1, MUL_ROUTED_WEIGHT, projection tile class (448,64), and either recorded exact active/padded M topology with its ordered per-expert census use their corresponding conservative combined operand service.",
+  "excluded_conclusions": ["complete production MoE operator duration", "production K/N duration", "per-shape residual correction", "W1", "other M topologies", "other routing orders with the same aggregate M topology", "other E8 projection tile classes", "MUL_ROUTED_WEIGHT=false"],
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true
+}

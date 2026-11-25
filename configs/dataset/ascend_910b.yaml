@@ -1,0 +1,27 @@
+schema_version: 1
+hardware_id: ascend_910b
+
+kernel:
+  pipeline:
+    workloads: [gemm, flash_attn, fused_moe, vector]
+    settings:
+      gpu_device_id: 0  # Overridden by ASCEND_RT_VISIBLE_DEVICES
+      aic_metrics: PipeUtilization,ArithmeticUtilization,Memory,L2Cache
+      timeline_aic_metrics: PipeUtilization
+      timeline_duration_seconds: 8
+      warmup: 20
+      fa_launch_skip: 2
+      vector_launch_skip: 6
+      rope_launch_skip: 2
+      kernel_name_filter:
+        gemm: null
+        flash_attn: FusedInferAttentionScore
+        fused_moe: null
+        vector: null
+      moe_launch_count: 60
+      moe_warmup_skip: 42
+
+serving:
+  suites:
+    sharegpt:
+      historical_alignment_root: profiler_output/serving/ascend_910b/sharegpt_raw

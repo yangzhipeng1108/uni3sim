@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "307c7887f9bf34108f7c28bea6030773f5f626e1",
+  "capture_source_snapshot": "/capture-workspace/execution_snapshots/grouped_operand_pair_307c7887_20260830",
+  "service": "grouped_fused_moe_operand_read",
+  "service_time_unit": "ns_per_128x64_A_plus_64x256_B_pair_per_aic",
+  "scope": "24_aic_full_chip_l2_resident",
+  "l2_resident_pair_service": {
+    "active_aic_groups": 24,
+    "a_rows": 128,
+    "a_columns": 64,
+    "a_bytes": 16384,
+    "b_rows": 64,
+    "b_columns": 256,
+    "b_bytes": 32768,
+    "pair_bytes": 49152,
+    "a_median_ns": 109.00390625,
+    "b_median_ns": 184.641927083,
+    "pair_median_ns": 293.619791667,
+    "pair_to_sum_ratio": 0.9999113160717983,
+    "pair_max_relative_median_deviation": 0.0017294900221709855,
+    "logical_byte_capacity_per_s": 4017603831481.026
+  },
+  "dram_miss_operand_services": {
+    "active_aic_groups": 24,
+    "l2_capacity_bytes": 201326592,
+    "cold_footprint_bytes": 536870912,
+    "a_bytes": 16384,
+    "b_bytes": 32768,
+    "pair_bytes": 49152,
+    "a_median_ns": 260.107369449,
+    "b_median_ns": 511.439726696,
+    "pair_median_ns": 780.33625731,
+    "pair_to_sum_ratio": 1.0113916068233744,
+    "a_logical_byte_capacity_per_s": 1511744941456.1821,
+    "b_logical_byte_capacity_per_s": 1537682661220.9097,
+    "l2_resident_control_pair_median_ns": 292.16374269,
+    "cold_to_l2_resident_control_ratio": 2.670886709,
+    "a_max_relative_range": 0.004126480374393712,
+    "b_max_relative_range": 0.004869460273479175
+  },
+  "measurement": {
+    "device_id": 0,
+    "owner": "kernel_accuracy_goal",
+    "footprint_bytes": 67108864,
+    "independent_runs": 5,
+    "iterations_per_run": 1024,
+    "command": "./aic_mte2_nd2nz --batch 64 128 64 1 24 1024 64 256 1 24 1024 128 64 3 24 1024",
+    "raw_path": "/capture-workspace/execution_snapshots/grouped_operand_pair_307c7887_20260830/raw_l2resident.csv",
+    "raw_sha256": "e0d7b3c9c7d3b9a9d3ac5d1df3dc96050e7c48514b9347a377957d497460e4a4",
+    "benchmark_binary_sha256": "9cab01b1bdbfa40825d68ba8dc892170a5106c98c42f3d8e6d62f2f3ae93b72f",
+    "benchmark_source_sha256": {
+      "aic_mte2_nd2nz_kernel.cpp": "e690fcb5b68a83cdcc067ddf8bcd582b03a798bf41e1f3783690cd1d800bd251",
+      "aic_mte2_nd2nz_main.cpp": "efe98b9d6f6013e937faf68e3d6aa2ade1de8ced3ae7631ee36752f09ce838ec",
+      "CMakeLists.txt": "8ec8d8ecf509a57c6535110188891d4f467c78f0f351aa24677198e3197ef69e"
+    }
+  },
+  "dram_miss_measurement": {
+    "device_id": 7,
+    "owner": "kernel_accuracy_goal",
+    "source_snapshot": "/capture-workspace/execution_snapshots/kernel_accuracy_307c7887_mte2_pair_cold_20260830",
+    "independent_runs_per_cell": 5,
+    "commands": {
+      "l2_resident_control": "./build/aic_mte2_nd2nz --batch 64 [128 64 3 24 57]x5",
+      "cold_pair": "./build/aic_mte2_nd2nz --batch 512 [128 64 3 24 456]x5",
+      "cold_a": "./build/aic_mte2_nd2nz --batch 512 [128 64 2 24 1366]x5",
+      "cold_b": "./build/aic_mte2_nd2nz --batch 512 [64 256 2 24 683]x5"
+    },
+    "raw_sha256": {
+      "raw_64.csv": "84310ba3f6d545d3836a5a289eff5dd057cd113d927d71d5bc31b88373bf76f9",
+      "raw_512.csv": "48f204008100513472d1550edd4063026d1e8e9e0e17e7821fcd86b8df90a8b5",
+      "raw_512_a.csv": "2017c0809c7c871ed2cec089b80185b4187792a8eff715e173a1a8ffd0f9c836",
+      "raw_512_b.csv": "bb083407deb910ed94831815a8a84982cb40a5301a30717085773f1953ce3ebc"
+    },
+    "benchmark_binary_sha256": "98a9c9090f9a9f882bfba452983ca06726b698b10b1cf6702c9561cad7e837e6",
+    "benchmark_source_sha256": {
+      "aic_mte2_nd2nz_kernel.cpp": "032bd494392fee643224572aaf6d498e1b16844add61bd7346631a9c921d0f48",
+      "aic_mte2_nd2nz_main.cpp": "9ffdcad0544a0b0252639fa4efd110d64efb1706262069cbab39e38bcdecca28",
+      "CMakeLists.txt": "8ec8d8ecf509a57c6535110188891d4f467c78f0f351aa24677198e3197ef69e"
+    },
+    "production_or_evaluation_duration_consumed": false
+  },
+  "production_source_sha256": {
+    "GroupedMatmul_0d2d43751f81d7f29646a862147967c9.o": "b59e60a73d526d979734bfa60f5f53244054d4cf0dbcddad51d5958671be6188",
+    "GroupedMatmul_0d2d43751f81d7f29646a862147967c9.json": "3047760029589240cdb4ae2e6c33488ba4236da5d772c6bcaa44dbb71cb1245f",
+    "grouped_matmul.cpp": "8bafe5cb9007f1a6b6fa52521504e2251dde2bfd02c81f8a1aa24d01fb1c408c",
+    "grouped_matmul.h": "d06679b4a391c032665f11fb3700c7478726c62e4230a0029d4286e086b209ed",
+    "grouped_matmul_utils.h": "377bd1fc2e9858e1809c6dca5320fe2e25150749c6644a41b958c2562c6149e4",
+    "scheduler_mdl_common.h": "e7000e0e72114a6a641e020d5ebcfab8a087335376549af3726b680baf857d7e",
+    "scheduler_mdl_base.h": "241c5f1ec362e1f7755ac9e5d1d8cc18490f28ab8e04631f94d32999e2db5526",
+    "copy_cube_in_mdl_base.h": "9ce06abd8b29a222b9f32477ace2c872d37e720cdc761990447f45d236cbb55c",
+    "cube_in_buffer_utils.h": "415769876e77a32713e9e437d09870ae653bebe06eeb632c68610b40dff335cc",
+    "kernel_tiling.h": "0f50fe7d81d4e01f80b62c19d816ad28151ac1502f708b70454efc8599ddaf44"
+  },
+  "production_tiling_capture": {
+    "snapshot": "/capture-workspace/execution_snapshots/kernel_accuracy_307c7887_gemm_tiling_20260830",
+    "interposer_source": "microbench/ascend_910b/operators/fused_moe/tiling_capture_interposer.cpp",
+    "interposer_source_sha256": "ccb147157b1a1ce3ee7229edd89cff1527d0440cc5c018200f7a0886a328d756",
+    "interposer_binary_sha256": "4eab4bd176de043ff86a0443274ddaabcb31bd49d3f94c6b532cfb9f54d81953",
+    "aclrt_header_sha256": "8cce153ef9eb5ed49b0f5bfb5608de706e8d466c836ad2eb50745ec2e8629bc9",
+    "record_identity": {
+      "block_dim": 24,
+      "host_args_bytes": 2480,
+      "placeholder_count": 9,
+      "placeholder_bytes": 72,
+      "valid_placeholder_sha256": "37f926ea49f9f4010b4d3acfc34ababa97d2e239f09cd5e902371b350cd30021",
+      "cached_placeholder_sha256": "d45ada646275c27cb5cad23343794aebe94c1a2073fc42cd202e9beeba91babe"
+    },
+    "decoder": {
+      "placeholder_abi": "aclrtPlaceHolderInfo contains uint32 addrOffset followed by uint32 dataOffset",
+      "valid_placeholder_pairs": [[8, 2128], [16, 2192], [24, 2256], [32, 2288], [40, 2320], [48, 2352], [56, 2384], [80, 2416], [96, 112]],
+      "tiling_argument_pointer_offset": 96,
+      "inline_tiling_storage_offset": 112,
+      "next_inline_object_offset": 2128,
+      "inline_tiling_storage_bytes": 2016,
+      "tcube_tiling_offset_in_storage": 1672,
+      "tcube_tiling_offset_in_host_args": 1784,
+      "tcube_tiling_bytes": 200,
+      "derivation": "The runtime placeholder ABI proves the inline storage start. The unique 50-int32 TCubeTiling record within that storage is decoded in the exact field order declared by CANN 8.5.1 kernel_tiling.h; usedCoreNum and M/N/Ka/Kb are checked against block_dim and the two projection shapes."
+    },
+    "captures": [
+      {
+        "name": "pilot",
+        "shape": {"tokens": 2048, "experts": 128, "topk": 8, "hidden": 2048, "intermediate": 768, "dtype": "bf16"},
+        "raw_path": "profiler_output/microbench/ascend_910b/grouped_matmul_tiling_pilot_t2048_e128_h2048_i768/raw",
+        "routing_sha256": "b1684547eaa3309b459dcd5eec0ee3a465db1f2314f83005ca720f154b18d910",
+        "valid_sequences": [525, 527, 535, 537, 545, 547, 555, 557, 565, 567, 575, 577, 585, 587, 595, 597],
+        "cached_visibility_sequences": [605, 607, 615, 617, 625, 627],
+        "w1_record": {"sequence": 525, "host_args_sha256": "5449db4c61aaec73043edf5ec54b12d97d4250943fc98472182fddda23f0836d", "inline_storage_sha256": "821f98d99b593d6c440643a0d15352460f01c149026be8d53f8c222bc0ad6aa3", "tcube_tiling_sha256": "6e60aa163054cfd03385c4e0e5f938a12704ae78c961a4e24dbcfc622d36100e", "decoded": {"usedCoreNum": 24, "M": 16384, "N": 1536, "Ka": 2048, "Kb": 2048, "singleCoreM": 16384, "singleCoreN": 256, "singleCoreK": 2048, "baseM": 128, "baseN": 256, "baseK": 64, "depthA1": 8, "depthB1": 8, "stepM": 1, "stepN": 1, "stepKa": 4, "stepKb": 4, "dbL0A": 2, "dbL0B": 2, "dbL0C": 1}},
+        "w2_record": {"sequence": 527, "host_args_sha256": "558d7d0bbc90f6694fc50e404e3a6af14345cb83a327f1b9af049596f7356316", "inline_storage_sha256": "e33ce16238409a74addd63f870ea931030ef2d550a0d760d006e0cb632d13167", "tcube_tiling_sha256": "00cb87d812fe2ecb1a0e024ef8cd069f089df8a4902cf542d478978d9fe50189", "decoded": {"usedCoreNum": 24, "M": 16384, "N": 2048, "Ka": 768, "Kb": 768, "singleCoreM": 16384, "singleCoreN": 256, "singleCoreK": 768, "baseM": 128, "baseN": 256, "baseK": 64, "depthA1": 8, "depthB1": 8, "stepM": 1, "stepN": 1, "stepKa": 4, "stepKb": 4, "dbL0A": 2, "dbL0B": 2, "dbL0C": 1}}
+      },
+      {
+        "name": "high_contribution",
+        "shape": {"tokens": 32768, "experts": 8, "topk": 2, "hidden": 6144, "intermediate": 16384, "dtype": "bf16"},
+        "raw_path": "profiler_output/microbench/ascend_910b/grouped_matmul_tiling_high_t32768_e8_h6144_i16384/raw",
+        "routing_sha256": "fb951b0bb13dd5db90a18a40b8c2607dc3df035904ab287ad077a3efa9e1d41a",
+        "valid_sequences": [47, 49, 57, 59, 67, 69, 77, 79, 87, 89, 97, 99, 107, 109, 117, 119],
+        "cached_visibility_sequences": [127, 129, 137, 139, 147, 149],
+        "w1_record": {"sequence": 47, "host_args_sha256": "4f3c585ce5a7e541ae4d331af1b993f9c3a9b2e6d1ecd77102b69fc4c4580eda", "inline_storage_sha256": "f46f65931abbb66204ed57816e51217e884c961de4367fcbd227a8b77ebced26", "tcube_tiling_sha256": "cdd7856f2bed2d5df5b82528136b1becfe302f4e4bdbe66a5f157c576cb27e8b", "decoded": {"usedCoreNum": 24, "M": 65536, "N": 32768, "Ka": 6144, "Kb": 6144, "singleCoreM": 65536, "singleCoreN": 256, "singleCoreK": 6144, "baseM": 128, "baseN": 256, "baseK": 64, "depthA1": 8, "depthB1": 8, "stepM": 1, "stepN": 1, "stepKa": 4, "stepKb": 4, "dbL0A": 2, "dbL0B": 2, "dbL0C": 1}},
+        "w2_record": {"sequence": 49, "host_args_sha256": "fa09ba804bbec3b8e2bcdb3539d3e671b3d43e05a85d0b079bfa88000d735f27", "inline_storage_sha256": "a8f9ad502398821e242b0caef85279b31bc15b56fb7a9873cef7485687f096a3", "tcube_tiling_sha256": "6ab389450923d0baa93002fb9cc10a6b4f802f1f2c1e15b20cb08369a93166db", "decoded": {"usedCoreNum": 24, "M": 65536, "N": 6144, "Ka": 16384, "Kb": 16384, "singleCoreM": 65536, "singleCoreN": 256, "singleCoreK": 16384, "baseM": 128, "baseN": 256, "baseK": 64, "depthA1": 8, "depthB1": 8, "stepM": 1, "stepN": 1, "stepKa": 4, "stepKb": 4, "dbL0A": 2, "dbL0B": 2, "dbL0C": 1}}
+      },
+      {
+        "name": "tail_control",
+        "shape": {"tokens": 4, "experts": 128, "topk": 8, "hidden": 2048, "intermediate": 768, "dtype": "bf16"},
+        "raw_path": "profiler_output/microbench/ascend_910b/grouped_matmul_tiling_tail_t4_e128_h2048_i768/raw",
+        "routing_sha256": "d31c9b7a60337ae54e8ddd15d21183ee2a20b67d34e827f48844a61cd72b36ef",
+        "valid_sequences": [525, 527, 535, 537, 545, 547, 555, 557, 565, 567, 575, 577, 585, 587, 595, 597],
+        "cached_visibility_sequences": [605, 607, 615, 617, 625, 627],
+        "w1_record": {"sequence": 525, "host_args_sha256": "dd3d1ced969b879c5a7c80b9487a86216ae62bf4eaa3560ff86d07e850980bcd", "inline_storage_sha256": "d8e4f9924c5c98b284a36c7fad9efdf18e4459f452b69495a31910b39a664019", "tcube_tiling_sha256": "0259d9f8af9c9c7fc62c8f1cf1215392a71d480a63fad450658584a058727afc", "decoded": {"usedCoreNum": 24, "M": 32, "N": 1536, "Ka": 2048, "Kb": 2048, "singleCoreM": 32, "singleCoreN": 256, "singleCoreK": 2048, "baseM": 32, "baseN": 256, "baseK": 64, "depthA1": 56, "depthB1": 8, "stepM": 1, "stepN": 1, "stepKa": 28, "stepKb": 4, "dbL0A": 2, "dbL0B": 2, "dbL0C": 1}},
+        "w2_record": {"sequence": 527, "host_args_sha256": "2fd78ed81ddc4044b0b352f9d14067e24bb775f68b14c90c30dcc5aa5b8c9cd6", "inline_storage_sha256": "0bdf30cf77617ce703ae664d6e13ea02157206a02bba1e31a406d29c75d6a10a", "tcube_tiling_sha256": "4e884e315eb9a65e4ee5961d51b4dd1c8e4977bef5fb597c32fee290179fc67f", "decoded": {"usedCoreNum": 24, "M": 32, "N": 2048, "Ka": 768, "Kb": 768, "singleCoreM": 32, "singleCoreN": 256, "singleCoreK": 768, "baseM": 32, "baseN": 256, "baseK": 64, "depthA1": 56, "depthB1": 8, "stepM": 1, "stepN": 1, "stepKa": 28, "stepKb": 4, "dbL0A": 2, "dbL0B": 2, "dbL0C": 1}}
+      }
+    ],
+    "visibility_limit": "Each projection has eight complete warmup records followed by three runtime-cache records. The latter use placeholder dataOffset 464 for the tiling argument instead of the complete 2016-byte inline tiling storage at offset 112, so they cannot be decoded as fresh tiling payloads and are excluded rather than filled or extrapolated."
+  },
+  "mechanism": "source-ordered A1 then B1 ND2NZ operand services on the shared AIC MTE2 producer, followed within each captured stepKa=stepKb=4 extent by scheduler_mdl_base.h SplitPrepare/ SplitA/ SplitB calls that issue LoadToA2 and LoadToB2 L1-to-L0 transfers; dbL0A=dbL0B=2 gives the source two-slot MTE1-to-Cube recurrence, separated by L2-hit versus disjoint full-chip DRAM-miss residency",
+  "composition": "source-derived full A and B descriptors use exact services selected by a physical-capacity LRU replay; tails retain generic L2 service and DRAM remains an independent aggregate bound",
+  "production_or_evaluation_duration_consumed": false,
+  "measurement_gate_passed": true,
+  "mechanism_publishable": true
+}

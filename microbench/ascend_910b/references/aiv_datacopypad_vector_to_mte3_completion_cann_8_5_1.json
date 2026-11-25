@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_datacopypad_vector_to_mte3_completion",
+  "request_size_unit": "payload_bytes",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "4096": 360.0,
+    "5120": 400.0,
+    "8192": 380.0,
+    "10240": 420.0,
+    "16384": 600.0
+  },
+  "service_time_selection": "median_of_independent_run_medians",
+  "mechanism": "one source-form depth-one TQue UB-to-GM DataCopyPad with byte-valued blockLen followed by its Vector-to-MTE3 completion edge",
+  "scope": "unloaded blockDim=1 per-AIV request completion; concurrent descriptor admission and shared byte throughput remain separate mechanisms",
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "pairing_formula": "maximum_worker(request_first_interval(pair_order=1)-control_first_interval(pair_order=0)), matched by run and trial",
+  "source_commit": "9e19528b1bd6067b52697ee953c3a8c66c58f401",
+  "source_snapshot_path": "/capture-workspace/deployments/midlayer-vector-9e19528b",
+  "source_snapshot_files_sha256": {
+    "first_mte_completion_kernel.cpp": "d17d9d992d527f3e2cf5c26ad636f0c5376e429dcb0567e66ac83458212e6318",
+    "first_mte_completion_main.cpp": "f21fbd2029a4a699efa7f0e4b58c3cfccc77732cb5cdbb240a4e153618e38645",
+    "first_mte_completion_report.py": "1b45ecd9a790c6d030e3f19e70b4dd05f14dff2dbc08a02191ddd7557a4c2ae4",
+    "first_mte_completion_runner.py": "86726f8aed87e0c265b4536892348045f320a31490b04c472e2b4699380b89af"
+  },
+  "benchmark_binary_sha256": "6b4629db34eb5f7edb25e6e5a9493f08c24dfd26e998571ca929906ad98fc31b",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_queue_edges_corrected_120_9e19528b_r4/raw.csv",
+      "sha256": "fa72e527dc4a0e41f7e24cbae86d22f05eaee719d62b0e1995b7cfda82710772",
+      "report_path": "profiler_output/microbench/ascend_910b/rmsnorm_queue_edges_corrected_120_9e19528b_r4/report.txt",
+      "report_sha256": "e94a1d06e3a4b8321a1072511de8e253bd67db4986c45d4feca0af6575d119cc",
+      "device_id": 3,
+      "run_id": "rmsnorm_queue_edges_corrected_120_r4"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_queue_edges_corrected_120_9e19528b_r5/raw.csv",
+      "sha256": "3f2b5625e907ca14f04b44c854d377035ca4f883b0fbdc058ba53a4de7da32a4",
+      "report_path": "profiler_output/microbench/ascend_910b/rmsnorm_queue_edges_corrected_120_9e19528b_r5/report.txt",
+      "report_sha256": "9dcba31520a057adfe268ed5aa801ec590df58f75e4be17368794c1fc607d55c",
+      "device_id": 3,
+      "run_id": "rmsnorm_queue_edges_corrected_120_r5"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_queue_edges_corrected_120_9e19528b_r6/raw.csv",
+      "sha256": "989bd5ef81078180b28b864ce621b208e2de50025a416ed20813106c34be09df",
+      "report_path": "profiler_output/microbench/ascend_910b/rmsnorm_queue_edges_corrected_120_9e19528b_r6/report.txt",
+      "report_sha256": "06aa18b3dfc60683c0a2660d468513024ec9d7e2d431664158da84fe8429bde0",
+      "device_id": 3,
+      "run_id": "rmsnorm_queue_edges_corrected_120_r6"
+    }
+  ],
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 120,
+  "block_dim": 1,
+  "replication_relative_limit": 0.2,
+  "median_ns_by_run_and_request_size": {
+    "rmsnorm_queue_edges_corrected_120_r4": {"4096": 360.0, "5120": 380.0, "8192": 380.0, "10240": 420.0, "16384": 600.0},
+    "rmsnorm_queue_edges_corrected_120_r5": {"4096": 380.0, "5120": 400.0, "8192": 400.0, "10240": 420.0, "16384": 600.0},
+    "rmsnorm_queue_edges_corrected_120_r6": {"4096": 360.0, "5120": 400.0, "8192": 380.0, "10240": 420.0, "16384": 600.0}
+  },
+  "maximum_run_relative_median_spread": 0.05263157894736842,
+  "all_per_run_unloaded_replication_gates_passed": true,
+  "concurrent_worker_services_excluded_because_replication_gate_failed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

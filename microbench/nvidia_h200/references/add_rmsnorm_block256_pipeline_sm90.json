@@ -1,0 +1,86 @@
+{
+  "schema": "nvidia_h200_add_rmsnorm_block256_pipeline_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "software_revision": "vllm_0.11.0_source_cuda_12.9_sm90",
+  "production_or_evaluation_duration_consumed": false,
+  "source_service_reference": {
+    "path": "microbench/nvidia_h200/references/add_rmsnorm_round_service_sm90.json",
+    "sha256": "see_provenance_raw_sha256_same_capture",
+    "time_unit": "ns_per_cta_round"
+  },
+  "source_contract": {
+    "dtype": "bf16",
+    "vector_width_elements": 8,
+    "source_round_elements": 2048,
+    "block_threads": 256,
+    "registers_per_thread": 32,
+    "static_shared_memory_bytes": 168,
+    "resident_ctas_per_sm": 8,
+    "minimum_grid_blocks": 1,
+    "maximum_grid_blocks": 1056,
+    "hidden_domain": "hidden_size % source_round_elements == 0",
+    "production_function_sass_sha256": "not_applicable_on_h200",
+    "grid_derivation": "The source launches one CTA per row. At most eight 256-thread CTAs reside on each of 132 SMs from the static thread, warp, register, shared-memory, and block limits, so grids through 1056 contain no queued CTA."
+  },
+  "service_parameters": {
+    "timer_domain": "globaltimer_same_cta",
+    "unit": "ns_per_cta_source_round",
+    "add_square_first": 138.1875,
+    "add_square_resident": 325.10714285714283,
+    "scale_multiply_first": 120.9375,
+    "scale_multiply_resident": 248.9375
+  },
+  "composition_contract": {
+    "ordered_stages": [
+      "add_square_source_round",
+      "existing_block_reduction_and_publication",
+      "scale_multiply_source_round"
+    ],
+    "resident_cta_source_and_reduction_stages_share_warp_issue": true,
+    "independent_vector_reduction_stage_overlap_allowed": false,
+    "each_stage_composed_once": true,
+    "generic_fma_alu_replaced": true,
+    "generic_complete_memory_task_replaced": true,
+    "aggregate_l2_dram_capacity_envelope_retained": true,
+    "reduction_reference": "microbench/nvidia_h200/references/block_reduce_latency_sm90.json",
+    "reduction_report_sha256": "509bc6da10c6cf28fd4efe7438fda06e6248abefdcefd60dda9c9e6846619039"
+  },
+  "decision": {
+    "status": "accepted_after_pipeline_composition_review",
+    "forward_eligible": true,
+    "reason": "Same composition as the A800 reference; the H200 reference supplies only first/resident source-round service and no production duration."
+  },
+  "excluded_conclusions": [
+    "a complete AddRMSNorm duration",
+    "hidden sizes with a partial source round",
+    "block widths other than 256",
+    "queued CTA service or grids above 1056",
+    "per-shape timing interpolation or residual correction"
+  ],
+  "provenance": {
+    "source": "microbench/nvidia_h200/compute/sfu/add_rmsnorm_round_service.cu",
+    "source_sha256": "c36a23e5cf552022a3e517fe9d36e2f0989422afd84c1c8d9032c903b00e75a8",
+    "runner": "microbench/nvidia_h200/compute/sfu/add_rmsnorm_round_service_runner.py",
+    "runner_sha256": "b14531c50fb59781f22e6eac8be0f7596db98ecd81e8688b18b555f740c11b65",
+    "helper_sha256": "f001aca483d0276f8150dbf5be325e8754afa5846e06f4a74962d371706e2480",
+    "baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+    "probe_binary_sha256": "e8f00a50822b2a68f4e32bdcd4c38d9df98425477f295622764dc63da611a741",
+    "nvcc_version": "Cuda compilation tools, release 12.9, V12.9.86",
+    "ptxas_verbose": "ptxas info    : 0 bytes gmem\nptxas info    : Compiling entry function '_Z25add_rmsnorm_round_serviceIL13RoundFunction1EEvPK4PackPS1_S3_S4_PfiPmS6_Pj' for 'sm_90'\nptxas info    : Function properties for _Z25add_rmsnorm_round_serviceIL13RoundFunction1EEvPK4PackPS1_S3_S4_PfiPmS6_Pj\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 32 registers, used 1 barriers\nptxas info    : Compile time = 8.303 ms\nptxas info    : Compiling entry function '_Z25add_rmsnorm_round_serviceIL13RoundFunction0EEvPK4PackPS1_S3_S4_PfiPmS6_Pj' for 'sm_90'\nptxas info    : Function properties for _Z25add_rmsnorm_round_serviceIL13RoundFunction0EEvPK4PackPS1_S3_S4_PfiPmS6_Pj\n    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads\nptxas info    : Used 29 registers, used 1 barriers\nptxas info    : Compile time = 5.537 ms\n",
+    "raw_dir": "profiler_output/microbench/nvidia_h200/h200_add_rmsnorm_round_service_b5f13ef0_20260925_gpu3_r2",
+    "remote_raw_dir": "h200-capture-host:/capture-public/h200_microbench/wp5_vector/runs/h200_add_rmsnorm_round_service_b5f13ef0_20260925_gpu3_r2",
+    "raw_sha256": "577e6139118bc99b5635d080c4977fc2d8d4159ca83a66db9bb0f79a39f12910",
+    "clock_gate": {
+      "gate": "every busy nvidia-smi sample (50 ms) >= 1980 MHz; a window without busy samples requires every sample >= boost",
+      "accepted_captures": 1,
+      "rejected_captures": 0,
+      "captures_without_busy_sample": 0,
+      "busy_samples_total": 6,
+      "busy_clock_mhz_min": 1980,
+      "busy_clock_mhz_max": 1980,
+      "measured_sm_clock_mhz": 1980
+    },
+    "accepted_captures": 1,
+    "rejected_captures": 0
+  }
+}

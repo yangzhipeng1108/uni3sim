@@ -1,0 +1,541 @@
+{
+  "allowed_conclusion": "The BF16 bm64_bk64_bn128_gsm1 grouped-MoE source program on C500 pays a per-useful-CTA fixed span of fixed_span_ns plus a per-complete-K-round service of max(local_k_round_interval_ns, analytic DRAM round service), serialized at one resident CTA per AP, with empty grid CTAs adding empty_wave_slot_ns per 104-CTA slot wave.  Established for complete K tiles (K % 64 == 0) over the swept K and N ranges, 128 populated experts, and at most 1 populated M tiles per expert.  No production or evaluation duration was consumed or fitted.",
+  "cells": {
+    "emptyscan_n1024": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.016363519430160522,
+        0.016522239446640014,
+        0.02397439956665039
+      ],
+      "experts": 128,
+      "grid": 1120,
+      "k": 576,
+      "median_ms": 0.016522239446640014,
+      "n": 1024,
+      "tokens": 112,
+      "topk": 8
+    },
+    "emptyscan_n1664": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.019466240406036377,
+        0.020039680004119872,
+        0.024245760440826415
+      ],
+      "experts": 128,
+      "grid": 1820,
+      "k": 576,
+      "median_ms": 0.020039680004119872,
+      "n": 1664,
+      "tokens": 112,
+      "topk": 8
+    },
+    "emptyscan_n2176": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.016120320558547972,
+        0.01618175983428955,
+        0.016261119842529297
+      ],
+      "experts": 128,
+      "grid": 2380,
+      "k": 576,
+      "median_ms": 0.01618175983428955,
+      "n": 2176,
+      "tokens": 112,
+      "topk": 8
+    },
+    "emptyscan_n2688": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.016624640226364135,
+        0.0246451210975647,
+        0.030359039306640623
+      ],
+      "experts": 128,
+      "grid": 2940,
+      "k": 576,
+      "median_ms": 0.0246451210975647,
+      "n": 2688,
+      "tokens": 112,
+      "topk": 8
+    },
+    "emptyscan_n512": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.01630720019340515,
+        0.016560640335083008,
+        0.020956161022186278
+      ],
+      "experts": 128,
+      "grid": 560,
+      "k": 576,
+      "median_ms": 0.016560640335083008,
+      "n": 512,
+      "tokens": 112,
+      "topk": 8
+    },
+    "onetile_n1664_k1088": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.4395135879516602,
+        0.4396390533447266,
+        0.4396799850463867
+      ],
+      "experts": 128,
+      "grid": 1820,
+      "k": 1088,
+      "median_ms": 0.4396390533447266,
+      "n": 1664,
+      "tokens": 112,
+      "topk": 8
+    },
+    "onetile_n1664_k1600": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.5718476867675781,
+        0.5722828674316406,
+        0.5726464080810547
+      ],
+      "experts": 128,
+      "grid": 1820,
+      "k": 1600,
+      "median_ms": 0.5722828674316406,
+      "n": 1664,
+      "tokens": 112,
+      "topk": 8
+    },
+    "onetile_n1664_k2112": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.6975615692138671,
+        0.6975923156738282,
+        0.6976998138427735
+      ],
+      "experts": 128,
+      "grid": 1820,
+      "k": 2112,
+      "median_ms": 0.6975923156738282,
+      "n": 1664,
+      "tokens": 112,
+      "topk": 8
+    },
+    "onetile_n1664_k2368": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.7816806030273438,
+        0.7819725036621094,
+        0.7822284698486328
+      ],
+      "experts": 128,
+      "grid": 1820,
+      "k": 2368,
+      "median_ms": 0.7819725036621094,
+      "n": 1664,
+      "tokens": 112,
+      "topk": 8
+    },
+    "onetile_n1664_k576": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.28878591537475584,
+        0.2888166427612305,
+        0.28886272430419924
+      ],
+      "experts": 128,
+      "grid": 1820,
+      "k": 576,
+      "median_ms": 0.2888166427612305,
+      "n": 1664,
+      "tokens": 112,
+      "topk": 8
+    },
+    "onetile_n1664_k832": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.3677030563354492,
+        0.36800254821777345,
+        0.3680819320678711
+      ],
+      "experts": 128,
+      "grid": 1820,
+      "k": 832,
+      "median_ms": 0.36800254821777345,
+      "n": 1664,
+      "tokens": 112,
+      "topk": 8
+    },
+    "onetile_n1920_k1600": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.6705484771728516,
+        0.6705587005615234,
+        0.670650863647461
+      ],
+      "experts": 128,
+      "grid": 2100,
+      "k": 1600,
+      "median_ms": 0.6705587005615234,
+      "n": 1920,
+      "tokens": 112,
+      "topk": 8
+    },
+    "onetile_n1920_k2368": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.9123302459716797,
+        0.9124556732177734,
+        0.9130879974365235
+      ],
+      "experts": 128,
+      "grid": 2100,
+      "k": 2368,
+      "median_ms": 0.9124556732177734,
+      "n": 1920,
+      "tokens": 112,
+      "topk": 8
+    },
+    "onetile_n1920_k576": {
+      "active_m_tiles": 128,
+      "captures_ms": [
+        0.3380121612548828,
+        0.33802238464355466,
+        0.3381811141967773
+      ],
+      "experts": 128,
+      "grid": 2100,
+      "k": 576,
+      "median_ms": 0.33802238464355466,
+      "n": 1920,
+      "tokens": 112,
+      "topk": 8
+    }
+  },
+  "domain": {
+    "maximum_expert_m_tiles": 1,
+    "reason": "Every swept cell holds one populated M tile per expert; no swept cell establishes a multi-tile expert for this program."
+  },
+  "extraction": {
+    "analytic_round_conditioned_span": {
+      "onetile_n1664": {
+        "fixed_span_us": 6.907583568665738,
+        "fixed_span_us_by_cell": {
+          "onetile_n1664_k1088": 7.754211072559539,
+          "onetile_n1664_k1600": 6.798389274917387,
+          "onetile_n1664_k2112": 5.3841696119798215,
+          "onetile_n1664_k2368": 6.034901272210256,
+          "onetile_n1664_k576": 7.573870589165315,
+          "onetile_n1664_k832": 7.89995959116211
+        },
+        "points": 6
+      },
+      "onetile_n1920": {
+        "fixed_span_us": 6.9793963432430886,
+        "fixed_span_us_by_cell": {
+          "onetile_n1920_k1600": 7.067613853917916,
+          "onetile_n1920_k2368": 6.281515811627884,
+          "onetile_n1920_k576": 7.589059364183466
+        },
+        "points": 3
+      }
+    },
+    "cell_structure": {
+      "onetile_n1664_k1088": {
+        "active_ctas": 1664,
+        "dram_bytes": 463714304.0,
+        "dram_round_us": 1.1557575222592853,
+        "empty_tail_us": 1.2056301292483507,
+        "empty_waves": 2,
+        "grid": 1820,
+        "k_tiles": 17,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 439.63905334472656,
+        "waves": 16
+      },
+      "onetile_n1664_k1600": {
+        "active_ctas": 1664,
+        "dram_bytes": 681932800.0,
+        "dram_round_us": 1.1557575222592853,
+        "empty_tail_us": 1.2056301292483507,
+        "empty_waves": 2,
+        "grid": 1820,
+        "k_tiles": 25,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 572.2828674316406,
+        "waves": 16
+      },
+      "onetile_n1664_k2112": {
+        "active_ctas": 1664,
+        "dram_bytes": 900151296.0,
+        "dram_round_us": 1.1557575222592853,
+        "empty_tail_us": 1.2056301292483507,
+        "empty_waves": 2,
+        "grid": 1820,
+        "k_tiles": 33,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 697.5923156738281,
+        "waves": 16
+      },
+      "onetile_n1664_k2368": {
+        "active_ctas": 1664,
+        "dram_bytes": 1009260544.0,
+        "dram_round_us": 1.1557575222592853,
+        "empty_tail_us": 1.2056301292483507,
+        "empty_waves": 2,
+        "grid": 1820,
+        "k_tiles": 37,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 781.9725036621094,
+        "waves": 16
+      },
+      "onetile_n1664_k576": {
+        "active_ctas": 1664,
+        "dram_bytes": 245495808.0,
+        "dram_round_us": 1.1557575222592853,
+        "empty_tail_us": 1.2056301292483507,
+        "empty_waves": 2,
+        "grid": 1820,
+        "k_tiles": 9,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 288.81664276123047,
+        "waves": 16
+      },
+      "onetile_n1664_k832": {
+        "active_ctas": 1664,
+        "dram_bytes": 354605056.0,
+        "dram_round_us": 1.1557575222592853,
+        "empty_tail_us": 1.2056301292483507,
+        "empty_waves": 2,
+        "grid": 1820,
+        "k_tiles": 13,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 368.00254821777344,
+        "waves": 16
+      },
+      "onetile_n1920_k1600": {
+        "active_ctas": 1920,
+        "dram_bytes": 786790400.0,
+        "dram_round_us": 1.126459804648073,
+        "empty_tail_us": 1.2056301292483507,
+        "empty_waves": 2,
+        "grid": 2100,
+        "k_tiles": 25,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 670.5587005615234,
+        "waves": 19
+      },
+      "onetile_n1920_k2368": {
+        "active_ctas": 1920,
+        "dram_bytes": 1164449792.0,
+        "dram_round_us": 1.126459804648073,
+        "empty_tail_us": 1.2056301292483507,
+        "empty_waves": 2,
+        "grid": 2100,
+        "k_tiles": 37,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 912.4556732177734,
+        "waves": 19
+      },
+      "onetile_n1920_k576": {
+        "active_ctas": 1920,
+        "dram_bytes": 283244544.0,
+        "dram_round_us": 1.126459804648073,
+        "empty_tail_us": 1.2056301292483507,
+        "empty_waves": 2,
+        "grid": 2100,
+        "k_tiles": 9,
+        "maximum_expert_m_tiles": 1,
+        "populated_experts": 128,
+        "t_us": 338.0223846435547,
+        "waves": 19
+      }
+    },
+    "dram_round_service_analytic_ns": "dram_bytes/k_tiles/waves/1653.07GB/s + 373.333ns/3",
+    "empty_wave_slot_ns": 602.8150646241753,
+    "empty_wave_slot_scan": {
+      "intercept_us": 13.93979627466711,
+      "model": "all_empty_prefix_launch_us = intercept + slope * waves",
+      "points": [
+        {
+          "cell": "emptyscan_n512",
+          "grid": 560,
+          "median_us": 16.560640335083008,
+          "waves": 6
+        },
+        {
+          "cell": "emptyscan_n1024",
+          "grid": 1120,
+          "median_us": 16.522239446640015,
+          "waves": 11
+        },
+        {
+          "cell": "emptyscan_n1664",
+          "grid": 1820,
+          "median_us": 20.039680004119873,
+          "waves": 18
+        },
+        {
+          "cell": "emptyscan_n2176",
+          "grid": 2380,
+          "median_us": 16.18175983428955,
+          "waves": 23
+        },
+        {
+          "cell": "emptyscan_n2688",
+          "grid": 2940,
+          "median_us": 24.645121097564697,
+          "waves": 29
+        }
+      ],
+      "relative_residual_by_cell": {
+        "emptyscan_n1024": -0.029276107614526904,
+        "emptyscan_n1664": 0.05402018960160016,
+        "emptyscan_n2176": -0.25764054461114766,
+        "emptyscan_n2688": 0.10638366776116724,
+        "emptyscan_n512": 0.05726823173508685
+      },
+      "selected_us_per_wave": 0.6028150646241753,
+      "slope_resolved": false,
+      "slope_standard_error_us_per_wave": 0.1620370763100095,
+      "slope_us_per_wave": 0.27874091200415635,
+      "upper_bound_us_per_wave": 0.6028150646241753
+    },
+    "forward_model_relative_residual_by_cell": {
+      "onetile_n1664_k1088": -0.030811730575898515,
+      "onetile_n1664_k1600": 0.0030528761201860195,
+      "onetile_n1664_k2112": 0.03494107196899145,
+      "onetile_n1664_k2368": 0.017856020100319357,
+      "onetile_n1664_k576": -0.03691128124083393,
+      "onetile_n1664_k832": -0.04314648481875677,
+      "onetile_n1920_k1600": -0.0045343911237676875,
+      "onetile_n1920_k2368": 0.013036564660473262,
+      "onetile_n1920_k576": -0.0383052741565934
+    },
+    "free_slope_group_decomposition": {
+      "onetile_n1664": {
+        "fill_us": 8.752980177396442,
+        "points": 6,
+        "relative_residual_by_cell": {
+          "onetile_n1664_k1088": 0.014773420089863506,
+          "onetile_n1664_k1600": 0.0031075980444292862,
+          "onetile_n1664_k2112": -0.014725632432452493,
+          "onetile_n1664_k2368": 0.006940805769320268,
+          "onetile_n1664_k576": -0.024122836910370385,
+          "onetile_n1664_k832": 0.009615824695381367
+        },
+        "round_us": 1.0731278233608956
+      },
+      "onetile_n1920": {
+        "fill_us": 8.066534353990072,
+        "points": 3,
+        "relative_residual_by_cell": {
+          "onetile_n1920_k1600": 0.004235020328618577,
+          "onetile_n1920_k2368": -0.0017784533456656234,
+          "onetile_n1920_k576": -0.003600560018792199
+        },
+        "round_us": 1.0805243957432709
+      }
+    }
+  },
+  "forward_eligible": true,
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "method": {
+    "compiled_resource_fact": {
+      "note": "runtime introspection of the compiled kernel matched the deployed AOT resource record in every cell",
+      "num_stages": 3,
+      "num_warps": 4,
+      "shared": 49152
+    },
+    "event_repetitions_per_trial": 100,
+    "event_trials_per_cell": 9,
+    "extraction": "microbench/metax_c500/operators/fused_moe/grouped_operand_pipeline_extraction.py",
+    "independent_captures_per_cell": 3,
+    "kernel": "frozen production Triton grouped-MoE source",
+    "physical_device": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "reference_group": "onetile_n1664",
+    "runner": "microbench/metax_c500/operators/fused_moe/fused_moe_triton_operand_stream_runner.py",
+    "selection_rule": "Forward keeps the per-K-round service analytic (round bytes at the hardware DRAM capacity plus the pipeline-depth amortized DRAM latency), so the only measured coefficient is the per-CTA fixed span.  Where the free-slope decomposition of this sweep does not reproduce that analytic round, the span is not read off the free intercept.  fixed_span_ns is the mean over the production-density reference group of the launch median minus the measured empty-wave tail and the analytic round service, per resident wave, which makes the Forward expression unbiased over that group.  empty_wave_slot_ns is the slope of the source-exact all-empty early-return prefix launch against its resident wave count.  local_k_round_interval_ns is the reference group's measured per-K-round issue interval, which the sweep shows to be independent of the N extent; it is checked against the architecture-peak BF16 MMA round issue interval for the tile and must not fall below it."
+  },
+  "parameter_fit_from_production_duration": false,
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "branch": "wt-c500-moe-duration",
+    "capture_baseline_commit": "712d214963d4f427d712ac9515c0895f54691e11",
+    "capture_command": "MACA_VISIBLE_DEVICES=3 prefill_driver.sh (bm64_bk64_bn128_gsm1 warps=4: 12 production cells plus 5 empty-CTA grids, three captures each)",
+    "container": "capture-container-1",
+    "owner": "capture-owner-1",
+    "physical_device_id": 3,
+    "remote_snapshot": "/capture-workspace/execution_snapshots/c500-moe-bm16-mechanism-712d21496-20260918",
+    "worktree": "/capture-workspace/wt-c500-moe-duration"
+  },
+  "schema_version": 1,
+  "scope": {
+    "density_groups": {
+      "onetile_n1664": "128 populated experts, 1664 active CTAs over 16 resident waves, at most 1 M tiles per expert",
+      "onetile_n1920": "128 populated experts, 1920 active CTAs over 19 resident waves, at most 1 M tiles per expert"
+    },
+    "k_tiles_swept": [
+      9,
+      13,
+      17,
+      25,
+      33,
+      37
+    ],
+    "n_tiles_swept": [
+      13,
+      15
+    ],
+    "nonproduction_geometry_only": true,
+    "route_seed": 20260824,
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "signature_name": "bm64_bk64_bn128_gsm1"
+  },
+  "selected_parameters": {
+    "empty_wave_slot_ns": 602.8150646241753,
+    "fixed_span_ns": 6907.583568665738,
+    "local_k_round_interval_ns": 1073.1278233608957
+  },
+  "signature": {
+    "dynamic_shared_memory_bytes_per_cta": 49152,
+    "group_size_m": 1,
+    "num_stages": 3,
+    "num_warps": 4,
+    "pipeline_depth": 3,
+    "resident_ctas_per_ap": 1,
+    "threads_per_cta": 512,
+    "tile_k": 64,
+    "tile_m": 64,
+    "tile_n": 128
+  },
+  "software_revision": "maca_3.7.2",
+  "stability": {
+    "capture_spread_note": "three fresh-process captures per cell; medians reported in cells",
+    "conditioned_span_group_spread_ns": [
+      6907.583568665738,
+      6979.396343243088
+    ],
+    "free_slope_fill_group_spread_ns": [
+      8752.980177396441,
+      8066.534353990071
+    ],
+    "free_slope_round_group_spread_ns": [
+      1073.1278233608957,
+      1080.5243957432708
+    ],
+    "max_abs_forward_model_relative_residual": 0.04314648481875677,
+    "max_abs_free_slope_relative_residual": 0.024122836910370385
+  },
+  "timer_domain": "torch_cuda_event_gpu_timeline"
+}

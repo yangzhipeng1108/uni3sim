@@ -1,0 +1,27 @@
+{
+  "hardware_id": "nvidia_h200",
+  "kind": "independent_reference_lts_clock_binding",
+  "production_or_evaluation_duration_consumed": false,
+  "clock_domain": "lts",
+  "clock_hz": 1707201484.5349998,
+  "selection": "Median of every16predeclared direct LTS-frequency cells; all traffic/instruction and3%LTS stability/paired-distinction checks pass.",
+  "clock_cell_count": 16,
+  "clock_frequency_range_hz": [
+    1705807369.87,
+    1708562447.75
+  ],
+  "existing_l2_byte_capacity_per_s": 8820176000000.0,
+  "l2_bytes_per_reference_lts_cycle": 5166.452864468075,
+  "capacity_source": "microbench/nvidia_h200/references/l2_read_bandwidth_sm90.json",
+  "capacity_rule": "Preserve the existing qualified ld.global.cg bytes/second exactly; change only clock-domain binding. The new experiment does not publish a memory capacity.",
+  "evidence_manifest_path": "profiler_output/microbench/nvidia_h200/resident_resource_overlap_20261107/attempt_4/manifest.json",
+  "evidence_manifest_sha256": "f34a3f07bd45127645070ea6d4ff42b2c36f9588702705e5a954beca2f980562",
+  "raw_path": "profiler_output/microbench/nvidia_h200/resident_resource_overlap_20261107/attempt_4/raw.json",
+  "raw_sha256": "ee6126dc7e3eb9cefe1d5ba01ba9e3fb904082235970b255274ebd38ad27b118",
+  "summary_path": "profiler_output/microbench/nvidia_h200/resident_resource_overlap_20261107/attempt_4/summary.json",
+  "summary_sha256": "4d819500326fb7b7d08851ff22ae690f8bcd7b302b8f6dca756db764ba3c0330",
+  "limitations": [
+    "Reference LTS frequency is fixed in this measured deployment range; unmeasured LTS DVFS is not inferred from a per-kernel effective SM clock.",
+    "The earlier resident-coexistence SM-clock gates remain failed; this reference does not select a native CTA schedule."
+  ]
+}

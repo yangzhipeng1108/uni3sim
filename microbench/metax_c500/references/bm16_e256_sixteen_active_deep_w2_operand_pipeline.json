@@ -1,0 +1,65 @@
+{
+  "schema_version": "midlayer.metax_c500.bm16_e256_sixteen_active_deep_w2_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "variant": "w2",
+    "tile_m": 16,
+    "tile_k": 64,
+    "tile_n": 32,
+    "group_size_m": 1,
+    "experts": 256,
+    "topk": 8,
+    "source_rows": 16,
+    "routed_rows": 16,
+    "populated_experts": 16,
+    "populated_m_tiles": 16,
+    "maximum_m_tiles": 241,
+    "production_k": 2048,
+    "production_n": 7168,
+    "production_k_n_tile_class": [32, 224]
+  },
+  "method": {
+    "kernel": "frozen production Triton grouped-MoE source",
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026091105,
+    "event_trials_per_cell": 9,
+    "event_repetitions_per_trial": 100,
+    "independent_captures_per_cell": 3,
+    "physical_device": 1,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "0b3e0677f80be5fe5d2b2a29950717d9cb16cf5095f2add1eb721b479e2f103c",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "take the median capacity of three fresh-process captures at each adjacent non-production N, then linearly interpolate the two capacities to production N=7168"
+  },
+  "adjacent_nonproduction_cells": {
+    "n7136": {
+      "event_median_ms": [0.4617164611816406, 0.46162689208984375, 0.46169601440429686],
+      "capacity_per_s": [1044535910124.8718, 1044738580581.0826, 1044582168685.7334],
+      "median_capacity_per_s": 1044582168685.7334,
+      "range_over_median_percent": 0.019402
+    },
+    "n7200": {
+      "event_median_ms": [0.4656639862060547, 0.46579456329345703, 0.4659251022338867],
+      "capacity_per_s": [1044969794560.5763, 1044676856164.6613, 1044384167470.188],
+      "median_capacity_per_s": 1044676856164.6613,
+      "range_over_median_percent": 0.056058
+    }
+  },
+  "selected_service": {
+    "logical_byte_capacity_per_s": 1044629512425.1973
+  },
+  "raw": {
+    "root": "profiler_output/microbench/metax_c500/fusedmoe_bm16_e256_topk8_w2_sixteen_active_deep_089e5710_20260911_r1_gpu1",
+    "csv_sha256": {
+      "n7136_round1.csv": "70d7e014fdc29c98770294165ffd0f3a54da3963b98150fe8f28140cb44aa740",
+      "n7136_round2.csv": "79d2f33ba51bc9d05c18d93f3dbec435040f203d65af1db8b5c3c265288081df",
+      "n7136_round3.csv": "2e778bb8eb557f4b1aa57fa56cc24b85780ba8e6bbb140e8a65e5d029ac61101",
+      "n7200_round1.csv": "7812bdfee5e9e3e53cf3f2d2cf57ade8de8cffc9d9d35693bc45266228359a09",
+      "n7200_round2.csv": "a04ba209efd337478bf132e962b370362e396ade630105a531773e69e25d796c",
+      "n7200_round3.csv": "1e5daa9655ebe29b4b056712d3ed0b4df56cf46d5b296c8d40b6dd45a8f2313c"
+    }
+  },
+  "allowed_conclusion": "The BF16 BM16 E256 TOPK8 W2 source program with sixteen source and routed rows, sixteen populated experts and active M tiles, a 241-tile padded launch, and static K/N tile class (32, 224) uses this combined operand service only within that exact source domain."
+}

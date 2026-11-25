@@ -1,0 +1,152 @@
+{
+  "schema": "nvidia_a800_add_rmsnorm_block1024_pipeline_reference_v6",
+  "hardware_id": "nvidia_a800",
+  "software_revision": "vllm_0.11.0_cuda_12.2_sm80",
+  "production_or_evaluation_duration_consumed": false,
+  "captures": {
+    "active_256": {
+      "path": "profiler_output/microbench/nvidia_a800/add-rmsnorm-round-1024-clock64-fc2c2dbb-capture",
+      "baseline_commit": "fc2c2dbb72149dfbc365c40dd4423646221fbaca",
+      "report_sha256": "14ca15988bd72ff3ffeaafbc84ab0b06d90bbc7f615590abfc08c73f5701168",
+      "manifest_sha256": "72587c312101dbe63a7a5ee2212b9f0ce67f285d38f4df367ed421c6be160e95",
+      "raw_sha256": "15b6ad1bd4857f780a8730fe70b7d2c1e861ca7d747c13be820b41f28e0e4ec6"
+    },
+    "active_320": {
+      "path": "profiler_output/microbench/nvidia_a800/add-rmsnorm-h2560-block1024-1adea53d-device6-20260904",
+      "baseline_commit": "bf60626dc03dd4e1135249bd6793426003da29cc",
+      "device_index": 6,
+      "device_uuid": "capture-device-0b790647dba7",
+      "manifest_sha256": "80255872de8d0fab61ceccc854fa16c69de7d8f0f0f82c30e88be63254e241ab",
+      "source_sha256": "b99f24b80682167f64caaed6ccbeb7615ffc3bb1ebb8e634c47cb223e38c57f6",
+      "binary_sha256": "3db960dde3507c299e8be2838050f5f2e5a69c892fd418d4d893138d0a432847",
+      "raw_sha256": "1e32896d6f2b5bd3324ff4f9221fddf36cd0782ad1b743d89a516796be9819d8",
+      "resource_usage_sha256": "d1bc1a40766e63d31e6af47c28f53f2fc0e9a504236639d920c09ee9e50f25b8",
+      "sass_sha256": "9b62be84e98bb364321f3954f69c36703c5cc014586fae0754cde1b6f90fe1cb"
+    },
+    "active_512": {
+      "path": "profiler_output/microbench/nvidia_a800/add-rmsnorm-h4096-block1024-dc4b36cd-device7-20260905-r2",
+      "baseline_commit": "dc4b36cd8d01fe3d923afc6e9bb057ec0797faeb",
+      "device_index": 7,
+      "device_uuid": "capture-device-ceb3fcab78ae",
+      "report_sha256": "368e1add95a98b585a7ffe69f22e61d4dbab5b9d9efe694cad90b6356e87f3ab",
+      "manifest_sha256": "00b406e0d86d4ae08317d2e8e0af76a630a0952a5a0fee4a9b5f643f84e222f6",
+      "source_sha256": "4bc34eb099f81a5f5d61d91f7f92c938e7bb7a1c38b5475932e319837a06ba02",
+      "binary_sha256": "42a9e0fd8fa7c36713c6d88a6e93340f8d73c45fc5846134c2e7af2f4c224bbe",
+      "raw_sha256": "bea622c300305dd3b2112acd93fe0320ed6b961f12dfef6962c8788502b08a44",
+      "sass_sha256": "66ce9f114233da5678605fd08046e29b9ff265a5f6d83554071afeebe9a8f0fe"
+    },
+    "active_640": {
+      "path": "profiler_output/microbench/nvidia_a800/add-rmsnorm-h5120-block1024-1c004f02-device7-20260905-r1",
+      "baseline_commit": "1c004f023029b0cf310b8d1b775a3cc1f721afdd",
+      "device_index": 7,
+      "device_uuid": "capture-device-ceb3fcab78ae",
+      "report_sha256": "0796b76b5ef57d85dd931e5718690680a849ff3a4dd92c1cf8380925f3f03250",
+      "manifest_sha256": "e354a87ea2585cee558a4d60c2be529716a52f1eeeac1d4c59a777e12ee13caa",
+      "source_sha256": "fee7be2e50515d952b94e76a98eac4a55e6ba1f9be3c60b981d9ef2de7b647ba",
+      "raw_sha256": "c39bbedb9de3204f79dfab66b202c9d1b026e6fd0c5d63e118fcce5db18cb735",
+      "static_contract_sha256": "55a73b7d3ffc3b6dbbe3499af03d4046c3f8a471362574e0050e61fca83b8942"
+    },
+    "active_640_grid8_extension": {
+      "path": "profiler_output/microbench/nvidia_a800/add_rmsnorm_h5120_grid8_2cf25b66_20260906_gpu7",
+      "baseline_commit": "2cf25b66f53e8099fb7879021d9bdbdec6e230ae",
+      "device_index": 7,
+      "device_uuid": "capture-device-ceb3fcab78ae",
+      "report_sha256": "d13d0137bfceeba82b13af37fc6723e1987c30f907457057587368899b0fe7f8",
+      "manifest_sha256": "9c7639be02b93d6200ac23deb01d36e6ef4623a055d2104d593292eba63a041f",
+      "source_sha256": "c4f6d44ff718896c13f0ec0bb14e84648f3c7cb066a62bd989eb65e5c5abd84e",
+      "binary_sha256": "0b061b0437ca068028bba789b9ad4adc47d70a1ca1029502e7238778c3fab3aa",
+      "raw_sha256": "221e6c60414ba7751eafb03ad9eb915d3d0a8c9257dc327e99e03ba37feb50cb",
+      "resource_usage_sha256": "4e5beaded908eeb92e306a5442c7def9f7b7388b9e95f4cf1c7f14389296fe2f",
+      "sass_sha256": "dfb49bc562960706abbe0652c89f9b0334cd294a87078c5db525521d12580e07",
+      "static_contract_sha256": "0d109ba15bdaff081ad38dc842d288ebab66788683b351cac253f22a57c95eb4"
+    }
+  },
+  "source_contract": {
+    "dtype": "bf16",
+    "hidden_sizes": [2048, 2560, 4096, 5120],
+    "vector_width_elements": 8,
+    "active_threads_per_source_round": [256, 320, 512, 640],
+    "block_threads": 1024,
+    "registers_per_thread": 32,
+    "static_shared_memory_bytes": 168,
+    "resident_ctas_per_sm": 2,
+    "one_wave_grid_blocks": {
+      "minimum": 1,
+      "maximum": 108,
+      "derivation": "The source launches one identical CTA per row. Any positive grid no larger than the 108-SM hardware width is one source-identical, non-queued wave; aggregate L2 and DRAM capacity remain separate Forward bounds."
+    },
+    "production_function_sass_sha256": "b1f9aaf1a8a221567499e1214b053592c62ff594815742bdc881b912e971cf4b"
+  },
+  "service_parameters": {
+    "timer_domain": "clock64_same_cta",
+    "unit": "sm_cycles_per_source_round",
+    "derivation": "For each active-lane class, the grid-one cell isolates one CTA-local source round. Larger-grid clock64 captures include launch-wide cache and memory contention and therefore validate the aggregate envelope rather than defining alternate CTA-local rates. No complete production-operator duration selects either service.",
+    "production_cta_local_service": "grid_one_intrinsic_round_only",
+    "larger_grid_captures": "validation_only_against_launch_wide_resource_envelope",
+    "add_square": {
+      "active_256": 615.0,
+      "active_320": 521.0,
+      "active_512": 643.0,
+      "active_640": 731.0
+    },
+    "scale_multiply": {
+      "active_256": 384.0,
+      "active_320": 469.0,
+      "active_512": 566.0,
+      "active_640": 678.0
+    }
+  },
+  "composition_contract": {
+    "ordered_stages": [
+      "add_square_source_round",
+      "existing_block_reduction_and_publication",
+      "scale_multiply_source_round"
+    ],
+    "each_stage_composed_once": true,
+    "generic_fma_alu_replaced": true,
+    "generic_complete_memory_task_replaced": true,
+    "aggregate_l2_dram_capacity_envelope_retained": true,
+    "reduction_report_sha256": "5794b6ddb0fcfd9ed7e83c75a0d10d522540841570bf7eb33439bd0bf56941f1"
+  },
+  "validation_cells": {
+    "measured_grid_blocks": [1, 4, 16, 108],
+    "active_640_extension_grid_blocks": [8],
+    "active_256": {
+      "add_square_cycles": {"grid_4": 628.0, "grid_16": 596.0, "grid_108": 688.5},
+      "scale_multiply_cycles": {"grid_4": 391.0, "grid_16": 417.0, "grid_108": 644.0}
+    },
+    "active_320": {
+      "add_square_cycles": {"grid_4": 632.0, "grid_16": 648.0, "grid_108": 710.0},
+      "scale_multiply_cycles": {"grid_4": 468.0, "grid_16": 534.0, "grid_108": 1015.0}
+    },
+    "active_512": {
+      "add_square_cycles": {"grid_1": 643.0, "grid_4": 723.0, "grid_16": 754.0, "grid_108": 918.0},
+      "scale_multiply_cycles": {"grid_1": 566.0, "grid_4": 583.0, "grid_16": 613.5, "grid_108": 1161.0},
+      "maximum_trial_relative_spread": 0.0088339222614841
+    },
+    "active_640": {
+      "add_square_cycles": {"grid_1": 731.0, "grid_4": 879.0, "grid_8": 836.0, "grid_16": 841.0, "grid_108": 1132.0},
+      "scale_multiply_cycles": {"grid_1": 678.0, "grid_4": 788.0, "grid_8": 789.0, "grid_16": 761.0, "grid_108": 1268.0},
+      "maximum_trial_relative_spread": 0.012514220705346985
+    },
+    "all_trial_cells_stable_within_10_percent": true,
+    "composition_has_no_reduction_double_count": true,
+    "probe_and_production_resource_identity_exact": true
+  },
+  "decision": {
+    "status": "accepted_with_grid_contention_separated_from_cta_service",
+    "forward_eligible": true,
+    "reason": "The four active-lane classes in this reference, plus the separately bound H8192 class, isolate the same two source phases with the production resource signature. Forward uses only each grid-one intrinsic round service, composes it with reduction, and prices grid-dependent L2/DRAM contention through the separate aggregate resource envelope. Larger-grid captures remain validation evidence and do not select another local rate."
+  },
+  "excluded_conclusions": [
+    "a complete AddRMSNorm duration",
+    "rows outside the one-wave grid domain",
+    "hidden sizes other than 2048, 2560, 4096, and 5120",
+    "a grid-dependent CTA-local service rate",
+    "using larger-grid validation captures as a replacement for the aggregate memory envelope",
+    "interpolation to unmeasured active-lane widths",
+    "block widths other than 1024",
+    "resident or queued CTA source-round service",
+    "per-shape timing interpolation or residual correction"
+  ]
+}

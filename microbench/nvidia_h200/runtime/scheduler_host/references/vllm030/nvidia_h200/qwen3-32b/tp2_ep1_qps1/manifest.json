@@ -1,0 +1,42 @@
+{
+ "fields": [
+  "step_index",
+  "scheduled_request_count",
+  "prefill_request_count",
+  "decode_request_count",
+  "schedule_start_ns",
+  "schedule_end_ns",
+  "scheduler_update_start_ns",
+  "scheduler_update_end_ns"
+ ],
+ "identity": {
+  "case_id": "tp2_ep1_qps1",
+  "hardware_id": "nvidia_h200",
+  "model_id": "qwen3-32b"
+ },
+ "kind": "scheduler_host_samples_from_serving_candidate",
+ "runtime": {
+  "runtime_version": "0.30.0",
+  "source_commit": null,
+  "target_qps": 1.0
+ },
+ "sample_sha256": "14012f89569c967ac565c5955d28c9efde458c9e4538095a272a701af9156b7c",
+ "schema_version": 1,
+ "source": {
+  "candidate_manifest_sha256": "4990b03e938b448d4b0419af745aaabc33c1aaad43b9660b3470aba8145625ae",
+  "converter": {
+   "implementation_id": "midlayer.scheduler_capture_candidate.v5",
+   "selection_rule": "middle_complete_work_bearing_step_v1",
+   "source_commit": "264cf46e86b70df49812d43b92afa90e5d9b8381"
+  },
+  "scheduler_steps_sha256": "c4aa79df96d7c668436224d776b9c36c042cb9226d0c8c537b8fb269524c46ac",
+  "scheduler_timing_boundary": {
+   "clock": "time.perf_counter_ns",
+   "origin": "first_scheduler_step_start",
+   "schedule_end": "immediately_after_scheduler_schedule",
+   "step_end": "immediately_after_scheduler_output_update",
+   "step_start": "immediately_before_scheduler_schedule",
+   "update_start": "immediately_before_scheduler_output_update"
+  }
+ }
+}

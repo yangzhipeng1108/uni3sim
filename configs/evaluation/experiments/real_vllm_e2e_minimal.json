@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "case_manifest": "configs/dataset/serving/real_vllm_fixed_output.yaml",
+  "cells": [
+    {
+      "id": "dense_colocated_tp1",
+      "case_id": "dense_tp1_fixed_output",
+      "deployment": "colocated",
+      "moe": null,
+      "expert_routing": null,
+      "gpus": [0],
+      "parallelism": {
+        "tensor_parallel_size": 1,
+        "pipeline_parallel_size": 1,
+        "data_parallel_size": 1,
+        "enable_expert_parallel": false,
+        "max_num_seqs": 16,
+        "max_num_batched_tokens": 8192,
+        "block_size": 16,
+        "num_gpu_blocks_override": 40000
+      },
+      "prediction": {
+        "hardware_id": "nvidia_a800"
+      }
+    }
+  ]
+}

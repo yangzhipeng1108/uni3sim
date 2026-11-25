@@ -1,0 +1,102 @@
+{
+  "schema_version": "midlayer.metax_c500.h2880_shallow_source_depth_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "software_revision": "maca_3.7.2",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true,
+  "scope": {
+    "dtype": "bf16",
+    "group_size_m_by_tile_m": {"16": 1, "64": 8},
+    "projection_k": 2880,
+    "production_w1_n": 5760,
+    "production_w2_n": 2880,
+    "classes": {
+      "bm16_e128_8_active_8_max": {
+        "experts": 128,
+        "routed_rows": 8,
+        "populated_experts": 8,
+        "active_m_tiles": 8,
+        "maximum_m_tiles": 8,
+        "w1_source_rows": 2,
+        "w2_source_rows": 8,
+        "adjacent_nonproduction_w1_n": 5728,
+        "adjacent_nonproduction_w2_n": 2848
+      },
+      "bm64_e32_32_active_36_max": {
+        "experts": 32,
+        "routed_rows": 256,
+        "populated_experts": 32,
+        "active_m_tiles": 32,
+        "maximum_m_tiles": 36,
+        "w1_source_rows": 64,
+        "w2_source_rows": 256,
+        "adjacent_nonproduction_w1_n": 5696,
+        "adjacent_nonproduction_w2_n": 2816
+      }
+    }
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026091201,
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 100,
+    "independent_captures_per_device_role": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "cffe88825767f47104baac2a7d4f9f75a1b5c260f821ad63f308e28d530742ac",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "for each class and role, take the median capacity across three fresh processes on each measured device, then select the lower device median"
+  },
+  "selected_services": {
+    "bm16_e128_8_active_8_max_w1": {
+      "logical_byte_capacity_per_s": 1567652114864.0654,
+      "process_capacities_bytes_per_s": [1566289595322.5227, 1570616046919.8242, 1567652114864.0654]
+    },
+    "bm16_e128_8_active_8_max_w2": {
+      "logical_byte_capacity_per_s": 1458171355233.6504,
+      "process_capacities_bytes_per_s": [1463094728022.3535, 1457528116272.6924, 1458171355233.6504]
+    },
+    "bm64_e32_32_active_36_max_w1": {
+      "logical_byte_capacity_per_s": 3238510330193.884,
+      "device_medians_bytes_per_s": {
+        "0": 3239840736690.59,
+        "2": 3238510330193.884
+      }
+    },
+    "bm64_e32_32_active_36_max_w2": {
+      "logical_byte_capacity_per_s": 3128545600407.7847,
+      "device_medians_bytes_per_s": {
+        "0": 3129318212666.907,
+        "2": 3128545600407.7847
+      }
+    }
+  },
+  "stability": {
+    "bm16_max_process_capacity_range_over_mean_pct": 0.38138,
+    "bm64_max_process_capacity_range_over_mean_pct": 0.274475
+  },
+  "capture": {
+    "baseline_commit": "b31deee8",
+    "raw_roots": [
+      {
+        "path": "profiler_output/microbench/metax_c500/bm16_e128_8_active_8_max_mid_k_b31deee8_20260909_r1",
+        "physical_devices": [2],
+        "sha256": "62dbbd8bf34cd49823280fa8e4cf43a5735517ab7dd22f3e9cd78ed3ba6dfc6d"
+      },
+      {
+        "path": "profiler_output/microbench/metax_c500/bm64_e32_32_active_36_max_mid_k_b31deee8_20260909_r1",
+        "physical_devices": [0, 2],
+        "sha256": "5b425b7c6c9a363f16a133cc357557cf2b6c2e0e5ee6df95951447849190e4e9"
+      }
+    ],
+    "raw_tree_digest_rule": "sha256sum of the concatenated sorted relative-path sha256sum records"
+  },
+  "allowed_conclusion": "The exact shallow H2880 source-depth classes use role-specific full-chip logical-operand completion services measured with source-equivalent adjacent non-production projections.",
+  "excluded_conclusions": [
+    "complete production MoE operator duration",
+    "production-shaped projection timing",
+    "per-case residual correction",
+    "other source depths or projection tile classes"
+  ]
+}

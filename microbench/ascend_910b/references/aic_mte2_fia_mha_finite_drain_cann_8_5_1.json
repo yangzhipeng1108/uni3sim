@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_mte2_fia_mha_finite_drain",
+  "duration_unit": "ns_per_finite_descriptor_program_per_aic",
+  "publication_scope": {
+    "source_residency": "dram_cold_disjoint",
+    "dtype": "bf16",
+    "active_aic_groups": [16, 22, 24],
+    "completion_edge": "MTE2_MTE1_after_every_descriptor",
+    "estimator": "exact_measured_geometry_and_descriptor_count_only",
+    "geometries": [
+      {
+        "rows": 1,
+        "columns": 128,
+        "source_row_stride_elements": 128,
+        "active_aic_groups": 16,
+        "descriptor_counts": [2],
+        "duration_ns": [1240.0]
+      },
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 4096,
+        "active_aic_groups": 16,
+        "descriptor_counts": [4, 8],
+        "duration_ns": [9520.0, 14900.0]
+      },
+      {
+        "rows": 1,
+        "columns": 128,
+        "source_row_stride_elements": 128,
+        "active_aic_groups": 22,
+        "descriptor_counts": [2, 3, 5, 6],
+        "duration_ns": [500.0, 680.0, 1040.0, 1160.0]
+      },
+      {
+        "rows": 1,
+        "columns": 256,
+        "source_row_stride_elements": 512,
+        "active_aic_groups": 22,
+        "descriptor_counts": [4, 6],
+        "duration_ns": [1270.0, 1710.0]
+      },
+      {
+        "rows": 1,
+        "columns": 256,
+        "source_row_stride_elements": 1024,
+        "active_aic_groups": 22,
+        "descriptor_counts": [8, 12],
+        "duration_ns": [2250.0, 3430.0]
+      },
+      {
+        "rows": 1,
+        "columns": 256,
+        "source_row_stride_elements": 2048,
+        "active_aic_groups": 22,
+        "descriptor_counts": [16, 24],
+        "duration_ns": [4480.0, 6630.0]
+      },
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 4096,
+        "active_aic_groups": 22,
+        "descriptor_counts": [4, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48],
+        "duration_ns": [10090.0, 13980.0, 18070.0, 22380.0, 26720.0, 35500.0, 44070.0, 53170.0, 70700.0, 87420.0, 104840.0]
+      },
+      {
+        "rows": 1,
+        "columns": 128,
+        "source_row_stride_elements": 128,
+        "active_aic_groups": 24,
+        "descriptor_counts": [10, 11, 21, 22],
+        "duration_ns": [1960.0, 2130.0, 3940.0, 4070.0]
+      },
+      {
+        "rows": 256,
+        "columns": 128,
+        "source_row_stride_elements": 4096,
+        "active_aic_groups": 24,
+        "descriptor_counts": [20, 22, 40, 42, 44],
+        "duration_ns": [47830.0, 53200.0, 95120.0, 99440.0, 103850.0]
+      }
+    ]
+  },
+  "measurement": {
+    "mode": "independent_finite_drained_descriptor_microbenchmark",
+    "measurement_baseline_commit": "832fb9ef0b03924005dc70c78e4c219ae694f54d",
+    "source_commit": "5c28992a6d63f6cbaf0e924823b8bad92e950b74",
+    "physical_device_id": 5,
+    "binary_sha256": "eadb16977b5e01be675da41b18b157beb2573999c6b8b3f7a494af7d20e90348",
+    "source_kernel_sha256": "348381a35f12f69e1a3bf23fe1caf3010865fcf013b3b919bfce749b743b0cc8",
+    "source_main_sha256": "08b4f003fdf1ffcaa672e5f8da28d5110509dd7b44ff4c8f4121057c5829a174",
+    "raw_paths": [
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_extended_06802149_20260905/disjoint_mha_group22.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_extended_06802149_20260905/disjoint_mha_group22_count12.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_extended_06802149_20260905/disjoint_mha_group22_count24.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_extended_06802149_20260905/disjoint_mha_group22_even_counts.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_mha_domain_7520796d_20260905/group22_q.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_mha_domain_7520796d_20260905/group22_k10.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_mha_domain_7520796d_20260905/group22_k20.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_mha_domain_7520796d_20260905/group22_k32.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_mha_domain_7520796d_20260905/group22_k40.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_mha_domain_7520796d_20260905/group22_k48.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_mha_domain_7520796d_20260905/group24_q.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_mha_domain_7520796d_20260905/group24_k20.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_mha_domain_7520796d_20260905/group24_k22.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_mha_domain_7520796d_20260905/group24_k40.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_finite_drain_mha_domain_7520796d_20260905/group24_k44.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_count42_eeea1ac9_20260906/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_count42_eeea1ac9_20260906/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_count42_eeea1ac9_20260906/run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_61c6012a_20260906/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_61c6012a_20260906/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_61c6012a_20260906/run3.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_count8_a683771e_20260906/run1.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_count8_a683771e_20260906/run2.csv",
+      "profiler_output/microbench/ascend_910b/fa_mte2_mha_finite_drain_group16_count8_a683771e_20260906/run3.csv"
+    ],
+    "raw_sha256": [
+      "35b7ce5293171c8cdc213c47fc733049ad33ddb200d4517faad121c59196e2a1",
+      "776f621cfae349cb9f2a76b6534974bd7def39594ea846ee9970f1f2e18fc4cd",
+      "6d6b0070e5a31d026a80dc0260df7ba25a5db60019cb148c59329f0cc108f88d",
+      "7a8ff3e5a5014af827250ec9d2864a2142bb7effca64d6c37be23d3233f2ff30",
+      "ce479bfccee1c6160a45ea3a249098d8a4e54eb49c5491c330ff9ddbb3d54034",
+      "67d6a2aed83db54e7619ad9823baa2db563b0b4fe189bdec8773850317170514",
+      "d063cf4a97d9f2dcc953c4f28a83822504bf97f2ecc0224a6d35004f3e06e59d",
+      "fdf06e2a97dc7bb8011efb7a4b716315f956f9faa3cda412dc5f3441580a2f07",
+      "2e17b3675bc3ed670e3588bfc4aa07d4fa4b799dfb7abb24096c2f40aa6f7c79",
+      "7433b9f959af566833d04eab3aeb55a0f9e82f7f1a66aea6c33db8b91da5ebdc",
+      "65438327742a8b8a6c048420840e66d6c7d99432a8ddff685334a60064f5eebe",
+      "fa22afb0cae14788a828f17ba92ce6a74a3bcda2b07236adba2a55403e0199aa",
+      "a6232e34e3d72302adcf92048155a25707dfd6508095414c5c953cf441c95b57",
+      "c4df0346a26dcbb7c640475225705f657a3276b2059fe528d67d461bded8f4c7",
+      "f534dce2bc1c2cd8c5646a4cdfa13d90ec272fe295b2eb8015abe91573722611",
+      "78e82619970271cb754aa6c07df90dad178adbb26ba690f7b11f7d0e4d959e6e",
+      "e95f81a1f5fb8bb2784aaf989165eced0194304ec71a29c08734721930a4cbf6",
+      "d1b8e19afa629dbf31839cc40c1168a50677ed1a72234bccec26a0bbd8db703f",
+      "ab7ce1eca381e884aca6a45eab7c1181eb8d94a32947d0f647c94711909a7f28",
+      "2d5f4fdb99e04e616b5b5c5a66eba2f42ca79051ffe5779cade9a328191ea1aa",
+      "1553fa1d1c5c836ada36f1754b93186fcf7038e29d02afa20f90811a0610e797",
+      "8620eedd6134d0712e1df844563cf0a7426215cf5e8a734f74df47965ea58690",
+      "ddc180d32de29ad7bbf6ce4107f9425e68b1141eb94db028598893d57146b93a",
+      "0b0f1d4f1de344fc1a2e00742b29bd84c9241fb8b5af0ec60c332f5b5a216446"
+    ],
+    "mechanism_gate_passed": true
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "only exact source geometry, descriptor count, 22-AIC concurrency, BF16, disjoint DRAM-cold source, and an MTE2-to-MTE1 completion edge after every descriptor"
+}

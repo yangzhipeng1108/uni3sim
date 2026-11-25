@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "scheduler": {
+    "vllm_version": "0.18.0",
+    "source_identity": "vllm=0.18.0;source_identities=vllm=0.18.0;core=b8a10b3d...a61439;executor=138fd673...e758d;vllm-ascend=5673759a...cdd3fd;vllm=0.18.0;source_commit=not_recorded"
+  },
+  "model": {
+    "kind": "lane_dispatch_scheduled_request_count_affine",
+    "state_dimensions": ["scheduled_request_count"],
+    "lane_dispatch": "decode_steps_to_graph_replay_lane_prefill_and_mixed_steps_to_eager_dispatch_lane",
+    "statistic": "median_of_count_medians_then_least_squares_slope"
+  },
+  "max_scheduled_request_count": 128,
+  "service_time_s": {
+    "graph_lane": {
+      "submit": {
+        "intercept": 0.000526898
+      },
+      "wake": {
+        "intercept": 9.9499e-06,
+        "per_request": 1.0928e-08
+      }
+    },
+    "eager_lane": {
+      "submit": {
+        "intercept": 0.00043820675
+      },
+      "wake": {
+        "intercept": 8.9607e-06,
+        "per_request": 1.8721e-08
+      }
+    }
+  },
+  "measurement": {
+    "boundary": "vllm_engine_core_host_round_mechanism_probe",
+    "time_unit": "seconds",
+    "chain_definition": "submit chain = prep_sync + h2d + pre_replay_sync(graph lane only) + sample_submit + thread_submit + poll + queue_decision; wake chain = wake_block + d2h_event_sync + tolist + put; both are EngineCore busy-loop segments owned by no Host-launch, runtime-prepare, or Scheduler Host profile; device stub durations are calibration evidence only and never enter this profile",
+    "training_selection": {
+      "eligible_round_rule": "non_blocked_engine_owned_rounds",
+      "function_form_rule": "submit chains are intercept-only because every constituent segment is measured flat in request count and fitted submit slopes flip sign across runs, i.e. indistinguishable from zero; wake chains are affine because their per-request slope is positive in every run, matching per-request output put/tolist work",
+      "parameter_run": "run4_20260924_r128",
+      "retest_runs": ["run2_20260923_primary", "run3_20260924_retest"]
+    },
+    "artifacts": [
+      {
+        "path": "microbench/ascend_910b/runtime/engine_core_host_round/references/run4_summary.json",
+        "sha256": "53fdb48adfaf6ba4ab68be92faa228d33ba8ede26540b55cadb5aac1927d961b"
+      },
+      {
+        "path": "microbench/ascend_910b/runtime/engine_core_host_round/references/run4_trials.jsonl",
+        "sha256": "2c6c863ce921c50a9e369f98e2fe187ea115b571a08c9e6781519e1340713dca"
+      },
+      {
+        "path": "microbench/ascend_910b/runtime/engine_core_host_round/references/run4_manifest.json",
+        "sha256": "d754ffa679a331ffc8ba0b772b12ec15866a7cb1209694b4de687301e82dc6a6"
+      },
+      {
+        "path": "microbench/ascend_910b/runtime/engine_core_host_round/references/run2_summary.json",
+        "sha256": "908ca99c3d6d030b9d043c7a6a4bf2fd2799332d194772c22479b110355fdbd0"
+      },
+      {
+        "path": "microbench/ascend_910b/runtime/engine_core_host_round/references/run2_trials.jsonl",
+        "sha256": "6177c237b586f2afd54d913117ff58df9a23f53031c25192a8336a2808efcc01"
+      },
+      {
+        "path": "microbench/ascend_910b/runtime/engine_core_host_round/references/run2_manifest.json",
+        "sha256": "888bacbcafbec38e2714e907edd3960b1aaf70b4a2d84c72f868db982c96ef6c"
+      },
+      {
+        "path": "microbench/ascend_910b/runtime/engine_core_host_round/references/run3_summary.json",
+        "sha256": "00f975e0871489043fdefd0429977aae4eacb50937f48de3935033990f2dc9b1"
+      },
+      {
+        "path": "microbench/ascend_910b/runtime/engine_core_host_round/references/run3_trials.jsonl",
+        "sha256": "8667fcd6a9a76e42c579a8f9d14e0e162f7b34e6b810f35273018e70ed02a5b2"
+      },
+      {
+        "path": "microbench/ascend_910b/runtime/engine_core_host_round/references/run3_manifest.json",
+        "sha256": "98ecf98b294a50b8fddc92e661e49bde80d9d9ebca518ee937ae20c820c925be"
+      }
+    ]
+  }
+}

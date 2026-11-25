@@ -1,0 +1,25 @@
+{
+  "kind": "independent_request_burst_completion_semantics",
+  "hardware_id": "nvidia_h200",
+  "production_or_evaluation_duration_consumed": false,
+  "forward_duration_or_rate_published": false,
+  "qualified_evidence": {
+    "manifest_path": "profiler_output/microbench/nvidia_h200/resident_burst_join_20261107/attempt_3/manifest.json",
+    "manifest_sha256": "de1d68d716333ac24c13d4e4196061067488169f05ef81d736810db48530b012"
+  },
+  "preserved_failed_attempts": [
+    "profiler_output/microbench/nvidia_h200/resident_burst_join_20261107/attempt_1/manifest.json",
+    "profiler_output/microbench/nvidia_h200/resident_burst_join_20261107/attempt_2/manifest.json"
+  ],
+  "physical_inference": [
+    "Every consumer waiting for all transactions of its operand burst must join downstream return endpoints, including a cold segment after hits can return.",
+    "Byte-port occupancy is its transactions divided by physical capacity; return latency remains a consumer dependency, not additional port occupancy.",
+    "Independent buffered K panels each retain this return dependency; source buffer rings determine whether other work hides it."
+  ],
+  "no_new_parameter": "Node unloaded latencies, service capacities and transaction geometry all come from existing HWSpec/MemoryDiagnostics; no sampled body duration prices Forward.",
+  "transfer_limits": [
+    "The capture proves dependency semantics, not exact native per-cycle CTA fairness, launch placement, compiler issue timing or complete GEMM latency.",
+    "Per-stage downstream requests inherit aggregate cache ratios; sub-transaction node demand is a fluid expected-cardinality approximation, not an observed panel cache event.",
+    "The existing equal resident-lane capacity approximation remains; source-expanded fluid arbitration is still not adopted."
+  ]
+}

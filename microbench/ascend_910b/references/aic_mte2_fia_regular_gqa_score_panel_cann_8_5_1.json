@@ -1,0 +1,1484 @@
+{
+  "duration_unit": "ns_per_nd2nz_descriptor_per_aic",
+  "forward_eligibility_constraint": "not eligible for Forward: the independent descriptor uses a disjoint DRAM stream, while the source P-panel residency and completion edge have not been independently matched; no direct replacement, interpolation, or extrapolation is permitted",
+  "forward_eligible": false,
+  "hardware_id": "ascend_910b",
+  "measurement": {
+    "binary_sha256": "748155684c5e3e2341d8e1358c43377c2b81df584ae1bdb41c05dc4d8531ef37",
+    "fresh_processes_per_cell": 5,
+    "maximum_observed_relative_span_pct": 3.8105316711668613,
+    "measurement_baseline_commit": "a0e11a6d780a7afaebb4842f8c5ec5a33a78011a",
+    "mechanism_gate_passed": true,
+    "mode": "independent_aic_nd2nz_descriptor_microbenchmark",
+    "physical_device_id": 2,
+    "raw_path": "profiler_output/microbench/ascend_910b/fia_score_p_regular_gqa_completion_20260909_r1/raw/run.csv",
+    "raw_row_count": 600,
+    "raw_sha256": "7fbee5cfa270166f34a08f9137b7d64ea7affdcde854d43b6e19688db8498ccf",
+    "source_commit": "7bd7e68e25b15df7e3cb75e3016bc50276746eb1",
+    "source_files_sha256": {
+      "CMakeLists.txt": "d50d0b908a5aed58a55c5976a95c5f067f6d144b5bda3599b4f40ac8231d1a39",
+      "aic_mte2_nd2nz_stride_kernel.cpp": "3cdee9b19b126143b4351af4f60a0f4aa088dc4c496d0626e754eda65bcbfc72",
+      "aic_mte2_nd2nz_stride_main.cpp": "fe3d48698872b094ec1fd92039e463f3a46e3eb299ee38eb72ffe85101e7aba7",
+      "aic_mte2_nd2nz_stride_runner.py": "fb592e8c9cc2167e244af83e09914949f4431c729ad7aef3982cc26671bdf739"
+    },
+    "source_snapshot_sha256": "ef882fae7438784b860594ee4e932aedade9aa0ac63915f9cf906c49073efe1e"
+  },
+  "mechanism": "aic_mte2_fia_regular_gqa_score_panel",
+  "mechanism_publishable": true,
+  "parameter_fit_from_production_duration": false,
+  "production_or_evaluation_duration_consumed": false,
+  "publication_scope": {
+    "completion_edges": {
+      "serial": "MTE2_completion_after_each_descriptor",
+      "two_buffer_stream": "source_ordered_two_buffer_stream"
+    },
+    "dtype": "bf16",
+    "estimator": "exact_measured_geometry_and_aic_topology_only",
+    "services": [
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 287.769699097,
+        "serial_max_relative_span_pct": 1.4511162280474723,
+        "serial_process_ns": [
+          288.109664917,
+          283.933792114,
+          287.921447754,
+          284.005737305,
+          287.769699097
+        ],
+        "source_row_stride_elements": 512,
+        "stream_max_relative_span_pct": 0.35194248845793263,
+        "stream_process_ns": [
+          143.695755005,
+          144.170633952,
+          143.66490682,
+          143.780339559,
+          143.695958455
+        ],
+        "two_buffer_stream_ns": 143.695958455
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 280.996373494,
+        "serial_max_relative_span_pct": 1.364167827981533,
+        "serial_process_ns": [
+          280.380833944,
+          284.050598145,
+          280.949935913,
+          284.214096069,
+          280.996373494
+        ],
+        "source_row_stride_elements": 512,
+        "stream_max_relative_span_pct": 0.27433483685908655,
+        "stream_process_ns": [
+          143.808059692,
+          144.155654907,
+          144.203236898,
+          143.895924886,
+          144.049224854
+        ],
+        "two_buffer_stream_ns": 144.049224854
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 286.471786499,
+        "serial_max_relative_span_pct": 1.044792907035693,
+        "serial_process_ns": [
+          286.499125163,
+          283.739140828,
+          286.732177734,
+          284.96055603,
+          286.471786499
+        ],
+        "source_row_stride_elements": 512,
+        "stream_max_relative_span_pct": 0.23157702294833155,
+        "stream_process_ns": [
+          145.958735148,
+          145.62113444,
+          145.783335368,
+          145.823084513,
+          145.779825846
+        ],
+        "two_buffer_stream_ns": 145.783335368
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 286.040140788,
+        "serial_max_relative_span_pct": 0.32293237776185507,
+        "serial_process_ns": [
+          286.040140788,
+          286.214853923,
+          285.65806071,
+          286.152089437,
+          285.291137695
+        ],
+        "source_row_stride_elements": 512,
+        "stream_max_relative_span_pct": 0.21394118175091212,
+        "stream_process_ns": [
+          146.062062581,
+          146.330210368,
+          146.374944051,
+          146.097462972,
+          146.246490479
+        ],
+        "two_buffer_stream_ns": 146.246490479
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 149.581680298,
+        "serial_max_relative_span_pct": 2.601588530258019,
+        "serial_process_ns": [
+          149.581680298,
+          146.179656982,
+          150.07115682,
+          146.338602702,
+          149.856770833
+        ],
+        "source_row_stride_elements": 1024,
+        "stream_max_relative_span_pct": 2.839258394061892,
+        "stream_process_ns": [
+          80.832850138,
+          78.538589478,
+          80.804926554,
+          78.605906169,
+          80.816752116
+        ],
+        "two_buffer_stream_ns": 80.804926554
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 156.358668009,
+        "serial_max_relative_span_pct": 0.9980363588862168,
+        "serial_process_ns": [
+          156.673736572,
+          155.309066772,
+          156.358668009,
+          155.201670329,
+          156.762186686
+        ],
+        "source_row_stride_elements": 1024,
+        "stream_max_relative_span_pct": 2.9057328513308787,
+        "stream_process_ns": [
+          77.622528076,
+          79.798736572,
+          77.537104289,
+          79.546483358,
+          77.833455404
+        ],
+        "two_buffer_stream_ns": 77.833455404
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 154.308319092,
+        "serial_max_relative_span_pct": 0.20251662505226609,
+        "serial_process_ns": [
+          154.256998698,
+          154.423421224,
+          154.50205485,
+          154.18955485,
+          154.308319092
+        ],
+        "source_row_stride_elements": 1024,
+        "stream_max_relative_span_pct": 0.21529206273483217,
+        "stream_process_ns": [
+          79.569854736,
+          79.592437744,
+          79.704360962,
+          79.729868571,
+          79.55851237
+        ],
+        "two_buffer_stream_ns": 79.592437744
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 154.935379028,
+        "serial_max_relative_span_pct": 0.5127614215578504,
+        "serial_process_ns": [
+          154.252548218,
+          154.639256795,
+          154.953613281,
+          154.935379028,
+          155.04699707
+        ],
+        "source_row_stride_elements": 1024,
+        "stream_max_relative_span_pct": 1.578958325886794,
+        "stream_process_ns": [
+          80.657221476,
+          79.384333293,
+          80.644454956,
+          79.426956177,
+          80.615692139
+        ],
+        "two_buffer_stream_ns": 80.615692139
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 130.00696818,
+        "serial_max_relative_span_pct": 2.456005204720398,
+        "serial_process_ns": [
+          130.00696818,
+          133.178456624,
+          129.988123576,
+          133.166173299,
+          129.985478719
+        ],
+        "source_row_stride_elements": 2048,
+        "stream_max_relative_span_pct": 0.14167729283319677,
+        "stream_process_ns": [
+          62.473042806,
+          62.511622111,
+          62.502492269,
+          62.561594645,
+          62.502085368
+        ],
+        "two_buffer_stream_ns": 62.502492269
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 132.268702189,
+        "serial_max_relative_span_pct": 1.8882460866904272,
+        "serial_process_ns": [
+          132.282002767,
+          130.033721924,
+          132.303670247,
+          129.806111654,
+          132.268702189
+        ],
+        "source_row_stride_elements": 2048,
+        "stream_max_relative_span_pct": 0.08574516161227609,
+        "stream_process_ns": [
+          64.597702026,
+          64.618453979,
+          64.596888224,
+          64.634806315,
+          64.579416911
+        ],
+        "two_buffer_stream_ns": 64.597702026
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 132.267405192,
+        "serial_max_relative_span_pct": 0.15618252410723693,
+        "serial_process_ns": [
+          132.264404297,
+          132.460835775,
+          132.267405192,
+          132.470982869,
+          132.265218099
+        ],
+        "source_row_stride_elements": 2048,
+        "stream_max_relative_span_pct": 1.3286059180163705,
+        "stream_process_ns": [
+          63.571497599,
+          64.41561381,
+          63.575948079,
+          64.416402181,
+          63.593317668
+        ],
+        "two_buffer_stream_ns": 63.593317668
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 132.38416036,
+        "serial_max_relative_span_pct": 0.0844674254804621,
+        "serial_process_ns": [
+          132.3828125,
+          132.475458781,
+          132.38416036,
+          132.481358846,
+          132.369537354
+        ],
+        "source_row_stride_elements": 2048,
+        "stream_max_relative_span_pct": 0.11765782190599708,
+        "stream_process_ns": [
+          64.498087565,
+          64.432474772,
+          64.500579834,
+          64.431533813,
+          64.507420858
+        ],
+        "two_buffer_stream_ns": 64.498087565
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 136.350784302,
+        "serial_max_relative_span_pct": 1.743494535194357,
+        "serial_process_ns": [
+          136.353708903,
+          134.274164836,
+          136.350784302,
+          133.991851807,
+          136.36912028
+        ],
+        "source_row_stride_elements": 4096,
+        "stream_max_relative_span_pct": 1.4942038084109348,
+        "stream_process_ns": [
+          68.211085002,
+          69.224650065,
+          68.216069539,
+          69.230372111,
+          68.211135864
+        ],
+        "two_buffer_stream_ns": 68.216069539
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 134.36340332,
+        "serial_max_relative_span_pct": 0.6670346127401118,
+        "serial_process_ns": [
+          134.36340332,
+          135.226135254,
+          134.332504272,
+          135.228754679,
+          134.338226318
+        ],
+        "source_row_stride_elements": 4096,
+        "stream_max_relative_span_pct": 0.21410362934730318,
+        "stream_process_ns": [
+          68.227462769,
+          68.219655355,
+          68.234227498,
+          68.104019165,
+          68.250096639
+        ],
+        "two_buffer_stream_ns": 68.227462769
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 135.203297933,
+        "serial_max_relative_span_pct": 0.10710234899133425,
+        "serial_process_ns": [
+          135.203297933,
+          135.077718099,
+          135.208562215,
+          135.072758993,
+          135.217564901
+        ],
+        "source_row_stride_elements": 4096,
+        "stream_max_relative_span_pct": 0.06083604358941237,
+        "stream_process_ns": [
+          68.26133728,
+          68.302866618,
+          68.264363607,
+          68.283259074,
+          68.261515299
+        ],
+        "two_buffer_stream_ns": 68.264363607
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 135.258916219,
+        "serial_max_relative_span_pct": 0.12683796070213985,
+        "serial_process_ns": [
+          135.242716471,
+          135.271682739,
+          135.100123088,
+          135.271682739,
+          135.258916219
+        ],
+        "source_row_stride_elements": 4096,
+        "stream_max_relative_span_pct": 0.050591501015471566,
+        "stream_process_ns": [
+          68.314158122,
+          68.28531901,
+          68.31896464,
+          68.29266866,
+          68.319880168
+        ],
+        "two_buffer_stream_ns": 68.314158122
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 129.988174438,
+        "serial_max_relative_span_pct": 0.12622905561173664,
+        "serial_process_ns": [
+          129.944152832,
+          130.033518473,
+          129.984995524,
+          130.108235677,
+          129.988174438
+        ],
+        "source_row_stride_elements": 8192,
+        "stream_max_relative_span_pct": 2.275139407165928,
+        "stream_process_ns": [
+          68.673756917,
+          67.136357625,
+          68.679860433,
+          67.126719157,
+          68.689142863
+        ],
+        "two_buffer_stream_ns": 68.673756917
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 138.957036336,
+        "serial_max_relative_span_pct": 0.03856140172020386,
+        "serial_process_ns": [
+          138.941701253,
+          138.957036336,
+          138.964029948,
+          138.995285034,
+          138.947703044
+        ],
+        "source_row_stride_elements": 8192,
+        "stream_max_relative_span_pct": 0.5446663907612374,
+        "stream_process_ns": [
+          67.178192139,
+          67.542800903,
+          67.176895142,
+          67.532958984,
+          67.179794312
+        ],
+        "two_buffer_stream_ns": 67.179794312
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 138.948745728,
+        "serial_max_relative_span_pct": 0.15590204925205844,
+        "serial_process_ns": [
+          138.956756592,
+          138.768590291,
+          138.948745728,
+          138.798675537,
+          138.985214233
+        ],
+        "source_row_stride_elements": 8192,
+        "stream_max_relative_span_pct": 0.12221264733244268,
+        "stream_process_ns": [
+          67.608668009,
+          67.546742757,
+          67.620239258,
+          67.568486532,
+          67.6293691
+        ],
+        "two_buffer_stream_ns": 67.608668009
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 4,
+        "serial_completion_ns": 138.863042196,
+        "serial_max_relative_span_pct": 0.1249561152168096,
+        "serial_process_ns": [
+          138.863042196,
+          138.930206299,
+          138.766886393,
+          138.896357218,
+          138.756688436
+        ],
+        "source_row_stride_elements": 8192,
+        "stream_max_relative_span_pct": 0.0670036266381491,
+        "stream_process_ns": [
+          67.674001058,
+          67.646026611,
+          67.677663167,
+          67.639338175,
+          67.68468221
+        ],
+        "two_buffer_stream_ns": 67.674001058
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 285.951187723,
+        "serial_max_relative_span_pct": 2.7079661482298336,
+        "serial_process_ns": [
+          284.804234318,
+          292.277328756,
+          285.681996996,
+          292.547695682,
+          285.951187723
+        ],
+        "source_row_stride_elements": 512,
+        "stream_max_relative_span_pct": 0.4145531175422242,
+        "stream_process_ns": [
+          144.523758434,
+          144.087356651,
+          143.975236233,
+          144.572745552,
+          144.133355586
+        ],
+        "two_buffer_stream_ns": 144.133355586
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 288.659307473,
+        "serial_max_relative_span_pct": 0.7433900693469606,
+        "serial_process_ns": [
+          288.621510145,
+          289.979225775,
+          288.659307473,
+          289.601633964,
+          287.833361149
+        ],
+        "source_row_stride_elements": 512,
+        "stream_max_relative_span_pct": 0.650159505110862,
+        "stream_process_ns": [
+          148.36338205,
+          149.179410152,
+          148.477695921,
+          149.218796939,
+          148.253455086
+        ],
+        "two_buffer_stream_ns": 148.477695921
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 290.980489394,
+        "serial_max_relative_span_pct": 0.7120050744002636,
+        "serial_process_ns": [
+          291.253812714,
+          289.826033744,
+          290.980489394,
+          290.237830707,
+          291.897829594
+        ],
+        "source_row_stride_elements": 512,
+        "stream_max_relative_span_pct": 0.15258653243550616,
+        "stream_process_ns": [
+          149.147303086,
+          149.263746831,
+          149.172607269,
+          149.133633741,
+          149.036168133
+        ],
+        "two_buffer_stream_ns": 149.147303086
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 291.167155425,
+        "serial_max_relative_span_pct": 0.5607841109745579,
+        "serial_process_ns": [
+          290.730467539,
+          292.131543603,
+          291.167155425,
+          291.666340828,
+          290.498724459
+        ],
+        "source_row_stride_elements": 512,
+        "stream_max_relative_span_pct": 0.22837869594249313,
+        "stream_process_ns": [
+          149.857822918,
+          149.745988604,
+          149.592446892,
+          149.515834982,
+          149.75574788
+        ],
+        "two_buffer_stream_ns": 149.745988604
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 159.486445891,
+        "serial_max_relative_span_pct": 2.7543325148785613,
+        "serial_process_ns": [
+          159.85911038,
+          155.466323344,
+          159.486445891,
+          155.691486064,
+          159.632803249
+        ],
+        "source_row_stride_elements": 1024,
+        "stream_max_relative_span_pct": 3.8105316711668613,
+        "stream_process_ns": [
+          78.096082779,
+          80.979519825,
+          78.149870062,
+          81.076762908,
+          78.222158644
+        ],
+        "two_buffer_stream_ns": 78.222158644
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 152.226974704,
+        "serial_max_relative_span_pct": 0.6774571996883386,
+        "serial_process_ns": [
+          151.809964317,
+          152.841236917,
+          151.908955805,
+          152.815519475,
+          152.226974704
+        ],
+        "source_row_stride_elements": 1024,
+        "stream_max_relative_span_pct": 3.406320424514489,
+        "stream_process_ns": [
+          78.434669273,
+          81.111540265,
+          78.585413537,
+          81.01432897,
+          78.487820773
+        ],
+        "two_buffer_stream_ns": 78.585413537
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 160.339285856,
+        "serial_max_relative_span_pct": 1.22412855497107,
+        "serial_process_ns": [
+          160.652154909,
+          158.689395926,
+          160.52391738,
+          158.745885289,
+          160.339285856
+        ],
+        "source_row_stride_elements": 1024,
+        "stream_max_relative_span_pct": 1.4626656161989815,
+        "stream_process_ns": [
+          79.40102838,
+          80.508022793,
+          79.582385619,
+          80.565052571,
+          79.549324877
+        ],
+        "two_buffer_stream_ns": 79.582385619
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 159.373276431,
+        "serial_max_relative_span_pct": 1.8948846548357514,
+        "serial_process_ns": [
+          159.373276431,
+          161.990669877,
+          159.052142193,
+          161.889548514,
+          158.970730118
+        ],
+        "source_row_stride_elements": 1024,
+        "stream_max_relative_span_pct": 2.5240060141942857,
+        "stream_process_ns": [
+          79.283503803,
+          81.286730404,
+          79.366950385,
+          81.047866549,
+          79.326260242
+        ],
+        "two_buffer_stream_ns": 79.366950385
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 131.962774877,
+        "serial_max_relative_span_pct": 0.14588601912882465,
+        "serial_process_ns": [
+          131.888388209,
+          131.923610614,
+          131.962774877,
+          132.080903448,
+          131.971167219
+        ],
+        "source_row_stride_elements": 2048,
+        "stream_max_relative_span_pct": 2.027450503946402,
+        "stream_process_ns": [
+          66.46095892,
+          65.127371274,
+          66.444523917,
+          65.11942398,
+          66.466553815
+        ],
+        "two_buffer_stream_ns": 66.444523917
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 136.214259034,
+        "serial_max_relative_span_pct": 0.030922354457374884,
+        "serial_process_ns": [
+          136.214259034,
+          136.1770657,
+          136.214831239,
+          136.219186356,
+          136.177701484
+        ],
+        "source_row_stride_elements": 2048,
+        "stream_max_relative_span_pct": 1.3389863001154483,
+        "stream_process_ns": [
+          65.172035063,
+          66.024716083,
+          65.152071462,
+          66.022617997,
+          65.17101781
+        ],
+        "two_buffer_stream_ns": 65.172035063
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 134.468365798,
+        "serial_max_relative_span_pct": 0.9761690589531499,
+        "serial_process_ns": [
+          134.433016236,
+          135.73821615,
+          134.436544835,
+          135.745654817,
+          134.468365798
+        ],
+        "source_row_stride_elements": 2048,
+        "stream_max_relative_span_pct": 1.0289025459129166,
+        "stream_process_ns": [
+          66.117858363,
+          65.450794332,
+          66.123039999,
+          65.453464623,
+          66.13108266
+        ],
+        "two_buffer_stream_ns": 66.117858363
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 135.809264955,
+        "serial_max_relative_span_pct": 0.01626801824406436,
+        "serial_process_ns": [
+          135.791653752,
+          135.809264955,
+          135.793052476,
+          135.813747228,
+          135.811140516
+        ],
+        "source_row_stride_elements": 2048,
+        "stream_max_relative_span_pct": 0.021185056783457126,
+        "stream_process_ns": [
+          66.168148837,
+          66.176382233,
+          66.170024398,
+          66.174125202,
+          66.182167863
+        ],
+        "two_buffer_stream_ns": 66.174125202
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 137.709462842,
+        "serial_max_relative_span_pct": 1.7967382443709434,
+        "serial_process_ns": [
+          137.709462842,
+          140.162760572,
+          137.702850694,
+          140.156752418,
+          137.688481987
+        ],
+        "source_row_stride_elements": 4096,
+        "stream_max_relative_span_pct": 0.08801685165662936,
+        "stream_process_ns": [
+          64.279999046,
+          64.302124312,
+          64.288518545,
+          64.336583776,
+          64.287533081
+        ],
+        "two_buffer_stream_ns": 64.288518545
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 138.477997918,
+        "serial_max_relative_span_pct": 0.5681869046560744,
+        "serial_process_ns": [
+          138.530672579,
+          137.814176382,
+          138.477997918,
+          137.743858729,
+          138.520817935
+        ],
+        "source_row_stride_elements": 4096,
+        "stream_max_relative_span_pct": 0.11703011055716743,
+        "stream_process_ns": [
+          67.79019145,
+          67.717966447,
+          67.710941039,
+          67.715486891,
+          67.73169937
+        ],
+        "two_buffer_stream_ns": 67.717966447
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 138.568183805,
+        "serial_max_relative_span_pct": 0.17433001455797842,
+        "serial_process_ns": [
+          138.674041755,
+          138.43247582,
+          138.574700586,
+          138.446081587,
+          138.568183805
+        ],
+        "source_row_stride_elements": 4096,
+        "stream_max_relative_span_pct": 0.18392078056038688,
+        "stream_process_ns": [
+          67.573166758,
+          67.692535107,
+          67.598375573,
+          67.691454275,
+          67.568207647
+        ],
+        "two_buffer_stream_ns": 67.598375573
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 138.668764752,
+        "serial_max_relative_span_pct": 0.13339788908543368,
+        "serial_process_ns": [
+          138.668764752,
+          138.734027927,
+          138.573715121,
+          138.745313084,
+          138.560331879
+        ],
+        "source_row_stride_elements": 4096,
+        "stream_max_relative_span_pct": 0.1626562044305872,
+        "stream_process_ns": [
+          67.568907009,
+          67.673715916,
+          67.621486303,
+          67.668534281,
+          67.563725373
+        ],
+        "two_buffer_stream_ns": 67.621486303
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 142.372902908,
+        "serial_max_relative_span_pct": 2.0385338471854086,
+        "serial_process_ns": [
+          142.38784382,
+          139.49534686,
+          142.39401092,
+          139.491691105,
+          142.372902908
+        ],
+        "source_row_stride_elements": 8192,
+        "stream_max_relative_span_pct": 2.1885531333511627,
+        "stream_process_ns": [
+          67.935817657,
+          69.387406719,
+          67.935531555,
+          69.407561055,
+          67.920749589
+        ],
+        "two_buffer_stream_ns": 67.935817657
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 139.451477799,
+        "serial_max_relative_span_pct": 0.5804967676045515,
+        "serial_process_ns": [
+          139.451477799,
+          140.166638851,
+          139.393112875,
+          140.202624196,
+          139.414379833
+        ],
+        "source_row_stride_elements": 8192,
+        "stream_max_relative_span_pct": 0.6802996436673263,
+        "stream_process_ns": [
+          68.344785383,
+          67.932034746,
+          68.347964301,
+          67.883111206,
+          68.330639201
+        ],
+        "two_buffer_stream_ns": 68.330639201
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 140.104459226,
+        "serial_max_relative_span_pct": 0.06600411400956106,
+        "serial_process_ns": [
+          140.095685414,
+          140.181261871,
+          140.104459226,
+          140.172996686,
+          140.088787164
+        ],
+        "source_row_stride_elements": 8192,
+        "stream_max_relative_span_pct": 0.09379496932913516,
+        "stream_process_ns": [
+          68.326665554,
+          68.338459338,
+          68.351683634,
+          68.322946221,
+          68.287596659
+        ],
+        "two_buffer_stream_ns": 68.326665554
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 5,
+        "serial_completion_ns": 140.337823554,
+        "serial_max_relative_span_pct": 0.030625359515753233,
+        "serial_process_ns": [
+          140.327269548,
+          140.346374842,
+          140.337823554,
+          140.3664656,
+          140.323486637
+        ],
+        "source_row_stride_elements": 8192,
+        "stream_max_relative_span_pct": 0.06288694339731188,
+        "stream_process_ns": [
+          68.419362786,
+          68.391960518,
+          68.413227475,
+          68.393772501,
+          68.376352033
+        ],
+        "two_buffer_stream_ns": 68.393772501
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 296.377563477,
+        "serial_max_relative_span_pct": 0.8167296490336019,
+        "serial_process_ns": [
+          295.360209147,
+          297.062072754,
+          296.377563477,
+          297.780812581,
+          295.931345622
+        ],
+        "source_row_stride_elements": 512,
+        "stream_max_relative_span_pct": 0.42169660800652276,
+        "stream_process_ns": [
+          153.624318441,
+          153.333282471,
+          153.192189535,
+          153.166097005,
+          152.978312174
+        ],
+        "two_buffer_stream_ns": 153.192189535
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 302.106882731,
+        "serial_max_relative_span_pct": 0.9165671519856113,
+        "serial_process_ns": [
+          302.043762207,
+          304.593556722,
+          301.824544271,
+          302.836151123,
+          302.106882731
+        ],
+        "source_row_stride_elements": 512,
+        "stream_max_relative_span_pct": 0.9050379443068264,
+        "stream_process_ns": [
+          153.014017741,
+          154.406789144,
+          153.764241536,
+          153.973032633,
+          153.890940348
+        ],
+        "two_buffer_stream_ns": 153.890940348
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 304.385019938,
+        "serial_max_relative_span_pct": 0.25621389290407903,
+        "serial_process_ns": [
+          304.385019938,
+          303.908030192,
+          304.444834391,
+          303.915049235,
+          304.687906901
+        ],
+        "source_row_stride_elements": 512,
+        "stream_max_relative_span_pct": 0.7181602304343595,
+        "stream_process_ns": [
+          158.047078451,
+          156.930287679,
+          157.206522624,
+          156.918792725,
+          157.107798258
+        ],
+        "two_buffer_stream_ns": 157.107798258
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 305.704040527,
+        "serial_max_relative_span_pct": 0.28109675505714504,
+        "serial_process_ns": [
+          306.023254395,
+          305.704040527,
+          305.327301025,
+          306.186625163,
+          305.366973877
+        ],
+        "source_row_stride_elements": 512,
+        "stream_max_relative_span_pct": 0.6592508951351611,
+        "stream_process_ns": [
+          158.779144287,
+          158.153839111,
+          158.996480306,
+          158.136850993,
+          159.183603923
+        ],
+        "two_buffer_stream_ns": 158.779144287
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 149.222361247,
+        "serial_max_relative_span_pct": 3.291464300628566,
+        "serial_process_ns": [
+          149.222361247,
+          153.872375488,
+          149.144897461,
+          154.05649821,
+          149.155527751
+        ],
+        "source_row_stride_elements": 1024,
+        "stream_max_relative_span_pct": 1.2935299891181207,
+        "stream_process_ns": [
+          73.242848714,
+          72.412618001,
+          73.360036214,
+          72.438557943,
+          73.300018311
+        ],
+        "two_buffer_stream_ns": 73.242848714
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 149.869028727,
+        "serial_max_relative_span_pct": 0.24998769804699325,
+        "serial_process_ns": [
+          149.872639974,
+          149.869028727,
+          149.733428955,
+          149.95686849,
+          149.582214355
+        ],
+        "source_row_stride_elements": 1024,
+        "stream_max_relative_span_pct": 1.2511187047106849,
+        "stream_process_ns": [
+          77.803090413,
+          77.057037354,
+          78.025970459,
+          77.052561442,
+          77.975769043
+        ],
+        "two_buffer_stream_ns": 77.803090413
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 153.083241781,
+        "serial_max_relative_span_pct": 0.9044970343526254,
+        "serial_process_ns": [
+          153.240712484,
+          151.856079102,
+          153.083241781,
+          151.917368571,
+          153.104400635
+        ],
+        "source_row_stride_elements": 1024,
+        "stream_max_relative_span_pct": 2.319805478480857,
+        "stream_process_ns": [
+          75.963338216,
+          77.60925293,
+          75.852457682,
+          77.618306478,
+          76.120554606
+        ],
+        "two_buffer_stream_ns": 76.120554606
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 151.222229004,
+        "serial_max_relative_span_pct": 2.2690076185223016,
+        "serial_process_ns": [
+          151.185302734,
+          154.616546631,
+          151.206512451,
+          154.575093587,
+          151.222229004
+        ],
+        "source_row_stride_elements": 1024,
+        "stream_max_relative_span_pct": 1.224624096410329,
+        "stream_process_ns": [
+          77.199656169,
+          76.532491048,
+          77.307840983,
+          76.363220215,
+          77.135569255
+        ],
+        "two_buffer_stream_ns": 77.135569255
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 141.930287679,
+        "serial_max_relative_span_pct": 1.2679616249846142,
+        "serial_process_ns": [
+          141.953023275,
+          140.343017578,
+          141.944274902,
+          140.153401693,
+          141.930287679
+        ],
+        "source_row_stride_elements": 2048,
+        "stream_max_relative_span_pct": 1.215194937915719,
+        "stream_process_ns": [
+          68.638966878,
+          69.473164876,
+          68.647257487,
+          69.469858805,
+          68.643595378
+        ],
+        "two_buffer_stream_ns": 68.647257487
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 140.443827311,
+        "serial_max_relative_span_pct": 0.41054048941802906,
+        "serial_process_ns": [
+          140.443827311,
+          140.984039307,
+          140.416971842,
+          140.967712402,
+          140.407460531
+        ],
+        "source_row_stride_elements": 2048,
+        "stream_max_relative_span_pct": 0.8187842646712566,
+        "stream_process_ns": [
+          68.885447184,
+          68.443400065,
+          68.904164632,
+          68.340148926,
+          68.884531657
+        ],
+        "two_buffer_stream_ns": 68.884531657
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 141.058197021,
+        "serial_max_relative_span_pct": 0.06894271375489867,
+        "serial_process_ns": [
+          141.101633708,
+          141.004384359,
+          141.070200602,
+          141.040802002,
+          141.058197021
+        ],
+        "source_row_stride_elements": 2048,
+        "stream_max_relative_span_pct": 0.07427513571391411,
+        "stream_process_ns": [
+          68.958028158,
+          68.964487712,
+          68.933410645,
+          68.961181641,
+          68.913269043
+        ],
+        "two_buffer_stream_ns": 68.958028158
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 141.080678304,
+        "serial_max_relative_span_pct": 0.046254919372711235,
+        "serial_process_ns": [
+          141.068827311,
+          141.128285726,
+          141.065012614,
+          141.130269368,
+          141.080678304
+        ],
+        "source_row_stride_elements": 2048,
+        "stream_max_relative_span_pct": 0.037161537468303925,
+        "stream_process_ns": [
+          68.981984456,
+          68.985595703,
+          68.981424967,
+          68.999532064,
+          68.973897298
+        ],
+        "two_buffer_stream_ns": 68.981984456
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 136.511942546,
+        "serial_max_relative_span_pct": 0.17418461166492394,
+        "serial_process_ns": [
+          136.436869303,
+          136.640777588,
+          136.51163737,
+          136.6746521,
+          136.511942546
+        ],
+        "source_row_stride_elements": 4096,
+        "stream_max_relative_span_pct": 2.5692275643029077,
+        "stream_process_ns": [
+          72.250620524,
+          70.494842529,
+          72.244669596,
+          70.403493245,
+          72.25962321
+        ],
+        "two_buffer_stream_ns": 72.244669596
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 145.721944173,
+        "serial_max_relative_span_pct": 0.33696217463107,
+        "serial_process_ns": [
+          145.588480632,
+          145.887145996,
+          145.586700439,
+          146.077728271,
+          145.721944173
+        ],
+        "source_row_stride_elements": 4096,
+        "stream_max_relative_span_pct": 0.2533346043269514,
+        "stream_process_ns": [
+          70.970815023,
+          70.791066488,
+          70.953013102,
+          70.83307902,
+          70.955251058
+        ],
+        "two_buffer_stream_ns": 70.953013102
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 145.415751139,
+        "serial_max_relative_span_pct": 0.257783343319997,
+        "serial_process_ns": [
+          145.338592529,
+          145.713450114,
+          145.389251709,
+          145.674743652,
+          145.415751139
+        ],
+        "source_row_stride_elements": 4096,
+        "stream_max_relative_span_pct": 0.25606079705588836,
+        "stream_process_ns": [
+          71.19023641,
+          71.028340658,
+          71.204223633,
+          71.022084554,
+          71.131184896
+        ],
+        "two_buffer_stream_ns": 71.131184896
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 145.678507487,
+        "serial_max_relative_span_pct": 0.26224130284565,
+        "serial_process_ns": [
+          145.754292806,
+          145.37226359,
+          145.683644613,
+          145.37882487,
+          145.678507487
+        ],
+        "source_row_stride_elements": 4096,
+        "stream_max_relative_span_pct": 0.1080918235749617,
+        "stream_process_ns": [
+          71.24130249,
+          71.267191569,
+          71.212921143,
+          71.283620199,
+          71.206614176
+        ],
+        "two_buffer_stream_ns": 71.24130249
+      },
+      {
+        "active_aic_groups": 8,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 142.15154012,
+        "serial_max_relative_span_pct": 2.2146383319818015,
+        "serial_process_ns": [
+          142.15154012,
+          145.262705485,
+          142.138722738,
+          145.259653727,
+          142.114562988
+        ],
+        "source_row_stride_elements": 8192,
+        "stream_max_relative_span_pct": 0.11694689385226784,
+        "stream_process_ns": [
+          65.480906169,
+          65.55750529,
+          65.499064128,
+          65.482228597,
+          65.50567627
+        ],
+        "two_buffer_stream_ns": 65.499064128
+      },
+      {
+        "active_aic_groups": 16,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 143.312683105,
+        "serial_max_relative_span_pct": 0.6385836104467504,
+        "serial_process_ns": [
+          143.320465088,
+          142.590637207,
+          143.345387777,
+          142.430216471,
+          143.312683105
+        ],
+        "source_row_stride_elements": 8192,
+        "stream_max_relative_span_pct": 0.06908332528960338,
+        "stream_process_ns": [
+          70.072937012,
+          70.108846029,
+          70.081481934,
+          70.121358236,
+          70.091044108
+        ],
+        "two_buffer_stream_ns": 70.091044108
+      },
+      {
+        "active_aic_groups": 22,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 143.136342367,
+        "serial_max_relative_span_pct": 0.07273890213922819,
+        "serial_process_ns": [
+          143.213348389,
+          143.137461344,
+          143.126373291,
+          143.136342367,
+          143.109232585
+        ],
+        "source_row_stride_elements": 8192,
+        "stream_max_relative_span_pct": 0.2091252682136286,
+        "stream_process_ns": [
+          70.013427734,
+          70.159912109,
+          70.02746582,
+          70.149637858,
+          70.046234131
+        ],
+        "two_buffer_stream_ns": 70.046234131
+      },
+      {
+        "active_aic_groups": 24,
+        "columns": 256,
+        "rows": 8,
+        "serial_completion_ns": 143.260040283,
+        "serial_max_relative_span_pct": 0.07998986023851055,
+        "serial_process_ns": [
+          143.260040283,
+          143.306833903,
+          143.192240397,
+          143.299255371,
+          143.210042318
+        ],
+        "source_row_stride_elements": 8192,
+        "stream_max_relative_span_pct": 0.02108886761334675,
+        "stream_process_ns": [
+          70.176696777,
+          70.189666748,
+          70.182291667,
+          70.184071859,
+          70.191497803
+        ],
+        "two_buffer_stream_ns": 70.184071859
+      }
+    ],
+    "source_operation": "regular_gqa_CopyPToL1_Nd2NzParams",
+    "source_residency": "disjoint_512mb_dram_stream"
+  },
+  "schema_version": 1,
+  "software_revision": "cann_8.5.1"
+}

@@ -1,0 +1,1606 @@
+{
+  "schema_version": 7,
+  "measurement_repetitions": 2,
+  "measurement_protocol": {
+    "kind": "host_gap_free_device_warmup",
+    "device_warmup_reference_cycles": 100663296,
+    "accumulator_reset_each_window": true
+  },
+  "hardware_id": "nvidia_h200",
+  "mechanism": "shared_operand_fp16_wgmma_accumulator_activity_service",
+  "selection": "median_per_capture_then_geometry_then_accumulator_footprint",
+  "operand_activity_pattern": "random_sign_exponent_and_mantissa",
+  "grid_ctas": 132,
+  "threads_per_cta": 384,
+  "measurement_threads_per_cta": 256,
+  "math_warpgroups": 2,
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/shared_tensor_sustained_20261107/base_raw.json",
+      "sha256": "19c175e8d978401ef8e17b8f4f00cbc11db7fc390c004bb33feb13b07c8199f3",
+      "source_sha256": "47985999db2f84d6c592507dddd0ce123af49a46c05c40d18e47378e8d81d132",
+      "runner_sha256": "56846d8c40ee2f46dae0bbf3484c8a1adc9005078332307af74c14816d8ff426"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/shared_tensor_sustained_20261107/extended_raw.json",
+      "sha256": "a22b04572216635504485f72375403d88f1678cf2362a31586a67c287d6788ba",
+      "source_sha256": "47985999db2f84d6c592507dddd0ce123af49a46c05c40d18e47378e8d81d132",
+      "runner_sha256": "56846d8c40ee2f46dae0bbf3484c8a1adc9005078332307af74c14816d8ff426"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/shared_tensor_sustained_replica_20261107/base_raw.json",
+      "sha256": "c6405e03040b9719611f3e4cd844653c534112333a716efe7f8e7cb08fb14410",
+      "source_sha256": "47985999db2f84d6c592507dddd0ce123af49a46c05c40d18e47378e8d81d132",
+      "runner_sha256": "8d1c72a2ebd6199e49941b8580bbc7c5604713302e3010f6837627919b370fc6"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/shared_tensor_sustained_replica_20261107/extended_raw.json",
+      "sha256": "3fc43879ef66c380a1634c9eac0a4261132bdf6f0c70be1e8b1275cabb264789",
+      "source_sha256": "47985999db2f84d6c592507dddd0ce123af49a46c05c40d18e47378e8d81d132",
+      "runner_sha256": "8d1c72a2ebd6199e49941b8580bbc7c5604713302e3010f6837627919b370fc6"
+    }
+  ],
+  "measurements": [
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 32821.0,
+      "clock_mhz": 1469.198
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 131125.0,
+      "clock_mhz": 1454.562
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 32821.0,
+      "clock_mhz": 1454.832
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 131125.0,
+      "clock_mhz": 1453.53
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 32821.0,
+      "clock_mhz": 1454.61
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 131125.0,
+      "clock_mhz": 1455.078
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 99302.0,
+      "clock_mhz": 1453.243
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 396902.0,
+      "clock_mhz": 1452.534
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 99302.0,
+      "clock_mhz": 1453.841
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 396902.0,
+      "clock_mhz": 1454.983
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 99302.0,
+      "clock_mhz": 1454.395
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 396902.0,
+      "clock_mhz": 1453.619
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 49300.0,
+      "clock_mhz": 1500.122
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 196756.0,
+      "clock_mhz": 1499.573
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 49300.0,
+      "clock_mhz": 1497.206
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 196756.0,
+      "clock_mhz": 1499.208
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 49300.0,
+      "clock_mhz": 1499.757
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 196756.0,
+      "clock_mhz": 1499.665
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 147443.0,
+      "clock_mhz": 1485.03
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 589811.0,
+      "clock_mhz": 1484.779
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 147443.0,
+      "clock_mhz": 1485.03
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 589811.0,
+      "clock_mhz": 1484.899
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 147443.0,
+      "clock_mhz": 1484.884
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 589811.0,
+      "clock_mhz": 1484.42
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1514.148
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1514.894
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1515.198
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1514.894
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1515.198
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1514.894
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 196605.0,
+      "clock_mhz": 1500.244
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 786429.0,
+      "clock_mhz": 1499.996
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 196605.0,
+      "clock_mhz": 1499.878
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 786429.0,
+      "clock_mhz": 1514.949
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 196605.0,
+      "clock_mhz": 1514.777
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 786429.0,
+      "clock_mhz": 1514.974
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 65646.0,
+      "clock_mhz": 1454.566
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 262254.0,
+      "clock_mhz": 1453.607
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 65646.0,
+      "clock_mhz": 1454.566
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 262254.0,
+      "clock_mhz": 1455.067
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 65646.0,
+      "clock_mhz": 1454.566
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 262254.0,
+      "clock_mhz": 1455.067
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 131271.0,
+      "clock_mhz": 1445.971
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 524487.0,
+      "clock_mhz": 1454.839
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 131271.0,
+      "clock_mhz": 1455.204
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 524487.0,
+      "clock_mhz": 1455.053
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 131271.0,
+      "clock_mhz": 1455.026
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 524487.0,
+      "clock_mhz": 1454.839
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 164043.0,
+      "clock_mhz": 1455.01
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 655563.0,
+      "clock_mhz": 1451.364
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 164043.0,
+      "clock_mhz": 1455.01
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 655563.0,
+      "clock_mhz": 1453.529
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 164043.0,
+      "clock_mhz": 1454.695
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 655563.0,
+      "clock_mhz": 1454.972
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 98445.0,
+      "clock_mhz": 1497.779
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 393357.0,
+      "clock_mhz": 1499.989
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 98445.0,
+      "clock_mhz": 1499.954
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 393357.0,
+      "clock_mhz": 1499.989
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 98445.0,
+      "clock_mhz": 1485.484
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 393357.0,
+      "clock_mhz": 1499.443
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 147443.0,
+      "clock_mhz": 1485.362
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 589811.0,
+      "clock_mhz": 1484.982
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 147443.0,
+      "clock_mhz": 1484.884
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 589811.0,
+      "clock_mhz": 1483.823
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 147443.0,
+      "clock_mhz": 1484.884
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 589811.0,
+      "clock_mhz": 1484.779
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 196602.0,
+      "clock_mhz": 1485.089
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 786426.0,
+      "clock_mhz": 1485.033
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 196602.0,
+      "clock_mhz": 1485.006
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 786426.0,
+      "clock_mhz": 1484.674
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 196602.0,
+      "clock_mhz": 1485.006
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 786426.0,
+      "clock_mhz": 1485.012
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1515.198
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1514.894
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1515.198
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1512.657
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1515.198
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1514.911
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 131148.0,
+      "clock_mhz": 1513.992
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 524364.0,
+      "clock_mhz": 1515.012
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 131148.0,
+      "clock_mhz": 1514.805
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 524364.0,
+      "clock_mhz": 1514.936
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 131148.0,
+      "clock_mhz": 1515.111
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 524364.0,
+      "clock_mhz": 1514.872
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 32821.0,
+      "clock_mhz": 1469.198
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 131125.0,
+      "clock_mhz": 1469.748
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 32821.0,
+      "clock_mhz": 1454.61
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 131125.0,
+      "clock_mhz": 1454.617
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 32821.0,
+      "clock_mhz": 1454.965
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 131125.0,
+      "clock_mhz": 1454.617
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 99302.0,
+      "clock_mhz": 1455.102
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 396902.0,
+      "clock_mhz": 1454.983
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 99302.0,
+      "clock_mhz": 1454.979
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 396902.0,
+      "clock_mhz": 1451.748
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 99302.0,
+      "clock_mhz": 1454.846
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 396902.0,
+      "clock_mhz": 1454.472
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 49300.0,
+      "clock_mhz": 1500.122
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 196756.0,
+      "clock_mhz": 1493.472
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 49300.0,
+      "clock_mhz": 1493.938
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 196756.0,
+      "clock_mhz": 1494.561
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 49300.0,
+      "clock_mhz": 1496.842
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 196756.0,
+      "clock_mhz": 1495.561
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 147443.0,
+      "clock_mhz": 1499.868
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 589811.0,
+      "clock_mhz": 1484.062
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 147443.0,
+      "clock_mhz": 1484.073
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 589811.0,
+      "clock_mhz": 1480.961
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 147443.0,
+      "clock_mhz": 1481.541
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 589811.0,
+      "clock_mhz": 1484.779
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1515.198
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1514.614
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1514.148
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1514.614
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1515.198
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1514.894
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 196605.0,
+      "clock_mhz": 1515.151
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 786429.0,
+      "clock_mhz": 1514.949
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 196605.0,
+      "clock_mhz": 1514.777
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 786429.0,
+      "clock_mhz": 1513.576
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 196605.0,
+      "clock_mhz": 1514.404
+    },
+    {
+      "capture_index": 2,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 786429.0,
+      "clock_mhz": 1514.322
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 65646.0,
+      "clock_mhz": 1470.206
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 262254.0,
+      "clock_mhz": 1468.47
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 65646.0,
+      "clock_mhz": 1455.598
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 262254.0,
+      "clock_mhz": 1455.067
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 65646.0,
+      "clock_mhz": 1455.598
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 262254.0,
+      "clock_mhz": 1455.067
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 131271.0,
+      "clock_mhz": 1455.204
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 524487.0,
+      "clock_mhz": 1453.247
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 131271.0,
+      "clock_mhz": 1454.688
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 524487.0,
+      "clock_mhz": 1453.678
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 131271.0,
+      "clock_mhz": 1455.026
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 524487.0,
+      "clock_mhz": 1454.71
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 164043.0,
+      "clock_mhz": 1455.116
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 655563.0,
+      "clock_mhz": 1454.974
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 164043.0,
+      "clock_mhz": 1455.01
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 655563.0,
+      "clock_mhz": 1454.974
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 164043.0,
+      "clock_mhz": 1454.703
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 655563.0,
+      "clock_mhz": 1455.077
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 98445.0,
+      "clock_mhz": 1499.97
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 393357.0,
+      "clock_mhz": 1499.989
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 98445.0,
+      "clock_mhz": 1494.852
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 393357.0,
+      "clock_mhz": 1497.248
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 98445.0,
+      "clock_mhz": 1496.322
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 393357.0,
+      "clock_mhz": 1496.701
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 147443.0,
+      "clock_mhz": 1499.868
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 589811.0,
+      "clock_mhz": 1495.343
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 147443.0,
+      "clock_mhz": 1484.551
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 589811.0,
+      "clock_mhz": 1495.828
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 147443.0,
+      "clock_mhz": 1484.551
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 589811.0,
+      "clock_mhz": 1484.862
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 196602.0,
+      "clock_mhz": 1499.954
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 786426.0,
+      "clock_mhz": 1499.784
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 196602.0,
+      "clock_mhz": 1485.089
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 786426.0,
+      "clock_mhz": 1489.624
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 196602.0,
+      "clock_mhz": 1485.006
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 786426.0,
+      "clock_mhz": 1495.516
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1515.198
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1514.911
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1515.198
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1514.911
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1515.198
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1514.911
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 131148.0,
+      "clock_mhz": 1515.111
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 524364.0,
+      "clock_mhz": 1514.376
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 131148.0,
+      "clock_mhz": 1514.805
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 524364.0,
+      "clock_mhz": 1512.698
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 131148.0,
+      "clock_mhz": 1514.805
+    },
+    {
+      "capture_index": 3,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 524364.0,
+      "clock_mhz": 1514.452
+    }
+  ],
+  "selected_flops_per_sm_cycle": 4096.0,
+  "activity_points": [
+    {
+      "accumulator_values_per_thread": 32,
+      "sm_freq_hz": 1454756000.0
+    },
+    {
+      "accumulator_values_per_thread": 48,
+      "sm_freq_hz": 1497340000.0
+    },
+    {
+      "accumulator_values_per_thread": 64,
+      "sm_freq_hz": 1485028125.0
+    },
+    {
+      "accumulator_values_per_thread": 96,
+      "sm_freq_hz": 1476328875.0
+    },
+    {
+      "accumulator_values_per_thread": 128,
+      "sm_freq_hz": 1484791000.0
+    },
+    {
+      "accumulator_values_per_thread": 144,
+      "sm_freq_hz": 1484887750.0
+    },
+    {
+      "accumulator_values_per_thread": 160,
+      "sm_freq_hz": 1454912750.0
+    },
+    {
+      "accumulator_values_per_thread": 192,
+      "sm_freq_hz": 1499920000.0
+    }
+  ],
+  "scope_limitations": [
+    "independent on-chip FP16 WGMMA with two math warpgroups and one CTA per SM",
+    "measurement uses 256 math threads and 196608-B residency; the aggregate TMA consumer has 384 total threads including a producer warpgroup",
+    "per-math-thread accumulator footprint is dense output-tile elements divided by 256, checked statically on four retained matrix families without duration",
+    "all three fixed random fraction seeds and both lengths contribute; all-one and signed-power-of-two controls do not price activity",
+    "original complete v6 capture and exactly one same-source complete repetition are equally included before production comparison; no app selected by higher clock or lower production error",
+    "capture medians, geometry medians, then equal-weight footprint medians; all paired controls must be complete and checked",
+    "only measured footprints; no extrapolation or interpolation, no production case or kernel-name price",
+    "random sign, exponent and ten fraction bits form an activity envelope, not exact Gaussian input/weight power or native HGMMA schedule certification",
+    "sustained isolated math activity does not bind native producer/memory pauses, power policy or actual input/weight amplitude distributions",
+    "all-one arithmetic is exact; old power-of-two long/short arithmetic is exact; random fraction outputs are checked for finiteness and the analytical magnitude bound, not bitwise FP32 equivalence",
+    "memory byte capacities and latency ns are unchanged"
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

@@ -1,0 +1,49 @@
+{
+  "hardware_id": "nvidia_h200",
+  "production_or_evaluation_duration_consumed": false,
+  "domain": {
+    "minimum_tokens": 1,
+    "maximum_tokens": 32,
+    "experts": 128,
+    "local_experts": 64,
+    "topk": 8,
+    "hidden": 2048,
+    "intermediate": 768,
+    "tile_m": 16,
+    "tile_n": 64,
+    "tile_k": 128,
+    "group_size_m": 1,
+    "threads_per_cta": 128,
+    "dtype": "bf16",
+    "expert_parallel_size": 2
+  },
+  "resources": {
+    "w1": {
+      "registers_per_thread": 64,
+      "static_shared_bytes": 0,
+      "dynamic_shared_bytes": 61440,
+      "operand_ring_slots": 3
+    },
+    "w2": {
+      "registers_per_thread": 72,
+      "static_shared_bytes": 0,
+      "dynamic_shared_bytes": 61440,
+      "operand_ring_slots": 3
+    }
+  },
+  "evidence": {
+    "summary_path": "profiler_output/kernel_dataset/nvidia_h200/serving_accuracy_moe_small_traffic_20261107/summary.json",
+    "summary_sha256": "24caa9775064eb203c7c4a9bc79805a73ea5e6a57f744b7be7031cf1fcb61f00",
+    "captured_tokens": [
+      1,
+      8,
+      32
+    ],
+    "source_ring_reference": "triton_bf16_bm16_operand_ring_sm90.json"
+  },
+  "transfer_limitations": [
+    "Modeled resource class for the same fixed-source configuration branch, not per-request native provider attestation.",
+    "All original EP-local matrix bytes and global nonlocal zero-fill output remain; homogeneous CTA traffic is an analytical approximation.",
+    "Source num_stages=4 remains distinct from the compiled three operand-ring slots."
+  ]
+}

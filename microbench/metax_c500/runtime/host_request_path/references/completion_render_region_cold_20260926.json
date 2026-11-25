@@ -1,0 +1,43 @@
+{
+  "back_to_back_median_s_by_prompt_tokens": {
+    "128": 0.000801183,
+    "16": 0.0002939055,
+    "512": 0.0018505435
+  },
+  "cross_check_llama_3_1_8b_tokenizer": {
+    "intercept_s": 0.0006634334758064516,
+    "per_token_s": 4.9566421370967735e-06,
+    "raw_sha256": "e959146721dde712aa66cd87cf08c0a79758714616191eb7f4e0e00973746e43"
+  },
+  "derivation_rule": "per prompt length, median of the per-gap medians over gaps >= knee (10 ms); affine through the shortest and longest length, as the published hot region fit",
+  "hardware_id": "metax_c500",
+  "knee_gap_ms": 10,
+  "measurement_boundary": "host_only_no_device_no_model",
+  "mechanism": "The render region runs the handler-side render chain and the executor tokenizer encode. Timed back to back it finds that code hot in the core's caches and predictors; preceded by an idle gap it runs cold. The sweep shows a knee between 3 and 10 ms of idle and a plateau from 10 to 250 ms, with process CPU equal to wall (execution slows, nothing waits). Serving requests reach the handler after tens of milliseconds of other work, and the in-situ handler measurement (same session, llama-3.1-8b qps4 capture, diagnostic only) sits on this plateau, not on the back-to-back value.",
+  "model": "completion_render_region_cold_v1",
+  "plateau_median_s_by_prompt_tokens": {
+    "128": 0.00159953925,
+    "16": 0.0007808,
+    "512": 0.0034116555
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "prompt_source": "held-out ShareGPT first user turns, fresh per call",
+  "raw": {
+    "path": "profiler_output/microbench/metax_c500/render_gap_sweep_20260926/render_gap_sweep_qwen3_30b_a3b.json",
+    "retention": "local_raw_not_committed",
+    "sha256": "f3b251214ebbc0c8cff1c1960e4ae58d023b08ad91dc4347497ee786575cd7a8"
+  },
+  "region": "check_model + OpenAIServingRender.render_completion (vLLM 0.24.0)",
+  "runner": {
+    "path": "microbench/metax_c500/runtime/host_request_path/render_gap_sweep_runner.py",
+    "prompt_helper": "microbench/metax_c500/runtime/host_request_path/natural_render_region_runner.py",
+    "prompt_helper_sha256": "74933461c050fa25cfa1a140a57ad39f92159edb74380021b41a7f43a5f958e0",
+    "sha256": "9bbfd343abce716db4a2ceaa525512148899f9c0a464263e850cac952ae65dba"
+  },
+  "schema_version": 1,
+  "selection": {
+    "tokenizer_render_region_intercept_s": 0.000695933693548387,
+    "tokenizer_render_region_per_token_s": 5.304144153225807e-06
+  },
+  "tokenizer_path": "/capture-workspace/Qwen3-30B-A3B"
+}

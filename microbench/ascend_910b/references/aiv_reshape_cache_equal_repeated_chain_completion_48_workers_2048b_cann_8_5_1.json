@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "3e349f4b60f422984e4dd15df1feedf70ea1f5cd",
+  "service": "aiv_reshape_cache_equal_repeated_chain_completion_48_workers_2048b",
+  "scope": "exact CANN key-200 maximum-worker K-then-V copy-chain completion for 48 AIVs and a 2048-byte BF16 tensor payload",
+  "request_size_unit": "source_kv_token_chains_per_maximum_worker",
+  "service_time_unit": "ns_per_maximum_worker_chain",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "1": 3130.0,
+    "2": 4370.0,
+    "6": 7330.0,
+    "22": 21040.0
+  },
+  "composition": "maximum_with_same_source_chain_memory_capacity_time",
+  "source_chain": {
+    "reference": "microbench/ascend_910b/references/reshape_cache_equal_chain_completion_cann_8_5_1.json",
+    "reference_sha256": "a10e93d43570466506666286947c9e5b0fe8bc7de71bfe4a3622bd17cc03e292",
+    "conclusion": "CANN 8.5.1 ProcessKVEqual reuses one tokenBuf_ and completes K CopyIn, K CopyOut, V CopyIn, and V CopyOut through MTE2_MTE3 and MTE3_MTE2 hard-event waits before the next token reuses that buffer. The exact maximum-worker repeat count is therefore a source-defined serial-chain dimension."
+  },
+  "request_contract": {
+    "worker_count": 48,
+    "payload_bytes": 2048,
+    "stride_bytes": 4096,
+    "repeat_counts": [1, 2, 6, 22],
+    "pair_orders": [0, 1],
+    "fixed_tbuf_count": 1,
+    "copy_chains_per_token": 2,
+    "hard_event_edges_per_copy_chain": 2
+  },
+  "device": {
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_id": 7,
+    "logical_device_id": 0,
+    "model": "910B2",
+    "pci_bus_id": "0000:42:00.0"
+  },
+  "capture": {
+    "owner": "capture-owner-4c0f2645f650",
+    "started_at": "2026-09-04T23:08:49+08:00",
+    "completed_at": "2026-09-04T23:16:08+08:00",
+    "source_snapshot_path": "/capture-workspace/source_snapshots/reshape_cache_equal_repeated_chain_3e349f4b_20260904",
+    "build_command": "source /usr/local/Ascend/ascend-toolkit/set_env.sh; cmake -S <snapshot> -B <snapshot>/build -DASCEND_HOME_PATH=/usr/local/Ascend/cann-8.5.1 -DSOC_VERSION=Ascend910B2; cmake --build <snapshot>/build -j1",
+    "runner_command": "python3 <snapshot>/reshape_cache_equal_repeated_chain_runner.py --binary <snapshot>/build/reshape_cache_equal_repeated_chain --device-id 7 --run-id <kvcache-repeat-3e349f4b-r1|kvcache-repeat-3e349f4b-r2|kvcache-repeat-3e349f4b-r3>",
+    "report_command": "python3 <snapshot>/reshape_cache_equal_repeated_chain_report.py <run1.csv> <run2.csv> <run3.csv>",
+    "preflight_idle": true,
+    "postflight_idle": true,
+    "cleanup": "all benchmark processes exited and /tmp/midlayer_device7_kvcache_repeated_chain.lock was removed"
+  },
+  "campaign": {
+    "independent_runs": 3,
+    "schedule_cycles_per_run": 8,
+    "trials_per_run": 64,
+    "rows_per_run": 24576,
+    "run_ids": [
+      "kvcache-repeat-3e349f4b-r1",
+      "kvcache-repeat-3e349f4b-r2",
+      "kvcache-repeat-3e349f4b-r3"
+    ],
+    "runner_pids": [2477707, 2478566, 2479501],
+    "cells": {
+      "1": {
+        "run_medians_ns": [3150.0, 3130.0, 3120.0],
+        "replica_spread_by_run": [0.055384615384615386, 0.012738853503184714, 0.046583850931677016],
+        "cross_run_relative_median_spread": 0.009523809523809525,
+        "gate_passed": true
+      },
+      "2": {
+        "run_medians_ns": [4330.0, 4370.0, 4370.0],
+        "replica_spread_by_run": [0.042222222222222223, 0.046153846153846156, 0.04017857142857143],
+        "cross_run_relative_median_spread": 0.009153318077803204,
+        "gate_passed": true
+      },
+      "6": {
+        "run_medians_ns": [7330.0, 7330.0, 7340.0],
+        "replica_spread_by_run": [0.01756756756756757, 0.005434782608695652, 0.01756756756756757],
+        "cross_run_relative_median_spread": 0.0013623978201634877,
+        "gate_passed": true
+      },
+      "22": {
+        "run_medians_ns": [21040.0, 21120.0, 21020.0],
+        "replica_spread_by_run": [0.00803023145961266, 0.019699812382739212, 0.016981132075471698],
+        "cross_run_relative_median_spread": 0.004734848484848485,
+        "gate_passed": true
+      }
+    },
+    "replication_relative_limit": 0.2,
+    "independent_run_relative_limit": 0.2
+  },
+  "benchmark_binary_sha256": "5189e63fd9aa0006a717321ea60c93a8b13ab942e12a6cefd29603edfe2309a1",
+  "benchmark_source_sha256": {
+    "CMakeLists.txt": "f6e38d620b6524fcdbee9d96573714b3b199d9b668fe9664f5f11043e8a08a8e",
+    "reshape_cache_equal_repeated_chain_kernel.cpp": "4ca1c806a885ad4435dc8e547c1874c21e51d1ee3d68c044311d2d5143ee367f",
+    "reshape_cache_equal_repeated_chain_main.cpp": "778af3a503492e30028e4286f46232ee649665b9ecc24ebff95925c9e0228d70",
+    "reshape_cache_equal_repeated_chain_report.py": "b651c0df86f96510cae5b50eddd2d332d157473f30d641f707bc3ba1cb0fd9b6",
+    "reshape_cache_equal_repeated_chain_runner.py": "fc807da1e068c1608da7bebfa36fd6a85653af0a08391f2267915cce60264d8e"
+  },
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/reshape_cache_equal_repeated_chain_3e349f4b_20260904_d7/run/run1.csv", "sha256": "f9c05cb9b58ddb6aec5e1735173bdb143a4d9a80fab7000805c950d74fd5ebea", "runner_log_sha256": "9e568c798b865ce3b12b067459da5d7a18f61584a87082c6b34a75f579053d0d"},
+    {"path": "profiler_output/microbench/ascend_910b/reshape_cache_equal_repeated_chain_3e349f4b_20260904_d7/run/run2.csv", "sha256": "03a6220351f61df32a63abc106d45616a357a9e19fc42f61bf2f005a573309fe", "runner_log_sha256": "ad40da7e1bf8ffdca4cee44a6c38fd363eedda88cc8fa166cc9743c19a728a91"},
+    {"path": "profiler_output/microbench/ascend_910b/reshape_cache_equal_repeated_chain_3e349f4b_20260904_d7/run/run3.csv", "sha256": "1fd14956d5b0b3426650992f7c258416927017f83cd8628e1e8f51888d577067", "runner_log_sha256": "2700c556191a667e83ee15c7338a5568bb9e36f17a0e4b3005732985702b075c"},
+    {"path": "profiler_output/microbench/ascend_910b/reshape_cache_equal_repeated_chain_3e349f4b_20260904_d7/report.txt", "sha256": "a6b6868913af9cfd0ae5280fe40136a96fe33689aa0f881dafce39440d115ad3"},
+    {"path": "profiler_output/microbench/ascend_910b/reshape_cache_equal_repeated_chain_3e349f4b_20260904_d7/pre_npu_smi.txt", "sha256": "0685e3522e900b80b1dbcc2da0d9e8a6baf80328280899c75702b5d849f89b8d"},
+    {"path": "profiler_output/microbench/ascend_910b/reshape_cache_equal_repeated_chain_3e349f4b_20260904_d7/post_npu_smi.txt", "sha256": "9ac3bffd1231d6aa7b8e0208b35286598fd30fd8dbd031289903cee43a80bb56"}
+  ],
+  "stability_gate": {
+    "all_positive_first_quartiles": true,
+    "all_replica_spreads_within_limit": true,
+    "all_cross_run_spreads_within_limit": true,
+    "passed": true
+  },
+  "excluded_conclusions": [
+    "a complete ReshapeAndCache or production key-200 kernel duration",
+    "reuse for a worker count other than 48 or a payload other than 2048 bytes",
+    "interpolation or extrapolation to an unmeasured repeat count",
+    "reuse for unequal-head, slot-mapping, cache-layout, or another launch path"
+  ],
+  "measurement_gate_passed": true,
+  "provenance_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true,
+  "production_consumption_status": "exact_48_worker_2048_byte_repeat_cells_only"
+}

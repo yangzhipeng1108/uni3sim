@@ -1,0 +1,980 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "7ac2d3d10e0bc846d9d65ac9fa0547fa274b7fa1",
+  "bucket_schema": "kernel_golden_primary_v1",
+  "samples_per_bucket": 3,
+  "selection_positions": [
+    "minimum",
+    "median",
+    "maximum"
+  ],
+  "selection_order": "duration_independent_logical_work_then_canonical_case_id",
+  "scope": {
+    "primary_partition": {
+      "gemm": "B_times_M_range",
+      "flash_attn": "executed_Q_LEN_range",
+      "fused_moe": "TOK_range",
+      "vector": "op_type"
+    },
+    "orthogonal_report_dimensions_not_sampling_partitions": [
+      "gemm_split_and_N_and_K",
+      "flash_attn_source_and_phase_and_split_and_KV_and_layout",
+      "fused_moe_experts_and_max_tokens_per_expert_and_top_k",
+      "vector_token_range",
+      "maximum_launch_waves"
+    ]
+  },
+  "hardware": {
+    "nvidia_a800": {
+      "families": {
+        "gemm": {
+          "dataset_sha256": "da78e4335ae98b71b8839b69e86fdbff148d0022b0178ec28bcc97ef505ceb5e",
+          "dataset_case_count": 221,
+          "buckets": {
+            "med (65≤B×M≤2047)": [
+              {
+                "position": "minimum",
+                "case_id": "GEMM_B128_M1_K1536_N5120",
+                "workload_units": 1006632960
+              },
+              {
+                "position": "median",
+                "case_id": "GEMM_B256_M1_K4096_N11008",
+                "workload_units": 11542724608
+              },
+              {
+                "position": "maximum",
+                "case_id": "GEMM_B512_M1_K8192_N28672",
+                "workload_units": 120259084288
+              }
+            ],
+            "prefill (B×M≥2048)": [
+              {
+                "position": "minimum",
+                "case_id": "GEMM_B1_M2048_K1536_N5120",
+                "workload_units": 16106127360
+              },
+              {
+                "position": "median",
+                "case_id": "GEMM_B1_M2048_K28672_N8192",
+                "workload_units": 481036337152
+              },
+              {
+                "position": "maximum",
+                "case_id": "GEMM_B8_M4096_K8192_N28672",
+                "workload_units": 7696581394432
+              }
+            ],
+            "small (17≤B×M≤64)": [
+              {
+                "position": "minimum",
+                "case_id": "GEMM_B32_M1_K1536_N5120",
+                "workload_units": 251658240
+              },
+              {
+                "position": "median",
+                "case_id": "GEMM_B32_M1_K13824_N5120",
+                "workload_units": 2264924160
+              },
+              {
+                "position": "maximum",
+                "case_id": "GEMM_B64_M1_K8192_N28672",
+                "workload_units": 15032385536
+              }
+            ],
+            "tiny (B×M≤16)": [
+              {
+                "position": "minimum",
+                "case_id": "GEMM_B1_M1_K1536_N5120",
+                "workload_units": 7864320
+              },
+              {
+                "position": "median",
+                "case_id": "GEMM_B4_M1_K4096_N11008",
+                "workload_units": 180355072
+              },
+              {
+                "position": "maximum",
+                "case_id": "GEMM_B16_M1_K8192_N28672",
+                "workload_units": 3758096384
+              }
+            ]
+          }
+        },
+        "flash_attn": {
+          "dataset_sha256": "89037a3ad9a8d3d6453b9af1ebdef7a17d50616194cd5e456477e07503a3a514",
+          "dataset_case_count": 294,
+          "buckets": {
+            "Q=1": [
+              {
+                "position": "minimum",
+                "case_id": "FLASHATTN_B1_S512_HQ32_HKV8_D64_C0",
+                "workload_units": 4194304
+              },
+              {
+                "position": "median",
+                "case_id": "FLASHATTN_PAGEDVARLEN_SKEW_B1_S8192_HQ32_HKV8_D128_C0",
+                "workload_units": 134217728
+              },
+              {
+                "position": "maximum",
+                "case_id": "FLASHATTN_MLA_B128_S4096_HQ64_HKV1_D512_C0",
+                "workload_units": 68719476736
+              }
+            ],
+            "long Q (≥2049)": [
+              {
+                "position": "minimum",
+                "case_id": "FLASHATTN_CHUNKED_SKEW_PREFILL_Q4096_B1_S4096_HQ32_HKV8_D128_C1",
+                "workload_units": 137472507904
+              },
+              {
+                "position": "median",
+                "case_id": "FLASHATTN_PREFILL_B2_S4096_HQ64_HKV8_D128_C1",
+                "workload_units": 549890031616
+              },
+              {
+                "position": "maximum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B128_S4096_HQ32_HKV8_D128_C1",
+                "workload_units": 17596481011712
+              }
+            ],
+            "medium Q (513–2048)": [
+              {
+                "position": "minimum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B1_S1024_HQ32_HKV8_D128_C1",
+                "workload_units": 8598323200
+              },
+              {
+                "position": "median",
+                "case_id": "FLASHATTN_CHUNKED_SKEW_PREFILL_Q4096_B4_S4096_HQ32_HKV8_D128_C1",
+                "workload_units": 82694897664
+              },
+              {
+                "position": "maximum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B128_S2048_HQ32_HKV8_D128_C1",
+                "workload_units": 4400193994752
+              }
+            ],
+            "short Q (2–512)": [
+              {
+                "position": "minimum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B1_S512_HQ32_HKV8_D128_C1",
+                "workload_units": 2151677952
+              },
+              {
+                "position": "median",
+                "case_id": "FLASHATTN_PREFILL_B8_S512_HQ32_HKV8_D128_C1",
+                "workload_units": 17213423616
+              },
+              {
+                "position": "maximum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B128_S512_HQ32_HKV8_D128_C1",
+                "workload_units": 275414777856
+              }
+            ]
+          }
+        },
+        "fused_moe": {
+          "dataset_sha256": "afb41f7a495a5df3c0bfe2332057e348e29f5cf018aa50cf41c83e86abffc9aa",
+          "dataset_case_count": 176,
+          "buckets": {
+            "med (65≤TOK≤2047)": [
+              {
+                "position": "minimum",
+                "case_id": "FUSEDMOE_TOK128_E256_TOPK8_H2048_INT512",
+                "workload_units": 1073741824
+              },
+              {
+                "position": "median",
+                "case_id": "FUSEDMOE_TOK256_E128_TOPK8_H4096_INT1536",
+                "workload_units": 12884901888
+              },
+              {
+                "position": "maximum",
+                "case_id": "FUSEDMOE_TOK1024_E8_TOPK2_H6144_INT16384",
+                "workload_units": 206158430208
+              }
+            ],
+            "prefill (TOK≥2048)": [
+              {
+                "position": "minimum",
+                "case_id": "FUSEDMOE_TOK2048_E256_TOPK8_H2048_INT512",
+                "workload_units": 17179869184
+              },
+              {
+                "position": "median",
+                "case_id": "FUSEDMOE_TOK32768_E256_TOPK8_H2048_INT512",
+                "workload_units": 274877906944
+              },
+              {
+                "position": "maximum",
+                "case_id": "FUSEDMOE_TOK32768_E8_TOPK2_H6144_INT16384",
+                "workload_units": 6597069766656
+              }
+            ],
+            "small (17≤TOK≤64)": [
+              {
+                "position": "minimum",
+                "case_id": "FUSEDMOE_TOK32_E256_TOPK8_H2048_INT512",
+                "workload_units": 268435456
+              },
+              {
+                "position": "median",
+                "case_id": "FUSEDMOE_TOK32_E128_TOPK8_H4096_INT1536",
+                "workload_units": 1610612736
+              },
+              {
+                "position": "maximum",
+                "case_id": "FUSEDMOE_TOK64_E8_TOPK2_H6144_INT16384",
+                "workload_units": 12884901888
+              }
+            ],
+            "tiny (TOK≤16)": [
+              {
+                "position": "minimum",
+                "case_id": "FUSEDMOE_TOK1_E256_TOPK8_H2048_INT512",
+                "workload_units": 8388608
+              },
+              {
+                "position": "median",
+                "case_id": "FUSEDMOE_TOK16_E256_TOPK8_H2048_INT512",
+                "workload_units": 134217728
+              },
+              {
+                "position": "maximum",
+                "case_id": "FUSEDMOE_TOK16_E8_TOPK2_H6144_INT16384",
+                "workload_units": 3221225472
+              }
+            ]
+          }
+        },
+        "vector": {
+          "dataset_sha256": "e45ef58be3ad5920f9c61e9ad82d2f598feb77b340b48ad3d49dc4abc85c55ea",
+          "dataset_case_count": 296,
+          "buckets": {
+            "ACTIVATION": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_SILU_T1_I6144_B1",
+                "workload_units": 6144
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_SILU_T8_I25600_B1",
+                "workload_units": 204800
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_SILU_T1024_I53248_B1",
+                "workload_units": 54525952
+              }
+            ],
+            "ELEMENTWISE": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_ELEMENTWISE_T1_H2048_B1_ADD",
+                "workload_units": 2048
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_ELEMENTWISE_T16_H4096_B1_MUL",
+                "workload_units": 65536
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_ELEMENTWISE_T1024_H16384_B1_MUL",
+                "workload_units": 16777216
+              }
+            ],
+            "KV_CACHE": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_KVCACHE_T1_KVH4D128_B1",
+                "workload_units": 512
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_KVCACHE_T16_KVH4D128_B1",
+                "workload_units": 8192
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_KVCACHE_T1024_KVH8D128_B1",
+                "workload_units": 1048576
+              }
+            ],
+            "NORM": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_ADD_RMSNORM_T1_H2048_B1",
+                "workload_units": 2048
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_ADD_RMSNORM_T4_H16384_B1",
+                "workload_units": 65536
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_RMSNORM_T1024_H16384_B1",
+                "workload_units": 16777216
+              }
+            ],
+            "ROTARY": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_ROPE_T1_NH32D128_B1",
+                "workload_units": 4096
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_ROPE_T4_NH128D128_B1",
+                "workload_units": 65536
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_ROPE_T1024_NH128D128_B1",
+                "workload_units": 16777216
+              }
+            ]
+          }
+        }
+      }
+    },
+    "metax_c500": {
+      "families": {
+        "gemm": {
+          "dataset_sha256": "8627cfdb1f5d995780beec91a45b280f20ed7acca1b31c0d91226c57058427af",
+          "dataset_case_count": 221,
+          "buckets": {
+            "med (65≤B×M≤2047)": [
+              {
+                "position": "minimum",
+                "case_id": "GEMM_B128_M1_K1536_N5120",
+                "workload_units": 1006632960
+              },
+              {
+                "position": "median",
+                "case_id": "GEMM_B256_M1_K4096_N11008",
+                "workload_units": 11542724608
+              },
+              {
+                "position": "maximum",
+                "case_id": "GEMM_B512_M1_K8192_N28672",
+                "workload_units": 120259084288
+              }
+            ],
+            "prefill (B×M≥2048)": [
+              {
+                "position": "minimum",
+                "case_id": "GEMM_B1_M2048_K1536_N5120",
+                "workload_units": 16106127360
+              },
+              {
+                "position": "median",
+                "case_id": "GEMM_B1_M2048_K28672_N8192",
+                "workload_units": 481036337152
+              },
+              {
+                "position": "maximum",
+                "case_id": "GEMM_B8_M4096_K8192_N28672",
+                "workload_units": 7696581394432
+              }
+            ],
+            "small (17≤B×M≤64)": [
+              {
+                "position": "minimum",
+                "case_id": "GEMM_B32_M1_K1536_N5120",
+                "workload_units": 251658240
+              },
+              {
+                "position": "median",
+                "case_id": "GEMM_B32_M1_K13824_N5120",
+                "workload_units": 2264924160
+              },
+              {
+                "position": "maximum",
+                "case_id": "GEMM_B64_M1_K8192_N28672",
+                "workload_units": 15032385536
+              }
+            ],
+            "tiny (B×M≤16)": [
+              {
+                "position": "minimum",
+                "case_id": "GEMM_B1_M1_K1536_N5120",
+                "workload_units": 7864320
+              },
+              {
+                "position": "median",
+                "case_id": "GEMM_B4_M1_K4096_N11008",
+                "workload_units": 180355072
+              },
+              {
+                "position": "maximum",
+                "case_id": "GEMM_B16_M1_K8192_N28672",
+                "workload_units": 3758096384
+              }
+            ]
+          }
+        },
+        "flash_attn": {
+          "dataset_sha256": "d86edaf0d4027ab295280e1f1b5a2ca553a45930226a8cb1ffdd2dd5bd79747d",
+          "dataset_case_count": 294,
+          "buckets": {
+            "Q=1": [
+              {
+                "position": "minimum",
+                "case_id": "FLASHATTN_B1_S512_HQ32_HKV8_D64_C0",
+                "workload_units": 4194304
+              },
+              {
+                "position": "median",
+                "case_id": "FLASHATTN_PAGEDVARLEN_SKEW_B1_S8192_HQ32_HKV8_D128_C0",
+                "workload_units": 134217728
+              },
+              {
+                "position": "maximum",
+                "case_id": "FLASHATTN_MLA_B128_S4096_HQ64_HKV1_D512_C0",
+                "workload_units": 68719476736
+              }
+            ],
+            "long Q (≥2049)": [
+              {
+                "position": "minimum",
+                "case_id": "FLASHATTN_CHUNKED_SKEW_PREFILL_Q4096_B1_S4096_HQ32_HKV8_D128_C1",
+                "workload_units": 137472507904
+              },
+              {
+                "position": "median",
+                "case_id": "FLASHATTN_PREFILL_B2_S4096_HQ64_HKV8_D128_C1",
+                "workload_units": 549890031616
+              },
+              {
+                "position": "maximum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B128_S4096_HQ32_HKV8_D128_C1",
+                "workload_units": 17596481011712
+              }
+            ],
+            "medium Q (513–2048)": [
+              {
+                "position": "minimum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B1_S1024_HQ32_HKV8_D128_C1",
+                "workload_units": 8598323200
+              },
+              {
+                "position": "median",
+                "case_id": "FLASHATTN_CHUNKED_SKEW_PREFILL_Q4096_B4_S4096_HQ32_HKV8_D128_C1",
+                "workload_units": 82694897664
+              },
+              {
+                "position": "maximum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B128_S2048_HQ32_HKV8_D128_C1",
+                "workload_units": 4400193994752
+              }
+            ],
+            "short Q (2–512)": [
+              {
+                "position": "minimum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B1_S512_HQ32_HKV8_D128_C1",
+                "workload_units": 2151677952
+              },
+              {
+                "position": "median",
+                "case_id": "FLASHATTN_PREFILL_B8_S512_HQ32_HKV8_D128_C1",
+                "workload_units": 17213423616
+              },
+              {
+                "position": "maximum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B128_S512_HQ32_HKV8_D128_C1",
+                "workload_units": 275414777856
+              }
+            ]
+          }
+        },
+        "fused_moe": {
+          "dataset_sha256": "411bbde1477e29c2acbd75908a50aa97e361d9f22536b9bbbf501ec6210b6c66",
+          "dataset_case_count": 176,
+          "buckets": {
+            "med (65≤TOK≤2047)": [
+              {
+                "position": "minimum",
+                "case_id": "FUSEDMOE_TOK128_E256_TOPK8_H2048_INT512",
+                "workload_units": 1073741824
+              },
+              {
+                "position": "median",
+                "case_id": "FUSEDMOE_TOK256_E128_TOPK8_H4096_INT1536",
+                "workload_units": 12884901888
+              },
+              {
+                "position": "maximum",
+                "case_id": "FUSEDMOE_TOK1024_E8_TOPK2_H6144_INT16384",
+                "workload_units": 206158430208
+              }
+            ],
+            "prefill (TOK≥2048)": [
+              {
+                "position": "minimum",
+                "case_id": "FUSEDMOE_TOK2048_E256_TOPK8_H2048_INT512",
+                "workload_units": 17179869184
+              },
+              {
+                "position": "median",
+                "case_id": "FUSEDMOE_TOK32768_E256_TOPK8_H2048_INT512",
+                "workload_units": 274877906944
+              },
+              {
+                "position": "maximum",
+                "case_id": "FUSEDMOE_TOK32768_E8_TOPK2_H6144_INT16384",
+                "workload_units": 6597069766656
+              }
+            ],
+            "small (17≤TOK≤64)": [
+              {
+                "position": "minimum",
+                "case_id": "FUSEDMOE_TOK32_E256_TOPK8_H2048_INT512",
+                "workload_units": 268435456
+              },
+              {
+                "position": "median",
+                "case_id": "FUSEDMOE_TOK32_E128_TOPK8_H4096_INT1536",
+                "workload_units": 1610612736
+              },
+              {
+                "position": "maximum",
+                "case_id": "FUSEDMOE_TOK64_E8_TOPK2_H6144_INT16384",
+                "workload_units": 12884901888
+              }
+            ],
+            "tiny (TOK≤16)": [
+              {
+                "position": "minimum",
+                "case_id": "FUSEDMOE_TOK1_E256_TOPK8_H2048_INT512",
+                "workload_units": 8388608
+              },
+              {
+                "position": "median",
+                "case_id": "FUSEDMOE_TOK16_E256_TOPK8_H2048_INT512",
+                "workload_units": 134217728
+              },
+              {
+                "position": "maximum",
+                "case_id": "FUSEDMOE_TOK16_E8_TOPK2_H6144_INT16384",
+                "workload_units": 3221225472
+              }
+            ]
+          }
+        },
+        "vector": {
+          "dataset_sha256": "72ced0c8e739beef6e4a0febb794cf1a59dced05bf8952fda10d7d0267fdb6b1",
+          "dataset_case_count": 296,
+          "buckets": {
+            "ACTIVATION": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_SILU_T1_I6144_B1",
+                "workload_units": 6144
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_SILU_T8_I25600_B1",
+                "workload_units": 204800
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_SILU_T1024_I53248_B1",
+                "workload_units": 54525952
+              }
+            ],
+            "ELEMENTWISE": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_ELEMENTWISE_T1_H2048_B1_ADD",
+                "workload_units": 2048
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_ELEMENTWISE_T16_H4096_B1_MUL",
+                "workload_units": 65536
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_ELEMENTWISE_T1024_H16384_B1_MUL",
+                "workload_units": 16777216
+              }
+            ],
+            "KV_CACHE": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_KVCACHE_T1_KVH4D128_B1",
+                "workload_units": 512
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_KVCACHE_T16_KVH4D128_B1",
+                "workload_units": 8192
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_KVCACHE_T1024_KVH8D128_B1",
+                "workload_units": 1048576
+              }
+            ],
+            "NORM": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_ADD_RMSNORM_T1_H2048_B1",
+                "workload_units": 2048
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_ADD_RMSNORM_T4_H16384_B1",
+                "workload_units": 65536
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_RMSNORM_T1024_H16384_B1",
+                "workload_units": 16777216
+              }
+            ],
+            "ROTARY": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_ROPE_T1_NH32D128_B1",
+                "workload_units": 4096
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_ROPE_T4_NH128D128_B1",
+                "workload_units": 65536
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_ROPE_T1024_NH128D128_B1",
+                "workload_units": 16777216
+              }
+            ]
+          }
+        }
+      }
+    },
+    "ascend_910b": {
+      "families": {
+        "gemm": {
+          "dataset_sha256": "afbf481d242355524f89c8085f744ad863dcc42c826309e68faa46a9f2bfc774",
+          "dataset_case_count": 221,
+          "buckets": {
+            "med (65≤B×M≤2047)": [
+              {
+                "position": "minimum",
+                "case_id": "GEMM_B128_M1_K1536_N5120",
+                "workload_units": 1006632960
+              },
+              {
+                "position": "median",
+                "case_id": "GEMM_B256_M1_K4096_N11008",
+                "workload_units": 11542724608
+              },
+              {
+                "position": "maximum",
+                "case_id": "GEMM_B512_M1_K8192_N28672",
+                "workload_units": 120259084288
+              }
+            ],
+            "prefill (B×M≥2048)": [
+              {
+                "position": "minimum",
+                "case_id": "GEMM_B1_M2048_K1536_N5120",
+                "workload_units": 16106127360
+              },
+              {
+                "position": "median",
+                "case_id": "GEMM_B1_M2048_K28672_N8192",
+                "workload_units": 481036337152
+              },
+              {
+                "position": "maximum",
+                "case_id": "GEMM_B8_M4096_K8192_N28672",
+                "workload_units": 7696581394432
+              }
+            ],
+            "small (17≤B×M≤64)": [
+              {
+                "position": "minimum",
+                "case_id": "GEMM_B32_M1_K1536_N5120",
+                "workload_units": 251658240
+              },
+              {
+                "position": "median",
+                "case_id": "GEMM_B32_M1_K13824_N5120",
+                "workload_units": 2264924160
+              },
+              {
+                "position": "maximum",
+                "case_id": "GEMM_B64_M1_K8192_N28672",
+                "workload_units": 15032385536
+              }
+            ],
+            "tiny (B×M≤16)": [
+              {
+                "position": "minimum",
+                "case_id": "GEMM_B1_M1_K1536_N5120",
+                "workload_units": 7864320
+              },
+              {
+                "position": "median",
+                "case_id": "GEMM_B4_M1_K4096_N11008",
+                "workload_units": 180355072
+              },
+              {
+                "position": "maximum",
+                "case_id": "GEMM_B16_M1_K8192_N28672",
+                "workload_units": 3758096384
+              }
+            ]
+          }
+        },
+        "flash_attn": {
+          "dataset_sha256": "af2496be9921d16a5bbfb2567a89757c8efa5adfed358a207eaa3ea12545cbce",
+          "dataset_case_count": 294,
+          "buckets": {
+            "Q=1": [
+              {
+                "position": "minimum",
+                "case_id": "FLASHATTN_B1_S512_HQ32_HKV8_D64_C0",
+                "workload_units": 4194304
+              },
+              {
+                "position": "median",
+                "case_id": "FLASHATTN_PAGEDVARLEN_SKEW_B1_S8192_HQ32_HKV8_D128_C0",
+                "workload_units": 134217728
+              },
+              {
+                "position": "maximum",
+                "case_id": "FLASHATTN_MLA_B128_S4096_HQ64_HKV1_D512_C0",
+                "workload_units": 68719476736
+              }
+            ],
+            "long Q (≥2049)": [
+              {
+                "position": "minimum",
+                "case_id": "FLASHATTN_CHUNKED_SKEW_PREFILL_Q4096_B1_S4096_HQ32_HKV8_D128_C1",
+                "workload_units": 137472507904
+              },
+              {
+                "position": "median",
+                "case_id": "FLASHATTN_PREFILL_B2_S4096_HQ64_HKV8_D128_C1",
+                "workload_units": 549890031616
+              },
+              {
+                "position": "maximum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B128_S4096_HQ32_HKV8_D128_C1",
+                "workload_units": 17596481011712
+              }
+            ],
+            "medium Q (513–2048)": [
+              {
+                "position": "minimum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B1_S1024_HQ32_HKV8_D128_C1",
+                "workload_units": 8598323200
+              },
+              {
+                "position": "median",
+                "case_id": "FLASHATTN_CHUNKED_SKEW_PREFILL_Q4096_B4_S4096_HQ32_HKV8_D128_C1",
+                "workload_units": 82694897664
+              },
+              {
+                "position": "maximum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B128_S2048_HQ32_HKV8_D128_C1",
+                "workload_units": 4400193994752
+              }
+            ],
+            "short Q (2–512)": [
+              {
+                "position": "minimum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B1_S512_HQ32_HKV8_D128_C1",
+                "workload_units": 2151677952
+              },
+              {
+                "position": "median",
+                "case_id": "FLASHATTN_PREFILL_B8_S512_HQ32_HKV8_D128_C1",
+                "workload_units": 17213423616
+              },
+              {
+                "position": "maximum",
+                "case_id": "FLASHATTN_PAGED_PREFILL_B128_S512_HQ32_HKV8_D128_C1",
+                "workload_units": 275414777856
+              }
+            ]
+          }
+        },
+        "fused_moe": {
+          "dataset_sha256": "9fd9367f1b8c442db30d84de85112f10c0780576bd7d96592b1036414e049a37",
+          "dataset_case_count": 176,
+          "buckets": {
+            "med (65≤TOK≤2047)": [
+              {
+                "position": "minimum",
+                "case_id": "FUSEDMOE_TOK128_E256_TOPK8_H2048_INT512",
+                "workload_units": 1073741824
+              },
+              {
+                "position": "median",
+                "case_id": "FUSEDMOE_TOK256_E128_TOPK8_H4096_INT1536",
+                "workload_units": 12884901888
+              },
+              {
+                "position": "maximum",
+                "case_id": "FUSEDMOE_TOK1024_E8_TOPK2_H6144_INT16384",
+                "workload_units": 206158430208
+              }
+            ],
+            "prefill (TOK≥2048)": [
+              {
+                "position": "minimum",
+                "case_id": "FUSEDMOE_TOK2048_E256_TOPK8_H2048_INT512",
+                "workload_units": 17179869184
+              },
+              {
+                "position": "median",
+                "case_id": "FUSEDMOE_TOK32768_E256_TOPK8_H2048_INT512",
+                "workload_units": 274877906944
+              },
+              {
+                "position": "maximum",
+                "case_id": "FUSEDMOE_TOK32768_E8_TOPK2_H6144_INT16384",
+                "workload_units": 6597069766656
+              }
+            ],
+            "small (17≤TOK≤64)": [
+              {
+                "position": "minimum",
+                "case_id": "FUSEDMOE_TOK32_E256_TOPK8_H2048_INT512",
+                "workload_units": 268435456
+              },
+              {
+                "position": "median",
+                "case_id": "FUSEDMOE_TOK32_E128_TOPK8_H4096_INT1536",
+                "workload_units": 1610612736
+              },
+              {
+                "position": "maximum",
+                "case_id": "FUSEDMOE_TOK64_E8_TOPK2_H6144_INT16384",
+                "workload_units": 12884901888
+              }
+            ],
+            "tiny (TOK≤16)": [
+              {
+                "position": "minimum",
+                "case_id": "FUSEDMOE_TOK1_E256_TOPK8_H2048_INT512",
+                "workload_units": 8388608
+              },
+              {
+                "position": "median",
+                "case_id": "FUSEDMOE_TOK16_E256_TOPK8_H2048_INT512",
+                "workload_units": 134217728
+              },
+              {
+                "position": "maximum",
+                "case_id": "FUSEDMOE_TOK16_E8_TOPK2_H6144_INT16384",
+                "workload_units": 3221225472
+              }
+            ]
+          }
+        },
+        "vector": {
+          "dataset_sha256": "e552e5054c8aeedf2ec3c5ced3e04142ca23f697a2a94632beda6b3034c59c1e",
+          "dataset_case_count": 296,
+          "buckets": {
+            "ACTIVATION": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_SILU_T1_I6144_B1",
+                "workload_units": 6144
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_SILU_T8_I25600_B1",
+                "workload_units": 204800
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_SILU_T1024_I53248_B1",
+                "workload_units": 54525952
+              }
+            ],
+            "ELEMENTWISE": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_ELEMENTWISE_T1_H2048_B1_ADD",
+                "workload_units": 2048
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_ELEMENTWISE_T16_H4096_B1_MUL",
+                "workload_units": 65536
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_ELEMENTWISE_T1024_H16384_B1_MUL",
+                "workload_units": 16777216
+              }
+            ],
+            "KV_CACHE": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_KVCACHE_T1_KVH4D128_B1",
+                "workload_units": 512
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_KVCACHE_T16_KVH4D128_B1",
+                "workload_units": 8192
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_KVCACHE_T1024_KVH8D128_B1",
+                "workload_units": 1048576
+              }
+            ],
+            "NORM": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_ADD_RMSNORM_T1_H2048_B1",
+                "workload_units": 2048
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_ADD_RMSNORM_T4_H16384_B1",
+                "workload_units": 65536
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_RMSNORM_T1024_H16384_B1",
+                "workload_units": 16777216
+              }
+            ],
+            "ROTARY": [
+              {
+                "position": "minimum",
+                "case_id": "VECTOR_ROPE_T1_NH32D128_B1",
+                "workload_units": 4096
+              },
+              {
+                "position": "median",
+                "case_id": "VECTOR_ROPE_T4_NH128D128_B1",
+                "workload_units": 65536
+              },
+              {
+                "position": "maximum",
+                "case_id": "VECTOR_ROPE_T1024_NH128D128_B1",
+                "workload_units": 16777216
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

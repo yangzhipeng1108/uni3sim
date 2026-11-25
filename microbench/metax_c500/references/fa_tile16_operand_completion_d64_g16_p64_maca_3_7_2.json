@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "software_revision": "maca_3.7.2",
+  "mechanism": "fresh_operand_load_barrier_bf16_mma_completion",
+  "duration_unit": "ns_per_operand_completion",
+  "clock_hz": 1125000000.0,
+  "ap_count": 104,
+  "active_ap_count": 16,
+  "wave_size": 64,
+  "panel_rows": 16,
+  "panel_count": 64,
+  "query_heads_per_workgroup": 4,
+  "trial_count": 7,
+  "fresh_process_count": 5,
+  "selected_statistic": "median_block_cycles_per_operand",
+  "maximum_relative_span": 0.05,
+  "measurements": [
+    {
+      "head_dim": 64,
+      "loads_128b_per_lane": 2,
+      "mma_16x16x16bf16_per_lane": 4,
+      "median_cycles_per_operand": 410.9375,
+      "completion_ns": 365.27777777777777,
+      "relative_span": 0.009125475285171103,
+      "trial_median_cycles": [410.625, 410.875, 410.9375, 414.375, 413.125]
+    }
+  ],
+  "provenance": {
+    "capture_commit": "b06551efee063ae47b9930cf7f4ffbf944969d72",
+    "physical_device_id": 0,
+    "owner": "research/kernel-accuracy-fa",
+    "remote_snapshot": "/capture-workspace/midlayer_hw_model/worker_runs/fa_tile16_operand_completion_d64_g16_p64_42538703_b06551ef_20260911_r1",
+    "source_sha256": "4b71cb8409f137a0f6afd135366fe52850bdc04ee27e9d1d6dc856af2bd3f446",
+    "binary_sha256": "48d8127d03b3caa0b98e24a31e452822b011ebeaa4716146004ed2d9ccf195c9",
+    "raw_files": [
+      {"path": "profiler_output/microbench/metax_c500/fa_tile16_operand_completion_d64_g16_p64_42538703_b06551ef_20260911_r1/results/fresh_1.stdout", "sha256": "31ca7d6ea6e595c359d3e7b418571665e0e8e984036c169dc756111817dbcc1a"},
+      {"path": "profiler_output/microbench/metax_c500/fa_tile16_operand_completion_d64_g16_p64_42538703_b06551ef_20260911_r1/results/fresh_2.stdout", "sha256": "786d5194d148c4d99b8d7a1e3347944122e3090e5ab9705cad9eba1979c6b387"},
+      {"path": "profiler_output/microbench/metax_c500/fa_tile16_operand_completion_d64_g16_p64_42538703_b06551ef_20260911_r1/results/fresh_3.stdout", "sha256": "b72a389885fdb3169fa53f8a388eea936dfc2e5277dbd972de12acb39030a570"},
+      {"path": "profiler_output/microbench/metax_c500/fa_tile16_operand_completion_d64_g16_p64_42538703_b06551ef_20260911_r1/results/fresh_4.stdout", "sha256": "8dc84df7f268eb6c920171a71d7d44c23e6e635a124f87700556ccc389b286fb"},
+      {"path": "profiler_output/microbench/metax_c500/fa_tile16_operand_completion_d64_g16_p64_42538703_b06551ef_20260911_r1/results/fresh_5.stdout", "sha256": "4b2120c6ce2ad2c4af0ea375eb730fcc87734e9fb16f756a7ae01f5cb9b0e15b"}
+    ]
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true
+}

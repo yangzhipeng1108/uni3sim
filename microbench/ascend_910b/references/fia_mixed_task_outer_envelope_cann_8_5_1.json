@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism_id": "fia_mixed_task_outer_envelope_affine_v1",
+  "scope": "one complete mixed-core task envelope outside the source-level FIA InitOutput-plus-SyncAll and main task phases",
+  "formula": "startup_ns + active_aiv_workers * per_active_aiv_worker_ns",
+  "bounds": {
+    "task_kind": "mixed",
+    "aiv_per_group": 2,
+    "minimum_active_aiv_workers": 2,
+    "maximum_active_aiv_workers": 48
+  },
+  "parameters_ns": {
+    "startup_ns": 5213.005105048369,
+    "per_active_aiv_worker_ns": 55.68101764860289
+  },
+  "validation": {
+    "training_trials": 4,
+    "validation_trials": 4,
+    "training_model_mape": 0.0554960576051247,
+    "validation_model_mape": 0.056179747444752494,
+    "maximum_training_model_ape": 0.10833292322538607,
+    "maximum_validation_model_ape": 0.09004319932231258,
+    "maximum_element_median_span": 0.06995142584861407
+  },
+  "measurement": {
+    "internal_timer": "GetSystemCycle",
+    "complete_task_timer": "aclrtEventElapsedTime",
+    "derivation": "device_elapsed_ns - internal_phase_ns",
+    "internal_phase": "InitOutput plus SyncAll",
+    "elements_per_aiv": [16, 64, 128, 256, 1024, 4096, 16384]
+  },
+  "source_semantics": {
+    "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/common/arch32/fia_kernel_nonquant.h",
+    "sha256": "7cde05730d68bb02a2c45cd6b25605417ee61d42dfd87f21ccf0948c014b7e21",
+    "symbol": "FiaKernelNonQuant::InitOutputSingleCore"
+  },
+  "provenance": {
+    "source_commit": "18ee8f49a43646a6bf0a0297e5cc9d137cbcb4cd",
+    "source_snapshot_sha256": "04b18111545414f1f4726ecf62f694acd86290334975288f197915ba309fcd57",
+    "binary_sha256": "98c424a2baba5e2ecbb33303ac874b9aefdd1d03f64df7c342741ae000dbbb8c",
+    "raw_path": "profiler_output/microbench/ascend_910b/init_output_sync_all_18ee8f49_20260828_r1/raw.csv",
+    "raw_sha256": "6f63c92d73173328cfcc3fd430bee54e19262bdabedbd43c8028fb2d37862b3b",
+    "report_path": "profiler_output/microbench/ascend_910b/init_output_sync_all_18ee8f49_20260828_r1/report.json",
+    "report_sha256": "b289c3fdf9ce385422e18ad9ccc5c1a509a4ac8133a289587fde2cd92297a742"
+  },
+  "production_or_evaluation_duration_consumed": false
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_rmsnorm_key0_gamma_input_sequence_completion",
+  "request_size_unit": "payload_bytes_per_source_tensor",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "4096": 620.0,
+    "5120": 730.0,
+    "8192": 710.0,
+    "10240": 770.0,
+    "16384": 880.0
+  },
+  "service_time_selection": "median_of_three_independent_run_medians",
+  "mechanism": "two source-ordered depth-one VECIN TQue DataCopyPad requests where gamma DeQue completes before the input request is issued",
+  "scope": "unloaded blockDim=1 CANN BF16 RMSNorm key-0 gamma and first-row input sequence; the request size is the equal payload of each source tensor",
+  "composition": "one combined source stage replacing the two individual completion floors while retaining the summed gamma and input byte-capacity demands",
+  "pairing_formula": "request_interval(pair_order=1)-control_interval(pair_order=0), matched by trial and payload",
+  "source_snapshot_path": "/capture-workspace/deployments/midlayer-rms-key0-sequence-849ef2bc-20260905",
+  "source_snapshot_files_sha256": {
+    "CMakeLists.txt": "8cec0ce137cd51a8bf905b64e5330ed7630b4fa1c4cbb7bcb9a5750b67c4cfed",
+    "rmsnorm_key0_gamma_input_sequence_kernel.cpp": "83dd2e34b54a7a507f8e9a66ac587f550b36ca702e9c831775cc94c184f9e3d3",
+    "rmsnorm_key0_gamma_input_sequence_main.cpp": "50dd184361e2896dfb98bab94f5f93e0ec17b01c23277981aad4e997a2fcee6a",
+    "rmsnorm_key0_gamma_input_sequence_report.py": "6979a2100930c07012b242437428bd47cf4a848ce87dcdd9e666fae3d00c519f",
+    "rmsnorm_key0_gamma_input_sequence_runner.py": "8a1ec3f41dc65f56fa7ec49c84e70807e1009d5ad636d9a2f0def155c1e0d4c5"
+  },
+  "benchmark_binary_sha256": "e788b95aa4daf3b93d11c0152d318adf8307cc08f361b85f21d3c7e4cc959ddd",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_gamma_input_sequence_849ef2bc_d3_r1/raw.csv",
+      "sha256": "be5af7010bf396ef7ae07b71b870f58f94266f0f4d91b15e0f3dc2ea32d4ddb6",
+      "run_id": "rmsnorm_key0_gamma_input_sequence_849ef2bc_d3_r1"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_gamma_input_sequence_849ef2bc_d3_r2/raw.csv",
+      "sha256": "c29331f90c5bfafb932c8bccdb1cae196a59262ce78c37ff88489dcfefc3cecb",
+      "run_id": "rmsnorm_key0_gamma_input_sequence_849ef2bc_d3_r2"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_gamma_input_sequence_849ef2bc_d3_r3/raw.csv",
+      "sha256": "59477e3f812735b4b389249e7591fff6845e7b2bf11a9cb3921c6cff1a101b8d",
+      "run_id": "rmsnorm_key0_gamma_input_sequence_849ef2bc_d3_r3"
+    }
+  ],
+  "audit_artifact": {
+    "path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_gamma_input_sequence_849ef2bc_d3_audit.txt",
+    "sha256": "f8e8db890fadf098c2fc766b392f995ce411dad2edfe5d2bc5d1564409605503"
+  },
+  "device_id": 3,
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 120,
+  "median_ns_by_run_and_request_size": {
+    "rmsnorm_key0_gamma_input_sequence_849ef2bc_d3_r1": {"4096": 590.0, "5120": 750.0, "8192": 740.0, "10240": 740.0, "16384": 850.0},
+    "rmsnorm_key0_gamma_input_sequence_849ef2bc_d3_r2": {"4096": 620.0, "5120": 730.0, "8192": 710.0, "10240": 780.0, "16384": 880.0},
+    "rmsnorm_key0_gamma_input_sequence_849ef2bc_d3_r3": {"4096": 630.0, "5120": 710.0, "8192": 670.0, "10240": 770.0, "16384": 880.0}
+  },
+  "maximum_run_relative_median_spread_by_request_size": {
+    "4096": 0.063492063,
+    "5120": 0.053333333,
+    "8192": 0.094594595,
+    "10240": 0.051282051,
+    "16384": 0.034090909
+  },
+  "replication_relative_limit": 0.2,
+  "independent_run_relative_limit": 0.2,
+  "all_per_run_replication_gates_passed": true,
+  "cross_run_stability_gate_passed": true,
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

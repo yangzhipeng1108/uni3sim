@@ -1,0 +1,82 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_mid_k_production_source_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "tokens": 4096,
+    "experts": 256,
+    "topk": 8,
+    "projection_k": 2048,
+    "active_m_tiles": 639,
+    "maximum_m_tiles": 764,
+    "adjacent_nonproduction_projection_n": [960, 1088]
+  },
+  "method": {
+    "kernel": "frozen production Triton grouped-MoE source",
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090607,
+    "route_sha256": "b7168d7e8d3d3aa657574de1daf824fa10885833a42c55bc2f90600ca46aa7c0",
+    "event_trials_per_capture": 9,
+    "event_repetitions_per_trial": 3,
+    "independent_devices": [2, 0],
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "6830b3e020abdb010b161876e983cb01071c1d6fc02903fbf9df1cbac1da0f88",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "conservative minimum logical operand capacity across two adjacent non-production N cells and two independent devices"
+  },
+  "captures": [
+    {
+      "physical_device": 2,
+      "projection_n": 960,
+      "grid": 11460,
+      "expected_operand_l2_read_bytes": 9051832320,
+      "output_write_bytes": 62914560,
+      "event_median_ms": 7.830954869588216,
+      "operand_pipeline_capacity_bytes_per_s": 1155904033511.0479,
+      "raw_sha256": "e4d97d5ede5533acc94d354153151f53e42a176210d304df4153257b350c9e3b"
+    },
+    {
+      "physical_device": 2,
+      "projection_n": 1088,
+      "grid": 12988,
+      "expected_operand_l2_read_bytes": 10258743296,
+      "output_write_bytes": 71303168,
+      "event_median_ms": 9.580031712849935,
+      "operand_pipeline_capacity_bytes_per_s": 1070846486054.9147,
+      "raw_sha256": "ebe85f1e32f7ab6db654714203799864480d61e0bd45ed838031bfbd3f6bc60d"
+    },
+    {
+      "physical_device": 0,
+      "projection_n": 960,
+      "grid": 11460,
+      "expected_operand_l2_read_bytes": 9051832320,
+      "output_write_bytes": 62914560,
+      "event_median_ms": 6.952704111735026,
+      "operand_pipeline_capacity_bytes_per_s": 1301915366241.746,
+      "raw_sha256": "c7e0f3f2c901833d7a7d9f7e5f7fe14c9bacec2e60389a191cd91fa209285da6"
+    },
+    {
+      "physical_device": 0,
+      "projection_n": 1088,
+      "grid": 12988,
+      "expected_operand_l2_read_bytes": 10258743296,
+      "output_write_bytes": 71303168,
+      "event_median_ms": 8.894208272298178,
+      "operand_pipeline_capacity_bytes_per_s": 1153418379908.1692,
+      "raw_sha256": "7a888d3182bd1a4e89cf185a0167f9cd5259c1f4355466f18db62fb46ee3dcb5"
+    }
+  ],
+  "selected_service": {
+    "predicate": "at least one populated M tile per compute unit, at most 2.5 populated M tiles per populated expert, and K/N tile class (64,16)",
+    "logical_byte_capacity_per_s": 1070846486054.9147
+  },
+  "raw_paths": [
+    "profiler_output/microbench/metax_c500/fused_moe_custom_vs_production_kernel_a6532f27_20260908_r3",
+    "profiler_output/microbench/metax_c500/fused_moe_custom_vs_production_kernel_a6532f27_20260908_r4"
+  ]
+}

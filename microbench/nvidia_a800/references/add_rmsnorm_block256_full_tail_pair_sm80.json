@@ -1,0 +1,54 @@
+{
+  "schema": "nvidia_a800_add_rmsnorm_block256_full_tail_pair_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "software_revision": "vllm_0.11.0_cuda_12.2_sm80",
+  "production_or_evaluation_duration_consumed": false,
+  "source_contract": {
+    "dtype": "bf16",
+    "vector_width_elements": 8,
+    "block_threads": 256,
+    "tail_threads": [64, 128],
+    "registers_per_thread": 32,
+    "static_shared_memory_bytes": 168,
+    "resident_ctas_per_sm": 8,
+    "operation_unit": "one_source_round_equivalent",
+    "operations_per_measured_pair": 2
+  },
+  "artifacts": {
+    "tracked_source": "microbench/nvidia_a800/compute/sfu/add_rmsnorm_block256_full_tail_pair.cu",
+    "compiled_source_snapshot_sha256": "24f513bc5fd2face59f3566867d4312b521abbd37eb0bce44c9a7997566101ab",
+    "binary_sha256": "b72d7901409ebadf48698ec087553c5a2db67e7beca2c3c08d1f0c8ee6376b2c",
+    "raw_csv_sha256": "41f3a16b58c5f0272956d56c900cdfe8234d289bd666a8168fedc1bf75e102ad",
+    "raw_output": "profiler_output/microbench/nvidia_a800/add_rmsnorm_block256_full_tail_pair_d6e18737_device7_20260905"
+  },
+  "campaign": {
+    "device": 7,
+    "timer_domain": "globaltimer_same_cta",
+    "rounds_per_sample": 8192,
+    "samples_per_cell": 5,
+    "cells": ["first", "resident"],
+    "maximum_cross_sample_relative_spread": 0.0075
+  },
+  "service_parameters": {
+    "unit": "ns_per_full_tail_pair",
+    "add_square_first_64": 423.125,
+    "add_square_resident_64": 880.410714,
+    "scale_multiply_first_64": 403.125,
+    "scale_multiply_resident_64": 593.071429,
+    "add_square_first_128": 401.375,
+    "add_square_resident_128": 1202.857143,
+    "scale_multiply_first_128": 406.125,
+    "scale_multiply_resident_128": 799.017857
+  },
+  "composition_contract": {
+    "domain": "one_complete_256_thread_source_round_followed_by_one_exact_64_or_128_thread_tail",
+    "replacement": "the measured pair replaces the complete round and tail rather than stacking with either service",
+    "queued_ctas_supported": false,
+    "interpolation_allowed": false
+  },
+  "decision": {
+    "status": "accepted",
+    "forward_eligible": true,
+    "reason": "The independent loop isolates two adjacent source iterations at the exact production widths while preserving the static CTA resource identity; it does not implement or time a complete AddRMSNorm operator."
+  }
+}

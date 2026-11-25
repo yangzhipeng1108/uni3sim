@@ -1,0 +1,185 @@
+{
+  "purpose": "Independent native shared-load/use-address service qualification; no MoE/GEMM/router/async copy or Forward price",
+  "cells": [
+    [
+      1,
+      1,
+      256
+    ],
+    [
+      1,
+      1,
+      1024
+    ],
+    [
+      1,
+      4,
+      256
+    ],
+    [
+      1,
+      4,
+      1024
+    ],
+    [
+      1,
+      8,
+      256
+    ],
+    [
+      1,
+      8,
+      1024
+    ],
+    [
+      1,
+      16,
+      256
+    ],
+    [
+      1,
+      16,
+      1024
+    ],
+    [
+      1,
+      32,
+      256
+    ],
+    [
+      1,
+      32,
+      1024
+    ],
+    [
+      4,
+      1,
+      256
+    ],
+    [
+      4,
+      1,
+      1024
+    ],
+    [
+      4,
+      4,
+      256
+    ],
+    [
+      4,
+      4,
+      1024
+    ],
+    [
+      4,
+      8,
+      256
+    ],
+    [
+      4,
+      8,
+      1024
+    ],
+    [
+      4,
+      16,
+      256
+    ],
+    [
+      4,
+      16,
+      1024
+    ],
+    [
+      4,
+      32,
+      256
+    ],
+    [
+      4,
+      32,
+      1024
+    ]
+  ],
+  "counter_cells": [
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      8
+    ],
+    [
+      1,
+      32
+    ],
+    [
+      4,
+      1
+    ],
+    [
+      4,
+      8
+    ],
+    [
+      4,
+      32
+    ]
+  ],
+  "samples_per_process": 17,
+  "warmups_per_process": 6,
+  "independent_processes": 2,
+  "source_sha256": {
+    "ldsm_dependency.cu": "b6833398947fc71d9fbacd52a074e9b57999c64d129ac7a19e6333b618f1a189",
+    "ldsm_dependency_analysis.py": "f90f777bc114cf70bdf52f92960fa1e10557d5d2ea3f89aa357d0629501c4247",
+    "ldsm_dependency_modal_runner.py": "89126a5db49899072b00c8755d8a5097b32a8ae3db5944894e797a7f9e244a8c"
+  },
+  "relative_precision": 0.03,
+  "clock_tolerance": 0.03,
+  "counter_tolerance": 0.01,
+  "nominal_sm_hz": 1980000000,
+  "source_scope": {
+    "bank_manifest": "profiler_output/microbench/nvidia_h200/shared_register_dependency_20261108/shared_address_integer/manifest.json",
+    "bank_manifest_sha256": "7f802ed205f82094a9bd8d0e17fe0f7ba9215817c8d22471823fbbb38b04e425",
+    "all49classes_ldsm_x4": true,
+    "projections": 162
+  },
+  "physical_geometry": {
+    "ctas": 132,
+    "dynamic_shared_bytes": 196608,
+    "compiler_cooperative_grid_static_scratch_max_bytes": 1024,
+    "resident_ctas_per_sm": 1,
+    "natural_128B_matrix_rows": true,
+    "fragment_words": 4,
+    "tail_shared_stores_per_warp": "chains",
+    "global_timed_payload_bytes": 0
+  },
+  "resources": {
+    "gpu": "H200",
+    "cards": 1,
+    "expected_seconds": 90,
+    "maximum_seconds": 300,
+    "maximum_gpu_hours": 0.08333333333333333,
+    "reservation_usd": 0.75,
+    "automatic_retries": 0,
+    "volumes": 0,
+    "conservative_prior_task_gpu_hours": 1.014166667,
+    "conservative_task_gpu_hours_with_new_max": 1.0975
+  },
+  "qualification": [
+    "All40timing process cells and6counter cells,all6warmups+17measured samples per timing cell retained",
+    "Allthreads pointer/checksum and exactoneCTAperSM numerical/resource identity",
+    "Bothbinary loops keep x4 loads,allfour-result address feedback,finite backedge and tail stores,noLDGSTS/HMMA/HGMMA/spills",
+    "Allwarp timing frequency nominal3%;directNCU SMnominal3%;exactCTA;shared-load wavefronts within1%;bank-conflicts exactlyzero",
+    "Fullsample median central interval width3%;matched independent process and256/1024 length medians within3%;no discarded rows"
+  ],
+  "disposition": "Anyfailedgate remains ineligible. No controls are subtracted,no hardware rate/phase fitted,and no fullbundle duration entersForward. Measuredcycles are not architectural worst-case upperbounds. Only qualified controlled-scope evidence may inform the existing conditional lower-bound diagnostic.",
+  "opportunity": {
+    "addition_only_fixed176_ideal_MAPE": 5.0389874135451524,
+    "current_MAPE": 5.30083252851,
+    "upper_useful_relief_pp": 0.2618451149648475,
+    "meaning": "Evaluation-only maximum useful addition diagnostic,not attainable gain or a latency target. Existing synthetic<=64cycle load/result lowerbounds changezero162projections;the new primitive asks a different real-service qualification question."
+  }
+}

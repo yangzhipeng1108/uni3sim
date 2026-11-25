@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "model": "isolated_nonempty_mix_aiv_task_scheduler_v1",
+  "duration_unit": "ns_per_complete_nonempty_mix_aiv_task",
+  "timer_domain": "msprof_task_time_complete_task",
+  "topology": "KERNEL_TYPE_MIX_AIV_1_0",
+  "task_ratio": "0:1",
+  "source_scope": "one scalar add plus one cache-line-isolated validation store per AIV; not a production operator",
+  "formula": "submit_ns + descriptor_ns_per_aiv * aiv_block_dim",
+  "parameters": {
+    "minimum_aiv_block_dim": 1,
+    "maximum_aiv_block_dim": 48,
+    "submit_ns": 3026.7508865248224,
+    "descriptor_ns_per_aiv": 93.44469170646983
+  },
+  "capture": {
+    "baseline_commit": "6b4323868e44428d84eb67b6d4726a28d1418825",
+    "runs": 4,
+    "launches_per_point": 200,
+    "schedule": "paired_forward_reverse_rotations",
+    "manifest_sha256": "517789c614c8a3a85a85c9e55bcea3a6535edc2e91f62a2b16ee20094051eda4",
+    "report_sha256": "cbb4151cc3e43985d13c73fccf49b4b4769b1bc6a1acb130e34c294b6a041d1c",
+    "production_or_evaluation_duration_consumed": false
+  }
+}

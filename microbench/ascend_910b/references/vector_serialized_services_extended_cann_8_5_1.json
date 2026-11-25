@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baselines": ["28eaa25f", "30fb6812"],
+  "service_family": "ub_resident_serialized_vector_intrinsic",
+  "calibration_run_ids": ["run1", "run2", "serialized_h8192_r1", "serialized_h8192_r2"],
+  "validation_run_ids": ["run3", "serialized_h8192_r3"],
+  "request_sizes_elements": [32, 2048, 6144, 8192],
+  "validation_maximum_ape_percent": 25.0,
+  "source_capture_paths": [
+    "profiler_output/microbench/ascend_910b/vector_serialized_services_28eaa25f_20260826_r1",
+    "profiler_output/microbench/ascend_910b/vector_serialized_h8192_30fb6812_20260829_d3"
+  ],
+  "source_snapshot_sha256": {
+    "vector_opcode_kernel.cpp": "8d8845cbec237182aa3528d60be48864621636bb197fb223bf7657c2f9e75cc8",
+    "vector_opcode_main.cpp": "8c39c096f89b48d2f873706ab4d4b6e31f0abcba5d4859261f2eedeb729a9e50",
+    "vector_opcode_runner.py": "0c4da818619afccd7dac4ce653ac359002fd38afc3e12d864aed017d6c8b2459"
+  },
+  "h8192_binary_sha256": "746fc4308125143a012bc32b8eeb4199c5a74a7e90679588e49cfa23b12a6aa0",
+  "raw_sha256": {
+    "base/run1.csv": "32707d79450d067d925e29b646e9fd02ae55263b261dc8af75b80544effdb3ba",
+    "base/run2.csv": "f82a0b8441d521c14fdfcc8552766a90f16025af263d7aee70e92d690befd151",
+    "base/run3.csv": "8748309128374480a598dd258bef2080d75d56a8fe3ed31a93cdfa8079c5f0c1",
+    "h8192/run1.csv": "bf1ecb5b3f4050edf09230d2fae7f0fb027baf2da4bdaec7f3644c26ba40b9cf",
+    "h8192/run2.csv": "2d2760926c5ae09c504050a0a6deb2963d7d2206c3321ad8ca7b24f2578c5239",
+    "h8192/run3.csv": "090c2a0fe2da533e67586df5cf625f7895083b4369e5cfba60e55260956b8114"
+  },
+  "device_telemetry_sha256": {
+    "h8192/pre_npu_smi.txt": "eb20ed4efd8e11b3f76733abefba921f53991400ad335717c3a1d481562412f6",
+    "h8192/post_npu_smi.txt": "d03e2389159402c053bc1cf8615b35639909ec87e004d02f0ac32aaf55e9e528"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "services": {
+    "cast_bf16_to_fp32_serialized": {
+      "setup_time_s_per_intrinsic": 1.5626850274351996e-08,
+      "steady_rate_elements_per_s_per_aiv": 110056069160.53542,
+      "maximum_validation_ape_percent": 24.572526422554553,
+      "h8192_validation_ape_percent": 8.07396400978466,
+      "service_publishable": true
+    },
+    "cast_fp32_to_bf16_serialized": {
+      "setup_time_s_per_intrinsic": 1.5168087558500744e-08,
+      "steady_rate_elements_per_s_per_aiv": 119733617430.41313,
+      "maximum_validation_ape_percent": 20.79829162414421,
+      "h8192_validation_ape_percent": 0.3039601512459279,
+      "service_publishable": true
+    },
+    "muls_serialized": {
+      "setup_time_s_per_intrinsic": 1.4375519819395941e-08,
+      "steady_rate_elements_per_s_per_aiv": 115200160513.50398,
+      "maximum_validation_ape_percent": 1.4460228366835424,
+      "h8192_validation_ape_percent": 0.5723904096885235,
+      "service_publishable": true
+    },
+    "adds_serialized": {
+      "setup_time_s_per_intrinsic": 1.3515066031169532e-08,
+      "steady_rate_elements_per_s_per_aiv": 115567328768.90584,
+      "maximum_validation_ape_percent": 0.6980027587677758,
+      "h8192_validation_ape_percent": 0.04731456694124265,
+      "service_publishable": true
+    },
+    "mul_serialized": {
+      "setup_time_s_per_intrinsic": 1.561544722489508e-08,
+      "steady_rate_elements_per_s_per_aiv": 57423356527.404495,
+      "maximum_validation_ape_percent": 11.964861846618488,
+      "h8192_validation_ape_percent": 1.3848191457085879,
+      "service_publishable": true
+    }
+  }
+}

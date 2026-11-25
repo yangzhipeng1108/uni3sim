@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "evidence_kind": "versioned_public_operator_source",
+  "production_or_evaluation_duration_consumed": false,
+  "hardware_execution_performed": false,
+  "runtime_stack": {
+    "vllm_repository": "https://github.com/vllm-project/vllm.git",
+    "vllm_commit": "bcf2be96120005e9aea171927f85055a6a5c0cf6",
+    "vllm_ascend_repository": "https://github.com/vllm-project/vllm-ascend.git",
+    "vllm_ascend_commit": "e18643f8a4d5bd9990727654318ad069ea0b56e2",
+    "vllm_ascend_tag": "v0.18.0"
+  },
+  "source_files": [
+    {
+      "path": "vllm_ascend/ascend_forward_context.py",
+      "sha256": "58b759a3a1960ee120eb1963bd967efc86a16815e1f916a8352b8ee144ecd03b"
+    },
+    {
+      "path": "vllm_ascend/ops/fused_moe/fused_moe.py",
+      "sha256": "bc170911dea7ff5c154ac966c9a046771f3afa79f0edd5e5d871525e911f25c0"
+    },
+    {
+      "path": "vllm_ascend/ops/fused_moe/token_dispatcher.py",
+      "sha256": "21fd94e3d5eacc578cc3feb794bc5c135c148c2d495c611f224f22c8b96ac0cc"
+    },
+    {
+      "path": "vllm_ascend/ops/fused_moe/moe_mlp.py",
+      "sha256": "1a65440a1357af84641a87fda630cf84efcbc8b34fa66ceedd2c403893fd840d"
+    },
+    {
+      "path": "vllm_ascend/ops/fused_moe/prepare_finalize.py",
+      "sha256": "f46b378b2ba197fafd744c409735aa9a011d93e073507c1f87cf1a60ef2ecae4"
+    }
+  ],
+  "source_facts": {
+    "local_expert_count": "global_num_experts_divided_by_expert_parallel_world_size",
+    "qwen3_moe_910b_a2_ep2_communication_method": "ALLGATHER",
+    "prepare_communication_for_dp1_sp_disabled": "none",
+    "rank_local_filter": "active_expert_range",
+    "grouped_matmul_routed_rows": "sum_of_rank_local_tokens_per_expert",
+    "final_collective": "tensor_or_expert_parallel_allreduce"
+  },
+  "forward_scope": {
+    "status": "source_backed",
+    "hardware_generation": "Ascend 910B/A2",
+    "kernel_launch_scope": {
+      "dtype": "bf16",
+      "expert_parallel_size": 2,
+      "global_experts": 128,
+      "local_experts_per_rank": 64
+    },
+    "serving_integration_scope": {
+      "model_family": "Qwen3-MoE",
+      "tensor_parallel_size": 2,
+      "expert_placement_strategy": "linear",
+      "enforcement": "src.serving.simulation.validate_workload_emission_parallelism plus src.serving.kernel_lowering.lower_workload._validate_ep_fused_moe_graph"
+    },
+    "limitations": [
+      "This evidence supports rank-local launch and communication semantics only; it supplies no production or evaluation duration.",
+      "The Python source invokes the GroupedMatmul operator API even when a rank receives zero routed rows, but the retained source does not prove that this produces a device kernel launch. Midlayer therefore emits no rank-local W1/W2 KernelSpec for zero mathematical work and makes no claim about host-side operator overhead.",
+      "Other dtypes, model families, parallel sizes, communication selections, and placement strategies remain outside this evidence scope."
+    ]
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "hardware_id": "ascend_910b",
+  "max_scheduled_request_count": 120,
+  "fallback_dispatch": {
+    "min_scheduled_request_count": 121,
+    "max_scheduled_request_count": 128,
+    "supported_phases": ["mixed", "decode"],
+    "service_time_s": {
+      "plan": 0.0018864165,
+      "update": 0.001756972
+    },
+    "occurrence_contract": "one synthetic decode scheduler plan and one output update per sample; no Serving duration consumed"
+  },
+  "measurement": {
+    "artifacts": [
+      {
+        "path": "serving_dataset/sharegpt/ascend_910b/llama-3.1-8b/tp1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "60d7f445e2d0bf7c50f5ed7bfd9ed63bc27d2fca93c0f20ef1d59989d36c26bf"
+      },
+      {
+        "path": "serving_dataset/sharegpt/ascend_910b/llama-3.1-8b/tp1_qps64/scheduler_steps.jsonl.zst",
+        "sha256": "9797a39fcb9fdb17ba803c83d83cd16925f0ff6964ae2aa386dd4b17a6d03ecc"
+      },
+      {
+        "path": "serving_dataset/sharegpt/ascend_910b/qwen3-30b-a3b/tp2_ep2_qps1/scheduler_steps.jsonl.zst",
+        "sha256": "3bfd882c2473052c392bd8699f9027460b3121c4e6abf32accd206ba95abc92e"
+      },
+      {
+        "path": "serving_dataset/sharegpt/ascend_910b/qwen3-30b-a3b/tp2_ep2_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "8db99c410608e1f6386edb4b4153a1d114f80bc5e312ffd49fc912a1fe40d3ed"
+      },
+      {
+        "path": "serving_dataset/sharegpt/ascend_910b/qwen3-32b/tp2_ep1_qps1/scheduler_steps.jsonl.zst",
+        "sha256": "32905c34c149112e5a9b61e8cb6caa396416ecff59ca28f0516e9b6d7201681e"
+      },
+      {
+        "path": "serving_dataset/sharegpt/ascend_910b/qwen3-32b/tp2_ep1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "92856fcc15b051940734f06c3d708c6c8f1d8739371bc7c3841d30e2280a0c12"
+      },
+      {
+        "path": "serving_dataset/sharegpt/ascend_910b/qwen3-4b/tp1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "f2bc2cb35baa1ce0086dff51057ef445121226ac4b78ff267b85dca47f699c62"
+      },
+      {
+        "path": "serving_dataset/sharegpt/ascend_910b/qwen3-4b/tp1_qps64/scheduler_steps.jsonl.zst",
+        "sha256": "ea0df1fad7cd8a731457238849c1ee4762fa7bbd3fee39217c12de3d07cade0a"
+      },
+      {
+        "path": "serving_dataset/sharegpt/ascend_910b/qwen3-8b/tp1_qps4/scheduler_steps.jsonl.zst",
+        "sha256": "0ef89f6a225533168abbe2d3363ef0e2ee6941dec0103a6003b8e94c20028339"
+      },
+      {
+        "path": "serving_dataset/sharegpt/ascend_910b/qwen3-8b/tp1_qps64/scheduler_steps.jsonl.zst",
+        "sha256": "bd31982dbe4a922b45a5920ab3a6f9be0076672ad880c4889f25f9a6d23fe622"
+      },
+      {
+        "path": "microbench/ascend_910b/runtime/scheduler_host_prefill/rep1.scheduler_steps.jsonl.zst",
+        "sha256": "762dc0021392e2a6ffabb7a826f3b81dbb4e78e9f0efa3ad4b49a865b01e6964"
+      },
+      {
+        "path": "microbench/ascend_910b/runtime/scheduler_fallback_dispatch/references/scheduler_fallback_dispatch_decode_20260919.json",
+        "sha256": "aaccf7954a7a54687fbcf84db24fa51b76664e5b7c2fddd583f4045acecf99bf"
+      }
+    ],
+    "boundary": "vllm_scheduler_trace_host_monotonic_plan_and_update",
+    "time_unit": "seconds",
+    "training_selection": {
+      "eligible_step_rule": "nonzero_scheduled_request_count_with_positive_plan_and_update",
+      "excluded_target_qps": 16,
+      "minimum_samples_per_phase": 32
+    }
+  },
+  "model": {
+    "kind": "scheduled_request_count_affine",
+    "state_dimensions": [
+      "scheduled_request_count"
+    ],
+    "statistic": "median_of_count_medians_theil_sen"
+  },
+  "scheduler": {
+    "source_identity": "vllm=0.18.0;source_identities=vllm=0.18.0;core=b8a10b3d...a61439;executor=138fd673...e758d;vllm-ascend=5673759a...cdd3fd;vllm=0.18.0;source_commit=not_recorded",
+    "vllm_version": "0.18.0"
+  },
+  "schema_version": 1,
+  "service_time_s": {
+    "plan": {
+      "intercept": 4.7772898809523786e-05,
+      "per_request": 1.7469797619047618e-05
+    },
+    "prefill": {
+      "plan": {
+        "intercept": 7.525683928571426e-05,
+        "per_request": 0.00015721510714285716
+      },
+      "update": {
+        "intercept": 3.00774375e-05,
+        "per_request": 8.281875e-06
+      }
+    },
+    "update": {
+      "intercept": 5.0852e-05,
+      "per_request": 8.817375e-06
+    }
+  },
+  "supported_phases": [
+    "prefill",
+    "mixed",
+    "decode"
+  ]
+}

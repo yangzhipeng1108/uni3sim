@@ -1,0 +1,79 @@
+{
+  "hardware_id": "ascend_910b",
+  "mechanism": "bf16_paged_kv_128x128_stride1024_finite_ingress",
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "binary_sha256": "d50c7a7cc5e0fc0c492bd005ae558595483e144563a48bae397be79acabc3767",
+    "raw_path": "profiler_output/microbench/ascend_910b/split_fuse_mte2_short_tail_20261102/raw/measurements.json",
+    "raw_sha256": "2cd0b96d4682ef30137a3b35939dde08ed4c1129b9d08de6b0dcfce47e473005",
+    "source_sha256": {
+      "CMakeLists.txt": "0da645b4a17fce921fbca2872159c846fcc671388eb99d456d6af71c956f1018",
+      "REGISTRATION.md": "2e312f17879c98a415865ec3941a06d23ef93e11916cf63cbea994faffbb368f",
+      "kernel.cpp": "a273c97c7f32b28e3b0866722044c434819640f8027f9c53b9bbca4fdcd144fd",
+      "main.cpp": "5070d6e5f41334fa8e97c7c57578ebc2fe173d8ba9ada4b536ad1cab71b8dc26",
+      "runner.py": "3062df87ffda36af5ca263ddc869aad89fd6e346f408980c6feebab0bea8ac14"
+    }
+  },
+  "schema_version": "midlayer.ascend.split_fuse_mte2_short_tail.v1",
+  "scope": {
+    "active_aic_groups": 24,
+    "columns": 128,
+    "descriptor_counts": [
+      3,
+      4,
+      5,
+      7
+    ],
+    "issue_modes": [
+      "drained",
+      "two_slot_overlap"
+    ],
+    "process_count": 3,
+    "rows": 128,
+    "source_row_stride_elements": 1024,
+    "timed_launches_per_process": 256
+  },
+  "services_ns": {
+    "3": {
+      "drained": {
+        "first_touch_ns": 2820.0,
+        "same_address_replay_ns": 800.0
+      },
+      "two_slot_overlap": {
+        "first_touch_ns": 2880.0,
+        "same_address_replay_ns": 800.0
+      }
+    },
+    "4": {
+      "drained": {
+        "first_touch_ns": 3480.0,
+        "same_address_replay_ns": 1040.0
+      },
+      "two_slot_overlap": {
+        "first_touch_ns": 3485.0,
+        "same_address_replay_ns": 1040.0
+      }
+    },
+    "5": {
+      "drained": {
+        "first_touch_ns": 4130.0,
+        "same_address_replay_ns": 1280.0
+      },
+      "two_slot_overlap": {
+        "first_touch_ns": 4130.0,
+        "same_address_replay_ns": 1280.0
+      }
+    },
+    "7": {
+      "drained": {
+        "first_touch_ns": 5825.0,
+        "same_address_replay_ns": 1760.0
+      },
+      "two_slot_overlap": {
+        "first_touch_ns": 5790.0,
+        "same_address_replay_ns": 1770.0
+      }
+    }
+  },
+  "software_revision": "cann_8.5.1"
+}

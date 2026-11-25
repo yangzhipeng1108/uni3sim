@@ -1,0 +1,177 @@
+{
+  "schema": "nvidia_h200_fa2_chunked_q8192_two_resident_ingress_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "evidence_kind": "independent_chunked_prefill_kv_ingress_microbenchmark",
+  "source_capture": [
+    "profiler_output/microbench/nvidia_h200/wp3_chunked_r1_t1",
+    "profiler_output/microbench/nvidia_h200/wp3_chunked_r2_t1"
+  ],
+  "source_baseline_commit": [
+    "aeb34ee300b317a6e3820ec9a9745a2c3ac41928"
+  ],
+  "physical_device_index": 2,
+  "device_uuid": "capture-device-077372b98985",
+  "resource_contract": {
+    "threads_per_cta": 128,
+    "dynamic_shared_bytes_per_cta": 82944,
+    "registers_per_thread": 80,
+    "resident_ctas_per_sm": 2,
+    "physical_sm_count": 132,
+    "panel_bytes_per_cta": 65536,
+    "initial_transaction_bytes": 32,
+    "static_ldgsts_bypass_128_instructions": 32,
+    "stack_frame_bytes": 0,
+    "spill_store_bytes": 0,
+    "spill_load_bytes": 0,
+    "source_period_ctas": 128,
+    "source_profiles": {
+      "skew_q1024_q4096": {
+        "q_lens": [
+          1024,
+          4096
+        ],
+        "kv_lens": [
+          1024,
+          4096
+        ]
+      },
+      "uniform_q256_to_q1019": {
+        "q_lens": [
+          256,
+          365,
+          474,
+          583,
+          692,
+          801,
+          910,
+          1019
+        ],
+        "kv_lens": [
+          1024,
+          1462,
+          1900,
+          2338,
+          2776,
+          3214,
+          3652,
+          4090
+        ]
+      }
+    }
+  },
+  "campaign": {
+    "warmup_launches": 10,
+    "samples_per_cell": 62,
+    "grids": [
+      2048,
+      4096
+    ],
+    "profiles": {
+      "skew_q1024_q4096": {
+        "2048": {
+          "total_rounds": 18048,
+          "median_makespan_ns": 138880.0,
+          "relative_span_pct": 4.078341013824885
+        },
+        "4096": {
+          "total_rounds": 36096,
+          "median_makespan_ns": 267200.0,
+          "relative_span_pct": 2.3952095808383236,
+          "payload_32b_transactions_per_model_sm_cycle": 139.72926873525677
+        }
+      },
+      "uniform_q256_to_q1019": {
+        "2048": {
+          "total_rounds": 27712,
+          "median_makespan_ns": 206352.0,
+          "relative_span_pct": 2.3261223540358222
+        },
+        "4096": {
+          "total_rounds": 55424,
+          "median_makespan_ns": 402992.0,
+          "relative_span_pct": 1.4769523960773416,
+          "payload_32b_transactions_per_model_sm_cycle": 142.25456213783525
+        }
+      }
+    },
+    "ncu_dynamic_counter_closure": null
+  },
+  "selected_service": {
+    "selection_rule": "lower_4096_cta_direct_median_across_the_two_source_profiles",
+    "exact_grid_ctas": 4096,
+    "model_sm_clock_hz": 1980000000.0,
+    "full_chip_initial_32b_transactions_per_model_sm_cycle": 139.72926873525677,
+    "logical_byte_capacity_per_s": 8853246467065.87
+  },
+  "publication_gates": {
+    "two_resident_ctas_per_sm": true,
+    "static_ldgsts_bypass_128_count_is_32": true,
+    "no_stack_or_spill": true,
+    "dynamic_instruction_and_byte_counters_close_exactly": null,
+    "all_native_cells_relative_span_at_most_5_pct": true,
+    "selected_grid_source_profiles_within_5_pct": true
+  },
+  "artifact_sha256": {
+    "wrapper_source": "e78c16f897a43c2fc8d47b36eb916607ffdd74faa0e9d50fc3cbc6286acb32bf",
+    "ingress_source": "247ac0fd1ce5f64002296d84b73153100a7f884f4512f694d93f08c01442dbac",
+    "runner": "dffb163d061cc176fb6989f1bcd39919b8d75d821708baae7af8ecc666e71781",
+    "binary": [
+      "017687fbf551ee1404fae86f526e274456b0825008e9f38ed264417e5364aba3",
+      "1d59671073f4fd04bb3ffd765babfcbe7d3137ea52e13ea2c1c99889e0c14ac2"
+    ],
+    "ptxas": [
+      "211b8194555668de78b3d915845ae9a1609e063ae94b20b7ef9bd5593b4a9e6b",
+      "6dfa4e9e692dde547662f8afc5840125790f86a7284892f711f5323c47453d50"
+    ],
+    "sass": [
+      "9a20771ff3d41a5a7a8da0b89b0e754265d988cac7feedb632a7987e24d86e72"
+    ],
+    "candidates": [
+      "2fce11283cb0096ef19c28dde64f71066566db0d8e736dbdffbe7438aa479308",
+      "c520730dabccb3855617b3abeeed826fc58edf1e34532044f292505b5ad66516"
+    ],
+    "profile_skew_grid2048": [
+      "2fce11283cb0096ef19c28dde64f71066566db0d8e736dbdffbe7438aa479308",
+      "c520730dabccb3855617b3abeeed826fc58edf1e34532044f292505b5ad66516"
+    ],
+    "profile_skew_grid4096": [
+      "2fce11283cb0096ef19c28dde64f71066566db0d8e736dbdffbe7438aa479308",
+      "c520730dabccb3855617b3abeeed826fc58edf1e34532044f292505b5ad66516"
+    ],
+    "profile_uniform_grid2048": [
+      "2fce11283cb0096ef19c28dde64f71066566db0d8e736dbdffbe7438aa479308",
+      "c520730dabccb3855617b3abeeed826fc58edf1e34532044f292505b5ad66516"
+    ],
+    "profile_uniform_grid4096": [
+      "2fce11283cb0096ef19c28dde64f71066566db0d8e736dbdffbe7438aa479308",
+      "c520730dabccb3855617b3abeeed826fc58edf1e34532044f292505b5ad66516"
+    ],
+    "ncu_skew_grid2048": null,
+    "ncu_skew_grid4096": null,
+    "ncu_uniform_grid2048": null,
+    "ncu_uniform_grid4096": null
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "allowed_conclusion": "For the two exact 4096-CTA chunked-prefill source profiles, each with 128 threads, 82944 dynamic shared bytes, two resident CTAs per SM, and one 64-KiB K/V LDGSTS round, the shared K/V ingress service on H200 has at least 139.72926873525677 initial 32-byte transactions per 1.98-GHz SM cycle.",
+  "forbidden_conclusion": "This reference does not price Q ingress, MMA, softmax, output, different source profiles, different grids, different resident topology, generic L2 or DRAM traffic, or a production FlashAttention duration.",
+  "provenance": {
+    "wrapper": "microbench/nvidia_h200/operators/flash_attn/fa2_chunked_exact_two_resident_ingress.cu",
+    "ingress": "microbench/nvidia_h200/operators/flash_attn/fa2_chunked_one_resident_ingress.cu",
+    "runner": "microbench/nvidia_h200/operators/flash_attn/fa2_chunked_two_resident_ingress_runner.py",
+    "sm_clock_hz": 1980000000.0,
+    "profile_difference_at_4096": 0.01775193262435859,
+    "clock_gate": {
+      "rule": "every probe process runs under nvidia-smi -lms 50; a process is accepted only if it shows a busy sample and every busy sample is >= 1980 MHz, otherwise it is rejected and re-run",
+      "accepted_captures": 8,
+      "rejected_captures": 0,
+      "accepted_busy_sm_clock_min_mhz": 1980,
+      "accepted_busy_sm_clock_max_mhz": 1980,
+      "accepted_busy_samples": 44,
+      "rejected_busy_sm_clock_min_mhz": []
+    },
+    "ncu_note": "Nsight Compute is unavailable on the H200 host; the probe's own total_rounds (static source profile) replaces the NCU dynamic counter closure.",
+    "remote_raw_root": "/capture-public/h200_microbench/wp3_ldgsts/repo/profiler_output/microbench/nvidia_h200"
+  }
+}

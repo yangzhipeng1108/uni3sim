@@ -1,0 +1,149 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_e128_128_active_190_max_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "experts": 128,
+    "valid_routes": 4096,
+    "active_m_tiles": 128,
+    "maximum_m_tiles": 190,
+    "production_k_n_tile_classes": {
+      "w1": [64, 24],
+      "w2": [24, 32]
+    },
+    "adjacent_nonproduction_n": {
+      "w1": [1472, 1600],
+      "w2": [1984, 2112]
+    }
+  },
+  "method": {
+    "kernel": "frozen production Triton grouped-MoE source",
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090813,
+    "topk16_route_sha256": "2f91794142c8cd385aa2c69935edcd56fd7c11c6811fefe0af5fd62437e2f485",
+    "topk8_route_sha256": "a721f134bfa02d5800dbf1b7926fb7a6531d3c4488d1f084b64e273f24e60119",
+    "physical_devices": [0, 1, 2, 3],
+    "event_trials_per_capture": 7,
+    "independent_captures_per_cell": 3,
+    "w1_event_repetitions": {
+      "topk8": 1,
+      "topk16": 25
+    },
+    "w2_event_repetitions": 1,
+    "w2_activation_refresh_before_every_timed_launch": true,
+    "w2_mul_routed_weight": true,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "cffe88825767f47104baac2a7d4f9f75a1b5c260f821ad63f308e28d530742ac",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "for each source role and top-k class, take the median capacity across three fresh-process captures for each device and adjacent non-production N geometry, then select the lowest device/geometry median; W2 uses the lower selected capacity across the topk8 and topk16 route programs"
+  },
+  "capture_summary": {
+    "topk16_w1": {
+      "device0_n1472_median": 2714862712539.9795,
+      "device0_n1600_median": 2705982157628.992,
+      "device2_n1472_median": 2709072507788.704,
+      "device2_n1600_median": 2698553810793.005,
+      "maximum_range_over_median": 0.002044,
+      "raw_sha256": [
+        "b5d001f7f37c0fba68f9c781cdcb066c4d2cbdbb969db7065c4c33e152a88fc6",
+        "ba4f8e35e2fd5a84740a0d8bba214a68ed8766f00ef5dccd5b91b057633ce5d2",
+        "a6344fd8e30d4b8620443957c957eea7eaa4f9b95f3fae97afd8dad8c4b6d40d",
+        "7354b3cc7e95c459c18800817948cf7ee70467b73528c98d8ae7dc61366af59b",
+        "6ca8a9200bffb2f38f549f44ce931dec738cf586c37ca9a5071e30192a258562",
+        "6dcefd5db3827a49063a66ba299172974983178aae614ff9347d502f5418fb44",
+        "8254e16a9b15c0db0e2bcc9cc30fd7d5cd2220fd1ea3f033e7cd7db8e7afea32",
+        "9031039cc6f6787b350c8562ed0e81f99e67b453f24ef4de000fd2fe325cf0e2",
+        "d202404e4c30c95b3fb50266b24eca57d533067efd8276dc3564ed39ec0e456f",
+        "6ef084cbcebb37d764461b656d18b353fbbb0b2c9f978bf6def6e95b00b1a2ea",
+        "2d7a8c8a7700813eb1cf265224efb90b8ddcf04d3125f08bf1fd57002a390071",
+        "494334b38eef3094b808318b2d71cd19fc595c5cc687f418cb63c78524830bb8"
+      ]
+    },
+    "topk8_w1": {
+      "device1_n1472_median": 2570769746581.286,
+      "device1_n1600_median": 2559333566462.93,
+      "device3_n1472_median": 2589910617975.361,
+      "device3_n1600_median": 2591038469255.64,
+      "maximum_range_over_median": 0.031921,
+      "raw_sha256": [
+        "75da43c3d7a5e0a7b2b8376019600529e585a88939b547df036fa0ceef7e52e0",
+        "03a5c5aff6d1edf13ce101631bcef2bbd3f846257c7ef6baa03f468aa7f9f998",
+        "75da43c3d7a5e0a7b2b8376019600529e585a88939b547df036fa0ceef7e52e0",
+        "fee290199286d6df068118538d5fe5d72ac63779f5880deba2b57da15949718c",
+        "f700182426b10c91a2d8ff7210e2b72957ac41b0925ef3d25f92923727572f91",
+        "9df576055a24f41d5b3a53813dc44451b4f842d03ffc5a4c305e410e0707bc63",
+        "5e68b9297160757d40ee39c41905de5b2984e830ee2f6993590cf6d316dbadc4",
+        "cd0b2e2aa63a99106172b1b26dc60886b25259e2dc71601a9596a0219fee7b7c",
+        "95e31c7788a89da03582079c357f70972065add31aa4f16a060306ccf340491b",
+        "1b4d2abd8d2712f56b70686fefbf74ba4eeb6e5148296af4862bf8c46755a808",
+        "c9f0d68b650f10df8af020fca45a746ca1551d8f9a101084b7747045ce307027",
+        "d3d77921e2dbb1174d45abaeb5b5911b533f24573920195cec9aa7a5f907a9fd"
+      ]
+    },
+    "topk16_w2": {
+      "device0_n1984_median": 2201895980056.4463,
+      "device0_n2112_median": 2214860299043.382,
+      "device2_n1984_median": 2204019328936.747,
+      "device2_n2112_median": 2216878410400.583,
+      "maximum_range_over_median": 0.045468,
+      "raw_sha256": [
+        "70f9a6c640a1821cc071d10dba1dc4b59986409e8a564496c443185da17396cb",
+        "97aca44a0c685078f8d9d216fde9bb13d811d79a2373a0e4bcf55ec289f9ed7e",
+        "90eb792b87a90322ec7f5e614cf3fb29124ad04745d2bb53e3b81ee4a7ed89af",
+        "a1dda5409548e7cc8dd71d8488dd2041412642a478ca67c23e0ca21b3f49eb90",
+        "7ca057ab38ee07f286145b1d8471d0588d2d94de4a90287a059b821b18a4a2fa",
+        "8682f9cb1b78895b37f886c32d55526a43ab0721e396e7172df0386e4952a85e",
+        "73ffa913cf4f3686f2cea57b2809c89e0d317eac9405d974cd25d2ede226c429",
+        "73ffa913cf4f3686f2cea57b2809c89e0d317eac9405d974cd25d2ede226c429",
+        "73ffa913cf4f3686f2cea57b2809c89e0d317eac9405d974cd25d2ede226c429",
+        "a8b583c9321e86b58c2dcb6b75844e9217000709e3e1ec5f47c3e20a6ae3e965",
+        "3f4f9fbb1f28f987161480f4f03f0b81c4bdded7e59e2d3b92c23993adde8ba5",
+        "a06d573d95a17a53c2c4c531e9fbac26e797380a54511ea2fd87facb7958cc34"
+      ]
+    },
+    "topk8_w2": {
+      "device1_n1984_median": 2215771089858.2065,
+      "device1_n2112_median": 2235208037519.658,
+      "device3_n1984_median": 2237462602425.343,
+      "device3_n2112_median": 2250716074949.7383,
+      "maximum_range_over_median": 0.049325,
+      "raw_sha256": [
+        "2ba8f59ba442cb839c67fe6138e9880ce004de2bcdaa79c62df4bb19f19bfa8a",
+        "cde7f6825e78c8c693a72e3548451d7c7f0925f994a3b26ed8b0b985999258fa",
+        "a004b176bc1d241e0a01c13b219a0d401906a21ad2686f834aead2ea88bdb8c1",
+        "eb38adca2f814290cc12d4edfffe99e71b27801b84fe185804002d41a9ccf338",
+        "55307dd655e456d07e9f10480cc389ed3af000ba7c633dc7032c2f3c478146ba",
+        "ad67b7e238c25baf4e0eda34e11a1b15e0e51453ad1181ef8c9e66f06cedcea2",
+        "5e0a0fdc4cfa89761fac91ffc9c71d8b52236848a1af2603da0826df61dc7441",
+        "5e0a0fdc4cfa89761fac91ffc9c71d8b52236848a1af2603da0826df61dc7441",
+        "e2734e933defcdb11131fafb5adf269f3a6b646ee8a2c247ca0c4ea589a08cbf",
+        "472798a25424db5a37667fdc08bbdcd67fa78710a981e97a5a2f02dc08f0137f",
+        "812546a7692b1b2dea1c81106e287ff2b558646a69fa899ef4a73ec77363424d",
+        "ad175a44d797a36e7a218cafaed0a4fb1cf4c69c1819c58be7f6dc53450cfe8d"
+      ]
+    }
+  },
+  "selected_services": {
+    "topk16_w1": {
+      "predicate": "topk16 source, 4096 routed rows, 128 active M tiles, 190 maximum M tiles, and K/N tile class (64,24)",
+      "logical_byte_capacity_per_s": 2698553810793.005
+    },
+    "topk8_w1": {
+      "predicate": "topk8 source, 4096 routed rows, 128 active M tiles, 190 maximum M tiles, and K/N tile class (64,24)",
+      "logical_byte_capacity_per_s": 2559333566462.93
+    },
+    "w2": {
+      "predicate": "4096 routed rows, 128 active M tiles, 190 maximum M tiles, freshly written activation, routed-weight multiply, and K/N tile class (24,32)",
+      "logical_byte_capacity_per_s": 2201895980056.4463
+    }
+  },
+  "raw": {
+    "root": "profiler_output/microbench/metax_c500/bm64_e128_topk16_mid_depth_8b38080c_20260909_r1"
+  },
+  "allowed_conclusion": "The exact 4096-route E128 BM64 launch uses source-top-k-specific W1 completion and one shared activation-refreshed W2 completion service; no production or evaluation duration selects these capacities."
+}

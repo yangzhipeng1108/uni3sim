@@ -1,0 +1,917 @@
+{
+  "schema_version": 8,
+  "hardware_id": "nvidia_h200",
+  "mechanism": "shared_operand_fp16_wgmma_accumulator_activity_service",
+  "selection": "median_per_capture_then_geometry_then_accumulator_footprint",
+  "operand_activity_pattern": "random_sign_exponent_and_mantissa",
+  "measurement_protocol": {
+    "kind": "host_gap_free_device_warmup",
+    "device_warmup_reference_cycles": 100663296,
+    "accumulator_reset_each_window": true
+  },
+  "grid_ctas": 132,
+  "active_ctas": 128,
+  "threads_per_cta": 384,
+  "measurement_threads_per_cta": 256,
+  "math_warpgroups": 2,
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/shared_tensor_partial_activity_20261107/base_raw.json",
+      "sha256": "1237e1eaf2b88b55fc2759ac945b86a21142b5b82abe5e075047f7d7bbe25a42",
+      "source_sha256": "ed625013272b6b3aed328d5042e8992167d5d27be2c562c5a51ec62f842a6591",
+      "runner_sha256": "fe564a292632f6c08ae60875895d7912f3cf2fc38e8d14fcf8656e72f98c275c"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/shared_tensor_partial_activity_20261107/extended_raw.json",
+      "sha256": "dd817975e0d4b59c0166692ff22a5b5bfa61df5f3ea12544343470c25fd7954b",
+      "source_sha256": "ed625013272b6b3aed328d5042e8992167d5d27be2c562c5a51ec62f842a6591",
+      "runner_sha256": "fe564a292632f6c08ae60875895d7912f3cf2fc38e8d14fcf8656e72f98c275c"
+    }
+  ],
+  "measurements": [
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 32826.0,
+      "clock_mhz": 1461.271,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 131130.0,
+      "clock_mhz": 1454.673,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 32826.0,
+      "clock_mhz": 1456.942,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 131130.0,
+      "clock_mhz": 1469.759,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 32826.0,
+      "clock_mhz": 1469.466,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 131130.0,
+      "clock_mhz": 1455.189,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 98474.0,
+      "clock_mhz": 1464.756,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 393375.0,
+      "clock_mhz": 1455.033,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 98463.0,
+      "clock_mhz": 1455.338,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 393375.0,
+      "clock_mhz": 1455.134,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 98463.0,
+      "clock_mhz": 1455.119,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 64,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 393375.0,
+      "clock_mhz": 1455.017,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 49274.0,
+      "clock_mhz": 1515.594,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 196730.0,
+      "clock_mhz": 1500.008,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 49274.0,
+      "clock_mhz": 1500.03,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 196730.0,
+      "clock_mhz": 1499.992,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 49274.0,
+      "clock_mhz": 1499.331,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 196730.0,
+      "clock_mhz": 1485.149,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 147444.0,
+      "clock_mhz": 1500.499,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 589812.0,
+      "clock_mhz": 1500.092,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 147444.0,
+      "clock_mhz": 1500.366,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 589812.0,
+      "clock_mhz": 1485.104,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 147444.0,
+      "clock_mhz": 1485.02,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 589812.0,
+      "clock_mhz": 1484.984,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1531.087,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1530.182,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1515.244,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1514.906,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1515.244,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1514.911,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 196606.0,
+      "clock_mhz": 1530.145,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 786430.0,
+      "clock_mhz": 1515.044,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 196606.0,
+      "clock_mhz": 1515.051,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 786430.0,
+      "clock_mhz": 1514.976,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 196606.0,
+      "clock_mhz": 1515.051,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 0,
+      "instruction_n": 128,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 786430.0,
+      "clock_mhz": 1514.976,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 65651.0,
+      "clock_mhz": 1470.228,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 262259.0,
+      "clock_mhz": 1455.073,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 65645.0,
+      "clock_mhz": 1455.62,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 262259.0,
+      "clock_mhz": 1455.073,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 65651.0,
+      "clock_mhz": 1455.62,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 262259.0,
+      "clock_mhz": 1455.073,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 131271.0,
+      "clock_mhz": 1454.688,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 524487.0,
+      "clock_mhz": 1454.968,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 131271.0,
+      "clock_mhz": 1455.037,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 524487.0,
+      "clock_mhz": 1454.968,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 131271.0,
+      "clock_mhz": 1455.037,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 4,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 524487.0,
+      "clock_mhz": 1454.927,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 164042.0,
+      "clock_mhz": 1455.099,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 655562.0,
+      "clock_mhz": 1454.976,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 164042.0,
+      "clock_mhz": 1455.028,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 655562.0,
+      "clock_mhz": 1454.976,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 164042.0,
+      "clock_mhz": 1455.099,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 64,
+      "accumulator_chains": 5,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 655562.0,
+      "clock_mhz": 1454.976,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 98445.0,
+      "clock_mhz": 1515.386,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 393357.0,
+      "clock_mhz": 1500.172,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 98445.0,
+      "clock_mhz": 1499.954,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 393357.0,
+      "clock_mhz": 1499.989,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 98445.0,
+      "clock_mhz": 1485.469,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 393357.0,
+      "clock_mhz": 1485.128,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 147444.0,
+      "clock_mhz": 1514.31,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 589812.0,
+      "clock_mhz": 1500.092,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 147444.0,
+      "clock_mhz": 1485.499,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 589812.0,
+      "clock_mhz": 1485.016,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 147444.0,
+      "clock_mhz": 1484.894,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 3,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 589812.0,
+      "clock_mhz": 1485.016,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 196600.0,
+      "clock_mhz": 1514.654,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 786424.0,
+      "clock_mhz": 1500.057,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 196600.0,
+      "clock_mhz": 1500.229,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 786424.0,
+      "clock_mhz": 1499.994,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 196600.0,
+      "clock_mhz": 1499.939,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 96,
+      "accumulator_chains": 4,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 786424.0,
+      "clock_mhz": 1485.01,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1530.154,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1515.186,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1515.267,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1515.186,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 65605.0,
+      "clock_mhz": 1515.244,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 1,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 262213.0,
+      "clock_mhz": 1514.906,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 128,
+      "math_cycles": 131147.0,
+      "clock_mhz": 1530.643,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 1,
+      "rounds": 512,
+      "math_cycles": 524363.0,
+      "clock_mhz": 1515.01,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 128,
+      "math_cycles": 131147.0,
+      "clock_mhz": 1515.099,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 2,
+      "rounds": 512,
+      "math_cycles": 524386.0,
+      "clock_mhz": 1515.01,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 128,
+      "math_cycles": 131147.0,
+      "clock_mhz": 1515.099,
+      "active_ctas": 128
+    },
+    {
+      "capture_index": 1,
+      "instruction_n": 128,
+      "accumulator_chains": 2,
+      "operand_seed": 3,
+      "rounds": 512,
+      "math_cycles": 524363.0,
+      "clock_mhz": 1515.01,
+      "active_ctas": 128
+    }
+  ],
+  "selected_flops_per_sm_cycle": 4096.0,
+  "activity_points": [
+    {
+      "accumulator_values_per_thread": 32,
+      "sm_freq_hz": 1459106500.0
+    },
+    {
+      "accumulator_values_per_thread": 48,
+      "sm_freq_hz": 1500000000.0
+    },
+    {
+      "accumulator_values_per_thread": 64,
+      "sm_freq_hz": 1485288000.0
+    },
+    {
+      "accumulator_values_per_thread": 96,
+      "sm_freq_hz": 1477549000.0
+    },
+    {
+      "accumulator_values_per_thread": 128,
+      "sm_freq_hz": 1485011250.0
+    },
+    {
+      "accumulator_values_per_thread": 144,
+      "sm_freq_hz": 1488927750.0
+    },
+    {
+      "accumulator_values_per_thread": 160,
+      "sm_freq_hz": 1455002000.0
+    },
+    {
+      "accumulator_values_per_thread": 192,
+      "sm_freq_hz": 1507536500.0
+    }
+  ],
+  "scope_limitations": [
+    "Exactly128 active math CTAs; four surplus CTAs return before the96Mi-cycle device prelude. The measured steady activity also covers128-to132 launched CTAs with the same exact128 active population; dispatch is separate. No active-count interpolation or extrapolation.",
+    "Original132-active profile retained separately, not mixed or selected by production error.",
+    "Same sustained96Mi-cycle device prelude, full random fraction bits, all3 seeds and both lengths; all-one and dyadic controls are diagnostic.",
+    "Independent256 math threads and192KiB shared to384-thread TMA consumer is the existing disclosed aggregate approximation.",
+    "No GEMM, TMA or output matrix; native memory/producer pauses and actual input/weight distributions remain unbound.",
+    "Clock changes only Tensor cycle service; independent memory capacities and latency ns stay unchanged."
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

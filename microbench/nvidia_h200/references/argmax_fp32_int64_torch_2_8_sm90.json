@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_h200",
+  "evidence_kind": "offline_compiled_argmax_program_partial_source_configuration",
+  "artifact_identity_reference": "../../nvidia_a800/references/pytorch_moe_reduce_vllm_0_11_0_torch_2_8_0.json#/installed_artifacts/4",
+  "reduce_source_reference": "../../nvidia_a800/references/pytorch_moe_reduce_vllm_0_11_0_torch_2_8_0.json#/installed_artifacts/2",
+  "additional_source_artifacts": [
+    {
+      "path_scope": "capture-python_site_packages",
+      "relative_path": "torch/include/ATen/native/SharedReduceOps.h",
+      "sha256": "f15afc530453699262a93a8131582c4fab84f2b90dbf51fdbc20e32e7b7d4036"
+    }
+  ],
+  "hardware_execution_performed": false,
+  "GPU_queried": false,
+  "duration_consumed": false,
+  "host_argmax_dispatch_bound": true,
+  "actual_provider_bound": false,
+  "launch_in_production_bound": true,
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/sm90_argmax_cubin_extraction.json",
+      "sha256": "37381fee7d4510b523e9d92f8da4073bcfdcd72554ce5fa791c64f6c02593218"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/torch28_argmax_libtorch_cuda.227.sm_90.cubin.gz",
+      "sha256": "fdb125e0ae4ec89cbb5843de224df4e54dca4d393368aa7a95fa916ae96c6f85"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/argmax_fp32_int64_sm90_summary.json",
+      "sha256": "1f48447aefa4506d19df96fe35681b3e23598cc413c620f162a424e04905f5b5"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/argmax_fp32_int64_sm90_symbol223.json.gz",
+      "sha256": "66cf96b5a331cea6cb474172a24d09b2bd183723d8ba40d4c1735d9aa5126f3f"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/argmax_fp32_int64_sm90_symbol225.json.gz",
+      "sha256": "0f5d875a01d0951ddf073905a0117cd37a8b425d65b4ce27525fb87f5a41edc4"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/argmax_fp32_int64_sm90_symbol226.json.gz",
+      "sha256": "a081ba9449a6ac98b5e7d3f329b68bd7b8b9c20e32578804456e20619914d0ef"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/argmax_host_dispatch.json",
+      "sha256": "8c876dd015396ec51e61bc270d86367f2ed46598685498534ef94344ebdb5a08"
+    }
+  ],
+  "compiled_variants": [
+    {
+      "symbol": "_ZN2at6native13reduce_kernelILi512ELi1ENS0_8ReduceOpIfNS0_9ArgMaxOpsIfEEjlLi4ELi4EEEEEvT1_",
+      "symbol_index": 223,
+      "register_metadata": {
+        "0x2f": 32,
+        "0x11": 0,
+        "0x12": 0
+      },
+      "static_shared_bytes": 1040,
+      "sass_lines": 5364
+    },
+    {
+      "symbol": "_ZN2at6native13reduce_kernelILi256ELi2ENS0_8ReduceOpIfNS0_9ArgMaxOpsIfEEjlLi4ELi4EEEEEvT1_",
+      "symbol_index": 225,
+      "register_metadata": {
+        "0x2f": 54,
+        "0x11": 0,
+        "0x12": 0
+      },
+      "static_shared_bytes": 1040,
+      "sass_lines": 7228
+    },
+    {
+      "symbol": "_ZN2at6native13reduce_kernelILi128ELi4ENS0_8ReduceOpIfNS0_9ArgMaxOpsIfEEjlLi4ELi4EEEEEvT1_",
+      "symbol_index": 226,
+      "register_metadata": {
+        "0x2f": 83,
+        "0x11": 0,
+        "0x12": 0
+      },
+      "static_shared_bytes": 1040,
+      "sass_lines": 10756
+    }
+  ],
+  "source_conditional_case": {
+    "domain": "contiguous FP32[1,128256] argmax last dimension; a single unsplit TensorIterator using the retained generic CUDA Float/ArgMaxOps entry and CUDA H200 properties",
+    "output_vec_size": 1,
+    "compiled_variant": "reduce_kernel<512,1,ReduceOp<float,ArgMaxOps<float>,uint32_t,int64_t,4,4>>",
+    "input_vectorization": 4,
+    "block": [
+      512,
+      1,
+      1
+    ],
+    "grid": [
+      1,
+      1,
+      1
+    ],
+    "source_dynamic_shared_bytes": 8192,
+    "compiled_static_shared_bytes": 1040,
+    "raw_sum_shared_bytes": 9232,
+    "raw_sum_scope": "separate source/compiler demands, not observed runtime alignment/admission",
+    "global_reduce": false,
+    "derivation": "dim0=128256/4=32064,dim1=1;block_width512,height1;step_input512;ceil(128256/512)=251<max_values_per_thread256,therefore no grid-y split for this conditional one-row case",
+    "not_generalized_to": "other row/vocab/layout cases; these may require grid-y scratch and semaphore initialization"
+  },
+  "value_dependent_compiled_example": {
+    "symbol_index": 223,
+    "sass_excerpt": [
+      "        /*1930*/                   FSETP.GTU.AND P1, PT, |R14|, +INF , PT ;",
+      "        /*1940*/                   FSEL R13, R13, R4, P0 ;",
+      "        /*1950*/                   SEL R11, R11, R26, P0 ;",
+      "        /*1960*/                   SEL R9, R9, RZ, P0 ;",
+      "        /*1970*/               @P1 BRA `(.L_x_13) ;",
+      "        /*1980*/                   FSETP.NEU.AND P2, PT, R14, R5, PT ;",
+      "        /*1990*/                   ISETP.GE.U32.AND P0, PT, R18, R25, PT ;",
+      "        /*19a0*/                   FSETP.GT.AND P1, PT, R14, R5, PT ;",
+      "        /*19b0*/                   ISETP.GE.AND.EX P0, PT, R16, RZ, PT, P0 ;",
+      "        /*19c0*/                   SEL R4, RZ, 0xffffffff, !P1 ;",
+      "        /*19d0*/              @!P2 SEL R4, RZ, 0xffffffff, P0 ;",
+      "        /*19e0*/                   LOP3.LUT R4, R4, 0x1, RZ, 0xc0, !PT ;",
+      "        /*19f0*/                   ISETP.EQ.U32.AND P0, PT, R4, 0x1, PT ;",
+      "        /*1a00*/                   BRA `(.L_x_14) ;",
+      ".L_x_13:",
+      "        /*1a10*/                   FSETP.GTU.AND P0, PT, |R5|, +INF , PT ;",
+      "        /*1a20*/                   ISETP.LT.U32.AND P1, PT, R18, R25, PT ;",
+      "        /*1a30*/                   ISETP.LT.OR.EX P0, PT, R16, RZ, !P0, P1 ;",
+      ".L_x_14:",
+      "        /*1a40*/                   BSYNC B2 ;"
+    ],
+    "branch": "0x1930 FSETP.GTU |R14|,+INF defines NaN predicate;0x1970 @P1 BRA to0x1a10 selects NaN path versus0x1980..0x1a00 numeric/equality/full-width-index path",
+    "meaning": "NaN-dependent paths remain in actual compiled program. Shape or finite-bias declarations cannot choose an unobserved path. Predicate/select and two-word signed index ordering are not FP32 arithmetic or a single INT32 operation."
+  },
+  "remaining_binding_requirements": [
+    "Source global partial/semaphore extents and initialization are now exposed; actual graph allocation/lifetime, allocator/runtime reservation and any out-of-domain iterator program remain separate memory requirements.",
+    "Independent documented or measured service mapping for FP32 predicates/FSEL, 64bit pair ordering, selects and shuffle; existing compare+select probe has no GPU results and is not a pure predicate rate.",
+    "Value-dependent paths require explicit applicable-domain facts or supported parameter/bounds; no arbitrary branch selection or point-price claim."
+  ],
+  "acceptance": "Static compiled facts only; argmax remains unpriced/unsupported in original Midlayer Serving. Not normal capacity, device timing, actual provider or full sampler acceptance.",
+  "host_dispatch_scope": "Static pinned-library argmax_kernel_cuda Float dispatch, not observed runtime/provider selection",
+  "host_dispatch": {
+    "argmax_kernel_cuda": "0x23a5d60",
+    "input_float_dtype_tag": 6,
+    "jump_table": "0x3c1d680",
+    "float_destination": "0x23a5e10",
+    "float_gpu_reduce_kernel": "0x23a4cb0",
+    "set_reduce_config_call": "0x23a4f0e",
+    "output_vec_size1_entry_load": "0x23a5a5a",
+    "output_vec_size1_cuda_launch_call": "0x23a5a81"
+  },
+  "launch_binding_scope": "Source selector for pinned Torch2.8 CUDA Float/ArgMaxOps, not observed provider/runtime. KernelSpec remains unsupported with typed_service_unavailable.",
+  "production_source_domain": {
+    "sampling_source": "vllm_0_11_plain_greedy_bf16/stageargmax",
+    "input": "fresh contiguous FP32[rows,vocab] after explicit logits cast",
+    "addressing": "rows>0,vocab>128,max(4*rows*vocab,8*rows)<2^31; no split iterator",
+    "device_properties": "explicit source_num_compute_units and source_max_threads_per_unit copied from consumer HWSpec; selector validates exact agreement",
+    "output_vec_size": 1,
+    "input_vec_size": 4,
+    "max_threads": 512,
+    "compiled_registers_per_thread": 32,
+    "static_shared_bytes": 1040,
+    "geometry_source": "Reduce.cuh setReduceConfig/block/grid/split_input/split_output with CUDA branch; no ROCm-specific adjustment",
+    "workspace_source": "ReduceConfig.global_memory_size16*rows*ctas, semaphore_size4*grid_x whenctas>1, cudaMemsetAsync zero before reduction; localDataPtr scope. Not complete allocator/runtime or materialized graph lifetime."
+  },
+  "production_source_examples": [
+    {
+      "rows": 2,
+      "vocab": 128256,
+      "block": [
+        256,
+        2,
+        1
+      ],
+      "grid": [
+        2,
+        1,
+        1
+      ],
+      "global_partial_bytes": 0,
+      "global_semaphore_bytes": 0
+    },
+    {
+      "rows": 1,
+      "vocab": 130560,
+      "block": [
+        512,
+        1,
+        1
+      ],
+      "grid": [
+        1,
+        1,
+        1
+      ],
+      "global_partial_bytes": 0,
+      "global_semaphore_bytes": 0
+    },
+    {
+      "rows": 1,
+      "vocab": 130561,
+      "block": [
+        512,
+        1,
+        1
+      ],
+      "grid": [
+        1,
+        16,
+        1
+      ],
+      "global_partial_bytes": 256,
+      "global_semaphore_bytes": 4
+    },
+    {
+      "rows": 64,
+      "vocab": 151936,
+      "block": [
+        32,
+        16,
+        1
+      ],
+      "grid": [
+        64,
+        9,
+        1
+      ],
+      "global_partial_bytes": 9216,
+      "global_semaphore_bytes": 256
+    }
+  ]
+}

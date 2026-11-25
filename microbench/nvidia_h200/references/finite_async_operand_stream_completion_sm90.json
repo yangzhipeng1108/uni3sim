@@ -1,0 +1,109 @@
+{
+  "allowed_use": "A conservative completion floor for a finite asynchronous operand stream within the stated topology and measured round domain.",
+  "derived_model": {
+    "cache_tiers": {
+      "l2_resident": {
+        "conservative_ns_per_round": 301.3332916666666,
+        "measured_ns_per_round_from_128_to_512": 304.08330989583334,
+        "intercept_ns_128_512": 9749.338333333333
+      },
+      "dram_unique": {
+        "conservative_ns_per_round": 379.8333072916666,
+        "measured_ns_per_round_from_128_to_512": 389.4166614583333,
+        "intercept_ns_128_512": 7114.669333333339
+      }
+    },
+    "fixed_completion_ns": 7114.669333333339,
+    "formula": "completion_ns = fixed_completion_ns + rounds * conservative_ns_per_round",
+    "selection_rule": "The common fixed completion is the intercept through the two longest measured streams (128 and 512 rounds); where the two cache tiers' intercepts differ on H200 the smaller one is kept. For each cache tier, the conservative service is min_over_measured_rounds((observed_completion_ns - fixed_completion_ns) / rounds), so the result does not exceed any measured copy-only completion in the stated domain. The observed completion of each cell is the smaller median of two independent clock-accepted capture processes.",
+    "verification": {
+      "l2_resident": {
+        "64": {
+          "floor_ns": 26400.0,
+          "observed_ns": 26400.0
+        },
+        "128": {
+          "floor_ns": 45685.33066666666,
+          "observed_ns": 48672.002
+        },
+        "256": {
+          "floor_ns": 84255.99199999998,
+          "observed_ns": 90655.997
+        },
+        "512": {
+          "floor_ns": 161397.3146666666,
+          "observed_ns": 165439.99300000002
+        }
+      },
+      "dram_unique": {
+        "64": {
+          "floor_ns": 31424.001,
+          "observed_ns": 31424.001
+        },
+        "128": {
+          "floor_ns": 55733.33266666666,
+          "observed_ns": 56960.002
+        },
+        "256": {
+          "floor_ns": 104351.99599999998,
+          "observed_ns": 107936.00200000001
+        },
+        "512": {
+          "floor_ns": 201589.32266666665,
+          "observed_ns": 206496.0
+        }
+      }
+    }
+  },
+  "forbidden_use": "A production GEMM duration, a per-shape correction, extrapolation outside the measured topology or round domain, or a replacement for compute and output work.",
+  "hardware_id": "nvidia_h200",
+  "mechanism": "finite_async_operand_stream_completion",
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "candidate_path": [
+      "profiler_output/microbench/nvidia_h200/wp3_finite_r1_t1/candidate.json",
+      "profiler_output/microbench/nvidia_h200/wp3_finite_r2_t1/candidate.json"
+    ],
+    "candidate_sha256": [
+      "b9c6f12f5649ed62852cc0c94067c4095f900edf3744f3decb38a8bd0de24fbd",
+      "7521bde264684df6570c1b1ae4c9f6d8c872fd4fbddb6f29f88cb017a1923786"
+    ],
+    "raw_sha256": [
+      "c458512c40395121f786396ba561dc7982eeea5efd1eb1e0cb7e18b4680d7443",
+      "208fdc832723875bcf371ccd5c839d0ad764467362ddfb8b399b06896555110d"
+    ],
+    "source_commit": [
+      "aeb34ee300b317a6e3820ec9a9745a2c3ac41928"
+    ],
+    "runner_sha256": "fc833e7d6f93d2db234000307e2dc2ecb84a9b487f78f806c10af2569fbfaa31",
+    "source_sha256": "e28f6284b8e5aa50f413213f0548990ebd7388b9e9a78f4dfa6d945ce34faf60",
+    "source": "microbench/nvidia_h200/memory/dram/staged_ldgsts_finite_stream.cu",
+    "runner": "microbench/nvidia_h200/memory/dram/staged_ldgsts_finite_stream_runner.py",
+    "device_index": [
+      2
+    ],
+    "clock_gate": {
+      "rule": "every probe process runs under nvidia-smi -lms 50; a process is accepted only if it shows a busy sample and every busy sample is >= 1980 MHz, otherwise it is rejected and re-run",
+      "accepted_captures": 8,
+      "rejected_captures": 1,
+      "accepted_busy_sm_clock_min_mhz": 1980,
+      "accepted_busy_sm_clock_max_mhz": 1980,
+      "accepted_busy_samples": 36,
+      "rejected_busy_sm_clock_min_mhz": [
+        null
+      ]
+    },
+    "remote_raw_root": "/capture-public/h200_microbench/wp3_ldgsts/repo/profiler_output/microbench/nvidia_h200"
+  },
+  "schema": "finite_async_operand_stream_completion_reference_v1",
+  "scope": {
+    "complete_operand_pair_slots": 3,
+    "dtype": "fp16",
+    "grid_ctas": 64,
+    "maximum_rounds": 512,
+    "minimum_rounds": 64,
+    "operand_pair_bytes": 16384,
+    "resident_ctas_per_compute_unit": 1,
+    "threads_per_cta": 128
+  }
+}

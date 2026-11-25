@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "campaign": "matmul_v3_large_m_launch_and_source_diagnostic",
+  "source_commit": "e87ea7fd53da05da3163bc985ef8d5e5d2906d6a",
+  "scope": "BF16 MatMulV3 large-effective-M legacy key-65632 single-core Split-K GM-to-L1 and key-65536 base launch, tiling-prefix, and L2-residency diagnostics",
+  "source_artifacts": [
+    {"path": "/usr/local/Ascend/cann-8.5.1/opp/version.info", "sha256": "49437edb9a235b28a87d07d2a2ad189022b6d246dc7c4cbcd013d2b7ecaf838b"},
+    {"path": "/usr/local/Ascend/cann-8.5.1/aarch64-linux/ascendc/include/highlevel_api/kernel_tiling/kernel_tiling.h", "sha256": "0f50fe7d81d4e01f80b62c19d816ad28151ac1502f708b70454efc8599ddaf44"},
+    {"path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/3rd/mat_mul_v3/op_host/op_tiling/matmul_v3_tiling.h", "sha256": "5d38eb00030e22bd39ae8a1496a34cc1cc45b425cb8d4d00a54014e794a3fc08"},
+    {"path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/3rd/mat_mul_v3/op_host/op_tiling/matmul_v3_base_tiling.cpp", "sha256": "73379a56e63e28054c689a33aec04522b6ade769817bb6550f4e707ff7fb7b67"},
+    {"path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/3rd/mat_mul_v3/op_host/op_tiling/matmul_v3_common.h", "sha256": "e928544fcb72a31a3a1ebd36481335cc88a739e0bc6769d43ee98184e8f79e97"},
+    {"path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/3rd/mat_mul_v3/op_kernel/mat_mul_v3_tiling_key.h", "sha256": "8b2a87f97f1c8309e4c76d69d2057ea925b10307c5873dcee73a0e0cced3abc1"},
+    {"path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/3rd/mat_mul_v3/op_kernel/mat_mul_sc_splitk_block.h", "sha256": "00812847ddeffd986d97328bc8617e3d8d94d2b04f694d3fa20324fda7bd8bf0"},
+    {"path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/3rd/mat_mul_v3/op_kernel/mat_mul_sc_splitk_kernel_gm_to_l1.h", "sha256": "fd77d477b43422eb3f5da0c83f542c532e9d66ddf1c6480af49b65174878f223"},
+    {"path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/3rd/mat_mul_v3/op_kernel/mat_mul_v3.cpp", "sha256": "78b3bd1eca00607a9372b31b032b6eafc008b967d417f48f5de0ebafe4cf23c4"},
+    {"path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/kernel/ascend910b/ops_nn/mat_mul_v3/MatMulV3_ND_ND_ND_ND_BF16_BF16_BF16_BF16_high_performance.json", "sha256": "0d252989ae68724145b139d747dc49d9416d8a929cf422d0790531a7904008a7"},
+    {"path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/kernel/ascend910b/ops_nn/mat_mul_v3/MatMulV3_ND_ND_ND_ND_BF16_BF16_BF16_BF16_high_performance.o", "sha256": "53f6b25ef79582e2e49f80ec9d68df1ef58f05856d4b9ba04d0fd2ce39d883b9"}
+  ],
+  "kernel_metadata": {
+    "65536": {"kernel_type": "MIX_AIC", "task_ratio": "1:0", "cross_core_sync": 0, "topology": {"aic_workers": 24, "aiv_workers": 0}},
+    "65632": {"kernel_type": "MIX_AIC", "task_ratio": "1:2", "cross_core_sync": 1, "topology": {"aic_workers": 24, "aiv_workers": 48}}
+  },
+  "single_core_split_k_static_source": {
+    "tiling_key": 65632,
+    "kernel_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/3rd/mat_mul_v3/op_kernel/mat_mul_sc_splitk_kernel_gm_to_l1.h",
+    "dispatch": "tiling-key split-core field 6 selects MAT_MUL_V3_SINGLE_CORE_SPLIT_K_GM_TO_L1",
+    "aic_role": "each AIC owns complete MxN macro tiles, loops over singleCoreK chunks, accumulates FP32 output in the full-size workspace, and signals its paired AIVs after each inner-M stripe",
+    "aiv_role": "two AIVs per AIC split each completed inner-M stripe, cast FP32 workspace values to BF16, and store the final output",
+    "mechanism_confirmed": true,
+    "cross_aic_reduction": false,
+    "selector": "legacy matmul_v3_base_tiling.cpp tries L2 tiling, then single-core Split-K at K >= 27392, before deterministic multi-core Split-K",
+    "workspace_rule": "M*N*4 + 20,972,032 bytes",
+    "pipeline": "for every assigned macro tile and inner-M stripe, AIC replays K in singleCoreK chunks through GM-to-L1 and Cube, using non-atomic then atomic FP32 FixPipe writes; paired AIVs cast/store the completed stripe",
+    "highest_contribution_cluster_hypothesis_closure": {
+      "case_id": "GEMM_B8_M4096_K28672_N8192",
+      "candidate_mechanisms": [
+        {
+          "mechanism": "reverse_aiv_to_aic_completion_per_stripe",
+          "source_evidence": "the aligned key-65632 stripe path contains AIC NotifyEvent<PIPE_FIX>(5) after the complete K accumulation and paired-AIV WaitFlagDevLocal(5) before cast/store; there is no AIV-to-AIC event edge before the AIC advances to the next stripe",
+          "verdict": "rejected",
+          "forward_consequence": "do not add a per-stripe AIV completion wait to the AIC source program"
+        },
+        {
+          "mechanism": "workspace_tile_overwrite_requires_release",
+          "source_evidence": "the workspace offset is ((mIndex * singleCoreM + innerMIndex * innerBlockM) * N + nIndex * singleCoreN), with the second paired AIV adding a disjoint M subrange; consecutive owned stripes and macro tiles therefore write disjoint workspace regions",
+          "verdict": "rejected",
+          "forward_consequence": "do not serialize consecutive stripes on an AIV release edge for workspace reuse"
+        }
+      ],
+      "boundary": "CANN 8.5.1 static source identifies no additional Forward-eligible completion dependency for this cluster after both synchronization candidates are rejected; retain the source-defined one-way AIC-to-AIV edge and report the residual as mechanism-level WONTFIX rather than fitting production duration",
+      "production_or_evaluation_duration_consumed": false
+    }
+  },
+  "dry_launch_captures": [
+    {
+      "raw_result_path": "profiler_output/microbench/ascend_910b/gemm_key65632_m4096_n8192_k28672_d10c537d_20260907_d4/result.json",
+      "raw_result_sha256": "ac2f24b8e65534df2cfc6c939596d11329d80369ec3b3666a7d4904ab4cf4565",
+      "shape": {"m": 4096, "n": 8192, "k": 28672},
+      "tiling_key": 65632,
+      "kernel_stub": "MatMulV3_ND_ND_ND_ND_BF16_BF16_BF16_BF16_high_performance_65632",
+      "block_dim": 24,
+      "workspace_size_bytes": 155189760,
+      "tiling_payload_size_bytes": 288,
+      "tiling_payload_sha256": "f6966d5e16267f9dc9e44e71792f6c576bd18b83d8896d147ec4ae4c1f5192b3",
+      "source_safe_tcube_prefix": {"usedCoreNum": 24, "M": 4096, "N": 8192, "Ka": 28672, "Kb": 28672, "singleCoreM": 512, "singleCoreN": 2816, "singleCoreK": 384, "baseM": 128, "baseN": 128, "baseK": 128, "depthA1": 9, "depthB1": 6, "stepM": 3, "stepN": 1},
+      "payload_words_49_through_59": [0, 8, 8, 4, 4, 0, 0, 0, 1, 0, 0],
+      "device_kernel_submitted": false,
+      "production_or_evaluation_duration_consumed": false
+    },
+    {
+      "raw_result_path": "profiler_output/microbench/ascend_910b/gemm_key65632_m16384_n8192_k28672_e87ea7fd_20260831/result.json",
+      "raw_result_sha256": "2684968a44976954fe3f3a669b24a28899045c4583c33ce2f71ab237759431d6",
+      "shape": {"m": 16384, "n": 8192, "k": 28672},
+      "tiling_key": 65632,
+      "kernel_stub": "MatMulV3_ND_ND_ND_ND_BF16_BF16_BF16_BF16_high_performance_65632",
+      "block_dim": 24,
+      "workspace_size_bytes": 557842944,
+      "tiling_payload_size_bytes": 288,
+      "tiling_payload_sha256": "d1d782b8bd3f6ed4e338ac121a986bb6febe39046818a4e5225582da57a2a8f0",
+      "source_safe_tcube_prefix": {"usedCoreNum": 24, "M": 16384, "N": 8192, "Ka": 28672, "Kb": 28672, "singleCoreM": 2048, "singleCoreN": 2816, "singleCoreK": 384, "baseM": 128, "baseN": 128, "baseK": 128, "depthA1": 9, "depthB1": 6, "stepM": 3, "stepN": 1},
+      "payload_words_49_through_59": [0, 32, 8, 4, 4, 0, 0, 0, 1, 0, 0],
+      "device_kernel_submitted": false,
+      "production_or_evaluation_duration_consumed": false
+    },
+    {
+      "raw_result_path": "profiler_output/microbench/ascend_910b/gemm_key65632_m32768_n8192_k28672_e87ea7fd_20260831/result.json",
+      "raw_result_sha256": "0979d6be7100fe3d44449cb8f1dfc211a1ace067d2e9d68fd03b6fe17cabf04b",
+      "shape": {"m": 32768, "n": 8192, "k": 28672},
+      "tiling_key": 65632,
+      "kernel_stub": "MatMulV3_ND_ND_ND_ND_BF16_BF16_BF16_BF16_high_performance_65632",
+      "block_dim": 24,
+      "workspace_size_bytes": 1094713856,
+      "tiling_payload_size_bytes": 288,
+      "tiling_payload_sha256": "d6a67a86d6bfa1503fe7574aebd2d2afcb0324c004bf8c9212d3e47c08e3af25",
+      "source_safe_tcube_prefix": {"usedCoreNum": 24, "M": 32768, "N": 8192, "Ka": 28672, "Kb": 28672, "singleCoreM": 4096, "singleCoreN": 2816, "singleCoreK": 384, "baseM": 128, "baseN": 128, "baseK": 128, "depthA1": 9, "depthB1": 6, "stepM": 3, "stepN": 1},
+      "payload_words_49_through_59": [0, 64, 8, 4, 4, 0, 0, 0, 1, 0, 0],
+      "device_kernel_submitted": false,
+      "production_or_evaluation_duration_consumed": false
+    },
+    {
+      "raw_result_path": "profiler_output/microbench/ascend_910b/gemm_key65536_m32768_n28672_k8192_e87ea7fd_20260831/result.json",
+      "raw_result_sha256": "5ca04b58c58efb9eb432d9848e882f6b2d2eeaf3042d1fd40c8cab39ec2a00c2",
+      "shape": {"m": 32768, "n": 28672, "k": 8192},
+      "tiling_key": 65536,
+      "kernel_stub": "MatMulV3_ND_ND_ND_ND_BF16_BF16_BF16_BF16_high_performance_65536",
+      "block_dim": 24,
+      "workspace_size_bytes": 20972032,
+      "tiling_payload_size_bytes": 288,
+      "tiling_payload_sha256": "e844d3f377944643f890ab576e55ac5387399275c56702527156878640cf93ad",
+      "source_safe_tcube_prefix": {"usedCoreNum": 24, "M": 32768, "N": 28672, "Ka": 8192, "Kb": 8192, "singleCoreM": 128, "singleCoreN": 256, "singleCoreK": 8192, "baseM": 128, "baseN": 256, "baseK": 64, "depthA1": 16, "depthB1": 8, "stepM": 1, "stepN": 1},
+      "payload_words_49_through_59": [0, 32, 8, 8, 14, 0, 0, 0, 1, 0, 0],
+      "device_kernel_submitted": false,
+      "production_or_evaluation_duration_consumed": false
+    }
+  ],
+  "legacy_tiling_payload_abi": {
+    "pinned_tcube_layout": {
+      "encoding": "little_endian_int32",
+      "field_count": 50,
+      "size_bytes": 200,
+      "last_field": "mxTypePara",
+      "last_field_word_index": 49,
+      "legacy_extension_start_word_index": 50,
+      "extension_fields": ["mTileCntL2", "nTileCntL2", "mTileBlock", "nTileBlock", "calOrder", "transA", "transB", "nd2nzA", "nd2nzB", "isNzA", "isNzB", "isHf32", "l2CacheFlag", "baseAN", "baseAD", "baseBN", "baseBD"]
+    },
+    "l2_tile_decode": {
+      "65632_m4096": {"mTileCntL2": 8, "nTileCntL2": 8, "mTileBlock": 4, "nTileBlock": 4, "calOrder": 0},
+      "65632_m16384": {"mTileCntL2": 32, "nTileCntL2": 8, "mTileBlock": 4, "nTileBlock": 4, "calOrder": 0},
+      "65632_m32768": {"mTileCntL2": 64, "nTileCntL2": 8, "mTileBlock": 4, "nTileBlock": 4, "calOrder": 0},
+      "65536_m32768": {"mTileCntL2": 32, "nTileCntL2": 8, "mTileBlock": 8, "nTileBlock": 14, "calOrder": 0}
+    },
+    "layout_resolution": "The captured operator uses legacy Mc2MatmulV3TilingData: its 50-word TCubeTiling is followed by Mc2L2cacheTilePara and Mc2MatMulRunInfo, not the arch35 MatMulV3 tail fields.",
+    "stream_k_tail_fields_present": false,
+    "forward_use": "key-65632 uses the source-selected TCube launch geometry, decoded L2 iteration order, full-workspace rule, and legacy GM-to-L1 kernel control flow; no arch35 Stream-K tail field is consumed"
+  },
+  "base_l2_residency_diagnostic": {
+    "tiling_key": 65536,
+    "tiling_key_identity": "legacy base split-core mode with MIXND2NZ disabled; not arch35 ASW",
+    "source_order": {"m_tiles": 256, "n_tiles": 112, "k_tiles": 128, "tile_m": 128, "tile_n": 256, "tile_k": 64, "worker_count": 24, "l2_capacity_bytes": 201326592},
+    "generic_lru_replay": {
+      "implementation_path": "src/kernel/csrc/lru_sim.c",
+      "implementation_sha256": "5671859777d80df90d04797d51c7912dce2f264b04d53aff874e4613ec69d970",
+      "operand_and_output_l2_bytes": 182267674624,
+      "operand_and_output_dram_miss_bytes": 22783590400,
+      "operand_and_output_hit_rate_percent": 87.499928088,
+      "output_bypass_approximation_operand_l2_bytes": 180388626432,
+      "output_bypass_approximation_operand_dram_miss_bytes": 19850330112,
+      "output_bypass_approximation_hit_rate_percent": 88.995797294,
+      "status": "diagnostic_only_generic_lru"
+    },
+    "non_duration_profiler_counters": {
+      "dataset_path": "kernel_dataset/ascend_910b/gemm.json.zst",
+      "dataset_sha256": "afbf481d242355524f89c8085f744ad863dcc42c826309e68faa46a9f2bfc774",
+      "case_id": "GEMM_B8_M4096_K8192_N28672",
+      "effective_shape": {"m": 32768, "n": 28672, "k": 8192},
+      "gm_to_l1_read_bytes": 180388626432,
+      "dram_read_bytes": 13534152280.645416,
+      "l2_hit_rate_percent": 92.25697391666665,
+      "selection": "traffic and cache-hit counters only; no operation, task, kernel, or pipe duration is copied into this reference"
+    },
+    "closure": "The source-order generic LRU predicts 22.784 GB of misses with output write allocation or 19.850 GB when output writes are approximated as bypassed, while the retained non-duration DRAM-read counter is 13.534 GB. Replacement, write-allocation, and overlap semantics are therefore not identified well enough to publish an Ascend L2-residency correction."
+  },
+  "base_region_completion_diagnostic": {
+    "tiling_key": 65536,
+    "probe_semantics": "the mechanism probe replays the decoded compact L2-region worker schedule and separately drains MTE2, MTE2-to-MTE1, and MTE2-to-MTE1-to-Cube queues; it omits FixPipe/output storage and the production MatmulImpl scheduler",
+    "source_programs": [
+      {
+        "case_id": "GEMM_B8_M4096_K8192_N28672",
+        "shape": {"m": 32768, "n": 28672, "k": 8192},
+        "region_schedule": {"m_tiles": 256, "n_tiles": 112, "m_regions": 32, "n_regions": 8, "m_tiles_per_region": 8, "n_tiles_per_region": 14, "k_slabs": 16, "maximum_output_tiles_per_worker": 1195},
+        "mte2_only_run_medians_ns": [47075480.0, 47165170.0, 47088450.0],
+        "mte2_mte1_completion_run_medians_ns": [61306010.0, 61354000.0, 61245520.0],
+        "mte2_mte1_cube_completion_run_medians_ns": [63175300.0, 63004610.0, 63060910.0],
+        "mte2_only_median_of_run_medians_ns": 47088450.0,
+        "mte2_mte1_completion_median_of_run_medians_ns": 61306010.0,
+        "mte2_mte1_cube_completion_median_of_run_medians_ns": 63060910.0,
+        "capture": {"measurement_baseline_commit": "473f693a4d5adeb30eae344ab0459e511ced99d0", "physical_device_id": 4, "source_snapshot_sha256": "cfa09302976c5689186c61c8d7db777185420e055741d54cf0ab11d7840a2a37", "binary_sha256": "bccaa334b97b4284d69338321e1f010486b37c69ce0f390eda5796594803e8ae", "raw_path": "profiler_output/microbench/ascend_910b/gemm_region_pipeline_k8192_473f693a_20260915_d4/raw.csv", "raw_sha256": "9a32cf62039bdda463e604f64c73229181aa87e0ce40ecc2c5170999a8fcdf37", "stderr_sha256": "ece64473dd2403d845ee0c0b3857276e059374595a680dedeaef10f6fc0ee868"}
+      },
+      {
+        "case_id": "GEMM_B8_M4096_K5120_N13824",
+        "shape": {"m": 32768, "n": 13824, "k": 5120},
+        "region_schedule": {"m_tiles": 256, "n_tiles": 54, "m_regions": 32, "n_regions": 2, "m_tiles_per_region": 8, "n_tiles_per_region": 27, "k_slabs": 10, "maximum_output_tiles_per_worker": 576},
+        "mte2_only_run_medians_ns": [12865020.0, 12879820.0, 12932380.0],
+        "mte2_mte1_completion_run_medians_ns": [17815350.0, 17795020.0, 17791650.0],
+        "mte2_mte1_cube_completion_run_medians_ns": [18320320.0, 18287530.0, 18296070.0],
+        "mte2_only_median_of_run_medians_ns": 12879820.0,
+        "mte2_mte1_completion_median_of_run_medians_ns": 17795020.0,
+        "mte2_mte1_cube_completion_median_of_run_medians_ns": 18296070.0,
+        "capture": {"measurement_baseline_commit": "473f693a4d5adeb30eae344ab0459e511ced99d0", "physical_device_id": 4, "source_snapshot_sha256": "b3ad273d4f49fd3b042b78a022baba8605268bf7ebc66ed24529f629a3882f60", "binary_sha256": "a302ee06c3589cade4f387b7b66c6ab4e6f01a00ed4c505fc79a2dba124129b6", "raw_path": "profiler_output/microbench/ascend_910b/gemm_region_pipeline_k5120_473f693a_20260915_d4_r1/raw.csv", "raw_sha256": "897226320f0f0897e6d74fcb877e68efc073a236770cfa95505f01712b319785", "stderr_sha256": "768c50ff6a7e2ca11c816a59d88c906c61e5bf322710d7f414ce12589cfbd3e9"}
+      },
+      {
+        "case_id": "GEMM_B8_M4096_K13824_N5120",
+        "shape": {"m": 32768, "n": 5120, "k": 13824},
+        "region_schedule": {"m_tiles": 256, "n_tiles": 20, "m_regions": 32, "n_regions": 2, "m_tiles_per_region": 8, "n_tiles_per_region": 10, "k_slabs": 27, "maximum_output_tiles_per_worker": 214},
+        "mte2_only_run_medians_ns": [13417460.0, 13414590.0, 13460820.0],
+        "mte2_mte1_completion_run_medians_ns": [18688130.0, 18673700.0, 18686430.0],
+        "mte2_mte1_cube_completion_run_medians_ns": [19098390.0, 19137870.0, 19113610.0],
+        "mte2_only_median_of_run_medians_ns": 13417460.0,
+        "mte2_mte1_completion_median_of_run_medians_ns": 18686430.0,
+        "mte2_mte1_cube_completion_median_of_run_medians_ns": 19113610.0,
+        "capture": {"measurement_baseline_commit": "473f693a4d5adeb30eae344ab0459e511ced99d0", "physical_device_id": 4, "source_snapshot_sha256": "238fa4ddda007e0a05aaf3c54ba72c00f8ba97815158feb6148781e9408049f7", "binary_sha256": "a302ee06c3589cade4f387b7b66c6ab4e6f01a00ed4c505fc79a2dba124129b6", "raw_path": "profiler_output/microbench/ascend_910b/gemm_region_pipeline_k13824_473f693a_20260915_d4_r1/raw.csv", "raw_sha256": "cf02ce9ef06c3e7f6ed58263ee1c0ead96488f12552702f93ad0be36ee90e9cc", "stderr_sha256": "61da88c970dd520816ed3c2f0d3bb9de5cc36e7d4e24c8cb2fc48bf2c7ac7af0"}
+      }
+    ],
+    "candidate_mechanisms": [
+      {"mechanism": "exact_large_region_mte2_completion_floor", "verdict": "no_new_forward_bound", "reason": "the exact MTE2-only spans are already below the corresponding unified analytical pipeline predictions for the K8192, K5120, and K13824 region programs, so installing them as maxima cannot close their residuals"},
+      {"mechanism": "exact_large_region_mte1_or_cube_completion_floor", "verdict": "rejected", "reason": "the probe deliberately drains each synthetic producer/consumer queue, whereas production MatmulImpl advances its two-slot MTE2, MTE1, and Cube stages concurrently; a drained completion would serialize work already represented by the max-plus pipeline"}
+    ],
+    "closure": "no new Forward service is published for these three exact large-region programs; retain their residuals rather than adding a duration-derived or drained-queue correction",
+    "production_or_evaluation_duration_consumed": false
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "forward_eligible": true,
+  "forward_eligible_scope": "key-65632 legacy single-core Split-K GM-to-L1 launch geometry, K-chunk source order, full FP32 workspace, and paired-AIV cast/store only",
+  "mechanism_status": "single_core_split_k_supported_base_l2_partial_unsupported",
+  "unsupported_boundary": "The key-65536 source-order generic LRU does not reproduce retained non-duration cache counters; no key-65536 cache-hit correction or duration-derived correction may enter Forward from this reference."
+}

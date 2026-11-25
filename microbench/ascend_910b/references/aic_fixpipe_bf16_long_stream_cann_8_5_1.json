@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_fixpipe_bf16_long_stream_completion",
+  "duration_unit": "ns_per_finite_tile_stream_per_aic",
+  "publication_scope": {
+    "dtype": "bf16",
+    "layout": "row_major",
+    "rows": 128,
+    "columns": 256,
+    "active_aic_groups": 24,
+    "minimum_tiles_per_worker": 96,
+    "maximum_tiles_per_worker": 1195,
+    "short_tiles_per_worker": 96,
+    "long_tiles_per_worker": 1195,
+    "estimator": "for each run and AIC, linearly interpolate the drained 96-to-1195-tile endpoints; evaluate at the source tile count, take the slowest AIC, then take the median across three runs",
+    "run_affine_envelopes": [
+      [[0, 3002, 59029], [1, 2922, 59615], [2, 2918, 58554], [3, 2775, 58479], [4, 2689, 58479], [5, 2783, 58129], [6, 2805, 58576], [7, 2958, 59181], [8, 2815, 59277], [9, 2910, 58794], [10, 2733, 58455], [11, 2771, 58610], [12, 2770, 59280], [13, 2994, 59218], [14, 2776, 58180], [15, 2754, 58065], [16, 2747, 57904], [17, 2784, 58330], [18, 2864, 59206], [19, 2791, 58509], [20, 2760, 58017], [21, 2739, 57991], [22, 2714, 57670], [23, 2979, 58108]],
+      [[0, 3286, 59074], [1, 3220, 59318], [2, 3256, 58415], [3, 3217, 58312], [4, 3009, 58033], [5, 3115, 58176], [6, 3245, 58687], [7, 3261, 59020], [8, 3251, 59007], [9, 3214, 58703], [10, 3211, 58497], [11, 3219, 58362], [12, 2872, 59273], [13, 3267, 59115], [14, 3222, 58531], [15, 3160, 57929], [16, 3048, 57893], [17, 3111, 58819], [18, 2923, 59326], [19, 2884, 57961], [20, 3077, 57484], [21, 2929, 57126], [22, 2874, 57634], [23, 2859, 57959]],
+      [[0, 3122, 58799], [1, 3205, 59580], [2, 3123, 59111], [3, 3135, 58164], [4, 3016, 57774], [5, 3118, 58606], [6, 3086, 58477], [7, 3040, 59231], [8, 3052, 58986], [9, 3053, 58312], [10, 2979, 58292], [11, 3062, 58492], [12, 3035, 58894], [13, 3080, 59177], [14, 3028, 58590], [15, 3181, 58116], [16, 3126, 57760], [17, 3041, 58863], [18, 3176, 59274], [19, 3053, 58876], [20, 3044, 57993], [21, 3136, 57687], [22, 2970, 57733], [23, 2980, 58308]]
+    ]
+  },
+  "measurement": {
+    "mode": "independent_l0c_to_gm_fixpipe_long_stream_microbenchmark",
+    "capture_commit": "17e0f61f45a2d0f7e15b60cd794a35a9d8ad8ab3",
+    "aic_clock_hz": 3200000000,
+    "physical_device_id": 4,
+    "run_count": 3,
+    "raw_path": "profiler_output/microbench/ascend_910b/gemm_fixpipe_long_76fc731d_20260908_r1/execution.csv",
+    "raw_sha256": "ec0b70b0f85a922477a502acbcfb7d636f1744cfc759624b7fe983b1b0727e7c",
+    "stderr_sha256": "20059db8e10391eae8c88371068b3f422b263ed641db905c7a4fbc2e6a46ad6a",
+    "source_snapshot_sha256": "d810d709511017f6fd8e7b5f792698aa634c44cdd826c15348c8ad983a255e44",
+    "binary_sha256": "b462a83f566b6c429c0023deaa1e39248c46db6a6baff172e92767eb96d571a7",
+    "validation_rows": 3,
+    "validation": "exact",
+    "mechanism_gate_passed": true
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "only source-matched BF16 row-major MatMulV3 key-65536 output-tile streams with exactly 128 rows, 256 columns, 24 non-empty AICs, and per-worker tile counts inside the published 96-to-1195-tile affine domain"
+}

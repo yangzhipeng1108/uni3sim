@@ -1,0 +1,54 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_eight_expert_twelve_tile_w2_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "populated_experts": 8,
+    "active_m_tiles": 12,
+    "maximum_m_tiles": 16,
+    "production_k_n_tile_class": [448, 64]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090608,
+    "experts": 8,
+    "topk": 2,
+    "source_topk": 1,
+    "event_trials_per_capture": 7,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "01f83fecf7fb57f932afd57ee42210e97981ec712237ce3b0af81a6b9fda94e1",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "conservative minimum capacity across two non-production token counts with the same active and maximum M-tile counts"
+  },
+  "captures": [
+    {
+      "tokens": 250,
+      "valid_routes": 500,
+      "active_m_tiles": 12,
+      "maximum_m_tiles": 16,
+      "k": 14336,
+      "n": 4096,
+      "raw_sha256": "2d8f9cac04f9124bbfa93b567e733d4e3c8264f0ce85b167f91462d6ba7dcf69",
+      "operand_pipeline_capacity_bytes_per_s": 509074955149.5075
+    },
+    {
+      "tokens": 251,
+      "valid_routes": 502,
+      "active_m_tiles": 12,
+      "maximum_m_tiles": 16,
+      "k": 14336,
+      "n": 4096,
+      "raw_sha256": "fe7a40e2af12eb43b496b78a42002fdb11a7a195952f51f6e2b18cb45c818ba2",
+      "operand_pipeline_capacity_bytes_per_s": 408286512237.02045
+    }
+  ],
+  "selected_service": {
+    "predicate": "exactly eight populated experts, exactly twelve active M tiles, and K/N tile class (448,64)",
+    "logical_byte_capacity_per_s": 408286512237.02045
+  }
+}

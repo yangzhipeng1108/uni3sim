@@ -1,0 +1,76 @@
+{
+  "hardware_id": "metax_c500",
+  "host": {
+    "cpu": "Intel(R) Xeon(R) Gold 6430",
+    "cpu_count": 128,
+    "load_average_1min_at_capture": 2.25,
+    "vllm_version": "0.24.0"
+  },
+  "measurement_boundary": "host_only_no_device_no_model",
+  "mechanism": "vLLM 0.24.0's completion handler does not dispatch a bare encode. It calls its own render_completion_request, which checks the model and then runs OpenAIServingRender.render_completion -- the render chain that reaches the tokenizer. This region is measured end to end and already contains the encode, so a runtime priced this way carries no separate encode terms. The runtime supplies the path without an engine: OpenAIModelRegistry is documented as a model view with no engine dependency for CPU-only render contexts, and the engine configuration uses a dummy weight format.",
+  "production_or_evaluation_duration_consumed": false,
+  "runner": {
+    "entry_point": "measure_completion_render_region",
+    "path": "microbench/nvidia_a800/runtime/host_request_path/vllm_host_request_path_runner.py",
+    "prompt_lengths": [
+      16,
+      128,
+      1024
+    ],
+    "sha256": "aed092228fe12cbc1278f58c1f61f6a9592a50d115ec14016d46769b3811faaa",
+    "trials": 25,
+    "warmup": 5
+  },
+  "runs": [
+    {
+      "intercept_s": 0.00015070101587301584,
+      "median_s_by_prompt_tokens": {
+        "1024": 0.006493676,
+        "128": 0.000990407,
+        "16": 0.00024981
+      },
+      "note": "outlier at 1024 tokens on a shared host; kept in the sample",
+      "per_token_s": 6.194311507936509e-06
+    },
+    {
+      "intercept_s": 0.0001956,
+      "median_s_by_prompt_tokens": {
+        "1024": 0.0023509,
+        "128": 0.0004685,
+        "16": 0.0002293
+      },
+      "per_token_s": 2.105e-06
+    },
+    {
+      "intercept_s": 0.0002024,
+      "median_s_by_prompt_tokens": {
+        "1024": 0.0023965,
+        "128": 0.0004682,
+        "16": 0.0002367
+      },
+      "per_token_s": 2.143e-06
+    },
+    {
+      "intercept_s": 0.0001996,
+      "median_s_by_prompt_tokens": {
+        "1024": 0.002328,
+        "128": 0.0004705,
+        "16": 0.0002329,
+        "256": 0.0007283,
+        "512": 0.0012439,
+        "64": 0.0003319,
+        "768": 0.0018073
+      },
+      "note": "seven-point sweep; confirms the region is affine over 16-1024",
+      "per_token_s": 2.079e-06
+    }
+  ],
+  "schema_version": 1,
+  "selection": {
+    "run_count": 4,
+    "statistic": "median_across_independent_runs",
+    "tokenizer_render_region_intercept_s": 0.0001976,
+    "tokenizer_render_region_per_token_s": 2.124e-06
+  },
+  "tokenizer_path": "/capture-workspace/Qwen3-30B-A3B"
+}

@@ -1,0 +1,89 @@
+{
+  "scheduler_pools": [
+    {
+      "binding": {
+        "deployment": "colocated",
+        "expert_parallel_size": 1,
+        "hardware_config_sha256": "cb5f33773e1332d666267b4b10243331ba6a4acfaebabc638d62fbd35436291e",
+        "hardware_id": "nvidia_h200",
+        "kv_block_size_tokens": 16,
+        "max_batched_tokens": 8192,
+        "max_model_len": 9216,
+        "max_requests": 4,
+        "model_config_sha256": "cbf0b95dc614de208a109bb5fd4e7eed11385e9c68411d2c17db5319443035d9",
+        "pipeline_parallel_size": 1,
+        "tensor_parallel_size": 8,
+        "worker_role": "colocated"
+      },
+      "completeness_assertion": "all_non_kv_reserves_for_bound_runtime",
+      "gpu_memory_utilization": {
+        "denominator": 100,
+        "numerator": 82,
+        "provenance": {
+          "source_kind": "runtime_configuration",
+          "source_reference": "InferenceX SGLang DeepSeek-R1 H200 single-node recipe mem-fraction-static 0.82 (SemiAnalysisAI/InferenceX benchmarks/single_node/fixed_seq_len/dsr1_fp8_h200.sh)",
+          "source_sha256": null
+        }
+      },
+      "non_kv_reserves": [
+        {
+          "bytes": 0,
+          "kind": "activation",
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "bytes": 0,
+          "kind": "cuda_graph",
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "bytes": 0,
+          "kind": "communication",
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "bytes": 0,
+          "kind": "allocator",
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "bytes": 0,
+          "kind": "fragmentation",
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "bytes": 2147483648,
+          "kind": "framework",
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "projected aggregate non-weight non-KV reserve of 2 GiB per rank",
+            "source_sha256": null
+          }
+        }
+      ],
+      "pool_name": "main",
+      "reserve_scope": "verified_uniform_across_pool_ranks"
+    }
+  ],
+  "schema_version": 2
+}

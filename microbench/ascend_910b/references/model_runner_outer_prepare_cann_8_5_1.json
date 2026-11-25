@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "kind": "ascend_model_runner_outer_prepare",
+  "hardware_id": "ascend_910b",
+  "runtime": {
+    "name": "CANN",
+    "version": "8.5.1"
+  },
+  "framework": {
+    "name": "torch_npu",
+    "version": "2.9.0.post1+gitee7ba04"
+  },
+  "baseline_commit": "6c59571cd7815f53d18d9d6e43472551e39e036d",
+  "runner": {
+    "path": "microbench/ascend_910b/runtime/launch/model_runner_outer_prepare_runner.py",
+    "sha256": "47c6f19a26917e2025ab9a8c08aff8ced436ec38f4b3dfb16fb4fea4843e9137"
+  },
+  "source_contract": {
+    "path": "/capture-workspace/vllm_src_3ver/910b_ascend/vllm_ascend/worker/model_runner_v1.py",
+    "sha256": "8d35f26a9db8f63038158c139a43f92e3e970117bb4a2b43c82fd828e349b981",
+    "production_contract_path": "src/serving/runtime_prepare.py",
+    "symbols": [
+      "NPUModelRunner._prepare_inputs",
+      "NPUModelRunner._build_attention_metadata",
+      "NPUModelRunner.execute_model"
+    ],
+    "occurrence": {
+      "input": "one event at each concrete token-embedding Host lane before _model_forward",
+      "forward_metadata": "one event at the same token-embedding boundary for _build_attention_metadata",
+      "logits": "one event at each concrete LM-head Host lane after _model_forward",
+      "graph_domain": "graph-external source work; retained in NONE, FULL, and PIECEWISE modes",
+      "rank_contract": "ranked and unranked endpoint IDs are accepted, but token-embedding and LM-head anchors must match exactly per Host lane",
+      "unsupported": "missing or duplicated endpoint anchors fail closed",
+      "non_overlap": "This is the sole production charge for the ModelRunner input and logits boundaries; the retired model_input_boundary_prepare/model_output_boundary_prepare helper-count mechanism is not enabled, so those source regions are not charged a second time. rotary_cache_update_prepare remains the later update_cos_sin(positions) call after _preprocess."
+    }
+  },
+  "raw_capture": {
+    "manifest_path": "profiler_output/microbench/ascend_910b/model_runner_outer_prepare_20260919_r1/manifest.json",
+    "manifest_sha256": "dcbbd3aedecc1004fd48c8fc2079e7fa0a5f14006689530928abaacee50bd3dd",
+    "summary_path": "profiler_output/microbench/ascend_910b/model_runner_outer_prepare_20260919_r1/summary.json",
+    "summary_sha256": "288ab792e8014d816bf1cdeeafd07bcdaede4716fac1056bc4091ea706aac9cd",
+    "trials_path": "profiler_output/microbench/ascend_910b/model_runner_outer_prepare_20260919_r1/trials.jsonl",
+    "trials_sha256": "4b95194739201c983bd9f2d4ebe5180335df00ce376dbfd8f4f59e9d9268416e"
+  },
+  "service_time_s": {
+    "model_runner_input_prepare": 0.0001896095,
+    "model_runner_forward_metadata_prepare": 0.000023066,
+    "model_runner_logits_prepare": 0.0000984525
+  },
+  "measurement": {
+    "boundary": "independent_source-local_host_microbenchmark",
+    "device_id": "host_cpu_only",
+    "reference_metadata_layer_count": 32,
+    "reference_request_count": 32,
+    "reference_input_token_count": 512,
+    "reference_logits_token_count": 512,
+    "production_or_evaluation_duration_consumed": false,
+    "model_or_operator_executed": false,
+    "parameter_units": "seconds per source event",
+    "host_clock": "time.perf_counter_ns",
+    "thread_cpu_clock": "time.thread_time_ns"
+  }
+}

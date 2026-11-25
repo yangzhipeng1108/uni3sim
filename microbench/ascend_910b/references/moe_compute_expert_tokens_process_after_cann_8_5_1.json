@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "moe_compute_expert_tokens_process_after",
+  "duration_unit": "ns_per_source_phase",
+  "system_counter_tick_ns": 20.0,
+  "source_commit": "f1f021d3aac254992b16fd92b35534e016b196f5",
+  "source_snapshot_path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_reduce_dbd626e8_20260906_r1/source",
+  "probe_source_sha256": {
+    "CMakeLists.txt": "9c35e4a7c651645e849eed111840584a73c45d558e85ea346514bc42962309f2",
+    "compute_expert_tokens_reduce_kernel.cpp": "db70b51fe1149d295822a32a3e9fbd9a3ed231cce35391504bc17b925816854c",
+    "compute_expert_tokens_reduce_main.cpp": "0accdd0d59b3bcfa998e3001879ad5ceb5a5cc34a30f48bc37631908a9654681"
+  },
+  "binary_sha256": "ddc658568a9dc78bdcdfb9783bde8d0851f7da515fde03a2cdead9ac09e28307",
+  "source_scope": {
+    "public_source_evidence_ref": "microbench/ascend_910b/references/moe_compute_expert_tokens_public_source.json",
+    "public_source_evidence_sha256": "d5973c750e4ca2df9640d487a774e6eb079b95c15add53cf439349f9ceea597a",
+    "upstream_commit": "f6c15f3da135ad9bc0ec9a2fae4870285a3067cb",
+    "upstream_path": "moe/moe_compute_expert_tokens/op_kernel/moe_compute_expert_tokens_int32_l.h",
+    "upstream_sha256": "4ec81d4360475faefd74e49a09350d5cbb711b02f9f748ef10fdbb46a744b260",
+    "tiling_key": 1003,
+    "experts": 512,
+    "used_input_workers": 1,
+    "aiv_workers": 48,
+    "normal_rows_per_output_worker": 11
+  },
+  "measurement": {
+    "model": "exact_process_after_source_sequence_v1",
+    "service_time_ns": 4360.0,
+    "selection_policy": "median_of_independent_run_medians",
+    "samples_per_run": 31,
+    "independent_runs": 3,
+    "physical_device_ids": [6, 7, 6],
+    "run_median_system_cycles": [218, 252, 215],
+    "maximum_cross_run_relative_spread": 0.16972477064220184,
+    "raw_artifacts": [
+      {"path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_reduce_dbd626e8_20260906_r1/run1_device6.csv", "sha256": "b3785298b9d5b2fb38eb6ee246f54e62923f6db5b8c8e5cbe9fa1c53934f40a0"},
+      {"path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_reduce_dbd626e8_20260906_r1/run2_device7.csv", "sha256": "94eb84cbd8f976ff5fe3c373cb09336aaf5077a2c0e5bf394975209ee9ebda74"},
+      {"path": "profiler_output/microbench/ascend_910b/compute_expert_tokens_reduce_dbd626e8_20260906_r1/run3_device6.csv", "sha256": "931296d9793db8c94ac56bf833b9919b0b1b012e88a170b2ca61c0ae67f35747"}
+    ]
+  },
+  "composition": "serial_once_after_the_second_source_sync_point",
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

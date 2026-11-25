@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "hardware_id": "metax_c500",
+  "evidence_kind": "versioned_public_operator_source",
+  "production_or_evaluation_duration_consumed": false,
+  "hardware_execution_performed": false,
+  "upstream": {
+    "repository": "https://github.com/MetaX-MACA/vLLM-metax.git",
+    "commit": "1e74892b7b1b0e9ef0027f6cac1aa64801b5e928"
+  },
+  "source_files": [
+    {
+      "path": "vllm_metax/model_executor/layers/fused_moe/all2all_utils.py",
+      "sha256": "6a321ae2d9458357c4ad0bb6778483bf5b50e2ec99dced63843b87e506c9e50e"
+    },
+    {
+      "path": "vllm_metax/model_executor/layers/fused_moe/experts/triton_moe.py",
+      "sha256": "6227e65b66ce3579676d5ac6b0a36997531c45b73a145607ec29f10f4ce3c255"
+    },
+    {
+      "path": "vllm_metax/model_executor/layers/fused_moe/fused_moe.py",
+      "sha256": "d37d5508f0bd753647df31aab35ed375513d006626ebbb11384716111340d592"
+    }
+  ],
+  "source_facts": {
+    "local_expert_count": "global_num_experts_divided_by_expert_parallel_world_size",
+    "rank_local_filter_inputs": [
+      "global_num_experts",
+      "expert_map"
+    ],
+    "grouped_gemm_program": "shared_triton_fused_moe_kernel",
+    "launch_semantics": "the shared Triton grouped-GEMM launch filters routed rows and weights to experts owned by the local EP rank"
+  },
+  "forward_scope": {
+    "status": "source_backed",
+    "kernel_launch_scope": {
+      "dtype": "bf16",
+      "expert_parallel_size": 2,
+      "global_experts": 128,
+      "local_experts_per_rank": 64
+    },
+    "serving_integration_scope": {
+      "model_family": "Qwen3-MoE",
+      "tensor_parallel_size": 2,
+      "expert_placement_strategy": "linear",
+      "enforcement": "src.serving.simulation.validate_workload_emission_parallelism plus src.serving.kernel_lowering.lower_workload._validate_ep_fused_moe_graph"
+    },
+    "limitations": [
+      "This evidence supports rank-local launch semantics only; it supplies no production or evaluation duration.",
+      "Other dtypes, model families, parallel sizes, and placement strategies remain outside this evidence scope."
+    ]
+  }
+}

@@ -1,0 +1,1014 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_h200",
+  "mechanism": "bf16_ss_backlogged_wgmma_busy_capacity",
+  "scope": {
+    "dtype": "bf16",
+    "operand_source": "ss",
+    "instruction_m": 64,
+    "instruction_k": 16,
+    "instruction_n": [
+      128,
+      176
+    ],
+    "k_steps": 8,
+    "active_warpgroups": [
+      1,
+      2
+    ],
+    "grids": [
+      1,
+      132
+    ],
+    "queues": [
+      1,
+      4
+    ],
+    "cta_threads": 256,
+    "shared_bytes": 196608
+  },
+  "selection": "maximum_all_queue4_work_per_core_cycle",
+  "validation_fraction": 0.05,
+  "peak_flops_per_sm_cycle": 4096.0,
+  "measurements": [
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 72.625,
+      "ns_per_instruction": 40.416666666666664
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 72.625,
+      "ns_per_instruction": 40.44166666666667
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 72.625,
+      "ns_per_instruction": 40.43333333333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 72.625,
+      "ns_per_instruction": 40.43333333333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 72.625,
+      "ns_per_instruction": 40.43333333333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 72.625,
+      "ns_per_instruction": 40.40833333333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.61666666666667
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.625
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.63333333333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.62083333333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.61666666666667
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.62083333333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 72.625,
+      "ns_per_instruction": 40.416666666666664
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 72.625,
+      "ns_per_instruction": 40.42916666666667
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 72.625,
+      "ns_per_instruction": 40.42916666666667
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 72.625,
+      "ns_per_instruction": 40.42916666666667
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 72.625,
+      "ns_per_instruction": 40.4375
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 72.625,
+      "ns_per_instruction": 40.44166666666667
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.55833333333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.55833333333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.56458333333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.55833333333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.5625
+    },
+    {
+      "instruction_n": 128,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.5625
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 66.15625,
+      "ns_per_instruction": 36.80625
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 66.15625,
+      "ns_per_instruction": 36.81875
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 66.15625,
+      "ns_per_instruction": 36.80833333333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 66.15625,
+      "ns_per_instruction": 36.8125
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 66.15625,
+      "ns_per_instruction": 36.81666666666667
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 66.15625,
+      "ns_per_instruction": 36.822916666666664
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.615625
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.614583333333336
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.61666666666667
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.614583333333336
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.623958333333334
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.630208333333336
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 66.15625,
+      "ns_per_instruction": 36.771875
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 66.15625,
+      "ns_per_instruction": 36.76875
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 66.15625,
+      "ns_per_instruction": 36.765625
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 66.15625,
+      "ns_per_instruction": 36.765625
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 66.15625,
+      "ns_per_instruction": 36.76875
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 66.15625,
+      "ns_per_instruction": 36.771875
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.55833333333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.55520833333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.55677083333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.55677083333333
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.56041666666667
+    },
+    {
+      "instruction_n": 128,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 64.0,
+      "ns_per_instruction": 35.55104166666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 96.625,
+      "ns_per_instruction": 53.75833333333333
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 96.625,
+      "ns_per_instruction": 53.766666666666666
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 96.625,
+      "ns_per_instruction": 53.78333333333333
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 96.625,
+      "ns_per_instruction": 53.775
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 96.625,
+      "ns_per_instruction": 53.78333333333333
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 96.625,
+      "ns_per_instruction": 53.766666666666666
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.97083333333333
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.99583333333333
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.9875
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.979166666666664
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.97083333333333
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.9875
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 96.625,
+      "ns_per_instruction": 53.7625
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 96.625,
+      "ns_per_instruction": 53.75416666666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 96.625,
+      "ns_per_instruction": 53.766666666666666
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 96.625,
+      "ns_per_instruction": 53.75416666666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 96.625,
+      "ns_per_instruction": 53.770833333333336
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 96.625,
+      "ns_per_instruction": 53.75416666666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.891666666666666
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.8875
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.895833333333336
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.8875
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.895833333333336
+    },
+    {
+      "instruction_n": 176,
+      "queue": 1,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.891666666666666
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 90.15625,
+      "ns_per_instruction": 50.18958333333333
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 90.15625,
+      "ns_per_instruction": 50.17916666666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 90.15625,
+      "ns_per_instruction": 50.17916666666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 90.15625,
+      "ns_per_instruction": 50.17916666666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 90.15625,
+      "ns_per_instruction": 50.18333333333333
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 90.15625,
+      "ns_per_instruction": 50.18541666666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.985416666666666
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.996875
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.99791666666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.98229166666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.97604166666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 1,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.99375
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 90.15625,
+      "ns_per_instruction": 50.098958333333336
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 90.15625,
+      "ns_per_instruction": 50.10208333333333
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 90.15625,
+      "ns_per_instruction": 50.10104166666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 90.15625,
+      "ns_per_instruction": 50.108333333333334
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 90.15625,
+      "ns_per_instruction": 50.09791666666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 1,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 90.15625,
+      "ns_per_instruction": 50.10104166666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 0,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.89427083333333
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 1,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.89114583333333
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 0,
+      "trial": 2,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.89427083333333
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 0,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.89010416666667
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 1,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.891666666666666
+    },
+    {
+      "instruction_n": 176,
+      "queue": 4,
+      "grid": 132,
+      "active_warpgroups": 2,
+      "rotate": 1,
+      "trial": 2,
+      "cycles_per_instruction": 88.0,
+      "ns_per_instruction": 48.89427083333333
+    }
+  ],
+  "qualification": {
+    "path": "profiler_output/microbench/nvidia_h200/wgmma_descriptor_rotation_20261109/analysis.json",
+    "sha256": "6ba1c34004c37c82a746990b0a9d4ddcd4653202aa361c1b53e8d4f36d668312",
+    "timing_launches": 288,
+    "numeric_pattern_launches": 8,
+    "records": 114976,
+    "scientific_controls_passed": true
+  },
+  "capture": {
+    "path": "profiler_output/microbench/nvidia_h200/wgmma_descriptor_rotation_20261109/manifest.json",
+    "sha256": "ada6960d77e9bdf8288e1268b1410997151d488ad1be060abd923a90e5f91c6c"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "scope_limitations": [
+    "Pure shared-operand BF16 SS only,N128/176,K8,one/twoWG;no RS/scalar/transport service or arbitrary native phase certification.",
+    "Busy work/cycle is an optimistic saturated instruction capacity from allqueue4 controls;queue1 periods only validate that retirement is no faster,not a new per-shape price.",
+    "One existing independently qualified active clock converts cycle capacity;the public SI Tensor rate keeps its old basis and competes by minimum capacity.",
+    "No operator duration/error selects rate,scope,formula or loss factor;the original no-descriptor-penalty diagnostic and rejected models remain unchanged."
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "schema": "nvidia_a800_rmsnorm_grid64_scalar_round_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "device_uuid": "capture-device-ceb3fcab78ae",
+  "compute_capability": "sm_80",
+  "physical_sm_count": 108,
+  "source_baseline_commit": "bec96433",
+  "capture": {
+    "path": "profiler_output/microbench/nvidia_a800/rmsnorm_scalar_round_bec96433_20260908_d7",
+    "report_sha256": "26f7612059da2123eb68f2d438e365fa020e95c5a1c665d5c125560151f673fb",
+    "source_snapshot_sha256": "333d5e8528d71873d700372d0144798d02bdc553af06f807656f29960691bb71",
+    "probe_binary_sha256": "e061b24790ac8e3bb70bc32bd9c5fc6007e04051d452738650c367da76e7edbc",
+    "probe_resource_dump_sha256": "474b885c23b2700166bd75eaf503b1e03dc222074333ef86a00e7a4031c18fd5",
+    "independent_processes": 3,
+    "samples_per_cell": 200,
+    "postflight_cleanup": "target_device_idle_no_compute_processes"
+  },
+  "mechanism_contract": {
+    "dtype": "bf16",
+    "grid_blocks": 64,
+    "threads_per_cta": 1024,
+    "resident_ctas_per_sm": 2,
+    "static_shared_memory_bytes_per_cta": 168,
+    "minimum_hidden_elements": 2048,
+    "maximum_hidden_elements": 16384,
+    "source_round_elements": 1024,
+    "training_hidden_elements": [2048, 2560, 4096, 5120],
+    "held_out_hidden_elements": [8192, 16384],
+    "formula": "source_loop_cycles = phase_entry_cycles + source_rounds * (input_square_cycles_per_round + output_scale_cycles_per_round)",
+    "excluded_mechanisms": [
+      "block_reduction",
+      "epsilon",
+      "reciprocal_sqrt",
+      "production_operator_call"
+    ]
+  },
+  "selected_services": {
+    "rmsnorm_input_square_first_1024": {
+      "cache_state": "cold",
+      "cycles_per_source_round": 730.7252747252745,
+      "operations_per_second_at_1_14ghz": 1560093.8402309918
+    },
+    "rmsnorm_output_scale_first_1024": {
+      "cache_state": "warm",
+      "cycles_per_source_round": 290.6373626373627,
+      "operations_per_second_at_1_14ghz": 3922413.7931034476
+    },
+    "rmsnorm_phase_entry_first_1024": {
+      "cycles_per_cta": 1063.4010989011,
+      "operations_per_second_at_1_14ghz": 1072031.993551686
+    }
+  },
+  "validation": {
+    "held_out_source_loop_maximum_ape": 0.032,
+    "maximum_observed_cross_run_relative_spread": 0.08155339805825243,
+    "mechanism_gate": "pass"
+  },
+  "decision": {
+    "status": "forward_eligible",
+    "mechanism_publishable": true,
+    "forward_eligible": true,
+    "reason": "The source-loop model passes both held-out hidden widths and is consumed only in the exact measured grid64 resource domain."
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "production_predictor_consumption_allowed": true
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": 2,
+  "scheduler_pools": [
+    {
+      "pool_name": "main",
+      "binding": {
+        "hardware_id": "nvidia_a800",
+        "hardware_config_sha256": "4fd8c3cbed54268219dc8dac76ed51d747f53b5d0c7d0fdb2033454979f2bf0c",
+        "model_config_sha256": "2850ddb3bf7aecad20b611e2d44f3077fc8193f4827c93beddd4c02ad63c2297",
+        "deployment": "colocated",
+        "worker_role": "colocated",
+        "tensor_parallel_size": 2,
+        "pipeline_parallel_size": 1,
+        "expert_parallel_size": 2,
+        "max_model_len": 8192,
+        "max_batched_tokens": 8192,
+        "max_requests": 256,
+        "kv_block_size_tokens": 16
+      },
+      "gpu_memory_utilization": {
+        "numerator": 4,
+        "denominator": 5,
+        "provenance": {
+          "source_kind": "runtime_configuration",
+          "source_reference": "configs/evaluation/experiments/nvidia_a800_qwen3_30b_a3b_suite.json prediction_contract gpu_memory_utilization=0.8 runtime binding",
+          "source_sha256": "602b387d439bca388164a5619f2bdd05a089af7d65c526447c216582c648dea9"
+        }
+      },
+      "non_kv_reserves": [
+        {
+          "kind": "activation",
+          "bytes": 795615744,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "profiler_output/runtime_memory_policy/ascend_910b/qwen3-30b-a3b/init-exact.log: approximate-equivalent fallback authorized 2026-08-28: exact vLLM 0.18.0 same-model TP2/EP2 profile on Ascend 910B; framework bytes use the larger observed rank; torch peak activation bytes",
+            "source_sha256": "dda772c5d796c6e2175eecb1c0f23589c9900522f1d20c074813438d93f18723"
+          }
+        },
+        {
+          "kind": "cuda_graph",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "approximate-equivalent fallback authorized 2026-08-28: exact vLLM 0.18.0 same-model TP2/EP2 profile on Ascend 910B; framework bytes use the larger observed rank; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "dda772c5d796c6e2175eecb1c0f23589c9900522f1d20c074813438d93f18723"
+          }
+        },
+        {
+          "kind": "communication",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "approximate-equivalent fallback authorized 2026-08-28: exact vLLM 0.18.0 same-model TP2/EP2 profile on Ascend 910B; framework bytes use the larger observed rank; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "dda772c5d796c6e2175eecb1c0f23589c9900522f1d20c074813438d93f18723"
+          }
+        },
+        {
+          "kind": "allocator",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "approximate-equivalent fallback authorized 2026-08-28: exact vLLM 0.18.0 same-model TP2/EP2 profile on Ascend 910B; framework bytes use the larger observed rank; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "dda772c5d796c6e2175eecb1c0f23589c9900522f1d20c074813438d93f18723"
+          }
+        },
+        {
+          "kind": "fragmentation",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "framework_source",
+            "source_reference": "approximate-equivalent fallback authorized 2026-08-28: exact vLLM 0.18.0 same-model TP2/EP2 profile on Ascend 910B; framework bytes use the larger observed rank; vLLM pre-KV accounting applies no additional independent reserve for this category, so it is covered by activation/framework rather than added again",
+            "source_sha256": "dda772c5d796c6e2175eecb1c0f23589c9900522f1d20c074813438d93f18723"
+          }
+        },
+        {
+          "kind": "framework",
+          "bytes": 482832384,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "profiler_output/runtime_memory_policy/ascend_910b/qwen3-30b-a3b/init-exact.log: approximate-equivalent fallback authorized 2026-08-28: exact vLLM 0.18.0 same-model TP2/EP2 profile on Ascend 910B; framework bytes use the larger observed rank; non-Torch/framework bytes",
+            "source_sha256": "dda772c5d796c6e2175eecb1c0f23589c9900522f1d20c074813438d93f18723"
+          }
+        }
+      ],
+      "reserve_scope": "verified_uniform_across_pool_ranks",
+      "completeness_assertion": "all_non_kv_reserves_for_bound_runtime"
+    }
+  ]
+}

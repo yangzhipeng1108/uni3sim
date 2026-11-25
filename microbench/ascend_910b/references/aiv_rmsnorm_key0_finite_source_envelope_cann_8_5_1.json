@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "service": "aiv_rmsnorm_key0_finite_source_envelope",
+  "request_size_unit": "active_aiv_workers",
+  "service_time_unit": "ns_per_launch_wide_source_envelope",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "2": 620.0,
+    "4": 820.0,
+    "32": 2280.0
+  },
+  "source_contract": {
+    "tiling_key": 0,
+    "dtype": "bf16",
+    "cells": [
+      {"active_aiv_workers": 2, "rows": 2, "hidden": 8192, "rows_per_worker": 1},
+      {"active_aiv_workers": 4, "rows": 4, "hidden": 8192, "rows_per_worker": 1},
+      {"active_aiv_workers": 32, "rows": 64, "hidden": 4096, "rows_per_worker": 2}
+    ],
+    "gamma_loads_per_worker": 1,
+    "input_loads_per_row": 1,
+    "output_stores_per_row": 1,
+    "terminal_rstd_stores_per_worker": 1,
+    "input_queue_depth": 1,
+    "output_queue_depth": 1,
+    "rstd_queue_depth": 1,
+    "tbuf_count": 3,
+    "production_normalization_arithmetic_executed": false,
+    "replacement_operation": "Duplicate",
+    "completion_boundary": "launch-wide earliest worker entry to latest terminal PIPE_ALL plus maximum worker body and independent worker-entry fill"
+  },
+  "derivation": {
+    "statistic": "maximum of the three-run median launch-wide source span and the three-run median maximum-worker body plus the independently published worker-entry fill",
+    "worker_entry_interval_ns": 40.0,
+    "cells": [
+      {
+        "active_aiv_workers": 2,
+        "rows": 2,
+        "hidden": 8192,
+        "maximum_worker_run_values_ns": [580.0, 560.0, 580.0],
+        "maximum_worker_median_ns": 580.0,
+        "maximum_worker_cross_run_spread_percent": 3.4482758620689653,
+        "source_span_run_values_ns": [600.0, 600.0, 600.0],
+        "source_span_median_ns": 600.0,
+        "source_span_cross_run_spread_percent": 0.0,
+        "worker_entry_fill_ns": 40.0,
+        "published_envelope_ns": 620.0
+      },
+      {
+        "active_aiv_workers": 4,
+        "rows": 4,
+        "hidden": 8192,
+        "maximum_worker_run_values_ns": [680.0, 700.0, 720.0],
+        "maximum_worker_median_ns": 700.0,
+        "maximum_worker_cross_run_spread_percent": 5.714285714285714,
+        "source_span_run_values_ns": [780.0, 780.0, 780.0],
+        "source_span_median_ns": 780.0,
+        "source_span_cross_run_spread_percent": 0.0,
+        "worker_entry_fill_ns": 120.0,
+        "published_envelope_ns": 820.0
+      },
+      {
+        "active_aiv_workers": 32,
+        "rows": 64,
+        "hidden": 4096,
+        "maximum_worker_run_values_ns": [1060.0, 1000.0, 1040.0],
+        "maximum_worker_median_ns": 1040.0,
+        "maximum_worker_cross_run_spread_percent": 5.769230769230769,
+        "source_span_run_values_ns": [2060.0, 1960.0, 2100.0],
+        "source_span_median_ns": 2060.0,
+        "source_span_cross_run_spread_percent": 6.796116504854369,
+        "worker_entry_fill_ns": 1240.0,
+        "published_envelope_ns": 2280.0
+      }
+    ],
+    "maximum_allowed_cross_run_spread_percent": 20.0
+  },
+  "composition": "one exact launch-wide source envelope replaces the decomposed memory and scalar-control DAG; production Vector work and aggregate traffic remain conserved, the envelope is ordered once before conserved arithmetic, and worker-entry fill is not charged again",
+  "source_path": "microbench/ascend_910b/operators/norm/rmsnorm_key0_finite_program",
+  "source_files_sha256": {
+    "CMakeLists.txt": "4c47b15184a19a52261c079d70c790e2e396b3fe0f69b331aadec591fcafeec3",
+    "rmsnorm_key0_finite_program_kernel.cpp": "8f9a9b09c58a12442bbf7b07b7c21107e3f6b81a2abfdf0e71ee7ecdbd89fdc7",
+    "rmsnorm_key0_finite_program_main.cpp": "be6833eed80299d755e449b590c2ed384913f196b5997ecdb54eaf02e91d82b2"
+  },
+  "source_archive_sha256": "1fc6d35e0570764a3ab29ab3d2f056cf8aad81958cf05194e637febf459f06eb",
+  "binary_sha256": "eaae75801a5068d057626da46cfb1af6b2825458810b4945dd03ccfcbc604d37",
+  "raw_artifacts": [
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_finite_program_c6b14052_20260909_d7/run_1_w2_r2_h8192.csv", "sha256": "c9ed095b0d2ef4fe025a4ab6d802ee457f6c9a1a7b31fc5ef768f31b913b8a95"},
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_finite_program_c6b14052_20260909_d7/run_2_w2_r2_h8192.csv", "sha256": "c9ed095b0d2ef4fe025a4ab6d802ee457f6c9a1a7b31fc5ef768f31b913b8a95"},
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_finite_program_c6b14052_20260909_d7/run_3_w2_r2_h8192.csv", "sha256": "130fba950a5cf93066256f892ca058c48b0ab970129ab965b99e877efa5787af"},
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_finite_program_c6b14052_20260909_d7/run_1_w4_r4_h8192.csv", "sha256": "dfe2da6a753ca5977da499b7b998ad3fc8a8febca2f9a1cd4b4602cf871b4bda"},
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_finite_program_c6b14052_20260909_d7/run_2_w4_r4_h8192.csv", "sha256": "7841d01eaed20ddf953458d836448eacf143cae389e26f9700eb4ccc9b962c8b"},
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_finite_program_c6b14052_20260909_d7/run_3_w4_r4_h8192.csv", "sha256": "2dddc9017c635d8fa57b3d11a0a93c5735fc89cd77782d6e81bbd67732cfd903"},
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_finite_program_c6b14052_20260909_d7/run_1_w32_r64_h4096.csv", "sha256": "6ae86d98267579ce7b60c19c2c28eabc61cd470588bbe439a4b02c411f50d242"},
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_finite_program_c6b14052_20260909_d7/run_2_w32_r64_h4096.csv", "sha256": "26046895aec15aa5f6038eb12cfb362b7261ae0a191bca10b9bc5d5e3920038c"},
+    {"path": "profiler_output/microbench/ascend_910b/rmsnorm_key0_finite_program_c6b14052_20260909_d7/run_3_w32_r64_h4096.csv", "sha256": "4373787b67705be3f3af05ac67e1931d1001b2eeab63d8518e33af35e7ffb706"}
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

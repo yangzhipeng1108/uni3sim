@@ -1,0 +1,640 @@
+{
+  "cells": [
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 76214,
+      "lane": "graph",
+      "plan_ns": 68598,
+      "poll_ns": 2200,
+      "pre_replay_sync_ns": 58873,
+      "prep_sync_ns": 27446,
+      "put_ns": 6331,
+      "queue_decision_ns": 810,
+      "request_count": 1,
+      "round_cadence_ns": 1118531,
+      "sample_count": 200,
+      "sample_submit_ns": 340498,
+      "state_host_ns": 223912,
+      "stub": "small",
+      "stub_device_duration_ns": 119729,
+      "submit_lane_ns": 85745,
+      "thread_submit_ns": 20286,
+      "tolist_ns": 0,
+      "update_ns": 32922,
+      "wake_block_ns": 3150
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 79954,
+      "lane": "graph",
+      "plan_ns": 71849,
+      "poll_ns": 2220,
+      "pre_replay_sync_ns": 108666,
+      "prep_sync_ns": 40892,
+      "put_ns": 7226,
+      "queue_decision_ns": 780,
+      "request_count": 1,
+      "round_cadence_ns": 1173033,
+      "sample_count": 200,
+      "sample_submit_ns": 344799,
+      "state_host_ns": 180624,
+      "stub": "large",
+      "stub_device_duration_ns": 937079,
+      "submit_lane_ns": 98825,
+      "thread_submit_ns": 24126,
+      "tolist_ns": 0,
+      "update_ns": 36777,
+      "wake_block_ns": 3810
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 77939,
+      "lane": "graph",
+      "plan_ns": 190005,
+      "poll_ns": 2130,
+      "pre_replay_sync_ns": 57983,
+      "prep_sync_ns": 24216,
+      "put_ns": 6471,
+      "queue_decision_ns": 740,
+      "request_count": 8,
+      "round_cadence_ns": 1232707,
+      "sample_count": 200,
+      "sample_submit_ns": 315677,
+      "state_host_ns": 213961,
+      "stub": "small",
+      "stub_device_duration_ns": 145070,
+      "submit_lane_ns": 83200,
+      "thread_submit_ns": 18496,
+      "tolist_ns": 0,
+      "update_ns": 86905,
+      "wake_block_ns": 2990
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 107086,
+      "lane": "graph",
+      "plan_ns": 190745,
+      "poll_ns": 2270,
+      "pre_replay_sync_ns": 58178,
+      "prep_sync_ns": 24716,
+      "put_ns": 6650,
+      "queue_decision_ns": 740,
+      "request_count": 8,
+      "round_cadence_ns": 1236388,
+      "sample_count": 200,
+      "sample_submit_ns": 319822,
+      "state_host_ns": 170919,
+      "stub": "large",
+      "stub_device_duration_ns": 934539,
+      "submit_lane_ns": 81984,
+      "thread_submit_ns": 19126,
+      "tolist_ns": 0,
+      "update_ns": 88080,
+      "wake_block_ns": 3050
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 79584,
+      "lane": "graph",
+      "plan_ns": 574346,
+      "poll_ns": 2340,
+      "pre_replay_sync_ns": 59503,
+      "prep_sync_ns": 25876,
+      "put_ns": 7035,
+      "queue_decision_ns": 730,
+      "request_count": 32,
+      "round_cadence_ns": 1833160,
+      "sample_count": 200,
+      "sample_submit_ns": 322732,
+      "state_host_ns": 226102,
+      "stub": "small",
+      "stub_device_duration_ns": 127319,
+      "submit_lane_ns": 81824,
+      "thread_submit_ns": 19381,
+      "tolist_ns": 0,
+      "update_ns": 261569,
+      "wake_block_ns": 3090
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 79784,
+      "lane": "graph",
+      "plan_ns": 567771,
+      "poll_ns": 2340,
+      "pre_replay_sync_ns": 59924,
+      "prep_sync_ns": 26151,
+      "put_ns": 6986,
+      "queue_decision_ns": 740,
+      "request_count": 32,
+      "round_cadence_ns": 1815868,
+      "sample_count": 200,
+      "sample_submit_ns": 323087,
+      "state_host_ns": 223747,
+      "stub": "large",
+      "stub_device_duration_ns": 936049,
+      "submit_lane_ns": 81614,
+      "thread_submit_ns": 19251,
+      "tolist_ns": 0,
+      "update_ns": 254599,
+      "wake_block_ns": 3105
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 82744,
+      "lane": "graph",
+      "plan_ns": 1061342,
+      "poll_ns": 2360,
+      "pre_replay_sync_ns": 62648,
+      "prep_sync_ns": 31182,
+      "put_ns": 8505,
+      "queue_decision_ns": 830,
+      "request_count": 64,
+      "round_cadence_ns": 2614343,
+      "sample_count": 200,
+      "sample_submit_ns": 338213,
+      "state_host_ns": 254484,
+      "stub": "small",
+      "stub_device_duration_ns": 127339,
+      "submit_lane_ns": 82924,
+      "thread_submit_ns": 21426,
+      "tolist_ns": 0,
+      "update_ns": 476496,
+      "wake_block_ns": 3390
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 79844,
+      "lane": "graph",
+      "plan_ns": 1052312,
+      "poll_ns": 2300,
+      "pre_replay_sync_ns": 59683,
+      "prep_sync_ns": 27516,
+      "put_ns": 7170,
+      "queue_decision_ns": 720,
+      "request_count": 64,
+      "round_cadence_ns": 2520857,
+      "sample_count": 200,
+      "sample_submit_ns": 320707,
+      "state_host_ns": 227132,
+      "stub": "large",
+      "stub_device_duration_ns": 936140,
+      "submit_lane_ns": 82174,
+      "thread_submit_ns": 19321,
+      "tolist_ns": 0,
+      "update_ns": 457949,
+      "wake_block_ns": 3115
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 81369,
+      "lane": "graph",
+      "plan_ns": 1943250,
+      "poll_ns": 2315,
+      "pre_replay_sync_ns": 60753,
+      "prep_sync_ns": 29152,
+      "put_ns": 8226,
+      "queue_decision_ns": 765,
+      "request_count": 120,
+      "round_cadence_ns": 3869900,
+      "sample_count": 200,
+      "sample_submit_ns": 327663,
+      "state_host_ns": 248729,
+      "stub": "small",
+      "stub_device_duration_ns": 126230,
+      "submit_lane_ns": 82070,
+      "thread_submit_ns": 20071,
+      "tolist_ns": 0,
+      "update_ns": 856611,
+      "wake_block_ns": 3230
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 81115,
+      "lane": "graph",
+      "plan_ns": 1938325,
+      "poll_ns": 2360,
+      "pre_replay_sync_ns": 60338,
+      "prep_sync_ns": 29017,
+      "put_ns": 7930,
+      "queue_decision_ns": 750,
+      "request_count": 120,
+      "round_cadence_ns": 3853029,
+      "sample_count": 200,
+      "sample_submit_ns": 329843,
+      "state_host_ns": 245023,
+      "stub": "large",
+      "stub_device_duration_ns": 918989,
+      "submit_lane_ns": 85189,
+      "thread_submit_ns": 19951,
+      "tolist_ns": 0,
+      "update_ns": 840671,
+      "wake_block_ns": 3180
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 88289,
+      "lane": "graph",
+      "plan_ns": 2046291,
+      "poll_ns": 2380,
+      "pre_replay_sync_ns": 60488,
+      "prep_sync_ns": 29331,
+      "put_ns": 8120,
+      "queue_decision_ns": 730,
+      "request_count": 128,
+      "round_cadence_ns": 3995276,
+      "sample_count": 200,
+      "sample_submit_ns": 330488,
+      "state_host_ns": 237988,
+      "stub": "small",
+      "stub_device_duration_ns": 132720,
+      "submit_lane_ns": 85559,
+      "thread_submit_ns": 19981,
+      "tolist_ns": 0,
+      "update_ns": 886398,
+      "wake_block_ns": 3160
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 87304,
+      "lane": "graph",
+      "plan_ns": 2042305,
+      "poll_ns": 2350,
+      "pre_replay_sync_ns": 60283,
+      "prep_sync_ns": 29097,
+      "put_ns": 7895,
+      "queue_decision_ns": 740,
+      "request_count": 128,
+      "round_cadence_ns": 3969095,
+      "sample_count": 200,
+      "sample_submit_ns": 328278,
+      "state_host_ns": 236628,
+      "stub": "large",
+      "stub_device_duration_ns": 919770,
+      "submit_lane_ns": 83835,
+      "thread_submit_ns": 20111,
+      "tolist_ns": 0,
+      "update_ns": 876647,
+      "wake_block_ns": 3160
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 75249,
+      "lane": "eager",
+      "plan_ns": 65689,
+      "poll_ns": 1980,
+      "pre_replay_sync_ns": 0,
+      "prep_sync_ns": 23826,
+      "put_ns": 6020,
+      "queue_decision_ns": 720,
+      "request_count": 1,
+      "round_cadence_ns": 6261979,
+      "sample_count": 200,
+      "sample_submit_ns": 304921,
+      "state_host_ns": 208051,
+      "stub": "ops700",
+      "stub_device_duration_ns": 5284950,
+      "submit_lane_ns": 5372885,
+      "thread_submit_ns": 19136,
+      "tolist_ns": 0,
+      "update_ns": 31122,
+      "wake_block_ns": 2980
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 75384,
+      "lane": "eager",
+      "plan_ns": 562745,
+      "poll_ns": 2025,
+      "pre_replay_sync_ns": 0,
+      "prep_sync_ns": 25771,
+      "put_ns": 6395,
+      "queue_decision_ns": 720,
+      "request_count": 32,
+      "round_cadence_ns": 6997978,
+      "sample_count": 200,
+      "sample_submit_ns": 306527,
+      "state_host_ns": 223112,
+      "stub": "ops700",
+      "stub_device_duration_ns": 5326989,
+      "submit_lane_ns": 5354504,
+      "thread_submit_ns": 19061,
+      "tolist_ns": 0,
+      "update_ns": 246703,
+      "wake_block_ns": 3030
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 77829,
+      "lane": "eager",
+      "plan_ns": 1928798,
+      "poll_ns": 2210,
+      "pre_replay_sync_ns": 0,
+      "prep_sync_ns": 31087,
+      "put_ns": 8685,
+      "queue_decision_ns": 775,
+      "request_count": 120,
+      "round_cadence_ns": 9198355,
+      "sample_count": 200,
+      "sample_submit_ns": 324892,
+      "state_host_ns": 260644,
+      "stub": "ops700",
+      "stub_device_duration_ns": 5393380,
+      "submit_lane_ns": 5477630,
+      "thread_submit_ns": 21426,
+      "tolist_ns": 0,
+      "update_ns": 819719,
+      "wake_block_ns": 3330
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 83234,
+      "lane": "eager",
+      "plan_ns": 2036450,
+      "poll_ns": 2060,
+      "pre_replay_sync_ns": 0,
+      "prep_sync_ns": 28462,
+      "put_ns": 7541,
+      "queue_decision_ns": 720,
+      "request_count": 128,
+      "round_cadence_ns": 9238606,
+      "sample_count": 200,
+      "sample_submit_ns": 310632,
+      "state_host_ns": 234088,
+      "stub": "ops700",
+      "stub_device_duration_ns": 5354120,
+      "submit_lane_ns": 5425381,
+      "thread_submit_ns": 19371,
+      "tolist_ns": 0,
+      "update_ns": 868966,
+      "wake_block_ns": 3070
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 75384,
+      "lane": "eager",
+      "plan_ns": 567050,
+      "poll_ns": 2220,
+      "pre_replay_sync_ns": 0,
+      "prep_sync_ns": 25986,
+      "put_ns": 6860,
+      "queue_decision_ns": 710,
+      "request_count": 32,
+      "round_cadence_ns": 2175967,
+      "sample_count": 200,
+      "sample_submit_ns": 302871,
+      "state_host_ns": 222472,
+      "stub": "ops64",
+      "stub_device_duration_ns": 561750,
+      "submit_lane_ns": 536049,
+      "thread_submit_ns": 18866,
+      "tolist_ns": 0,
+      "update_ns": 253188,
+      "wake_block_ns": 3100
+    },
+    {
+      "blocked_round_count": 200,
+      "d2h_event_sync_ns": 0,
+      "h2d_ns": 75734,
+      "lane": "eager",
+      "plan_ns": 569240,
+      "poll_ns": 2285,
+      "pre_replay_sync_ns": 0,
+      "prep_sync_ns": 26146,
+      "put_ns": 6920,
+      "queue_decision_ns": 720,
+      "request_count": 32,
+      "round_cadence_ns": 3637115,
+      "sample_count": 200,
+      "sample_submit_ns": 308232,
+      "state_host_ns": 217556,
+      "stub": "ops256",
+      "stub_device_duration_ns": 2047049,
+      "submit_lane_ns": 1983116,
+      "thread_submit_ns": 19791,
+      "tolist_ns": 0,
+      "update_ns": 254923,
+      "wake_block_ns": 3110
+    }
+  ],
+  "parameter": "engine_core_host_round_cadence",
+  "request_slope_fits": {
+    "eager_ops700": {
+      "d2h_event_sync_ns": [
+        0.0,
+        0.0
+      ],
+      "h2d_ns": [
+        74522.7503883998,
+        48.41636457793889
+      ],
+      "plan_ns": [
+        57082.691434489796,
+        15535.057773174522
+      ],
+      "poll_ns": [
+        1985.2721905748317,
+        1.1882962195753495
+      ],
+      "pre_replay_sync_ns": [
+        0.0,
+        0.0
+      ],
+      "prep_sync_ns": [
+        24058.463386846193,
+        45.95069911962714
+      ],
+      "put_ns": [
+        5960.708876229933,
+        17.07531848783014
+      ],
+      "queue_decision_ns": [
+        717.8227861211807,
+        0.22672190574831694
+      ],
+      "sample_submit_ns": [
+        304397.48828586226,
+        104.56244432936302
+      ],
+      "state_host_ns": [
+        210844.44859658208,
+        293.65553599171415
+      ],
+      "submit_lane_ns": [
+        5355528.23488348,
+        741.2350906266183
+      ],
+      "thread_submit_ns": [
+        18989.65447954428,
+        10.802071465561886
+      ],
+      "tolist_ns": [
+        0.0,
+        0.0
+      ],
+      "update_ns": [
+        29616.243687208684,
+        6576.672687726566
+      ],
+      "wake_block_ns": [
+        2982.0236147074056,
+        1.7149663386846195
+      ]
+    },
+    "graph_large": {
+      "d2h_event_sync_ns": [
+        0.0,
+        0.0
+      ],
+      "h2d_ns": [
+        88928.00426511705,
+        -52.354180143632476
+      ],
+      "plan_ns": [
+        63142.731933556184,
+        15536.687275916891
+      ],
+      "poll_ns": [
+        2259.421961515268,
+        0.8030261498821336
+      ],
+      "pre_replay_sync_ns": [
+        78222.84311167151,
+        -176.38826818705115
+      ],
+      "prep_sync_ns": [
+        31087.65906474426,
+        -25.883723480072366
+      ],
+      "put_ns": [
+        6826.611249383258,
+        8.20774080368401
+      ],
+      "queue_decision_ns": [
+        751.9860753248176,
+        -0.1187434899402445
+      ],
+      "sample_submit_ns": [
+        329032.13728414016,
+        -21.690718710597007
+      ],
+      "state_host_ns": [
+        185413.08174990406,
+        486.10342634723975
+      ],
+      "submit_lane_ns": [
+        88076.6654898306,
+        -42.03680719258813
+      ],
+      "thread_submit_ns": [
+        20983.60967052245,
+        -11.375801765254097
+      ],
+      "tolist_ns": [
+        0.0,
+        0.0
+      ],
+      "update_ns": [
+        34931.59000054817,
+        6643.437563730059
+      ],
+      "wake_block_ns": [
+        3350.972534400526,
+        -1.9428759388191437
+      ]
+    },
+    "graph_small": {
+      "d2h_event_sync_ns": [
+        0.0,
+        0.0
+      ],
+      "h2d_ns": [
+        77129.06183871497,
+        66.18875061674251
+      ],
+      "plan_ns": [
+        63959.54794145065,
+        15580.948193629734
+      ],
+      "poll_ns": [
+        2209.656542952689,
+        1.3231182500959378
+      ],
+      "pre_replay_sync_ns": [
+        58978.75966229921,
+        18.060742283866016
+      ],
+      "prep_sync_ns": [
+        26085.41879282934,
+        30.284666410832738
+      ],
+      "put_ns": [
+        6577.643385779288,
+        14.793596842278383
+      ],
+      "queue_decision_ns": [
+        777.0889205635657,
+        -0.1629844854996985
+      ],
+      "sample_submit_ns": [
+        328247.26404254156,
+        16.394945452551944
+      ],
+      "state_host_ns": [
+        222210.92913765693,
+        203.7122526177293
+      ],
+      "submit_lane_ns": [
+        83621.9534564991,
+        -1.160681980154597
+      ],
+      "thread_submit_ns": [
+        19603.754563894523,
+        5.718052738336714
+      ],
+      "tolist_ns": [
+        0.0,
+        0.0
+      ],
+      "update_ns": [
+        35502.841236774344,
+        6764.543775012335
+      ],
+      "wake_block_ns": [
+        3104.207225481059,
+        1.0899621731264733
+      ]
+    },
+    "round_cadence": {
+      "eager_ops700": [
+        6237164.560932159,
+        24015.159274987054
+      ],
+      "graph_large": [
+        1097344.6639657912,
+        22618.13602324434
+      ],
+      "graph_small": [
+        1089285.6462036073,
+        23026.071169343784
+      ]
+    }
+  },
+  "schema_version": 1
+}

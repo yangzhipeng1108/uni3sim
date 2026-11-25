@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "capture_baseline": "26bb5e0d",
+  "service": "local_scalar_fill_s_v",
+  "request_size_unit": "fp32_scalar_writes",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "source_snapshot_path": "/capture-workspace/microbench_execution_snapshots/sv_26bb5e0d_0827/source_snapshot.tar",
+  "source_snapshot_sha256": "41914775267ff626caeb24bd5775ac3c25d40b9619a6e8ffc057d127a619d92f",
+  "binary_sha256": "f7b212507887c3eced8aceee0981bf3725443ac9b4bde03d0ea1bf40ad0ff8d5",
+  "raw_path": "/capture-workspace/profiler_output/microbench/ascend_910b/sv_26bb5e0d_0827",
+  "raw_sha256": {
+    "run1.csv": "aa250c0c49dd7f738e01eb87731fd7dd27b3d4d984ad03b0fa0c092062e15496",
+    "run2.csv": "0401b129d411f9cddb1c10e96877b19f951d0082aeb1a8c4f8c354477b23105d",
+    "run3.csv": "2388e35f63804ef99ff7a8c3979a3b0f72385c3e413b7626847ee63faa582bd1",
+    "audit.txt": "d68e6ba018724ef57e99a57e23ca2e643b28227f143a7a23eb4b20a03c57df27"
+  },
+  "independent_runs": 3,
+  "samples_per_cell": 36,
+  "block_dims": [1, 24, 48],
+  "maximum_run_relative_median_spread": 2.7955017508986397e-06,
+  "maximum_concurrency_relative_median_spread": 1.3977528292571925e-06,
+  "service_time_ns_by_request_size": {
+    "64": 291.110839844,
+    "128": 569.444173177
+  },
+  "mechanism": "ordered LocalTensor<float>::SetValue fill followed by one S_V SetFlag/WaitFlag handoff",
+  "composition": "one exact source-sized request per initialized AIV-local buffer",
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

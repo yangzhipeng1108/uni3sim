@@ -1,0 +1,10 @@
+{
+  "kind": "independent_single_cta_fill_capacity_plan",
+  "threads_per_cta": 1024,
+  "grid_ctas": 1,
+  "item_counts": [262144, 524288, 1048576],
+  "repeats": 2,
+  "samples_per_mode_per_repeat": 7,
+  "selection": "Reuse the unchanged independent one-CTA contiguous INT32 fill source with warm and rotating addresses. No routing, atomic, prefix, sort or complete operator. For each item count and repeat, take the median of14 CTA cycle samples (7 per address mode). Require both repeat medians within3% and use the slower repeat median to derive bytes/cycle and bytes/second at1.98GHz. Capacity is only a one-CTA fill component, never a whole alignment price, prefix or dual-CTA schedule. Failure closes without production change.",
+  "limits": "One H200, expected30s/max180s including build/warmup/cleanup, max0.05GPU-hours, shared US$0.35 reservation, no retries or Volume."
+}

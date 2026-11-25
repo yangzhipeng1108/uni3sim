@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "artifact_type": "ascend_910b_grouped_matmul_static_tiling_reference",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "case_id": "M64_MECHANISM_TOK16_E8_TOPK4_H1024_INT512",
+  "goal_baseline_commit": "0c340c5556757186bb47588529e59ff676514792",
+  "capture_snapshot_commit": "2d0d401ca0277940843797d2dc66bdb6c8aca68d",
+  "physical_device": 6,
+  "capture": {
+    "candidate_report_path": "profiler_output/microbench/ascend_910b/grouped_matmul_tiling_m64_mechanism_t16_e8_topk4_h1024_i512/candidate_report.json",
+    "candidate_report_sha256": "4db5ed9ead3be1faddd8ae9042ee39ca945eefbb4072762c0df7eca0da0b6458",
+    "production_duration_consumed": false,
+    "profiler_counters_consumed": false,
+    "complete_repetitions_per_projection": 8,
+    "all_repetitions_identical": true,
+    "excluded_runtime_cache_sequences": [127, 129, 137, 139, 147, 149]
+  },
+  "source": {
+    "tcube_tiling_header_sha256": "64836b7d7de43b0ebf7c5c4fab47a058a7e84356c2d1186ad3c478019f31f6f9",
+    "scheduler_mdl_base_sha256": "241c5f1ec362e1f7755ac9e5d1d8cc18490f28ab8e04631f94d32999e2db5526",
+    "copy_cube_in_params_base_sha256": "b9c3239ffe76280ee63ac3750f9f7b86c64b62f22680b96db19b1b0f8a960b8d",
+    "tbuf_pool_l0_base_sha256": "3531b6fbc126040850669e092c7429422cd0559eee6e593c43b717f19066f0ce"
+  },
+  "projections": {
+    "w1": {
+      "shape": {"m": 64, "n": 1024, "k": 1024},
+      "tiling": {"base_m": 64, "base_n": 256, "base_k": 64, "depth_a1": 24, "depth_b1": 8, "step_m": 1, "step_n": 1, "step_ka": 12, "step_kb": 4, "db_l0a": 2, "db_l0b": 2, "db_l0c": 1},
+      "tcube_tiling_raw_sha256": "7e4660cd24e77168be4a96301e730c6c70ee2a522d3419bf96092d5ee67eeeaf",
+      "tcube_tiling_decoded_sha256": "0aa6ee39d4be7424835e76ba727213145fb38ff4a82d8efda7f00b4ccf9ca7e5"
+    },
+    "w2": {
+      "shape": {"m": 64, "n": 1024, "k": 512},
+      "tiling": {"base_m": 64, "base_n": 256, "base_k": 64, "depth_a1": 24, "depth_b1": 8, "step_m": 1, "step_n": 1, "step_ka": 12, "step_kb": 4, "db_l0a": 2, "db_l0b": 2, "db_l0c": 1},
+      "tcube_tiling_raw_sha256": "b46592aaadbca2c2965eb086005e0bc8c1bf89b3cd93e89b73f85e331e9368a6",
+      "tcube_tiling_decoded_sha256": "a868a12471fd55c010b5fbc812a0fa0e2a1610844e93d1cfcfa018ef4121bc23"
+    }
+  },
+  "target_case_corroboration": {
+    "case_id": "FUSEDMOE_TOK16_E32_TOPK4_H2880_INT2880",
+    "complete_repetitions_per_projection": 8,
+    "all_repetitions_identical": true,
+    "captured_program": [24, 8, 12, 4, 1, 1, 2, 2, 1],
+    "runner_status": "terminated_after_295s_device_sync_stall",
+    "production_duration_consumed": false,
+    "profiler_counters_consumed": false
+  }
+}

@@ -1,0 +1,59 @@
+# BW1100 whole-device Roofline scenario, supplied by the user on 2026-10-21.
+# These are user-declared rated capacities, not independently verified vendor
+# data or measured sustained services. Dense/sparse convention remains unknown.
+# GB and TB/s below use decimal SI units; no GiB conversion is inferred.
+# FP16/BF16:354 TFLOP/s; FP8:708 TFLOP/s; INT8:708 TOP/s; HBM:144 GB,2.4 TB/s.
+# No BW1101 alias, native launch, cache, clock or occupancy is implied.
+hardware_id: hygon_bw1100
+clock_domains: {}
+components:
+  - name: tensor_bf16
+    count: 1
+    type: compute
+    role: compute_tensor
+    scope: shared
+    capacity_per_second: 354000000000000
+  - name: tensor_fp16
+    count: 1
+    type: compute
+    role: compute_tensor_fp16
+    scope: shared
+    capacity_per_second: 354000000000000
+  - name: tensor_fp8
+    count: 1
+    type: compute
+    role: compute_tensor_fp8
+    scope: shared
+    capacity_per_second: 708000000000000
+  - name: tensor_int8
+    count: 1
+    type: compute
+    role: compute_tensor_int8
+    scope: shared
+    capacity_per_second: 708000000000000
+  - name: dram
+    count: 1
+    type: memory
+    role: dram
+    scope: shared
+    capacity_per_second: 2400000000000
+    size_bytes: 144000000000
+resource_groups: []
+memory_subsystem: {}
+scheduling: {}
+# User deployment: two cards share one 400 Gb/s RoCE port, connected to a
+# nonblocking switch. Ethernet port speed is per direction: 400/8 = 50 GB/s.
+# This is ideal line capacity, without an invented protocol efficiency.
+# NIC placement must be explicit per transfer; rank adjacency is not assumed.
+# No local path between cards sharing a NIC or scaleX40 fabric is inferred.
+interconnect:
+  roce_unidir_bw_GB_s: 50
+  roce_devices_per_nic: 2
+  roce_switch_topology: fully_connected
+  roce_signal_latency_ns: null
+  roce_collective_startup_ns: null
+  parameter_source: user_supplied_2026_10_21_two_cards_per_400Gbps_roce
+features:
+  kernel_memory_model: roofline
+  kernel_dtype: bf16
+  parameter_source: user_supplied_2026_10_21_rated_capacities_dense_sparse_unconfirmed

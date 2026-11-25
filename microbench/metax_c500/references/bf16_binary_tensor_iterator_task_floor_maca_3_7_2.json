@@ -1,0 +1,31 @@
+{
+  "derivation_rule": "minimum_all_binary_graph_replay_differentials",
+  "derivation_trials": [1, 2],
+  "device_name": "MetaX C500",
+  "duration_ns": 1956.4800709486008,
+  "duration_unit": "ns_per_task",
+  "hardware_id": "metax_c500",
+  "maximum_cross_trial_median_spread_fraction": 0.005242155703158113,
+  "maximum_floor_regime_elements": 16384,
+  "maximum_floor_regime_median_spread_fraction": 0.1,
+  "model": "warm_bf16_binary_tensor_iterator_task_floor_v1",
+  "probe_elements": [1, 1024, 16384, 1048576],
+  "production_or_evaluation_duration_consumed": false,
+  "profiler_attached": false,
+  "raw_sha256": {
+    "trial_1.json": "de7c10236473cd745fa2ca0944d9dacf1615890405a4e92fc46d072ac3ba1356",
+    "trial_2.json": "d3702e2057df85ee5b10b3accd441b94b1d80dee934d19041b0a72132707906e",
+    "trial_3.json": "8bd87397eb0116abce96af8ecc0260a51382a98b8a0bef354194824927fdc403"
+  },
+  "repetition_counts": [100, 500],
+  "runner_sha256": "2a5d42a0ec6e3bdb53eb7557f0f4fcf887eebf3187f8c5bed2b69468f6e96484",
+  "schema_version": 2,
+  "software_revision": "torch_2.4.0_metax_3.7.2.0",
+  "target_operator_used": false,
+  "task_class": "pytorch_bf16_binary_tensor_iterator",
+  "timer_domain": "paired_differential_events_around_cuda_graph_replay",
+  "torch_version": "2.4.0+metax3.7.2.0",
+  "validation_below_floor_count": 0,
+  "validation_sample_count": 124,
+  "validation_trial": 3
+}

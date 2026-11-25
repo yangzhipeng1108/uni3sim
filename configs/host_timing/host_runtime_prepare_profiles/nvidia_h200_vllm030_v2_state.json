@@ -1,0 +1,48 @@
+{
+  "framework": {
+    "name": "PyTorch (vLLM0.11 wrapper proxies / vLLM0.30 V2 input and request state)",
+    "version": "2.8.0+cu128 wrappers / 2.13.0+cu130 independent V2 input/state proxies"
+  },
+  "hardware_id": "nvidia_h200",
+  "measurement": {
+    "artifacts": [
+      {
+        "path": "microbench/nvidia_h200/runtime/launch/references/host_runtime_prepare_vllm030.json",
+        "sha256": "5dcce1a4108734842eaf064316e647294030e4958fb4cffb9f24fc5916d0c5a5"
+      },
+      {
+        "path": "microbench/nvidia_h200/runtime/launch/references/vllm030_v2_input_prepare.json",
+        "sha256": "9043f0d0e8e8f8141af99fe922514992cb55b03c6640d54951cb790f3d629a35"
+      },
+      {
+        "path": "microbench/nvidia_h200/runtime/launch/references/vllm030_v2_state_admission.json",
+        "sha256": "c16fbd0e53071fbe2dd1c9c5551753d6415cdaf1faf491974d2f881917d209b0"
+      }
+    ],
+    "boundary": "independent_runtime_mechanism_microbenchmark"
+  },
+  "runtime": {
+    "name": "CUDA (explicit mixed mechanism sources)",
+    "version": "12.8 wrappers / 13.0 V2 input/state proxies"
+  },
+  "schema_version": 1,
+  "service_time_s": {
+    "collective_all_gather_prepare": 6.87842427153697e-05,
+    "collective_all_reduce_prepare": 3.3800334217510955e-05,
+    "compiled_fx_backend_entry": 3.1134825382133155e-05,
+    "compiled_fx_moe_wrapper_control": 1.3881477556046197e-05,
+    "fused_attention_source_wrapper_prepare": 2.2673373913043477e-05,
+    "moe_gating_prepare": 2.86015203294837e-05,
+    "moe_unquant_mlp_wrapper_prepare": 0.0002148171015285326,
+    "reshape_cache_prepare": 6.000486956521739e-06,
+    "unquantized_gemm_prepare": 1.2187052173913043e-05,
+    "vllm030_v2_input_prepare": 0.0004264375,
+    "vllm030_v2_state_fixed": 3.841275e-05,
+    "vllm030_v2_state_cached_request": 2.1637307837701613e-07,
+    "vllm030_v2_state_finish_nonempty": 7.321747256397638e-06,
+    "vllm030_v2_state_finished_request": 3.869709727690289e-07,
+    "vllm030_v2_state_admit_nonempty": 0.00022236634991877277,
+    "vllm030_v2_state_admitted_request": 1.1333505032517357e-05,
+    "vllm030_v2_state_admitted_token": 2.9624585551600305e-08
+  }
+}

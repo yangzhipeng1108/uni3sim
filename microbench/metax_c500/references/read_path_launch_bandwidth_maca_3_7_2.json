@@ -1,0 +1,300 @@
+{
+  "allowed_use": "Achieved DRAM *read* bandwidth of a fully coalesced launch as a function of its (grid, block). It bounds a read-dominated launch from above and composes by maximum with an execution time; it never adds. Read and copy are different ceilings: the companion copy sweep sustains 0.0704 GB/s per thread counting read plus write, which is the same ~0.035 GB/s per thread of reads.",
+  "forbidden_use": "A ceiling for a write-dominated or non-coalesced launch, an additive launch cost, or a per-shape correction.",
+  "hardware_id": "metax_c500",
+  "measured": {
+    "direct_cells": [
+      {
+        "block": 128,
+        "gb_s": 278.49,
+        "gb_s_thread": 0.034,
+        "grid": 64,
+        "mode": "direct",
+        "threads": 8192,
+        "us": 963.891
+      },
+      {
+        "block": 256,
+        "gb_s": 504.71,
+        "gb_s_thread": 0.0308,
+        "grid": 64,
+        "mode": "direct",
+        "threads": 16384,
+        "us": 531.866
+      },
+      {
+        "block": 512,
+        "gb_s": 831.41,
+        "gb_s_thread": 0.02537,
+        "grid": 64,
+        "mode": "direct",
+        "threads": 32768,
+        "us": 322.867
+      },
+      {
+        "block": 128,
+        "gb_s": 349.19,
+        "gb_s_thread": 0.0341,
+        "grid": 80,
+        "mode": "direct",
+        "threads": 10240,
+        "us": 768.742
+      },
+      {
+        "block": 256,
+        "gb_s": 605.48,
+        "gb_s_thread": 0.02956,
+        "grid": 80,
+        "mode": "direct",
+        "threads": 20480,
+        "us": 443.341
+      },
+      {
+        "block": 512,
+        "gb_s": 966.7,
+        "gb_s_thread": 0.0236,
+        "grid": 80,
+        "mode": "direct",
+        "threads": 40960,
+        "us": 277.683
+      },
+      {
+        "block": 128,
+        "gb_s": 435.8,
+        "gb_s_thread": 0.03274,
+        "grid": 104,
+        "mode": "direct",
+        "threads": 13312,
+        "us": 615.962
+      },
+      {
+        "block": 256,
+        "gb_s": 730.0,
+        "gb_s_thread": 0.02742,
+        "grid": 104,
+        "mode": "direct",
+        "threads": 26624,
+        "us": 367.718
+      },
+      {
+        "block": 512,
+        "gb_s": 1175.4,
+        "gb_s_thread": 0.02207,
+        "grid": 104,
+        "mode": "direct",
+        "threads": 53248,
+        "us": 228.378
+      },
+      {
+        "block": 128,
+        "gb_s": 745.89,
+        "gb_s_thread": 0.02802,
+        "grid": 208,
+        "mode": "direct",
+        "threads": 26624,
+        "us": 359.885
+      },
+      {
+        "block": 256,
+        "gb_s": 1194.55,
+        "gb_s_thread": 0.02243,
+        "grid": 208,
+        "mode": "direct",
+        "threads": 53248,
+        "us": 224.717
+      },
+      {
+        "block": 512,
+        "gb_s": 1539.31,
+        "gb_s_thread": 0.01445,
+        "grid": 208,
+        "mode": "direct",
+        "threads": 106496,
+        "us": 174.387
+      },
+      {
+        "block": 128,
+        "gb_s": 1224.11,
+        "gb_s_thread": 0.02299,
+        "grid": 416,
+        "mode": "direct",
+        "threads": 53248,
+        "us": 219.29
+      },
+      {
+        "block": 256,
+        "gb_s": 1537.05,
+        "gb_s_thread": 0.01443,
+        "grid": 416,
+        "mode": "direct",
+        "threads": 106496,
+        "us": 174.643
+      },
+      {
+        "block": 512,
+        "gb_s": 1564.11,
+        "gb_s_thread": 0.00734,
+        "grid": 416,
+        "mode": "direct",
+        "threads": 212992,
+        "us": 171.622
+      }
+    ],
+    "linear_region_per_thread_gb_s": 0.034,
+    "read_peak_gb_s": 1564.11,
+    "shared_memory_staged_cells": [
+      {
+        "block": 128,
+        "gb_s": 60.26,
+        "gb_s_thread": 0.00736,
+        "grid": 64,
+        "mode": "staged",
+        "threads": 8192,
+        "us": 4454.912
+      },
+      {
+        "block": 256,
+        "gb_s": 181.93,
+        "gb_s_thread": 0.0111,
+        "grid": 64,
+        "mode": "staged",
+        "threads": 16384,
+        "us": 1475.456
+      },
+      {
+        "block": 512,
+        "gb_s": 426.3,
+        "gb_s_thread": 0.01301,
+        "grid": 64,
+        "mode": "staged",
+        "threads": 32768,
+        "us": 629.683
+      },
+      {
+        "block": 128,
+        "gb_s": 75.13,
+        "gb_s_thread": 0.00734,
+        "grid": 80,
+        "mode": "staged",
+        "threads": 10240,
+        "us": 3573.171
+      },
+      {
+        "block": 256,
+        "gb_s": 225.5,
+        "gb_s_thread": 0.01101,
+        "grid": 80,
+        "mode": "staged",
+        "threads": 20480,
+        "us": 1190.4
+      },
+      {
+        "block": 512,
+        "gb_s": 523.14,
+        "gb_s_thread": 0.01277,
+        "grid": 80,
+        "mode": "staged",
+        "threads": 40960,
+        "us": 513.126
+      },
+      {
+        "block": 128,
+        "gb_s": 96.95,
+        "gb_s_thread": 0.00728,
+        "grid": 104,
+        "mode": "staged",
+        "threads": 13312,
+        "us": 2768.794
+      },
+      {
+        "block": 256,
+        "gb_s": 290.35,
+        "gb_s_thread": 0.01091,
+        "grid": 104,
+        "mode": "staged",
+        "threads": 26624,
+        "us": 924.518
+      },
+      {
+        "block": 512,
+        "gb_s": 649.31,
+        "gb_s_thread": 0.01219,
+        "grid": 104,
+        "mode": "staged",
+        "threads": 53248,
+        "us": 413.414
+      },
+      {
+        "block": 128,
+        "gb_s": 190.99,
+        "gb_s_thread": 0.00717,
+        "grid": 208,
+        "mode": "staged",
+        "threads": 26624,
+        "us": 1405.466
+      },
+      {
+        "block": 256,
+        "gb_s": 534.25,
+        "gb_s_thread": 0.01003,
+        "grid": 208,
+        "mode": "staged",
+        "threads": 53248,
+        "us": 502.451
+      },
+      {
+        "block": 512,
+        "gb_s": 1099.14,
+        "gb_s_thread": 0.01032,
+        "grid": 208,
+        "mode": "staged",
+        "threads": 106496,
+        "us": 244.224
+      },
+      {
+        "block": 128,
+        "gb_s": 357.63,
+        "gb_s_thread": 0.00672,
+        "grid": 416,
+        "mode": "staged",
+        "threads": 53248,
+        "us": 750.592
+      },
+      {
+        "block": 256,
+        "gb_s": 842.84,
+        "gb_s_thread": 0.00791,
+        "grid": 416,
+        "mode": "staged",
+        "threads": 106496,
+        "us": 318.49
+      },
+      {
+        "block": 512,
+        "gb_s": 1525.42,
+        "gb_s_thread": 0.00716,
+        "grid": 416,
+        "mode": "staged",
+        "threads": 212992,
+        "us": 175.974
+      }
+    ]
+  },
+  "mechanism": "read_path_launch_bandwidth",
+  "notes": "The shared-memory-staged variant is slower at every matched geometry, so a tiled operand pipeline is not what limits a deployed decode GEMM: at grid 80 x block 256 the direct read reaches 605.5 GB/s and the deployed QKV projection measures 586.5 GB/s, 3.1% apart, while the staged variant reaches only 225.5.",
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "capture": "profiler_output/microbench/metax_c500/tiled_operand_stage_20260919_r1",
+    "device_index": 0,
+    "mib_per_launch": 256,
+    "replays_per_cell": 10,
+    "source": "microbench/metax_c500/memory/dram/tiled_operand_stage_bandwidth.cpp",
+    "source_sha256": "39ccd94e50da8d1f73acb1a91cd9b395236ecee550bf36978ca03cbab004d225"
+  },
+  "schema": "read_path_launch_bandwidth_reference_v1",
+  "timer_domain": "maca_event_over_back_to_back_replays",
+  "unit": {
+    "bandwidth": "GB_s",
+    "threads": "resident threads"
+  }
+}

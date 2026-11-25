@@ -1,0 +1,3 @@
+# Optional plot generation; offline HTML reports use the standard library.
+-r requirements.txt
+matplotlib>=3.6,<4

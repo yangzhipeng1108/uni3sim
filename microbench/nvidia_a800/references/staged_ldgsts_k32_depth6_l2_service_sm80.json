@@ -1,0 +1,78 @@
+{
+  "schema": "nvidia_a800_staged_ldgsts_k32_depth6_l2_service_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "source_baseline_commit": "655f609e3bf61491757dcc04c01714ced27299a6",
+  "source": "microbench/nvidia_a800/memory/l2/staged_ldgsts_k32_depth6_l2.cu",
+  "source_sha256": "43fcf3197d0f2cb051bfed7a9779da322ce84401c753a546bb71876da0120500",
+  "runner": "microbench/nvidia_a800/memory/l2/staged_ldgsts_k32_depth6_l2_runner.py",
+  "runner_sha256": "676bc6576d1be410850098b22e5c66179525a2f1b2c0a050f3fe8bbcc744b6a0",
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_a800/staged_ldgsts_k32_depth6_bda2476b_d0_r3",
+      "device_index": 0,
+      "device_uuid": "capture-device-6f63e60145b9",
+      "provenance_sha256": "647ddc187df8f85cdbaaaa752f255e0d2a5548e98a480d530f1d433f9e097be0",
+      "raw_sha256": "bd74057b525f44db01883371d883f570c4f8f43f2681ebc1421076cde043b1f9",
+      "sass_sha256": "c7220d16c2fc169a90b339d29692a2123fee14420833475120f8f918ac31f42c",
+      "logical_byte_capacity_per_s": 4134280380120.534,
+      "relative_trial_spread": 0.008956454376819854
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_a800/staged_ldgsts_k32_depth6_bda2476b_d4_r3",
+      "device_index": 4,
+      "device_uuid": "capture-device-d611b051419d",
+      "provenance_sha256": "d930192fb960e92e5fef54ca3e61ed225e3fc54ee34a0a43a8d9fb46339fc60c",
+      "raw_sha256": "1122a181f43e750eaa293c42d589a51afc25b775ab18b31811457531ccf22ef5",
+      "sass_sha256": "c7220d16c2fc169a90b339d29692a2123fee14420833475120f8f918ac31f42c",
+      "logical_byte_capacity_per_s": 4139115832022.161,
+      "relative_trial_spread": 0.008187197026168947
+    }
+  ],
+  "probe_contract": {
+    "dtype": "fp16",
+    "tile_m": 64,
+    "tile_n": 128,
+    "tile_k": 32,
+    "threads_per_cta": 128,
+    "pipeline_slots": 6,
+    "resident_ctas_per_sm": 2,
+    "physical_sm_count": 108,
+    "grid_ctas": 216,
+    "panel_bytes": 12288,
+    "shared_bytes_per_cta": 74752,
+    "backing_bytes": 33554432,
+    "rounds": 4096,
+    "load_instruction": "LDGSTS",
+    "cache_operator": "cg"
+  },
+  "selected_service": {
+    "selection_rule": "minimum complete-capture capacity across idle devices 0 and 4",
+    "logical_byte_capacity_per_s": 4134280380120.534,
+    "throughput_per_sm_clock": 3626.561736947837,
+    "scope": "full_chip"
+  },
+  "applicability": {
+    "dtype": "fp16",
+    "tile_shape": [64, 128, 32],
+    "threads_per_cta": 128,
+    "pipeline_slots": 6,
+    "minimum_ctas_per_sm": 2,
+    "required_launch_algorithm": "observed_gemm:gemm",
+    "required_operand_streams": 2,
+    "required_source_evidence": "six-slot CUTLASS SM80 A/B operand staging with LDGSTS"
+  },
+  "decision": {
+    "status": "accepted_mechanism_capacity",
+    "forward_eligible": true,
+    "reason": "The workload-independent staged copy is stable on two idle A800 devices and provides only the exact source-class L2 read service ceiling."
+  },
+  "excluded_conclusions": [
+    "a complete production GEMM duration",
+    "a generic L2 capacity replacement",
+    "write or read/write-duplex capacity",
+    "a per-shape timing correction"
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_eight_expert_twelve_tile_deep_w2_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "populated_experts": 8,
+    "active_m_tiles": 12,
+    "maximum_m_tiles": 16,
+    "production_k_n_tile_class": [512, 96]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090608,
+    "experts": 8,
+    "topk": 2,
+    "source_topk": 1,
+    "event_trials_per_capture": 9,
+    "independent_process_captures_per_route": 3,
+    "capture_order": [250, 251, 250, 251, 250, 251],
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "01f83fecf7fb57f932afd57ee42210e97981ec712237ce3b0af81a6b9fda94e1",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "median capacity across six interleaved independent-process captures with the same launch grid and M-tile counts"
+  },
+  "profiler_diagnostic": {
+    "tokens_250": {
+      "tokens_per_expert": [73, 57, 65, 56, 53, 65, 59, 72],
+      "second_tile_experts": [0, 2, 5, 7],
+      "workgroups": 1536,
+      "waves": 6144,
+      "average_wave_life_cycles": 2210888.5,
+      "ap_active_cycles": 954445691.0,
+      "ap_mte_duty_percent": 8.9,
+      "ap_mma_duty_percent": 7.91,
+      "dnoc_read_requests": 23461438.0,
+      "l2c_hit_rate_percent": 61.68,
+      "core_counter_raw_sha256": "1dd9fc0a5adfc2b3fce0a11c476f892e643e9770b2412dd6eaa585f1ae897f82",
+      "l2_hit_raw_sha256": "c2f29937f0f068000709102221e734a466747985a46d2a9d68a47e8bbcaf9a6a"
+    },
+    "tokens_251": {
+      "tokens_per_expert": [73, 57, 66, 57, 53, 65, 59, 72],
+      "second_tile_experts": [0, 2, 5, 7],
+      "workgroups": 1536,
+      "waves": 6144,
+      "average_wave_life_cycles": 2543476.46,
+      "ap_active_cycles": 1092739060.0,
+      "ap_mte_duty_percent": 7.77,
+      "ap_mma_duty_percent": 6.91,
+      "dnoc_read_requests": 23347000.0,
+      "l2c_hit_rate_percent": 62.24,
+      "core_counter_raw_sha256": "771ad587b99ab06d3635169537012e2d29a5c22e08a2ee9cd5dde4fa0d60dced",
+      "l2_hit_raw_sha256": "6f3d169af344bb3284f8b737d810ab8bc70ac864e93390e36c6fa16d0bad76c5"
+    },
+    "conclusion": "The routes have the same second-tile expert mask, identical workgroup and wave counts, nearly equal DNoC traffic, and similar L2 hit rates. The one-off 605-versus-369 GB/s event split is not a distinct queue topology; repeated independent processes are required to estimate the shared service."
+  },
+  "captures": [
+    {"tokens": 250, "capture": 1, "valid_routes": 500, "active_m_tiles": 12, "maximum_m_tiles": 16, "k": 16384, "n": 6144, "raw_sha256": "674b3c2f413ad4e8ac68bf7f8060745240ea0a8191daa9dc3ea7c5409dec5bfa", "operand_pipeline_capacity_bytes_per_s": 402193664901.6709},
+    {"tokens": 251, "capture": 1, "valid_routes": 502, "active_m_tiles": 12, "maximum_m_tiles": 16, "k": 16384, "n": 6144, "raw_sha256": "61157b354c5fa8a2561c5ca618698e532e6fa97bba34b24efb8b0f55bfc00108", "operand_pipeline_capacity_bytes_per_s": 601992790241.0226},
+    {"tokens": 250, "capture": 2, "valid_routes": 500, "active_m_tiles": 12, "maximum_m_tiles": 16, "k": 16384, "n": 6144, "raw_sha256": "e0c309d2b6d60df8cbd0558a6302476abf05ab1bc020facf6dc61d948626f21d", "operand_pipeline_capacity_bytes_per_s": 573945449462.662},
+    {"tokens": 251, "capture": 2, "valid_routes": 502, "active_m_tiles": 12, "maximum_m_tiles": 16, "k": 16384, "n": 6144, "raw_sha256": "66456f38ab9df535c124638aef99b8d513408fb0bca69afb8d649324dad08870", "operand_pipeline_capacity_bytes_per_s": 509783905398.5659},
+    {"tokens": 250, "capture": 3, "valid_routes": 500, "active_m_tiles": 12, "maximum_m_tiles": 16, "k": 16384, "n": 6144, "raw_sha256": "b6f03d73e1f9b431194c8609d5867a05ad3c8967062e073f7e1d9be940967062", "operand_pipeline_capacity_bytes_per_s": 424185567578.8892},
+    {"tokens": 251, "capture": 3, "valid_routes": 502, "active_m_tiles": 12, "maximum_m_tiles": 16, "k": 16384, "n": 6144, "raw_sha256": "b2276a6d9f1e40913dae1a0afcca5f0a79d5f16bdf16a6981b696726219ef774", "operand_pipeline_capacity_bytes_per_s": 689864086444.4832}
+  ],
+  "selected_service": {
+    "predicate": "exactly eight populated experts, exactly twelve active M tiles, and K/N tile class (512,96)",
+    "logical_byte_capacity_per_s": 541864677430.61395
+  }
+}

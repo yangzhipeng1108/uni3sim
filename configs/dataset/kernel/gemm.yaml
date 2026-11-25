@@ -1,0 +1,65 @@
+# ==============================================================================
+# GEMM kernel configuration
+# ==============================================================================
+kernel_name: gemm
+
+# Workload parameter combinations (batch + sequence length)
+# Test cases = workload_configs × layers (Cartesian product)
+workload_configs:
+  # --- [Decode] Single User ---
+  - {batch: 1,   seq_len: 1}
+  
+  # --- [Decode] Small Batch (Multi-User Serving) ---
+  - {batch: 2,   seq_len: 1}
+  - {batch: 4,   seq_len: 1}
+  - {batch: 8,   seq_len: 1}
+  - {batch: 16,  seq_len: 1}
+  - {batch: 32,  seq_len: 1}
+  - {batch: 48,  seq_len: 1}
+  - {batch: 64,  seq_len: 1}
+  
+  # --- [Decode] Large Batch ---
+  - {batch: 128, seq_len: 1}
+  - {batch: 256, seq_len: 1}
+  - {batch: 512, seq_len: 1}
+  
+  # --- [Prefill] Long Context ---
+  - {batch: 1,   seq_len: 2048}
+  - {batch: 1,   seq_len: 4096}
+  - {batch: 1,   seq_len: 8192}
+  - {batch: 1,   seq_len: 16384}
+
+  # --- [Large Batch] Throughput / Training ---
+  - {batch: 4,   seq_len: 4096}
+  - {batch: 8,   seq_len: 4096}
+
+# Model layer definitions (K × N matrix shape)
+layers:
+  # === [Group 1: Standard 7B (Llama 2)] ===
+  # K=4096, Intermediate=11008
+  - {name: "7B_QKV",            k: 4096,  n: 4096,  dtype: "bf16"}
+  - {name: "7B_MLP_Up",         k: 4096,  n: 11008, dtype: "bf16"}
+  - {name: "7B_MLP_Down",       k: 11008, n: 4096,  dtype: "bf16"}
+
+  # === [Group 2: Llama 3 (8B) & Mixtral 8x7B Common] ===
+  # Llama 3 and Mixtral share the same MLP dimensions; use one profile
+  # K=4096, Intermediate=14336
+  - {name: "Llama3_Mixtral_Up",   k: 4096,  n: 14336, dtype: "bf16"}
+  - {name: "Llama3_Mixtral_Down", k: 14336, n: 4096,  dtype: "bf16"}
+
+  # === [Group 3: 13B / 14B Class] ===
+  # K=5120, Intermediate=13824
+  - {name: "13B_QKV",           k: 5120,  n: 5120,  dtype: "bf16"}
+  - {name: "13B_MLP_Up",        k: 5120,  n: 13824, dtype: "bf16"}
+  - {name: "13B_MLP_Down",      k: 13824, n: 5120,  dtype: "bf16"}
+
+  # === [Group 4: 70B Class] ===
+  # K=8192, Intermediate=28672
+  - {name: "70B_QKV",           k: 8192,  n: 8192,  dtype: "bf16"}
+  - {name: "70B_MLP_Up",        k: 8192,  n: 28672, dtype: "bf16"}
+  - {name: "70B_MLP_Down",      k: 28672, n: 8192,  dtype: "bf16"}
+
+  # === [Group 5: Fine-Grained MoE (DeepSeek/Qwen)] ===
+  # Small N dimension
+  - {name: "FineGrained_Expert_Up",   k: 5120, n: 1536, dtype: "bf16"}
+  - {name: "FineGrained_Expert_Down", k: 1536, n: 5120, dtype: "bf16"}

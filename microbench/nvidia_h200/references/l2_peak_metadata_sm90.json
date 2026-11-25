@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "hardware_id": "nvidia_h200",
+  "clock_hz": 1980000000,
+  "l2": {
+    "read_bytes_per_cycle": 6016,
+    "write_bytes_per_cycle": 3008,
+    "basis": "NCU whole-device peak_sustained metadata at 1.98 GHz; L2 combined=max(read/read_peak, write/write_peak), not a simultaneous read+write capacity claim",
+    "source": {
+      "report": "profiler_output/microbench/nvidia_h200/l2_peak_metadata_modal_20261030/raw_clock_none/peak.ncu-rep",
+      "sha256": "1b8aa706d359b9113cae24f0c9ddee619c8195c28b0d1c4f15a05ff8a6ffead7",
+      "ncu_version": "2024.3.2.0",
+      "read_metric": "lts__t_sectors_srcunit_tex_op_read.sum.peak_sustained",
+      "read_sectors_per_cycle": 188,
+      "write_metric": "lts__t_sectors_srcunit_tex_op_write.sum.peak_sustained",
+      "write_sectors_per_cycle": 94,
+      "sector_bytes": 32,
+      "xbar_metric": "lts__lts2xbar_cycles_active.sum.peak_sustained",
+      "xbar_peak": 188
+    }
+  },
+  "hbm": {
+    "shared_bytes_per_second": 4800000000000,
+    "basis": "H200 public nominal HBM bandwidth; read and write share the same aggregate capacity",
+    "source": "https://www.nvidia.com/en-us/data-center/h200/"
+  }
+}

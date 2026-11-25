@@ -1,0 +1,3865 @@
+hardware_id: metax_c500
+# ============================================================
+# MetaX C500 64GB Hardware Spec (V3 Component Tree Model)
+# 104 APs (SM-equivalent), HBM2e 64GB, 8MB L2
+# ============================================================
+#
+# Source classes are intentionally separated below: the user-supplied C500
+# architecture reference, the profiler metric guide, macainfo/runtime device
+# queries, and retained independent mechanism microbenchmarks.  The metric
+# guide is not itself an architecture specification, and architecture
+# envelopes are not described as sustained measurements.
+#
+# Candidate C500 BF16 product envelope: 240 TFLOPS.  The primary product-spec
+# artifact is not retained in this checkout.  A retained MACA 3.7.2
+# register-only BF16 16x16x16 MMA sweep reaches 1993.394 FLOP/AP/clock at
+# 32 waves/AP (498.349/PEU/clock), independently supporting but not replacing
+# the 2048 FLOP/AP/clock architecture peak; it is not a production-operator
+# measurement or a reason to substitute a sustained endpoint for the peak.
+#   per AP per clk = 240e12 / 104 / 1.125e9 = 2048 ops/clk (= 4 subcores × 512)
+#   macainfo: PEUs per AP = 4 (confirmed 4 subcores per AP)
+
+# ─── Clock domains ────────────────────────────────────────
+clock_domains:
+  sm: 1125000000        # AP (SM-equivalent) frequency (Hz)
+                        # Source: mx-smi --show-dpm: XCORE max level 9 = 1125 MHz
+  dram: 1800000000      # HBM2e effective clock (Hz)
+                        # Source: mx-smi --show-clocks: MC1_DFICLK = 1800 MHz
+                        # Consistent with c500.py bandwidth=1.800 TB/s
+
+components:
+  # ─── AP (SM) subtree (per-AP resources) ─────────────────
+  - name: sm
+    count: 104
+    children:
+      - name: subcore
+        count: 4
+        children:
+          - name: tensor_core
+            role: compute_tensor
+            scope: shared
+            count: 1
+            type: compute
+            primary_variant: fp16
+            variants:
+              - name: fp16
+                # 512 FLOP/PEU/clock gives the candidate 240-TFLOP/s full-chip
+                # BF16/FP16 envelope at 104 AP x 4 PEU x 1.125 GHz.  The
+                # retained MACA 3.7.2 register-only BF16 sweep reaches
+                # 498.349 FLOP/PEU/clock at 32 waves/AP.
+                throughput_per_clk: 512
+              - name: bf16
+                throughput_per_clk: 512
+          - name: fma_pipe
+            role: compute_fma
+            scope: shared
+            count: 1
+            type: compute
+            # Formula demand is arithmetic operations.  The architecture has
+            # 16 lanes/PEU and a full-lane FMA performs two operations/lane,
+            # hence 32 FLOP/PEU/clock at the documented issue envelope.
+            throughput_per_clk: 32
+          - name: sfu_pipe
+            role: compute_sfu
+            scope: shared
+            count: 1
+            type: compute
+            # Register-resident EXP2/RCP/RSQRT primitive sweeps reach
+            # 15.603 op/AP/clock at the architectural maximum 32 waves/AP,
+            # i.e. 3.901 op/PEU/clock.  Together with the common Vector-ALU
+            # issue slot this supports a 4-op/PEU/clock primitive envelope;
+            # expf/rsqrtf library recipes contain multiple opcodes and are not
+            # represented as one primitive operation.  An independent MACA
+            # 3.7.2 statically-unrolled campaign measures 16 XCORE cycles per
+            # dependent EXP/RCP/RSQ/RCPI wave opcode.  That latency has no
+            # valid additive primitive-op Forward consumer and does not alter
+            # this throughput envelope. Source-level exp(-x) and 1/(1+x)
+            # dependency services are instead measured by an independent
+            # runtime-counted 512-thread mechanism benchmark. Adjacent loop
+            # depths remove launch and terminal-store work; trials 1--2 derive
+            # the rates and frozen trial 3 validates at 0.89% max APE. The
+            # saturated report unit is block-layers/AP/s, so each configured
+            # rate is divided across the four physical PEU resources per AP.
+            # Setup is the single-grid block-layer latency minus one saturated
+            # AP service interval. No production/evaluation duration is used.
+            # artifact: profiler_output/microbench/metax_c500/
+            #   semantic_math_builtin_throughput_4c9df8a_20260826_r8/report.json
+            # source/report SHA256:
+            #   4c9df8a687b0c06a5bde5a410f898e311a21069ecb5d9b3344cb8cf02cdde354
+            #   9101b34ddbb525ad50c75568c7b4af6689f35450e629513f6a552cb61a1d7897
+            throughput_per_clk: 4
+            service_rates_per_unit_s:
+              exp_dependency: 6458774.993203525
+              reciprocal_one_plus_dependency: 2104363.2072809557
+            service_setup_time_s:
+              exp_dependency: 4.04296770284418e-09
+              reciprocal_one_plus_dependency: 1.4246088539948659e-08
+          - name: alu_pipe
+            role: compute_alu
+            scope: shared
+            count: 1
+            type: compute
+            # One Vector-ALU issue across 16 lanes per PEU.
+            throughput_per_clk: 16
+      - name: shared_mem
+        role: smem
+        scope: per_unit
+        count: 1
+        type: memory
+        throughput_per_clk: 128           # supplied architecture peak
+        traffic_filter: null              # torch: shared_memory_per_multiprocessor = 65536 (64KB)
+        size_bytes: 65536
+      - name: l1_cache
+        role: l1_cache
+        scope: per_unit
+        count: 1
+        type: memory
+        # Vector L1 is disabled in the supplied architecture.  This nominal
+        # value is retained only to satisfy the common component schema; the
+        # C500 launch contract removes L1 demand before pricing it.
+        throughput_per_clk: 128
+        traffic_filter: null              # macainfo: L1 = 32 KB per AP
+        size_bytes: 32768
+      - name: warp_dispatch
+        role: warp_issue
+        scope: per_unit
+        count: 1
+        type: compute
+        # The supplied architecture exposes five independent issue slots per
+        # AP and at most one instruction in each slot per XCORE cycle.  This
+        # is an aggregate instruction-dispatch envelope; per-pipe FMA/SFU/ALU
+        # capacities remain separate lower bounds.
+        throughput_per_clk: 5
+      - name: integer_dependency
+        role: compute_vector
+        scope: per_unit
+        count: 1
+        type: compute
+        # One operation is one dependent source-level integer division or
+        # remainder across a wave64. The independent register-only benchmark
+        # uses adjacent runtime repetition counts to remove clock64, loop-entry,
+        # launch, and terminal-store overhead. Trials 1--2 derive the slopes;
+        # frozen trial 3 validates every service below 0.82% max APE. The
+        # benchmark derives one dependent wave64-chain rate per PEU; the rates
+        # below multiply it by the four architectural PEUs because this
+        # component is placed once per AP. No production or evaluation duration
+        # is consumed.
+        # artifact: profiler_output/microbench/metax_c500/
+        # semantic_integer_dependency_8be0dd1_20260826_r2/report.json
+        # source/report SHA256:
+        # 8be0dd1e9a7d37f15e8144f100d5ae0e58a13312f5db052bee7a33c9ca00e418
+        # b789e62537cd2199c76bd05362b020860f873958fc7d206d48d8ea9422acdcca
+        throughput_per_clk: 1
+        exact_request_services:
+          # The fixed vLLM 0.8.5 / MACA 3.7.2 block128 RMSNorm program has
+          # two waves per CTA. mcProfiler's non-duration lifecycle counter
+          # reports their mean admission-to-completion span. This exact
+          # request is a completion envelope with zero modeled occupancy:
+          # the issue service below remains the steady-state throughput and
+          # later CTAs overlap this finite tail.
+          rmsnorm_block128_wave_lifetime_completion:
+            request_size_unit: source_program_completion
+            service_time_unit: ns_per_cta_completion
+            lookup_policy: exact_only
+            evidence_ref: microbench/metax_c500/references/rmsnorm_block128_program_completion_maca_3_7_2.json
+            evidence_sha256: c351429739fd6146158db13e9a82dda9b211f66e1abbab9af74a070bc4815fe4
+            production_or_evaluation_duration_consumed: false
+            entries:
+              - {request_size: 1, service_time_ns: 5765.262222222222}
+        service_rates_per_unit_s:
+          integer_div_u32_dependency: 35139092.240117125
+          integer_rem_u32_dependency: 36290322.58064516
+          integer_div_u64_dependency: 18433179.723502304
+          integer_rem_u64_dependency: 18442622.95081967
+          # One operation is one dependent source-semantic wave64 bundle.
+          # BF16 roundtrip converts one packed pair to FP32 and back (four
+          # scalar conversions); address multiply-add is one uint64 chain.
+          # Trials 1--2 derive 100 and 68 XCORE cycles respectively, and the
+          # frozen third trial validates at 0.99% and 6.25% max APE. Rates
+          # use the documented 1.125 GHz XCORE clock and four PEUs per AP.
+          # No production or evaluation duration is consumed.
+          # artifact: profiler_output/microbench/metax_c500/
+          #   semantic_conversion_address_bf3967ba_20260828_r1/report.json
+          # source/report SHA256:
+          #   18162ca6d8adf7c3148eb762e9560c13af924883da04553827377b2bdfa6592c
+          #   873c0751d00f265528b9bd4937aed42ef9c8de0fb019bdd993e5e1493de453ea
+          bf16_roundtrip_pair_dependency: 45000000.0
+          address_multiply_add_u64_dependency: 66176470.5882353
+          # The fixed vLLM-MetaX 0.8.5 activation code object contains one
+          # issue-slot-2 MTE/Vector-ALU instruction service per AP/XCORE cycle.
+          # _C.abi3.so SHA256:
+          #   a8715e7f7fe1790b46586fd8780036177c083504b24556ae1d661d0f0b569955
+          # act_and_mul_kernel_bd_opt at 0x27600, size 0x850; extracted object
+          # SHA256 8bcfc2c31a267929281af00ee77e70b182bf0e6261057aaee747e672ac87a9ac;
+          # disassembly SHA256
+          # 9e595e02a031b75412070b0dd38040460795857ed5e97cfc0ca16402659dfa81.
+          # Static active/inactive counts are 247/3 per wave and canonical
+          # non-duration MTE counters conserve both counts exactly. No
+          # production or evaluation duration is consumed.
+          vector_alu_issue_slot_instruction: 1125000000.0
+          # [MEASURED_MECHANISM] Source-identical scalar input/output loops
+          # for the legacy vLLM 0.8.5 ``rms_norm_kernel`` block128 program.
+          # Runtime-counted loop depth isolates steady work from launch and
+          # CTA fill; the 16-CTA/AP occupancy is reported by the compiler.
+          # Trials 1--2 derive the services and trial 3 validates the four
+          # function/block families at 4.73% aggregate MAPE and 26.52% max
+          # APE. No production/evaluation duration is consumed.
+          # artifact: profiler_output/microbench/metax_c500/
+          #   rmsnorm_scalar_block128_20260908_r2/report.json
+          # source/runner/report SHA256:
+          #   9ab52e3e7a21e62bfd9ea627a5e04b83d02b84f7ff515cc17a79d787a945c127
+          #   4a53ec17779766f324eff0762c42efc5b8532de4a83bc175d2e4d2646551b8e7
+          #   3786b2e01c3ed80b2c683d650515e118964ce2b08bfc4dab7710b0e421814791
+          rmsnorm_input_square_resident_128: 64023866.94044592
+          rmsnorm_input_square_queued_128: 24327846.149403196
+          rmsnorm_output_scale_resident_128: 18748842.91617159
+          rmsnorm_output_scale_queued_128: 16147716.890284926
+          # One operation is one complete 1024-lane scalar RMSNorm source
+          # steady round. The input service preserves idx+=blockDim.x, BF16 load,
+          # conversion, and loop-carried square accumulation. The output
+          # service preserves two scalar loads, scale multiply, intermediate
+          # BF16 round trip, weight multiply, final BF16 conversion, and
+          # store. The deepest adjacent 16-to-32-round difference isolates the
+          # steady service after loop startup. Trials 1--2 derive the
+          # first/resident/queued services; frozen trial 3 validates the 24
+          # cells at 5.88% MAPE and 21.19% max APE.
+          # The block1024 source and probe both have occupancy two. No
+          # production or evaluation duration is consumed.
+          # artifact: profiler_output/microbench/metax_c500/
+          #   rmsnorm_scalar_round_bc319476_20260904_r4
+          # source/report SHA256:
+          #   b348567505883967144bec8d4da55c5fd0e80db6886c4a1562fbbe43d97ac5b2
+          #   01bfa21d1641146b76a086962b1340ca927d98a04124494f5127430c9768493f
+          # The source-identical extension measures depths 2 and 3 in the
+          # same campaign matrix and preserves the compiled instruction and
+          # occupancy signatures. Its deep-round holdout remains publishable
+          # at 5.74% MAPE and 24.63% max APE; no service coefficient changes.
+          # artifact: profiler_output/microbench/metax_c500/
+          #   rmsnorm_shallow_round_d71ced91_20260907_gpu3
+          # source/report SHA256:
+          #   181a31811b454cb03aea33e36b876a5fa3c3db0f85590bb256fded36460d68eb
+          #   6f4f7431bb63625ddfd1144fd8698b446e02bddbb751257e20f94befd8757304
+          rmsnorm_input_square_resident_1024: 5586588.697932833
+          rmsnorm_input_square_queued_1024: 3686636.155264143
+          rmsnorm_output_scale_resident_1024: 3246753.6815877995
+          rmsnorm_output_scale_queued_1024: 2059732.602470379
+          # One operation is the positive per-round excess introduced when
+          # the two scalar RMSNorm loops execute in one CTA program across a
+          # published scalar phase boundary. Exact active-unit services stop
+          # at eight APs: both derivation trials become nonpositive at 16 APs,
+          # and later cells mix in cache-capacity transitions. Frozen trial 3
+          # validates the four supported chain services at 1.99% MAPE and
+          # 4.57% max APE. No production/evaluation duration is consumed.
+          # artifact: profiler_output/microbench/metax_c500/
+          #   rmsnorm_phase_chain_4cc56ade_20260906_r2
+          # source/report SHA256:
+          #   853a4372c190587775aff56ed01f870862ef6eb2dda9bca5a608c57fea04fbad
+          #   6c715f6876e2a32b6a5f27148235a1542e76c0acc680b759233d5c6a3472e3a4
+          rmsnorm_phase_chain_excess_first_1024: 9433962.955763273
+          rmsnorm_phase_chain_excess_first_1024_active2: 13513516.910902927
+          rmsnorm_phase_chain_excess_first_1024_active4: 21276644.536145803
+          rmsnorm_phase_chain_excess_first_1024_active8: 83333305.1220299
+          # The same source-chain campaign also isolates the fixed device-side
+          # phase entry after subtracting the independently measured complete
+          # block1024 scheduler envelope. The deepest 16-to-32-round interval
+          # derives the steady chain slope; depths 8, 16, and 32 in frozen
+          # trial 3 validate the affine composition at 0.58% MAPE and 1.30%
+          # max APE. The maximal contiguous positive domain is 1--16 active
+          # APs; both derivation trials become negative at 32 APs.
+          # artifact: profiler_output/microbench/metax_c500/
+          #   rmsnorm_phase_chain_4cc56ade_20260907_r3/report.json
+          # runner/report SHA256:
+          #   dc4f95b0b8972959d63ecd7a8eae8b052a7a09ee778f6a34eebd608e969d7131
+          #   526ed16c8acc3fc3e4206465d784d3f6a1c5096d9e0bda83ceebb0ccad8376a9
+          rmsnorm_phase_entry_first_1024: 520699.3929801098
+          rmsnorm_phase_entry_first_1024_active2: 466531.65214295086
+          rmsnorm_phase_entry_first_1024_active4: 453423.25411788153
+          rmsnorm_phase_entry_first_1024_active8: 417819.5356661483
+          rmsnorm_phase_entry_first_1024_active16: 388010.9577998842
+          # One operation is the per-scalar-round excess produced when the
+          # pinned generic BF16 AddRMSNorm input and output loops execute in
+          # one block1024 CTA around their publication barrier. Trials 1--2
+          # derive exact active-AP services and frozen trial 3 validates them
+          # at 1.06% MAPE and 1.59% max APE. Active=1 is unstable and the
+          # service becomes negative at active=64, so neither is consumed.
+          # artifact: profiler_output/microbench/metax_c500/
+          #   add_rmsnorm_phase_chain_b09cb5b7_20260907_gpu3/report.json
+          # source/runner/report SHA256:
+          #   c08b6ef7839f4e4cec199769d2b721a9a881f39b4e2c50e6970ea9075f877b27
+          #   a250065eb5d25d701afac381d2466764f509c5c1d9b381e81ecb51a97271f1b9
+          #   cc37e28259df5ba744d538151802a606e0a95612ab3e02a105d42cb45a94c039
+          add_rmsnorm_phase_chain_excess_first_1024_active2: 2666666.643487083
+          add_rmsnorm_phase_chain_excess_first_1024_active4: 2747253.5744751655
+          add_rmsnorm_phase_chain_excess_first_1024_active8: 3225806.7223845464
+          add_rmsnorm_phase_chain_excess_first_1024_active16: 4065041.919348528
+          add_rmsnorm_phase_chain_excess_first_1024_active32: 16129030.583428469
+          # The same source-identical campaign separately isolates the generic
+          # AddRMSNorm scalar input and output loops. For the exact one-AP
+          # execution class, trials 1--2 give 404.000 ns and 635.000 ns per
+          # 1024-element round; frozen trial 3 validates them within 1.12%.
+          # Only the measured 8--32-round domain is consumed. The unstable
+          # active1 chain excess and the negative active64 excess remain
+          # excluded. No production/evaluation duration is consumed.
+          add_rmsnorm_input_add_square_first_1024: 2475247.5783667476
+          add_rmsnorm_output_scale_first_1024: 1574803.0675894031
+          # One operation is the complete fixed-address input add/square loop
+          # of one generic BF16 block1024 CTA at grid64. CTA-local clock64
+          # intervals exclude launch, admission, reduction, output, and
+          # address progression. Trials 1--2 select each exact source depth;
+          # frozen trial 3 validates all five cells below 0.89% APE and the
+          # maximum cross-trial spread is 1.60%. These services are only a
+          # competing input-function lower bound and are never added to the
+          # fixed source setup or a progression/scheduler service.
+          # reference: microbench/metax_c500/references/
+          #   add_rmsnorm_grid64_fixed_input_loop_maca_3_7_2.json
+          # raw: profiler_output/microbench/metax_c500/
+          #   add_rmsnorm_grid64_fixed_loop_53ac6c7b_20260909_d3/report.json
+          # source/binary SHA256:
+          #   dc5dcd8b5bcddd583cbc2ac1caa66cbada6c371f1c45f6306776f23406db2b36
+          #   47cd04bc8dbea1e49ccf4422f1df458677e3e2c9119ef90aaabaf11c431cefe2
+          add_rmsnorm_grid64_fixed_input_loop_depth4_1024: 277915.0197628458
+          add_rmsnorm_grid64_fixed_input_loop_depth5_1024: 231576.78056813503
+          add_rmsnorm_grid64_fixed_input_loop_depth8_1024: 156250.0
+          add_rmsnorm_grid64_fixed_input_loop_depth16_1024: 82842.41531664212
+          add_rmsnorm_grid64_fixed_input_loop_depth32_1024: 42700.97927579139
+          # One operation is one physical 256-element scalar input-loop
+          # iteration of the pinned generic AddRMSNorm source.  The separate
+          # input function retains its loop-carried square accumulation; the
+          # lane-independent output function remains on the compact service.
+          # Trials 1--2 derive the first curve and resident rate; trial 3
+          # validates the complete 72-cell block256 campaign at 2.17% MAPE
+          # and 17.14% Max APE without production/evaluation duration.
+          # artifact: profiler_output/microbench/metax_c500/
+          #   add_rmsnorm_block256_scalar_f8263dcc_20260907_d3/report.json
+          add_rmsnorm_scalar_input_add_square_resident_256: 34782599.12116579
+          # One operation is one nonempty physical CTA source round. These
+          # steady services are adjacent-depth slopes from the independent
+          # MACA 3.7.2 BF16 vector-memory campaigns referenced below. The
+          # scale/multiply source omits a cross-round accumulator because the
+          # production AddRMSNorm output pass reuses one fixed variance scale.
+          # The production block256 generic kernel uses scalar
+          # blockDim-stride loops. The independent physical-block256 campaign
+          # supersedes only the queued-CTA block256 slopes at 107.062486 ns
+          # and 124.874990 ns per 256-element round. These two rates normalize
+          # eight scalar rounds to the existing 2048-element compact stage;
+          # first/resident classes retain their separately measured services.
+          # artifact: profiler_output/microbench/metax_c500/
+          #   add_rmsnorm_block256_scalar_f8263dcc_20260907_d3/report.json
+          # source/report SHA256:
+          #   966a5be327ee048cc7fd188e320fbbf98ad07369851a93f38b664bbfa53aad63
+          #   fc72a3e4b94a7eb9ef698e75e78c210db357c2824ba53d9b0077226f149b48f9
+          bf16_add_square_resident_256: 823722.9600091445
+          bf16_add_square_queued_256: 1167542.4786177713
+          bf16_add_square_resident_512: 340367.6217029558
+          bf16_add_square_queued_512: 327238.52060243126
+          bf16_add_square_resident_1024: 159667.8740177795
+          bf16_add_square_queued_1024: 160849.282288408
+          bf16_scale_multiply_resident_256: 734753.8561826843
+          bf16_scale_multiply_queued_256: 1001001.0776866653
+          bf16_scale_multiply_resident_512: 337381.8915587429
+          bf16_scale_multiply_queued_512: 328016.72065554967
+          bf16_scale_multiply_resident_1024: 159642.38999747136
+          bf16_scale_multiply_queued_1024: 159553.26587961792
+        # First-resident-CTA round latency as a bounded function of active AP
+        # count. Trials 1--2 derive these mechanism curves and frozen trial 3
+        # validates all six functions/widths at 3.92% MAPE and 16.18% max APE.
+        # The benchmark executes source-equivalent BF16 load/convert/arithmetic
+        # and store rounds; it consumes no production/evaluation duration.
+        # artifact: profiler_output/microbench/metax_c500/
+        #   bf16_vector_memory_block1024_4d690f11_20260905_r2/report.json
+        # source/report SHA256:
+        #   309755004b356f47b6bee3ba9f79ff1a5ced4dc927dca1c3d1dc9b8dd255af5a
+        #   73e24970d4962d7d9666b4deb2c2dc0c506e47e1f536012a37debe073bb5f9ee
+        active_unit_service_time_s:
+          # One operation is one 1024-element scalar source round on the
+          # critical first CTA.  A CTA-local clock64 probe measures the whole
+          # input -> publication barrier -> output chain, excluding host/task
+          # launch and the production block reduction.  Trials 1--2 derive
+          # the active-AP curves; frozen trial 3 validates RMSNorm at 1.32%
+          # MAPE/2.42% MaxAPE and AddRMSNorm at 1.57%/2.51%.  This complete
+          # chain replaces, rather than adds, isolated loop and residual
+          # services in its one-CTA-per-AP, depth 8--32 domain.
+          # artifact: profiler_output/microbench/metax_c500/
+          #   vector_phase_chain_complete_20260912_r1/
+          # source/report SHA256:
+          #   0adae51449dd2b6bd5bc623151ea4b2e8ae85e59fd97537908085de0007bbc24
+          #   dbb175473ac12786bb49175144bfc9a9b1e0909bbd853b38b94a8f762af737c1
+          rmsnorm_phase_chain_complete_first_1024:
+            model: piecewise_linear_active_units_v1
+            active_units: [1, 2, 4, 8, 16, 32, 64, 104]
+            service_time_s: [9.067777777777777e-07, 8.863333333333333e-07, 8.686666666666666e-07, 8.638888888888889e-07, 8.654444444444444e-07, 8.905555555555556e-07, 9.308888888888889e-07, 1.1332222222222222e-06]
+          add_rmsnorm_phase_chain_complete_first_1024:
+            model: piecewise_linear_active_units_v1
+            active_units: [1, 2, 4, 8, 16, 32, 64, 104]
+            service_time_s: [1.0457777777777778e-06, 1.046111111111111e-06, 1.0455555555555556e-06, 1.0432222222222222e-06, 1.049111111111111e-06, 1.0841111111111111e-06, 1.3906666666666667e-06, 1.6431111111111112e-06]
+          rmsnorm_input_square_first_128:
+            model: piecewise_linear_active_units_v1
+            active_units: [1, 2, 4, 8, 16, 32, 64, 104]
+            service_time_s: [1.045771193459218e-07, 1.1653625016436521e-07, 1.2815748262475577e-07, 1.7461050834405566e-07, 2.2378419703459787e-07, 2.1168203637330663e-07, 2.0827013031929295e-07, 2.127799700733034e-07]
+          rmsnorm_output_scale_first_128:
+            model: piecewise_linear_active_units_v1
+            active_units: [1, 2, 4, 8, 16, 32, 64, 104]
+            service_time_s: [2.4932370671513684e-07, 2.571482628740792e-07, 2.726389295585155e-07, 3.2110490690923274e-07, 3.5715775434118075e-07, 3.3733964411028006e-07, 3.379885315683427e-07, 3.36633937272301e-07]
+          bf16_add_square_first_256:
+            model: piecewise_linear_active_units_v1
+            active_units: [1, 2, 4, 8, 16, 32, 64, 104]
+            service_time_s: [1.7590002389624715e-06, 1.7950001638382672e-06, 1.813999842852354e-06, 1.7940000398084522e-06, 1.7760000191628933e-06, 1.8819998949766158e-06, 1.939000096172094e-06, 2.1789998281747103e-06]
+          bf16_add_square_first_512:
+            model: piecewise_linear_active_units_v1
+            active_units: [1, 2, 4, 8, 16, 32, 64, 104]
+            service_time_s: [2.004000009037554e-06, 2.0619998686015605e-06, 2.084999927319586e-06, 2.1440001437440514e-06, 2.127999905496836e-06, 2.2159997606649997e-06, 2.3720001336187125e-06, 3.426000010222197e-06]
+          bf16_add_square_first_1024:
+            model: piecewise_linear_active_units_v1
+            active_units: [1, 2, 4, 8, 16, 32, 64, 104]
+            service_time_s: [3.698999993503094e-06, 3.654999891296029e-06, 3.7120000924915075e-06, 3.752000164240599e-06, 3.7360000424087047e-06, 3.7679995875805615e-06, 4.2219995521008965e-06, 6.384999724105001e-06]
+          bf16_scale_multiply_first_256:
+            model: piecewise_linear_active_units_v1
+            active_units: [1, 2, 4, 8, 16, 32, 64, 104]
+            service_time_s: [1.703999820165336e-06, 1.7160000279545783e-06, 1.736000063829124e-06, 1.7079999670386315e-06, 1.7940001562237739e-06, 1.7759999027475715e-06, 2.0200000144541265e-06, 2.0790001144632695e-06]
+          bf16_scale_multiply_first_512:
+            model: piecewise_linear_active_units_v1
+            active_units: [1, 2, 4, 8, 16, 32, 64, 104]
+            service_time_s: [2.0200001308694484e-06, 2.075999858789146e-06, 2.0710001699626447e-06, 2.120999968610704e-06, 2.086999942548573e-06, 2.08800018299371e-06, 2.3479999508708717e-06, 3.404000075533986e-06]
+          bf16_scale_multiply_first_1024:
+            model: piecewise_linear_active_units_v1
+            active_units: [1, 2, 4, 8, 16, 32, 64, 104]
+            service_time_s: [3.7679998204112052e-06, 3.6200000904500483e-06, 3.7429998628795147e-06, 3.7289999891072514e-06, 3.843999933451414e-06, 3.914999775588512e-06, 4.233999876305461e-06, 6.271000253036619e-06]
+          add_rmsnorm_scalar_input_add_square_first_256:
+            model: piecewise_linear_active_units_v1
+            active_units: [1, 2, 4, 8, 16, 32, 64, 104]
+            service_time_s: [6.495000125141814e-07, 6.619999767281115e-07, 6.659999780822545e-07, 6.759999523637816e-07, 6.810000049881637e-07, 7.069999846862629e-07, 7.105000258889049e-07, 7.25000019883737e-07]
+          rmsnorm_input_square_first_1024:
+            model: piecewise_linear_active_units_v1
+            active_units: [1, 2, 4, 8, 16, 32, 64, 104]
+            service_time_s: [1.3699999544769526e-07, 1.619999820832163e-07, 1.7300000763498247e-07, 2.2299998090602458e-07, 2.439999661874026e-07, 2.4999998277053237e-07, 2.5899996398948133e-07, 5.269999674055725e-07]
+          rmsnorm_output_scale_first_1024:
+            model: piecewise_linear_active_units_v1
+            active_units: [1, 2, 4, 8, 16, 32, 64, 104]
+            service_time_s: [5.490000185091048e-07, 5.550000059884042e-07, 5.599999858532101e-07, 5.650000239256769e-07, 5.760000494774431e-07, 6.000000576023012e-07, 7.830000249668956e-07, 1.1940000113099813e-06]
+      - name: serial_dependency
+        role: compute_reduction
+        scope: per_unit
+        count: 1
+        type: compute
+        # Generic dependency-cycle demand advances once per AP clock. Typed
+        # services below represent one complete CUB BlockReduce<float> plus
+        # variance divide, epsilon add, reciprocal square root, and scalar
+        # publication per CTA. An independent runtime-counted MACA 3.7.2
+        # benchmark uses adjacent repetition differences to remove launch and
+        # fixed task overhead; trials 1--2 derive active-unit first-CTA curves
+        # plus resident/queued rates and frozen trial 3 validates them at 2.22%
+        # MAPE and 19.16% max APE. The 20-register,
+        # 88-byte benchmark and 16-register, 88-byte production kernels share
+        # the same 8-CTA (block256) and 2-CTA (block1024) occupancy boundaries.
+        # No production/evaluation duration is consumed.
+        # artifact: profiler_output/microbench/metax_c500/
+        #   block_reduction_active_units_754c45dd_20260905_r1/report.json
+        # source/report SHA256:
+        #   94e303677c4fff63f4799de6c75db49fba1b343885b18b567a524f26052afa14
+        #   585039871b75bb963f744d23c467760bc6321497febd8900d081207b61ef0e81
+        throughput_per_clk: 1
+        service_rates_per_unit_s:
+          # [MEASURED_MECHANISM] The source-equivalent CUB reduction probe
+          # includes the exact legacy block128 reduction, scalar rsqrt, and
+          # publication barrier. The 13-cell frozen holdout validates at
+          # 4.50% MAPE and 17.75% max APE without production duration.
+          # artifact: profiler_output/microbench/metax_c500/
+          #   block_reduce_block128_20260908_r1/report.json
+          # source/report SHA256:
+          #   76e942b7dfd1bfbc5b40b9eb3952eced613ba79535e28beef131e2d496d92924
+          #   ae08a41d55219db667f40755f2e6fd2861002b5329ef9948438e515bbeafbc89
+          block_reduce_first_128: 897666.0809324763
+          block_reduce_first_128_active2: 914076.7283337957
+          block_reduce_first_128_active4: 892857.1190098212
+          block_reduce_first_128_active8: 905797.0813498441
+          block_reduce_first_128_active16: 900900.8439376148
+          block_reduce_first_128_active32: 900900.8439376148
+          block_reduce_first_128_active64: 883392.2677700619
+          block_reduce_first_128_active104: 897666.0809324763
+          block_reduce_resident_128: 7407409.2912601065
+          block_reduce_queued_128: 5252790.699004088
+          block_reduce_first_256: 883392.3131942691
+          block_reduce_first_256_active2: 875656.7696989869
+          block_reduce_first_256_active4: 877192.9318339314
+          block_reduce_first_256_active8: 860585.2837994439
+          block_reduce_first_256_active16: 856164.3497227761
+          block_reduce_first_256_active32: 829875.4531985325
+          block_reduce_first_256_active64: 837520.8484316547
+          block_reduce_first_256_active104: 830909.7885303977
+          block_reduce_resident_256: 2815909.44962811
+          block_reduce_queued_256: 2435682.5941152866
+          block_reduce_first_1024: 671591.6516534688
+          block_reduce_first_1024_active2: 669120.0939112139
+          block_reduce_first_1024_active4: 666444.4851589868
+          block_reduce_first_1024_active8: 667556.8211168404
+          block_reduce_first_1024_active16: 674763.8361221035
+          block_reduce_first_1024_active32: 659630.5988301182
+          block_reduce_first_1024_active64: 674536.2050838115
+          block_reduce_first_1024_active104: 606428.1015415463
+          block_reduce_resident_1024: 1644736.9151470126
+          block_reduce_queued_1024: 1023148.5966707396
+          # One complete cached vec4 imcontinuous-reduction source program
+          # per 512-thread CTA. Rates are nominal AP cycles divided by the
+          # independently measured cycle services below.
+          imcontinuous_vec4_reduce_topk2: 943989.9307740717
+          imcontinuous_vec4_reduce_topk4: 747943.1563201196
+          imcontinuous_vec4_reduce_topk8: 603459.8363953333
+          imcontinuous_vec4_reduce_topk10: 551403.0143364784
+          imcontinuous_vec4_reduce_topk16: 557448.1263549087
+
+  # ─── Shared resources (not per-AP) ──────────────────────
+  - name: xbar
+    role: xbar
+    scope: shared
+    clock_domain: sm
+    count: 1
+    type: memory
+    # User-supplied C500 architecture reference: L2 datapath peak 4096 B/clk.
+    throughput_per_clk: 4096
+    traffic_filter: null
+
+  - name: l2
+    role: l2_cache
+    scope: shared
+    clock_domain: sm
+    count: 1
+    type: memory
+    # Incompressible 4 MiB ldg_b128 sweep, with disassembly proving nine live
+    # unrolled/remainder loads and live telemetry proving sustained 1125 MHz
+    # XCORE, reaches 3617.534 GB/s: 3617.534 / 1.125 = 3215.59 B/clk.
+    # This is a retained read-pattern candidate; the documented 4096 B/clk
+    # remains the peak xbar datapath above.
+    # An instruction/address-matched hot/cold interference benchmark rejects
+    # the full additive shared-fill candidate for aligned ldg_b128 at the
+    # frozen 25%/50% contrasts.  Retain the existing independent-service lower
+    # bound; this evidence does not establish the exact internal topology.
+    throughput_per_clk: 3215.59
+    traffic_filter: lru
+    size_bytes: 8388608                   # 8 MB (macainfo: L2 = 8192 KB)
+    num_partitions: null                  # not published; request queueing disabled
+
+  - name: dram
+    role: dram
+    scope: shared
+    clock_domain: dram
+    count: 1
+    type: memory
+    # The retained v3 independent large-footprint sweep reaches 1653.070 GB/s
+    # at 64 MiB/grid=1664 with live 1800 MHz MC telemetry and verified loads:
+    # 1653.070 / 1.8 = 918.372 B/MC-cycle read-pattern candidate.
+    throughput_per_clk: 918.372
+    traffic_filter: page_conflict
+    size_bytes: 68719476736               # 64 GB (mx-smi: vram total 67108864 KB)
+    num_partitions: null                  # controller/channel count not proven by supplied docs
+
+# ─── Resource groups ─────────────────────────────────────
+resource_groups:
+  # MMA and Vector ALU share issue slot 2, but their execution services do not
+  # serialize for the full MMA initiation interval.  The retained MACA 3.7.2
+  # register-only mixed stream reaches the MMA-only envelope with 4 MMA plus
+  # up to 12 independent add_f32 instructions, then follows the aggregate
+  # one-instruction/slot/cycle envelope.  Keep Tensor execution and Vector
+  # execution as independent lower bounds; exact static instruction consumers
+  # express the shared slot through warp_issue below.
+  - name: tensor_pipe
+    members: [tensor_core_fp16]
+
+  - name: vector_pipe
+    members: [fma_pipe, sfu_pipe, alu_pipe]
+
+  - name: warp_issue
+    members: [warp_dispatch]
+
+  - name: integer_dependency
+    members: [integer_dependency]
+
+  - name: reduction_dependency
+    members: [serial_dependency]
+
+  - name: smem
+    members: [shared_mem]
+
+  - name: l1_cache
+    members: [l1_cache]
+
+  - name: xbar
+    members: [xbar]
+
+  - name: l2
+    members: [l2]
+
+  - name: dram
+    members: [dram]
+
+# ─── Memory subsystem (latency-hiding parameters) ────────
+# The latency endpoints below remain documented cycle references.  The retained
+# dependent-chain candidate at baseline 78e0cbc has complete raw provenance but
+# does not establish one L2 plateau or an instruction-matched control subtraction,
+# so it is not promoted.  These remain provisional first-request inputs;
+# sustained steady state is constrained by the independent byte capacities.
+memory_subsystem:
+  # Shared half-duplex directional endpoints.  Read retains the independent
+  # 918.372 B/MC-cycle large-footprint ldg_b128 sweep.  Write uses the
+  # independent aligned stg_b128-devc endpoint: 21 event trials have a
+  # 1607.860088573 GB/s median at a live 1.8-GHz MC clock.  A target-kernel-
+  # identical profile-only build reports 8,589,934,784 physical global-write bytes for
+  # 8,589,934,592 logical bytes and 67,108,875 DNoC write requests (only 11
+  # above the exact 128-B-line count), closing write allocation/traffic without
+  # consuming mcProfiler replay duration.  Mixed duration still does not define
+  # turnaround or a service curve.
+  dram_arbitration_mode: shared_directional_capacity
+  dram_read_capacity_per_clk: 918.372
+  dram_write_capacity_per_clk: 893.2556047625426
+  dram_latency_ns: 373.3333333333     # architecture reference: 420 AP cycles
+  # Source-independent task floor for a contiguous BF16 device copy on the
+  # pinned torch 2.4.0 + MACA 3.7.2 stack.  The paired graph-replay
+  # differential subtracts the directional read/write payload service before
+  # selecting the minimum across derivation trials 1--2; all 135 samples in
+  # frozen trial 3 remain above the selected floor.  No production/evaluation
+  # duration or target operator is consumed.
+  # Evidence: microbench/metax_c500/references/
+  # bf16_dtod_copy_task_floor_maca_3_7_2.json
+  memcpy_dtod_floor_ns: 9612.988764927777
+  # The source-selected native FlashAttention output copies (decode
+  # transpose12 write-back and the split-forward prefill slice assignment) are
+  # the contiguous BF16 D2D runtime task.  Its 256-KiB--4-MiB plateau is the
+  # minimum derivation-trial median minus the independent directional payload
+  # service over the 256-KiB, 1-MiB and 4-MiB probes; the 4-MiB probes leave
+  # the selected floor unchanged and frozen trial 3 stays above it.  It is not
+  # a kernel or Serving observation.
+  # Evidence: microbench/metax_c500/references/
+  # native_flash_attention_copy_medium_floor_maca_3_7_2.json
+  # (sha256 b7929cbfd3e794c72072277be66a88061346b0802f2b62849da1f80ab4a90820,
+  # derived from bf16_dtod_copy_task_floor_maca_3_7_2.json sha256
+  # cd800f8d3974890729a2a2e3c344362fadb0b7bb072bdf1ca38e979a4deb3342)
+  memcpy_dtod_native_flash_attention_copy_medium_min_bytes: 262144
+  memcpy_dtod_native_flash_attention_copy_medium_max_bytes: 4194304
+  memcpy_dtod_native_flash_attention_copy_medium_floor_ns: 35735.33924058255
+  l2_latency_ns: 151.1111111111       # architecture reference: 170 AP cycles
+  cacheline_bytes: 128                # cache-line granularity
+  # The architecture reference establishes one 128-B transaction for an
+  # aligned 16-lane group.  It does not establish scattered/non-coalesced
+  # sectors per request; diagnostics therefore declare that scope limitation.
+  l2_transaction_bytes: 128
+  dram_transaction_bytes: 128         # aligned DNoC line/request evidence only
+  # One consistent latency chain from the supplied architecture document.
+  # These remain documented references rather than values promoted from the
+  # retained pointer-chase candidate.  C500 exposes a unified L2, so no
+  # unmeasured near/far split is introduced:
+  #   L2 endpoint = 170 cycles; DRAM endpoint = 420 cycles.
+  l2_hit_latency_local_cycles: 170
+  l2_hit_latency_remote_cycles: 170
+  l2_local_fraction: null
+  dram_miss_extra_cycles: 250
+  l2_partition_service_cycles_bw: null  # byte-capacity-only; no fabricated M/D/1
+  # One Vector Memory instruction/AP/cycle is an instruction issue envelope,
+  # not a sustained 128-byte transaction rate.  A wave instruction can form
+  # four transactions, so a transaction frontend ceiling remains unknown.
+  lsu_peak_issue_rate_per_sm: null
+  # No checked-in benchmark constrains an AP-local source/path population.
+  # Keep the hardware ceiling absent; Forward must not infer it from a
+  # full-chip bandwidth plateau.
+  source_slots_per_unit: null
+  # Exact access-class services below remain workload-independent.  The BF16
+  # vec4 binary stream uses a static two-ldg_b64/one-stg_b64 program and the
+  # conservative saturated-grid endpoint documented by its reference JSON.
+  # The indirect-row services use the independent gather mechanism campaign
+  # under profiler_output/microbench/metax_c500/
+  # fused_moe_gather_0c98472_20260815/release_candidate_summary.tsv.
+  memory_access_class_services:
+    # When the BM16 W2 source has fewer than 16 activation rows it clamps EM
+    # to source_rows*source_topk*BM. With one routed row per populated expert
+    # the resulting grid contains no early-return tail. The retained W2 probe
+    # preserves its source-declared routed-weight epilogue, exact K-loop
+    # count, and two adjacent non-production N geometries.
+    - service: metax_bm16_active_grid_fused_moe_wide_n_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_active_grid_fused_moe_wide_n_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 783788844198.5836
+      evidence_ref: microbench/metax_c500/references/bm16_active_grid_operand_pipeline.json#selected_services/wide_n
+      replay_to_dram_fraction: null
+    # Once source_rows reaches BM=16, the W2 launch stops clamping its routing
+    # storage and traverses all 241 E256 padded M slots although only sixteen
+    # reach the operand loop. Two adjacent-N cells preserve that source branch
+    # and launch topology without consuming the production N or its duration.
+    - service: metax_bm16_e256_sixteen_active_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e256_sixteen_active_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 449908713550.8917
+      evidence_ref: microbench/metax_c500/references/bm16_e256_sixteen_active_w2_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    # The deep E256 W2 projection retains the same sixteen-active, 241-tile
+    # padded source queue but executes a distinct 32-by-224 K/N loop. Its
+    # routed-weight and activation-refresh operand service is source-specific.
+    - service: metax_bm16_e256_sixteen_active_deep_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e256_sixteen_active_deep_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1044629512425.1973
+      evidence_ref: microbench/metax_c500/references/bm16_e256_sixteen_active_deep_w2_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    # For 32 routed rows across 31 experts, the BM16 W2 source launches 242
+    # maximum M tiles although only 31 tiles reach the operand loop. The
+    # adjacent-N mechanism probe retains that sparse padded launch exactly.
+    - service: metax_bm16_sparse_padded_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_sparse_padded_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 721893344416.5354
+      evidence_ref: microbench/metax_c500/references/bm16_sparse_padded_w2_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    # For 80 routed rows across 75 experts, the E512 BM16 W2 source launches
+    # 485 maximum M tiles although only 75 tiles reach the operand loop. The
+    # adjacent-N mechanism probe retains that sparse padded launch exactly.
+    - service: metax_bm16_e512_sparse_padded_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_sparse_padded_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 828216918508.234
+      evidence_ref: microbench/metax_c500/references/bm16_e512_sparse_padded_w2_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    # This narrow E512 W1 grid has four source rows and forty populated M
+    # tiles, so it terminates before the padded E512 W2 queue. Adjacent-N
+    # captures preserve its complete source program and K/N loop class.
+    - service: metax_bm16_e512_forty_active_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_forty_active_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1528291192698.109
+      evidence_ref: microbench/metax_c500/references/bm16_e512_forty_active_w1_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    # Forty active W2 tiles traverse an E512 padded queue with 483 possible M
+    # tiles; its early-return completion cost is retained by an adjacent-N
+    # source-identical event probe.
+    - service: metax_bm16_e512_forty_active_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_forty_active_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 847722621999.7976
+      evidence_ref: microbench/metax_c500/references/bm16_e512_forty_active_w2_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    # The H2048 W2 source has a distinct eight-by-sixty-four K/N loop from
+    # the H4096 sixteen-by-128 source above. Keep its adjacent-N measurement
+    # in a separate exact source-topology service.
+    - service: metax_bm16_e512_forty_active_k8_n64_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_forty_active_k8_n64_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 509499489872.37244
+      evidence_ref: microbench/metax_c500/references/bm16_e512_forty_active_k8_n64_w2_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    # At 75 active E512 tiles the H4096 projection uses a distinct K/N loop
+    # pair from the existing H2048 sparse service. Adjacent non-production N
+    # probes preserve the exact W1/W2 source and padded launch depths.
+    - service: metax_bm16_e512_75_active_80_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_75_active_80_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1675343725255.03
+      evidence_ref: microbench/metax_c500/references/bm16_e512_h4096_sparse_source_depth_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e512_75_active_485_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_75_active_485_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1137230511315.115
+      evidence_ref: microbench/metax_c500/references/bm16_e512_h4096_sparse_source_depth_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # Twenty routed rows populate twenty experts. W1's two source rows clamp
+    # the launch to twenty M tiles, while W2 retains the 482-tile padded queue.
+    - service: metax_bm16_e512_twenty_active_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_twenty_active_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1584908267019.4075
+      evidence_ref: microbench/metax_c500/references/bm16_e512_twenty_active_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e512_twenty_active_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_twenty_active_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 547386985280.8124
+      evidence_ref: microbench/metax_c500/references/bm16_e512_twenty_active_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # The H2048 W2 projection has a separate K/N loop from the H4096 W2
+    # source program above, while retaining the same twenty-active, 482-tile
+    # padded queue. Its source-identical adjacent-N capture is narrower.
+    - service: metax_bm16_e512_twenty_active_k8_n64_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_twenty_active_k8_n64_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 305531652592.79987
+      evidence_ref: microbench/metax_c500/references/bm16_e512_twenty_active_k8_n64_w2_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    # A single token reaches ten distinct E512 experts; source clamping leaves
+    # both projection launches at ten active M tiles.
+    - service: metax_bm16_e512_ten_active_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_ten_active_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1447856912943.8123
+      evidence_ref: microbench/metax_c500/references/bm16_e512_ten_active_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e512_ten_active_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_ten_active_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1413192877522.3435
+      evidence_ref: microbench/metax_c500/references/bm16_e512_ten_active_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # The sixteen-token E512 route has 143 populated BM16 tiles inside the
+    # source-padded 490-tile queue for both projections. Adjacent-N probes
+    # retain the exact queue and K loops without consuming production duration.
+    - service: metax_bm16_e512_143_active_490_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_143_active_490_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1554099288802.709
+      evidence_ref: microbench/metax_c500/references/bm16_e512_143_active_490_max_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e512_143_active_490_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_143_active_490_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1141998571106.0378
+      evidence_ref: microbench/metax_c500/references/bm16_e512_143_active_490_max_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # The same BM16 E512 K/N classes remain stable from 143 active tiles at a
+    # 490-tile source bound through 362 active tiles at a 520-tile bound.  Use
+    # the lower measured endpoint for the intervening mid-sparse source range.
+    - service: metax_bm16_e512_mid_sparse_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_mid_sparse_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1554099288802.709
+      evidence_ref: microbench/metax_c500/references/bm16_e512_mid_sparse_source_depth_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e512_mid_sparse_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_mid_sparse_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1141998571106.0378
+      evidence_ref: microbench/metax_c500/references/bm16_e512_mid_sparse_source_depth_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # Every E512 expert is populated in this BM16 source queue, but the
+    # source-padded launch retains 800 M slots for only 521 operand tiles.
+    # Exact-K, adjacent-N event probes preserve the W1/W2 loops without
+    # consuming production-operator duration.
+    - service: metax_bm16_e512_521_active_800_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_521_active_800_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1980519986532.635
+      evidence_ref: microbench/metax_c500/references/bm16_bm64_e512_all_active_short_queue_operand_pipeline.json#selected_services/bm16_w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e512_521_active_800_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e512_521_active_800_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1665184547517.7207
+      evidence_ref: microbench/metax_c500/references/bm16_bm64_e512_all_active_short_queue_operand_pipeline.json#selected_services/bm16_w2
+      replay_to_dram_fraction: null
+    # With 64 routes colliding into 57 experts, the BM16 source executes 57
+    # operand tiles while its W1 and W2 launch bounds retain 64 and 244 M
+    # tiles. Adjacent-N probes preserve both queue shapes and K-loop counts.
+    - service: metax_bm16_e256_sparse_colliding_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e256_sparse_colliding_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1582666648493.977
+      evidence_ref: microbench/metax_c500/references/bm16_e256_sparse_colliding_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e256_sparse_colliding_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e256_sparse_colliding_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1016441619707.4285
+      evidence_ref: microbench/metax_c500/references/bm16_e256_sparse_colliding_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # A 128-route E256 source collides into 106 active BM16 tiles while both
+    # projections retain the full 248-tile padded launch. Adjacent-N probes
+    # preserve that source queue and interpolate only the output-tile count.
+    - service: metax_bm16_e256_106_active_248_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e256_106_active_248_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1621798650893.6812
+      evidence_ref: microbench/metax_c500/references/bm16_e256_106_active_248_max_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e256_106_active_248_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e256_106_active_248_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1308892268146.4368
+      evidence_ref: microbench/metax_c500/references/bm16_e256_106_active_248_max_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # One collision leaves 31 active experts from 32 routes. W1's short source
+    # clamps to 32 M tiles for both observed balanced projection widths; W2's
+    # E128 source retains the 122-tile padded launch.
+    - service: metax_bm16_31_active_32_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_31_active_32_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1467381238218.3628
+      evidence_ref: microbench/metax_c500/references/bm16_31_active_32_max_w1_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e128_31_active_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_31_active_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1202796738293.8816
+      evidence_ref: microbench/metax_c500/references/bm16_e128_31_active_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # Eight source rows and 64 routes populate 53 E128 experts. The W1 source
+    # clamps at 64 tiles while W2 retains the 124-tile padded source grid.
+    - service: metax_bm16_e128_53_active_64_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_53_active_64_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1619579010866.7063
+      evidence_ref: microbench/metax_c500/references/bm16_e128_53_active_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e128_53_active_124_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_53_active_124_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1412604069151.0583
+      evidence_ref: microbench/metax_c500/references/bm16_e128_53_active_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # With two TOPK8 source rows, sixteen populated E128 experts, and no
+    # padded M tail, W1 uses the source's 16-by-48 active operand grid. The
+    # adjacent non-production N captures preserve that exact source program.
+    - service: metax_bm16_e128_topk8_16_active_16_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk8_16_active_16_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1412754370097.3953
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk8_sixteen_active_w1_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    # W2 keeps the same sixteen E128 routes but traverses its 121-tile padded
+    # source grid and a distinct 12-by-64 K/N loop. It cannot reuse the W1
+    # 16-by-48 service or the TOPK16 activation-address program.
+    - service: metax_bm16_e128_topk8_16_active_121_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk8_16_active_121_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 846707490278.6571
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk8_sixteen_active_w2_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    # TOPK16 reaches the same W2 grid through a distinct route-to-activation
+    # address program. It retains an independently measured service instead
+    # of borrowing the TOPK8 operand completion rate.
+    - service: metax_bm16_e128_topk16_16_active_121_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk16_16_active_121_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 845038419833.542
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk16_sixteen_active_w2_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    # One TOPK16 source row reaches the same 16-by-48 W1 grid through a
+    # different activation-address program, so it retains its own service.
+    - service: metax_bm16_e128_topk16_16_active_16_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk16_16_active_16_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1399323099768.13
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk16_sixteen_active_w1_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    # The shallow BM16 E128 TOPK16 source-order queue grows across the
+    # 4/8/16-token depths. Adjacent non-production N probes retain the exact
+    # production source and independently price the W1 and W2 K loops.
+    - service: metax_bm16_e128_topk16_64_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk16_64_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1602507209923.7031
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk16_shallow_source_depth_operand_pipeline.json#selected_services/tokens4_w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e128_topk16_124_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk16_124_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1360622965414.0073
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk16_shallow_source_depth_operand_pipeline.json#selected_services/tokens4_w2
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e128_topk16_128_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk16_128_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1660836902137.097
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk16_shallow_source_depth_operand_pipeline.json#selected_services/tokens8_w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e128_topk16_128_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk16_128_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1534314599056.3462
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk16_shallow_source_depth_operand_pipeline.json#selected_services/tokens8_w2
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e128_topk16_136_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk16_136_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1701974968954.6611
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk16_shallow_source_depth_operand_pipeline.json#selected_services/tokens16_w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e128_topk16_136_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk16_136_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1612920383318.8184
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk16_shallow_source_depth_operand_pipeline.json#selected_services/tokens16_w2
+      replay_to_dram_fraction: null
+    # BM16 E128 TOPK16 grows a shared source-ordered queue from 152 through
+    # 248 maximum M tiles. Production-source probes at three source depths use
+    # adjacent non-production N values and retain separate W1/W2 K loops.
+    - service: metax_bm16_e128_topk16_152_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk16_152_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1761832966670.8213
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk16_source_depth_operand_pipeline.json#selected_services/max152_w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e128_topk16_152_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk16_152_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1661172049826.454
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk16_source_depth_operand_pipeline.json#selected_services/max152_w2
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e128_topk16_184_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk16_184_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1887405248292.8606
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk16_source_depth_operand_pipeline.json#selected_services/max184_w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e128_topk16_184_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk16_184_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1732107112545.6567
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk16_source_depth_operand_pipeline.json#selected_services/max184_w2
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e128_topk16_248_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk16_248_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 2330675172794.005
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk16_source_depth_operand_pipeline.json#selected_services/max248_w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e128_topk16_248_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_topk16_248_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 2057914182595.3792
+      evidence_ref: microbench/metax_c500/references/bm16_e128_topk16_source_depth_operand_pipeline.json#selected_services/max248_w2
+      replay_to_dram_fraction: null
+    # Four active BM16 tiles use a source-clamped four-row launch for both
+    # projections. Adjacent-N probes retain the 45-step K loop and measure the
+    # distinct 180-column W1 and 90-column W2 operand queues.
+    - service: metax_bm16_four_active_mid_k_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_four_active_mid_k_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1465595151651.7842
+      evidence_ref: microbench/metax_c500/references/bm16_four_active_mid_k_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_four_active_mid_k_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_four_active_mid_k_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1292946576951.871
+      evidence_ref: microbench/metax_c500/references/bm16_four_active_mid_k_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # Eight active BM16 E128 tiles use an eight-tile source-clamped launch.
+    # Fresh-process adjacent-N probes retain W1's two source rows and W2's
+    # eight source rows while keeping their distinct 45-step K loops.
+    - service: metax_bm16_e128_eight_active_mid_k_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_eight_active_mid_k_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1567652114864.0654
+      evidence_ref: microbench/metax_c500/references/h2880_shallow_source_depth_operand_pipeline.json#selected_services/bm16_e128_8_active_8_max_w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e128_eight_active_mid_k_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e128_eight_active_mid_k_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1458171355233.6504
+      evidence_ref: microbench/metax_c500/references/h2880_shallow_source_depth_operand_pipeline.json#selected_services/bm16_e128_8_active_8_max_w2
+      replay_to_dram_fraction: null
+    # The BM64 E32 64-token source retains all 32 expert tiles in a 36-tile
+    # launch. Adjacent-N probes on devices 0 and 2 provide role-specific
+    # completion services for its 90-step K loops.
+    - service: metax_bm64_e32_32_active_36_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm64_e32_32_active_36_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 3238510330193.884
+      evidence_ref: microbench/metax_c500/references/h2880_shallow_source_depth_operand_pipeline.json#selected_services/bm64_e32_32_active_36_max_w1
+      replay_to_dram_fraction: null
+    - service: metax_bm64_e32_32_active_36_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm64_e32_32_active_36_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 3128545600407.7847
+      evidence_ref: microbench/metax_c500/references/h2880_shallow_source_depth_operand_pipeline.json#selected_services/bm64_e32_32_active_36_max_w2
+      replay_to_dram_fraction: null
+    # The same E32 source has a distinct 40-tile padded launch once all 32
+    # expert tiles receive the second token cohort. Its source order remains
+    # role-specific, so it cannot borrow the 32-active/36-max service.
+    - service: metax_bm64_e32_32_active_40_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm64_e32_32_active_40_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 3445481983842.3296
+      evidence_ref: microbench/metax_c500/references/bm64_e32_32_active_40_max_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_bm64_e32_32_active_40_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm64_e32_32_active_40_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 3224484621459.3301
+      evidence_ref: microbench/metax_c500/references/bm64_e32_32_active_40_max_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # The E512 two-tile W2 source retains a 1,010-tile active prefix in its
+    # 1,144-tile launch and consumes the freshly produced activation.
+    - service: metax_e512_1010_active_1144_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e512_1010_active_1144_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 906987228025.9921
+      evidence_ref: microbench/metax_c500/references/bm64_e512_two_tile_w2_activation_refresh_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    # Eight active source-clamped BM16 tiles with a 12-step K loop form a
+    # distinct W2 queue from the existing eight-step wide-N service.
+    - service: metax_bm16_eight_active_mid_k_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_eight_active_mid_k_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1040258553917.1323
+      evidence_ref: microbench/metax_c500/references/bm16_eight_active_mid_k_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e32_seven_active_mid_k_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e32_seven_active_mid_k_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1556595588883.4685
+      evidence_ref: microbench/metax_c500/references/bm16_e32_seven_active_mid_k_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_bm16_e32_seven_active_mid_k_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm16_e32_seven_active_mid_k_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 6144
+        operand_role: combined
+        tile_n: 32
+        group_size_m: 1
+      scope: full_chip
+      logical_byte_capacity_per_s: 1408400036885.4778
+      evidence_ref: microbench/metax_c500/references/bm16_e32_seven_active_mid_k_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # With all 256 experts populated below one BM64 tile, the source keeps a
+    # 316-tile padded queue. Adjacent-N probes preserve that queue and the
+    # exact W1/W2 K loops without timing either production projection.
+    - service: metax_e256_single_tile_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_single_tile_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2566911866344.2544
+      evidence_ref: microbench/metax_c500/references/bm64_e256_single_tile_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e256_single_tile_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_single_tile_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2456692585670.414
+      evidence_ref: microbench/metax_c500/references/bm64_e256_single_tile_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # The 380-tile padded queue preserves one active BM64 tile per expert but
+    # has a distinct source depth from the 316-tile mid-projection service.
+    - service: metax_e256_single_tile_mid_deep_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_single_tile_mid_deep_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2691223045093.1665
+      evidence_ref: microbench/metax_c500/references/bm64_e256_single_tile_mid_deep_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e256_single_tile_mid_deep_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_single_tile_mid_deep_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2885818204727.008
+      evidence_ref: microbench/metax_c500/references/bm64_e256_single_tile_mid_deep_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # The H7168/INT2048 projection keeps the same 256 single active tiles but
+    # widens the operand loop. The 316- and 380-tile padded queues have distinct
+    # full-chip completion envelopes, measured at adjacent N geometries.
+    - service: metax_e256_single_tile_large_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_single_tile_large_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2441914081428.5366
+      evidence_ref: microbench/metax_c500/references/bm64_e256_single_tile_large_operand_pipeline.json#selected_services/w1_316
+      replay_to_dram_fraction: null
+    - service: metax_e256_single_tile_large_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_single_tile_large_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2610440313654.1196
+      evidence_ref: microbench/metax_c500/references/bm64_e256_single_tile_large_operand_pipeline.json#selected_services/w2_316
+      replay_to_dram_fraction: null
+    - service: metax_e256_single_tile_large_deep_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_single_tile_large_deep_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1561166932969.9375
+      evidence_ref: microbench/metax_c500/references/bm64_e256_single_tile_large_operand_pipeline.json#selected_services/w1_380
+      replay_to_dram_fraction: null
+    - service: metax_e256_single_tile_large_deep_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_single_tile_large_deep_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1514143376972.5815
+      evidence_ref: microbench/metax_c500/references/bm64_e256_single_tile_large_operand_pipeline.json#selected_services/w2_380
+      replay_to_dram_fraction: null
+    # All 512 experts remain within one active M tile while source padding
+    # extends the launch to 824 M tiles. Adjacent-N probes preserve the exact
+    # W1/W2 K loops and isolate this queue from production OP duration.
+    - service: metax_e512_single_tile_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e512_single_tile_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1393628793100.2441
+      evidence_ref: microbench/metax_c500/references/bm64_e512_single_tile_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e512_single_tile_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e512_single_tile_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1665962537394.1636
+      evidence_ref: microbench/metax_c500/references/bm64_e512_single_tile_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # The all-active E512 BM64 source has one M tile per expert in a 664-slot
+    # padded queue. Exact-K, adjacent-N probes retain the role-specific
+    # completion envelope without consuming production-operator duration.
+    - service: metax_bm64_e512_512_active_664_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm64_e512_512_active_664_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2600228822291.929
+      evidence_ref: microbench/metax_c500/references/bm16_bm64_e512_all_active_short_queue_operand_pipeline.json#selected_services/bm64_w1
+      replay_to_dram_fraction: null
+    - service: metax_bm64_e512_512_active_664_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_bm64_e512_512_active_664_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2471695544407.433
+      evidence_ref: microbench/metax_c500/references/bm16_bm64_e512_all_active_short_queue_operand_pipeline.json#selected_services/bm64_w2
+      replay_to_dram_fraction: null
+    # E128 single-tile queues retain 128 active tiles while their padded launch
+    # grows to 158 or 190 tiles. Adjacent-N probes preserve each projection's
+    # K loop and queue bound without consuming production duration.
+    - service: metax_e128_single_tile_mid_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_single_tile_mid_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2131235306913.2432
+      evidence_ref: microbench/metax_c500/references/bm64_e128_single_tile_large_operand_pipeline.json#selected_services/w1_190
+      replay_to_dram_fraction: null
+    - service: metax_e128_single_tile_mid_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_single_tile_mid_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1370484530548.881
+      evidence_ref: microbench/metax_c500/references/bm64_e128_single_tile_large_operand_pipeline.json#selected_services/w2_190
+      replay_to_dram_fraction: null
+    - service: metax_e128_single_tile_large_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_single_tile_large_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2615159180369.558
+      evidence_ref: microbench/metax_c500/references/bm64_e128_single_tile_large_operand_pipeline.json#selected_services/w1_158
+      replay_to_dram_fraction: null
+    - service: metax_e128_single_tile_large_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_single_tile_large_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2476333629644.2046
+      evidence_ref: microbench/metax_c500/references/bm64_e128_single_tile_large_operand_pipeline.json#selected_services/w2_158
+      replay_to_dram_fraction: null
+    # Eight active BM64 tiles with at most nine padded M tiles form a fixed
+    # short queue. Adjacent-N probes retain the exact K-loop and launch class
+    # without timing a production projection.
+    - service: metax_eight_expert_small_single_tile_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_small_single_tile_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2520459174586.7446
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_small_single_tile_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_eight_expert_small_single_tile_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_small_single_tile_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2221858022107.694
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_small_single_tile_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # Fully populated E128 queues with one active tile per expert and at most
+    # 158 padded M tiles retain a fixed operand lifetime. Adjacent-N probes
+    # preserve the source K-loop while avoiding production projection shapes.
+    - service: metax_e128_single_tile_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_single_tile_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2568786698424.878
+      evidence_ref: microbench/metax_c500/references/bm64_e128_single_tile_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e128_single_tile_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_single_tile_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2369132030230.114
+      evidence_ref: microbench/metax_c500/references/bm64_e128_single_tile_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # An E8 queue with 21 active and 24 padded M tiles has asymmetric W1/W2
+    # operand completion. Adjacent-N probes retain the exact source K loops.
+    - service: metax_eight_expert_twenty_one_tile_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_twenty_one_tile_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2402529620775.3833
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_twenty_one_tile_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_eight_expert_twenty_one_tile_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_twenty_one_tile_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 640827817324.4935
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_twenty_one_tile_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # The H6144/INT16384 source uses 20 active M tiles in a 24-tile padded
+    # queue. Independent adjacent-N probes preserve both exact K-loop classes.
+    - service: metax_eight_expert_twenty_active_twenty_four_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_twenty_active_twenty_four_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2171491917292.5054
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_twenty_active_twenty_four_max_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_eight_expert_twenty_active_twenty_four_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_twenty_active_twenty_four_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 623804617631.5361
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_twenty_active_twenty_four_max_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # Eight-expert BM64/BK32/BN64/GSM8 launches retain one padded M tile per
+    # expert, but the long-K VLS/operand completion stream is much slower than
+    # the generic gather byte envelope. Independent synthetic routing probes
+    # keep the exact launch program while moving K or N off every production
+    # geometry. The conservative minimum capacity across three runs is used.
+    - service: metax_single_tile_fused_moe_long_k_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_single_tile_fused_moe_long_k_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1014482658007.0348
+      evidence_ref: microbench/metax_c500/references/bm64_single_tile_operand_pipeline.json#selected_services/long_k
+      replay_to_dram_fraction: null
+    - service: metax_single_tile_fused_moe_wide_n_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_single_tile_fused_moe_wide_n_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 3043404294435.8525
+      evidence_ref: microbench/metax_c500/references/bm64_single_tile_operand_pipeline.json#selected_services/wide_n
+      replay_to_dram_fraction: null
+    # Eight populated experts can still occupy one active M tile each while
+    # source padding expands the physical W2 launch from ten to twelve maximum
+    # M tiles. Independent adjacent-geometry probes preserve that queue depth.
+    - service: metax_eight_expert_eight_active_twelve_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_eight_active_twelve_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 453555513307.89343
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_eight_active_twelve_max_w2_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    - service: metax_eight_expert_single_tile_large_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_single_tile_large_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2364856960157.138
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_single_tile_large_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_eight_expert_single_tile_large_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_single_tile_large_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2256095038664.965
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_single_tile_large_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # The H4096/INT14336 W1 source has the (K128,N448) loop class.  Keep its
+    # conservative capacity separate from the slower (K192,N512) class.
+    - service: metax_eight_expert_steady_fused_moe_wide_n_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_steady_fused_moe_wide_n_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2274302584843.376
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_steady_wide_n_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    - service: metax_eight_expert_steady_k192_n512_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_steady_k192_n512_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2408725024059.311
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_steady_k192_n512_w1_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    # The large E8 projection runs 68 active M tiles within a 72-tile padded
+    # queue. Adjacent-N probes retain its exact W1/W2 K-loop classes.
+    - service: metax_eight_expert_68_active_72_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_68_active_72_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2658770776305.729
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_68_active_72_max_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_eight_expert_68_active_72_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_68_active_72_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1313057123385.8208
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_68_active_72_max_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # The same 68-active/72-padded source queue has a distinct shallower W1
+    # and W2 K-loop pair. Adjacent non-production N cells preserve the exact
+    # production source and routing envelope without consuming OP duration.
+    - service: metax_eight_expert_68_active_72_max_k128_n448_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_68_active_72_max_k128_n448_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2760263325486.602
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_68_active_72_max_k128n448_k448n64_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_eight_expert_68_active_72_max_k448_n64_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_68_active_72_max_k448_n64_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1158616598974.0437
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_68_active_72_max_k128n448_k448n64_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # The E32 mid-K source traverses 32 active M tiles in a 48-tile padded
+    # queue. Adjacent-N probes retain the exact symmetric K-loop classes.
+    - service: metax_e32_32_active_48_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e32_32_active_48_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 3639649767346.0957
+      evidence_ref: microbench/metax_c500/references/bm64_e32_h2880_32_active_48_max_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e32_32_active_48_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e32_32_active_48_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1745590172592.3005
+      evidence_ref: microbench/metax_c500/references/bm64_e32_h2880_32_active_48_max_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # The next E32 mid-K source traverses 47 active M tiles in a 64-tile
+    # padded queue.
+    - service: metax_e32_47_active_64_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e32_47_active_64_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 3012523245854.0615
+      evidence_ref: microbench/metax_c500/references/bm64_e32_h2880_production_source_depth_operand_pipeline.json#selected_services/47_active/w1
+      replay_to_dram_fraction: null
+    - service: metax_e32_47_active_64_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e32_47_active_64_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 517471589714.3835
+      evidence_ref: microbench/metax_c500/references/bm64_e32_h2880_production_source_depth_operand_pipeline.json#selected_services/47_active/w2
+      replay_to_dram_fraction: null
+    - service: metax_e32_78_active_96_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e32_78_active_96_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2261726943705.3633
+      evidence_ref: microbench/metax_c500/references/bm64_e32_h2880_production_source_depth_operand_pipeline.json#selected_services/78_active/w1
+      replay_to_dram_fraction: null
+    - service: metax_e32_78_active_96_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e32_78_active_96_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 597925559051.866
+      evidence_ref: microbench/metax_c500/references/bm64_e32_h2880_production_source_depth_operand_pipeline.json#selected_services/78_active/w2
+      replay_to_dram_fraction: null
+    - service: metax_e32_143_active_160_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e32_143_active_160_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1964611445153.842
+      evidence_ref: microbench/metax_c500/references/bm64_e32_h2880_production_source_depth_operand_pipeline.json#selected_services/143_active/w1
+      replay_to_dram_fraction: null
+    - service: metax_e32_143_active_160_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e32_143_active_160_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 887011464428.7026
+      evidence_ref: microbench/metax_c500/references/bm64_e32_h2880_production_source_depth_operand_pipeline.json#selected_services/143_active/w2
+      replay_to_dram_fraction: null
+    # With all 256 experts populated for more than eleven M tiles each, the
+    # source keeps a much longer global expert-weight queue than the existing
+    # multi-tile envelope. Independent event probes retain that queue and
+    # bracket each source role's production K/N loop class without timing a
+    # production OP.
+    - service: metax_e256_long_lifetime_mid_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_long_lifetime_mid_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1254956266011.0376
+      evidence_ref: microbench/metax_c500/references/bm64_e256_long_lifetime_mid_projection_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e256_long_lifetime_mid_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_long_lifetime_mid_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 982773151357.9355
+      evidence_ref: microbench/metax_c500/references/bm64_e256_long_lifetime_mid_projection_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    - service: metax_e256_long_lifetime_fused_moe_long_k_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_long_lifetime_fused_moe_long_k_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 898416143776.8531
+      evidence_ref: microbench/metax_c500/references/bm64_e256_long_lifetime_operand_pipeline.json#selected_services/long_k
+      replay_to_dram_fraction: null
+    - service: metax_e256_long_lifetime_fused_moe_wide_n_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_long_lifetime_fused_moe_wide_n_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 605373260135.7303
+      evidence_ref: microbench/metax_c500/references/bm64_e256_long_lifetime_operand_pipeline.json#selected_services/wide_n
+      replay_to_dram_fraction: null
+    # The dense E512 queue keeps 10-11 active M tiles per expert and 5624
+    # possible M tiles. Exact-K, adjacent-N probes isolate the W1/W2 completion
+    # envelopes that the broader long-lifetime K/N classes do not preserve.
+    - service: metax_e512_dense_ten_to_eleven_tile_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e512_dense_ten_to_eleven_tile_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1200039183512.872
+      evidence_ref: microbench/metax_c500/references/bm64_e512_dense_ten_to_eleven_tile_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e512_dense_ten_to_eleven_tile_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e512_dense_ten_to_eleven_tile_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1042966078286.4961
+      evidence_ref: microbench/metax_c500/references/bm64_e512_dense_ten_to_eleven_tile_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # W2 consumes the activation emitted immediately before it. At the large
+    # E512 projection, that full source write invalidates the warm repeated-W2
+    # envelope; exact-K, adjacent-N probes reproduce the source-order state.
+    - service: metax_e512_dense_activation_refreshed_large_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e512_dense_activation_refreshed_large_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 608685060855.3701
+      evidence_ref: microbench/metax_c500/references/bm64_e512_dense_large_w2_activation_refresh_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    - service: metax_e128_long_lifetime_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_long_lifetime_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1183722906708.2878
+      evidence_ref: microbench/metax_c500/references/bm64_e128_long_lifetime_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e128_long_lifetime_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_long_lifetime_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 635660657583.6455
+      evidence_ref: microbench/metax_c500/references/bm64_e128_long_lifetime_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    - service: metax_e128_deep_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_deep_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 622072184468.4724
+      evidence_ref: microbench/metax_c500/references/bm64_e128_deep_w2_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    - service: metax_e128_eight_tile_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_eight_tile_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1174968747077.5234
+      evidence_ref: microbench/metax_c500/references/bm64_e128_eight_tile_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e128_eight_tile_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_eight_tile_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 697195713781.3363
+      evidence_ref: microbench/metax_c500/references/bm64_e128_eight_tile_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # Sixteen routes per source row reuse each W1 activation row across twice
+    # as many sorted expert destinations as the otherwise similar TOPK8
+    # program. Adjacent-N probes preserve this source reuse, the eight-tile
+    # expert lifetime, and the padded queue without using a production N.
+    - service: metax_e128_topk16_eight_tile_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_topk16_eight_tile_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2902547283916.5557
+      evidence_ref: microbench/metax_c500/references/bm64_e128_topk16_eight_tile_w1_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    - service: metax_e128_eight_tile_wide_n_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_eight_tile_wide_n_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 681690158790.7874
+      evidence_ref: microbench/metax_c500/references/bm64_e128_eight_tile_wide_n_w2_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    - service: metax_eight_expert_twelve_tile_k128_n448_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_twelve_tile_k128_n448_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2059442115031.219
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_twelve_tile_w1_pipeline.json#selected_services/k128_n448
+      replay_to_dram_fraction: null
+    - service: metax_eight_expert_twelve_tile_k192_n512_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_twelve_tile_k192_n512_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1856470554518.9795
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_twelve_tile_w1_pipeline.json#selected_services/k192_n512
+      replay_to_dram_fraction: null
+    - service: metax_eight_expert_twelve_tile_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_twelve_tile_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 408286512237.02045
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_twelve_tile_w2_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    - service: metax_eight_expert_twelve_tile_deep_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_eight_expert_twelve_tile_deep_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 541864677430.61395
+      evidence_ref: microbench/metax_c500/references/bm64_eight_expert_twelve_tile_deep_w2_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    - service: metax_e128_sparse_two_tile_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_sparse_two_tile_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1068521762264.2522
+      evidence_ref: microbench/metax_c500/references/bm64_e128_sparse_two_tile_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e128_sparse_two_tile_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_sparse_two_tile_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 539536391141.0292
+      evidence_ref: microbench/metax_c500/references/bm64_e128_sparse_two_tile_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # The 1023-token synthetic route preserves the production queue exactly:
+    # 188 active M tiles inside the source-padded 254-tile launch. Adjacent-N
+    # probes retain the W1/W2 K loops without consuming production duration.
+    - service: metax_e128_188_active_254_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_188_active_254_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1591336154581.2666
+      evidence_ref: microbench/metax_c500/references/bm64_e128_188_active_254_max_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e128_188_active_254_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_188_active_254_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 537916948909.9443
+      evidence_ref: microbench/metax_c500/references/bm64_e128_188_active_254_max_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    - service: metax_e128_upper_two_tile_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_upper_two_tile_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1336953737898.0642
+      evidence_ref: microbench/metax_c500/references/bm64_e128_upper_two_tile_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e128_upper_two_tile_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_upper_two_tile_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 808752430005.3013
+      evidence_ref: microbench/metax_c500/references/bm64_e128_upper_two_tile_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    - service: metax_e256_eight_tile_fused_moe_long_k_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_eight_tile_fused_moe_long_k_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 979450127601.1329
+      evidence_ref: microbench/metax_c500/references/bm64_e256_eight_tile_operand_pipeline.json#selected_services/long_k
+      replay_to_dram_fraction: null
+    - service: metax_e256_eight_tile_fused_moe_wide_n_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_eight_tile_fused_moe_wide_n_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 663648043090.0348
+      evidence_ref: microbench/metax_c500/references/bm64_e256_eight_tile_operand_pipeline.json#selected_services/wide_n
+      replay_to_dram_fraction: null
+    # At the same E256 eight-tile source depth, the H2048/INT512 W1 and W2
+    # projections execute distinct source roles and K/N tile classes. Adjacent
+    # non-production geometries preserve the production source loops; the
+    # conservative lower per-role median bounds the complete operand pipeline.
+    - service: metax_e256_eight_tile_mid_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_eight_tile_mid_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1236532659297.142
+      evidence_ref: microbench/metax_c500/references/bm64_e256_eight_tile_mid_projection_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e256_eight_tile_mid_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_eight_tile_mid_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1075395665052.2191
+      evidence_ref: microbench/metax_c500/references/bm64_e256_eight_tile_mid_projection_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    - service: metax_e256_four_tile_fused_moe_long_k_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_four_tile_fused_moe_long_k_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1244471286428.599
+      evidence_ref: microbench/metax_c500/references/bm64_e256_four_tile_operand_pipeline.json#selected_services/long_k
+      replay_to_dram_fraction: null
+    - service: metax_e256_four_tile_fused_moe_wide_n_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_four_tile_fused_moe_wide_n_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 983283928173.2489
+      evidence_ref: microbench/metax_c500/references/bm64_e256_four_tile_operand_pipeline.json#selected_services/wide_n
+      replay_to_dram_fraction: null
+    # The 4,096-route E128 queue has exactly one active BM64 tile per expert
+    # inside a 190-tile source launch.  W1 retains source-top-k-dependent
+    # activation reuse, while W2 consumes the routed buffer after the source
+    # activation copy and routed-weight multiply.
+    - service: metax_e128_topk8_128_active_190_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_topk8_128_active_190_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2559333566462.93
+      evidence_ref: microbench/metax_c500/references/bm64_e128_128_active_190_max_operand_pipeline.json#selected_services/topk8_w1
+      replay_to_dram_fraction: null
+    - service: metax_e128_topk16_128_active_190_max_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_topk16_128_active_190_max_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2698553810793.005
+      evidence_ref: microbench/metax_c500/references/bm64_e128_128_active_190_max_operand_pipeline.json#selected_services/topk16_w1
+      replay_to_dram_fraction: null
+    - service: metax_e128_128_active_190_max_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_128_active_190_max_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2201895980056.4463
+      evidence_ref: microbench/metax_c500/references/bm64_e128_128_active_190_max_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    # Equal routed work can have different W1 source reuse: source-topk 8
+    # retains twice as many unique activation rows as source-topk 16.  The
+    # paired adjacent-N probe keeps routing and launch depth fixed and exposes
+    # that source-program distinction; W2 consumes the routed buffer directly.
+    - service: metax_e128_repeated_source_topk8_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_repeated_source_topk8_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1668209111834.5667
+      evidence_ref: microbench/metax_c500/references/bm64_e128_repeated_source_reuse_operand_pipeline.json#selected_services/w1_source_topk8
+      replay_to_dram_fraction: null
+    - service: metax_e128_repeated_source_topk16_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_repeated_source_topk16_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2682085658245.4253
+      evidence_ref: microbench/metax_c500/references/bm64_e128_repeated_source_reuse_operand_pipeline.json#selected_services/w1_source_topk16
+      replay_to_dram_fraction: null
+    - service: metax_e128_repeated_k24_n32_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_repeated_k24_n32_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 732468315351.4436
+      evidence_ref: microbench/metax_c500/references/bm64_e128_repeated_source_reuse_operand_pipeline.json#selected_services/w2_routed_source
+      replay_to_dram_fraction: null
+    - service: metax_e128_four_tile_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_four_tile_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1042007322320.5751
+      evidence_ref: microbench/metax_c500/references/bm64_e128_four_tile_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e128_four_tile_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_four_tile_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 960616571004.986
+      evidence_ref: microbench/metax_c500/references/bm64_e128_four_tile_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    - service: metax_e128_four_tile_large_fused_moe_w1_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_four_tile_large_fused_moe_w1_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1419461474794.4766
+      evidence_ref: microbench/metax_c500/references/bm64_e128_four_tile_large_operand_pipeline.json#selected_services/w1
+      replay_to_dram_fraction: null
+    - service: metax_e128_four_tile_large_fused_moe_w2_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e128_four_tile_large_fused_moe_w2_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 875191968734.7042
+      evidence_ref: microbench/metax_c500/references/bm64_e128_four_tile_large_operand_pipeline.json#selected_services/w2
+      replay_to_dram_fraction: null
+    - service: metax_e256_upper_two_tile_fused_moe_long_k_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_upper_two_tile_fused_moe_long_k_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 798218071802.4584
+      evidence_ref: microbench/metax_c500/references/bm64_e256_upper_two_tile_operand_pipeline.json#selected_services/long_k
+      replay_to_dram_fraction: null
+    - service: metax_e256_upper_two_tile_fused_moe_wide_n_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_upper_two_tile_fused_moe_wide_n_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1070485657117.5874
+      evidence_ref: microbench/metax_c500/references/bm64_e256_upper_two_tile_operand_pipeline.json#selected_services/wide_n
+      replay_to_dram_fraction: null
+    # BM64/BK32/BN64/GSM8 changes operand issue capacity with the source K/N
+    # loop depth even inside the same global expert queue and four-to-five
+    # M-tile lifetime. Two adjacent non-production cells per class, each with
+    # three independent captures, freeze the conservative cell-median below.
+    - service: metax_global_deep_fused_moe_long_k_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_global_deep_fused_moe_long_k_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 622465137115.988
+      evidence_ref: microbench/metax_c500/references/bm64_depth_lifetime_operand_pipeline.json#selected_services/global_deep_long_k
+      replay_to_dram_fraction: null
+    - service: metax_global_large_fused_moe_wide_n_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_global_large_fused_moe_wide_n_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1164381308417.5315
+      evidence_ref: microbench/metax_c500/references/bm64_depth_lifetime_operand_pipeline.json#selected_services/global_large_wide_n
+      replay_to_dram_fraction: null
+    - service: metax_e256_four_tile_mid_fused_moe_long_k_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_four_tile_mid_fused_moe_long_k_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1076271868877.4132
+      evidence_ref: microbench/metax_c500/references/bm64_depth_lifetime_operand_pipeline.json#selected_services/e256_four_mid_long_k
+      replay_to_dram_fraction: null
+    - service: metax_e256_four_tile_mid_fused_moe_wide_n_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_e256_four_tile_mid_fused_moe_wide_n_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1010401399126.2913
+      evidence_ref: microbench/metax_c500/references/bm64_depth_lifetime_operand_pipeline.json#selected_services/e256_four_mid_wide_n
+      replay_to_dram_fraction: null
+    # BM64/BK32/BN64/GSM8 enters a distinct global expert-weight queue once
+    # populated experts span multiple M tiles. The independent synthetic
+    # routing probe retains the Triton load/dot instruction stream while using
+    # non-production K/N geometry and no production/evaluation duration.
+    - service: metax_grouped_fused_moe_long_k_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_grouped_fused_moe_long_k_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 508126047370.714
+      evidence_ref: microbench/metax_c500/references/bm64_multi_tile_operand_pipeline.json#selected_services/long_k
+      replay_to_dram_fraction: null
+    - service: metax_grouped_fused_moe_wide_n_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_grouped_fused_moe_wide_n_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1993803727360.7832
+      evidence_ref: microbench/metax_c500/references/bm64_multi_tile_operand_pipeline.json#selected_services/wide_n
+      replay_to_dram_fraction: null
+    - service: metax_long_lifetime_fused_moe_long_k_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_long_lifetime_fused_moe_long_k_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 655124084652.9813
+      evidence_ref: microbench/metax_c500/references/bm64_multi_tile_operand_pipeline.json#selected_services/long_lifetime_long_k
+      replay_to_dram_fraction: null
+    - service: metax_long_lifetime_fused_moe_wide_n_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_long_lifetime_fused_moe_wide_n_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 2148102840309.0188
+      evidence_ref: microbench/metax_c500/references/bm64_multi_tile_operand_pipeline.json#selected_services/long_lifetime_wide_n
+      replay_to_dram_fraction: null
+    - service: metax_repeated_fused_moe_deep_k_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_repeated_fused_moe_deep_k_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 604950401763.9849
+      evidence_ref: microbench/metax_c500/references/bm64_multi_tile_operand_pipeline.json#selected_services/deep_k
+      replay_to_dram_fraction: null
+    - service: metax_repeated_fused_moe_wide_n_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_repeated_fused_moe_wide_n_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 691367424846.1565
+      evidence_ref: microbench/metax_c500/references/bm64_multi_tile_operand_pipeline.json#selected_services/repeated_wide_n
+      replay_to_dram_fraction: null
+    # A balanced K=N projection has half as many BN64 output columns as the
+    # 2N wide projection while retaining the same repeated BM64 source queue.
+    # The independent adjacent-shape capture preserves that shorter N loop.
+    - service: metax_repeated_fused_moe_balanced_n_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_repeated_fused_moe_balanced_n_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1008425801855.0852
+      evidence_ref: microbench/metax_c500/references/bm64_multi_tile_operand_pipeline.json#selected_services/repeated_balanced_n
+      replay_to_dram_fraction: null
+    - service: metax_repeated_fused_moe_mid_long_k_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_repeated_fused_moe_mid_long_k_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 1070846486054.9147
+      evidence_ref: microbench/metax_c500/references/bm64_mid_k_production_source_operand_pipeline.json#selected_service
+      replay_to_dram_fraction: null
+    - service: metax_repeated_fused_moe_mid_wide_n_operand_pipeline
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: metax_repeated_fused_moe_mid_wide_n_operand_pipeline
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 8192
+        operand_role: combined
+        tile_n: 64
+        group_size_m: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 874114351029.0723
+      evidence_ref: microbench/metax_c500/references/bm64_mid_k_repeated_operand_pipeline.json#selected_services/wide_n
+      replay_to_dram_fraction: null
+    - service: bf16_vec4_elementwise_2r1w_dram_read
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: bf16_vec4_elementwise_2r1w_dram_read
+        dtype: bf16
+        tile_m: 256
+        tile_k: 4
+        logical_row_bytes: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 959465606000.0
+      evidence_ref: microbench/metax_c500/references/bf16_vec4_elementwise_2r1w_dram_maca_3_7_2.json#selected_service
+    - service: bf16_vec4_elementwise_2r1w_dram_write
+      access_kind: write
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: bf16_vec4_elementwise_2r1w_dram_write
+        dtype: bf16
+        tile_m: 256
+        tile_k: 4
+        logical_row_bytes: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 479732803000.0
+      evidence_ref: microbench/metax_c500/references/bf16_vec4_elementwise_2r1w_dram_maca_3_7_2.json#selected_service
+    - service: bf16_vec4_elementwise_2r1w_partial_resident_dram_read
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: bf16_vec4_elementwise_2r1w_partial_resident_dram_read
+        dtype: bf16
+        tile_m: 256
+        tile_k: 4
+        logical_row_bytes: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 880231653333.3334
+      evidence_ref: microbench/metax_c500/references/bf16_vec4_elementwise_2r1w_dram_maca_3_7_2.json#selected_partial_resident_service
+    - service: bf16_vec4_elementwise_2r1w_partial_resident_dram_write
+      access_kind: write
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: bf16_vec4_elementwise_2r1w_partial_resident_dram_write
+        dtype: bf16
+        tile_m: 256
+        tile_k: 4
+        logical_row_bytes: 8
+      scope: full_chip
+      logical_byte_capacity_per_s: 440115826666.6667
+      evidence_ref: microbench/metax_c500/references/bf16_vec4_elementwise_2r1w_dram_maca_3_7_2.json#selected_partial_resident_service
+    - service: indirect_row_gather
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: indirect_row_gather
+        dtype: bf16
+        tile_m: 16
+        tile_k: 64
+        logical_row_bytes: 128
+      scope: full_chip
+      logical_byte_capacity_per_s: 686450000000.0
+      evidence_ref: profiler_output/microbench/metax_c500/fused_moe_gather_0c98472_20260815/release_candidate_summary.tsv#bm16_bk64
+    - service: indirect_row_gather
+      access_kind: read
+      ingress_resource_role: l2_cache
+      signature:
+        access_class: indirect_row_gather
+        dtype: bf16
+        tile_m: 64
+        tile_k: 32
+        logical_row_bytes: 64
+      scope: full_chip
+      logical_byte_capacity_per_s: 733750000000.0
+      evidence_ref: profiler_output/microbench/metax_c500/fused_moe_gather_0c98472_20260815/release_candidate_summary.tsv#bm64_bk32
+  l2_conflict_efficiency_moe: 1.0
+                                      # neutral: typed gather is independently priced
+  dram_protocol_efficiency: 1.0       # no unproven access-class derate
+  # No independent mechanism benchmark currently supports an extra tiled-GEMM
+  # derate.  Keep the streaming microbenchmark capacity unchanged.
+  dram_protocol_efficiency_l1cached: 1.0
+  # Layer-1 numbered reports are isolated per invocation. Byte-conservation
+  # checks against exact operator traffic confirm their global-memory counts:
+  # Vector medians are within 0--6%, tiled FA decode is within 0.1%, and tiny
+  # MoE w1/w2 are within 0.4%/0.1%. Larger MoE deviations are real cache
+  # rereads (the intended Oracle evidence), not a constant replay multiplier.
+  # Whole-shape reports and report.txt fallbacks remain ineligible.
+  profiler_per_kernel_traffic_reliable: true
+# ─── Scheduling ──────────────────────────────────────────
+scheduling:
+  parallel_unit: warp
+  parallel_width: 64                  # macainfo: Wavefront Size = 64; torch: warp_size = 64
+  num_compute_units: 104              # macainfo: Accelerator Processors = 104
+  max_warps_per_unit: 32              # macainfo: Max Waves Per AP = 32
+  max_blocks_per_unit: 32             # upper bound from 32 resident waves/AP
+  max_regs_per_unit: 131072           # torch: regs_per_multiprocessor = 131072
+  max_smem_per_unit_bytes: 65536      # torch: shared_memory_per_multiprocessor = 65536
+  max_smem_per_block_bytes: 65536     # torch: shared_memory_per_block = 65536
+  max_threads_per_unit: 2048          # macainfo: Max Work-items Per AP = 2048; torch confirmed
+  # The scheduler model below is a complete non-empty-task duration floor, so
+  # there is no second additive dispatch term.
+  dispatch_overhead_ns: 0
+  # MACA 3.7.2 register-only single-add task, measured independently of every
+  # production/evaluation kernel with mcTracer GPU kernel events.  The fixed
+  # physical form prices one submission, one descriptor per CTA, and one
+  # full-chip scheduler round per ceil(grid/104); a one-wave CTA has its own
+  # round service while a multi-wave CTA pays service per wave.  Trials 1--2
+  # fit the parameters, trial 3 is frozen validation, and Dim3 cells are held
+  # out.  Training/validation/Dim3 MAPE is 4.88/5.53/4.83 percent.
+  # Artifact:
+  # profiler_output/microbench/metax_c500/
+  # nonempty_scheduler_v2_0ed018b_20260817/full/report.json
+  # Baseline/report/binary/shader-cache SHA256 are respectively
+  # 0ed018bc83b2986c9bccf1e73773550d6c514904,
+  # bb851452df50588a6db7ac0d708458486b8a19d651b65a11af76140f2077f5c9,
+  # 594929595d36bb8a5e0a8fa2b8c191ac6d3ae0a7affefe57f79830bce247dc00,
+  # and 828368bb8de75d1380c1a25772da29e49ed66f304f911ecbe37b8f48ee525515.
+  launch_latency_model:
+    model: isolated_nonempty_task_scheduler_v1
+    software_revision: maca_3.7.2
+    duration_unit: ns_per_launch
+    timer_domain: mctracer_gpu_kernel_event
+    submit_ns: 2191.6317887313203
+    cta_descriptor_ns: 1.0164408046126985
+    single_wave_round_ns: 11.552694608159634
+    multi_wave_round_ns: 59.92870334645187
+  # Complete warm-runtime lower bound for the BF16 binary TensorIterator task
+  # class used by Add/Mul.  The independent torch.maximum probe covers
+  # 1--1,048,576 elements on the pinned torch 2.4.0 + MACA 3.7.2 stack.  Two
+  # derivation trials provide the strict lower envelope; all 124 frozen
+  # validation samples remain above it and cross-trial median spread is 0.53%.
+  # The paired graph-replay differential removes event setup from each task;
+  # no production/evaluation duration or target operator is consumed.
+  # Evidence: microbench/metax_c500/references/
+  # bf16_binary_tensor_iterator_task_floor_maca_3_7_2.json
+  runtime_task_latency_models:
+    pytorch_bf16_binary_tensor_iterator:
+      model: warm_bf16_binary_tensor_iterator_task_floor_v1
+      duration_unit: ns_per_task
+      timer_domain: paired_differential_events_around_cuda_graph_replay
+      software_revision: torch_2.4.0_metax_3.7.2.0
+      derivation_rule: minimum_all_binary_graph_replay_differentials
+      minimum_elements: 1
+      maximum_elements: 16384
+      duration_ns: 1956.4800709486008
+  # One 256-thread CTA barrier with the exact 32-KiB dynamic shared-memory
+  # footprint and two-resident-CTA/AP limit of the pinned D128 Q64 FlashAttention
+  # trait.  The parameter is the median adjacent-repetition clock64 slope from
+  # derivation trials 1--2 at grid=208; frozen trial 3 validates the complete
+  # three-grid linear model at 0.034% MAPE and 0.309% maximum APE.  The probe
+  # contains no production operator or production/evaluation duration.
+  # Raw/report: profiler_output/microbench/metax_c500/
+  # cta_barrier_cc95ff7f_20260828_r1/{trial1.csv,trial2.csv,trial3.csv,report.json}
+  # Marginal launch-wide cost of one CTA that starts, reads the two integers
+  # describing its tile, finds the tile beyond its request, and returns
+  # before the Q/K/V path.  This is what a padded query tile of the Q64
+  # prefill FlashAttention launch does, and the Forward pipeline previously
+  # priced it at exactly zero.  Measured at the source's own footprint (256
+  # threads, 32 KiB dynamic shared memory) with a 30 s sustained warm-up and
+  # trial-outer/grid-inner rounds; both controls are required, because a
+  # grid-outer sweep measures this device's clock ramp instead and its slope
+  # depends on sweep direction.  Ascending and descending agree to 3 percent
+  # with the controls, and the fit is linear over grids 1664-31616 across two
+  # devices (R^2 0.9992).  The intercept is not republished here: the launch
+  # floor is the scheduler model above.  No production or evaluation duration
+  # is consumed.
+  early_exit_cta_retire:
+    model: early_exit_cta_retire_v1
+    software_revision: maca_3.7.2
+    timer_domain: mcevent_gpu_kernel
+    threads_per_cta: 256
+    dynamic_shared_bytes: 32768
+    launch_wide_ns_per_early_exit_cta: 3.6555917741643142
+    reference_path: microbench/metax_c500/references/early_exit_cta_retire_maca_3_7_2.json
+    reference_sha256: 2767729af7c1924e4236811c4f285920ffcd34fa62371694b5328cef9aa72a07
+    production_or_evaluation_duration_consumed: false
+  cta_barrier_service_cycles:
+    model: isolated_cta_barrier_service_v1
+    cycle_unit: cycles_per_256_thread_cta_barrier
+    timer_domain: clock64_same_cta_cycles
+    software_revision: maca_3.7.2
+    threads_per_cta: 256
+    dynamic_shared_bytes: 32768
+    resident_ctas_per_unit: 2
+    barrier_cycles: 56.640625
+    source_sha256: cc95ff7faf12f6520ea556f842d53d1664d33d6b15e740d1efab9365ae6f71f7
+    report_sha256: 34887fa53a6e1e3f46910346a92bb297c7ff8c33d4857abd5ccc07aeda529799
+  # The pinned MACA 3.7.2 FlashMLA combine specialization uses 256 threads,
+  # 2560 B static shared memory, and a register-limited two-CTA/AP residency.
+  # Canonical non-duration BSM counters close to one CTA barrier per active
+  # split.  An isolated exact-footprint clock64 probe at grid=208 reproduces
+  # the two-CTA/AP concurrency envelope and measures 52 cycles/barrier in each
+  # of three fresh processes (0% cross-process span; validation MAPE 0.196%,
+  # maximum APE 1.161%).  It invokes no FlashAttention workload or duration.
+  # Production binary: flash_mla_cuda.cpython-310-x86_64-linux-gnu.so,
+  # SHA256 3c48413dfe2fabcc7986088f61c7c9ec1584e68f859782b8711690ff550e781e,
+  # bundle 7, exact BF16 <576,64,16,8,...,512,2>,4,7,true symbol.
+  # Raw/report: profiler_output/microbench/metax_c500/
+  # mla_combine_barrier_256t_2560b_77a1fe86_20260909_r1/.
+  flash_mla_combine_barrier_service_cycles:
+    model: isolated_flash_mla_combine_cta_barrier_service_v1
+    cycle_unit: cycles_per_256_thread_cta_barrier
+    timer_domain: clock64_same_cta_cycles
+    software_revision: maca_3.7.2
+    threads_per_cta: 256
+    static_shared_bytes: 2560
+    resident_ctas_per_unit: 2
+    barrier_cycles: 52.0
+    source_sha256: 30a8202ad9f76b5db029924315a9c2086fdb9a7b252af1f1b0913021396cf272
+    report_sha256: ca0177104bea08326fd979b2bccff39bdf9dbf6016871fea28d681ab0318855b
+  # The MACA 3.7.2 D128 split reducer dispatches a compile-time power-of-two
+  # ``kMaxSplits`` program.  Each entry below is a static source program, not
+  # a runtime-shape duration row.  The five-way Graph reducer executes the
+  # kMaxSplits=8 partial-predicate program; source traffic and FMA demand
+  # retain its true five iterations.  Independent clock64 fragment captures
+  # measure only the shared-transpose/reduction/control chain.  Oaccum load
+  # and FMA stay in existing traffic and arithmetic demand, never here.
+  # Raw/report: profiler_output/microbench/metax_c500/
+  # fa2_combine_d128_dependency_cbaf40b3_20260909_r1/ and
+  # fa2_combine_d128_dependency_5of8_8b4c7e5f_20260912_r7/.
+  metax_fa2_combine_dependency_cycles:
+    model: isolated_metax_fa2_d128_combine_dependency_v2
+    cycle_unit: cycles_per_256_thread_cta_stage
+    timer_domain: clock64_same_cta_cycles
+    software_revision: maca_3.7.2
+    threads_per_cta: 256
+    entries:
+      - block_m: 8
+        head_dim: 128
+        max_splits: 2
+        predicate_class: full
+        stage_cycles:
+          lse_shared_transpose: 116.046875
+          max_allreduce: 96.0
+          post_max_exp_sum: 56.0
+          sum_allreduce: 92.0
+          post_sum_log: 216.0
+          scale_shared_barrier: 175.6796875
+          output_conversion: 4.0
+        source_sha256: c14bda327e03483aa4cc8f8bebe6e702273d7dc1c4dc1b4593f73973bc16d0a3
+        report_sha256: d40d3d7baefd4f5873ebde183db630a56ab57acab2ce731e464af6e4d0b2c5c8
+      - block_m: 8
+        head_dim: 128
+        max_splits: 8
+        predicate_class: partial
+        stage_cycles:
+          lse_shared_transpose: 135.994140625
+          max_allreduce: 236.0
+          post_max_exp_sum: 56.0
+          sum_allreduce: 220.0
+          post_sum_log: 216.0
+          scale_shared_barrier: 172.076171875
+          output_conversion: 4.0
+        source_sha256: 93d1eafd49d9c8f02c16751c2f35c07f73390526878a050bab7caa3c9d90f8a3
+        report_sha256: a4b1830358fefc608d5bb628492ed38de071d0a78ba2f2fcbaad4e4ee6f1290d
+  # A custom 512-thread vec4 reduction primitive preserves the MACA
+  # imcontinuous source stages without invoking torch.sum or FusedMoE.
+  # Adjacent repetition-count differences remove launch/fixed timer work;
+  # derivation trials 1--2 use grids 1 and 8, while frozen trial 3 validates
+  # all five TOPK programs at grids 1, 8, and 104 (0.695% MAPE, 5.697% max).
+  # Raw/report: profiler_output/microbench/metax_c500/
+  # imcontinuous_reduce_source_8ca75d72_20260907_r1/
+  imcontinuous_vec4_reduction_source_service:
+    model: isolated_imcontinuous_vec4_reduction_source_service_v1
+    cycle_unit: cycles_per_512_thread_cta_source_program
+    timer_domain: clock64_same_cta_cycles
+    software_revision: maca_3.7.2
+    threads_per_cta: 512
+    dynamic_shared_bytes: 4104
+    programs:
+      - topk: 2
+        block_x: 256
+        block_y: 2
+        service_cycles_per_cta: 1191.75
+      - topk: 4
+        block_x: 128
+        block_y: 4
+        service_cycles_per_cta: 1504.125
+      - topk: 8
+        block_x: 64
+        block_y: 8
+        service_cycles_per_cta: 1864.25
+      - topk: 10
+        block_x: 64
+        block_y: 8
+        service_cycles_per_cta: 2040.25
+      - topk: 16
+        block_x: 32
+        block_y: 16
+        service_cycles_per_cta: 2018.125
+    source_sha256: 8ca75d72e6970f417b090d89d07b846e44997c86e4f382de2eac11ae256cb55f
+    report_sha256: 53e775831b343a74fe37d2e1a26974653a8df35d27016a1e57066be681bdd2bf
+  # Independent register-only BF16 MMA sweep across 1--32 resident waves/AP
+  # and 4/8/16/32 live accumulator chains per wave. The measured surface is a
+  # hardware mechanism ceiling, not a production duration or fitted coefficient.
+  # Artifact: profiler_output/microbench/metax_c500/
+  # mma_accumulator_chain32_b0f6db466_20260915/raw_r2.csv
+  gemm_bf16_mma_saturation:
+    model: register_only_bf16_mma_accumulator_saturation_v2
+    software_revision: maca_3.7.2
+    dtype: bf16
+    rate_unit: flops_per_ap_cycle
+    ap_count: 104
+    wave_size: 64
+    accumulator_vector_width: 4
+    architecture_peak_flops_per_ap_cycle: 2048.0
+    result_path: profiler_output/microbench/metax_c500/mma_accumulator_chain32_b0f6db466_20260915/raw_r2.csv
+    result_sha256: 1046e5db6a217ed883b7b99ddc0f8cd5a0af680dcdfb2fd4020524aea8f51db9
+    reference_path: microbench/metax_c500/references/gemm_bf16_mma_accumulator_sweep_maca_3_7_2.json
+    reference_sha256: bd6a4f51e2bf6bfa07a29fb8d6b4295b3cdc706158be7bee541dd1df6b142cb6
+    production_or_evaluation_duration_consumed: false
+  # This exact BM32/BN64/BK128 Triton configuration has four wave64 threads
+  # per CTA and its compiled 48-KiB double operand buffer admits one CTA/AP.
+  # The resulting four-wave, two-FP32-accumulator-chain Tensor rate comes
+  # only from the register-only MMA probe; it is not a production duration.
+  metax_fused_moe_bm32_bf16_mma_occupancy:
+    model: metax_bm32_bf16_mma_occupancy_v1
+    software_revision: maca_3.7.2
+    dtype: bf16
+    rate_unit: flops_per_ap_cycle
+    result_path: profiler_output/microbench/metax_c500/mma_accumulator_chain2_long_db74f025_20260916_r1/raw_r2.csv
+    result_sha256: 13c0c33ee800496236a23725135e6bf1aa36addc9d29ca0569b8a4650792fa46
+    reference_path: microbench/metax_c500/references/fused_moe_bm32_bf16_mma_occupancy_maca_3_7_2.json
+    reference_sha256: 0a36e74aba1900d6c640752ea22c40d518fef639a44d7a96cdba0832025cd144
+    production_or_evaluation_duration_consumed: false
+  # The same BM32/BN64/BK128 launch drains each useful CTA's expert operand
+  # stream serially at one resident CTA/AP: a fixed per-CTA span plus one
+  # per-K-round service of max(local MMA issue, analytic DRAM round bytes at
+  # fair-share capacity plus pipeline-depth-amortized latency).  Coefficients
+  # come from the frozen-source synthetic-routing sweep over non-production
+  # K/N geometry; no production duration participates.
+  metax_fused_moe_bm32_operand_pipeline:
+    model: metax_bm32_bf16_grouped_operand_pipeline_v1
+    software_revision: maca_3.7.2
+    dtype: bf16
+    timer_domain: torch_cuda_event_gpu_timeline
+    tile_m: 32
+    tile_n: 64
+    tile_k: 128
+    group_size_m: 1
+    num_warps: 4
+    num_stages: 3
+    threads_per_cta: 256
+    dynamic_shared_memory_bytes_per_cta: 49152
+    resident_ctas_per_ap: 1
+    pipeline_depth: 3
+    result_path: profiler_output/microbench/metax_c500/bm32_round_sweep_d5f00a50565c_20260917_r1/extraction.json
+    result_sha256: bfd0d078e1371e4e4de01627801693e09bc3b9080c586bb7c736541b2fabef51
+    reference_path: microbench/metax_c500/references/fused_moe_bm32_grouped_operand_pipeline_maca_3_7_2.json
+    reference_sha256: 1a7686c1cd901edc8d88118630791e4751ce9a194186bd6671d2c794a81433d7
+    production_or_evaluation_duration_consumed: false
+  # The deployed decode-default BM16/BN64/BK128 launch is a distinct compiled
+  # program (four stages, 40,960-B dynamic shared) and therefore carries its
+  # own synthetic-routing sweep; it must never borrow the BM32 coefficients.
+  # Same serial one-resident-CTA/AP structure: a fixed per-CTA span plus one
+  # per-K-round service of max(architecture-peak MMA issue, analytic DRAM
+  # round bytes at fair-share capacity plus pipeline-depth-amortized latency).
+  # A finite DRAM read stream does not reach the published capacity at once.
+  # A800 has this mechanism measured and wired; C500 had no reference, so every
+  # weight-streaming launch here was priced at the full 1653.1 GB/s while the
+  # deployed decode projections achieve 1061 GB/s on a 21 MB projection and only
+  # reach 1652 GB/s at 1245 MB.  The surface is measured at three request
+  # depths because the deployed GEMV projections launch 64, 128 and 512 threads
+  # per CTA and one depth does not describe the others.
+  dram_finite_read_stream_ramp:
+    model: dram_finite_read_stream_ramp_v2_threaded
+    timer_domain: maca_graph_replay_event
+    threads_per_cta_axis: [64, 128, 256, 512]
+    in_flight_bytes_per_cta_by_threads:
+      "64": 8192
+      "128": 16384
+      "256": 32768
+      "512": 65536
+    reference_path: microbench/metax_c500/references/dram_finite_read_stream_ramp_maca_3_7_2.json
+    reference_sha256: c067f580cf5d2b591a6228f754b97bfea46bf45c1daf632d3bed3e6d4a0d0cec
+    production_or_evaluation_duration_consumed: false
+  metax_fused_moe_bm16_operand_pipeline:
+    model: metax_bm16_bf16_grouped_operand_pipeline_v1
+    software_revision: maca_3.7.2
+    dtype: bf16
+    timer_domain: torch_cuda_event_gpu_timeline
+    tile_m: 16
+    tile_n: 64
+    tile_k: 128
+    group_size_m: 1
+    num_warps: 4
+    num_stages: 4
+    threads_per_cta: 256
+    dynamic_shared_memory_bytes_per_cta: 40960
+    resident_ctas_per_ap: 1
+    pipeline_depth: 4
+    result_path: profiler_output/microbench/metax_c500/bm16_round_sweep_c1665a07051c_20260918_r1/extraction.json
+    result_sha256: b49864a7030c30da027b3f147cbb20f9fd917e780345f624363cc596976e99c5
+    reference_path: microbench/metax_c500/references/fused_moe_bm16_grouped_operand_pipeline_maca_3_7_2.json
+    reference_sha256: b49864a7030c30da027b3f147cbb20f9fd917e780345f624363cc596976e99c5
+    production_or_evaluation_duration_consumed: false
+  # The above-512 batch-token default program, which every chunked-prefill step of the retained deployment selects.
+  metax_fused_moe_bm128_bn128_operand_pipeline:
+    model: metax_bm128_bn128_bf16_grouped_operand_pipeline_v1
+    software_revision: maca_3.7.2
+    dtype: bf16
+    timer_domain: torch_cuda_event_gpu_timeline
+    tile_m: 128
+    tile_n: 128
+    tile_k: 64
+    group_size_m: 1
+    num_warps: 8
+    num_stages: 3
+    threads_per_cta: 512
+    dynamic_shared_memory_bytes_per_cta: 65536
+    resident_ctas_per_ap: 1
+    pipeline_depth: 3
+    result_path: profiler_output/microbench/metax_c500/bm128_w8_sweep_c1665a07051c_20260918_r1/extraction.json
+    result_sha256: 6ca337cacd987e29c9c6736fb17cc885b5b1653c92ee3dd30921e478a914a0e1
+    reference_path: microbench/metax_c500/references/fused_moe_bm128_bn128_grouped_operand_pipeline_maca_3_7_2.json
+    reference_sha256: 6ca337cacd987e29c9c6736fb17cc885b5b1653c92ee3dd30921e478a914a0e1
+    production_or_evaluation_duration_consumed: false
+  # The 129-512 batch-token default program, the eight-warp BM64 variant.
+  metax_fused_moe_bm64_bn128_warps8_operand_pipeline:
+    model: metax_bm64_bn128_warps8_bf16_grouped_operand_pipeline_v1
+    software_revision: maca_3.7.2
+    dtype: bf16
+    timer_domain: torch_cuda_event_gpu_timeline
+    tile_m: 64
+    tile_n: 128
+    tile_k: 64
+    group_size_m: 1
+    num_warps: 8
+    num_stages: 3
+    threads_per_cta: 512
+    dynamic_shared_memory_bytes_per_cta: 49152
+    resident_ctas_per_ap: 1
+    pipeline_depth: 3
+    result_path: profiler_output/microbench/metax_c500/bm64_w8_sweep_c1665a07051c_20260918_r1/extraction.json
+    result_sha256: b169b3d561cfdbd966cc4943210ce9f87a0d79ab165db0f09b33eae2214c9fd5
+    reference_path: microbench/metax_c500/references/fused_moe_bm64_bn128_warps8_grouped_operand_pipeline_maca_3_7_2.json
+    reference_sha256: b169b3d561cfdbd966cc4943210ce9f87a0d79ab165db0f09b33eae2214c9fd5
+    production_or_evaluation_duration_consumed: false
+  # The 97-128 batch-token default program.  BLOCK_SIZE_M=64 has two deployed programs that share tile shape, block threads and operand buffer; only the warp count separates them.
+  metax_fused_moe_bm64_bn128_warps4_operand_pipeline:
+    model: metax_bm64_bn128_warps4_bf16_grouped_operand_pipeline_v1
+    software_revision: maca_3.7.2
+    dtype: bf16
+    timer_domain: torch_cuda_event_gpu_timeline
+    tile_m: 64
+    tile_n: 128
+    tile_k: 64
+    group_size_m: 1
+    num_warps: 4
+    num_stages: 3
+    threads_per_cta: 512
+    dynamic_shared_memory_bytes_per_cta: 49152
+    resident_ctas_per_ap: 1
+    pipeline_depth: 3
+    result_path: profiler_output/microbench/metax_c500/bm64_w4_sweep_c1665a07051c_20260918_r1/extraction.json
+    result_sha256: 27fc374e9b6589cd4105bc3278283153cb0d075aaf39694b5586bd7eede49cc8
+    reference_path: microbench/metax_c500/references/fused_moe_bm64_bn128_warps4_grouped_operand_pipeline_maca_3_7_2.json
+    reference_sha256: 27fc374e9b6589cd4105bc3278283153cb0d075aaf39694b5586bd7eede49cc8
+    production_or_evaluation_duration_consumed: false
+  # The 65-96 batch-token default program: BM32/BN128/BK64 with four warps, three stages and a 40,960-B operand buffer.
+  metax_fused_moe_bm32_bn128_operand_pipeline:
+    model: metax_bm32_bn128_bf16_grouped_operand_pipeline_v1
+    software_revision: maca_3.7.2
+    dtype: bf16
+    timer_domain: torch_cuda_event_gpu_timeline
+    tile_m: 32
+    tile_n: 128
+    tile_k: 64
+    group_size_m: 1
+    num_warps: 4
+    num_stages: 3
+    threads_per_cta: 256
+    dynamic_shared_memory_bytes_per_cta: 40960
+    resident_ctas_per_ap: 1
+    pipeline_depth: 3
+    result_path: profiler_output/microbench/metax_c500/bm32_w4_sweep_c1665a07051c_20260918_r1/extraction.json
+    result_sha256: 189ed490fb8b5970e0e7658299034e79cee2692156900f4e18c255c678c4a6a8
+    reference_path: microbench/metax_c500/references/fused_moe_bm32_bn128_grouped_operand_pipeline_maca_3_7_2.json
+    reference_sha256: 189ed490fb8b5970e0e7658299034e79cee2692156900f4e18c255c678c4a6a8
+    production_or_evaluation_duration_consumed: false
+  # One source-shaped operand chain at the exact evidenced 64-AP, 256-panel
+  # scope: fresh global loads, CTA completion barrier, then BF16 MMA consumers.
+  # This replaces the matching K or V source subchain; it is never added to
+  # production duration or used outside the measured finite stream.
+  fa_tile16_operand_completion:
+    model: fresh_operand_load_barrier_bf16_mma_completion_v1
+    software_revision: maca_3.7.2
+    reference_path: microbench/metax_c500/references/fa_tile16_operand_completion_maca_3_7_2.json
+    reference_sha256: de00b47a94504a7b92f3a5b68670e27fe40e5a66e2709c3106b3d2df3bac86d2
+    production_or_evaluation_duration_consumed: false
+  model_clock_domain: sm
+  dram_clock_domain: dram
+
+# ─── Interconnect ─────────────────────────────────────────
+# MetaX proprietary interconnect (MetaXLink, not NVLink).
+# The retained MACA 3.7.2 TransferBench full 4-GPU matrix reports 50.7--95.1
+# GB/s for off-diagonal directed transfers with no data errors.  Use the
+# measured 50.7 GB/s topology bottleneck as the conservative unidirectional
+# payload capacity; this field is shared with the existing communication
+# predictor but physically denotes MetaXLink, not NVLink.  Raw evidence:
+# profiler_output/microbench/metax_c500/p2p_bandwidth/
+# 20260826_maca372/transferbench.typescript.
+interconnect:
+  nvlink_unidir_bw_GB_s: 50.7
+  nvlink_signal_latency_ns: null
+  nccl_alpha_ns: null
+  # Host<->device transfer link (PCIe), used by memcpy DTOH/HTOD predictor.
+  pcie_bw_GB_s: null
+                                      # Bandwidth-latency model t = pcie_latency + bytes/bw
+                                      # (replaces the earlier fixed memcpy_*_fixed_ns constants;
+                                      #  GT DTOH/HTOD duration spans 1.8us-2.6ms → BW-dependent).
+  pcie_latency_ns: null
+  infiniband_unidir_bw_GB_s: null
+
+# ─── Features ────────────────────────────────────────────
+features:
+  kernel_memory_model: gpu_mshr
+  async_output_release: self
+  # Retain the conservative downstream completion boundary until MetaX
+  # exposes an architectural coherent-cache completion guarantee.
+  gpu_store_completion_scope: dram
+  # MACA's captured Full-Graph programs dispatch their source CTAs over
+  # every resolved Graph slot/tensor extent rather than the logical
+  # request shape; the recorded model-input arrays are the physical
+  # execution domain for the source-marked tile16 FA and Norm programs.
+  full_graph_physical_extent_dispatch: true
+  # PIECEWISE replays the same captured segments over the padded token
+  # tensor (vLLM pads num_tokens to the capture bucket and only the eager
+  # attention/KV-update ops see the unpadded count).  The serving
+  # launch-identity runs record this directly: at 264 scheduled tokens in the
+  # 272 bucket the per-head q-norm launches grid 8704 = 272 x 32 and the
+  # residual add-norm grid 272 (microbench/metax_c500/operators/gemm/
+  # serving_launch_identity).  Launch facts only; no duration.
+  piecewise_graph_physical_extent_dispatch: true
+  kernel_dtype: bf16
+  l1_cache_enabled: false
+  cluster_supported: false
+  cluster_size: 0
+  multicast_supported: false
+  hw_decompression: false
+  compression_ratio: 1.0

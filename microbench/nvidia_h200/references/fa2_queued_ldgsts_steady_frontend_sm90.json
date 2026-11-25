@@ -1,0 +1,211 @@
+{
+  "schema": "nvidia_h200_fa2_queued_ldgsts_steady_frontend_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "evidence_kind": "independent_queued_heterogeneous_ldgsts_frontend_microbenchmark",
+  "source_capture": [
+    "profiler_output/microbench/nvidia_h200/wp3_q8_r1_t1",
+    "profiler_output/microbench/nvidia_h200/wp3_q8_r2_t1"
+  ],
+  "source_baseline_commit": [
+    "aeb34ee300b317a6e3820ec9a9745a2c3ac41928"
+  ],
+  "physical_device_index": 2,
+  "device_uuid": "capture-device-077372b98985",
+  "resource_contract": {
+    "threads_per_cta": 128,
+    "dynamic_shared_bytes_per_cta": 77824,
+    "registers_per_thread": 80,
+    "resident_ctas_per_sm": 2,
+    "physical_sm_count": 132,
+    "panel_bytes_per_cta": 65536,
+    "initial_transaction_bytes": 32,
+    "static_ldgsts_bypass_128_instructions": 32,
+    "dynamic_ldgsts_warp_instructions_per_panel": 128,
+    "dynamic_ldgsts_counter_bytes_per_panel": 65536,
+    "minimum_repeats": 1,
+    "maximum_repeats": 4,
+    "source_period_ctas": 8,
+    "source_period_panels": [
+      1,
+      1,
+      2,
+      2,
+      3,
+      3,
+      4,
+      4
+    ],
+    "average_panels_per_cta": 2.5,
+    "period_offset": 0
+  },
+  "campaign": {
+    "warmup_launches": 10,
+    "samples_per_grid": 14,
+    "grids": [
+      512,
+      1024,
+      2048,
+      4096
+    ],
+    "direct_globaltimer": {
+      "512": {
+        "makespan_ns": [
+          14912,
+          13216,
+          13792,
+          13696,
+          13984,
+          13216,
+          13632,
+          13920,
+          13088,
+          13024,
+          13600,
+          13632,
+          14016,
+          13792
+        ],
+        "median_payload_bytes_per_s": 6139203747072.599,
+        "relative_bandwidth_spread": 0.13283030774060103
+      },
+      "1024": {
+        "makespan_ns": [
+          27872,
+          27936,
+          29184,
+          27744,
+          28128,
+          27904,
+          27776,
+          27936,
+          27936,
+          28928,
+          27936,
+          28416,
+          27872,
+          27904
+        ],
+        "median_payload_bytes_per_s": 6005589919816.724,
+        "relative_bandwidth_spread": 0.04968357311965024
+      },
+      "2048": {
+        "makespan_ns": [
+          53312,
+          53152,
+          54080,
+          54624,
+          53600,
+          54720,
+          53248,
+          54304,
+          53568,
+          53152,
+          55136,
+          53312,
+          54784,
+          53312
+        ],
+        "median_payload_bytes_per_s": 6262024484920.872,
+        "relative_bandwidth_spread": 0.0362762087825847
+      },
+      "4096": {
+        "makespan_ns": [
+          106432,
+          105984,
+          105984,
+          105920,
+          105600,
+          105728,
+          106080,
+          105760,
+          105792,
+          105632,
+          105056,
+          105792,
+          105760,
+          107040
+        ],
+        "median_payload_bytes_per_s": 6343472474289.171,
+        "relative_bandwidth_spread": 0.018664980214694787
+      }
+    },
+    "steady_median_relative_difference": 0.012839653627948568,
+    "ncu_dynamic_counter_closure": null
+  },
+  "selected_service": {
+    "selection_rule": "lower_direct_median_of_the_two_converged_steady_grids",
+    "minimum_queued_grid_ctas": 2048,
+    "full_chip_payload_bytes_per_s": 6262024484920.872,
+    "model_sm_clock_hz": 1980000000.0,
+    "full_chip_initial_32b_transactions_per_model_sm_cycle": 98.83245714837236
+  },
+  "publication_gates": {
+    "two_resident_ctas_per_sm": true,
+    "static_ldgsts_bypass_128_count_is_32": true,
+    "dynamic_instruction_and_byte_counters_close_exactly": null,
+    "grid_2048_relative_bandwidth_spread_at_most_5_pct": true,
+    "grid_4096_relative_bandwidth_spread_at_most_5_pct": true,
+    "steady_grid_medians_differ_at_most_5_pct": true
+  },
+  "artifact_sha256": {
+    "source": "57209a89fc013abdbe8c73a3b714e8d07e46e360b3887e6b5d78e187f1e85ce5",
+    "runner": "255708d5c1f254102f228bdac6e79cab5e415c6b6408939e723d02f6e6c7ae0c",
+    "binary": [
+      "4364da7bccc0f4328f8716653a07b569e02cbdd2863a6cdbc6fd08611ea6b97c",
+      "eb039e4c246dba854bb3a914601e55a6703e38242a1c3d6671cb01962de65f02"
+    ],
+    "ptxas": [
+      "0b28d49cff2c1588917b7a5908ff43847120f741c9cbc338306fd9e113a83ee1",
+      "0c8d97c5d7924cadd7862ecce025373f8176266f1bd343e2c42ed81adcdafd6b"
+    ],
+    "sass": [
+      "3c80acd1283be0f6d4855280181b6f508264a00976fc0f803d3363fe796628e7"
+    ],
+    "candidates": [
+      "34282e096ab964c72efdd2c336d8632da85c04e0f9b3bea2a91611519172c536",
+      "ef696168ee97bcd89503f54f2472ff1f06b45110fa0fd1e860ca8655ca9065f2"
+    ],
+    "grid_512_globaltimer": [
+      "34282e096ab964c72efdd2c336d8632da85c04e0f9b3bea2a91611519172c536",
+      "ef696168ee97bcd89503f54f2472ff1f06b45110fa0fd1e860ca8655ca9065f2"
+    ],
+    "grid_512_ncu": null,
+    "grid_1024_globaltimer": [
+      "34282e096ab964c72efdd2c336d8632da85c04e0f9b3bea2a91611519172c536",
+      "ef696168ee97bcd89503f54f2472ff1f06b45110fa0fd1e860ca8655ca9065f2"
+    ],
+    "grid_1024_ncu": null,
+    "grid_2048_globaltimer": [
+      "34282e096ab964c72efdd2c336d8632da85c04e0f9b3bea2a91611519172c536",
+      "ef696168ee97bcd89503f54f2472ff1f06b45110fa0fd1e860ca8655ca9065f2"
+    ],
+    "grid_2048_ncu": null,
+    "grid_4096_globaltimer": [
+      "34282e096ab964c72efdd2c336d8632da85c04e0f9b3bea2a91611519172c536",
+      "ef696168ee97bcd89503f54f2472ff1f06b45110fa0fd1e860ca8655ca9065f2"
+    ],
+    "grid_4096_ncu": null
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "allowed_conclusion": "For the source-exact two-resident Q64/KV128 causal period (1,1,2,2,3,3,4,4), queued grids at or above 2048 CTAs expose a stable full-chip LDGSTS frontend payload capacity of at least 6262024484920.872 bytes/s on H200 (98.83245714837236 initial 32-byte transactions per 1.98-GHz SM cycle).",
+  "forbidden_conclusion": "This reference does not authorize a generic LSU, L2, DRAM, different source-period, different residency, or production-duration correction.",
+  "provenance": {
+    "source": "microbench/nvidia_h200/operators/flash_attn/fa2_queued_ldgsts_source_period.cu",
+    "runner": "microbench/nvidia_h200/operators/flash_attn/fa2_queued_ldgsts_source_period_runner.py",
+    "sm_clock_hz": 1980000000.0,
+    "samples_pooled_per_grid": 14,
+    "clock_gate": {
+      "rule": "every probe process runs under nvidia-smi -lms 50; a process is accepted only if it shows a busy sample and every busy sample is >= 1980 MHz, otherwise it is rejected and re-run",
+      "accepted_captures": 8,
+      "rejected_captures": 0,
+      "accepted_busy_sm_clock_min_mhz": 1980,
+      "accepted_busy_sm_clock_max_mhz": 1980,
+      "accepted_busy_samples": 30,
+      "rejected_busy_sm_clock_min_mhz": []
+    },
+    "ncu_note": "Nsight Compute is unavailable on the H200 host; the dynamic counter closure is replaced by the probe's per-block analytic repeat counts, which close the source period exactly in every sample.",
+    "remote_raw_root": "/capture-public/h200_microbench/wp3_ldgsts/repo/profiler_output/microbench/nvidia_h200"
+  }
+}

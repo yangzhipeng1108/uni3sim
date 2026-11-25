@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "campaign": "add_rmsnorm_row_group_input_pair_completion_32_workers",
+  "service": "aiv_add_rmsnorm_row_group_input_pair_completion_32_workers",
+  "request_size_unit": "payload_bytes",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "4096": 550.0,
+    "5120": 950.0
+  },
+  "service_time_selection": "median_of_three_independent_run_medians",
+  "composition": "maximum_with_same_source_stage_mte2_byte_capacity",
+  "mechanism": "completion of the two equal-sized GM-to-UB DataCopyPad requests issued at the start of one key-30 AddRmsNorm BF16 row for the published exact hidden-width cells",
+  "source_domain": {
+    "cann_tiling_key": 30,
+    "active_aiv_workers": 32,
+    "dtype": "bf16",
+    "requests_per_row": 2,
+    "exact_hidden_payload_cells": [
+      {
+        "hidden_elements": 2048,
+        "payload_bytes_per_equal_input_request": 4096
+      },
+      {
+        "hidden_elements": 2560,
+        "payload_bytes_per_equal_input_request": 5120
+      }
+    ]
+  },
+  "source_semantics": {
+    "production_source_path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_nn/ascendc/add_rms_norm/add_rms_norm.h",
+    "production_source_sha256": "655b84f7fbe5c911cc83daa6a3e77d1b219ac8206965a1e3065af6fa835ac817",
+    "production_source_symbol": "KernelAddRmsNorm<bfloat16_t>::CopyIn",
+    "source_order": [
+      "DataCopyCustom(x1Local_in, x1Gm[gm_bias], numCol)",
+      "DataCopyCustom(x2Local, x2Gm[gm_bias], numCol)",
+      "inQueueX.EnQue(x1Local_in)",
+      "inQueueX.DeQue<T>()"
+    ],
+    "benchmark_scope_limit": "the probe isolates the paired MTE2 completion and omits the following BF16-to-FP32 casts and residual add"
+  },
+  "capture_baseline": "e9a48e25c11b88c81d6b990d6ea1366645b857f2",
+  "source_snapshot_path": "/capture-workspace/source_snapshots/add_rmsnorm_input_pair_row32_e9a48e25_20260905",
+  "source_snapshot_files_sha256": {
+    "CMakeLists.txt": "8cec0ce137cd51a8bf905b64e5330ed7630b4fa1c4cbb7bcb9a5750b67c4cfed",
+    "add_rmsnorm_input_pair_kernel.cpp": "3ca9d04d7d71f9a2333afd3edbd19ff455ee42e7783a8d15aa8dc18d6b41a06e",
+    "add_rmsnorm_input_pair_main.cpp": "bf557d7ce03b120dcb21fa8d66c19f50eb3488acea8a94caa96bc9a12dc28acb",
+    "add_rmsnorm_input_pair_report.py": "7d4a1f5219ae7e55bb1d7917670dac9d89406a03b7995d6ecae8464820ad3a40",
+    "add_rmsnorm_input_pair_runner.py": "fdb18edee6d58dc1e5ebbc02416a396a377e6242294b9d3d754b2d0f6e735b85"
+  },
+  "analysis_report_sha256": "80ee0e1946f2622abcca16058153595b92fb70476f612fb5c066219df94744b3",
+  "benchmark_binary_sha256": "6a00371b1247523d1b1c18ea8841dab6698df647d57e4d43a680da0e20b19eed",
+  "capture_command": "python3 -c 'import add_rmsnorm_input_pair_runner as r; r.BLOCK_DIMS=(32,); r.CELLS=tuple((32,p,o) for p in r.PAYLOAD_BYTES for o in r.PAIR_ORDERS); raise SystemExit(r.main())' --binary /capture-workspace/midlayer_capture/source_snapshots/add_rmsnorm_input_pair_row32_e9a48e25_20260905/build2/add_rmsnorm_input_pair_bench --device-id 7 --trials 20 --run-id <run_id>",
+  "raw_artifacts": [
+    {
+      "path": "/capture-workspace/profiler_output/microbench/ascend_910b/add_rmsnorm_input_pair_row32_e9a48e25_20260905/run4.csv",
+      "sha256": "67bd23f9607667ddc799e3366c35d2dd898347979db506d59425c229850d1d66",
+      "device_id": 7,
+      "run_id": "add-rms-row32-e9a48e25-r4"
+    },
+    {
+      "path": "/capture-workspace/profiler_output/microbench/ascend_910b/add_rmsnorm_input_pair_row32_e9a48e25_20260905/run5.csv",
+      "sha256": "64b18b61916f8245f0a8c7d56af833ebc228accae090817ab770017323b5f91e",
+      "device_id": 7,
+      "run_id": "add-rms-row32-e9a48e25-r5"
+    },
+    {
+      "path": "/capture-workspace/profiler_output/microbench/ascend_910b/add_rmsnorm_input_pair_row32_e9a48e25_20260905/run6.csv",
+      "sha256": "0453aab202fc86aaaeb98756244b1169cdd72a30265684e985168bf6a9598084",
+      "device_id": 7,
+      "run_id": "add-rms-row32-e9a48e25-r6"
+    }
+  ],
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 20,
+  "full_schedule_cells": [
+    "32:4096:0",
+    "32:4096:1",
+    "32:5120:0",
+    "32:5120:1",
+    "32:8192:0",
+    "32:8192:1",
+    "32:10240:0",
+    "32:10240:1",
+    "32:16384:0",
+    "32:16384:1"
+  ],
+  "published_run_statistics_ns_by_request_size": {
+    "4096": {
+      "add-rms-row32-e9a48e25-r4": {
+        "q1": 460.0,
+        "median": 560.0,
+        "q3": 1555.0,
+        "first_schedule_cycle_median": 520.0,
+        "second_schedule_cycle_median": 580.0
+      },
+      "add-rms-row32-e9a48e25-r5": {
+        "q1": 460.0,
+        "median": 540.0,
+        "q3": 1760.0,
+        "first_schedule_cycle_median": 510.0,
+        "second_schedule_cycle_median": 590.0
+      },
+      "add-rms-row32-e9a48e25-r6": {
+        "q1": 480.0,
+        "median": 550.0,
+        "q3": 1655.0,
+        "first_schedule_cycle_median": 540.0,
+        "second_schedule_cycle_median": 560.0
+      }
+    },
+    "5120": {
+      "add-rms-row32-e9a48e25-r4": {
+        "q1": 515.0,
+        "median": 900.0,
+        "q3": 2445.0,
+        "first_schedule_cycle_median": 870.0,
+        "second_schedule_cycle_median": 1000.0
+      },
+      "add-rms-row32-e9a48e25-r5": {
+        "q1": 540.0,
+        "median": 1090.0,
+        "q3": 2300.0,
+        "first_schedule_cycle_median": 1090.0,
+        "second_schedule_cycle_median": 1090.0
+      },
+      "add-rms-row32-e9a48e25-r6": {
+        "q1": 510.0,
+        "median": 950.0,
+        "q3": 2195.0,
+        "first_schedule_cycle_median": 880.0,
+        "second_schedule_cycle_median": 990.0
+      }
+    }
+  },
+  "maximum_run_relative_median_spread_by_request_size": {
+    "4096": 0.03571428571428571,
+    "5120": 0.1743119266055046
+  },
+  "maximum_published_run_relative_median_spread": 0.1743119266055046,
+  "gates": {
+    "source_identity": "pass",
+    "binary_identity": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "full_schedule_preserved": "pass",
+    "published_cells_within_run_replication": "pass",
+    "published_cells_cross_run_relative_median_spread_limit": 0.2,
+    "published_cells_cross_run_stability": "pass",
+    "unpublished_cells_omitted": true
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

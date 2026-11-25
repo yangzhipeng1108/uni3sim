@@ -1,0 +1,85 @@
+{
+  "duration_unit": "ns_per_aic_to_aiv_round_trip",
+  "forward_eligibility_constraint": "Measured and reproducible, and the first candidate to pass the pre-declared concurrency-scaling threshold (2.15 against 1.25). Not consumed by Forward: the compound criterion also required the latency times a source-derived round count per task to land within a factor of two of the 13.0 us scalar floor at sixteen groups, and it does not. The PFA source places its QK_READY, SOFTMAX_READY and UPDATE_READY crossings inside the per-KV-block loop, about three crossings per block, giving roughly three to four and a half round trips per task at KV 512, hence 2.7 to 4.1 us against 13.0 us. Wiring it would also need a rigorous source-derived round count, and its per-KV-block scaling would add time to the already over-predicted long-KV tail.",
+  "forward_eligible": false,
+  "hardware_id": "ascend_910b",
+  "measurement": {
+    "cells": {
+      "1": {
+        "handoffs_0_ns": 80,
+        "handoffs_128_ns": 66000,
+        "ns_per_round_trip": 515.0,
+        "process_span_pct_128": 28.061
+      },
+      "16": {
+        "handoffs_0_ns": 1260,
+        "handoffs_128_ns": 116780,
+        "ns_per_round_trip": 902.5,
+        "process_span_pct_128": 1.182
+      },
+      "22": {
+        "handoffs_0_ns": 100,
+        "handoffs_128_ns": 167240,
+        "ns_per_round_trip": 1305.7812,
+        "process_span_pct_128": 1.531
+      },
+      "24": {
+        "handoffs_0_ns": 20,
+        "handoffs_128_ns": 184700,
+        "ns_per_round_trip": 1442.8125,
+        "process_span_pct_128": 2.371
+      },
+      "8": {
+        "handoffs_0_ns": 1220,
+        "handoffs_128_ns": 86940,
+        "ns_per_round_trip": 669.6875,
+        "process_span_pct_128": 11.962
+      }
+    },
+    "measurement_baseline_commit": "1b6bf72064b2ba1011c3959aa7267943c19cde70",
+    "mechanism_gate_passed": true,
+    "mode": "independent_cross_domain_handoff_microbenchmark",
+    "physical_device_id": 0,
+    "process_count": 3,
+    "registration_path": "microbench/ascend_910b/operators/flash_attn/aic_scalar_control_floor/REGISTRATION.md",
+    "timing_boundary": "in-kernel GetSystemCycle around the AIC handoff loop, max over AIC cores per launch, median over fresh processes; identical to the control-floor cells and never mixed with aclrtEvent or msprof spans"
+  },
+  "mechanism": "fia_cross_domain_round_trip_latency",
+  "mechanism_publishable": true,
+  "parameter_fit_from_production_duration": false,
+  "production_or_evaluation_duration_consumed": false,
+  "publication_scope": {
+    "active_aic_groups": [
+      1,
+      8,
+      16,
+      22,
+      24
+    ],
+    "actor_topology": "mix_aic_1_2",
+    "concurrency_scaling_24_over_16_stable_cells": 1.5987,
+    "concurrency_scaling_24_over_8": null,
+    "concurrency_scaling_note": "The pre-declared threshold was 1.25. Computed on stable cells only, h(24)/h(16) = 1.599 and the threshold is passed. The wider h(24)/h(8) = 2.154 is not used because its denominator failed the stability gate.",
+    "estimator": "slope_between_handoffs_0_and_128",
+    "ns_per_round_trip_by_active_aic_groups": {
+      "1": 515.0,
+      "16": 902.5,
+      "22": 1305.7812,
+      "24": 1442.8125,
+      "8": 669.6875
+    },
+    "round_trip": "AIC issues CrossCoreSetFlag<2, PIPE_FIX> then CrossCoreWaitFlag; AIV mirrors with CrossCoreWaitFlag then CrossCoreSetFlag<2, PIPE_MTE3>; sync mode 2 is the source's own FIA_SYNC_MODE2. No DataCopy, Mmad, Fixpipe, Vector arithmetic or memory traffic.",
+    "stability_note": "Process-median spread at handoffs=128 is 28.06% at one group and 11.96% at eight, both failing the campaign's 5% stability gate; 1.18%, 1.53% and 2.37% at sixteen, twenty-two and twenty-four. Only the three stable cells are published as service values.",
+    "stable_active_aic_groups": [
+      16,
+      22,
+      24
+    ],
+    "unstable_active_aic_groups": [
+      1,
+      8
+    ]
+  },
+  "schema_version": 1,
+  "software_revision": "cann_8.5.1"
+}

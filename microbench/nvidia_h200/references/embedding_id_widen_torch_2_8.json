@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_h200",
+  "evidence_kind": "installed_artifact_static_host_dispatch_and_sm90_disassembly",
+  "artifact_identity_reference": "../../nvidia_a800/references/pytorch_moe_reduce_vllm_0_11_0_torch_2_8_0.json#/installed_artifacts/4",
+  "host_copy_source_reference": "../../nvidia_a800/references/embedding_id_widen_torch_2_8.json",
+  "artifact_hash_reverified_matches": true,
+  "hardware_execution_performed": false,
+  "GPU_queried": false,
+  "duration_consumed": false,
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/int32_int64_sm90_device_code_tool122_failed.json",
+      "sha256": "ae91dc1ee41ebf5fd8a22355dd60e3531d11cbf07b28d37b3f4a932d0b7cd68a"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/sm90_resource_metadata.json",
+      "sha256": "fbf15bb20ea36d23184cf5576f0d3c5657d00c3d83b024828e937387b39f60c9"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/sm90_elf_inventory.json",
+      "sha256": "af33cdb2f35efa9d7c781e655644ba9f9944386e5481eb0bc934fed1d7a4a09a"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/sm90_copy_cubin_stream_extraction.json",
+      "sha256": "a29213d87f49507c18c7b75258d25e4955482291865267c4895c08ac5c5c2d99"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/torch28_sm90_copy.cubin.gz",
+      "sha256": "1efc941e8498760e631420c799254f4bf7669a75ef2d24234fe1f369f88b4e41"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/int32_int64_sm90_selected_program.json",
+      "sha256": "ccdc120839da4e0919dbe4a12e5fe7f6bc59d660c75b5cd95cafbfb11b962029"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/int32_int64_sm90_selected_summary.json",
+      "sha256": "f345b8756692ea6eda4b6c1638e75109fd7d829e29dc8a7d20e840a927caa429"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/sm90_gather_cubin_extraction.json",
+      "sha256": "d90ddc9f05a1157fabefe2661cebe49bb90c01b73826544e3a9db65943cca127"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/torch28_gather_libtorch_cuda.198.sm_90.cubin.gz",
+      "sha256": "a1c3b016f2d765c68961b8d4f60290f7bb83df2f7f4a1aa11c21db8724c7cf2e"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/torch28_gather_libtorch_cuda.199.sm_90.cubin.gz",
+      "sha256": "e96a2c5b79acb8f58ebcaad7f7e62967884c7b9fc8ca9cc4e8f4a3b0fd6e15b6"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/bf16_index_select_host_dispatch.json",
+      "sha256": "054ef04d1ebaf835ae29c6924c7c63135fb6b08808d09be9875e21bc5b477d8c"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/bf16_index_select_small_host_entries.json",
+      "sha256": "84e2e96d53a9273d85e29da9b83f358685cb7e1251642c6523416a608e16f497"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/bf16_index_select_small_host_lambda.json",
+      "sha256": "83c5aeb79bb745f78e1dbe409d89836a8d686a2726d3a18fd8ee11a7e81e255e"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/bf16_long_index_select_host_lambda.json",
+      "sha256": "f94dfd0d2387f4e489d181af0854ae95ba826dda24b20e4f4f85b55ceac4cbff"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/vectorized_gather_sm90_program.json.gz",
+      "sha256": "13d239df16039ec297d4cfdc6c5d0c38bb7be022bc1e25d4625b35430d8e294c"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/bf16_small_index_sm90_program.json.gz",
+      "sha256": "df38fc0155bb957afdbd954f16277d7cb2ec40b67829249905f6a9b528e316e8"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/vectorized_gather_sm90_summary.json",
+      "sha256": "633153a7bf1f17c2687c601f35b914d2dc56237a85bd3d7ae49143865abadcf7"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/embedding_launch_static_20261023/bf16_small_index_sm90_summary.json",
+      "sha256": "9b8f1228f878b5b69ca7dd3ae583f6ae9389968cccd94532c9accb278ab34784"
+    }
+  ],
+  "candidate_input": "The exact installed Torch2.8+cu128 artifact used by the existing host Copy proof, read without importing Torch or loading the library.",
+  "sm90_code_present": true,
+  "sm90_elf_inventory_entries": 397,
+  "static_tool_boundary": {
+    "tool": "/usr/local/cuda-12.2/bin/cuobjdump",
+    "version": "CUDA12.2 V12.2.140",
+    "sass_and_resource_usage_returncode": -11,
+    "resource_usage_only_returncode": -11,
+    "elf_inventory_returncode": 0,
+    "other_checked_tool_paths": "/usr/local/cuda/bin/cuobjdump resolves to the same12.2binary; /usr/local contains onlycuda12.2 installations; no compatible newer cuobjdump/nvdisasm in the canonical env bin directory.",
+    "scope": "The failure proves this tool invocation failed on this pinned SM90 artifact. It does not prove malformed device code, absence of local model assets, impossibility of offline extraction, or a specific underlying crash cause.",
+    "resolved_by": "Stream exact cubin extraction, inspect completed ELF before deleting unrelated codeobjects, then standalone nvdisasm on symbol467. CUDA12.2 standalone decoder succeeds; a new tool is no longer a prerequisite for this Copy entry."
+  },
+  "launch_bound": true,
+  "registers_or_smem_bound": true,
+  "typed_service_bound": true,
+  "original_provider_bound": false,
+  "reopen_condition": "Resolved for the exactSM90Copyentry; do not repeat the known whole-library cuobjdump crashes.",
+  "limitations": [
+    "SeparateSM90Copyandgatherbinaries are bound; sm80resources arenotassumed.",
+    "Actual dispatcher/runtime/provider andhistoricalcapture identities remainunverified.",
+    "Admitsordinary0.11TP1embedding,typedInt32-to-Int64materialization andalignedqueryrowselect. TPmask,FP32cast andargmax are notadmitted bythese proofs.",
+    "Sharedanalyticalgatheraddresswork isnot completeSASSissueaccounting; no productionduration orratefitting."
+  ],
+  "sm90_facts": {
+    "device_entry": "_ZN2at6native27unrolled_elementwise_kernelIZZZNS0_23direct_copy_kernel_cudaERNS_18TensorIteratorBaseEENKUlvE1_clEvENKUlvE2_clEvEUllE_St5arrayIPcLm2EELi4E23TrivialOffsetCalculatorILi1EjESB_NS0_6memory12LoadWithCastILi1EEENSC_13StoreWithCastILi1EEEEEviT_T0_T2_T3_T4_T5_",
+    "extracted_cubin": "libtorch_cuda.151.sm_90.cubin",
+    "symbol_index": 467,
+    "threads": 128,
+    "values_per_thread": 4,
+    "grid": "ceil(N/512)",
+    "registers_per_thread": 32,
+    "static_shared_bytes": 0,
+    "frame_bytes": 0,
+    "minimum_stack_bytes": 0,
+    "int32_dtype_tag": 3,
+    "output_dtype_tag": 4,
+    "per_element": "LDG.E4B thenSHF.R.S32.HI by31,STG.E.648B; four independently guarded slots",
+    "input_load_offsets": [
+      "0x2b0",
+      "0x11c0",
+      "0x20d0",
+      "0x2fb0"
+    ],
+    "sign_extension_offsets": [
+      "0x2c0",
+      "0x11d0",
+      "0x20e0",
+      "0x2fc0"
+    ],
+    "long_store_offsets": [
+      "0x3e70",
+      "0x4d40",
+      "0x5c00",
+      "0x6ac0"
+    ],
+    "iterator_domain": "One continuous unsplit32bit iterator; contiguous Long output admits1<=N<=2^28",
+    "rate_source": "Existing H200 INT32ALU andmemory resources,not a new empirical service or productionduration; address/dtype dispatch/control excluded as inA800Copy"
+  },
+  "sm90_embedding_gather": {
+    "host_source_reference": "../../nvidia_a800/references/embedding_id_widen_torch_2_8.json#/embedding_index_select",
+    "input": "ordinaryvLLM0.11 contiguousBF16[V,H]CUDAweight,contiguousLong[R],freshBF16[R,H]; Hmultiple128, allinput/output/indexbyteextents<2^31; source-declared16Balignment forvectorizedrows",
+    "small_index": {
+      "rows": "1<=R<=16",
+      "symbol": "_ZN2at6native44_GLOBAL__N__50c743a2_11_Indexing_cu_89862edb21indexSelectSmallIndexIN3c108BFloat16EljLi2ELi2ELin2EEEvNS_4cuda6detail10TensorInfoIT_T1_EENS7_IKS8_S9_EENS7_IKT0_S9_EEiiS9_l",
+      "symbol_index": 1245,
+      "registers_per_thread": 24,
+      "shared_frame_min_stack_bytes": [
+        0,
+        0,
+        0
+      ],
+      "threads": 128,
+      "grid": "H/128 inboundedH<=132*8*128",
+      "host_long_2d_contiguous_launch": "dtypeLongbranch0x1f8ff23 callsLonglambda0x1f4f110;0x1f5015f loads exactSmallIndex<BF16,long,uint,2,2,-2> hostentry0x1df3610",
+      "index_load_offset": "0x1a0:LDG.E low32 atLong index stride8,validV<2^31",
+      "payload_access": "0x600 LDG.E.U16;0x720 STG.E.U16; onevalue/thread/row withinboundedHdomain",
+      "source_bytes": "index4RH+weight2RHread,output2RHwrite; logicalunique4RH+8R"
+    },
+    "vectorized": {
+      "rows": "R>16 embedding; anypositiveR advancedrowselect",
+      "symbol": "_ZN2at6native24vectorized_gather_kernelILi16ElEEvPcS2_PT0_illllb",
+      "symbol_index": 27,
+      "registers_per_thread": 24,
+      "shared_frame_min_stack_bytes": [
+        0,
+        0,
+        0
+      ],
+      "grid": "(R,ceil(2H/4096),1)",
+      "block": "(min(256,32*ceil(2H/512)),1,1)",
+      "source_program": "LDG.E.64index at0x70 beforepayloadtail; LDG.E.128at0x370,STG.E.128at0x3c0; one16Bpack/activepayloadthread",
+      "source_bytes": "read2RH+8*grid_size*block_size,write2RH; no inferredbroadcastcachecredit"
+    },
+    "advanced_row_select": "samevectorizedkernel withordinary0.11INT32queryindicesmaterializedasLong; selectedindicesareknownin-boundsandincreasing; input/sourceextentandalignmentfollowexistingCUDAForwardcontract",
+    "pricing": "Reuse shared analytical gather model and existinghardwarememory/integerresources; no new rates or completeISA issueclaim. Full address/dispatch/uniform/control services remain excluded."
+  }
+}

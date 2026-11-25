@@ -1,0 +1,102 @@
+{
+  "allowed_use": "The marginal launch-wide cost of one additional CTA that starts, reads the two integers describing its tile, finds the tile beyond its request, and returns without entering the Q/K/V path. Multiply by the number of such early-exit CTAs in a launch to obtain the launch-wide time they add; divide by the AP count to obtain the serial cost one AP pays per early-exit CTA it retires.",
+  "captures": [
+    {
+      "device_index": 3,
+      "path": "profiler_output/microbench/metax_c500/early_exit_cta_retire_20260919_v2/raw/rotation_0.csv",
+      "raw_sha256": "7ab6a8ab59cec80a2a26e384e19fc2fca421990ed8250785d65079f19ba1526c",
+      "rotation": 0
+    },
+    {
+      "device_index": 2,
+      "path": "profiler_output/microbench/metax_c500/early_exit_cta_retire_20260919_v2/raw/rotation_1.csv",
+      "raw_sha256": "f892d036e463095ea190d446c8e444f798d2f7bea8470e5d28ae4b8b7ceb4d2a",
+      "rotation": 1
+    },
+    {
+      "device_index": 3,
+      "path": "profiler_output/microbench/metax_c500/early_exit_cta_retire_20260919_v2/raw/rotation_2.csv",
+      "raw_sha256": "0d3459bb05e1184ec4325287cd7a6f54bf762c713f100020b1b85da3fcb9052c",
+      "rotation": 2
+    }
+  ],
+  "derived_model": {
+    "formula": "added_launch_time_ns = launch_wide_ns_per_early_exit_cta * early_exit_cta_count; per-AP serial cost = launch_wide_ns_per_early_exit_cta * multiprocessors",
+    "intercept_ns_not_published": 13332.88667684007,
+    "launch_wide_ns_per_early_exit_cta": 3.6555917741643142,
+    "median_duration_ns_by_grid": {
+      "12688": 58880.0,
+      "16000": 73472.0,
+      "1664": 19968.0,
+      "22400": 94720.0,
+      "28160": 117504.0,
+      "31616": 127744.0,
+      "3328": 24320.0,
+      "6656": 38656.0,
+      "8112": 42240.0,
+      "832": 17920.0
+    },
+    "r_squared": 0.9992224014775438
+  },
+  "device_name": "MetaX C500",
+  "forbidden_use": "A cost for a CTA that performs any attention work, a launch floor (the intercept belongs to the published scheduler model and is not republished here), a per-shape correction, or any parameter selected by comparing against production or evaluation durations.",
+  "hardware_id": "metax_c500",
+  "measurement": {
+    "devices": [
+      3,
+      2
+    ],
+    "direction_check": {
+      "ascending_ns_per_cta": 3.703,
+      "descending_ns_per_cta": 3.816
+    },
+    "dynamic_shared_bytes": 32768,
+    "excluded_grids": {
+      "832": "launch-dominated; 213 percent trial spread"
+    },
+    "fitted_grid_range": [
+      1664,
+      31616
+    ],
+    "grids_measured": [
+      832,
+      1664,
+      3328,
+      6656,
+      8112,
+      12688,
+      16000,
+      22400,
+      28160,
+      31616
+    ],
+    "relative_trial_spread_by_grid": {
+      "12688": 0.19130434782608696,
+      "16000": 0.17073170731707318,
+      "1664": 0.44871794871794873,
+      "22400": 0.16486486486486487,
+      "28160": 0.15250544662309368,
+      "31616": 0.13827655310621242,
+      "3328": 0.23157894736842105,
+      "6656": 0.1986754966887417,
+      "8112": 0.22424242424242424,
+      "832": 2.1285714285714286
+    },
+    "rotations": 3,
+    "threads_per_cta": 256,
+    "trials_per_cell": 9,
+    "warmup_seconds": 30
+  },
+  "mechanism": "early_exit_cta_retire",
+  "method": "256 threads and 32 KiB of dynamic shared memory, the footprint the pinned D128 Q64 FlashAttention trait launches with and the same one the cta_admission residency probe pins. Every timed round is preceded by a 30 s sustained warm-up, and rounds are trial-outer/grid-inner so every grid is sampled once per round and sees the same clock state. Both controls are required: an earlier grid-outer sweep measured the device's clock ramp instead of the retire rate and its fitted slope depended on sweep direction (5.57 ascending against 3.84 descending). With the controls the two directions agree to 3 percent.",
+  "multiprocessors": 104,
+  "production_or_evaluation_duration_consumed": false,
+  "production_predictor_consumption_allowed": true,
+  "provenance": {
+    "compiler": "/opt/maca/mxgpu_llvm/bin/mxcc -x maca -offload-arch=native --maca-path=/opt/maca -O3",
+    "container": "capture-container-1",
+    "source": "microbench/metax_c500/runtime/launch/early_exit_cta_retire.cpp",
+    "source_sha256": "560302975480bd496684043e9314822416577584424e4e398353b67007e28c31"
+  },
+  "schema": "metax_c500_early_exit_cta_retire_reference_v1"
+}

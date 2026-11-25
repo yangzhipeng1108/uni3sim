@@ -1,0 +1,86 @@
+# User-defined design on AGMF039R47, per FPGA chip (not per two-chip card).
+# 2026-10-21: one card = two independent chips/HBM/DDR/NIC endpoints.
+# Arithmetic rates describe the programmed design, not a vendor SKU peak.
+# All capacities use decimal SI units. No pooled 64GB HBM address space.
+hardware_id: intel_agmf039r47
+clock_domains: {}
+components:
+  - name: mm_bf16
+    count: 1
+    type: compute
+    role: compute_tensor
+    scope: shared
+    capacity_per_second: 13107200000000
+  - name: mm_fp16
+    count: 1
+    type: compute
+    role: compute_tensor_fp16
+    scope: shared
+    capacity_per_second: 13107200000000
+  - name: mm_fp8
+    count: 1
+    type: compute
+    role: compute_tensor_fp8
+    scope: shared
+    capacity_per_second: 13107200000000
+  - name: vector
+    count: 1
+    type: compute
+    role: compute_vector
+    scope: shared
+    capacity_per_second: 12800000000
+  - name: hbm
+    count: 1
+    type: memory
+    role: dram
+    scope: shared
+    capacity_per_second: 716800000000
+    size_bytes: 32000000000
+  - name: ddr
+    count: 1
+    type: memory
+    role: ddr
+    scope: shared
+    capacity_per_second: 12800000000
+    size_bytes: 16000000000
+resource_groups: []
+memory_subsystem: {}
+scheduling: {}
+interconnect:
+  roce_unidir_bw_GB_s: 50
+  roce_devices_per_nic: 1
+  roce_switch_topology: fully_connected
+  roce_signal_latency_ns: 20000
+  roce_collective_startup_ns: null
+  parameter_source: user_supplied_one_400Gbps_roce_per_fpga_20us_one_way_network_only
+features:
+  kernel_memory_model: roofline
+  kernel_dtype: bf16
+  parameter_source: user_supplied_2026_10_21_agmf039r47_programmed_design
+  fpga_execution:
+    device_scope: fpga_chip
+    chips_per_card: 2
+    clock_hz: 400000000
+    mm_m_parallel: 4
+    mm_k_parallel: 64
+    mm_n_parallel: 64
+    # One MM core, same arithmetic rate for BF16 and lower-bit operands,
+    # including MXFP4 weights. The three roles above are alternate formats.
+    vector_elements_per_cycle: 32
+    vector_latency_cycles: 35
+    hbm_latency_ns: 250
+    receive_compute_send_overlap: true
+    # DDR is used only for GPU/FPGA communication staging. Bandwidth is
+    # combined reads+writes; it is independent of HBM and the MM resource.
+    ddr_usage: communication_staging_only
+    # A documented DDR4 reference, not identified installed board memory.
+    # Row-hit CL =13.75ns; row-conflict RP+RCD+CL =41.25ns, device-only.
+    # These are conditional read timings, not an end-to-end DMA latency.
+    ddr_reference:
+      source_url: https://www.micron.com/products/memory/dram-components/ddr4-sdram/part-catalog/part-detail/mt40a2g8jc-062e-e
+      reference_kind: ddr4_3200_cl22_22_22_device_only
+      clock_hz: 1600000000
+      cas_cycles: 22
+      rcd_cycles: 22
+      rp_cycles: 22
+      controller_latency_ns: null

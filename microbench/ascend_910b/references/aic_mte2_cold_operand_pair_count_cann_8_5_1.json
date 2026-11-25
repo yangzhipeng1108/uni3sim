@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "aic_mte2_cold_operand_pair_stream",
+  "service_time_unit": "ns_per_128x64_A_plus_64x256_B_pair_per_aic",
+  "published_cold_pair_service_ns": 806.341145833,
+  "publication_scope": {
+    "source_residency": "dram_cold",
+    "active_aic_groups": 24,
+    "a_rows": 128,
+    "a_columns": 64,
+    "a_bytes": 16384,
+    "b_rows": 64,
+    "b_columns": 256,
+    "b_bytes": 32768,
+    "pair_bytes": 49152,
+    "drain_interval_pairs": 4,
+    "pair_count_per_worker_min": 512,
+    "pair_count_per_worker_max": 2048,
+    "measured_pair_counts_per_worker": [512, 1024, 2048],
+    "source_ring_constraint": "each operand ring contains 4 * active_aic_groups * pair_count_per_worker distinct tiles so the longest differential interval does not wrap"
+  },
+  "measurement": {
+    "medians_ns_per_pair": {
+      "512": 806.067708333,
+      "1024": 803.1640625,
+      "2048": 827.161458333
+    },
+    "within_count_relative_spans": {
+      "512": 0.024585662132507874,
+      "1024": 0.011632054211838048,
+      "2048": 0.008528004282520731
+    },
+    "count_median_relative_span": 0.02977094304227644,
+    "maximum_program_span_residual": 0.03629208213493857,
+    "maximum_allowed_within_count_relative_span": 0.1,
+    "maximum_allowed_count_median_relative_span": 0.1,
+    "maximum_allowed_program_span_residual": 0.1,
+    "stability_gate": true,
+    "constant_rate_gate": true,
+    "program_span_gate": true,
+    "mechanism_gate_passed": true
+  },
+  "provenance": {
+    "capture_commit": "e0e24b571b5db7ff711f8675d3e676a755e09a3e",
+    "report_generator_commit": "b8c6fe0b2dbda219ab6a2f4f9142a83912bb48ed",
+    "snapshot_path": "/capture-workspace/execution_snapshots/grouped_pair_cold_count_e0e24b57_20260905",
+    "raw_root": "profiler_output/microbench/ascend_910b/grouped_pair_cold_count_e0e24b57_20260905",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "container_id": "capture-container-b736e851025a",
+    "container_image": "quay.io/ascend/vllm-ascend:v0.18.0",
+    "container_image_id": "sha256:35f9e569dbe3dc8db90cb361886d7889489efd8fa065860c8de319e13ab025d0",
+    "physical_device_id": 4,
+    "logical_device_id": 0,
+    "owner": "kernel_accuracy_gemm",
+    "source_snapshot_sha256": "483b1429eb3f55e753ec236dd67aa59d0788e5aa23f1d83a296de04726ee8bfe",
+    "source_sha256": {
+      "CMakeLists.txt": "7b0c54d53ca00a1a91e852a2f7cb15ab93c8cfeb8d917989290c7b7cb77a2ce1",
+      "aic_mte2_grouped_pair_kernel.cpp": "c5d6501e355feec364e2b9d3c25cc402b594502caf602871d3f34c77c11f5e29",
+      "aic_mte2_grouped_pair_main.cpp": "003fc739e2fab57c0607916e38bf9dc1c6c6a98ad4fdfeeedef61c38fe74be31",
+      "aic_mte2_grouped_pair_runner.py": "27d4aabc7b971fb81408d7818288d564062fc3fe4a440e18d21d4190c0633645",
+      "aic_mte2_grouped_pair_cold_report.py": "8f1aac41381e35dc434454dbcf5a7822876c0a9aa63cfac8dbf498a4a994e76f"
+    },
+    "binary_sha256": "8a0faf8edd33cc14bd8efa252e987f50aed491b35ca5117f499a6a861f3c5183",
+    "report_sha256": "78638166b9b550dc05f66158afc96fc1d69dd2620f294c8902fd3f05ab1ed852",
+    "command": "python aic_mte2_grouped_pair_runner.py --binary build/aic_mte2_grouped_pair --device-id 4 --b-columns 256 --campaign cold-pair-count --run-id cold_count_d4_r${run_index} --run-index ${run_index}",
+    "runs": [
+      {
+        "run_index": 0,
+        "runner_pid": 2519738,
+        "child_pid": 2519739,
+        "raw_path": "d4_r0.csv",
+        "raw_sha256": "a74d03c4b9aa17a0c3ee2fae28ebc703c959f8ffbb0c87303f899eff45655e88",
+        "stderr_path": "d4_r0.stderr",
+        "stderr_sha256": "fb2871e8b8ad7d27e83a6916583165dac3fef8d9e9ff7f6f0891b6f9d73a6323"
+      },
+      {
+        "run_index": 1,
+        "runner_pid": 2519754,
+        "child_pid": 2519755,
+        "raw_path": "d4_r1.csv",
+        "raw_sha256": "124f8945e556f5c504b4a0c5f463d05320b3f276d2ae681ae7490527094c9bc1",
+        "stderr_path": "d4_r1.stderr",
+        "stderr_sha256": "85c26ab64bce7b35f70f6cb7e359f4503608f546ac470292b81c13ed1cba6619"
+      },
+      {
+        "run_index": 2,
+        "runner_pid": 2519764,
+        "child_pid": 2519765,
+        "raw_path": "d4_r2.csv",
+        "raw_sha256": "30556c8090c140992059213cdbcb298ba07f902b253a62693b19b68215d25515",
+        "stderr_path": "d4_r2.stderr",
+        "stderr_sha256": "ee602af5865e431fbc361e6118ff07d37916c2015f08999e9ca84f57b2a349ed"
+      }
+    ]
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "the consumer must derive the exact source residency, pair geometry, active-AIC count, four-pair drain semantics, and pair-count interval from static launch semantics and physical cache replay"
+}

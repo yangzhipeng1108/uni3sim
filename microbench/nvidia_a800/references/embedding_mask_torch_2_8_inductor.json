@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "hardware_id": "nvidia_a800",
+  "evidence_kind": "existing_inductor_fxgraph_static_opcode_source_identity_and_discrete_compiled_config",
+  "artifact_identity_reference": "pytorch_moe_reduce_vllm_0_11_0_torch_2_8_0.json",
+  "hardware_execution_performed": false,
+  "duration_consumed": false,
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/nvidia_a800/embedding_mask_static_20261023/mask_cache_identity.json",
+      "sha256": "95b72f2df9b6dc30ec412e11dd9f5d419b79ec9248e4647622a3bd0570788aa9"
+    }
+  ],
+  "source_identity": {
+    "helper": "get_masked_input_and_mask",
+    "version": "vllm0.11/Torch2.8.0+cu128/Triton3.4.0",
+    "proof": "Installed helper and pinned upstream0.11 full function AST (including decorator/signature) match; annotated FX graph names this helper, cached source_code exactly equals each wrapper. Pickles examined with pickletools only, never loaded or executed."
+  },
+  "verified_cache_entries": 4,
+  "compile_domains": [
+    {
+      "shape": "N=1 contiguous INT32",
+      "launch_count": 2,
+      "selection": "separate fixed-shape wrapper; not covered by the dynamic-N one-kernel program"
+    },
+    {
+      "shape": "2<=N<=2147483647,contiguous INT32",
+      "launch_count": 1,
+      "guard": "2 <= L['t0'] and L['t0'] <= 2147483647",
+      "scalar_specialization": "all five vocab/padding scalars remain independent Sym inputs; rank0 org_start=0 and padding=0 are not specialized away",
+      "overlap": "size_hint128 and8192 guards overlap; these hints are not mutually exclusive source branches"
+    }
+  ],
+  "scoped_discrete_launch_observation": {
+    "source_hints": [
+      8192
+    ],
+    "selected_xblock": 256,
+    "threads": 128,
+    "num_warps": 4,
+    "registers_per_thread": 16,
+    "shared_bytes": 0,
+    "local_bytes": 0,
+    "stack_bytes": 0,
+    "selection_evidence": "Recorded best_config links the exact kernel source to a Triton cache hash and its sm80 cubin; alternative compiled candidates alone do not establish the selected config.",
+    "not_a_universal_launch_rule": true
+  },
+  "limitations": [
+    "Actual original Serving compile context, outer Dynamo guards and pointer alignment remain unbound.",
+    "Do not choose XBLOCK from current N or assume single launch at N1.",
+    "The sm80 cubin contains full-width integer comparison lowered to ISETP carry/EX sequences, SEL and PLOP3; typed service cannot be replaced by generic integer peak.",
+    "No Forward pricing, actual GPU/provider/runtime, normal capacity or original60case acceptance is granted."
+  ]
+}

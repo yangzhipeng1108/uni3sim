@@ -1,0 +1,80 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_single_tile_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "populated_experts": 8,
+    "m_tiles_per_populated_expert": 1,
+    "minimum_valid_routes": 128
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090603,
+    "tokens": 64,
+    "experts": 8,
+    "topk": 2,
+    "event_trials_per_capture": 7,
+    "independent_captures_per_geometry": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "f7e0e4218a1ad44568ac6dd8273f9af11ba1a10ea1df10c12d546daf2fe32d4e",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "conservative minimum capacity across three independent captures"
+  },
+  "captures": {
+    "long_k": [
+      {
+        "k": 14272,
+        "n": 4032,
+        "raw_sha256": "843a0985968061c4e83626f62cb317b9fabfcf9baddc362f5058031d2bb1965b",
+        "operand_pipeline_capacity_bytes_per_s": 1017352367943.0964
+      },
+      {
+        "k": 14272,
+        "n": 4032,
+        "raw_sha256": "9b10434edec6db6e74bfba4cf832a6d07235a5313d8ffec650ea144371e65c75",
+        "operand_pipeline_capacity_bytes_per_s": 1103911621961.5403
+      },
+      {
+        "k": 14272,
+        "n": 4032,
+        "raw_sha256": "21ea85f8abc79c52cce5637e4c97c75b618c8bf6189bf9a3643bbc155dedec6f",
+        "operand_pipeline_capacity_bytes_per_s": 1014482658007.0348
+      }
+    ],
+    "wide_n": [
+      {
+        "k": 4032,
+        "n": 28608,
+        "raw_sha256": "a8dcd2ca78070418c83f14e7578f4e9b02b3893a31c58a3623f4e7911aacdf82",
+        "operand_pipeline_capacity_bytes_per_s": 3095146901405.1104
+      },
+      {
+        "k": 4032,
+        "n": 28608,
+        "raw_sha256": "0eff12f72c66f638bf0a67d8555e3acf2dfc8278aab515aabefd768e6efeb5b9",
+        "operand_pipeline_capacity_bytes_per_s": 3098872051415.693
+      },
+      {
+        "k": 4032,
+        "n": 28608,
+        "raw_sha256": "24f75305ca24293a57fda4baf72e89e6aa09db655856cc9bcf8d05b6a7a45707",
+        "operand_pipeline_capacity_bytes_per_s": 3043404294435.8525
+      }
+    ]
+  },
+  "selected_services": {
+    "long_k": {
+      "predicate": "at least 128 valid routes, exactly eight populated experts, one M tile per populated expert, projection_k=14336, projection_n=4096",
+      "logical_byte_capacity_per_s": 1014482658007.0348
+    },
+    "wide_n": {
+      "predicate": "at least 128 valid routes, exactly eight populated experts, one M tile per populated expert, projection_k=4096, projection_n=28672",
+      "logical_byte_capacity_per_s": 3043404294435.8525
+    }
+  }
+}

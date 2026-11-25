@@ -1,0 +1,66 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_eight_expert_eight_active_twelve_max_w2_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "populated_experts": 8,
+    "active_m_tiles": 8,
+    "maximum_m_tiles": 12,
+    "production_k_n_tile_class": [448, 64]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090603,
+    "tokens": 128,
+    "experts": 8,
+    "topk": 2,
+    "source_topk": 1,
+    "event_trials_per_capture": 9,
+    "independent_captures": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "01f83fecf7fb57f932afd57ee42210e97981ec712237ce3b0af81a6b9fda94e1",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "median capacity across three independent captures of one adjacent non-production projection geometry"
+  },
+  "captures": [
+    {
+      "capture": 1,
+      "valid_routes": 256,
+      "active_m_tiles": 8,
+      "maximum_m_tiles": 12,
+      "k": 14272,
+      "n": 4032,
+      "raw_sha256": "88f0051ec00f9bd1a59fab84b87a08c310565c960715914fb35495c2ef5b88b2",
+      "operand_pipeline_capacity_bytes_per_s": 440339222320.33026
+    },
+    {
+      "capture": 2,
+      "valid_routes": 256,
+      "active_m_tiles": 8,
+      "maximum_m_tiles": 12,
+      "k": 14272,
+      "n": 4032,
+      "raw_sha256": "29383155d2da8857b941ab40f77b4fc2136f58295331b399ea97b8af258e9f9a",
+      "operand_pipeline_capacity_bytes_per_s": 576153763949.8842
+    },
+    {
+      "capture": 3,
+      "valid_routes": 256,
+      "active_m_tiles": 8,
+      "maximum_m_tiles": 12,
+      "k": 14272,
+      "n": 4032,
+      "raw_sha256": "63a41da13fd3a6474f7a33e0b8184f2181b8364af66dc3500f118a4e859d5528",
+      "operand_pipeline_capacity_bytes_per_s": 453555513307.89343
+    }
+  ],
+  "selected_service": {
+    "predicate": "exactly eight populated experts, eight active M tiles, twelve maximum padded M tiles, and K/N tile class (448,64)",
+    "logical_byte_capacity_per_s": 453555513307.89343
+  }
+}

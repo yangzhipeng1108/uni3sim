@@ -1,0 +1,95 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_e32_32_active_40_max_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "software_revision": "maca_3.7.2",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "forward_eligible": true,
+  "scope": {
+    "dtype": "bf16",
+    "variant_roles": ["w1", "w2"],
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "experts": 32,
+    "topk": 4,
+    "w1_source_rows": 128,
+    "w1_routed_rows": 512,
+    "w2_source_rows": 512,
+    "w2_routed_rows": 512,
+    "populated_experts": 32,
+    "active_m_tiles": 32,
+    "maximum_m_tiles": 40,
+    "projection_k": 2880,
+    "production_w1_n": 5760,
+    "production_w2_n": 2880,
+    "w1_k_n_tile_class": [90, 90],
+    "w2_k_n_tile_class": [90, 45],
+    "adjacent_nonproduction_w1_n": [5696, 5824],
+    "adjacent_nonproduction_w2_n": [2816, 2944]
+  },
+  "method": {
+    "kernel": "frozen production Triton grouped-MoE source-equivalent operand stream",
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026091201,
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 100,
+    "independent_fresh_process_captures_per_cell": 3,
+    "physical_device": 2,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "0b3e0677f80be5fe5d2b2a29950717d9cb16cf5095f2add1eb721b479e2f103c",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "for each role, take the median capacity of three fresh-process captures at each adjacent non-production N, then linearly interpolate the two medians to the production N"
+  },
+  "adjacent_nonproduction_cells": {
+    "w1_n5696": {
+      "event_median_ms": [0.76316162109375, 0.7624857330322266, 0.7617330932617188],
+      "capacity_per_s": [3439267289461.309, 3442315949391.103, 3445717172088.5063],
+      "median_capacity_per_s": 3442315949391.103,
+      "range_over_median_percent": 0.187370443
+    },
+    "w1_n5824": {
+      "event_median_ms": [0.7815859222412109, 0.7781887817382812, 0.7780531311035156],
+      "capacity_per_s": [3433658569878.596, 3448648018293.556, 3449249277094.6113],
+      "median_capacity_per_s": 3448648018293.556,
+      "range_over_median_percent": 0.452081718
+    },
+    "w2_n2816": {
+      "event_median_ms": [0.3948134231567383, 0.4119116973876953, 0.4079616165161133],
+      "capacity_per_s": [3286648132743.087, 3150220807588.9487, 3180722762796.3574],
+      "median_capacity_per_s": 3180722762796.3574,
+      "range_over_median_percent": 4.289192593
+    },
+    "w2_n2944": {
+      "event_median_ms": [0.4150835037231445, 0.414279670715332, 0.4219622421264648],
+      "capacity_per_s": [3268246480122.303, 3274587907385.3237, 3214968223610.4424],
+      "median_capacity_per_s": 3268246480122.303,
+      "range_over_median_percent": 1.824210143
+    }
+  },
+  "selected_services": {
+    "w1": {
+      "logical_byte_capacity_per_s": 3445481983842.3296
+    },
+    "w2": {
+      "logical_byte_capacity_per_s": 3224484621459.3301
+    }
+  },
+  "raw": {
+    "root": "profiler_output/microbench/metax_c500/shape_transition_e32_32active40_7c9efef9_20260912_r1",
+    "valid_csv_tree_sha256": "5058a42dff1916441086a7b1a1511620e47be7d1f1b0f76a4a0a91ce1e0ba4fe",
+    "excluded_captures": [
+      "w2_32active40_run*.csv has tokens=64 and is therefore 32-active/36-max, not 32-active/40-max",
+      "w2_32active{36,40}_run*.csv and w2_32active40_correct_run*.csv use production N=2880 and are not consumed by the adjacent-N service"
+    ]
+  },
+  "allowed_conclusion": "The exact BF16 BM64 E32 TOPK4 source programs with 32 populated experts, 32 active M tiles, 40 maximum M tiles, and their respective W1 or W2 K/N tile classes use role-specific full-source logical-operand completion services.",
+  "excluded_conclusions": [
+    "complete production FusedMoE operator duration",
+    "per-case residual correction",
+    "other active or maximum M-tile depths",
+    "other routing, roles, tile classes, or projection widths"
+  ]
+}

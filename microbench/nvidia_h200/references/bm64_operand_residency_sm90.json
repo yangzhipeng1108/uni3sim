@@ -1,0 +1,170 @@
+{
+  "schema": "nvidia_h200_bm64_operand_residency_reference_v1",
+  "hardware_id": "nvidia_h200",
+  "device_name": "NVIDIA H200",
+  "compute_capability": "sm_90",
+  "source_baseline_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+  "source": "microbench/nvidia_h200/compute/tensor_core/sm80_bf16_bm64_operand_residency.cu",
+  "runner": "microbench/nvidia_h200/compute/tensor_core/sm80_bf16_bm64_operand_residency_runner.py",
+  "captures": [
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp2_bm64_res_r2",
+      "capture": 0,
+      "device_index": 1,
+      "device_uuid": "capture-device-31adbc24ad46",
+      "report_sha256": "9da61626bb638bf7a01e98210ab65c361c08cf7c999653c4c92bd979fd05b5c0",
+      "raw_sha256": "b48d19730341c32e64b96d1256ace69b93d0ac237fbcaed8deee1a0cf44f40b8",
+      "source_sha256": "e7a3ea7cdb57f4c4a2f479f61bd4e5b0934090857d3642f4c230f4505dbc6dcf",
+      "sass_sha256": "674ae380518bc3945daad961d37ace79054b5eb78aca3d8bf8460b1080d8f15e",
+      "grouped_operand_l2_hit_bytes_per_s": 7290369390657.055,
+      "grouped_weight_dram_miss_bytes_per_s": 2520028057272.054,
+      "all_cells_stable_within_10_percent": true,
+      "manifest_sha256": "9da61626bb638bf7a01e98210ab65c361c08cf7c999653c4c92bd979fd05b5c0"
+    },
+    {
+      "path": "profiler_output/microbench/nvidia_h200/wp2_bm64_res_r2",
+      "capture": 1,
+      "device_index": 1,
+      "device_uuid": "capture-device-31adbc24ad46",
+      "report_sha256": "9da61626bb638bf7a01e98210ab65c361c08cf7c999653c4c92bd979fd05b5c0",
+      "raw_sha256": "f54ca0a376efb0a750c54d349e9ad1c42113da85cc93b4deeda9c7ef08815382",
+      "source_sha256": "e7a3ea7cdb57f4c4a2f479f61bd4e5b0934090857d3642f4c230f4505dbc6dcf",
+      "sass_sha256": "674ae380518bc3945daad961d37ace79054b5eb78aca3d8bf8460b1080d8f15e",
+      "grouped_operand_l2_hit_bytes_per_s": 7251258972908.325,
+      "grouped_weight_dram_miss_bytes_per_s": 2522673417900.916,
+      "all_cells_stable_within_10_percent": true,
+      "manifest_sha256": "9da61626bb638bf7a01e98210ab65c361c08cf7c999653c4c92bd979fd05b5c0"
+    }
+  ],
+  "probe_contract": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_n": 64,
+    "tile_k": 32,
+    "group_size_m": 8,
+    "threads_per_cta": 128,
+    "resident_ctas_per_sm": 5,
+    "physical_sm_count": 132,
+    "pipeline_slots": 2,
+    "dynamic_shared_bytes": 16384,
+    "grid_ctas": 660,
+    "rounds": 256,
+    "weight_source_row_strides_elements": [
+      4096,
+      7168
+    ]
+  },
+  "selected_services": {
+    "selection_rule": "minimum complete-capture capacity across two independent clock-accepted processes on H200 GPU 1",
+    "grouped_operand_l2_hit_bytes_per_s": 7251258972908.325,
+    "grouped_weight_dram_miss_bytes_per_s": 2520028057272.054,
+    "weight_miss_stride_rule": "minimum of independently measured N=4096 and N=7168 source-stride services within each capture"
+  },
+  "mechanism": "bm64_double_slot_operand_l2_hit_and_grouped_strided_weight_dram_miss_service",
+  "allowed_conclusion": "For the source-shaped BM64/BN64/BK32 five-CTA-per-SM pipeline, L2-resident operand bytes and strided DRAM-miss weight bytes have distinct full-chip logical-byte service ceilings.",
+  "excluded_conclusions": [
+    "production operator duration",
+    "per-shape residual correction",
+    "kernel-name or workload-duration lookup",
+    "application outside the exact BM64/BN64/BK32/GSM8 BF16 launch"
+  ],
+  "production_or_evaluation_duration_consumed": false,
+  "production_predictor_consumption_allowed": true,
+  "h200_capture_provenance": {
+    "git_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+    "build_git_commit": "8e7ae7db16ecc531a87f394a6a229514f2a3f919",
+    "compile_command": [
+      "/usr/local/cuda/bin/nvcc",
+      "-std=c++17",
+      "-O3",
+      "--use_fast_math",
+      "--generate-code=arch=compute_90,code=sm_90",
+      "--disable-warnings",
+      "-cudart",
+      "static",
+      "-o",
+      "/capture-workspace/h200_port/wp2_moe_cuda/profiler_output/microbench/nvidia_h200/wp2_bm64_res_build/sm80_bf16_bm64_operand_residency",
+      "/capture-workspace/h200_port/wp2_moe_cuda/microbench/nvidia_h200/compute/tensor_core/sm80_bf16_bm64_operand_residency.cu"
+    ],
+    "source_sha256": "e7a3ea7cdb57f4c4a2f479f61bd4e5b0934090857d3642f4c230f4505dbc6dcf",
+    "runner_sha256": "4670ddeecbfe149ff1eff2a2fc24e053d733db124fdf9de44bddd2857878c673",
+    "binary_sha256": "60de746925bb2b0d44fe37a995cde2f9336379baa513d9f98f406f07b314f81c",
+    "sass_sha256": "674ae380518bc3945daad961d37ace79054b5eb78aca3d8bf8460b1080d8f15e",
+    "raw_dir": "profiler_output/microbench/nvidia_h200/wp2_bm64_res_r2",
+    "remote_raw_dir": "/capture-public/h200_microbench/wp2_moe_cuda/runs/bm64_res_r2",
+    "device_index": 1,
+    "command": [
+      "/capture-public/h200_microbench/wp2_moe_cuda/bin/sm80_bf16_bm64_operand_residency",
+      "0",
+      "5"
+    ],
+    "clock_gate": "nvidia-smi clocks.sm/utilization.gpu every 50 ms; capture rejected when any busy sample < 1980 MHz",
+    "captures": [
+      {
+        "capture": 0,
+        "status": "accepted",
+        "clock": {
+          "accepted": true,
+          "busy_max_mhz": 1980,
+          "busy_median_mhz": 1980,
+          "busy_min_mhz": 1980,
+          "busy_samples": 5,
+          "samples": 16
+        },
+        "raw_sha256": "b48d19730341c32e64b96d1256ace69b93d0ac237fbcaed8deee1a0cf44f40b8",
+        "resource_contract": {
+          "operand": [
+            94,
+            0,
+            0,
+            128,
+            90,
+            5
+          ],
+          "pipeline": [
+            78,
+            0,
+            0,
+            128,
+            90,
+            6
+          ]
+        }
+      },
+      {
+        "capture": 1,
+        "status": "accepted",
+        "clock": {
+          "accepted": true,
+          "busy_max_mhz": 1980,
+          "busy_median_mhz": 1980.0,
+          "busy_min_mhz": 1980,
+          "busy_samples": 6,
+          "samples": 15
+        },
+        "raw_sha256": "f54ca0a376efb0a750c54d349e9ad1c42113da85cc93b4deeda9c7ef08815382",
+        "resource_contract": {
+          "operand": [
+            94,
+            0,
+            0,
+            128,
+            90,
+            5
+          ],
+          "pipeline": [
+            78,
+            0,
+            0,
+            128,
+            90,
+            6
+          ]
+        }
+      }
+    ],
+    "accepted_captures": 2,
+    "rejected_captures": 0,
+    "selection_substitution": "A800 minimum across idle devices 6 and 7 -> minimum across two independent clock-accepted processes on H200 GPU 1"
+  }
+}

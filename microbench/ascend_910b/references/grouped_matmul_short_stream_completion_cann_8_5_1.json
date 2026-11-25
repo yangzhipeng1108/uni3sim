@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism_id": "aic_grouped_matmul_short_stream_completion_v1",
+  "duration_unit": "ns_per_completed_M16_N256_K64_operand_pair_per_aic",
+  "publication_scope": {
+    "a_residency": "l2_resident",
+    "b_residency": "dram_cold",
+    "active_aic_groups": 24,
+    "a_rows": 16,
+    "a_columns": 64,
+    "b_rows": 64,
+    "b_columns": 256,
+    "pair_bytes": 34816,
+    "drain_interval_pairs": 4,
+    "minimum_pairs_per_worker": 16,
+    "maximum_pairs_per_worker": 128,
+    "measured_pairs_per_worker": [16, 32, 64, 128],
+    "eviction_bytes": 537919488
+  },
+  "measurement": {
+    "median_completion_span_ns": {
+      "16": 12380.0,
+      "32": 24860.0,
+      "64": 47000.0,
+      "128": 91680.0
+    },
+    "median_ns_per_pair": {
+      "16": 773.75,
+      "32": 776.875,
+      "64": 734.375,
+      "128": 716.25
+    },
+    "published_completion_ns_per_pair": 776.875,
+    "within_count_relative_spans": {
+      "16": 0.008077544426494346,
+      "32": 0.05953338696701529,
+      "64": 0.04127659574468085,
+      "128": 0.039485165794066315
+    },
+    "rate_relative_span": 0.08039784500621633,
+    "maximum_allowed_within_count_relative_span": 0.1,
+    "maximum_allowed_rate_relative_span": 0.1,
+    "stability_gate": true,
+    "constant_rate_gate": true,
+    "mechanism_gate_passed": true
+  },
+  "provenance": {
+    "measurement_baseline_commit": "f1f021d3aac254992b16fd92b35534e016b196f5",
+    "snapshot_path": "/capture-workspace/execution_snapshots/grouped_pair_completion_dbd626e8_20260905_r2",
+    "raw_root": "profiler_output/microbench/ascend_910b/grouped_pair_completion_dbd626e8_20260905_r2",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "container_id": "capture-container-b736e851025a",
+    "container_image": "quay.io/ascend/vllm-ascend:v0.18.0",
+    "container_image_id": "sha256:35f9e569dbe3dc8db90cb361886d7889489efd8fa065860c8de319e13ab025d0",
+    "physical_device_id": 2,
+    "logical_device_id": 0,
+    "owner": "fused_moe_worker",
+    "source_snapshot_sha256": "5e9b06ce7de461dbe7930a1860c2ffedbdedb56808b4542714f2c81c2ab02530",
+    "source_sha256": {
+      "CMakeLists.txt": "5506922061354af790e1e4af44dff629f25e384077eee3b19d0df70c37470a54",
+      "README.md": "de4e5352c36f1b6e215c64fdc1a659c2b59f51246ff53679bcc2bbe73ae1ca74",
+      "grouped_pair_completion_kernel.cpp": "d299b8fc21fd2848619c684251794204844f50851b87beeacc28745336894495",
+      "grouped_pair_completion_main.cpp": "b7600ab8cbbf400c83031e53c49375d7654c470f526837bf82ae96dd7a4419de",
+      "grouped_pair_completion_runner.py": "9b4d6b5ecf09c83bf0e82966449b500b2c8ffb7bdccc28b37ce44c1573bab369",
+      "grouped_pair_completion_report.py": "60a879de011b01821438141a9dbe3b5eb5661964329024a30cece8e5cd0e1652"
+    },
+    "binary_sha256": "3cbd6567638f49c6bda38faeb4279504c4b3d2be8595ad53b1310dc4c93511bd",
+    "raw_sha256": [
+      "aa2325163840f1c0365f966fa3cd2512924bd9d7d33af71a589835be551c35fb",
+      "07efa9dca97d006a4b725209b5bfba6d1842be73970dc279ccf920fea7e65a60",
+      "29d8f2142212205bf1d6e49fa0d43c6730133f83654ce06d31ff2ff9760a34c8"
+    ],
+    "stderr_sha256": [
+      "0574036db4c4fa5095ca929ed4eb682c3277d8321084fcb916e5fd40246175f5",
+      "ed2b4993bafe364dab44e72e726e599407f4b53e01ea14688e54ef593a13a51e",
+      "0838252295d01e8dee09c70c5543657e43ccb6b730be42fadad7f84071f2ece8"
+    ],
+    "report_sha256": "d7a1eeafa5abdc9ceb6e2a3de64e73dc0f11cdc30fce6b0484c92802d71235ba",
+    "command": "python grouped_pair_completion_runner.py --binary build/grouped_pair_completion --device-id 2 --owner fused_moe_worker --baseline f1f021d3aac254992b16fd92b35534e016b196f5 --run-id completion-r2-${run_index} --run-index ${run_index}"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "use only as a lower bound for 24-AIC BF16 M16/N256/K64 operand streams with 16--128 pairs per worker, four-pair drain semantics, resident-or-slower A, and DRAM-cold B"
+}

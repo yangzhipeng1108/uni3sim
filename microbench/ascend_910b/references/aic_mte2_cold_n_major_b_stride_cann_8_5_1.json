@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_mte2_cold_n_major_b_nd2nz_stride",
+  "duration_unit": "ns_per_64x256_b_descriptor_per_aic",
+  "publication_scope": {
+    "source_residency": "dram_cold",
+    "dtype": "bf16",
+    "rows": 64,
+    "columns": 256,
+    "source_row_stride_elements": 28672,
+    "source_tile_span_bytes": 3613184,
+    "copied_bytes_per_descriptor": 32768,
+    "active_aic_groups": 23,
+    "iterations_per_worker": 640,
+    "footprint_bytes": 53687091200,
+    "source_tiles_per_worker": 646,
+    "aggregate_copied_ring_bytes": 486866944,
+    "source_ring_constraint": "the aggregate copied ring is larger than the 192 MiB shared L2; the four-times differential interval may wrap each physical source ring"
+  },
+  "parameters_ns": {
+    "serial_completion": 706.6875,
+    "two_buffer_stream": 636.0677083335
+  },
+  "measurement": {
+    "serial_trial_ns": [706.489583333, 709.40625, 702.208333333, 706.885416667],
+    "two_buffer_stream_trial_ns": [645.166666667, 634.895833333, 635.4375, 636.697916667],
+    "serial_relative_span": 0.010185430854514843,
+    "two_buffer_stream_relative_span": 0.016147389970337503,
+    "serial_order_balance_error": 0.00537277792588645,
+    "two_buffer_stream_order_balance_error": 0.0070829068579877875,
+    "maximum_allowed_relative_span": 0.1,
+    "maximum_allowed_order_balance_error": 0.1,
+    "stability_gate": true,
+    "mechanism_gate_passed": true
+  },
+  "provenance": {
+    "capture_commit": "7719827133586240b3ceff7db8c21b57b3749b2b",
+    "snapshot_path": "/capture-workspace/execution_snapshots/nd2nz_gemm_b_cold_77198271_20260905",
+    "raw_path": "profiler_output/microbench/ascend_910b/nd2nz_gemm_b_cold_77198271_20260905/raw.csv",
+    "raw_sha256": "9e9fe84a41f37b3b92364f6b6bc61662eaff7f00b6db50e0940a5de74b958b65",
+    "stderr_path": "profiler_output/microbench/ascend_910b/nd2nz_gemm_b_cold_77198271_20260905/capture.stderr",
+    "stderr_sha256": "08aedbd5cf282c11949dbb07d1d623da5c579bd09222c3407a7fb59b99448286",
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "container_id": "capture-container-b736e851025a",
+    "container_image": "quay.io/ascend/vllm-ascend:v0.18.0",
+    "container_image_id": "sha256:35f9e569dbe3dc8db90cb361886d7889489efd8fa065860c8de319e13ab025d0",
+    "physical_device_id": 0,
+    "logical_device_id": 0,
+    "owner": "kernel_accuracy_gemm",
+    "runner_pid": 2534861,
+    "child_pids": [2534862, 2534871, 2534880, 2534889],
+    "source_snapshot_sha256": "f8b6efb79dee9743745ee1a95fab1b40549462e25433876331092df950fa6988",
+    "source_sha256": {
+      "CMakeLists.txt": "7b0c54d53ca00a1a91e852a2f7cb15ab93c8cfeb8d917989290c7b7cb77a2ce1",
+      "aic_mte2_nd2nz_stride_kernel.cpp": "3cdee9b19b126143b4351af4f60a0f4aa088dc4c496d0626e754eda65bcbfc72",
+      "aic_mte2_nd2nz_stride_main.cpp": "c7ee3c006beb0d48b893efe419ff25c731d4ad377bb7e41ecfa45a9fbc9e5e2c",
+      "aic_mte2_nd2nz_stride_runner.py": "4308bf059b596f770fb72e47c7db751ee2332ce81b6387c929a696e6fe60aa5e"
+    },
+    "binary_sha256": "6fd9f3aeca4c6a8a075438d0f155c8d1462e17ed1b9a69221dee5cf937b97990",
+    "command": "python aic_mte2_nd2nz_stride_runner.py --binary build/aic_mte2_nd2nz_stride --device-id 0 --run-id gemm_b_cold_d0 --profile gemm_n_major_b_cold"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "a consumer must derive the exact 64x256 B descriptor, 28672-element physical row stride, DRAM-cold residency, 23 active AICs, 640 descriptors per worker, and serial or two-buffer lifecycle from static launch semantics"
+}

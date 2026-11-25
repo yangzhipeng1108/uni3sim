@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "artifact_type": "ascend_910b_grouped_matmul_static_tiling_reference",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "case_id": "FUSEDMOE_TOK4_E512_TOPK10_H2048_INT512",
+  "capture_snapshot_commit": "ddfa15b0",
+  "physical_device": 2,
+  "capture": {
+    "raw_path": "profiler_output/microbench/ascend_910b/fusedmoe_gmm_tiling_base_m48_ddfa15b0_20260911_r1/raw",
+    "production_duration_consumed": false,
+    "profiler_counters_consumed": false,
+    "complete_repetitions_per_projection": 8,
+    "all_repetitions_identical": true,
+    "excluded_runtime_cache_sequences": [2141, 2143, 2151, 2153, 2161, 2163]
+  },
+  "source": {
+    "tcube_tiling_header_path": "aarch64-linux/asc/include/adv_api/kernel_tiling.h",
+    "tcube_tiling_header_sha256": "0f50fe7d81d4e01f80b62c19d816ad28151ac1502f708b70454efc8599ddaf44",
+    "capture_interposer_sha256": "33eb80cafa7b747b2ea1783b83992c1745bbbe539bff4ac36acfb0f00c825d2d",
+    "runner_sha256": "55b3f11248ba344780d0de74ea8794401cff9de0b5bdb892923e5b5f5928f090"
+  },
+  "projections": {
+    "w1": {
+      "shape": {"m": 40, "n": 1024, "k": 2048},
+      "tiling": {"base_m": 48, "base_n": 256, "base_k": 64, "depth_a1": 40, "depth_b1": 8, "step_m": 1, "step_n": 1, "step_ka": 20, "step_kb": 4, "db_l0a": 2, "db_l0b": 2, "db_l0c": 1},
+      "tcube_tiling_raw_sha256": "53420b10b6bda9521d2156436114ef4f5c55d4c8f149a6c7de791c9790e9df64"
+    },
+    "w2": {
+      "shape": {"m": 40, "n": 2048, "k": 512},
+      "tiling": {"base_m": 48, "base_n": 256, "base_k": 64, "depth_a1": 40, "depth_b1": 8, "step_m": 1, "step_n": 1, "step_ka": 20, "step_kb": 4, "db_l0a": 2, "db_l0b": 2, "db_l0c": 1},
+      "tcube_tiling_raw_sha256": "497591c316b71ff945ed417ecc478c15e28e2e36d2500c466a15d17826b40ab6"
+    }
+  },
+  "program_invariance_corroboration": {
+    "case_id": "FUSEDMOE_TOK4_E512_TOPK10_H4096_INT1024",
+    "raw_path": "profiler_output/microbench/ascend_910b/fusedmoe_gmm_tiling_base_m48_h4096_ddfa15b0_20260911_r1/raw",
+    "complete_repetitions_per_projection": 8,
+    "all_repetitions_identical": true,
+    "w1": {
+      "shape": {"m": 40, "n": 2048, "k": 4096},
+      "tcube_tiling_raw_sha256": "ffab720983f8aa62feb4507fa8783a4fae18192b3402d385c98894c9e7a1997c"
+    },
+    "w2": {
+      "shape": {"m": 40, "n": 4096, "k": 1024},
+      "tcube_tiling_raw_sha256": "d13506393e4937e3af7d44ee603cb63e522fd8d74a20e43145da6b13718d8d12"
+    },
+    "captured_program": [40, 8, 20, 4, 1, 1, 2, 2, 1]
+  },
+  "selection_domain": {
+    "routed_rows": 40,
+    "base_tile": [48, 256, 64],
+    "unknown_m48_dynamic_rows": "aggregate_only"
+  }
+}

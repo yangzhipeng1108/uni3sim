@@ -1,0 +1,423 @@
+{
+  "kind": "independent_vllm030_v2_worker_request_state",
+  "time_unit": "seconds",
+  "rule": "equal-process cell medians; sequential Theil-Sen token/count slopes; median source intercepts; mixed cells validation only",
+  "services_s": {
+    "vllm030_v2_state_fixed": 3.841275e-05,
+    "vllm030_v2_state_cached_request": 2.1637307837701613e-07,
+    "vllm030_v2_state_finish_nonempty": 7.321747256397638e-06,
+    "vllm030_v2_state_finished_request": 3.869709727690289e-07,
+    "vllm030_v2_state_admit_nonempty": 0.00022236634991877277,
+    "vllm030_v2_state_admitted_request": 1.1333505032517357e-05,
+    "vllm030_v2_state_admitted_token": 2.9624585551600305e-08
+  },
+  "units": {
+    "vllm030_v2_state_fixed": "per_worker_step",
+    "vllm030_v2_state_cached_request": "per_cached_request",
+    "vllm030_v2_state_finish_nonempty": "per_step_with_finished_requests",
+    "vllm030_v2_state_finished_request": "per_finished_request",
+    "vllm030_v2_state_admit_nonempty": "per_step_with_admitted_requests",
+    "vllm030_v2_state_admitted_request": "per_admitted_request",
+    "vllm030_v2_state_admitted_token": "per_newly_uploaded_token_id"
+  },
+  "geometry": {
+    "max_requests": 256,
+    "max_model_len": 8192,
+    "new_request_counts": [
+      1,
+      8,
+      32,
+      128
+    ],
+    "prompt_lengths": [
+      32,
+      256,
+      1024
+    ],
+    "block_size_tokens": 16,
+    "state_vocab_size": 256
+  },
+  "validation": {
+    "mixed_cell_count": 4,
+    "mixed_max_relative_error": 0.13067839972698508,
+    "all_cells_max_relative_error": 0.14532335607114982
+  },
+  "source_sha256": {
+    "vllm/v1/worker/gpu/model_runner.py": "174c93db921c23cf0396eee4764be25b2bd2d4b6a06e9fa41ce3598b884ce8ce",
+    "vllm/v1/worker/gpu/states.py": "99418f5df43ca612ded72609fee011620b065b2cab2f249ccb387096bf4ae71a",
+    "vllm/v1/worker/gpu/block_table.py": "61c004315d5af7e7eae4e2a9e6be92ea82c520327690a7f55a73bb9ce95f520a",
+    "vllm/v1/worker/gpu/model_states/default.py": "bb614f814780f052e869f9acf31dfbfa68718ee7dc6252eefa901b5730ee8a2a",
+    "vllm/v1/attention/backends/flash_attn.py": "b170a4789e18104c1bee35bea70df51abe6766693d8f4726a59f2e6f5c4282aa",
+    "vllm/v1/attention/backend.py": "01ac364372afa75fdb22486aa3a9c7cf9aebb742e3471dfb9e0f9d9d36b734bc",
+    "vllm/v1/worker/gpu/sample/sampler.py": "832c9945d201a1e730ff9b4b52076aa83bd4a5064e1e4cfea952cf84d4a8d1f0",
+    "vllm/v1/worker/gpu/lora_utils.py": "1e90eddd9ddb4ca55e574bb28e87ae3a6f6750175a62d373102426543f4ccd66",
+    "vllm/v1/worker/gpu/sample/prompt_logprob.py": "4cf22d390e7bf59e44c458cff7180268db63e95d06af2f1e14d720a2d77c9663"
+  },
+  "production_duration_consumed": false,
+  "raw": {
+    "path": "profiler_output/microbench/nvidia_h200/serving_accuracy_v2_state_admission_20261108/raw.json",
+    "sha256": "4f5d960afc8a4233f9743b808dbf496e5ffdddaafc978697aa87d0506c8987cd"
+  },
+  "producer": {
+    "path": "microbench/nvidia_h200/runtime/launch/vllm030_v2_state_admission_reference.py",
+    "sha256": "5e5119e83a7be60e59438c51bf53ac24acd68280c5d61bbd69f64695a9adcd5f"
+  },
+  "cells": [
+    {
+      "mode": "empty",
+      "cached_requests": 0,
+      "finished_requests": 0,
+      "new_requests": 0,
+      "new_prompt_tokens_each": 32,
+      "median_ns": 38412.75,
+      "rotation_medians_ns": [
+        39492.5,
+        37333.0
+      ],
+      "prediction_ns": 38412.75,
+      "absolute_relative_error": 0.0
+    },
+    {
+      "mode": "cached",
+      "cached_requests": 1,
+      "finished_requests": 0,
+      "new_requests": 0,
+      "new_prompt_tokens_each": 32,
+      "median_ns": 41898.0,
+      "rotation_medians_ns": [
+        40957.0,
+        42839.0
+      ],
+      "prediction_ns": 38629.123078377015,
+      "absolute_relative_error": 0.07801987974659852
+    },
+    {
+      "mode": "cached",
+      "cached_requests": 8,
+      "finished_requests": 0,
+      "new_requests": 0,
+      "new_prompt_tokens_each": 32,
+      "median_ns": 46969.5,
+      "rotation_medians_ns": [
+        47217.0,
+        46722.0
+      ],
+      "prediction_ns": 40143.73462701613,
+      "absolute_relative_error": 0.14532335607114982
+    },
+    {
+      "mode": "cached",
+      "cached_requests": 32,
+      "finished_requests": 0,
+      "new_requests": 0,
+      "new_prompt_tokens_each": 32,
+      "median_ns": 50308.75,
+      "rotation_medians_ns": [
+        48249.0,
+        52368.5
+      ],
+      "prediction_ns": 45336.688508064515,
+      "absolute_relative_error": 0.0988309487303001
+    },
+    {
+      "mode": "cached",
+      "cached_requests": 128,
+      "finished_requests": 0,
+      "new_requests": 0,
+      "new_prompt_tokens_each": 32,
+      "median_ns": 59076.0,
+      "rotation_medians_ns": [
+        54261.0,
+        63891.0
+      ],
+      "prediction_ns": 66108.50403225806,
+      "absolute_relative_error": 0.11904164182168835
+    },
+    {
+      "mode": "finish",
+      "cached_requests": 0,
+      "finished_requests": 1,
+      "new_requests": 0,
+      "new_prompt_tokens_each": 32,
+      "median_ns": 45748.0,
+      "rotation_medians_ns": [
+        44265.0,
+        47231.0
+      ],
+      "prediction_ns": 46121.46822916667,
+      "absolute_relative_error": 0.008163596860336377
+    },
+    {
+      "mode": "finish",
+      "cached_requests": 0,
+      "finished_requests": 8,
+      "new_requests": 0,
+      "new_prompt_tokens_each": 32,
+      "median_ns": 49909.5,
+      "rotation_medians_ns": [
+        47866.5,
+        51952.5
+      ],
+      "prediction_ns": 48830.26503854987,
+      "absolute_relative_error": 0.02162383837646398
+    },
+    {
+      "mode": "finish",
+      "cached_requests": 0,
+      "finished_requests": 32,
+      "new_requests": 0,
+      "new_prompt_tokens_each": 32,
+      "median_ns": 56829.5,
+      "rotation_medians_ns": [
+        56219.5,
+        57439.5
+      ],
+      "prediction_ns": 58117.56838500656,
+      "absolute_relative_error": 0.022665488610784216
+    },
+    {
+      "mode": "finish",
+      "cached_requests": 0,
+      "finished_requests": 128,
+      "new_requests": 0,
+      "new_prompt_tokens_each": 32,
+      "median_ns": 95640.25,
+      "rotation_medians_ns": [
+        95334.5,
+        95946.0
+      ],
+      "prediction_ns": 95266.78177083333,
+      "absolute_relative_error": 0.0039049273623465914
+    },
+    {
+      "mode": "admit",
+      "cached_requests": 0,
+      "finished_requests": 0,
+      "new_requests": 1,
+      "new_prompt_tokens_each": 32,
+      "median_ns": 257640.25,
+      "rotation_medians_ns": [
+        260237.0,
+        255043.5
+      ],
+      "prediction_ns": 273060.59168894135,
+      "absolute_relative_error": 0.0598522229695917
+    },
+    {
+      "mode": "admit",
+      "cached_requests": 0,
+      "finished_requests": 0,
+      "new_requests": 8,
+      "new_prompt_tokens_each": 32,
+      "median_ns": 382246.25,
+      "rotation_medians_ns": [
+        385889.5,
+        378603.0
+      ],
+      "prediction_ns": 359031.0340801213,
+      "absolute_relative_error": 0.06073366558829206
+    },
+    {
+      "mode": "admit",
+      "cached_requests": 0,
+      "finished_requests": 0,
+      "new_requests": 32,
+      "new_prompt_tokens_each": 32,
+      "median_ns": 653024.25,
+      "rotation_medians_ns": [
+        661158.0,
+        644890.5
+      ],
+      "prediction_ns": 653786.8365641668,
+      "absolute_relative_error": 0.0011677767926180698
+    },
+    {
+      "mode": "admit",
+      "cached_requests": 0,
+      "finished_requests": 0,
+      "new_requests": 128,
+      "new_prompt_tokens_each": 32,
+      "median_ns": 1772162.25,
+      "rotation_medians_ns": [
+        1781738.5,
+        1762586.0
+      ],
+      "prediction_ns": 1832810.0465003492,
+      "absolute_relative_error": 0.03422248527207324
+    },
+    {
+      "mode": "admit",
+      "cached_requests": 0,
+      "finished_requests": 0,
+      "new_requests": 1,
+      "new_prompt_tokens_each": 256,
+      "median_ns": 263505.25,
+      "rotation_medians_ns": [
+        261281.0,
+        265729.5
+      ],
+      "prediction_ns": 279696.49885249976,
+      "absolute_relative_error": 0.06144564046636551
+    },
+    {
+      "mode": "admit",
+      "cached_requests": 0,
+      "finished_requests": 0,
+      "new_requests": 8,
+      "new_prompt_tokens_each": 256,
+      "median_ns": 428900.25,
+      "rotation_medians_ns": [
+        407666.0,
+        450134.5
+      ],
+      "prediction_ns": 412118.2913885891,
+      "absolute_relative_error": 0.039127882558732306
+    },
+    {
+      "mode": "admit",
+      "cached_requests": 0,
+      "finished_requests": 0,
+      "new_requests": 32,
+      "new_prompt_tokens_each": 256,
+      "median_ns": 920549.0,
+      "rotation_medians_ns": [
+        887510.5,
+        953587.5
+      ],
+      "prediction_ns": 866135.8657980378,
+      "absolute_relative_error": 0.059109438174352644
+    },
+    {
+      "mode": "admit",
+      "cached_requests": 0,
+      "finished_requests": 0,
+      "new_requests": 128,
+      "new_prompt_tokens_each": 256,
+      "median_ns": 2682968.75,
+      "rotation_medians_ns": [
+        2683050.0,
+        2682887.5
+      ],
+      "prediction_ns": 2682206.163435833,
+      "absolute_relative_error": 0.0002842323691496358
+    },
+    {
+      "mode": "admit",
+      "cached_requests": 0,
+      "finished_requests": 0,
+      "new_requests": 1,
+      "new_prompt_tokens_each": 1024,
+      "median_ns": 264974.5,
+      "rotation_medians_ns": [
+        272932.0,
+        257017.0
+      ],
+      "prediction_ns": 302448.18055612885,
+      "absolute_relative_error": 0.14142372400411682
+    },
+    {
+      "mode": "admit",
+      "cached_requests": 0,
+      "finished_requests": 0,
+      "new_requests": 8,
+      "new_prompt_tokens_each": 1024,
+      "median_ns": 623123.0,
+      "rotation_medians_ns": [
+        653072.0,
+        593174.0
+      ],
+      "prediction_ns": 594131.7450176213,
+      "absolute_relative_error": 0.04652573405632385
+    },
+    {
+      "mode": "admit",
+      "cached_requests": 0,
+      "finished_requests": 0,
+      "new_requests": 32,
+      "new_prompt_tokens_each": 1024,
+      "median_ns": 1668077.75,
+      "rotation_medians_ns": [
+        1699474.0,
+        1636681.5
+      ],
+      "prediction_ns": 1594189.680314167,
+      "absolute_relative_error": 0.04429533916259783
+    },
+    {
+      "mode": "admit",
+      "cached_requests": 0,
+      "finished_requests": 0,
+      "new_requests": 128,
+      "new_prompt_tokens_each": 1024,
+      "median_ns": 5441357.0,
+      "rotation_medians_ns": [
+        5551740.5,
+        5330973.5
+      ],
+      "prediction_ns": 5594421.421500349,
+      "absolute_relative_error": 0.0281298252440245
+    },
+    {
+      "mode": "mixed",
+      "cached_requests": 32,
+      "finished_requests": 1,
+      "new_requests": 1,
+      "new_prompt_tokens_each": 256,
+      "median_ns": 260312.0,
+      "rotation_medians_ns": [
+        261577.0,
+        259047.0
+      ],
+      "prediction_ns": 294329.15558973094,
+      "absolute_relative_error": 0.13067839972698508
+    },
+    {
+      "mode": "mixed",
+      "cached_requests": 32,
+      "finished_requests": 8,
+      "new_requests": 8,
+      "new_prompt_tokens_each": 256,
+      "median_ns": 425616.5,
+      "rotation_medians_ns": [
+        427807.0,
+        423426.0
+      ],
+      "prediction_ns": 429459.74493520346,
+      "absolute_relative_error": 0.009029830693132105
+    },
+    {
+      "mode": "mixed",
+      "cached_requests": 32,
+      "finished_requests": 1,
+      "new_requests": 1,
+      "new_prompt_tokens_each": 1024,
+      "median_ns": 315134.0,
+      "rotation_medians_ns": [
+        309989.0,
+        320279.0
+      ],
+      "prediction_ns": 317080.83729336003,
+      "absolute_relative_error": 0.006177807832096927
+    },
+    {
+      "mode": "mixed",
+      "cached_requests": 32,
+      "finished_requests": 8,
+      "new_requests": 8,
+      "new_prompt_tokens_each": 1024,
+      "median_ns": 650256.25,
+      "rotation_medians_ns": [
+        635820.5,
+        664692.0
+      ],
+      "prediction_ns": 611473.1985642357,
+      "absolute_relative_error": 0.05964271998272112
+    }
+  ],
+  "limitations": [
+    "synthetic ordinary no-hit greedy state; no constructor or historical CPU/provider certification",
+    "no block append/copy-on-write/zeroing or speculative state; model/input/metadata/sampling mathematics excluded",
+    "token/count affine terms approximate source Python copying/staging and shared nonempty flush; no per-shape time lookup",
+    "only configured256 slots/8192 context and INT32 token/block16 state were measured; prompt lengths outside32..1024 are linear source-copy extrapolations"
+  ]
+}

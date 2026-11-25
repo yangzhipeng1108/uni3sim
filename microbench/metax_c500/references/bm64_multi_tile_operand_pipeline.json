@@ -1,0 +1,168 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_multi_tile_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "global_queue_minimum_populated_experts_per_compute_unit": 4,
+    "global_queue_maximum_m_tiles_per_populated_expert": 2,
+    "long_lifetime_maximum_m_tiles_per_populated_expert": 11,
+    "repeated_queue_minimum_populated_m_tiles_per_compute_unit": 1,
+    "repeated_queue_maximum_m_tiles_per_populated_expert": 2.5,
+    "repeated_wide_n_minimum_k_tiles": 62,
+    "repeated_deep_k_minimum_k_tiles": 220
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090603,
+    "tokens": 4096,
+    "experts": 512,
+    "topk": 10,
+    "event_trials_per_capture": 21,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "f7e0e4218a1ad44568ac6dd8273f9af11ba1a10ea1df10c12d546daf2fe32d4e",
+    "selection_rule": "median capacity for long-K; conservative minimum capacity for wide-N"
+  },
+  "captures": {
+    "long_k": [
+      {
+        "k": 1984,
+        "n": 1088,
+        "raw_sha256": "21fd6823f41c605eab5385f763f0926fc2aec9f0c4d4bf67693156db2eff14cb",
+        "operand_pipeline_capacity_bytes_per_s": 510136478233.87683
+      },
+      {
+        "k": 1984,
+        "n": 1088,
+        "raw_sha256": "df14ea43318523f9d8d915768009c667cb28e9909aed9411c785515283033962",
+        "operand_pipeline_capacity_bytes_per_s": 506115616507.5511
+      }
+    ],
+    "wide_n": [
+      {
+        "k": 960,
+        "n": 2112,
+        "raw_sha256": "8d96cc52fe18fe3a533bdc97d748a0c9f11dd93e0a5505e1d22cfaa60d5c9f1e",
+        "operand_pipeline_capacity_bytes_per_s": 1993803727360.7832
+      },
+      {
+        "k": 960,
+        "n": 2112,
+        "raw_sha256": "0def95869335aa8f5ec17cd0a844575e51ce406ea89664972d383ff06ef7d53a",
+        "operand_pipeline_capacity_bytes_per_s": 3220930670021.911
+      }
+    ],
+    "long_lifetime": [
+      {
+        "tokens": 32768,
+        "experts": 512,
+        "topk": 10,
+        "k": 4032,
+        "n": 2112,
+        "raw_sha256": "6a47cf3c2034d2a6523955b3069fd4477dbc0eddf6be6281648b7462867d1023",
+        "operand_pipeline_capacity_bytes_per_s": 655124084652.9813
+      },
+      {
+        "tokens": 32768,
+        "experts": 512,
+        "topk": 10,
+        "k": 960,
+        "n": 4160,
+        "raw_sha256": "23ef2c50d0b5c84e4a066db55b9b72888c6b5efc9c55aa627a5d547549dd0732",
+        "operand_pipeline_capacity_bytes_per_s": 2148102840309.0188
+      }
+    ],
+    "deep_k": [
+      {
+        "tokens": 2048,
+        "experts": 256,
+        "topk": 8,
+        "k": 7040,
+        "n": 4032,
+        "raw_sha256": "8c31239c5a26442f9317d553010dd862cba73f501252f4af4545534f768f8902",
+        "operand_pipeline_capacity_bytes_per_s": 604950401763.9849
+      }
+    ],
+    "repeated_wide_n": [
+      {
+        "tokens": 2048,
+        "experts": 128,
+        "topk": 4,
+        "k": 2816,
+        "n": 5696,
+        "raw_sha256": "dd385de925ad3391112dc3bba7801c9f259bbc424518399c2cc5edb9ec61c22c",
+        "operand_pipeline_capacity_bytes_per_s": 691367424846.1565
+      },
+      {
+        "tokens": 2048,
+        "experts": 128,
+        "topk": 4,
+        "k": 2816,
+        "n": 2944,
+        "raw_sha256": "90139ae1cd84768e844118cec852e61c23e88e1d8378a0c879f518f2a2115374",
+        "operand_pipeline_capacity_bytes_per_s": 1008425801855.0852
+      },
+      {
+        "tokens": 4096,
+        "experts": 128,
+        "topk": 4,
+        "k": 2816,
+        "n": 5696,
+        "raw_sha256": "505f25802c06cdf937e40983e101945233f8b78dacb652779a8f7612445c23a7",
+        "operand_pipeline_capacity_bytes_per_s": 901451595199.8228
+      },
+      {
+        "tokens": 4096,
+        "experts": 128,
+        "topk": 4,
+        "k": 2816,
+        "n": 2944,
+        "raw_sha256": "f968944438c73f41c4f9b5d24bfa8a112f46d040bcd21f6ddbd358fa9eb3b64f",
+        "operand_pipeline_capacity_bytes_per_s": 933625050929.5756
+      },
+      {
+        "tokens": 2048,
+        "experts": 256,
+        "topk": 8,
+        "k": 1984,
+        "n": 7040,
+        "raw_sha256": "65884445690a76cb9b76df5adb7453973f6542cdc61d1a4bbb11f54e8769bbcc",
+        "operand_pipeline_capacity_bytes_per_s": 989425954475.2502
+      }
+    ]
+  },
+  "selected_services": {
+    "long_k": {
+      "predicate": "projection_k > projection_n",
+      "logical_byte_capacity_per_s": 508126047370.714
+    },
+    "wide_n": {
+      "predicate": "projection_k <= projection_n",
+      "logical_byte_capacity_per_s": 1993803727360.7832
+    },
+    "long_lifetime_long_k": {
+      "predicate": "projection_k > projection_n",
+      "logical_byte_capacity_per_s": 655124084652.9813
+    },
+    "long_lifetime_wide_n": {
+      "predicate": "projection_k <= projection_n",
+      "logical_byte_capacity_per_s": 2148102840309.0188
+    },
+    "deep_k": {
+      "predicate": "projection_k/tile_k >= 220 and projection_k > projection_n",
+      "logical_byte_capacity_per_s": 604950401763.9849
+    },
+    "repeated_wide_n": {
+      "predicate": "projection_k/tile_k >= 62 and projection_k <= projection_n",
+      "logical_byte_capacity_per_s": 691367424846.1565
+    },
+    "repeated_balanced_n": {
+      "predicate": "BM64/BK32/BN64 repeated queue with 90 K tiles and 45 N tiles",
+      "logical_byte_capacity_per_s": 1008425801855.0852
+    }
+  }
+}

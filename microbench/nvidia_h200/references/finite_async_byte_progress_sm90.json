@@ -1,0 +1,2671 @@
+{
+  "hardware_id": "nvidia_h200",
+  "mechanism": "finite_async_byte_ring_progress",
+  "production_or_evaluation_duration_consumed": false,
+  "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_7/manifest.json",
+  "source_manifest_sha256": "ff62d8ea432ad776ddba5084a29026e64bf718b92c9cb6eb84928b39a52665d5",
+  "selection_rule": "Fresh63-sample slower process median complete body, no control subtraction; distribution-free95% median CI endpoints within3%, process medians/SM clock within3%; no cross-capture best selection",
+  "counter_dram_logical_within_1pct": {
+    "19": true,
+    "20": true,
+    "21": true,
+    "22": true
+  },
+  "instruction_counts_match": {
+    "19": true,
+    "20": true,
+    "21": true,
+    "22": true
+  },
+  "eligible_points": 446,
+  "captured_points": 452,
+  "scope": "Complete independent byte-ring progress; only exact eligible grid/signature points bind. No matrix/routing/operator output.",
+  "composition": "Competing execution floor beside unchanged generic work; no control subtraction or physical traffic inflation.",
+  "approximations": [
+    "Broadcast warm one-row A and contiguous synthetic B; full original A/DRAM work stays in the normal pipeline.",
+    "Native shared layout, metadata and expert-address distribution remain analytical.",
+    "Mechanism progress reference, not a certified mathematical lower bound for every compiler."
+  ],
+  "programs": [
+    {
+      "program_id": "b4096_s3_r128_stride1024",
+      "service": "finite_async_copy_threads128_slots3_b4096",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b4096",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 4096,
+      "companion_A_bytes": 2048,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          541619834710.74384
+        ],
+        [
+          128,
+          970903703703.7037
+        ],
+        [
+          132,
+          1008716417910.4478
+        ],
+        [
+          160,
+          1153802816901.4084
+        ],
+        [
+          180,
+          1253877551020.4082
+        ],
+        [
+          192,
+          1319516778523.4897
+        ],
+        [
+          256,
+          1560380952380.9524
+        ],
+        [
+          320,
+          1780869565217.3914
+        ],
+        [
+          360,
+          1900206185567.0105
+        ],
+        [
+          384,
+          1966080000000.0
+        ],
+        [
+          512,
+          2221559322033.8984
+        ],
+        [
+          640,
+          2374492753623.1885
+        ],
+        [
+          768,
+          2457600000000.0
+        ],
+        [
+          896,
+          2520615384615.385
+        ],
+        [
+          1024,
+          2557502439024.39
+        ],
+        [
+          1280,
+          2468399246704.331
+        ]
+      ]
+    },
+    {
+      "program_id": "b4096_s3_r128_stride4096",
+      "service": "finite_async_copy_threads128_slots3_b4096",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b4096",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 4096,
+      "companion_A_bytes": 2048,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          657002506265.6642
+        ],
+        [
+          128,
+          1245339667458.4324
+        ],
+        [
+          132,
+          1278184397163.1206
+        ],
+        [
+          160,
+          1434048140043.7637
+        ],
+        [
+          180,
+          1552168421052.6316
+        ],
+        [
+          192,
+          1618172839506.1729
+        ],
+        [
+          256,
+          1872457142857.1428
+        ],
+        [
+          320,
+          2131252032520.3254
+        ],
+        [
+          360,
+          2272049306625.5776
+        ],
+        [
+          384,
+          2347558208955.224
+        ],
+        [
+          512,
+          2734226857887.875
+        ],
+        [
+          640,
+          2887048458149.78
+        ],
+        [
+          768,
+          3001648854961.832
+        ],
+        [
+          896,
+          3045656431535.27
+        ],
+        [
+          1024,
+          3153612030075.188
+        ],
+        [
+          1280,
+          2730666666666.6665
+        ]
+      ]
+    },
+    {
+      "program_id": "b8192_s3_r128_stride512",
+      "service": "finite_async_copy_threads128_slots3_b8192",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b8192",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 64,
+        "logical_row_bytes": 512
+      },
+      "panel_B_bytes": 8192,
+      "companion_A_bytes": 2048,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 512,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          697191489361.7021
+        ],
+        [
+          128,
+          1139756521739.1304
+        ],
+        [
+          132,
+          1165241379310.345
+        ],
+        [
+          160,
+          1290078740157.4802
+        ],
+        [
+          180,
+          1407022900763.359
+        ],
+        [
+          192,
+          1489454545454.5454
+        ],
+        [
+          256,
+          1691251612903.2258
+        ],
+        [
+          320,
+          1916257309941.5203
+        ],
+        [
+          360,
+          1981935483870.9678
+        ],
+        [
+          384,
+          1996020304568.528
+        ],
+        [
+          512,
+          2231012765957.447
+        ],
+        [
+          640,
+          2391824817518.248
+        ],
+        [
+          768,
+          2449943925233.6445
+        ],
+        [
+          896,
+          2520615384615.385
+        ],
+        [
+          1024,
+          2538924939467.3125
+        ],
+        [
+          1280,
+          2708099173553.719
+        ]
+      ]
+    },
+    {
+      "program_id": "b8192_s3_r128_stride1024",
+      "service": "finite_async_copy_threads128_slots3_b8192",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b8192",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 8192,
+      "companion_A_bytes": 2048,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          879677852348.9933
+        ],
+        [
+          128,
+          1515283236994.2195
+        ],
+        [
+          132,
+          1553655172413.793
+        ],
+        [
+          160,
+          1689072164948.4536
+        ],
+        [
+          180,
+          1807058823529.4116
+        ],
+        [
+          192,
+          1890461538461.5386
+        ],
+        [
+          256,
+          2175468879668.0498
+        ],
+        [
+          320,
+          2299508771929.824
+        ],
+        [
+          360,
+          2340571428571.428
+        ],
+        [
+          384,
+          2361657657657.6577
+        ],
+        [
+          512,
+          2496609523809.524
+        ],
+        [
+          640,
+          2626693386773.547
+        ],
+        [
+          768,
+          2721217993079.5845
+        ],
+        [
+          896,
+          2797268292682.9272
+        ],
+        [
+          1024,
+          2585884093711.4673
+        ],
+        [
+          1280,
+          2830928725701.944
+        ]
+      ]
+    },
+    {
+      "program_id": "b8192_s3_r128_stride1536",
+      "service": "finite_async_copy_threads128_slots3_b8192",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b8192",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 64,
+        "logical_row_bytes": 1536
+      },
+      "panel_B_bytes": 8192,
+      "companion_A_bytes": 2048,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 1536,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          927396226415.0944
+        ],
+        [
+          128,
+          1666169491525.4238
+        ],
+        [
+          132,
+          1696669456066.9458
+        ],
+        [
+          160,
+          1854792452830.1887
+        ],
+        [
+          180,
+          1989064748201.4387
+        ],
+        [
+          192,
+          2069557894736.8423
+        ],
+        [
+          256,
+          2361657657657.6577
+        ],
+        [
+          320,
+          2495025380710.66
+        ],
+        [
+          360,
+          2530709382151.03
+        ],
+        [
+          384,
+          2570039215686.2744
+        ],
+        [
+          512,
+          2711834482758.6206
+        ],
+        [
+          640,
+          2812703862660.9443
+        ],
+        [
+          768,
+          2877190243902.439
+        ],
+        [
+          896,
+          2915796610169.4917
+        ],
+        [
+          1024,
+          2634613065326.6333
+        ],
+        [
+          1280,
+          2967667924528.302
+        ]
+      ]
+    },
+    {
+      "program_id": "b8192_s3_r128_stride4096",
+      "service": "finite_async_copy_threads128_slots3_b8192",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b8192",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 8192,
+      "companion_A_bytes": 2048,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          1081006185567.0104
+        ],
+        [
+          128,
+          1798586620926.2437
+        ],
+        [
+          132,
+          1829685279187.8174
+        ],
+        [
+          160,
+          1968048048048.048
+        ],
+        [
+          180,
+          2130867052023.1213
+        ],
+        [
+          192,
+          2237359886201.9917
+        ],
+        [
+          256,
+          2641249370277.078
+        ],
+        [
+          320,
+          2837056277056.277
+        ],
+        [
+          360,
+          2917032640949.555
+        ],
+        [
+          384,
+          2934447761194.03
+        ],
+        [
+          512,
+          3132415235250.187
+        ],
+        [
+          640,
+          3274753279200.4995
+        ],
+        [
+          768,
+          3397114470842.3325
+        ],
+        [
+          896,
+          3485295346628.6797
+        ],
+        [
+          1024,
+          2969418761061.947
+        ],
+        [
+          1280,
+          3425599477295.0015
+        ]
+      ]
+    },
+    {
+      "program_id": "b8192_s4_r128_stride512",
+      "service": "finite_async_copy_threads128_slots4_b8192",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots4_b8192",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 64,
+        "logical_row_bytes": 512
+      },
+      "panel_B_bytes": 8192,
+      "companion_A_bytes": 2048,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 512,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          744727272727.2727
+        ],
+        [
+          128,
+          1213629629629.6296
+        ],
+        [
+          132,
+          1251555555555.5557
+        ],
+        [
+          160,
+          1332032520325.2031
+        ],
+        [
+          180,
+          1462857142857.1428
+        ],
+        [
+          192,
+          1512369230769.231
+        ],
+        [
+          256,
+          1659139240506.329
+        ],
+        [
+          320,
+          1840898876404.4944
+        ],
+        [
+          360,
+          1930052356020.9424
+        ],
+        [
+          384,
+          1937024630541.8718
+        ],
+        [
+          512,
+          2157563786008.2307
+        ],
+        [
+          640,
+          2299508771929.824
+        ],
+        [
+          768,
+          2361657657657.6577
+        ],
+        [
+          896,
+          2433697612732.095
+        ],
+        [
+          1024,
+          2478903073286.052
+        ],
+        [
+          1280,
+          2595485148514.8516
+        ]
+      ]
+    },
+    {
+      "program_id": "b8192_s4_r128_stride1024",
+      "service": "finite_async_copy_threads128_slots4_b8192",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots4_b8192",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 8192,
+      "companion_A_bytes": 2048,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          923042253521.1268
+        ],
+        [
+          128,
+          1628223602484.472
+        ],
+        [
+          132,
+          1648390243902.4392
+        ],
+        [
+          160,
+          1752299465240.6416
+        ],
+        [
+          180,
+          1900206185567.0105
+        ],
+        [
+          192,
+          1996020304568.528
+        ],
+        [
+          256,
+          2175468879668.0498
+        ],
+        [
+          320,
+          2267681660899.6543
+        ],
+        [
+          360,
+          2304000000000.0
+        ],
+        [
+          384,
+          2292804664723.032
+        ],
+        [
+          512,
+          2467237647058.823
+        ],
+        [
+          640,
+          2595485148514.8516
+        ],
+        [
+          768,
+          2215301408450.704
+        ],
+        [
+          896,
+          2479740540540.5405
+        ],
+        [
+          1024,
+          2674938775510.204
+        ],
+        [
+          1280,
+          2791735889243.8765
+        ]
+      ]
+    },
+    {
+      "program_id": "b8192_s4_r128_stride1536",
+      "service": "finite_async_copy_threads128_slots4_b8192",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots4_b8192",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 64,
+        "logical_row_bytes": 1536
+      },
+      "panel_B_bytes": 8192,
+      "companion_A_bytes": 2048,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 1536,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          954407766990.2913
+        ],
+        [
+          128,
+          1739893805309.7344
+        ],
+        [
+          132,
+          1763060869565.2175
+        ],
+        [
+          160,
+          1912529182879.3774
+        ],
+        [
+          180,
+          2110534351145.0383
+        ],
+        [
+          192,
+          2192654275092.9365
+        ],
+        [
+          256,
+          2390370820668.693
+        ],
+        [
+          320,
+          2495025380710.66
+        ],
+        [
+          360,
+          2519179954441.9136
+        ],
+        [
+          384,
+          2531433476394.85
+        ],
+        [
+          512,
+          2688656410256.41
+        ],
+        [
+          640,
+          2796699857752.4893
+        ],
+        [
+          768,
+          2354586826347.305
+        ],
+        [
+          896,
+          2695898139079.334
+        ],
+        [
+          1024,
+          2926258604651.1626
+        ],
+        [
+          1280,
+          3101072555205.0474
+        ]
+      ]
+    },
+    {
+      "program_id": "b8192_s4_r128_stride4096",
+      "service": "finite_async_copy_threads128_slots4_b8192",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots4_b8192",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 8192,
+      "companion_A_bytes": 2048,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          1074360655737.705
+        ],
+        [
+          128,
+          1949026022304.8325
+        ],
+        [
+          132,
+          1998787430683.9187
+        ],
+        [
+          160,
+          2206599326599.3267
+        ],
+        [
+          180,
+          2393766233766.234
+        ],
+        [
+          192,
+          2508555023923.445
+        ],
+        [
+          256,
+          2837824086603.5186
+        ],
+        [
+          320,
+          2890231532524.8066
+        ],
+        [
+          360,
+          2925714285714.2856
+        ],
+        [
+          384,
+          2967667924528.302
+        ],
+        [
+          512,
+          3137100972326.103
+        ],
+        [
+          640,
+          3266591900311.5264
+        ],
+        [
+          768,
+          2697879931389.3657
+        ],
+        [
+          896,
+          3085343421605.717
+        ],
+        [
+          1024,
+          3382503225806.4517
+        ],
+        [
+          1280,
+          3644685436218.283
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_stride1024",
+      "service": "finite_async_copy_threads128_slots3_b16384",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b16384",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 2048,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          1365333333333.3333
+        ],
+        [
+          128,
+          2212185654008.4385
+        ],
+        [
+          132,
+          2243452282157.677
+        ],
+        [
+          160,
+          2323971631205.674
+        ],
+        [
+          180,
+          2378322580645.1616
+        ],
+        [
+          192,
+          2419790769230.7695
+        ],
+        [
+          256,
+          2502568019093.079
+        ],
+        [
+          320,
+          2555009746588.694
+        ],
+        [
+          360,
+          2623772241992.883
+        ],
+        [
+          384,
+          2625816360601.0015
+        ],
+        [
+          512,
+          2766691292875.9893
+        ],
+        [
+          640,
+          2557502439024.39
+        ],
+        [
+          768,
+          2896618784530.3867
+        ],
+        [
+          896,
+          3015625308134.758
+        ],
+        [
+          1024,
+          3158361445783.133
+        ],
+        [
+          1280,
+          3222421634910.879
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r128_stride4096",
+      "service": "finite_async_copy_threads128_slots3_b16384",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b16384",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 2048,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          1576806015037.594
+        ],
+        [
+          128,
+          2538924939467.3125
+        ],
+        [
+          132,
+          2590045508982.036
+        ],
+        [
+          160,
+          2765232067510.5483
+        ],
+        [
+          180,
+          2894131501472.0312
+        ],
+        [
+          192,
+          2945438202247.191
+        ],
+        [
+          256,
+          3106891851851.8516
+        ],
+        [
+          320,
+          3082233980011.758
+        ],
+        [
+          360,
+          3258696132596.685
+        ],
+        [
+          384,
+          3323537242472.2666
+        ],
+        [
+          512,
+          3524625210084.0337
+        ],
+        [
+          640,
+          3156459963877.1826
+        ],
+        [
+          768,
+          3538501687289.089
+        ],
+        [
+          896,
+          3609555938037.8657
+        ],
+        [
+          1024,
+          3827792835957.107
+        ],
+        [
+          1280,
+          3792318264014.4663
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r256_stride1024",
+      "service": "finite_async_copy_threads128_slots3_b16384",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b16384",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 128,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 4096,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          1129931034482.7585
+        ],
+        [
+          128,
+          1807889655172.4138
+        ],
+        [
+          132,
+          1826594594594.5945
+        ],
+        [
+          160,
+          1950476190476.1904
+        ],
+        [
+          180,
+          2071011235955.0562
+        ],
+        [
+          192,
+          2137043478260.8694
+        ],
+        [
+          256,
+          2212185654008.4385
+        ],
+        [
+          320,
+          2332241992882.5625
+        ],
+        [
+          360,
+          2370675241157.556
+        ],
+        [
+          384,
+          2326721893491.1245
+        ],
+        [
+          512,
+          2028193423597.679
+        ],
+        [
+          640,
+          2287469458987.7837
+        ],
+        [
+          768,
+          2408673813169.985
+        ],
+        [
+          896,
+          2235088915956.1514
+        ],
+        [
+          1024,
+          2366988713318.284
+        ],
+        [
+          1280,
+          2518194044188.281
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r256_stride2048",
+      "service": "finite_async_copy_threads128_slots3_b16384",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b16384",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 128,
+        "logical_row_bytes": 2048
+      },
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 4096,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 2048,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          1337469387755.102
+        ],
+        [
+          128,
+          2269645021645.0215
+        ],
+        [
+          132,
+          2290983050847.4575
+        ],
+        [
+          160,
+          2391824817518.248
+        ],
+        [
+          180,
+          2482424242424.2427
+        ],
+        [
+          192,
+          2520615384615.385
+        ],
+        [
+          256,
+          2601925558312.6553
+        ],
+        [
+          320,
+          2674938775510.204
+        ],
+        [
+          360,
+          2740817843866.1714
+        ],
+        [
+          384,
+          2740181184668.9897
+        ],
+        [
+          512,
+          2502568019093.079
+        ],
+        [
+          640,
+          2744963350785.3403
+        ],
+        [
+          768,
+          2923539033457.249
+        ],
+        [
+          896,
+          2793010654490.1064
+        ],
+        [
+          1024,
+          2912711111111.1113
+        ],
+        [
+          1280,
+          3128210023866.348
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r256_stride4096",
+      "service": "finite_async_copy_threads128_slots3_b16384",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b16384",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 128,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 4096,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          1444319559228.6501
+        ],
+        [
+          128,
+          2455681498829.04
+        ],
+        [
+          132,
+          2497330254041.5703
+        ],
+        [
+          160,
+          2621440000000.0
+        ],
+        [
+          180,
+          2745921787709.497
+        ],
+        [
+          192,
+          2828892086330.9355
+        ],
+        [
+          256,
+          2920824512534.819
+        ],
+        [
+          320,
+          2890231532524.8066
+        ],
+        [
+          360,
+          3009306122448.98
+        ],
+        [
+          384,
+          3075002932551.32
+        ],
+        [
+          512,
+          2807432396251.6733
+        ],
+        [
+          640,
+          3206654434250.7646
+        ],
+        [
+          768,
+          3491374028856.8257
+        ],
+        [
+          896,
+          3318278481012.658
+        ],
+        [
+          1024,
+          3447845458281.9565
+        ],
+        [
+          1280,
+          3593474982864.976
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r256_stride5760",
+      "service": "finite_async_copy_threads128_slots3_b16384",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b16384",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 128,
+        "logical_row_bytes": 5760
+      },
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 4096,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 5760,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          1409713193116.6348
+        ],
+        [
+          128,
+          2401563517915.3096
+        ],
+        [
+          132,
+          2448695652173.913
+        ],
+        [
+          160,
+          2577902097902.098
+        ],
+        [
+          180,
+          2658461538461.5386
+        ],
+        [
+          192,
+          2799797468354.43
+        ],
+        [
+          256,
+          2940299102691.9243
+        ],
+        [
+          320,
+          2918764845605.7007
+        ],
+        [
+          360,
+          3090312965722.802
+        ],
+        [
+          384,
+          3173371592539.455
+        ],
+        [
+          512,
+          2835692307692.3076
+        ],
+        [
+          640,
+          3256537102473.498
+        ],
+        [
+          768,
+          3586282934738.549
+        ],
+        [
+          896,
+          3318945337620.5786
+        ],
+        [
+          1024,
+          3512948183442.5254
+        ],
+        [
+          1280,
+          3603519061583.5776
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r256_stride8192",
+      "service": "finite_async_copy_threads128_slots3_b16384",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b16384",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 128,
+        "logical_row_bytes": 8192
+      },
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 4096,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 8192,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          1508742446043.1655
+        ],
+        [
+          128,
+          2579522755227.5522
+        ],
+        [
+          132,
+          2634211936662.6064
+        ],
+        [
+          160,
+          2797694770544.2905
+        ],
+        [
+          180,
+          2952072072072.072
+        ],
+        [
+          192,
+          3016038350910.834
+        ],
+        [
+          256,
+          3167903323262.84
+        ],
+        [
+          320,
+          3250390576565.4062
+        ],
+        [
+          360,
+          3389793103448.276
+        ],
+        [
+          384,
+          3481713337022.69
+        ],
+        [
+          512,
+          3085181316660.537
+        ],
+        [
+          640,
+          3562949371389.7383
+        ],
+        [
+          768,
+          3878826140567.201
+        ],
+        [
+          896,
+          3577885449670.972
+        ],
+        [
+          1024,
+          3787181941309.255
+        ],
+        [
+          1280,
+          3870712440014.7656
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r256_stride12288",
+      "service": "finite_async_copy_threads128_slots3_b16384",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b16384",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 128,
+        "logical_row_bytes": 12288
+      },
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 4096,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 12288,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          1521145067698.2593
+        ],
+        [
+          128,
+          2730666666666.6665
+        ],
+        [
+          132,
+          2789365434221.8403
+        ],
+        [
+          160,
+          2891294117647.059
+        ],
+        [
+          180,
+          3095647305808.2573
+        ],
+        [
+          192,
+          3194713608666.2153
+        ],
+        [
+          256,
+          3504989415041.7827
+        ],
+        [
+          320,
+          3435701179554.39
+        ],
+        [
+          360,
+          3631921182266.01
+        ],
+        [
+          384,
+          3725694433478.0894
+        ],
+        [
+          512,
+          3228871439568.899
+        ],
+        [
+          640,
+          3664641192917.0547
+        ],
+        [
+          768,
+          4043352185089.974
+        ],
+        [
+          896,
+          3703346115035.318
+        ],
+        [
+          1024,
+          3916859766536.965
+        ],
+        [
+          1280,
+          3956890566037.736
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s3_r256_stride14336",
+      "service": "finite_async_copy_threads128_slots3_b16384",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots3_b16384",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 128,
+        "logical_row_bytes": 14336
+      },
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 4096,
+      "companion_valid_rows": 1,
+      "buffer_slots": 3,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 14336,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          64,
+          1522828215767.635
+        ],
+        [
+          128,
+          2778210446631.34
+        ],
+        [
+          132,
+          2854226244343.891
+        ],
+        [
+          160,
+          2925714285714.2856
+        ],
+        [
+          180,
+          3143093788063.3374
+        ],
+        [
+          192,
+          3245886792452.8306
+        ],
+        [
+          256,
+          3599819519372.241
+        ],
+        [
+          320,
+          3507278287461.774
+        ],
+        [
+          360,
+          3694316392269.1484
+        ],
+        [
+          384,
+          3813664011084.1704
+        ],
+        [
+          512,
+          3270959001782.5312
+        ],
+        [
+          640,
+          3748739530132.7886
+        ],
+        [
+          896,
+          3756413510747.185
+        ],
+        [
+          1024,
+          3976182015167.9307
+        ],
+        [
+          1280,
+          3987414167753.151
+        ]
+      ]
+    },
+    {
+      "program_id": "b16384_s2_r128_stride1024",
+      "service": "finite_async_copy_threads128_slots2_b16384",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots2_b16384",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 2048,
+      "companion_valid_rows": 1,
+      "buffer_slots": 2,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          128,
+          1913459854014.5984
+        ],
+        [
+          160,
+          2127792207792.2075
+        ],
+        [
+          192,
+          2306252199413.4897
+        ],
+        [
+          256,
+          2508555023923.445
+        ],
+        [
+          320,
+          2560000000000.0
+        ],
+        [
+          384,
+          2656864864864.865
+        ],
+        [
+          512,
+          2774010582010.582
+        ],
+        [
+          640,
+          2896618784530.3867
+        ],
+        [
+          768,
+          2970470254957.5073
+        ],
+        [
+          1024,
+          2995931428571.4287
+        ],
+        [
+          1280,
+          3268628428927.681
+        ]
+      ],
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_8/manifest.json",
+      "source_manifest_sha256": "e94e64ef0775079a4fa1f4ce7e0475000782724f92f0335232925f59621e5ddf"
+    },
+    {
+      "program_id": "b16384_s2_r128_stride4096",
+      "service": "finite_async_copy_threads128_slots2_b16384",
+      "signature": {
+        "access_class": "finite_async_copy_threads128_slots2_b16384",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 2048,
+      "companion_valid_rows": 1,
+      "buffer_slots": 2,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          128,
+          2036069902912.6213
+        ],
+        [
+          160,
+          2383127272727.2725
+        ],
+        [
+          192,
+          2700195708154.5063
+        ],
+        [
+          256,
+          2991657631954.351
+        ],
+        [
+          320,
+          3204694376528.1177
+        ],
+        [
+          384,
+          3287072100313.4795
+        ],
+        [
+          512,
+          3504013366750.2085
+        ],
+        [
+          640,
+          3642153525529.6978
+        ],
+        [
+          768,
+          3715061116031.8867
+        ],
+        [
+          1024,
+          3556755564977.74
+        ]
+      ],
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_8/manifest.json",
+      "source_manifest_sha256": "e94e64ef0775079a4fa1f4ce7e0475000782724f92f0335232925f59621e5ddf"
+    },
+    {
+      "program_id": "b16384_s1_r256_stride1536",
+      "service": "single_panel_async_copy_threads128_resident8_b16384",
+      "signature": {
+        "access_class": "single_panel_async_copy_threads128_resident8_b16384",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 128,
+        "logical_row_bytes": 1536
+      },
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 4096,
+      "companion_valid_rows": 1,
+      "buffer_slots": 1,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 1536,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          528,
+          2811119584055.459
+        ],
+        [
+          1056,
+          3131305019305.0195
+        ],
+        [
+          1272,
+          2736403361344.5376
+        ],
+        [
+          1320,
+          2821878914405.0107
+        ],
+        [
+          1584,
+          3321534470989.761
+        ],
+        [
+          1696,
+          3411992141453.831
+        ],
+        [
+          2048,
+          3560529711375.2124
+        ],
+        [
+          2112,
+          3608489432703.0034
+        ],
+        [
+          3168,
+          3831533858267.7163
+        ]
+      ],
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_8/manifest.json",
+      "source_manifest_sha256": "e94e64ef0775079a4fa1f4ce7e0475000782724f92f0335232925f59621e5ddf"
+    },
+    {
+      "program_id": "b16384_s1_r256_stride4096",
+      "service": "single_panel_async_copy_threads128_resident8_b16384",
+      "signature": {
+        "access_class": "single_panel_async_copy_threads128_resident8_b16384",
+        "dtype": "bf16",
+        "tile_m": 16,
+        "tile_k": 128,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 16384,
+      "companion_A_bytes": 4096,
+      "companion_valid_rows": 1,
+      "buffer_slots": 1,
+      "threads_per_cta": 128,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          528,
+          3237556886227.545
+        ],
+        [
+          1056,
+          3787544658493.8706
+        ],
+        [
+          1272,
+          3110514626865.672
+        ],
+        [
+          1320,
+          3223081967213.1147
+        ],
+        [
+          1584,
+          3835686668637.304
+        ],
+        [
+          1696,
+          3935873087818.6973
+        ]
+      ],
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_8/manifest.json",
+      "source_manifest_sha256": "e94e64ef0775079a4fa1f4ce7e0475000782724f92f0335232925f59621e5ddf"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1024",
+      "service": "finite_async_copy_threads256_slots4_b32768",
+      "signature": {
+        "access_class": "finite_async_copy_threads256_slots4_b32768",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 128,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          2556368794326.241
+        ],
+        [
+          264,
+          2440957110609.481
+        ],
+        [
+          528,
+          2582314029850.7466
+        ],
+        [
+          1056,
+          2746270476190.476
+        ],
+        [
+          1530,
+          2712935064935.065
+        ],
+        [
+          2040,
+          2719114871461.1133
+        ],
+        [
+          2112,
+          2799143180715.0947
+        ],
+        [
+          4096,
+          2747660661644.284
+        ],
+        [
+          4592,
+          2812745924928.967
+        ],
+        [
+          8192,
+          2799702294534.8354
+        ],
+        [
+          9184,
+          2824148948948.949
+        ]
+      ],
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_10/manifest.json",
+      "source_manifest_sha256": "4455219c7177a9a9e43cfb5548757349e9b537adc86e9cabdf4ff2c941f6cee6"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1536",
+      "service": "finite_async_copy_threads256_slots4_b32768",
+      "signature": {
+        "access_class": "finite_async_copy_threads256_slots4_b32768",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1536
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 128,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1536,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          2730666666666.6665
+        ],
+        [
+          264,
+          2696618453865.3364
+        ],
+        [
+          528,
+          2913365065110.013
+        ],
+        [
+          1056,
+          3059685923131.337
+        ],
+        [
+          1530,
+          3026503541532.518
+        ],
+        [
+          2040,
+          3042543998058.0166
+        ],
+        [
+          2112,
+          3124519142788.3457
+        ],
+        [
+          4096,
+          3076694663487.9883
+        ],
+        [
+          4592,
+          3151261923377.6387
+        ],
+        [
+          8192,
+          3132220299956.438
+        ],
+        [
+          9184,
+          3158670846394.9844
+        ]
+      ],
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_10/manifest.json",
+      "source_manifest_sha256": "4455219c7177a9a9e43cfb5548757349e9b537adc86e9cabdf4ff2c941f6cee6"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride4096",
+      "service": "finite_async_copy_threads256_slots4_b32768",
+      "signature": {
+        "access_class": "finite_async_copy_threads256_slots4_b32768",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 128,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          3074183368869.936
+        ],
+        [
+          264,
+          3371298519095.8687
+        ],
+        [
+          1056,
+          3680779491543.4526
+        ],
+        [
+          1530,
+          3652826229508.197
+        ],
+        [
+          2040,
+          3667455971909.804
+        ],
+        [
+          2112,
+          3748768539082.39
+        ],
+        [
+          4096,
+          3713416555998.2295
+        ],
+        [
+          4592,
+          3795738257403.7637
+        ],
+        [
+          8192,
+          3775569720667.248
+        ],
+        [
+          9184,
+          3807455870445.344
+        ]
+      ],
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_10/manifest.json",
+      "source_manifest_sha256": "4455219c7177a9a9e43cfb5548757349e9b537adc86e9cabdf4ff2c941f6cee6"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1024_fanout1",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          2526504672897.1963
+        ],
+        [
+          1530,
+          2690802919708.0293
+        ],
+        [
+          2040,
+          2700222976248.1826
+        ],
+        [
+          4592,
+          2813587434554.9736
+        ],
+        [
+          9184,
+          2828714817460.6157
+        ]
+      ],
+      "request_fanout": 1,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1024_fanout2",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4034865671641.791
+        ],
+        [
+          1530,
+          2953985387697.384
+        ],
+        [
+          2040,
+          2942715266772.319
+        ],
+        [
+          4592,
+          3003646119450.655
+        ],
+        [
+          9184,
+          2999096228972.3354
+        ]
+      ],
+      "request_fanout": 2,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1024_fanout4",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4111574144486.692
+        ],
+        [
+          1530,
+          2964465468306.528
+        ],
+        [
+          2040,
+          2954681753889.675
+        ],
+        [
+          4592,
+          3009413120000.0
+        ],
+        [
+          9184,
+          3000770899808.5513
+        ]
+      ],
+      "request_fanout": 4,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1024_fanout8",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout8",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout8",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4127267175572.5186
+        ],
+        [
+          1530,
+          2972198245198.008
+        ],
+        [
+          2040,
+          2957819469026.549
+        ],
+        [
+          4592,
+          3008691034151.8037
+        ],
+        [
+          9184,
+          3000651218442.149
+        ]
+      ],
+      "request_fanout": 8,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1024_fanout16",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout16",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout16",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1024
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1024,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4111574144486.692
+        ],
+        [
+          1530,
+          2967272727272.7275
+        ],
+        [
+          2040,
+          2952593639575.9717
+        ],
+        [
+          4592,
+          3008691034151.8037
+        ],
+        [
+          9184,
+          2999454929633.616
+        ]
+      ],
+      "request_fanout": 16,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1536_fanout1",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1536
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1536,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          2735271500843.1704
+        ],
+        [
+          1530,
+          3018728323699.4224
+        ],
+        [
+          2040,
+          3041805606115.7627
+        ],
+        [
+          4592,
+          3161148235294.1177
+        ],
+        [
+          9184,
+          3175111611287.7363
+        ]
+      ],
+      "request_fanout": 1,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1536_fanout2",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1536
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1536,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          3956136585365.8535
+        ],
+        [
+          1530,
+          3214334074200.7183
+        ],
+        [
+          2040,
+          3207616122840.691
+        ],
+        [
+          4592,
+          3285959468902.8647
+        ],
+        [
+          9184,
+          3281277934463.408
+        ]
+      ],
+      "request_fanout": 2,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1536_fanout4",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1536
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1536,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4106369620253.1646
+        ],
+        [
+          1530,
+          3230350515463.9175
+        ],
+        [
+          2040,
+          3222460470497.493
+        ],
+        [
+          4592,
+          3293823828147.8022
+        ],
+        [
+          9184,
+          3283951462243.5615
+        ]
+      ],
+      "request_fanout": 4,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1536_fanout8",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout8",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout8",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1536
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1536,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4085682619647.3555
+        ],
+        [
+          1530,
+          3235910499139.4146
+        ],
+        [
+          2040,
+          3224533058914.33
+        ],
+        [
+          4592,
+          3288065730435.2896
+        ],
+        [
+          9184,
+          3283187152707.0664
+        ]
+      ],
+      "request_fanout": 8,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride1536_fanout16",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout16",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout16",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 1536
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 1536,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4075417085427.1357
+        ],
+        [
+          1530,
+          3229795567771.8604
+        ],
+        [
+          2040,
+          3223289186061.4634
+        ],
+        [
+          4592,
+          3288065730435.2896
+        ],
+        [
+          9184,
+          3281755030824.7065
+        ]
+      ],
+      "request_fanout": 16,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride4096_fanout1",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout1",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout1",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          3082947968638.632
+        ],
+        [
+          1530,
+          3622473988439.306
+        ],
+        [
+          2040,
+          3626076484947.1113
+        ],
+        [
+          4592,
+          3740259905543.127
+        ],
+        [
+          9184,
+          3745753304622.738
+        ]
+      ],
+      "request_fanout": 1,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride4096_fanout2",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout2",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout2",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4224000000000.0
+        ],
+        [
+          1530,
+          3806760820045.558
+        ],
+        [
+          2040,
+          3805677198975.235
+        ],
+        [
+          4592,
+          3899820029027.576
+        ],
+        [
+          9184,
+          3904576277343.8516
+        ]
+      ],
+      "request_fanout": 2,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride4096_fanout4",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout4",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout4",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4265656804733.7275
+        ],
+        [
+          1530,
+          3816613885505.481
+        ],
+        [
+          2040,
+          3811101482326.112
+        ],
+        [
+          4592,
+          3900932154615.923
+        ],
+        [
+          9184,
+          3905184293166.541
+        ]
+      ],
+      "request_fanout": 4,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride4096_fanout8",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout8",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout8",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4269867719644.6196
+        ],
+        [
+          1530,
+          3814000760745.5303
+        ],
+        [
+          2040,
+          3812405611953.918
+        ],
+        [
+          4592,
+          3898910579638.7944
+        ],
+        [
+          9184,
+          3903107687119.8267
+        ]
+      ],
+      "request_fanout": 8,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    },
+    {
+      "program_id": "b32768_s4_r128_stride4096_fanout16",
+      "service": "coalesced_async_copy_threads256_slots4_b32768_fanout16",
+      "signature": {
+        "access_class": "coalesced_async_copy_threads256_slots4_b32768_fanout16",
+        "dtype": "bf16",
+        "tile_m": 128,
+        "tile_k": 64,
+        "logical_row_bytes": 4096
+      },
+      "panel_B_bytes": 32768,
+      "companion_A_bytes": 16384,
+      "companion_valid_rows": 1,
+      "buffer_slots": 4,
+      "companion_issued_rows": 128,
+      "threads_per_cta": 256,
+      "physical_row_stride_bytes": 4096,
+      "logical_byte_capacity_per_s_by_grid_ctas": [
+        [
+          132,
+          4261454187192.118
+        ],
+        [
+          1530,
+          3811970802919.708
+        ],
+        [
+          2040,
+          3809146959940.7373
+        ],
+        [
+          4592,
+          3897799606258.419
+        ],
+        [
+          9184,
+          3900123273113.709
+        ]
+      ],
+      "request_fanout": 16,
+      "source_manifest_path": "profiler_output/microbench/nvidia_h200/finite_strided_panel_20261107/attempt_12/manifest.json",
+      "source_manifest_sha256": "f1e783028554eb26f396f0277c66a133681980fc05a0eeeff44a5b709744d976"
+    }
+  ]
+}

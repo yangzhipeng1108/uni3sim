@@ -1,0 +1,173 @@
+{
+  "schema_version": 2,
+  "scheduler_pools": [
+    {
+      "pool_name": "prefill-0",
+      "binding": {
+        "hardware_id": "nvidia_h200",
+        "hardware_config_sha256": "cb5f33773e1332d666267b4b10243331ba6a4acfaebabc638d62fbd35436291e",
+        "model_config_sha256": "cbf0b95dc614de208a109bb5fd4e7eed11385e9c68411d2c17db5319443035d9",
+        "deployment": "pd_disagg",
+        "worker_role": "prefill",
+        "tensor_parallel_size": 8,
+        "pipeline_parallel_size": 1,
+        "expert_parallel_size": 1,
+        "max_model_len": 9216,
+        "max_batched_tokens": 8192,
+        "max_requests": 4,
+        "kv_block_size_tokens": 16
+      },
+      "gpu_memory_utilization": {
+        "numerator": 82,
+        "denominator": 100,
+        "provenance": {
+          "source_kind": "runtime_configuration",
+          "source_reference": "InferenceX SGLang DeepSeek-R1 H200 PD recipe prefill mem-fraction-static 0.82 (SemiAnalysisAI/InferenceX srt-slurm dsr1 h200-fp8 8k1k)",
+          "source_sha256": null
+        }
+      },
+      "non_kv_reserves": [
+        {
+          "kind": "activation",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "cuda_graph",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "communication",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "allocator",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "fragmentation",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "framework",
+          "bytes": 2147483648,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "projected aggregate non-weight non-KV reserve of 2 GiB per rank",
+            "source_sha256": null
+          }
+        }
+      ],
+      "reserve_scope": "verified_uniform_across_pool_ranks",
+      "completeness_assertion": "all_non_kv_reserves_for_bound_runtime"
+    },
+    {
+      "pool_name": "decode-0",
+      "binding": {
+        "hardware_id": "nvidia_h200",
+        "hardware_config_sha256": "cb5f33773e1332d666267b4b10243331ba6a4acfaebabc638d62fbd35436291e",
+        "model_config_sha256": "cbf0b95dc614de208a109bb5fd4e7eed11385e9c68411d2c17db5319443035d9",
+        "deployment": "pd_disagg",
+        "worker_role": "decode",
+        "tensor_parallel_size": 8,
+        "pipeline_parallel_size": 1,
+        "expert_parallel_size": 1,
+        "max_model_len": 9216,
+        "max_batched_tokens": 8192,
+        "max_requests": 4,
+        "kv_block_size_tokens": 16
+      },
+      "gpu_memory_utilization": {
+        "numerator": 75,
+        "denominator": 100,
+        "provenance": {
+          "source_kind": "runtime_configuration",
+          "source_reference": "InferenceX SGLang DeepSeek-R1 H200 PD recipe decode mem-fraction-static 0.75 (SemiAnalysisAI/InferenceX srt-slurm dsr1 h200-fp8 8k1k)",
+          "source_sha256": null
+        }
+      },
+      "non_kv_reserves": [
+        {
+          "kind": "activation",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "cuda_graph",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "communication",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "allocator",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "fragmentation",
+          "bytes": 0,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "included in explicit aggregate framework reserve",
+            "source_sha256": null
+          }
+        },
+        {
+          "kind": "framework",
+          "bytes": 2147483648,
+          "provenance": {
+            "source_kind": "runtime_configuration",
+            "source_reference": "projected aggregate non-weight non-KV reserve of 2 GiB per rank",
+            "source_sha256": null
+          }
+        }
+      ],
+      "reserve_scope": "verified_uniform_across_pool_ranks",
+      "completeness_assertion": "all_non_kv_reserves_for_bound_runtime"
+    }
+  ]
+}

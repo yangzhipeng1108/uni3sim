@@ -1,0 +1,49 @@
+{
+  "schema_version": "midlayer.metax_c500.bm64_eight_expert_steady_wide_n_pipeline.v2",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_k": 32,
+    "tile_n": 64,
+    "group_size_m": 8,
+    "populated_experts": 8,
+    "minimum_m_tiles_per_populated_expert_exclusive": 11,
+    "production_k_n_tile_class": [128, 448]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090608,
+    "tokens": 32768,
+    "experts": 8,
+    "topk": 2,
+    "event_trials_per_capture": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "01f83fecf7fb57f932afd57ee42210e97981ec712237ce3b0af81a6b9fda94e1",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "conservative minimum capacity across the two adjacent non-production K/N geometries bracketing the (128,448) production loop class"
+  },
+  "captures": [
+    {
+      "k": 4032,
+      "n": 28608,
+      "k_tiles": 126,
+      "n_tiles": 447,
+      "raw_sha256": "fd0bfe3d3c894b80c8051878653deb990ab6421824f598a419225ddfb21916ed",
+      "operand_pipeline_capacity_bytes_per_s": 2409869626512.7544
+    },
+    {
+      "k": 4160,
+      "n": 28736,
+      "k_tiles": 130,
+      "n_tiles": 449,
+      "raw_sha256": "d241b600ccd571c4833b558219ce64468d9fb54626c55621ed682a94c8d91e5f",
+      "operand_pipeline_capacity_bytes_per_s": 2274302584843.376
+    }
+  ],
+  "selected_service": {
+    "predicate": "exactly eight populated experts, more than 11 M tiles per expert, and wide-N projection in the bracketed (128,448) K/N tile class",
+    "logical_byte_capacity_per_s": 2274302584843.376
+  }
+}

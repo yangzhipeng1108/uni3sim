@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "artifact_type": "gemm_launch_workload_domain_config",
+  "dataset_root": "serving_dataset/sharegpt",
+  "hardware_ids": [
+    "nvidia_a800",
+    "metax_c500",
+    "ascend_910b"
+  ],
+  "scheduler_contract": {
+    "backend": "vllm",
+    "scheduler_version": "0.11.0",
+    "scheduler_source_commit": "b8b302cde434df8c9289a2b465406b47ebab1c2d",
+    "max_batched_tokens": 8192,
+    "max_requests": 256,
+    "enable_chunked_prefill": true,
+    "mtp_num_speculative_tokens": 0
+  },
+  "models": [
+    {
+      "model_id": "Qwen3-4B",
+      "model_path": "${MODELS_ROOT}/Qwen3-4B",
+      "model_config_sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+      "tensor_parallel_size": 1,
+      "expert_parallel_size": 1
+    },
+    {
+      "model_id": "Qwen3-8B",
+      "model_path": "${MODELS_ROOT}/Qwen3-8B",
+      "model_config_sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30",
+      "tensor_parallel_size": 1,
+      "expert_parallel_size": 1
+    },
+    {
+      "model_id": "Llama-3.1-8B",
+      "model_path": "${MODELS_ROOT}/Llama-3.1-8B-Instruct",
+      "model_config_sha256": "29e4c210b0d6ac178b16b2a255a568bdb23b581e50ca1ef6a6d071dd85704e6e",
+      "tensor_parallel_size": 1,
+      "expert_parallel_size": 1
+    },
+    {
+      "model_id": "Qwen3-32B",
+      "model_path": "${MODELS_ROOT}/Qwen3-32B",
+      "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+      "tensor_parallel_size": 2,
+      "expert_parallel_size": 1
+    },
+    {
+      "model_id": "Qwen3-30B-A3B",
+      "model_path": "${MODELS_ROOT}/Qwen3-30B-A3B",
+      "model_config_sha256": "2850ddb3bf7aecad20b611e2d44f3077fc8193f4827c93beddd4c02ad63c2297",
+      "tensor_parallel_size": 2,
+      "expert_parallel_size": 2
+    }
+  ]
+}

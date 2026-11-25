@@ -1,0 +1,48 @@
+{
+  "hardware_id": "nvidia_a800",
+  "host": {
+    "cpu": "Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz"
+  },
+  "measurement": {
+    "artifacts": [
+      {
+        "path": "microbench/nvidia_a800/runtime/host_request_path/references/admission_ipc_region_20260921.json",
+        "sha256": "1737316b994d64546b2bb4e5597afeb90aa40c74d99a804ac76e8ac1f489360d"
+      },
+      {
+        "path": "microbench/nvidia_a800/runtime/host_request_path/references/host_request_path_20260920.json",
+        "sha256": "2835dc3b26273ac85f0b4493c52760ccf27f15949fd74a759d9ec2b3e619e640"
+      },
+      {
+        "path": "microbench/nvidia_a800/runtime/host_request_path/references/input_processor_20260921.json",
+        "sha256": "d6bf704060bae80364dae164a87ab5955fb1f285b8d24c37a879ff6c150c326f"
+      },
+      {
+        "path": "microbench/nvidia_a800/runtime/host_request_path/references/output_delivery_chain_20260922.json",
+        "sha256": "3ef29b1d0be78d50272d6bb894185785c85a6d177a414019351a6972652b9c8b"
+      }
+    ],
+    "boundary": "host_only_no_device_no_model",
+    "statistic": "median_of_independent_primitive_samples",
+    "time_unit": "seconds"
+  },
+  "runtime": {
+    "source_identity": "vllm.utils.AsyncMicrobatchTokenizer(batch_wait_timeout_s=0.002,max_batch_size=32)",
+    "version": "0.11.0"
+  },
+  "schema_version": 1,
+  "service_time_s": {
+    "admission_enqueue": 2.16e-05,
+    "api_entry": 0.0004667865,
+    "engine_core_ipc": 3.87e-05,
+    "first_token_delivery": 0.0002897,
+    "input_processor_intercept": 5.411440476190476e-05,
+    "input_processor_per_token": 7.91220238095238e-09,
+    "output_delivery_per_output": 5.225e-05,
+    "tokenizer_async_call": 0.002232149,
+    "tokenizer_encode_intercept": 3.0467555118110237e-05,
+    "tokenizer_encode_per_token": 1.8486215551181102e-06,
+    "tokenizer_render_region_intercept": null,
+    "tokenizer_render_region_per_token": null
+  }
+}

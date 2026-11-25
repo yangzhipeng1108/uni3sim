@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "service": "cann_grouped_matmul_zero_expert_control",
+  "request_size_unit": "zero_expert_iterations",
+  "duration_unit": "ns_per_scan_per_aic",
+  "service_time_unit": "ns_per_request_per_aic",
+  "lookup_policy": "exact_only",
+  "service_time_ns_by_request_size": {
+    "1": 7.387570991549605
+  },
+  "mechanism": "CANN GroupedMatmul zero-row UpdateMnConfig, cumulative int64 GlobalTensor GetValue, SetMNConfig, and early continue",
+  "scope": "one zero-expert loop iteration on every one of 24 AIC workers",
+  "composition": "serialized_per_zero_expert_on_each_aic_worker; affine intercept excluded because the existing grouped-matmul pipeline supplies the fixed program floor",
+  "source_commit": "27ed7fc2b13a5ba7d80f2fb9b29c7dcac633ede0",
+  "source_files": {
+    "kernel": {
+      "path": "microbench/ascend_910b/operators/fused_moe/grouped_matmul_zero_expert_control/grouped_matmul_zero_expert_control_kernel.cpp",
+      "sha256": "79e58da3e327fb97a1bccf8ede4ece5af55662257cc6898ceb3fcedfad1e97ea"
+    },
+    "main": {
+      "path": "microbench/ascend_910b/operators/fused_moe/grouped_matmul_zero_expert_control/grouped_matmul_zero_expert_control_main.cpp",
+      "sha256": "8ad56da05374578b1712b8233191d6d5730570d2bd51504c726fe4598cb0636e"
+    },
+    "runner": {
+      "path": "microbench/ascend_910b/operators/fused_moe/grouped_matmul_zero_expert_control/grouped_matmul_zero_expert_control_runner.py",
+      "sha256": "595e7c3ec5bd18b7826f64aeeb13092e0fbed3d41888e22f7da2e5f78060d27f"
+    }
+  },
+  "installed_source": {
+    "grouped_matmul_h_sha256": "d06679b4a391c032665f11fb3700c7478726c62e4230a0029d4286e086b209ed",
+    "grouped_matmul_utils_h_sha256": "377bd1fc2e9858e1809c6dca5320fe2e25150749c6644a41b958c2562c6149e4"
+  },
+  "binary_sha256": "98349eb2449d6c5bd671c56c34ca0f58cda3552555177836fc24f55c2aec431e",
+  "campaign": {
+    "devices": [6, 7],
+    "aic_workers": 24,
+    "repeats_per_scan": 256,
+    "trials_per_device": 12,
+    "training_group_counts": [8, 32, 128, 512],
+    "holdout_group_counts": [64, 256],
+    "estimator": "ordinary least squares over pooled per-cell medians",
+    "pooled_fit_intercept_ns": 12.609025186567123,
+    "pooled_fit_slope_ns_per_zero_expert": 7.387570991549605,
+    "device_fit_slopes_ns_per_zero_expert": {
+      "6": 7.38389280618964,
+      "7": 7.390197450248756
+    },
+    "cross_device_slope_range_over_pooled_percent": 0.08534123145927151,
+    "maximum_within_cell_range_over_median_percent": 3.9568345323741005,
+    "holdout_ape_percent": {
+      "64": 1.117312347171229,
+      "256": 0.6725843829061475
+    },
+    "holdout_mape_percent": 0.8949483650386882,
+    "holdout_max_ape_percent": 1.117312347171229
+  },
+  "raw_files": {
+    "device6": {
+      "path": "profiler_output/microbench/ascend_910b/grouped_matmul_zero_expert_control_27ed7fc2_20260904/device6.csv",
+      "sha256": "74f34ccd3c9b8c796cb265d80b5cf93e43d848030cc7ccaa71433f09a39b420f"
+    },
+    "device7": {
+      "path": "profiler_output/microbench/ascend_910b/grouped_matmul_zero_expert_control_27ed7fc2_20260904/device7.csv",
+      "sha256": "424fe07729fea007409840bcda4b644f53c3e81f5786c11c7ad275932f5a1cf1"
+    }
+  },
+  "acceptance": {
+    "stability_limit_percent": 20.0,
+    "holdout_mape_limit_percent": 15.0,
+    "holdout_max_ape_limit_percent": 25.0,
+    "passed": true
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true
+}

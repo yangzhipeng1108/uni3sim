@@ -1,0 +1,117 @@
+{
+ "allowed_use": "Evidence that the C500 grouped-program weight-addressing penalty is not a set-aliasing function and depends on physical allocation, which falsifies modelling it with spec-sourced line size and associativity.",
+ "counters": [
+  "Global Memory Read bytes",
+  "L2C Hit Rate"
+ ],
+ "finding": "Identical configurations repeat to 4.7 percent at pitch 4096 and 12.2 percent at pitch 8192 within one run, and pitch 8192 moves about 40 percent between runs. Against that bound the sweep shows no set-aliasing law: aligned power-of-two strides are the cheaper points and small offsets off them the dearer ones, the reverse of aliasing, with only 4096+64 and 8192+128 reproducibly worst. A separate probe measured 2087.2 MiB for this same access sequence in a larger buffer allocation against 912-1103 MiB here, a factor of two at fixed access sequence. The strided-weight penalty is therefore real and large but is not a deterministic function of the access sequence, so it cannot be expressed by a capacity, line size and associativity triple.",
+ "forbidden_use": "Any duration. The layer-1 pass replays kernels and its reported time is not execution time; nothing here may price a Forward path. Also not an L2 capacity, a line size, an associativity, or a per-shape traffic correction. The stride-to-traffic relation here must not be fitted or interpolated.",
+ "geometry": {
+  "experts": 8,
+  "gsm": 8,
+  "k_steps": 64,
+  "logical_request_bytes": 4294967296,
+  "n_tiles": 64,
+  "programs": 8192,
+  "row_bytes_touched": 4096,
+  "tiles_per_expert": 16
+ },
+ "hardware_id": "metax_c500",
+ "instrument": "mcProfiler perf_exec --custom --per-kernel, one marker window, one numbered per-invocation file per ordinal",
+ "measurements": [
+  {
+   "measured_downstream_read_mib": 955.944,
+   "measured_l2c_hit_rate": 86.52,
+   "ordinal": 0,
+   "row_pitch_bytes": 4096
+  },
+  {
+   "measured_downstream_read_mib": 1156.511,
+   "measured_l2c_hit_rate": 86.43,
+   "ordinal": 1,
+   "row_pitch_bytes": 8192
+  },
+  {
+   "measured_downstream_read_mib": 1414.187,
+   "measured_l2c_hit_rate": 82.27,
+   "ordinal": 2,
+   "row_pitch_bytes": 4160
+  },
+  {
+   "measured_downstream_read_mib": 1104.678,
+   "measured_l2c_hit_rate": 91.77,
+   "ordinal": 3,
+   "row_pitch_bytes": 4224
+  },
+  {
+   "measured_downstream_read_mib": 1244.602,
+   "measured_l2c_hit_rate": 85.82,
+   "ordinal": 4,
+   "row_pitch_bytes": 4352
+  },
+  {
+   "measured_downstream_read_mib": 1059.645,
+   "measured_l2c_hit_rate": 85.98,
+   "ordinal": 5,
+   "row_pitch_bytes": 5120
+  },
+  {
+   "measured_downstream_read_mib": 747.073,
+   "measured_l2c_hit_rate": 90.04,
+   "ordinal": 6,
+   "row_pitch_bytes": 6144
+  },
+  {
+   "measured_downstream_read_mib": 1132.838,
+   "measured_l2c_hit_rate": 86.45,
+   "ordinal": 7,
+   "row_pitch_bytes": 8192
+  },
+  {
+   "measured_downstream_read_mib": 1674.832,
+   "measured_l2c_hit_rate": 80.12,
+   "ordinal": 8,
+   "row_pitch_bytes": 8320
+  },
+  {
+   "measured_downstream_read_mib": 788.567,
+   "measured_l2c_hit_rate": 90.58,
+   "ordinal": 9,
+   "row_pitch_bytes": 12288
+  },
+  {
+   "measured_downstream_read_mib": 1124.968,
+   "measured_l2c_hit_rate": 89.87,
+   "ordinal": 10,
+   "row_pitch_bytes": 16384
+  },
+  {
+   "measured_downstream_read_mib": 1202.478,
+   "measured_l2c_hit_rate": 86.16,
+   "ordinal": 11,
+   "row_pitch_bytes": 16512
+  },
+  {
+   "measured_downstream_read_mib": 1012.103,
+   "measured_l2c_hit_rate": 86.85,
+   "ordinal": 12,
+   "row_pitch_bytes": 32768
+  },
+  {
+   "measured_downstream_read_mib": 912.059,
+   "measured_l2c_hit_rate": 86.38,
+   "ordinal": 13,
+   "row_pitch_bytes": 4096
+  },
+  {
+   "measured_downstream_read_mib": 1021.862,
+   "measured_l2c_hit_rate": 87.69,
+   "ordinal": 14,
+   "row_pitch_bytes": 8192
+  }
+ ],
+ "mechanism": "grouped_weight_stride_residency",
+ "production_or_evaluation_duration_consumed": false,
+ "schema": "grouped_weight_stride_residency_reference_v1",
+ "why_independent_axes": "Touched bytes, tile count, requested volume and the 4096 B each row carries are all held fixed; only the weight row stride moves. Strides below 4096 B are excluded because they would overlap rows and change the footprint rather than its layout. The list opens, middles and closes on the same two strides so within-run repeatability is measured, not assumed."
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "ascend_910b_fia_block_reduce_max_reference_v1",
+  "mechanism": "CANN 8.5.1 FIA CalcLocalRowMax BlockReduceMax/Max service",
+  "software_revision": "cann_8.5.1",
+  "duration_unit": "ns_per_call_per_aiv",
+  "production_source": {
+    "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/fused_infer_attention_score/attn_infra/epilogue/block/block_epilogue_online_softmax.hpp",
+    "sha256": "60f5cf14d3c7613f349b17ef3919cf796fba89304dd7d22429f58a57d3c58d2c"
+  },
+  "benchmark_source_snapshot_sha256": "3d6a0240f3a19a340f054beb0cab41e201330dba367836393bda79399d0c21d2",
+  "captures": [
+    {
+      "run_id": "fa_rowmax_028e8df9_20260906_r1",
+      "device_id": 5,
+      "raw_path": "profiler_output/microbench/ascend_910b/fa_rowmax_028e8df9_20260906_r1/raw.csv",
+      "raw_sha256": "a54bb5c3ca7b7e519dda4244d9a41f46dde75f0674e23592cb94aa02f9e9dbc6"
+    },
+    {
+      "run_id": "fa_rowmax_028e8df9_20260906_r2",
+      "device_id": 5,
+      "raw_path": "profiler_output/microbench/ascend_910b/fa_rowmax_028e8df9_20260906_r2/raw.csv",
+      "raw_sha256": "629fa54450a774bda12a4d813c45a61860ea7a8093e9bba68fd85dfbf7e26ef3"
+    }
+  ],
+  "combined_report": {
+    "path": "profiler_output/microbench/ascend_910b/fa_rowmax_combined_028e8df9_20260906.json",
+    "sha256": "b0a46ca725f443ea2588737a69a891377842feaef7b50750cf037dcef24ec89e",
+    "cell_count": 236,
+    "sample_count_per_cell": 12,
+    "unstable_cell_count": 0,
+    "maximum_relative_trial_spread": 0.15,
+    "mechanism_publishable": true
+  },
+  "source_branch_model": {
+    "special_256_coefficients_ns": {
+      "base": 45.46142578125002,
+      "row": 6.9932861328125
+    },
+    "special_512_coefficients_ns": {
+      "base": 32.48535156249999,
+      "row": 6.740112304687497
+    },
+    "tail_coefficients_ns": {
+      "base": -3.004648971094397,
+      "row": 4.86512215286563,
+      "column_round": 0.506133203964245,
+      "row_column_round": -0.06753249880068705,
+      "short_column": 46.822526759840464,
+      "row_short_column": 0.3058089416604699,
+      "additional_full_segment": 12.601664393211266,
+      "row_additional_full_segment": 5.041279602968538,
+      "residual_segment": 36.10993269999659,
+      "row_residual_segment": 5.748261104298401,
+      "masked_alignment": -2.2728497666478185,
+      "row_masked_alignment": 0.31969389757354644
+    }
+  },
+  "reproduction": {
+    "special_256_mape": 0.0000701749800843689,
+    "special_512_mape": 0.0001043659766919655,
+    "tail_mape": 0.06131629565628382,
+    "tail_p90_ape": 0.14159744285337664
+  },
+  "production_or_evaluation_duration_consumed": false
+}

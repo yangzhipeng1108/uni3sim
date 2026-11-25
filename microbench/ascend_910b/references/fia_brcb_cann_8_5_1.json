@@ -1,0 +1,48 @@
+{
+  "schema": "ascend_910b_fia_brcb_reference_v1",
+  "mechanism": "CANN 8.5.1 FIA CalcExp Brcb plus PIPE_V service",
+  "model": "cann_fia_calc_exp_brcb_source_service_v1",
+  "software_revision": "cann_8.5.1",
+  "duration_unit": "ns_per_call_per_aiv",
+  "row_granularity": 8,
+  "minimum_row_chunk": 8,
+  "maximum_row_chunk": 64,
+  "measured_row_chunks": [8, 16, 32, 64],
+  "duration_ns": [9.9938, 10.549, 11.6594, 13.8802],
+  "affine_service_ns": {
+    "startup": 9.4386,
+    "per_row": 0.0694
+  },
+  "production_source": {
+    "path": "/usr/local/Ascend/cann-8.5.1/opp/built-in/op_impl/ai_core/tbe/impl/ops_transformer/ascendc/rain_fusion_attention/attn_infra/epilogue/block/block_epilogue_online_softmax.hpp",
+    "sha256": "f2d640460bedc9a6a40233dc889be507ecbbc408a13431645206499fc2d5b35d"
+  },
+  "benchmark_source_snapshot_sha256": "332e72df40dc251ddc3e6bb2208a66d19f57812d19903e5eabd78b8c2b916c48",
+  "binary_sha256": "ef46a141f5d59d7f2f2a099f41024b6ecc7537c63964990ece3e7cf84ed58acd",
+  "measurement_baseline_commit": "64159330c1d00294bb0580381cd5bf663628a168",
+  "captures": [
+    {
+      "run_id": "fa_brcb_64159330_20260906_r1",
+      "physical_device_id": 5,
+      "iterations": 100000,
+      "raw_path": "profiler_output/microbench/ascend_910b/fa_brcb_64159330_20260906_r1/raw.csv",
+      "raw_sha256": "a63ca908e122786f00f6a3c1a807deec885e92a0cd53f5ade2ef9a655671ff15"
+    },
+    {
+      "run_id": "fa_brcb_64159330_20260906_r2",
+      "physical_device_id": 5,
+      "iterations": 100000,
+      "raw_path": "profiler_output/microbench/ascend_910b/fa_brcb_64159330_20260906_r2/raw.csv",
+      "raw_sha256": "a63ca908e122786f00f6a3c1a807deec885e92a0cd53f5ade2ef9a655671ff15"
+    },
+    {
+      "run_id": "fa_brcb_64159330_20260906_r3",
+      "physical_device_id": 5,
+      "iterations": 100000,
+      "raw_path": "profiler_output/microbench/ascend_910b/fa_brcb_64159330_20260906_r3/raw.csv",
+      "raw_sha256": "a63ca908e122786f00f6a3c1a807deec885e92a0cd53f5ade2ef9a655671ff15"
+    }
+  ],
+  "maximum_cross_trial_relative_spread": 0.0,
+  "production_or_evaluation_duration_consumed": false
+}

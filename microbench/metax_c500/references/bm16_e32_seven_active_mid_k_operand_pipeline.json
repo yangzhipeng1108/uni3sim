@@ -1,0 +1,47 @@
+{
+  "schema_version": "midlayer.metax_c500.bm16_e32_seven_active_mid_k_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 16,
+    "tile_k": 64,
+    "tile_n": 32,
+    "group_size_m": 1,
+    "routed_rows": 8,
+    "populated_experts": 7,
+    "active_m_tiles": 7,
+    "launch_m_tiles": 8,
+    "w1_source_rows": 2,
+    "w2_source_rows": 8,
+    "production_k_n_tile_classes": [[45, 180], [45, 90]]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026090700,
+    "tokens": 2,
+    "experts": 32,
+    "topk": 4,
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 100,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "6830b3e020abdb010b161876e983cb01071c1d6fc02903fbf9df1cbac1da0f88",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "per projection, linearly interpolate event duration between the two adjacent non-production N tile counts, then divide the production-cell operand bytes by that duration"
+  },
+  "captures": {
+    "w1": [
+      {"n": 5728, "n_tiles": 179, "event_median_ms": 0.1536511993408203, "raw_sha256": "40adab38800af57c82f00a7283f84b0bbc684f5ff89115e981d6ec67e3571081", "operand_pipeline_capacity_bytes_per_s": 1556781079654.4282},
+      {"n": 5792, "n_tiles": 181, "event_median_ms": 0.1554047966003418, "raw_sha256": "bb8a05fea8fa0cf599efb4b2b4182ebe1f6abb2c63e669dfa0cd59dbc212f04e", "operand_pipeline_capacity_bytes_per_s": 1556412191201.7485}
+    ],
+    "w2": [
+      {"n": 2848, "n_tiles": 89, "event_median_ms": 0.0851097583770752, "raw_sha256": "ae93c3e19ead8b3ca15d3378e5aa17d40fa78d2bb7dbe582465ee9b8457589db", "operand_pipeline_capacity_bytes_per_s": 1397401217767.2349},
+      {"n": 2912, "n_tiles": 91, "event_median_ms": 0.08567808151245117, "raw_sha256": "d08e3e59116ceeaa64cd891cd65114b5a2684891d5ec68c2ada1df12cab474b9", "operand_pipeline_capacity_bytes_per_s": 1419325898215.0264}
+    ]
+  },
+  "selected_services": {
+    "w1": {"predicate": "eight routed rows in seven populated experts, seven active M tiles, eight launched M tiles, two source rows, and K/N tile class (45,180)", "production_n": 5760, "interpolated_event_ms": 0.15452799797058105, "production_operand_bytes": 240537600, "logical_byte_capacity_per_s": 1556595588883.4685},
+    "w2": {"predicate": "eight routed rows in seven populated experts, seven active M tiles, eight launched M tiles, eight source rows, and K/N tile class (45,90)", "production_n": 2880, "interpolated_event_ms": 0.08539391994476318, "production_operand_bytes": 120268800, "logical_byte_capacity_per_s": 1408400036885.4778}
+  },
+  "raw_path": "profiler_output/microbench/metax_c500/bm16_e32_seven_active_0fffaf88_20260908_d2_r1"
+}

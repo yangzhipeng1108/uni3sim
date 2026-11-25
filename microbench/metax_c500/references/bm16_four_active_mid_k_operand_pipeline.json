@@ -1,0 +1,49 @@
+{
+  "schema_version": "midlayer.metax_c500.bm16_four_active_mid_k_operand_pipeline.v1",
+  "hardware_id": "metax_c500",
+  "mechanism": "triton_grouped_operand_pipeline",
+  "scope": {
+    "dtype": "bf16",
+    "tile_m": 16,
+    "tile_k": 64,
+    "tile_n": 32,
+    "group_size_m": 1,
+    "routed_rows": 4,
+    "populated_experts": 4,
+    "active_m_tiles": 4,
+    "launch_m_tiles": 4,
+    "w1_source_rows": 1,
+    "w2_source_rows": 4,
+    "production_k_n_tile_classes": [[45, 180], [45, 90]]
+  },
+  "method": {
+    "routing": "deterministic_splitmix64_affine_without_replacement_v1",
+    "route_seed": 2026091105,
+    "tokens": 1,
+    "experts": 8,
+    "topk": 4,
+    "event_trials_per_capture": 7,
+    "event_repetitions_per_trial": 100,
+    "independent_captures_per_projection": 3,
+    "production_or_evaluation_duration_consumed": false,
+    "runner_source_sha256": "01f83fecf7fb57f932afd57ee42210e97981ec712237ce3b0af81a6b9fda94e1",
+    "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+    "selection_rule": "per projection, median capacity across three independent captures of an adjacent non-production N geometry"
+  },
+  "captures": {
+    "w1": [
+      {"n": 5728, "raw_sha256": "0855b643cec782bcd0951ca5a00fc7c6713726fe2ca7fdfdd3e621c361a0e1c1", "operand_pipeline_capacity_bytes_per_s": 1459679816654.4744},
+      {"n": 5728, "raw_sha256": "4d8a93f40b00b61a40864f30c829aaab6569dba75e2651ef499bc490745fbce8", "operand_pipeline_capacity_bytes_per_s": 1467901800468.981},
+      {"n": 5728, "raw_sha256": "b1f7b0a096cb3450a5beed9edf8c50a3ceeee3003d585334bae6ac6538833e89", "operand_pipeline_capacity_bytes_per_s": 1465595151651.7842}
+    ],
+    "w2": [
+      {"n": 2848, "raw_sha256": "74aafb0e9be149ce71132653311c9bcf2e3d0d15dea9b219a5e557c839d43741", "operand_pipeline_capacity_bytes_per_s": 1282035168644.105},
+      {"n": 2848, "raw_sha256": "3083293de7ca4d6762953cb619678814c62b07b415581415db6e7b60163bf6c2", "operand_pipeline_capacity_bytes_per_s": 1292946576951.871},
+      {"n": 2848, "raw_sha256": "1177f315f2c4ad02d00e955fce19c9675675cb6883aace9beaed66643803189d", "operand_pipeline_capacity_bytes_per_s": 1293642677583.3435}
+    ]
+  },
+  "selected_services": {
+    "w1": {"predicate": "four routed rows in four populated experts, four active and launch M tiles, one source row, and K/N tile class (45,180)", "logical_byte_capacity_per_s": 1465595151651.7842},
+    "w2": {"predicate": "four routed rows in four populated experts, four active and launch M tiles, four source rows, and K/N tile class (45,90)", "logical_byte_capacity_per_s": 1292946576951.871}
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "driver_version": "580.95.05",
+  "framework": {
+    "name": "PyTorch",
+    "version": "2.8.0+cu128"
+  },
+  "hardware_id": "nvidia_h200",
+  "host_cpu": "INTEL(R) XEON(R) PLATINUM 8558",
+  "measurement": {
+    "artifact": "microbench/nvidia_h200/runtime/launch/references/host_launch_vllm011.json",
+    "boundary": "host_submit_only_no_device_sync",
+    "sha256": "b84c9b8de4ec353605e227f37e8b1696bd27198a7396530987a4b66801b48ae8"
+  },
+  "operating_system": "Ubuntu 24.04.1 LTS; Linux 5.15.0-168-generic x86_64",
+  "runtime": {
+    "name": "CUDA",
+    "version": "12.8"
+  },
+  "schema_version": 2,
+  "service_time_s": {
+    "eager_enqueue": 3.8381572265625e-06,
+    "graph_replay_enqueue": 4.172e-06
+  },
+  "source": {
+    "commit": "a132507d8513a2daacdfd35fb3fcc98ee4c52ef3",
+    "path": "microbench/nvidia_h200/runtime/launch/torch_eager_graph_runner.py",
+    "sha256": "d3761371048e8e411a741bb96e521dda1d492caeb51f2c94dc872ac34b7f71bf"
+  }
+}

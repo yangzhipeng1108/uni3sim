@@ -1,0 +1,147 @@
+{
+  "forward_change": {
+    "duration_parameter_published": false,
+    "interpretation": "The source-defined four-pair MTE2 drain remains stable over the measured finite program interval. Forward may use this evidence only to select the existing analytical L1-slab pipeline; measured service duration is not published.",
+    "overlap_pair_count_range": [
+      16,
+      512
+    ],
+    "parameter_fit_from_this_validation": false
+  },
+  "forward_eligibility_constraint": "source-derived 128x64 A plus 64x256 B L2-resident stream with one PIPE_MTE2 drain after every four pairs, 24 active AICs, and a finite pair count inside the measured closed interval",
+  "forward_eligible": true,
+  "hardware_id": "ascend_910b",
+  "measurement": {
+    "fit_pair_counts": [
+      16,
+      32,
+      64,
+      128,
+      256,
+      512
+    ],
+    "held_out_pair_counts": [
+      24,
+      48,
+      96,
+      192,
+      384
+    ],
+    "independent_runs": 3,
+    "mechanism_gate_passed": true,
+    "median_program_span_ns": {
+      "128": 36560.0,
+      "16": 720.0,
+      "192": 57260.0,
+      "24": 2960.0,
+      "256": 77540.0,
+      "32": 5580.0,
+      "384": 118500.0,
+      "48": 10740.0,
+      "512": 160600.0,
+      "64": 15780.0,
+      "96": 26080.0
+    },
+    "median_steady_ns_per_pair": {
+      "128": 321.875,
+      "16": 319.583333333,
+      "192": 322.465277778,
+      "24": 324.444444444,
+      "256": 323.359375,
+      "32": 323.125,
+      "384": 323.263888889,
+      "48": 324.166666667,
+      "512": 322.0703125,
+      "64": 323.125,
+      "96": 324.027777778
+    },
+    "stability_gate": true,
+    "validation": {
+      "count": 5,
+      "mape_percent": 0.34834686676004667,
+      "max_ape_percent": 0.5692155392473546
+    },
+    "validation_gate": true,
+    "validation_rows": [
+      {
+        "measured_ns": 324.444444444,
+        "pair_count": 24,
+        "predicted_ns": 322.59765625
+      },
+      {
+        "measured_ns": 324.166666667,
+        "pair_count": 48,
+        "predicted_ns": 322.59765625
+      },
+      {
+        "measured_ns": 324.027777778,
+        "pair_count": 96,
+        "predicted_ns": 322.59765625
+      },
+      {
+        "measured_ns": 322.465277778,
+        "pair_count": 192,
+        "predicted_ns": 322.59765625
+      },
+      {
+        "measured_ns": 323.263888889,
+        "pair_count": 384,
+        "predicted_ns": 322.59765625
+      }
+    ],
+    "validation_service_ns_per_pair": 322.59765625,
+    "within_count_relative_spans": {
+      "128": 0.011488673137087282,
+      "16": 0.016949152540304414,
+      "192": 0.0061376117163303035,
+      "24": 0.006849315067817687,
+      "256": 0.004590480792461948,
+      "32": 0.019987105095551353,
+      "384": 0.0055853920498370015,
+      "48": 0.020565552700235794,
+      "512": 0.007721851628283856,
+      "64": 0.0019342359767891683,
+      "96": 0.01393056150912028
+    }
+  },
+  "mechanism_publishable": true,
+  "parameter_fit_from_production_duration": false,
+  "production_or_evaluation_duration_consumed": false,
+  "provenance": {
+    "binary_sha256": "2f2fb25d136cfa6502760c8c3de27ccb546f28546bb42c7a17167a7ba9876244",
+    "container": "capture-container-2",
+    "host": "capture-host-1",
+    "physical_device_id": 4,
+    "raw_files": [
+      {
+        "path": "profiler_output/microbench/ascend_910b/gemm_resident_finite_31bb6948_20260906_d4/run0.csv",
+        "sha256": "545c5410d4dc905999537b5c24593a0948013636825f9c8662ec080fb6c235b1"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/gemm_resident_finite_31bb6948_20260906_d4/run1.csv",
+        "sha256": "ae7ba3d937b6f804fcbb6e5742f7b5e6916ab733405dd1146e0cf33d2c6368c1"
+      },
+      {
+        "path": "profiler_output/microbench/ascend_910b/gemm_resident_finite_31bb6948_20260906_d4/run2.csv",
+        "sha256": "ffbc21d7579a5fc250c235b778fbe8a07554ee834f2a207e2d771a5aca08a65b"
+      }
+    ],
+    "source_commit": "31bb69489493405a4f0cad9ec963070bf2ca210a",
+    "source_snapshot_sha256": "344c15d56262f7a95ef4eda72b11e5ca4a7d05b08ebd420fb4db1c6ef81da9a9"
+  },
+  "publication_scope": {
+    "a_columns": 64,
+    "a_rows": 128,
+    "active_aic_groups": 24,
+    "b_columns": 256,
+    "b_rows": 64,
+    "drain_interval_pairs": 4,
+    "dtype": "bf16",
+    "maximum_pairs_per_worker": 512,
+    "minimum_pairs_per_worker": 16,
+    "source_residency": "l2_resident"
+  },
+  "schema_version": 1,
+  "service": "aic_mte2_operand_pair_finite_overlap_domain",
+  "software_revision": "cann_8.5.1"
+}

@@ -1,0 +1,40 @@
+{
+  "version": 9,
+  "cells": [
+    {
+      "id": "pd_short",
+      "simulation": {
+        "model": "configs/model/qwen3-4b.json",
+        "hardware-config": "configs/hardware/nvidia_a800.yaml",
+        "deployment": "pd_disagg",
+        "backend": "vllm",
+        "prediction-method": "roofline",
+        "launch-policy": "analytical_launch",
+        "attention-kv-layout": "paged_varlen",
+        "attention-kv-distribution": "uniform",
+        "scheduler-pipeline-depth": 1,
+        "prefill-tp-size": 1,
+        "max-model-len": 128,
+        "max-batched-tokens": 16,
+        "max-requests": 2,
+        "kv-block-size-tokens": 16,
+        "vllm-scheduler-version": "0.11.0",
+        "symbolic-forward-source": "cuda_eager_inplace",
+        "target-sampling-source": "vllm_0_11_plain_greedy_bf16",
+        "collective-backend": "analytical_roofline_v1",
+        "execution-mode": "reference",
+        "debug-num-kv-blocks": 8,
+        "graph-mode": "NONE",
+        "workload": "configs/evaluation/experiments/cpu_qwen3_example_workload.json",
+        "request-rate": 16,
+        "arrival-process": "simultaneous",
+        "decode-hardware-config": "configs/hardware/nvidia_a800.yaml",
+        "decode-tp-size": 1,
+        "num-prefill-instances": 1,
+        "num-decode-instances": 1,
+        "transfer-algorithm": "send_recv",
+        "transfer-link": "nvlink"
+      }
+    }
+  ]
+}

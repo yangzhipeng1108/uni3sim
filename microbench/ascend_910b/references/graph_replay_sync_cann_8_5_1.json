@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "kind": "ascend_acl_graph_replay_sync_barrier",
+  "hardware_id": "ascend_910b",
+  "runtime": {
+    "name": "CANN",
+    "version": "8.5.1"
+  },
+  "framework": {
+    "name": "torch_npu",
+    "version": "2.9.0.post1+gitee7ba04"
+  },
+  "baseline_commit": "c20bffc6359f60ad888afe7deb44cecbeb14d908",
+  "runner": {
+    "path": "microbench/ascend_910b/runtime/launch/graph_replay_sync_runner.py",
+    "sha256": "f1ef945c5231c86c07b025fc387dd0d6ff6ad5b8b30b984bd0e80167b00f6840"
+  },
+  "source_contract": {
+    "path": "/capture-workspace/vllm_src_3ver/910b_ascend/vllm_ascend/compilation/acl_graph.py",
+    "sha256": "896250a54b3e17fe34d51b6949ff23930b85afb6484b56a665fd7d425119f0d7",
+    "class": "ACLGraphWrapper",
+    "source_call": "torch.npu.current_stream().synchronize()",
+    "occurrence": "one barrier before each replayed ACL graph segment",
+    "elision": [
+      "runtime mode NONE executes the runnable directly",
+      "draft EAGLE graph path skips this barrier"
+    ],
+    "production_domain": "ordinary Ascend main-model FULL/PIECEWISE replay with no EAGLE draft"
+  },
+  "lanes": [
+    {
+      "device_id": 0,
+      "summary_path": "profiler_output/microbench/ascend_910b/graph_replay_sync_20260919_r1/summary.json",
+      "summary_sha256": "60db01ed8c535e25ae68fd6fb95fca4da4476b0f260970d9e04f34859304bdaa",
+      "idle_sync_wall_ns": 7155.0,
+      "pending_sync_wall_ns": 27285.5,
+      "pending_sync_thread_cpu_ns": 20155.0
+    },
+    {
+      "device_id": 1,
+      "summary_path": "profiler_output/microbench/ascend_910b/graph_replay_sync_20260919_r2/summary.json",
+      "summary_sha256": "e18fe373b84241fb0749fddefdd750fa175d0276c884c54302ff29bcb66b69a8",
+      "idle_sync_wall_ns": 14485.0,
+      "pending_sync_wall_ns": 24995.5,
+      "pending_sync_thread_cpu_ns": 22790.0
+    }
+  ],
+  "service_time_s": {
+    "graph_replay_sync_api_idle": 0.00001082
+  },
+  "measurement": {
+    "boundary": "independent_acl_graph_replay_sync_microbenchmark",
+    "synthetic_shape": [256, 256],
+    "trials_per_lane": 32,
+    "serving_duration_consumed": false,
+    "lane_aggregation": "arithmetic_mean_of_two independent 910B devices",
+    "forward_application": "device-timeline barrier; no per-step residual or pending-work duration is added"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_mte2_gemm_short_ingress_completion.v2",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_short_mte2_to_mte1_completion",
+  "duration_unit": "ns_per_completed_source_program_per_aic",
+  "source_program": {
+    "dtype": "bf16",
+    "active_aic_groups": 20,
+    "operand_buffer_depth": 2,
+    "base_tile_m": 128,
+    "base_tile_n": 256,
+    "base_tile_k": 64,
+    "a_rows": 128,
+    "a_columns": 512,
+    "a_source_row_stride_elements": 1536,
+    "b_rows": 256,
+    "b_columns": 256,
+    "b_source_row_stride_elements": 1536,
+    "m_groups": 4,
+    "n_groups": 5,
+    "output_tiles_per_worker": [1, 2, 3, 4],
+    "k_slabs": 3,
+    "a_descriptors_per_output_tile": 3,
+    "b_descriptors_per_output_tile": 6,
+    "completion_pairs_per_output_tile": 24
+  },
+  "measurements": {
+    "cells": [
+      {
+        "output_tiles_per_worker": 1,
+        "mte2_only_run_medians_ns": [120.0, 120.0, 120.0],
+        "mte2_mte1_completion_run_medians_ns": [16770.0, 16760.0, 16800.0],
+        "mte2_only_median_of_run_medians_ns": 120.0,
+        "mte2_mte1_completion_median_of_run_medians_ns": 16770.0
+      },
+      {
+        "output_tiles_per_worker": 2,
+        "mte2_only_run_medians_ns": [200.0, 220.0, 220.0],
+        "mte2_mte1_completion_run_medians_ns": [30490.0, 30230.0, 30350.0],
+        "mte2_only_median_of_run_medians_ns": 220.0,
+        "mte2_mte1_completion_median_of_run_medians_ns": 30350.0
+      },
+      {
+        "output_tiles_per_worker": 3,
+        "mte2_only_run_medians_ns": [300.0, 300.0, 300.0],
+        "mte2_mte1_completion_run_medians_ns": [44040.0, 43630.0, 43770.0],
+        "mte2_only_median_of_run_medians_ns": 300.0,
+        "mte2_mte1_completion_median_of_run_medians_ns": 43770.0
+      },
+      {
+        "output_tiles_per_worker": 4,
+        "mte2_only_run_medians_ns": [380.0, 380.0, 380.0],
+        "mte2_mte1_completion_run_medians_ns": [57650.0, 57530.0, 57410.0],
+        "mte2_only_median_of_run_medians_ns": 380.0,
+        "mte2_mte1_completion_median_of_run_medians_ns": 57530.0
+      }
+    ],
+    "adjacent_mte2_mte1_completion_deltas_ns": [13580.0, 13420.0, 13760.0]
+  },
+  "capture": {
+    "measurement_baseline_commit": "05425f8b8e508987dfb18bfe8ff45fcd5ea0006a",
+    "physical_device_id": 6,
+    "container": "capture-container-2",
+    "source_snapshot_sha256": "fc6d8928b0b94a9a9408ad309d7e214ec313e0a56eda14673e8346a8bd88b9cb",
+    "binary_sha256": "fe15083f89a703e4a994762f6ab4b5c35a239b5c3b07ffd978c4d63ea1223da9",
+    "raw_path": "profiler_output/microbench/ascend_910b/gemm_k1536_m128_n256_source_order_05425f8b_20260914_r4/execution.csv",
+    "raw_sha256": "b78c2970ce16b257a218255196ed5a17de7ddc77d36901871dbdf042929c01f8",
+    "runner_stderr_path": "profiler_output/microbench/ascend_910b/gemm_k1536_m128_n256_source_order_05425f8b_20260914_r4/runner.stderr",
+    "runner_stderr_sha256": "1a8d768ef00358a43581be28cbdf0b309ce3e0fe913bbf0b18d12478aea0d716"
+  },
+  "interpretation": {
+    "forward_use": "validation_only",
+    "reason": "The fixed-K sweep shows a repeatable finite MTE1 completion recurrence as output-tile count grows, while MTE2 issue remains sub-microsecond. The replica still has no Cube consumer or output dependency, so its drained completion is mechanism evidence rather than a production execution floor."
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "forward_eligible": false
+}

@@ -1,0 +1,57 @@
+{
+  "schema": "nvidia_a800_fa2_resident_ldgsts_finite_reference_v1",
+  "hardware_id": "nvidia_a800",
+  "device_name": "NVIDIA A800-SXM4-80GB",
+  "compute_capability": "sm_80",
+  "evidence_kind": "independent_two_resident_cta_finite_ldgsts_microbenchmark",
+  "source_capture": "profiler_output/microbench/nvidia_a800/fa2_ldgsts_finite_panel_diagnostic_480a8a33",
+  "source_baseline_commit": "480a8a335b184780ec0ee45cc2cd3dfe76ebe551",
+  "physical_device_index": 1,
+  "device_uuid": "capture-device-c776d040251d",
+  "resource_contract": {
+    "threads_per_cta": 128,
+    "dynamic_shared_bytes_per_cta": 77824,
+    "registers_per_thread": 79,
+    "resident_ctas_per_sm": 2,
+    "physical_sm_count": 108,
+    "full_chip_ctas": 216,
+    "panel_bytes_per_cta": 65536,
+    "initial_transaction_bytes": 32,
+    "static_ldgsts_bypass_128_instructions": 32,
+    "stack_frame_bytes": 0,
+    "spill_store_bytes": 0,
+    "spill_load_bytes": 0
+  },
+  "single_panel_cycles": 10371.03703704576,
+  "recurrent_affine_startup_cycles": 12495.166942907046,
+  "recurrent_affine_panel_cycles": 4150.234554751573,
+  "recurrent_domain_panels": [
+    2,
+    64
+  ],
+  "maximum_odd_even_holdout_absolute_error_pct": 13.623647300113213,
+  "publication_gates": {
+    "register_count_is_79": true,
+    "no_stack_or_spill": true,
+    "static_ldgsts_bypass_128_count_is_32": true,
+    "dynamic_instruction_and_byte_counters_close_exactly": true,
+    "odd_even_holdout_max_ape_at_most_15_pct": true
+  },
+  "artifact_sha256": {
+    "source": "cd1b0a916ad9ac579e876765ea79e6270a608ce11f9ff69b1e3eb4175539e46e",
+    "runner": "fb71b4cb177fab2dd75c4e10e75a7391ee569d9d5b83e7002829854bfcace09d",
+    "reporter": "4af314f78e3365fc8b35081f02db58b02fd0ecbd373653d0717f599cc825f9dd",
+    "binary": "8cb3cdc2dac16d0421ab7e031a8537ca6cd388a893204d0e49e206b264378260",
+    "ptxas": "8e825704f60c1cb838cd6d5c72a8eef5d3a3e396d7b47c644883d87b9c2f5ee6",
+    "sass": "15f51dce330d11e8a6c82deebae6ce0eadc40a15f01faba082dd3c923bc0bbd9",
+    "report": "70f18c4fef6da9fca3fe80e2c94b3208cff02ebb42918b824b5b870cf1f11c4d"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "allowed_conclusion": "For a full 216-CTA SM80 cohort with exactly two resident 128-thread CTAs per SM and one 64-KiB LDGSTS panel per CTA recurrence, the one-panel endpoint and recurrent 2..64-panel affine service bound finite fill, steady, and drain.",
+  "excluded_conclusions": [
+    "a complete production FlashAttention duration",
+    "resident counts other than two",
+    "partial cohorts or panel depths above 64",
+    "MMA, softmax, output, cache-miss, or page-table service"
+  ]
+}

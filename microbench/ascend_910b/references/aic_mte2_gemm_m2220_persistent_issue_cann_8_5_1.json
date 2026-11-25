@@ -1,0 +1,48 @@
+{
+  "schema_version": "midlayer.ascend_910b.aic_mte2_gemm_persistent_issue.v1",
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann_8.5.1",
+  "mechanism": "aic_matmul_v2_persistent_mte2_issue_v1",
+  "duration_unit": "ns_per_completed_source_program_per_aic",
+  "source_program": {
+    "dtype": "bf16",
+    "active_aic_groups": 24,
+    "worker_grid_m": 3,
+    "worker_grid_n": 8,
+    "operand_buffer_depth": 2,
+    "base_tile_m": 256,
+    "base_tile_n": 128,
+    "base_tile_k": 64,
+    "a_rows": 256,
+    "a_columns": 256,
+    "a_source_row_stride_elements": 12288,
+    "b_rows": 128,
+    "b_columns": 256,
+    "b_source_row_stride_elements": 12288,
+    "output_tiles_per_worker": 12,
+    "k_slabs": 48,
+    "mte2_programs_per_worker": 576
+  },
+  "capture": {
+    "measurement_baseline_commit": "e277dc8891377a3b5400df05cecc0e6fcef2e853",
+    "source_commit": "1eadc59b4cd667a9624d8694a07acf2a119ab1a9",
+    "source_snapshot_sha256": "029f054eb916f1f87b307b1af77468e27ef7b64a5cbec80c290543069476895b",
+    "source_mte2_kernel_sha256": "b16c0cae8a90ef0340de66ca866078a9275729a573c21f44876a5cc765025a91",
+    "source_ingress_kernel_sha256": "51f8f454c6d4c9a82ef0c21cd0bb933035e538394a90e4d3d2a1fd895f89fc36",
+    "source_main_sha256": "63a7a17bccd38557c2ac1f521840d7b69ed261af36f2883e41ee062347654a41",
+    "source_runner_sha256": "61f01bf666a4e06b7f757932538e5454aa74d341b9230300e6e4fb4c57878a80",
+    "binary_sha256": "f5712ca5596b7c0e112c984c630fb6300c4b0ee083bb50f4284affd24e5bc5cd",
+    "physical_device_id": 4,
+    "run_count": 3,
+    "trials_per_run": 8,
+    "raw_path": "profiler_output/microbench/ascend_910b/gemm_m2220_ingress_e277dc88_20260909/gemm_m2220_ingress_e277dc88_d4.log",
+    "raw_sha256": "72f42a34d7c65d076d2a17c2028030730a435b69a26550f9f9a69f9265802e6c"
+  },
+  "measurements": {
+    "mte2_only_run_medians_ns": [754420.0, 752530.0, 756370.0],
+    "mte2_mte1_completion_run_medians_ns": [1124190.0, 1119530.0, 1122890.0],
+    "mte2_only_median_of_run_medians_ns": 754420.0,
+    "mte2_mte1_completion_median_of_run_medians_ns": 1122890.0
+  },
+  "production_or_evaluation_duration_consumed": false
+}

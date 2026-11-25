@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "cann-8.5.1",
+  "mechanism_id": "aic_grouped_matmul_short_source_tail_prelude_control_v1",
+  "duration_unit": "ns_per_nonempty_output_tile_per_aic",
+  "publication_scope": {
+    "dtype": "bf16",
+    "active_aic_groups": 24,
+    "base_m": 16,
+    "active_m": 16,
+    "logical_n_values": [64, 128],
+    "tile_n": 256,
+    "tile_k": 64,
+    "depth_a1": 120,
+    "depth_b1": 8,
+    "step_ka": 60,
+    "step_kb": 4,
+    "db_l0a": 2,
+    "db_l0b": 2,
+    "db_l0c": 1,
+    "k_rounds": [45]
+  },
+  "source_scope": {
+    "upstream_file": "grouped_matmul/grouped_matmul.h",
+    "source_sequence": "GMMProcess::MNBlockIdxCompute followed by GMMCompute::MMCompute terminal-N current_n and X/W/Y-offset setup plus the base-K A1/B1/L0 scheduler counters before IterateAll<false>",
+    "excluded_source_work": [
+      "GetTensorAddr list loads",
+      "MTE transfer",
+      "Cube arithmetic",
+      "FixPipe output",
+      "vector work",
+      "routing",
+      "activation",
+      "reduction",
+      "complete production operator"
+    ]
+  },
+  "measurement": {
+    "model": "exact_logical_n_k_round_lookup_with_minimum_non_tiny_per_tile_service_v1",
+    "repeats_per_launch": 256,
+    "fresh_process_trials": 3,
+    "tile_counts": [1, 4, 16, 64],
+    "system_counter_tick_ns": 20.0,
+    "selection_policy": "for each exact logical-N and K-round, select the minimum median per-tile service among non-tiny tile counts 4, 16 and 64; no production/evaluation timing or APE selects a value",
+    "service_time_ns_by_logical_n_and_k_rounds": {
+      "64": {"45": 696.112060546875},
+      "128": {"45": 696.112060546875}
+    },
+    "completion_span_ns_by_logical_n_and_k_rounds": {
+      "64": {
+        "45": {
+          "1": [702.8125, 702.8125, 702.8125],
+          "4": [2784.53125, 2784.53125, 2784.53125],
+          "16": [11137.890625, 11137.890625, 11137.890625],
+          "64": [44551.171875, 44551.171875, 44551.171875]
+        }
+      },
+      "128": {
+        "45": {
+          "1": [702.8125, 702.8125, 702.8125],
+          "4": [2784.53125, 2784.53125, 2784.53125],
+          "16": [11137.890625, 11137.890625, 11137.8125],
+          "64": [44551.171875, 44551.171875, 44551.171875]
+        }
+      }
+    },
+    "maximum_fresh_process_relative_span_by_logical_n": {
+      "64": 0.0,
+      "128": 7.014344334163364e-06
+    },
+    "non_tiny_per_tile_relative_span_by_logical_n_and_k_rounds": {
+      "64": {"45": 2.9811224802939037e-05},
+      "128": {"45": 2.9811224802939037e-05}
+    },
+    "maximum_allowed_relative_span": 0.05,
+    "mechanism_gate_passed": true
+  },
+  "provenance": {
+    "measurement_baseline_commit": "c1589b778e05b688bcb87e8a12cf640c30c046fa",
+    "worker_head": "60e321b987346f6ed72eb0dd3f6fd5675ab7285e",
+    "raw_root_by_logical_n": {
+      "64": "profiler_output/microbench/ascend_910b/grouped_matmul_tail_prelude_60e321b9_20260910_r3_n64",
+      "128": "profiler_output/microbench/ascend_910b/grouped_matmul_tail_prelude_60e321b9_20260910_r3_n128"
+    },
+    "source_snapshot_path_by_logical_n": {
+      "64": "/capture-workspace/execution_snapshots/grouped_matmul_tail_prelude_60e321b9_20260910_r3_n64/source",
+      "128": "/capture-workspace/execution_snapshots/grouped_matmul_tail_prelude_60e321b9_20260910_r3_n128/source"
+    },
+    "host": "capture-host-1",
+    "container": "capture-container-2",
+    "physical_device_id": 2,
+    "logical_device_id": 0,
+    "owner": "kernel-accuracy-fusedmoe",
+    "source_sha256": {
+      "CMakeLists.txt": "a113bee7422ccbbe0b23aaf8b3114d49f13c4e4f70d02ae16f4b820bade0369b",
+      "README.md": "28d5b4627a965417fe08d7502df9eace4b255cba57b828f53cb401cb0f6369ee",
+      "grouped_matmul_prelude_control_kernel.cpp": "b39eaf85be546438f9bb00b22a04897925befaf9d4a6f23dcaac7cec7334317e",
+      "grouped_matmul_prelude_control_main.cpp": "7857a1e82a2412863fa7f7bed84cccf95b4095e3e71e77ddee55b1828d8c1bdb"
+    },
+    "binary_sha256_by_logical_n": {
+      "64": "121df9af8b5bf5ea0fdf9d606a8445e86d68899d17b59c8d9142a1d8f4e08db7",
+      "128": "1e357c5a3fd4cb8fc911c2ab251d33221594ee2211423fafd4f7ee0743f8896e"
+    },
+    "run_plan_sha256_by_logical_n": {
+      "64": "5f62d0655682f37ab08ba742614f54210d63807ad4bc7c9153aa81ea986f7460",
+      "128": "82dc3eeaa2b5d872bc9020fc0299edb1a39352e39bb8ea84221317b60e032d3b"
+    },
+    "raw_sha256_by_logical_n": {
+      "64": {
+        "trial1_forward.csv": "bfd20d8accc2a5adbe5836aaad10148ab46dbaf080f3f6a89a71380becc54c94",
+        "trial2_reverse.csv": "1618b5bf8761b5a9557b505bc3469e81790be2b1302807dcfd7a39aa037d20b3",
+        "trial3_interleaved.csv": "5518c0f872c8c49f6ab939bbd4289859c8284f90460e5844ae06ed53955b9efb"
+      },
+      "128": {
+        "trial1_forward.csv": "7e4a5c1d197614ad0c7a0d869f5e9ea54be0761a63efdb792b992704b1221ace",
+        "trial2_reverse.csv": "ec65043121ba4bc42c91daae31693a4b5e29c4e8dcae568cd53b15ab07afc059",
+        "trial3_interleaved.csv": "dc3a2da6978de14baa5357dce9b16697dd0a427f971c2d76fd30380cbf851a23"
+      }
+    },
+    "cann_source_sha256": {
+      "grouped_matmul.h": "d06679b4a391c032665f11fb3700c7478726c62e4230a0029d4286e086b209ed",
+      "grouped_matmul_utils.h": "377bd1fc2e9858e1809c6dca5320fe2e25150749c6644a41b958c2562c6149e4"
+    }
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "parameter_fit_from_production_duration": false,
+  "mechanism_publishable": true,
+  "forward_eligible": true,
+  "forward_eligibility_constraint": "an exact-source consumer may use only one exact listed logical-N and K-round with the full base-M16/active-M16/N256/K64/depth-120-8/step-60-4/24-AIC scope, and must compose the tail prelude as an AIC controller dependency before the same terminal tile's IterateAll issue; it must not use this as an OP residual or together with unclassified GetTensorAddr service"
+}

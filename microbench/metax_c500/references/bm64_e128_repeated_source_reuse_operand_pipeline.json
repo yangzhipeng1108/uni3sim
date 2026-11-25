@@ -1,0 +1,129 @@
+{
+  "schema": "metax_c500_bm64_e128_repeated_source_reuse_operand_pipeline_v1",
+  "hardware_id": "metax_c500",
+  "device_name": "MetaX C500",
+  "software_revision": "MACA 3.7.2",
+  "deployed_commit": "0fffaf88b9da8716236191e1c7c4ac07ad176ce1",
+  "runner": "microbench/metax_c500/operators/fused_moe/fused_moe_triton_operand_stream_runner.py",
+  "runner_sha256": "6830b3e020abdb010b161876e983cb01071c1d6fc02903fbf9df1af5aeb780",
+  "production_source_bundle_sha256": "91b2278fb593e47c8b71965e1b4564969b484326f8ec77559721263fd4eda2a3",
+  "source_and_launch_contract": {
+    "dtype": "bf16",
+    "tile_m": 64,
+    "tile_n": 64,
+    "tile_k": 32,
+    "group_size_m": 8,
+    "threads_per_cta": 256,
+    "experts": 128,
+    "valid_routes": 16384,
+    "active_m_tiles_range": [315, 319],
+    "maximum_m_tiles": 382,
+    "operand_replay": 2
+  },
+  "captures": [
+    {
+      "path": "profiler_output/microbench/metax_c500/w1_source_reuse_0fffaf88_20260908_d2_r1/topk8_n23.csv",
+      "sha256": "2faea4db5e5eb7f51d7d6728db872ff828a3472009e68e4d9091d9dc83f6dda2",
+      "source_rows": 2048,
+      "source_topk": 8,
+      "k": 2048,
+      "n": 1472,
+      "logical_byte_capacity_per_s": 1607156858864.1907
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/w1_source_reuse_0fffaf88_20260908_d2_r1/topk8_n25.csv",
+      "sha256": "f95f23de20594fa4bdd28e4597e354b1fd8652087d48087e223469f1382a31d8",
+      "source_rows": 2048,
+      "source_topk": 8,
+      "k": 2048,
+      "n": 1600,
+      "logical_byte_capacity_per_s": 1728622244131.071
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/w1_source_reuse_0fffaf88_20260908_d2_r1/topk16_n23.csv",
+      "sha256": "c10d40dcf09ca18e6e3a702414053d3410acfa0e9ae5cc8c6856ae65cfdc0054",
+      "source_rows": 1024,
+      "source_topk": 16,
+      "k": 2048,
+      "n": 1472,
+      "logical_byte_capacity_per_s": 2751829731718.4116
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/w1_source_reuse_0fffaf88_20260908_d2_r1/topk16_n25.csv",
+      "sha256": "b529b1fcfbbb9cc29a8b19dd42c54eb6c70b3160694b6ab3c9b5201e8bace98d",
+      "source_rows": 1024,
+      "source_topk": 16,
+      "k": 2048,
+      "n": 1600,
+      "logical_byte_capacity_per_s": 2620972319295.4956
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/repeated_k24_n32_0fffaf88_20260908_r1/n31.csv",
+      "sha256": "da228c2dc6b586baf155b2e13774dabe1f3a1c28197a520cb32eea5784c2b426",
+      "source_rows": 16384,
+      "source_topk": 1,
+      "k": 768,
+      "n": 1984,
+      "logical_byte_capacity_per_s": 775039347288.9235
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/repeated_k24_n32_0fffaf88_20260908_r1/n31_round2.csv",
+      "sha256": "44f8d463b28dbbb790b35dd1f85ce54d89749cc90f5389eb0ac61ecc01a4e4b8",
+      "source_rows": 16384,
+      "source_topk": 1,
+      "k": 768,
+      "n": 1984,
+      "logical_byte_capacity_per_s": 843764496221.6853
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/repeated_k24_n32_0fffaf88_20260908_r1/n33.csv",
+      "sha256": "fc2a664cc24f438035e3e2ab35cfb9f46991b3cfb43d99217da37e2d50c93d4d",
+      "source_rows": 16384,
+      "source_topk": 1,
+      "k": 768,
+      "n": 2112,
+      "logical_byte_capacity_per_s": 832212729264.3448
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/repeated_k24_n32_0fffaf88_20260908_r1/n33_round2.csv",
+      "sha256": "b8b6ac9caa1a2965f933ebc0d13f446897e95307a089f2b33c99bd6d168fc4e3",
+      "source_rows": 16384,
+      "source_topk": 1,
+      "k": 768,
+      "n": 2112,
+      "logical_byte_capacity_per_s": 772137873465.5265
+    },
+    {
+      "path": "profiler_output/microbench/metax_c500/repeated_k24_n32_0fffaf88_20260908_r1/topk16_n31.csv",
+      "sha256": "7e1f6dcad7b721cae5945b4c424b5dbb606ab78cb2e89c83be3e0efe474f6fc1",
+      "source_rows": 16384,
+      "source_topk": 1,
+      "k": 768,
+      "n": 1984,
+      "logical_byte_capacity_per_s": 732468315351.4436
+    }
+  ],
+  "selected_services": {
+    "w1_source_topk8": {
+      "selection_rule": "capacity at N=1536 from linear interpolation of the two adjacent-N event medians and logical bytes",
+      "logical_byte_capacity_per_s": 1668209111834.5667
+    },
+    "w1_source_topk16": {
+      "selection_rule": "capacity at N=1536 from linear interpolation of the two adjacent-N event medians and logical bytes",
+      "logical_byte_capacity_per_s": 2682085658245.4253
+    },
+    "w2_routed_source": {
+      "selection_rule": "minimum capacity across both adjacent N shapes, repeated processes, and the matching topk16 routed-source capture",
+      "logical_byte_capacity_per_s": 732468315351.4436
+    }
+  },
+  "mechanism": "production_source_grouped_operand_pipeline_separated_by_w1_source_reuse_depth",
+  "allowed_conclusion": "Only BF16 BM64/BN64/BK32/GSM8, E128, 16,384-route launches with 315-319 populated and 382 maximum M tiles use these services: W1 is selected by source-topk 8 or 16, while W2 uses the routed-source K24/N32 service.",
+  "excluded_conclusions": [
+    "complete production MoE operator duration",
+    "production K/N duration",
+    "a per-case residual correction",
+    "other expert, route, tile, or launch-depth classes"
+  ],
+  "production_or_evaluation_duration_consumed": false
+}

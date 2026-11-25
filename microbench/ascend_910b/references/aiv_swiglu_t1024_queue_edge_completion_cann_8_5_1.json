@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "hardware_id": "ascend_910b",
+  "software_revision": "CANN 8.5.1",
+  "campaign": "swiglu_t1024_queue_edges",
+  "service_time_unit": "ns_per_request_per_aiv",
+  "service_time_selection": "median_of_independent_run_medians",
+  "lookup_policy": "exact_worker_count_direction_and_payload_only",
+  "pairing_formula": "maximum_worker(request_first_interval(pair_order=1)-control_first_interval(pair_order=0)), matched by run and trial",
+  "source_scope": "CANN 8.5.1 BF16 SwiGLU depth-one TQue edges; direction 4 is DataCopy GM-to-UB followed by MTE2-to-Vector completion and direction 5 is Vector-to-MTE3 completion followed by DataCopy UB-to-GM",
+  "source_tile_evidence": {
+    "dominant_t1024_base_tile": {"rows": 19, "columns": 512, "dtype_bytes": 2, "payload_bytes": 19456, "block_dim": 48},
+    "unloaded_control": {"payload_bytes": 19456, "block_dim": 1},
+    "representative_geometries": [{"payload_bytes": 19456, "block_dim": 24}, {"payload_bytes": 19456, "block_dim": 48}],
+    "source_valid_payload_control": {"elements": 13312, "dtype_bytes": 2, "payload_bytes": 26624, "block_dim": 48}
+  },
+  "composition": "maximum_with_same_stage_byte_capacity_time",
+  "source_commit": "1376f9be956cf9497aac898c078f9d25413ed153",
+  "source_snapshot_path": "/capture-workspace/source_snapshots/first_mte_completion_1376f9be_20260831_0403_swiglu_t1024",
+  "source_snapshot_files_sha256": {
+    "first_mte_completion_kernel.cpp": "d17d9d992d527f3e2cf5c26ad636f0c5376e429dcb0567e66ac83458212e6318",
+    "first_mte_completion_main.cpp": "f21fbd2029a4a699efa7f0e4b58c3cfccc77732cb5cdbb240a4e153618e38645",
+    "first_mte_completion_runner.py": "bffe5a938d6d8df83f2077a0db42e4815719abe5248648d55044a68c3a3a321b",
+    "first_mte_completion_report.py": "51cd691114618b89d50de520004dd409556412e179cd529301c8a43ea78ffe5c"
+  },
+  "production_source_sha256": {
+    "swi_glu.cpp": "584fcf498038a6b31adf480c4fb4a600dd4cf59657a1c0a0bf725c3df3717cf3",
+    "swi_glu_single.hpp": "ace487f5c4f3929e0cc1e02dfc54b062294a3018d0cb102baa920ea83e8dd096",
+    "swi_glu_bf16.hpp": "d18f872867f22c9f7032a44c22a09ceb84d78bdb9b4a94288062b6d1e498e933"
+  },
+  "benchmark_binary_sha256": "7bf99015e8519e1e42a6be9c0dfefe6540996591051e6cbb893148dc620b7a71",
+  "raw_artifacts": [
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_t1024_queue_edges_1376f9be_20260831_d7_r1/raw.csv",
+      "sha256": "e8c524ae001997cd91d6fa88a5784330aa41a0bfbb6defe44612967f90170cc2",
+      "metadata_path": "profiler_output/microbench/ascend_910b/swiglu_t1024_queue_edges_1376f9be_20260831_d7_r1/metadata.txt",
+      "metadata_sha256": "095e9bb9d143a572d493343ec478b8387a92efaeabf9b72534ff01ea716f9118",
+      "runner_log_sha256": "22b041aa31433e16914b1c8c555a53958da1b123d9788665d4c6ed2dbaad9d7f",
+      "device_id": 7,
+      "run_id": "swiglu_t1024_queue_edges_r1"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_t1024_queue_edges_1376f9be_20260831_d7_r2/raw.csv",
+      "sha256": "8f8c8fd686f448785cf838ebe26dab3fb8a665ad1e80f3623693401510677f08",
+      "metadata_path": "profiler_output/microbench/ascend_910b/swiglu_t1024_queue_edges_1376f9be_20260831_d7_r2/metadata.txt",
+      "metadata_sha256": "831db0388a51f52fc2b3afae798d24782725c17704880a40d5c7c2e6317d75e6",
+      "runner_log_sha256": "54c5782dec1a2139c989ccb86a80526f8b33388bb994d555e09293dc1b6d4414",
+      "device_id": 7,
+      "run_id": "swiglu_t1024_queue_edges_r2"
+    },
+    {
+      "path": "profiler_output/microbench/ascend_910b/swiglu_t1024_queue_edges_1376f9be_20260831_d7_r3/raw.csv",
+      "sha256": "e91896819c635d90d3a90a25333365e5c1a3edd9b8089d785a6761b34f8c51a5",
+      "metadata_path": "profiler_output/microbench/ascend_910b/swiglu_t1024_queue_edges_1376f9be_20260831_d7_r3/metadata.txt",
+      "metadata_sha256": "bd141c33264a5c0b624a5e0e673d0d005624ed86247054e8928ad02b6b32727f",
+      "runner_log_sha256": "a716a38006bd0183e89e2140d9f4ca8b5357b527c3ba222d27870f42d6c07102",
+      "report_path": "profiler_output/microbench/ascend_910b/swiglu_t1024_queue_edges_1376f9be_20260831_d7_r3/three_run_report.txt",
+      "report_sha256": "8cbb2211021fb7b981008e73b15e7f9416ff0c34aa972bf52b514a190be3502d",
+      "device_id": 7,
+      "run_id": "swiglu_t1024_queue_edges_r3"
+    }
+  ],
+  "independent_runs": 3,
+  "samples_per_cell_per_run": 32,
+  "replication_basis": "balanced_schedule_cycle_parity",
+  "median_ns_by_run": {
+    "swiglu_t1024_queue_edges_r1": {"1:tque_mte2_to_vector:19456": 860.0, "1:tque_vector_to_mte3:19456": 660.0, "24:tque_mte2_to_vector:19456": 3090.0, "24:tque_vector_to_mte3:19456": 2780.0, "48:tque_mte2_to_vector:19456": 1310.0, "48:tque_mte2_to_vector:26624": 1420.0, "48:tque_vector_to_mte3:19456": 1170.0, "48:tque_vector_to_mte3:26624": 1230.0},
+    "swiglu_t1024_queue_edges_r2": {"1:tque_mte2_to_vector:19456": 860.0, "1:tque_vector_to_mte3:19456": 660.0, "24:tque_mte2_to_vector:19456": 2980.0, "24:tque_vector_to_mte3:19456": 2680.0, "48:tque_mte2_to_vector:19456": 1410.0, "48:tque_mte2_to_vector:26624": 1550.0, "48:tque_vector_to_mte3:19456": 1190.0, "48:tque_vector_to_mte3:26624": 1180.0},
+    "swiglu_t1024_queue_edges_r3": {"1:tque_mte2_to_vector:19456": 840.0, "1:tque_vector_to_mte3:19456": 660.0, "24:tque_mte2_to_vector:19456": 3030.0, "24:tque_vector_to_mte3:19456": 2650.0, "48:tque_mte2_to_vector:19456": 1370.0, "48:tque_mte2_to_vector:26624": 1430.0, "48:tque_vector_to_mte3:19456": 1090.0, "48:tque_vector_to_mte3:26624": 1260.0}
+  },
+  "published_cells": {
+    "1:tque_mte2_to_vector:19456": {"service_time_ns": 860.0, "maximum_run_relative_median_spread": 0.023255813953488372},
+    "1:tque_vector_to_mte3:19456": {"service_time_ns": 660.0, "maximum_run_relative_median_spread": 0.0},
+    "24:tque_mte2_to_vector:19456": {"service_time_ns": 3030.0, "maximum_run_relative_median_spread": 0.03559870550161812},
+    "24:tque_vector_to_mte3:19456": {"service_time_ns": 2680.0, "maximum_run_relative_median_spread": 0.046762589928057555},
+    "48:tque_mte2_to_vector:19456": {"service_time_ns": 1370.0, "maximum_run_relative_median_spread": 0.07092198581560284},
+    "48:tque_mte2_to_vector:26624": {"service_time_ns": 1430.0, "maximum_run_relative_median_spread": 0.08387096774193549},
+    "48:tque_vector_to_mte3:19456": {"service_time_ns": 1170.0, "maximum_run_relative_median_spread": 0.08403361344537816},
+    "48:tque_vector_to_mte3:26624": {"service_time_ns": 1230.0, "maximum_run_relative_median_spread": 0.06349206349206349}
+  },
+  "gates": {
+    "source_identity": "pass",
+    "binary_identity": "pass",
+    "raw_schema_and_value_validation": "pass",
+    "balanced_cell_order": "pass",
+    "within_run_replication": "pass",
+    "cross_run_relative_median_spread_limit": 0.2,
+    "cross_run_stability": "pass"
+  },
+  "production_or_evaluation_duration_consumed": false,
+  "mechanism_publishable": true,
+  "production_consumption_status": "candidate_only_unwired"
+}
