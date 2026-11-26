@@ -66,5 +66,6 @@ interconnect:
   parameter_source: user_supplied_2026_11_25_ascend_950pr_public_specs
 features:
   kernel_memory_model: roofline
+  async_output_release: self
   kernel_dtype: bf16
   parameter_source: user_supplied_2026_11_25_ascend_950pr_public_specs_clock_unpublished

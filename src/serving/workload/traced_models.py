@@ -7662,7 +7662,7 @@ def trace_qwen3_forward(model: ModelConfig, step, *, input_ids, positions,
                         hardware_id="nvidia_h200", model_execution_version="vllm_0_30_0", sample_logits=True, cast_logits=False,
                         maca_copy_runtime_source=None, ascend_piecewise_source=False):
     _validate_qwen3_source(model)
-    if hardware_id not in ("nvidia_a800", "nvidia_h200", "metax_c500", "ascend_910b"):
+    if hardware_id not in ("nvidia_a800", "nvidia_h200", "metax_c500", "ascend_910b", "nvidia_h20", "nvidia_b200", "nvidia_b300", "ascend_950pr", "ascend_950dt"):
         raise NotImplementedError("dense CUDA-alike forward requires its supported source platform")
     return _trace_dense_forward(model, step, input_ids=input_ids, positions=positions,
         slot_mapping=slot_mapping, cache_capacity_tokens=cache_capacity_tokens,
@@ -7677,7 +7677,7 @@ def trace_llama_forward(model: ModelConfig, step, *, input_ids, positions,
                         hardware_id="nvidia_h200", model_execution_version="vllm_0_30_0", sample_logits=True, cast_logits=False,
                         maca_copy_runtime_source=None):
     _validate_llama_source(model)
-    if hardware_id not in ("nvidia_a800", "nvidia_h200", "metax_c500", "ascend_910b"):
+    if hardware_id not in ("nvidia_a800", "nvidia_h200", "metax_c500", "ascend_910b", "nvidia_h20", "nvidia_b200", "nvidia_b300", "ascend_950pr", "ascend_950dt"):
         raise NotImplementedError("dense CUDA-alike forward requires its supported source platform")
     return _trace_dense_forward(model, step, input_ids=input_ids, positions=positions,
         slot_mapping=slot_mapping, cache_capacity_tokens=cache_capacity_tokens,
@@ -11687,7 +11687,13 @@ def build_symbolic_workload(step, model, deployment, *, launch_policy, runtime_i
             and not parallel.enable_expert_parallel)
         h200_moe = (pool.hardware_id == "nvidia_h200" and model.model_type == "qwen3_moe"
             and moe_ep2 and deployment.mode == "colocated" and len(deployment.worker_pools) == 1)
-        if ((pool.hardware_id != "nvidia_a800" and not h200_dense and not h200_moe) or model.model_type not in ("qwen3", "llama", "qwen3_moe")
+        roofline_dense = (pool.hardware_id in ("nvidia_h20", "nvidia_b200", "nvidia_b300", "ascend_950pr", "ascend_950dt")
+            and model.model_type in ("qwen3", "llama")
+            and not model.num_experts and model.compute_dtype == model.weight_dtype == "bf16"
+            and deployment.mode == "colocated" and len(deployment.worker_pools) == 1
+            and parallel.pipeline_parallel_size == 1 and parallel.tensor_parallel_size in (1, 2)
+            and not parallel.enable_expert_parallel)
+        if ((pool.hardware_id != "nvidia_a800" and not h200_dense and not h200_moe and not roofline_dense) or model.model_type not in ("qwen3", "llama", "qwen3_moe")
                 or (deployment.mode != "colocated" and not (dense_disagg or moe_disagg)) or (parallel.enable_expert_parallel and not moe_ep2)
                 or (parallel.pipeline_parallel_size > 1 and not dense_pipeline)
                 or (model.model_type == "qwen3_moe" and ((runtime_inputs.graph_execution.enabled and not moe_capture)
@@ -12258,7 +12264,7 @@ def build_symbolic_workload(step, model, deployment, *, launch_policy, runtime_i
             source_prompt_lengths=source_prompt_lengths,
             source_profile=runtime_inputs.symbolic_forward_source, target_sampling_source=runtime_inputs.target_sampling_source,
             **source_program_arguments))
-    if (deployment.mode not in ("colocated", "pd_disagg") or pool.hardware_id not in ("nvidia_a800", "nvidia_h200", "metax_c500", "ascend_910b")
+    if (deployment.mode not in ("colocated", "pd_disagg") or pool.hardware_id not in ("nvidia_a800", "nvidia_h200", "metax_c500", "ascend_910b", "nvidia_h20", "nvidia_b200", "nvidia_b300", "ascend_950pr", "ascend_950dt")
             or len(pool.ranks) != parallel.tensor_parallel_size
             or (parallel.enable_expert_parallel and model.model_type != "qwen3_moe")
             or any(value != 1 for value in (parallel.pipeline_parallel_size, parallel.sequence_parallel_size,

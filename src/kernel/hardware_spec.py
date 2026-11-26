@@ -741,7 +741,7 @@ def _validate_top_level_config(cfg):
     if (isinstance(cfg["features"], dict) and "kernel_memory_model" in cfg["features"]
             and cfg["features"]["kernel_memory_model"] == "roofline"):
         _require_fields_with_optional("roofline features", cfg["features"],
-            {"kernel_memory_model", "kernel_dtype", "parameter_source"}, {"fpga_execution", "gpu_vector_memory_only"})
+            {"kernel_memory_model", "kernel_dtype", "parameter_source"}, {"fpga_execution", "gpu_vector_memory_only", "async_output_release"})
         if "gpu_vector_memory_only" in cfg["features"]:
             if (cfg["hardware_id"] not in ("hygon_bw1100", "nvidia_rtx_pro_5500")
                     or type(cfg["features"]["gpu_vector_memory_only"]) is not bool):
@@ -11118,6 +11118,7 @@ class HWSpec:
             if "gpu_vector_memory_only" in cfg["features"] else False)
         self.fpga_execution = (dict(cfg["features"]["fpga_execution"])
             if "fpga_execution" in cfg["features"] else None)
+        self.async_output_release = cfg["features"].get("async_output_release")
         tree = ComponentTree(cfg, Path(__file__).resolve().parents[2])
         self.resources = [Resource(resource, {}, None, None) for resource in tree.get_flat_resources()]
         self._res_map, self._role_map = {}, {}

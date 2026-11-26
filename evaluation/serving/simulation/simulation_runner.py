@@ -1020,6 +1020,11 @@ def _parse_args(argv=None):
                         and (not symbolic_model.num_experts or _vllm011_colocated_ep2_cli_scope(args, symbolic_model))
                         and symbolic_model.compute_dtype == "bf16"
                         and args.deployment == "colocated" and args.prefill_pp_size == 1
+                        and not args.additional_colocated_hardware_config)
+                    and not (_cli_hardware_id(args.hardware_config, HWSpec) in ("nvidia_h20", "nvidia_b200", "nvidia_b300", "ascend_950pr", "ascend_950dt")
+                        and args.backend == "conformance" and not symbolic_model.num_experts
+                        and symbolic_model.compute_dtype == "bf16"
+                        and args.deployment == "colocated" and args.prefill_pp_size == 1
                         and not args.additional_colocated_hardware_config))
                 or args.attention_kv_layout != "paged_varlen" or args.attention_kv_distribution != "uniform"
                 or args.target_sampling_source != ("vllm_0_24_plain_greedy_" if metax024

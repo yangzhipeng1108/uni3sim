@@ -67,5 +67,6 @@ interconnect:
   parameter_source: user_supplied_2026_11_25_h20_from_tf03_two_cards_per_400Gbps_roce
 features:
   kernel_memory_model: roofline
+  async_output_release: self
   kernel_dtype: bf16
   parameter_source: user_supplied_2026_11_25_h20_from_tf03_and_pd_pool_all_h20

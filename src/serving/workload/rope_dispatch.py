@@ -90,6 +90,11 @@ ROPE_RUNTIME_BY_HARDWARE = {
     "metax_c500": "vllm_metax",
     "nvidia_a800": "vllm_cuda_in_tree",
     "nvidia_h200": "vllm_cuda_in_tree",
+    "nvidia_h20": "vllm_cuda_in_tree",
+    "nvidia_b200": "vllm_cuda_in_tree",
+    "nvidia_b300": "vllm_cuda_in_tree",
+    "ascend_950pr": "vllm_ascend",
+    "ascend_950dt": "vllm_ascend",
 }
 
 # How the runtime's kernel library executes the composite.  vllm-ascend calls

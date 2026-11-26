@@ -76,5 +76,6 @@ interconnect:
   parameter_source: user_supplied_2026_11_25_b300_two_cards_per_400Gbps_roce
 features:
   kernel_memory_model: roofline
+  async_output_release: self
   kernel_dtype: bf16
   parameter_source: user_supplied_2026_11_25_b300_official_dgx_dense
