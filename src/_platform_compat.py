@@ -90,5 +90,6 @@ else:
         RUSAGE_CHILDREN,
         RUSAGE_SELF,
         getrusage,
-        sched_getaffinity,
     )
+
+    sched_getaffinity = os.sched_getaffinity
